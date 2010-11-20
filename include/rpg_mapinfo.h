@@ -23,7 +23,6 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "rect.h"
 #include "rpg_encounter.h"
 #include "rpg_music.h"
 
@@ -48,7 +47,10 @@ namespace RPG {
 		int save;
 		std::vector<Encounter> encounters;
 		int encounter_steps;
-		Rect area_rect;
+		int area_x;
+		int area_y;
+		int area_w;
+		int area_h;
 	};
 }
 
