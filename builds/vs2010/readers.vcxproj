@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D892967A-6B8E-4AC5-9D38-785D748796D0}</ProjectGuid>
+    <RootNamespace>readers</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\lib\debug\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\lib\release\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\..\..\player\src;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <PreprocessorDefinitions>DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\..\player\src;..\..\include;</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\event_reader.cpp" />
+    <ClCompile Include="..\..\src\ini.c" />
+    <ClCompile Include="..\..\src\inireader.cpp" />
+    <ClCompile Include="..\..\src\ldb_actor.cpp" />
+    <ClCompile Include="..\..\src\ldb_animation.cpp" />
+    <ClCompile Include="..\..\src\ldb_animationcelldata.cpp" />
+    <ClCompile Include="..\..\src\ldb_animationframe.cpp" />
+    <ClCompile Include="..\..\src\ldb_animationtiming.cpp" />
+    <ClCompile Include="..\..\src\ldb_attribute.cpp" />
+    <ClCompile Include="..\..\src\ldb_battlecommand.cpp" />
+    <ClCompile Include="..\..\src\ldb_battleranimation.cpp" />
+    <ClCompile Include="..\..\src\ldb_battleranimationextension.cpp" />
+    <ClCompile Include="..\..\src\ldb_chipset.cpp" />
+    <ClCompile Include="..\..\src\ldb_class.cpp" />
+    <ClCompile Include="..\..\src\ldb_commonevent.cpp" />
+    <ClCompile Include="..\..\src\ldb_enemy.cpp" />
+    <ClCompile Include="..\..\src\ldb_enemyaction.cpp" />
+    <ClCompile Include="..\..\src\ldb_item.cpp" />
+    <ClCompile Include="..\..\src\ldb_learning.cpp" />
+    <ClCompile Include="..\..\src\ldb_music.cpp" />
+    <ClCompile Include="..\..\src\ldb_reader.cpp" />
+    <ClCompile Include="..\..\src\ldb_skill.cpp" />
+    <ClCompile Include="..\..\src\ldb_sound.cpp" />
+    <ClCompile Include="..\..\src\ldb_state.cpp" />
+    <ClCompile Include="..\..\src\ldb_switches.cpp" />
+    <ClCompile Include="..\..\src\ldb_system.cpp" />
+    <ClCompile Include="..\..\src\ldb_terms.cpp" />
+    <ClCompile Include="..\..\src\ldb_terrain.cpp" />
+    <ClCompile Include="..\..\src\ldb_testbattler.cpp" />
+    <ClCompile Include="..\..\src\ldb_troop.cpp" />
+    <ClCompile Include="..\..\src\ldb_troopmember.cpp" />
+    <ClCompile Include="..\..\src\ldb_trooppage.cpp" />
+    <ClCompile Include="..\..\src\ldb_trooppagecondition.cpp" />
+    <ClCompile Include="..\..\src\ldb_variables.cpp" />
+    <ClCompile Include="..\..\src\lmt_encounter.cpp" />
+    <ClCompile Include="..\..\src\lmt_mapinfo.cpp" />
+    <ClCompile Include="..\..\src\lmt_reader.cpp" />
+    <ClCompile Include="..\..\src\lmu_event.cpp" />
+    <ClCompile Include="..\..\src\lmu_eventpage.cpp" />
+    <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp" />
+    <ClCompile Include="..\..\src\lmu_movecommand.cpp" />
+    <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
+    <ClCompile Include="..\..\src\lmu_reader.cpp" />
+    <ClCompile Include="..\..\src\reader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\event_reader.h" />
+    <ClInclude Include="..\..\include\ini.h" />
+    <ClInclude Include="..\..\include\inireader.h" />
+    <ClInclude Include="..\..\include\ldb_chunks.h" />
+    <ClInclude Include="..\..\include\ldb_reader.h" />
+    <ClInclude Include="..\..\include\lmt_chunks.h" />
+    <ClInclude Include="..\..\include\lmt_reader.h" />
+    <ClInclude Include="..\..\include\lmu_chunks.h" />
+    <ClInclude Include="..\..\include\lmu_reader.h" />
+    <ClInclude Include="..\..\include\reader.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

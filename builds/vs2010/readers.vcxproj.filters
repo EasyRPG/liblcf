@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\INI">
+      <UniqueIdentifier>{c881e760-80a5-4102-8ad3-58978999c396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LDB">
+      <UniqueIdentifier>{7a0a97cf-0642-4471-9b77-825b942f73db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LMT">
+      <UniqueIdentifier>{07760826-1ea8-411e-81c3-3659cc03c568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\LMU">
+      <UniqueIdentifier>{9d62bde7-1f5a-4ad1-8365-e4d398bf1acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Events">
+      <UniqueIdentifier>{69f8371f-c096-4c52-95aa-3b817b62fe4d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\event_reader.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ini.c">
+      <Filter>Source Files\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\inireader.cpp">
+      <Filter>Source Files\INI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_actor.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_variables.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_animation.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_animationcelldata.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_animationframe.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_animationtiming.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_attribute.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_battlecommand.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_battleranimation.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_battleranimationextension.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_chipset.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_class.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_commonevent.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_enemy.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_enemyaction.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_item.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_learning.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_music.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_reader.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_skill.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_sound.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_state.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_switches.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_system.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_terms.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_terrain.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_testbattler.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_troop.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_troopmember.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_trooppage.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_trooppagecondition.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmt_encounter.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmt_mapinfo.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmt_reader.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_event.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_eventpage.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_movecommand.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_moveroute.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_reader.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\event_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ini.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\inireader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ldb_chunks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\ldb_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\lmt_chunks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\lmt_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\lmu_chunks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\lmu_reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
