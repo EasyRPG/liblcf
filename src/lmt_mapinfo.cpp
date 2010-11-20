@@ -79,10 +79,10 @@ RPG::MapInfo LMT_Reader::ReadMapInfo(Reader& stream) {
 			mapinfo.encounter_steps = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkMapInfo::area_rect:
-			mapinfo.area_rect.x = stream.Read32(Reader::NormalInteger);
-			mapinfo.area_rect.y = stream.Read32(Reader::NormalInteger);
-			mapinfo.area_rect.width = stream.Read32(Reader::NormalInteger) - mapinfo.area_rect.x;
-			mapinfo.area_rect.height = stream.Read32(Reader::NormalInteger) - mapinfo.area_rect.y;
+			mapinfo.area_x = stream.Read32(Reader::NormalInteger);
+			mapinfo.area_y = stream.Read32(Reader::NormalInteger);
+			mapinfo.area_w = stream.Read32(Reader::NormalInteger) - mapinfo.area_x;
+			mapinfo.area_h = stream.Read32(Reader::NormalInteger) - mapinfo.area_y;
 			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);

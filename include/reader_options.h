@@ -15,22 +15,32 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _EVENT_READER_H_
-#define _EVENT_READER_H_
+#ifndef _DATA_OPTIONS_H_
+#define _DATA_OPTIONS_H_
+
+#define RPG2K	1
+#define RPG2K3	2
 
 ////////////////////////////////////////////////////////////
-// Headers
+// RPGMAKER
+//		Defines RPG Maker compability, RPG2K for RPG Maker 2000
+//		and RPG2K3 for RPG Maker 2003.
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <iostream>
-#include "reader.h"
-#include "rpg_eventcommand.h"
+#define RPGMAKER RPG2K
 
 ////////////////////////////////////////////////////////////
-/// Event Reader namespace
+// INI_NAME
+//		INI configuration filename.
+//
+// READ_INI_GAME_TITLE
+//		Read game title from ini file.
+//
+// DATABASE_NAME
+//		Database filename.
 ////////////////////////////////////////////////////////////
-namespace Event_Reader {
-	RPG::EventCommand ReadEventCommand(Reader& stream);
-}
+#define INI_NAME "RPG_RT.ini"
+#define READ_INI_GAME_TITLE true
+#define DATABASE_NAME "RPG_RT.ldb"
+#define TREEMAP_NAME "RPG_RT.lmt"
 
 #endif

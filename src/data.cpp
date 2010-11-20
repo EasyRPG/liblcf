@@ -15,22 +15,33 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _EVENT_READER_H_
-#define _EVENT_READER_H_
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <iostream>
-#include "reader.h"
-#include "rpg_eventcommand.h"
+#include "data.h"
 
 ////////////////////////////////////////////////////////////
-/// Event Reader namespace
-////////////////////////////////////////////////////////////
-namespace Event_Reader {
-	RPG::EventCommand ReadEventCommand(Reader& stream);
+namespace Data {
+	// Database Data (ldb)
+	std::vector<RPG::Actor> actors;
+	std::vector<RPG::Skill> skills;
+	std::vector<RPG::Item> items;
+	std::vector<RPG::Enemy> enemies;
+	std::vector<RPG::Troop> troops;
+	std::vector<RPG::Terrain> terrains;
+	std::vector<RPG::Attribute> attributes;
+	std::vector<RPG::State> states;
+	std::vector<RPG::Animation> animations;
+	std::vector<RPG::Chipset> chipsets;
+	std::vector<RPG::CommonEvent> commonevents;
+	std::vector<RPG::BattleCommand> battlecommands;
+	std::vector<RPG::Class> classes;
+	std::vector<RPG::BattlerAnimation> battleranimations;
+	RPG::Terms terms;
+	RPG::System system;
+	std::vector<std::string> switches;
+	std::vector<std::string> variables;
+
+	// TreeMap (lmt)
+	RPG::TreeMap treemap;
 }
-
-#endif

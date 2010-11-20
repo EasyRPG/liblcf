@@ -39,19 +39,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\lib\debug\</OutDir>
+    <OutDir>$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\lib\release\</OutDir>
+    <OutDir>$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\..\player\src;..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
-      <PreprocessorDefinitions>DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -63,9 +63,13 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\player\src;..\..\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\data.cpp" />
     <ClCompile Include="..\..\src\event_reader.cpp" />
     <ClCompile Include="..\..\src\ini.c" />
     <ClCompile Include="..\..\src\inireader.cpp" />
@@ -118,8 +123,47 @@
     <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
     <ClCompile Include="..\..\src\reader.cpp" />
+    <ClCompile Include="..\..\src\rpg_actor.cpp" />
+    <ClCompile Include="..\..\src\rpg_animation.cpp" />
+    <ClCompile Include="..\..\src\rpg_animationcelldata.cpp" />
+    <ClCompile Include="..\..\src\rpg_animationframe.cpp" />
+    <ClCompile Include="..\..\src\rpg_animationtiming.cpp" />
+    <ClCompile Include="..\..\src\rpg_attribute.cpp" />
+    <ClCompile Include="..\..\src\rpg_battlecommand.cpp" />
+    <ClCompile Include="..\..\src\rpg_battleranimation.cpp" />
+    <ClCompile Include="..\..\src\rpg_battleranimationextension.cpp" />
+    <ClCompile Include="..\..\src\rpg_chipset.cpp" />
+    <ClCompile Include="..\..\src\rpg_class.cpp" />
+    <ClCompile Include="..\..\src\rpg_commonevent.cpp" />
+    <ClCompile Include="..\..\src\rpg_encounter.cpp" />
+    <ClCompile Include="..\..\src\rpg_enemy.cpp" />
+    <ClCompile Include="..\..\src\rpg_enemyaction.cpp" />
+    <ClCompile Include="..\..\src\rpg_event.cpp" />
+    <ClCompile Include="..\..\src\rpg_eventcommand.cpp" />
+    <ClCompile Include="..\..\src\rpg_eventpage.cpp" />
+    <ClCompile Include="..\..\src\rpg_eventpagecondition.cpp" />
+    <ClCompile Include="..\..\src\rpg_item.cpp" />
+    <ClCompile Include="..\..\src\rpg_learning.cpp" />
+    <ClCompile Include="..\..\src\rpg_map.cpp" />
+    <ClCompile Include="..\..\src\rpg_mapinfo.cpp" />
+    <ClCompile Include="..\..\src\rpg_movecommand.cpp" />
+    <ClCompile Include="..\..\src\rpg_moveroute.cpp" />
+    <ClCompile Include="..\..\src\rpg_music.cpp" />
+    <ClCompile Include="..\..\src\rpg_skill.cpp" />
+    <ClCompile Include="..\..\src\rpg_sound.cpp" />
+    <ClCompile Include="..\..\src\rpg_state.cpp" />
+    <ClCompile Include="..\..\src\rpg_system.cpp" />
+    <ClCompile Include="..\..\src\rpg_terms.cpp" />
+    <ClCompile Include="..\..\src\rpg_terrain.cpp" />
+    <ClCompile Include="..\..\src\rpg_testbattler.cpp" />
+    <ClCompile Include="..\..\src\rpg_treemap.cpp" />
+    <ClCompile Include="..\..\src\rpg_troop.cpp" />
+    <ClCompile Include="..\..\src\rpg_troopmember.cpp" />
+    <ClCompile Include="..\..\src\rpg_trooppage.cpp" />
+    <ClCompile Include="..\..\src\rpg_trooppagecondition.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\data.h" />
     <ClInclude Include="..\..\include\event_reader.h" />
     <ClInclude Include="..\..\include\ini.h" />
     <ClInclude Include="..\..\include\inireader.h" />
@@ -130,6 +174,45 @@
     <ClInclude Include="..\..\include\lmu_chunks.h" />
     <ClInclude Include="..\..\include\lmu_reader.h" />
     <ClInclude Include="..\..\include\reader.h" />
+    <ClInclude Include="..\..\include\reader_options.h" />
+    <ClInclude Include="..\..\include\rpg_actor.h" />
+    <ClInclude Include="..\..\include\rpg_animation.h" />
+    <ClInclude Include="..\..\include\rpg_animationcelldata.h" />
+    <ClInclude Include="..\..\include\rpg_animationframe.h" />
+    <ClInclude Include="..\..\include\rpg_animationtiming.h" />
+    <ClInclude Include="..\..\include\rpg_attribute.h" />
+    <ClInclude Include="..\..\include\rpg_battlecommand.h" />
+    <ClInclude Include="..\..\include\rpg_battleranimation.h" />
+    <ClInclude Include="..\..\include\rpg_battleranimationextension.h" />
+    <ClInclude Include="..\..\include\rpg_chipset.h" />
+    <ClInclude Include="..\..\include\rpg_class.h" />
+    <ClInclude Include="..\..\include\rpg_commonevent.h" />
+    <ClInclude Include="..\..\include\rpg_encounter.h" />
+    <ClInclude Include="..\..\include\rpg_enemy.h" />
+    <ClInclude Include="..\..\include\rpg_enemyaction.h" />
+    <ClInclude Include="..\..\include\rpg_event.h" />
+    <ClInclude Include="..\..\include\rpg_eventcommand.h" />
+    <ClInclude Include="..\..\include\rpg_eventpage.h" />
+    <ClInclude Include="..\..\include\rpg_eventpagecondition.h" />
+    <ClInclude Include="..\..\include\rpg_item.h" />
+    <ClInclude Include="..\..\include\rpg_learning.h" />
+    <ClInclude Include="..\..\include\rpg_map.h" />
+    <ClInclude Include="..\..\include\rpg_mapinfo.h" />
+    <ClInclude Include="..\..\include\rpg_movecommand.h" />
+    <ClInclude Include="..\..\include\rpg_moveroute.h" />
+    <ClInclude Include="..\..\include\rpg_music.h" />
+    <ClInclude Include="..\..\include\rpg_skill.h" />
+    <ClInclude Include="..\..\include\rpg_sound.h" />
+    <ClInclude Include="..\..\include\rpg_state.h" />
+    <ClInclude Include="..\..\include\rpg_system.h" />
+    <ClInclude Include="..\..\include\rpg_terms.h" />
+    <ClInclude Include="..\..\include\rpg_terrain.h" />
+    <ClInclude Include="..\..\include\rpg_testbattler.h" />
+    <ClInclude Include="..\..\include\rpg_treemap.h" />
+    <ClInclude Include="..\..\include\rpg_troop.h" />
+    <ClInclude Include="..\..\include\rpg_troopmember.h" />
+    <ClInclude Include="..\..\include\rpg_trooppage.h" />
+    <ClInclude Include="..\..\include\rpg_trooppagecondition.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

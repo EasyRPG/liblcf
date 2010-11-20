@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "data.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Database
@@ -57,84 +57,84 @@ void LDB_Reader::LoadChunks(Reader& stream) {
 		switch (chunk_info.ID) {
 			case ChunkData::Actor:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_actors.push_back(ReadActor(stream));
+					Data::actors.push_back(ReadActor(stream));
 				}
 				break;
 			case ChunkData::Skill:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_skills.push_back(ReadSkill(stream));
+					Data::skills.push_back(ReadSkill(stream));
 				}
 				break;
 			case ChunkData::Item:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_items.push_back(ReadItem(stream));
+					Data::items.push_back(ReadItem(stream));
 				}
 				break;
 			case ChunkData::Enemy:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_enemies.push_back(ReadEnemy(stream));
+					Data::enemies.push_back(ReadEnemy(stream));
 				}
 				break;
 			case ChunkData::Troop:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_troops.push_back(ReadTroop(stream));
+					Data::troops.push_back(ReadTroop(stream));
 				}
 				break;
 			case ChunkData::Terrain:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_terrains.push_back(ReadTerrain(stream));
+					Data::terrains.push_back(ReadTerrain(stream));
 				}
 				break;
 			case ChunkData::Attribute:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_attributes.push_back(ReadAttribute(stream));
+					Data::attributes.push_back(ReadAttribute(stream));
 				}
 				break;
 			case ChunkData::State:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_states.push_back(ReadState(stream));
+					Data::states.push_back(ReadState(stream));
 				}
 				break;
 			case ChunkData::Animation:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_animations.push_back(ReadAnimation(stream));
+					Data::animations.push_back(ReadAnimation(stream));
 				}
 				break;
 			case ChunkData::Chipset:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_chipsets.push_back(ReadChipset(stream));
+					Data::chipsets.push_back(ReadChipset(stream));
 				}
 				break;
 			case ChunkData::Terms:
-				Main_Data::data_terms = ReadTerms(stream);
+				Data::terms = ReadTerms(stream);
 				break;
 			case ChunkData::System:
-				Main_Data::data_system = ReadSystem(stream);
+				Data::system = ReadSystem(stream);
 				break;
 			case ChunkData::Switches:
-				Main_Data::data_switches = ReadSwitches(stream);
+				Data::switches = ReadSwitches(stream);
 				break;
 			case ChunkData::Variables:
-				Main_Data::data_variables = ReadVariables(stream);
+				Data::variables = ReadVariables(stream);
 				break;
 			case ChunkData::CommonEvent:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_commonevents.push_back(ReadCommonEvent(stream));
+					Data::commonevents.push_back(ReadCommonEvent(stream));
 				}
 				break;
 			case ChunkData::BattleCommand:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_battlecommands.push_back(ReadBattleCommand(stream));
+					Data::battlecommands.push_back(ReadBattleCommand(stream));
 				}
 				break;
 			case ChunkData::Class:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_classes.push_back(ReadClass(stream));
+					Data::classes.push_back(ReadClass(stream));
 				}
 				break;
 			case ChunkData::BattlerAnimation:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Main_Data::data_battleranimations.push_back(ReadBattlerAnimation(stream));
+					Data::battleranimations.push_back(ReadBattlerAnimation(stream));
 				}
 				break;
 			default:
