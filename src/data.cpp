@@ -45,3 +45,23 @@ namespace Data {
 	// TreeMap (lmt)
 	RPG::TreeMap treemap;
 }
+
+////////////////////////////////////////////////////////////
+void Data::Clear() {
+	actors.clear();
+	skills.clear();
+	items.clear();
+	enemies.clear();
+	troops.clear();
+	terrains.clear();
+	attributes.clear();
+	states.clear();
+	animations.clear();
+	chipsets.clear();
+	commonevents.clear();
+	battlecommands.clear();
+	classes.clear();
+	battleranimations.clear();
+	switches.clear();
+	variables.clear();
+}
