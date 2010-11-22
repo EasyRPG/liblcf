@@ -181,7 +181,7 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			stream.ReadBool(item.attribute_set, chunk_info.length);
 			break;
 		case ChunkItem::state_chance:
-			item.state_chance = stream.ReadBool();
+			item.state_chance = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkItem::weapon_animation:
 			item.weapon_animation = stream.Read32(Reader::CompressedInteger);

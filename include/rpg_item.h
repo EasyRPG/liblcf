@@ -62,7 +62,7 @@ namespace RPG {
 		int agi_points;
 		std::vector<bool> attribute_set;
 		std::vector<bool> state_set;
-		bool state_chance;
+		int state_chance;
 		bool cursed; // RPG2003
 				
 		// Weapon
