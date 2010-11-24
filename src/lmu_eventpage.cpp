@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 	RPG::EventPage eventpage;
-	stream.Read32(Reader::CompressedInteger);
+	eventpage.ID = stream.Read32(Reader::CompressedInteger);
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
@@ -46,8 +46,8 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 		case ChunkEventPage::character_name:
 			eventpage.character_name = stream.ReadString(chunk_info.length);
 			break;
-		case ChunkEventPage::tile_id:
-			eventpage.tile_id = stream.Read32(Reader::CompressedInteger);
+		case ChunkEventPage::character_index:
+			eventpage.character_index = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkEventPage::character_dir:
 			eventpage.character_dir = stream.Read32(Reader::CompressedInteger);

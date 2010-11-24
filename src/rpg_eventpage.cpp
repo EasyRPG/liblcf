@@ -26,7 +26,7 @@
 RPG::EventPage::EventPage() {
 	ID = 0;
 	character_name = "";
-	tile_id = 0;
+	character_index = 0;
 	character_dir = 2;
 	character_pattern = 1;
 	translucent = false;

@@ -38,7 +38,7 @@ namespace RPG {
 		int ID;
 		RPG::EventPageCondition condition;
 		std::string character_name;
-		int tile_id;
+		int character_index;
 		int character_dir;
 		int character_pattern;
 		bool translucent;
