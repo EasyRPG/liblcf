@@ -38,6 +38,7 @@
 	typedef	signed int		int32_t;
 	typedef unsigned int	uint32_t;
 #endif
+#include "reader_options.h"
 
 ////////////////////////////////////////////////////////////
 /// Reader class
@@ -84,6 +85,11 @@ public:
 	bool Eof() const;
 	void Seek(size_t pos, SeekMode = FromStart);
 	bool Ungetch(uint8_t ch);
+
+#ifdef BIG_ENDIAN
+	void SwapByteOrder(uint16_t &us);
+	void SwapByteOrder(uint32_t &ui);
+#endif
 
 private:
 	FILE* stream;

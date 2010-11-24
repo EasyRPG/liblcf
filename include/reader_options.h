@@ -43,4 +43,8 @@
 #define DATABASE_NAME "RPG_RT.ldb"
 #define TREEMAP_NAME "RPG_RT.lmt"
 
+#if defined(GEKKO)
+	#define BIG_ENDIAN
+#endif
+
 #endif
