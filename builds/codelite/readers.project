@@ -216,7 +216,7 @@
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Win32 Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-ansi;-pedantic;-Wall;-Wextra;-Wno-unused;-U__STRICT_ANSI__-fno-rtti;-fno-exceptions" Required="yes" PreCompiledHeader="">
+      <Compiler Options="-g;-ansi;-pedantic;-Wall;-Wextra;-Wno-unused;-U__STRICT_ANSI__;-fno-rtti;-fno-exceptions" Required="yes" PreCompiledHeader="">
         <IncludePath Value="$(EASYDEV_MINGW)/include"/>
       </Compiler>
       <Linker Options="-mwindows" Required="yes">
@@ -248,7 +248,7 @@
       </AdditionalRules>
     </Configuration>
     <Configuration Name="Win32 Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-O3;-ansi;-pedantic;-Wall;-Wextra;-U__STRICT_ANSI__-fno-rtti;-fno-exceptions" Required="yes" PreCompiledHeader="">
+      <Compiler Options="-O3;-ansi;-pedantic;-Wall;-Wextra;-U__STRICT_ANSI__;-fno-rtti;-fno-exceptions" Required="yes" PreCompiledHeader="">
         <IncludePath Value="$(EASYDEV_MINGW)/include"/>
       </Compiler>
       <Linker Options="-s;-mwindows" Required="yes">
