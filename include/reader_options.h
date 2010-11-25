@@ -44,7 +44,7 @@
 #define TREEMAP_NAME "RPG_RT.lmt"
 
 #if defined(GEKKO)
-	#define BIG_ENDIAN
+	#define READER_BIG_ENDIAN
 #endif
 
 #endif

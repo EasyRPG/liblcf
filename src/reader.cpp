@@ -79,7 +79,7 @@ int16_t Reader::Read16() {
 #else
 	fread(&val, 2, 1, stream);
 #endif
-#ifdef BIG_ENDIAN
+#ifdef READER_BIG_ENDIAN
 	uint16_t val2 = (uint16_t)val;
 	SwapByteOrder(val2);
 	val = val2;
@@ -93,7 +93,7 @@ int16_t Reader::Read16() {
 int32_t Reader::Read32(IntegerType type) {
 	int32_t value = 0;
 	unsigned char temp = 0;
-#ifdef BIG_ENDIAN
+#ifdef READER_BIG_ENDIAN
 	uint32_t val2 = 0;
 #endif
 
@@ -104,7 +104,7 @@ int32_t Reader::Read32(IntegerType type) {
 #else
 		fread(&value, 4, 1, stream);
 #endif
-		#ifdef BIG_ENDIAN
+		#ifdef READER_BIG_ENDIAN
 			val2 = (uint32_t)value;
 			SwapByteOrder(val2);
 			value = val2;
@@ -170,7 +170,7 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 #else
 		fread(&val, 2, 1, stream);
 #endif
-	#ifdef BIG_ENDIAN
+	#ifdef READER_BIG_ENDIAN
 		uint16_t val2 = (uint16_t)val;
 		SwapByteOrder(val2);
 		val = val2;
@@ -191,7 +191,7 @@ void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 #else
 		fread(&val, 4, 1, stream);
 #endif
-	#ifdef BIG_ENDIAN
+	#ifdef READER_BIG_ENDIAN
 		SwapByteOrder(val);
 	#endif
 		buffer.push_back(val);
@@ -285,7 +285,7 @@ const std::string& Reader::GetError() {
 ////////////////////////////////////////////////////////////
 /// Little-to-Big-Endian-Converter
 ////////////////////////////////////////////////////////////
-#ifdef BIG_ENDIAN
+#ifdef READER_BIG_ENDIAN
 void Reader::SwapByteOrder(uint16_t& us)
 {
     us = (us >> 8) |

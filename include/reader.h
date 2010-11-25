@@ -86,7 +86,7 @@ public:
 	void Seek(size_t pos, SeekMode = FromStart);
 	bool Ungetch(uint8_t ch);
 
-#ifdef BIG_ENDIAN
+#ifdef READER_BIG_ENDIAN
 	void SwapByteOrder(uint16_t &us);
 	void SwapByteOrder(uint32_t &ui);
 #endif
