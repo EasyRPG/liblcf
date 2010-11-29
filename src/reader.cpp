@@ -133,6 +133,8 @@ int32_t Reader::Read32(IntegerType type) {
 ////////////////////////////////////////////////////////////
 void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 	uint8_t val = 0;
+	buffer.clear();
+
 	for (unsigned i = 0; i < size; ++i) {
 #ifndef NDEBUG
 		assert(fread(&val, 1, 1, stream) == 1);
@@ -148,6 +150,8 @@ void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 ////////////////////////////////////////////////////////////
 void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 	uint8_t val;
+	buffer.clear();
+
 	for (unsigned int i = 0; i < size; ++i) {
 #ifndef NDEBUG
 		assert(fread(&val, 1, 1, stream) == 1);
@@ -163,6 +167,7 @@ void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 ////////////////////////////////////////////////////////////
 void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 	int16_t val;
+	buffer.clear();
 	size_t items = size / 2;
 	for (unsigned int i = 0; i < items; ++i) {
 #ifndef NDEBUG
@@ -184,6 +189,7 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 ////////////////////////////////////////////////////////////
 void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 	uint32_t val;
+	buffer.clear();
 	size_t items = size / 4;
 	for (unsigned int i = 0; i < items; ++i) {
 #ifndef NDEBUG
