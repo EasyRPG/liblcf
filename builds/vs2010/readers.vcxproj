@@ -80,7 +80,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\data.cpp" />
     <ClCompile Include="..\..\src\event_reader.cpp" />
-    <ClCompile Include="..\..\src\ini.c" />
+    <ClCompile Include="..\..\src\ini.cpp" />
     <ClCompile Include="..\..\src\inireader.cpp" />
     <ClCompile Include="..\..\src\ldb_actor.cpp" />
     <ClCompile Include="..\..\src\ldb_animation.cpp" />

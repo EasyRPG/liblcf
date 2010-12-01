@@ -35,7 +35,7 @@
     <ClCompile Include="..\..\src\event_reader.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ini.c">
+    <ClCompile Include="..\..\src\ini.cpp">
       <Filter>Source Files\INI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\inireader.cpp">

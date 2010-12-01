@@ -90,8 +90,8 @@
       <File Name="../../src/lmt_reader.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="INI">
-      <File Name="../../src/ini.c"/>
       <File Name="../../src/inireader.cpp"/>
+      <File Name="../../src/ini.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="LMU">
       <File Name="../../src/lmu_event.cpp"/>
