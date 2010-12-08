@@ -31,7 +31,7 @@ std::vector<std::string> LDB_Reader::ReadSwitches(Reader& stream) {
 
 	int pos;
 	Reader::Chunk chunk_info;
-	for (int i = switches.size(); i > 0; i--) {
+	for (int i = switches.size() - 1; i > 0; i--) {
 		pos = stream.Read32(Reader::CompressedInteger);
 		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
 		if (chunk_info.ID != ChunkData::END) {
@@ -42,7 +42,8 @@ std::vector<std::string> LDB_Reader::ReadSwitches(Reader& stream) {
 		case ChunkData::END:
 			break;
 		case ChunkSwitch::name:
-			switches[pos] = stream.ReadString(chunk_info.length);
+			// This string is null-terminated
+			switches[pos] = stream.ReadString(chunk_info.length + 1);
 			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);

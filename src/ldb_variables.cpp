@@ -27,11 +27,11 @@
 ////////////////////////////////////////////////////////////
 std::vector<std::string> LDB_Reader::ReadVariables(Reader& stream) {
 	std::vector<std::string> variables;
-	variables.resize(stream.Read32(Reader::CompressedInteger));
+	variables.resize(stream.Read32(Reader::CompressedInteger) + 1);
 
 	int pos;
 	Reader::Chunk chunk_info;
-	for (int i = variables.size(); i > 0; i--) {
+	for (int i = variables.size() - 1; i > 0; i--) {
 		pos = stream.Read32(Reader::CompressedInteger);
 		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
 		if (chunk_info.ID != ChunkData::END) {
@@ -42,7 +42,8 @@ std::vector<std::string> LDB_Reader::ReadVariables(Reader& stream) {
 		case ChunkData::END:
 			break;
 		case ChunkVariable::name:
-			variables[pos] = stream.ReadString(chunk_info.length);
+			// This string is null-terminated
+			variables[pos] = stream.ReadString(chunk_info.length + 1);
 			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);
