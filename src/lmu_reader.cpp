@@ -28,7 +28,7 @@
 RPG::Map* LMU_Reader::LoadMap(const std::string& filename) {
 	Reader reader(filename);
 	if (!reader.IsOk()) {
-		Reader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
+		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return NULL;
 	}
 	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
