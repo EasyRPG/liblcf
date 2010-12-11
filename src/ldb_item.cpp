@@ -147,8 +147,8 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 		case ChunkItem::agi_points2:
 			item.agi_points = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkItem::using_messsage:
-			item.using_messsage = stream.Read32(Reader::CompressedInteger);
+		case ChunkItem::using_message:
+			item.using_message = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkItem::skill_id:
 			item.skill_id = stream.Read32(Reader::CompressedInteger);

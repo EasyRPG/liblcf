@@ -59,7 +59,7 @@ RPG::Item::Item() {
 	ocassion_field = false;
 	ko_only = false;
 	skill_id = 1;
-	using_messsage = 0;
+	using_message = 0;
 	max_hp_points = 0;
 	max_sp_points = 0;
 	switch_id = 1;

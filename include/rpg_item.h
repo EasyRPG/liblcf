@@ -36,7 +36,7 @@ namespace RPG {
 			Type_shield = 2,
 			Type_armor = 3,
 			Type_helmet = 4,
-			Type_accesssory = 5,
+			Type_accessory = 5,
 			Type_medicine = 6,
 			Type_book = 7,
 			Type_material = 8,
@@ -95,7 +95,7 @@ namespace RPG {
 		
 		// Book - Unique
 		int skill_id;
-		int using_messsage;
+		int using_message;
 		
 		// Material (See also Equipable *_points)
 		int max_hp_points;

@@ -170,7 +170,7 @@ namespace LDB_Reader {
 			def_points2			= 0x2C, // Integer
 			spi_points2			= 0x2D, // Integer
 			agi_points2			= 0x2E, // Integer
-			using_messsage		= 0x33, // Integer
+			using_message		= 0x33, // Integer
 			skill_id			= 0x35, // Integer - RPG2003
 			switch_id			= 0x37, // Integer
 			ocassion_field2		= 0x39, // Flag
