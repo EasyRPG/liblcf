@@ -546,8 +546,8 @@ namespace LDB_Reader {
 			accessory			= 0x8C, // String
 			save_game_message	= 0x92, // String
 			load_game_message	= 0x93, // String
-			exit_game_message	= 0x94, // String
-			file				= 0x97, // String
+			file				= 0x94, // String
+			exit_game_message	= 0x97, // String
 			yes					= 0x98, // String
 			no					= 0x99	// String
 		};
