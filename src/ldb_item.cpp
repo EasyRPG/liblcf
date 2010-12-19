@@ -47,6 +47,9 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			break;
 		case ChunkItem::type:
 			item.type = stream.Read32(Reader::CompressedInteger);
+			if (item.type == RPG::Item::Type_switch) {
+				item.ocassion_field = true;
+			}
 			break;
 		case ChunkItem::price:
 			item.price = stream.Read32(Reader::CompressedInteger);
