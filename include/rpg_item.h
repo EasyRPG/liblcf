@@ -90,7 +90,7 @@ namespace RPG {
 		int recover_hp_rate;
 		int recover_sp;
 		int recover_sp_rate;
-		bool ocassion_field; // Switch
+		bool ocassion_field; // Also used by Switch
 		bool ko_only;
 		
 		// Book - Unique
