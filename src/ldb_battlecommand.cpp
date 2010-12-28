@@ -23,6 +23,34 @@
 #include "reader.h"
 
 ////////////////////////////////////////////////////////////
+/// Read BattleCommands
+////////////////////////////////////////////////////////////
+std::vector<RPG::BattleCommand> LDB_Reader::ReadBattleCommands(Reader& stream) {
+	std::vector<RPG::BattleCommand> battlecommands;
+	Reader::Chunk chunk_info;
+
+	while (!stream.Eof()) {
+		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		if (chunk_info.ID == ChunkData::END) {
+			break;
+		} else {
+			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			if (chunk_info.length == 0) continue;
+		}
+		switch (chunk_info.ID) {
+		case ChunkBattleCommand::command:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				battlecommands.push_back(ReadBattleCommand(stream));
+			}
+			break;
+		default:
+			stream.Seek(chunk_info.length, Reader::FromCurrent);
+		}
+	}
+	return battlecommands;
+}
+
+////////////////////////////////////////////////////////////
 /// Read BattleCommand
 ////////////////////////////////////////////////////////////
 RPG::BattleCommand LDB_Reader::ReadBattleCommand(Reader& stream) {

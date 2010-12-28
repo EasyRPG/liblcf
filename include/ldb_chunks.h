@@ -633,7 +633,8 @@ namespace LDB_Reader {
 	namespace ChunkBattleCommand {
 		enum ChunkBattleCommand {
 			name	= 0x01, // String
-			type	= 0x02	// Integer
+			type	= 0x02,	// Integer
+			command = 0x0A  // Array - RPG::BattleCommand
 		};
 	}
 	namespace ChunkBattlerAnimation {

@@ -123,9 +123,7 @@ void LDB_Reader::LoadChunks(Reader& stream) {
 				}
 				break;
 			case ChunkData::BattleCommand:
-				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-					Data::battlecommands.push_back(ReadBattleCommand(stream));
-				}
+				Data::battlecommands = ReadBattleCommands(stream);
 				break;
 			case ChunkData::Class:
 				for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
