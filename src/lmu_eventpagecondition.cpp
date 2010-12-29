@@ -47,6 +47,7 @@ RPG::EventPageCondition LMU_Reader::ReadEventPageCondition(Reader& stream) {
 			eventpagecondition.item = (bitflag & 0x08) > 0;
 			eventpagecondition.actor = (bitflag & 0x10) > 0;
 			eventpagecondition.timer = (bitflag & 0x20) > 0;
+			eventpagecondition.timer2 = (bitflag & 0x40) > 0;
 			break;
 		case ChunkEventPageCondition::switch_a_id:
 			eventpagecondition.switch_a_id = stream.Read32(Reader::CompressedInteger);
@@ -68,6 +69,9 @@ RPG::EventPageCondition LMU_Reader::ReadEventPageCondition(Reader& stream) {
 			break;
 		case ChunkEventPageCondition::timer_sec:
 			eventpagecondition.timer_sec = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkEventPageCondition::timer2_sec:
+			eventpagecondition.timer2_sec = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);

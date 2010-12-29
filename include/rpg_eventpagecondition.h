@@ -32,6 +32,7 @@ namespace RPG {
 		bool item;
 		bool actor;
 		bool timer;
+		bool timer2;
 		int switch_a_id;
 		int switch_b_id;
 		int variable_id;
@@ -39,6 +40,7 @@ namespace RPG {
 		int item_id;
 		int actor_id;
 		int timer_sec;
+		int timer2_sec;
 	};
 }
 

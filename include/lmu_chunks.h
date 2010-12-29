@@ -75,7 +75,7 @@ namespace LMU_Reader {
 		enum ChunkEventPage {
 			condition			= 0x02, // RPG::EventPageCondition
 			character_name		= 0x15, // String
-			character_index				= 0x16, // Integer
+			character_index		= 0x16, // Integer
 			character_dir		= 0x17, // Integer
 			character_pattern	= 0x18, // Integer
 			translucent			= 0x19, // Integer
@@ -100,7 +100,8 @@ namespace LMU_Reader {
 			variable_value	= 0x05, // Integer
 			item_id			= 0x06, // Integer
 			actor_id		= 0x07, // Integer
-			timer_sec		= 0x08	// Integer
+			timer_sec		= 0x08,	// Integer
+			timer2_sec		= 0x09	// Integer - RPG2003
 		};
 	}
 	namespace ChunkMoveRoute {

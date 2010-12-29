@@ -30,6 +30,7 @@ RPG::EventPageCondition::EventPageCondition() {
 	item = false;
 	actor = false;
 	timer = false;
+	timer2 = false;
 	switch_a_id = 1;
 	switch_b_id = 1;
 	variable_id = 1;
@@ -37,4 +38,5 @@ RPG::EventPageCondition::EventPageCondition() {
 	item_id = 1;
 	actor_id = 1;
 	timer_sec = 0;
+	timer2_sec = 0;
 }
