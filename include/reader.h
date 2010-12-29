@@ -84,6 +84,7 @@ public:
 	bool IsOk() const;
 	bool Eof() const;
 	void Seek(size_t pos, SeekMode = FromStart);
+	long Tell();
 	bool Ungetch(uint8_t ch);
 
 #ifdef READER_BIG_ENDIAN

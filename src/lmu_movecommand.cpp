@@ -28,35 +28,24 @@
 RPG::MoveCommand LMU_Reader::ReadMoveCommand(Reader& stream) {
 	RPG::MoveCommand movecommand;
 
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkMoveCommand::switch_on:
-			movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
-			break;
-		case ChunkMoveCommand::switch_off:
-			movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
-			break;
-		case ChunkMoveCommand::change_graphic:
-			movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
-			movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
-			break;
-		case ChunkMoveCommand::play_sound:
-			movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
-			movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
-			movecommand.parameter_b = stream.Read32(Reader::CompressedInteger);
-			movecommand.parameter_c = stream.Read32(Reader::CompressedInteger);
-			break;
-		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
-		}
+	movecommand.command_id = stream.Read32(Reader::CompressedInteger);
+	switch (movecommand.command_id) {
+	case ChunkMoveCommand::switch_on:
+		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		break;
+	case ChunkMoveCommand::switch_off:
+		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		break;
+	case ChunkMoveCommand::change_graphic:
+		movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
+		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		break;
+	case ChunkMoveCommand::play_sound:
+		movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
+		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_b = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_c = stream.Read32(Reader::CompressedInteger);
+		break;
 	}
 	return movecommand;
 }

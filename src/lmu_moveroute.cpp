@@ -37,13 +37,14 @@ RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
 			chunk_info.length = stream.Read32(Reader::CompressedInteger);
 			if (chunk_info.length == 0) continue;
 		}
-
+		long startpos = 0;
 		switch (chunk_info.ID) {
-		/*case ChunkMoveRoute::move_commands: FIXME
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+		case ChunkMoveRoute::move_commands:
+			startpos = stream.Tell();
+			do {
 				moveroute.move_commands.push_back(ReadMoveCommand(stream));
-			}
-			break;*/
+			} while ((stream.Tell() - chunk_info.length) != startpos);
+			break;
 		case ChunkMoveRoute::skippable:
 			moveroute.skippable = stream.ReadBool();
 			break;
