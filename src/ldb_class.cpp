@@ -95,7 +95,7 @@ RPG::Class LDB_Reader::ReadClass(Reader& stream) {
 			stream.Read32(_class.battle_commands, chunk_info.length);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return _class;

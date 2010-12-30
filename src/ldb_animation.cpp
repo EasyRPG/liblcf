@@ -62,7 +62,7 @@ RPG::Animation LDB_Reader::ReadAnimation(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return animation;

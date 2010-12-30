@@ -399,7 +399,7 @@ RPG::Terms LDB_Reader::ReadTerms(Reader& stream) {
 			terms.no = stream.ReadString(chunk_info.length);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return terms;

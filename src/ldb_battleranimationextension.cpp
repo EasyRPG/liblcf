@@ -55,7 +55,7 @@ RPG::BattlerAnimationExtension LDB_Reader::ReadBattlerAnimationExtension(Reader&
 			extension.animation_id = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return extension;

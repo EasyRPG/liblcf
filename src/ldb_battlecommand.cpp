@@ -44,7 +44,7 @@ std::vector<RPG::BattleCommand> LDB_Reader::ReadBattleCommands(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return battlecommands;
@@ -74,7 +74,7 @@ RPG::BattleCommand LDB_Reader::ReadBattleCommand(Reader& stream) {
 			battle_command.type = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return battle_command;

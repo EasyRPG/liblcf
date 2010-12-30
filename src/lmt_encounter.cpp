@@ -43,7 +43,7 @@ RPG::Encounter LMT_Reader::ReadEncounter(Reader& stream) {
 			encounter.ID = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return encounter;

@@ -74,7 +74,7 @@ RPG::EventPageCondition LMU_Reader::ReadEventPageCondition(Reader& stream) {
 			eventpagecondition.timer2_sec = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return eventpagecondition;

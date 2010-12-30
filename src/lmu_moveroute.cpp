@@ -54,7 +54,7 @@ RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
 			moveroute.repeat = stream.ReadBool();
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return moveroute;

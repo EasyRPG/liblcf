@@ -191,7 +191,7 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 			system.invert_animations = stream.ReadBool();
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return system;

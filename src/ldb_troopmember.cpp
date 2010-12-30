@@ -52,7 +52,7 @@ RPG::TroopMember LDB_Reader::ReadTroopMember(Reader& stream) {
 			member.middle = stream.ReadBool();
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return member;

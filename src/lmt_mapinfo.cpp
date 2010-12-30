@@ -85,7 +85,7 @@ RPG::MapInfo LMT_Reader::ReadMapInfo(Reader& stream) {
 			mapinfo.area_h = stream.Read32(Reader::NormalInteger) - mapinfo.area_y;
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return mapinfo;

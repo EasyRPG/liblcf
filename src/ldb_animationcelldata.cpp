@@ -70,7 +70,7 @@ RPG::AnimationCellData LDB_Reader::ReadAnimationCellData(Reader& stream) {
 			celldata.opacity = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return celldata;

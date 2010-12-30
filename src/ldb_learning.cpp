@@ -46,7 +46,7 @@ RPG::Learning LDB_Reader::ReadLearning(Reader& stream) {
 			learning.skill_id = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return learning;

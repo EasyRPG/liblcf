@@ -272,6 +272,34 @@ bool Reader::Ungetch(uint8_t ch) {
 }
 
 ////////////////////////////////////////////////////////////
+/// Skips a Chunk
+////////////////////////////////////////////////////////////
+void Reader::Skip(const struct Reader::Chunk& chunk_info, const char* file) {
+#ifndef NDEBUG
+	// Dump the Chunk Data in Debug Mode
+#ifdef _WIN32
+	const char* filename = strrchr(file, '\\');
+#else
+	const char* filename = strrchr(file, '/');
+#endif
+	if (filename == NULL) {
+		filename = file;
+	}
+	printf("Skip: Chunk %02X, Length %d, File %s\n", chunk_info.ID, chunk_info.length, filename+1);
+	for (uint32_t i = 0; i < chunk_info.length; ++i) {
+		printf("%02X ", Reader::Read8());
+		if ((i+1) % 8 == 0) {
+			printf("\n");
+		}
+	}
+	printf("\n");
+#else
+	(void)file;
+	Seek((size_t)chunk_info.length, FromCurrent);
+#endif
+}
+
+////////////////////////////////////////////////////////////
 /// Set Error string
 ////////////////////////////////////////////////////////////
 void Reader::SetError(const char* fmt, ...) {

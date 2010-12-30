@@ -51,7 +51,7 @@ RPG::Sound LDB_Reader::ReadSound(Reader& stream) {
 			sound.balance = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return sound;

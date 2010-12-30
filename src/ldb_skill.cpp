@@ -150,7 +150,7 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return skill;

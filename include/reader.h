@@ -86,6 +86,7 @@ public:
 	void Seek(size_t pos, SeekMode = FromStart);
 	long Tell();
 	bool Ungetch(uint8_t ch);
+	void Skip(const struct Chunk& chunk_info, const char* file);
 
 #ifdef READER_BIG_ENDIAN
 	void SwapByteOrder(uint16_t &us);

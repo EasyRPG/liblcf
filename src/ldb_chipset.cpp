@@ -61,7 +61,7 @@ RPG::Chipset LDB_Reader::ReadChipset(Reader& stream) {
 			chipset.animation_speed = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return chipset;

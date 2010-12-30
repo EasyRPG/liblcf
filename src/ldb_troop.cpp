@@ -56,7 +56,7 @@ RPG::Troop LDB_Reader::ReadTroop(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return troop;

@@ -49,7 +49,7 @@ RPG::BattlerAnimationData LDB_Reader::ReadBattlerAnimationData(Reader& stream) {
 			battler_animation_data.pose = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Seek(chunk_info.length, Reader::FromCurrent);
+			stream.Skip(chunk_info, __FILE__);
 		}
 	}
 	return battler_animation_data;
