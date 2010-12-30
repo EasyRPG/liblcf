@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "lmu_reader.h"
-#include "lmu_chunks.h"
+#include "ldb_reader.h"
+#include "ldb_chunks.h"
 #include "reader.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Move Route
+/// Read BattlerAnimation
 ////////////////////////////////////////////////////////////
-RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
-	RPG::MoveRoute moveroute;
+RPG::BattlerAnimationData LDB_Reader::ReadBattlerAnimationData(Reader& stream) {
+	RPG::BattlerAnimation battler_animation_data;
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
@@ -37,25 +37,19 @@ RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
 			chunk_info.length = stream.Read32(Reader::CompressedInteger);
 			if (chunk_info.length == 0) continue;
 		}
-		long startpos = 0;
 		switch (chunk_info.ID) {
-		case ChunkMoveRoute::move_commands:
-			// Move Commands has no termination at the end
-			// The chunk length must be used instead
-			startpos = stream.Tell();
-			do {
-				moveroute.move_commands.push_back(ReadMoveCommand(stream));
-			} while ((stream.Tell() - chunk_info.length) != startpos);
+		case ChunkBattlerAnimationData::move:
+			battler_animation_data.move = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMoveRoute::skippable:
-			moveroute.skippable = stream.ReadBool();
+		case ChunkBattlerAnimationData::after_image:
+			battler_animation_data.after_image = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMoveRoute::repeat:
-			moveroute.repeat = stream.ReadBool();
+		case ChunkBattlerAnimationData::pose:
+			battler_animation_data.pose = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);
 		}
 	}
-	return moveroute;
+	return battler_animation_data;
 }

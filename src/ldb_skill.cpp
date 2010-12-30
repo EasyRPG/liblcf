@@ -144,7 +144,11 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 		case ChunkSkill::battler_animation:
 			skill.battler_animation = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkSkill::cba_data:
+		case ChunkSkill::battler_animation_data:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				skill.battler_animation_data.push_back(ReadBattlerAnimationData(stream));
+			}
+			break;
 		default:
 			stream.Seek(chunk_info.length, Reader::FromCurrent);
 		}

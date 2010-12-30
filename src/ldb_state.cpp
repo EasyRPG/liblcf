@@ -79,7 +79,7 @@ RPG::State LDB_Reader::ReadState(Reader& stream) {
 			state.release_by_damage = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkState::affect_type:
-			state.affect_type = stream.ReadBool();
+			state.affect_type = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkState::affect_attack:
 			state.affect_attack = stream.ReadBool();

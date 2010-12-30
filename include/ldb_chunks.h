@@ -129,7 +129,7 @@ namespace LDB_Reader {
 			attribute_effects	= 0x2C, // Array - Flag
 			affect_attr_defence	= 0x2D, // Flag
 			battler_animation	= 0x31, // Integer - RPG2003
-			cba_data			= 0x32	// ? - RPG2003
+			battler_animation_data	= 0x32	// ? - RPG2003
 		};
 	}
 	namespace ChunkItem {
@@ -643,6 +643,13 @@ namespace LDB_Reader {
 			speed		= 0x02, // Integer
 			base_data	= 0x0A, // Array - RPG::BattlerAnimationExtension
 			weapon_data	= 0x0B	// Array - RPG::BattlerAnimationExtension
+		};
+	}
+	namespace ChunkBattlerAnimationData {
+		enum ChunkBattlerAnimationData { // RPG2k3
+			move		= 0x05,	// Integer
+			after_image	= 0x06,	// Integer
+			pose		= 0x0E	// Integer
 		};
 	}
 	namespace ChunkBattlerAnimationExtension {

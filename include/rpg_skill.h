@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
+#include "rpg_battleranimationdata.h"
 #include "rpg_sound.h"
 
 ////////////////////////////////////////////////////////////
@@ -91,6 +92,8 @@ namespace RPG {
 		int switch_id;
 		bool occasion_field;
 		bool occasion_battle;
+
+		std::vector<RPG::BattlerAnimationData> battler_animation_data; // RPG2003
 	};
 }
 
