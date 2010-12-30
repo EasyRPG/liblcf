@@ -166,6 +166,7 @@
     <ClCompile Include="..\..\src\ldb_attribute.cpp" />
     <ClCompile Include="..\..\src\ldb_battlecommand.cpp" />
     <ClCompile Include="..\..\src\ldb_battleranimation.cpp" />
+    <ClCompile Include="..\..\src\ldb_battleranimationdata.cpp" />
     <ClCompile Include="..\..\src\ldb_battleranimationextension.cpp" />
     <ClCompile Include="..\..\src\ldb_chipset.cpp" />
     <ClCompile Include="..\..\src\ldb_class.cpp" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\..\src\rpg_attribute.cpp" />
     <ClCompile Include="..\..\src\rpg_battlecommand.cpp" />
     <ClCompile Include="..\..\src\rpg_battleranimation.cpp" />
+    <ClCompile Include="..\..\src\rpg_battleranimationdata.cpp" />
     <ClCompile Include="..\..\src\rpg_battleranimationextension.cpp" />
     <ClCompile Include="..\..\src\rpg_chipset.cpp" />
     <ClCompile Include="..\..\src\rpg_class.cpp" />
@@ -259,6 +261,7 @@
     <ClInclude Include="..\..\include\rpg_attribute.h" />
     <ClInclude Include="..\..\include\rpg_battlecommand.h" />
     <ClInclude Include="..\..\include\rpg_battleranimation.h" />
+    <ClInclude Include="..\..\include\rpg_battleranimationdata.h" />
     <ClInclude Include="..\..\include\rpg_battleranimationextension.h" />
     <ClInclude Include="..\..\include\rpg_chipset.h" />
     <ClInclude Include="..\..\include\rpg_class.h" />

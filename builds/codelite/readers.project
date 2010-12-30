@@ -17,6 +17,7 @@
       <File Name="../../src/rpg_attribute.cpp"/>
       <File Name="../../src/rpg_battlecommand.cpp"/>
       <File Name="../../src/rpg_battleranimation.cpp"/>
+      <File Name="../../src/rpg_battleranimationdata.cpp"/>
       <File Name="../../src/rpg_battleranimationextension.cpp"/>
       <File Name="../../src/rpg_chipset.cpp"/>
       <File Name="../../src/rpg_class.cpp"/>
@@ -60,6 +61,7 @@
       <File Name="../../src/ldb_attribute.cpp"/>
       <File Name="../../src/ldb_battlecommand.cpp"/>
       <File Name="../../src/ldb_battleranimation.cpp"/>
+      <File Name="../../src/ldb_battleranimationdata.cpp"/>
       <File Name="../../src/ldb_battleranimationextension.cpp"/>
       <File Name="../../src/ldb_chipset.cpp"/>
       <File Name="../../src/ldb_class.cpp"/>
@@ -114,6 +116,7 @@
       <File Name="../../include/rpg_attribute.h"/>
       <File Name="../../include/rpg_battlecommand.h"/>
       <File Name="../../include/rpg_battleranimation.h"/>
+      <File Name="../../include/rpg_battleranimationdata.h"/>
       <File Name="../../include/rpg_battleranimationextension.h"/>
       <File Name="../../include/rpg_chipset.h"/>
       <File Name="../../include/rpg_class.h"/>

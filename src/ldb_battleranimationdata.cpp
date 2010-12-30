@@ -26,7 +26,7 @@
 /// Read BattlerAnimation
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimationData LDB_Reader::ReadBattlerAnimationData(Reader& stream) {
-	RPG::BattlerAnimation battler_animation_data;
+	RPG::BattlerAnimationData battler_animation_data;
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
