@@ -24,6 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimationData::BattlerAnimationData() {
+	ID = 0;
 	move = 0;
 	after_image = 0;
 	pose = 0;

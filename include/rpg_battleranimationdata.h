@@ -32,6 +32,7 @@ namespace RPG {
 	public:
 		BattlerAnimationData();
 		
+		int ID;
 		int move;
 		int after_image;
 		int pose;
