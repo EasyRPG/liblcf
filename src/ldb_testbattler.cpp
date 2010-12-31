@@ -61,7 +61,7 @@ RPG::TestBattler LDB_Reader::ReadTestBattler(Reader& stream) {
 			testbattler.accessory_id = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return testbattler;

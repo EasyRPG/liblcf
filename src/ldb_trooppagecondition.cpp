@@ -122,7 +122,7 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 			condition.command_id = stream.Read32(Reader::CompressedInteger);
 			break;*/
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return condition;

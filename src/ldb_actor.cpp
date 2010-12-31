@@ -144,7 +144,7 @@ RPG::Actor LDB_Reader::ReadActor(Reader& stream) {
 			stream.Read32(actor.battle_commands, chunk_info.length);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return actor;

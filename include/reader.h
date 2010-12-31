@@ -41,6 +41,13 @@
 #include "reader_options.h"
 
 ////////////////////////////////////////////////////////////
+// Defines
+////////////////////////////////////////////////////////////
+#ifdef _DEBUG
+	#define Skip(x) SkipDebug(x, __FILE__)
+#endif
+
+////////////////////////////////////////////////////////////
 /// Reader class
 ////////////////////////////////////////////////////////////
 class Reader {
@@ -86,7 +93,11 @@ public:
 	void Seek(size_t pos, SeekMode = FromStart);
 	long Tell();
 	bool Ungetch(uint8_t ch);
-	void Skip(const struct Chunk& chunk_info, const char* file);
+#ifdef _DEBUG
+	void SkipDebug(const struct Reader::Chunk& chunk_info, const char* file);
+#else
+	void Skip(const struct Reader::Chunk& chunk_info);
+#endif
 
 #ifdef READER_BIG_ENDIAN
 	void SwapByteOrder(uint16_t &us);

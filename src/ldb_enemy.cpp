@@ -111,7 +111,7 @@ RPG::Enemy LDB_Reader::ReadEnemy(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return enemy;

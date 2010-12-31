@@ -136,7 +136,7 @@ void LDB_Reader::LoadChunks(Reader& stream) {
 				}
 				break;
 			default:
-				stream.Skip(chunk_info, __FILE__);
+				stream.Skip(chunk_info);
 		}
 	}
 }

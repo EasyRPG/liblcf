@@ -61,7 +61,7 @@ RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
 			}
 			break;*/
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return commonevent;

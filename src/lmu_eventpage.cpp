@@ -99,7 +99,7 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 			//}
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return eventpage;

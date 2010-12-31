@@ -46,7 +46,7 @@ std::vector<std::string> LDB_Reader::ReadVariables(Reader& stream) {
 			variables[pos] = stream.ReadString(chunk_info.length + 1);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return variables;

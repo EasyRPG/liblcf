@@ -199,7 +199,7 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			stream.ReadBool(item.class_set, chunk_info.length);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return item;

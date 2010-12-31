@@ -150,7 +150,7 @@ RPG::Map* LMU_Reader::ReadMapData(Reader& stream) {
 			stream.Read16(map->generator_tile_ids, chunk_info.length);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return map;

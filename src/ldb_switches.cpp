@@ -46,7 +46,7 @@ std::vector<std::string> LDB_Reader::ReadSwitches(Reader& stream) {
 			switches[pos] = stream.ReadString(chunk_info.length + 1);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return switches;

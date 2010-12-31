@@ -64,7 +64,7 @@ RPG::AnimationTiming LDB_Reader::ReadAnimationTiming(Reader& stream) {
 			timing.screen_shake = stream.Read32(Reader::CompressedInteger);
 			break;*/
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return timing;

@@ -61,7 +61,7 @@ RPG::Attribute LDB_Reader::ReadAttribute(Reader& stream) {
 			attribute.e_rate = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return attribute;

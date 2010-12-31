@@ -45,7 +45,7 @@ RPG::AnimationFrame LDB_Reader::ReadAnimationFrame(Reader& stream) {
 			}
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return frame;

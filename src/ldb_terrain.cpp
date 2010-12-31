@@ -142,7 +142,7 @@ RPG::Terrain LDB_Reader::ReadTerrain(Reader& stream) {
 			terrain.grid_c = stream.Read32(Reader::CompressedInteger);
 			break;*/
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return terrain;

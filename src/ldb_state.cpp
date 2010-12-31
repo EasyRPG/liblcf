@@ -166,7 +166,7 @@ RPG::State LDB_Reader::ReadState(Reader& stream) {
 			state.sp_change_map_steps = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
-			stream.Skip(chunk_info, __FILE__);
+			stream.Skip(chunk_info);
 		}
 	}
 	return state;
