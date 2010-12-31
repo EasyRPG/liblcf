@@ -424,7 +424,7 @@ namespace LDB_Reader {
 	}
 	namespace ChunkAnimationCellData {
 		enum ChunkAnimationCellData {
-			//priority	= 0x01, // Integer - TODO: Needs confirmation
+			//priority	= 0x01, // Bool - TODO: Needs confirmation
 			ID			= 0x02, // Integer
 			x			= 0x03, // Integer
 			y			= 0x04, // Integer

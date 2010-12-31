@@ -128,15 +128,15 @@ RPG::Actor LDB_Reader::ReadActor(Reader& stream) {
 		case ChunkActor::skill_name:
 			actor.skill_name = stream.ReadString(chunk_info.length);
 			break;
-		/*case ChunkActor::state_ranks_size:
+		case ChunkActor::state_ranks_size:
 			stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		case ChunkActor::state_ranks:
 			stream.Read8(actor.state_ranks, chunk_info.length);
 			break;
-		/*case ChunkActor::attribute_ranks_size:
+		case ChunkActor::attribute_ranks_size:
 			stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		case ChunkActor::attribute_ranks:
 			stream.Read8(actor.attribute_ranks, chunk_info.length);
 			break;

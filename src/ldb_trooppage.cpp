@@ -44,6 +44,8 @@ RPG::TroopPage LDB_Reader::ReadTroopPage(Reader& stream) {
 			page.condition = ReadTroopPageCondition(stream);
 			break;
 		case ChunkTroopPage::event_commands:
+			// Event Commands is a special array
+			// Has no size information. Is terminated by 4 times 0x00.
 			for (;;)
 			{
 				char ch = stream.Read8();

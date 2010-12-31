@@ -27,21 +27,17 @@
 std::string Reader::error_str;
 
 ////////////////////////////////////////////////////////////
-/// Constructor. Opens the file specified by filename.
-////////////////////////////////////////////////////////////
 Reader::Reader(char* filename) {
 	stream = fopen(filename, "rb");
+	this->filename = std::string(filename);
 }
 
-////////////////////////////////////////////////////////////
-/// Constructor. Opens the file specified by filename.
 ////////////////////////////////////////////////////////////
 Reader::Reader(const std::string& filename) {
 	stream = fopen(filename.c_str(), "rb");
+	this->filename = std::string(filename);
 }
 
-////////////////////////////////////////////////////////////
-/// Destructor. Closes the opened file.
 ////////////////////////////////////////////////////////////
 Reader::~Reader() {
 	if (stream != NULL) {
@@ -50,14 +46,10 @@ Reader::~Reader() {
 }
 
 ////////////////////////////////////////////////////////////
-/// Reads a compressed integer and checks if it is > 0
-////////////////////////////////////////////////////////////
 bool Reader::ReadBool() {
 	return (Read32(Reader::CompressedInteger) > 0);
 }
 
-////////////////////////////////////////////////////////////
-/// Reads a 8bit value
 ////////////////////////////////////////////////////////////
 uint8_t Reader::Read8() {
 	uint8_t val = 0;
@@ -69,8 +61,6 @@ uint8_t Reader::Read8() {
 	return val;
 }
 
-////////////////////////////////////////////////////////////
-/// Reads a 16bit value
 ////////////////////////////////////////////////////////////
 int16_t Reader::Read16() {
 	int16_t val = 0;
@@ -87,8 +77,6 @@ int16_t Reader::Read16() {
 	return val;
 }
 
-////////////////////////////////////////////////////////////
-/// Reads a 32bit value (Compressed or Uncompressed)
 ////////////////////////////////////////////////////////////
 int32_t Reader::Read32(IntegerType type) {
 	int32_t value = 0;
@@ -129,8 +117,6 @@ int32_t Reader::Read32(IntegerType type) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Reads 8bit values in a bool-array
-////////////////////////////////////////////////////////////
 void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 	uint8_t val = 0;
 	buffer.clear();
@@ -146,8 +132,6 @@ void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Reads 8bit values in an array
-////////////////////////////////////////////////////////////
 void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 	uint8_t val;
 	buffer.clear();
@@ -162,8 +146,6 @@ void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 	}
 }
 
-////////////////////////////////////////////////////////////
-/// Reads 16bit values in an array
 ////////////////////////////////////////////////////////////
 void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 	int16_t val;
@@ -185,8 +167,6 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Reads 32bit values in an array
-////////////////////////////////////////////////////////////
 void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 	uint32_t val;
 	buffer.clear();
@@ -205,8 +185,6 @@ void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Reads a string
-////////////////////////////////////////////////////////////
 std::string Reader::ReadString(size_t size) {
 	char* chars = new char[size + 1];
 	chars[size] = '\0';
@@ -221,21 +199,15 @@ std::string Reader::ReadString(size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Checks if the stream is initialized and no error occured
-////////////////////////////////////////////////////////////
 bool Reader::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }
 
 ////////////////////////////////////////////////////////////
-/// Checks if End of File has been reached
-////////////////////////////////////////////////////////////
 bool Reader::Eof() const {
 	return feof(stream) != 0;
 }
 
-////////////////////////////////////////////////////////////
-/// Seeks to a new location in the stream
 ////////////////////////////////////////////////////////////
 void Reader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
@@ -258,54 +230,46 @@ void Reader::Seek(size_t pos, SeekMode mode) {
 }
 
 ////////////////////////////////////////////////////////////
-/// Tells the current location of the stream
-////////////////////////////////////////////////////////////
-long Reader::Tell() {
-	return ftell(stream);
+uint32_t Reader::Tell() {
+	return (uint32_t)ftell(stream);
 }
 
-////////////////////////////////////////////////////////////
-/// Puts the last read character (ch) back in the buffer
 ////////////////////////////////////////////////////////////
 bool Reader::Ungetch(uint8_t ch) {
 	return (ungetc(ch, stream) == ch);
 }
 
 ////////////////////////////////////////////////////////////
-/// Skips a Chunk
-////////////////////////////////////////////////////////////
 #ifdef _DEBUG
-	void Reader::SkipDebug(const struct Reader::Chunk& chunk_info, const char* file) {
+	void Reader::SkipDebug(const struct Reader::Chunk& chunk_info, const char* srcfile) {
 #else
 	void Reader::Skip(const struct Reader::Chunk& chunk_info) {
 #endif
 #ifdef _DEBUG
 	// Dump the Chunk Data in Debug Mode
 #ifdef _WIN32
-	const char* filename = strrchr(file, '\\');
+	const char* srcfilename = strrchr(srcfile, '\\');
 #else
-	const char* filename = strrchr(file, '/');
+	const char* srcfilename = strrchr(srcfile, '/');
 #endif
-	if (filename == NULL) {
-		filename = file;
+	if (srcfilename == NULL) {
+		srcfilename = srcfile;
 	} else {
-		filename++;
+		srcfilename++;
 	}
-	printf("Skip: Chunk %02X, Length %d, File %s\n", chunk_info.ID, chunk_info.length, filename);
+	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n", chunk_info.ID, chunk_info.length, filename.c_str(), Tell(), srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
 		printf("%02X ", Reader::Read8());
-		if ((i+1) % 8 == 0) {
-			printf("\n");
+		if ((i+1) % 16 == 0) {
+			fprintf(stderr, "\n");
 		}
 	}
-	printf("\n");
+	fprintf(stderr, "\n");
 #else
 	Seek((size_t)chunk_info.length, FromCurrent);
 #endif
 }
 
-////////////////////////////////////////////////////////////
-/// Set Error string
 ////////////////////////////////////////////////////////////
 void Reader::SetError(const char* fmt, ...) {
 	va_list args;
@@ -318,18 +282,13 @@ void Reader::SetError(const char* fmt, ...) {
 	//Output::ErrorStr((std::string)str);
 
 	va_end(args);
-	//error_str = str;
 }
 
-////////////////////////////////////////////////////////////
-/// Get Error string
 ////////////////////////////////////////////////////////////
 const std::string& Reader::GetError() {
 	return error_str;
 }
 
-////////////////////////////////////////////////////////////
-/// Little-to-Big-Endian-Converter
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
 void Reader::SwapByteOrder(uint16_t& us)
