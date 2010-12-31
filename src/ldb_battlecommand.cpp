@@ -25,8 +25,8 @@
 ////////////////////////////////////////////////////////////
 /// Read BattleCommands
 ////////////////////////////////////////////////////////////
-std::vector<RPG::BattleCommand> LDB_Reader::ReadBattleCommands(Reader& stream) {
-	std::vector<RPG::BattleCommand> battlecommands;
+RPG::BattleCommands LDB_Reader::ReadBattleCommands(Reader& stream) {
+	RPG::BattleCommands battlecommands;
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
@@ -38,10 +38,52 @@ std::vector<RPG::BattleCommand> LDB_Reader::ReadBattleCommands(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkBattleCommand::command:
+		case ChunkBattleCommands::command:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-				battlecommands.push_back(ReadBattleCommand(stream));
+				battlecommands.commands.push_back(ReadBattleCommand(stream));
 			}
+			break;
+		case ChunkBattleCommands::placement:
+			battlecommands.placement = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::row:
+			battlecommands.row = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::battle_type:
+			battlecommands.battle_type = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::death_handler1:
+			battlecommands.death_handler1 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::unknown1:
+			battlecommands.unknown1 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::death_handler2:
+			battlecommands.death_handler2 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::death_event:
+			battlecommands.death_event = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::window_size:
+			battlecommands.window_size = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::transparency:
+			battlecommands.transparency = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::teleport:
+			battlecommands.teleport = stream.ReadBool();
+			break;
+		case ChunkBattleCommands::teleport_id:
+			battlecommands.teleport_id = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::teleport_x:
+			battlecommands.teleport_x = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::teleport_y:
+			battlecommands.teleport_y = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkBattleCommands::teleport_face:
+			battlecommands.teleport_face = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);

@@ -81,7 +81,7 @@ namespace LDB_Reader {
 	RPG::TestBattler ReadTestBattler(Reader& stream);
 
 	// 2003
-	std::vector<RPG::BattleCommand> ReadBattleCommands(Reader& stream);
+	RPG::BattleCommands ReadBattleCommands(Reader& stream);
 	RPG::BattleCommand ReadBattleCommand(Reader& stream);
 	RPG::Class ReadClass(Reader& stream);
 	RPG::BattlerAnimation ReadBattlerAnimation(Reader& stream);

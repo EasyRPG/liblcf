@@ -184,6 +184,15 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 		case ChunkSystem::saved_times:
 			system.saved_times = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkSystem::battletest_terrain:
+			system.battletest_terrain = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkSystem::battletest_formation:
+			system.battletest_formation = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkSystem::battletest_condition:
+			system.battletest_condition = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkSystem::show_frame:
 			system.show_frame = stream.ReadBool();
 			break;

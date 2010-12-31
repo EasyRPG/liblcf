@@ -39,9 +39,9 @@ RPG::AnimationCellData LDB_Reader::ReadAnimationCellData(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		/*case ChunkAnimationCellData::priority:
+		case ChunkAnimationCellData::priority:
 			celldata.priority = stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		case ChunkAnimationCellData::ID:
 			celldata.ID = stream.Read32(Reader::CompressedInteger);
 			break;

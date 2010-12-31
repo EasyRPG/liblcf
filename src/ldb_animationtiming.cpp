@@ -60,9 +60,9 @@ RPG::AnimationTiming LDB_Reader::ReadAnimationTiming(Reader& stream) {
 		case ChunkAnimationTiming::flash_power:
 			timing.flash_power = stream.Read32(Reader::CompressedInteger);
 			break;
-		/*case ChunkAnimationTiming::screen_shake:
+		case ChunkAnimationTiming::screen_shake:
 			timing.screen_shake = stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		default:
 			stream.Skip(chunk_info);
 		}

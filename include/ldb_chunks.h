@@ -413,8 +413,8 @@ namespace LDB_Reader {
 			flash_red		= 0x04, // Integer
 			flash_green		= 0x05, // Integer
 			flash_blue		= 0x06, // Integer
-			flash_power		= 0x07	// Integer
-			//screen_shake	= 0x?? // Integer - RPG2003 - TODO: Get chunk id
+			flash_power		= 0x07,	// Integer
+			screen_shake	= 0x08  // Integer - RPG2003 - TODO: Get chunk id
 		};
 	}
 	namespace ChunkAnimationFrame {
@@ -424,7 +424,7 @@ namespace LDB_Reader {
 	}
 	namespace ChunkAnimationCellData {
 		enum ChunkAnimationCellData {
-			//priority	= 0x01, // Bool - TODO: Needs confirmation
+			priority	= 0x01, // Bool - TODO: Needs confirmation
 			ID			= 0x02, // Integer
 			x			= 0x03, // Integer
 			y			= 0x04, // Integer
@@ -638,8 +638,9 @@ namespace LDB_Reader {
 			battletest_background	= 0x54, // String
 			battletest_data			= 0x55, // Array - RPG::TestBattler
 			saved_times				= 0x5B, // Integer
-			//???					= 0x5E, // ???
-			//???					= 0x60, // ???
+			battletest_terrain		= 0x5E, // Integer
+			battletest_formation	= 0x5F, // Integer
+			battletest_condition	= 0x60, // Integer
 			//???					= 0x61, // ???
 			show_frame				= 0x63, // Flag - RPG2003
 			frame_name				= 0x64, // String - RPG2003
@@ -661,7 +662,25 @@ namespace LDB_Reader {
 		enum ChunkBattleCommand {
 			name	= 0x01, // String
 			type	= 0x02,	// Integer
-			command = 0x0A  // Array - RPG::BattleCommand
+		};
+	}
+	namespace ChunkBattleCommands {
+		enum ChunkBattleCommands {
+			placement		= 0x02,	// Integer
+			death_handler1	= 0x04,	// Integer
+			row				= 0x06,	// Integer
+			battle_type		= 0x07,	// Integer
+			unknown1		= 0x09,	// Integer
+			command 		= 0x0A, // Array - RPG::BattleCommand
+			death_handler2	= 0x0F,	// Integer
+			death_event  	= 0x10,	// Integer
+			window_size		= 0x14, // Integer
+			transparency	= 0x18,	// Integer
+			teleport		= 0x19,	// Integer
+			teleport_id		= 0x1A,	// Integer
+			teleport_x		= 0x1B,	// Integer
+			teleport_y		= 0x1C,	// Integer
+			teleport_face	= 0x1D	// Integer
 		};
 	}
 	namespace ChunkBattlerAnimation {

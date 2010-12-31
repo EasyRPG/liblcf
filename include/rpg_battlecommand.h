@@ -22,6 +22,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
+#include <vector>
 
 ////////////////////////////////////////////////////////////
 /// RPG::BattleCommand class
@@ -44,6 +45,27 @@ namespace RPG {
 		int ID;
 		std::string name;
 		int type;
+	};
+
+	class BattleCommands {
+	public:
+		BattleCommands();
+		
+		std::vector<RPG::BattleCommand> commands;
+		int placement;
+		int row;
+		int battle_type;
+		int death_handler1;
+		int unknown1;
+		int death_handler2;
+		int death_event;
+		int window_size;
+		int transparency;
+		bool teleport;
+		int teleport_id;
+		int teleport_x;
+		int teleport_y;
+		int teleport_face;
 	};
 }
 

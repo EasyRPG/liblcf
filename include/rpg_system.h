@@ -80,6 +80,9 @@ namespace RPG {
 		int selected_hero;
 		std::string battletest_background;
 		std::vector<TestBattler> battletest_data;
+		int battletest_terrain;
+		int battletest_formation;
+		int battletest_condition;
 		int saved_times;
 		bool show_frame;
 		std::string frame_name;

@@ -61,7 +61,7 @@ namespace Data {
 	extern std::vector<RPG::Animation> animations;
 	extern std::vector<RPG::Chipset> chipsets;
 	extern std::vector<RPG::CommonEvent> commonevents;
-	extern std::vector<RPG::BattleCommand> battlecommands;
+	extern RPG::BattleCommands battlecommands;
 	extern std::vector<RPG::Class> classes;
 	extern std::vector<RPG::BattlerAnimation> battleranimations;
 	extern RPG::Terms terms;

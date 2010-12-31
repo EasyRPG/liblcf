@@ -259,7 +259,7 @@ bool Reader::Ungetch(uint8_t ch) {
 	}
 	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n", chunk_info.ID, chunk_info.length, filename.c_str(), Tell(), srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
-		printf("%02X ", Reader::Read8());
+		fprintf(stderr, "%02X ", Reader::Read8());
 		if ((i+1) % 16 == 0) {
 			fprintf(stderr, "\n");
 		}

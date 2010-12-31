@@ -34,7 +34,7 @@ namespace Data {
 	std::vector<RPG::Animation> animations;
 	std::vector<RPG::Chipset> chipsets;
 	std::vector<RPG::CommonEvent> commonevents;
-	std::vector<RPG::BattleCommand> battlecommands;
+	RPG::BattleCommands battlecommands;
 	std::vector<RPG::Class> classes;
 	std::vector<RPG::BattlerAnimation> battleranimations;
 	RPG::Terms terms;
@@ -59,7 +59,7 @@ void Data::Clear() {
 	animations.clear();
 	chipsets.clear();
 	commonevents.clear();
-	battlecommands.clear();
+	battlecommands.commands.clear();
 	classes.clear();
 	battleranimations.clear();
 	switches.clear();

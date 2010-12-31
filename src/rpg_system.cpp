@@ -47,6 +47,9 @@ RPG::System::System() {
 	selected_hero = 0;
 	battletest_background = "";
 	saved_times = 0;
+	battletest_terrain = 0;
+	battletest_formation = 0;
+	battletest_condition = 0;
 	show_frame = false;
 	frame_name = "";
 	invert_animations = false;

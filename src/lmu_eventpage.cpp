@@ -88,7 +88,6 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 		case ChunkEventPage::event_commands:
 			// Event Commands is a special array
 			// Has no size information. Is terminated by 4 times 0x00.
-			//for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
 			for (;;)
 			{
 				char ch = stream.Read8();
@@ -99,7 +98,6 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 				stream.Ungetch(ch);
 				eventpage.event_commands.push_back(Event_Reader::ReadEventCommand(stream));
 			}
-			//}
 			break;
 		default:
 			stream.Skip(chunk_info);
