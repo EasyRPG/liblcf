@@ -100,8 +100,9 @@ namespace LMU_Reader {
 			variable_value	= 0x05, // Integer
 			item_id			= 0x06, // Integer
 			actor_id		= 0x07, // Integer
-			timer_sec		= 0x08,	// Integer
-			timer2_sec		= 0x09	// Integer - RPG2003
+			timer_sec		= 0x08, // Integer
+			timer2_sec		= 0x09, // Integer - RPG2003
+			compare_operator= 0x0A	// Integer - RPG2003
 		};
 	}
 	namespace ChunkMoveRoute {

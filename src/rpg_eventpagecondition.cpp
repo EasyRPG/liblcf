@@ -39,4 +39,5 @@ RPG::EventPageCondition::EventPageCondition() {
 	actor_id = 1;
 	timer_sec = 0;
 	timer2_sec = 0;
+	compare_operator = 1;
 }

@@ -62,6 +62,8 @@ RPG::Terms::Terms() {
 	resistance_decrease = "";
 	level_up = "";
 	skill_learned = "";
+	battle_start = "";
+	miss = "";
 	shop_greeting1 = "";
 	shop_regreeting1 = "";
 	shop_buy1 = "";
@@ -121,6 +123,11 @@ RPG::Terms::Terms() {
 	new_game = "";
 	load_game = "";
 	exit_game = "";
+	status = "";
+	row = "";
+	order = "";
+	wait_on = "";
+	wait_off = "";
 	level = "";
 	health_points = "";
 	spirit_points = "";

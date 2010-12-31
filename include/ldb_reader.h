@@ -44,6 +44,7 @@
 #include "rpg_battlecommand.h"
 #include "rpg_battleranimation.h"
 #include "rpg_battleranimationdata.h"
+#include "rpg_itemanimation.h"
 
 ////////////////////////////////////////////////////////////
 /// LDB Reader namespace
@@ -86,6 +87,7 @@ namespace LDB_Reader {
 	RPG::BattlerAnimation ReadBattlerAnimation(Reader& stream);
 	RPG::BattlerAnimationExtension ReadBattlerAnimationExtension(Reader& stream);
 	RPG::BattlerAnimationData ReadBattlerAnimationData(Reader& stream);
+	RPG::ItemAnimation ReadItemAnimation(Reader& stream);
 }
 
 #endif

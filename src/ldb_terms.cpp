@@ -149,6 +149,12 @@ RPG::Terms LDB_Reader::ReadTerms(Reader& stream) {
 		case ChunkTerms::skill_learned:
 			terms.skill_learned = stream.ReadString(chunk_info.length);
 			break;
+		case ChunkTerms::battle_start:
+			terms.battle_start = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::miss:
+			terms.miss = stream.ReadString(chunk_info.length);
+			break;
 		case ChunkTerms::shop_greeting1:
 			terms.shop_greeting1 = stream.ReadString(chunk_info.length);
 			break;
@@ -325,6 +331,21 @@ RPG::Terms LDB_Reader::ReadTerms(Reader& stream) {
 			break;
 		case ChunkTerms::exit_game:
 			terms.exit_game = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::status:
+			terms.status = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::row:
+			terms.row = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::order:
+			terms.order = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::wait_on:
+			terms.wait_on = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkTerms::wait_off:
+			terms.wait_off = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTerms::level:
 			terms.level = stream.ReadString(chunk_info.length);

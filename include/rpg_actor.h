@@ -75,6 +75,8 @@ namespace RPG {
 		int class_id;
 		int battler_animation;
 		std::vector<unsigned int> battle_commands;
+		int battle_x;
+		int battle_y;
 	};
 }
 

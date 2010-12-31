@@ -75,6 +75,8 @@ namespace LDB_Reader {
 			initial_equipment		= 0x33, // Integer x 5
 			unarmed_animation		= 0x38, // Integer
 			class_id				= 0x39, // Integer - RPG2003
+			battle_x				= 0x3B, // Integer - RPG2003
+			battle_y				= 0x3C, // Integer - RPG2003
 			battler_animation		= 0x3E, // Integer - RPG2003
 			skills					= 0x3F, // Array - RPG::Learning
 			rename_skill			= 0x42, // Flag
@@ -182,10 +184,27 @@ namespace LDB_Reader {
 			attribute_set_size	= 0x41, // Integer
 			attribute_set		= 0x42, // Array - Flag
 			state_chance		= 0x43, // Integer
+			state_effect		= 0x44, // Flag
 			weapon_animation	= 0x45, // Integer - RPG2003
+			animation_data		= 0x46, // Array - RPG2003
 			use_skill			= 0x47, // Flag - RPG2003
 			class_set_size		= 0x48, // Integer - RPG2003
-			class_set			= 0x49	// Array - Flag - RPG2003
+			class_set			= 0x49, // Array - Flag - RPG2003
+			ranged_trajectory	= 0x4B, // Integer
+			ranged_target		= 0x4C  // Integer
+		};
+	}
+	namespace ChunkItemAnimation {
+		enum ChunkItemAnimation {
+			type				= 0x03,
+			weapon_anim			= 0x04,
+			movement			= 0x05,
+			after_image			= 0x06,
+			attacks				= 0x07,
+			ranged				= 0x08,
+			ranged_anim			= 0x09,
+			ranged_speed		= 0x0c,
+			battle_anim			= 0x0d
 		};
 	}
 	namespace ChunkEnemy {
@@ -272,15 +291,15 @@ namespace LDB_Reader {
 			enemy_hp_max		= 0x0C, // Integer
 			actor_id			= 0x0D, // Integer
 			actor_hp_min		= 0x0E, // Integer
-			actor_hp_max		= 0x0F	// Integer
-			//turn_enemy_id		= 0x??, // Integer - RPG2003
-			//turn_enemy_a		= 0x??, // Integer - RPG2003
-			//turn_enemy_b		= 0x??, // Integer - RPG2003
-			//turn_actor_id		= 0x??, // Integer - RPG2003
-			//turn_actor_a		= 0x??, // Integer - RPG2003
-			//turn_actor_b		= 0x??, // Integer - RPG2003
-			//command_actor_id	= 0x??, // Integer - RPG2003
-			//command_id		= 0x??	// Integer - RPG2003
+			actor_hp_max		= 0x0F,	// Integer
+			turn_enemy_id		= 0x10, // Integer - RPG2003
+			turn_enemy_a		= 0x11, // Integer - RPG2003
+			turn_enemy_b		= 0x12, // Integer - RPG2003
+			turn_actor_id		= 0x13, // Integer - RPG2003
+			turn_actor_a		= 0x14, // Integer - RPG2003
+			turn_actor_b		= 0x15, // Integer - RPG2003
+			command_actor_id	= 0x16, // Integer - RPG2003
+			command_id			= 0x17	// Integer - RPG2003
 		};
 	}
 	namespace ChunkTerrain { // TODO - Get RPG2003 unknown chunks id
@@ -313,10 +332,10 @@ namespace LDB_Reader {
 			special_back_enemies		= 0x2A, // Integer - RPG2003
 			special_lateral_party		= 0x2B, // Integer - RPG2003
 			special_lateral_enemies		= 0x2C, // Integer - RPG2003
-			grid_location				= 0x2D	// Integer - RPG2003
-			//grid_a					= 0x??, // Integer - RPG2003
-			//grid_b					= 0x??, // Integer - RPG2003
-			//grid_c					= 0x??	// Integer - RPG2003
+			grid_location				= 0x2D, // Integer - RPG2003
+			grid_a						= 0x2E, // Integer - RPG2003
+			grid_b						= 0x2F, // Integer - RPG2003
+			grid_c						= 0x30	// Integer - RPG2003
 		};
 	}
 	namespace ChunkAttribute {
@@ -467,6 +486,8 @@ namespace LDB_Reader {
 			resistance_decrease	= 0x23, // String
 			level_up			= 0x24, // String
 			skill_learned		= 0x25, // String
+			battle_start		= 0x26, // String
+			miss				= 0x27, // String
 			shop_greeting1		= 0x29, // String
 			shop_regreeting1	= 0x2A, // String
 			shop_buy1			= 0x2B, // String
@@ -526,6 +547,11 @@ namespace LDB_Reader {
 			new_game			= 0x72, // String
 			load_game			= 0x73, // String
 			exit_game			= 0x75, // String
+			status				= 0x76, // String
+			row					= 0x77, // String
+			order				= 0x78, // String
+			wait_on				= 0x79, // String
+			wait_off			= 0x7A, // String
 			level				= 0x7B, // String
 			health_points		= 0x7C, // String
 			spirit_points		= 0x7D, // String
@@ -616,6 +642,7 @@ namespace LDB_Reader {
 			//???					= 0x60, // ???
 			//???					= 0x61, // ???
 			show_frame				= 0x63, // Flag - RPG2003
+			frame_name				= 0x64, // String - RPG2003
 			invert_animations		= 0x65	// Flag - RPG2003
 		};
 	}

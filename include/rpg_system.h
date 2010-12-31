@@ -82,6 +82,7 @@ namespace RPG {
 		std::vector<TestBattler> battletest_data;
 		int saved_times;
 		bool show_frame;
+		std::string frame_name;
 		bool invert_animations;
 	};
 }

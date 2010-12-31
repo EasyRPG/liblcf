@@ -49,7 +49,7 @@ RPG::TroopPageCondition::TroopPageCondition() {
 	turn_enemy = false;
 	turn_actor = false;
 	command_actor = false;
-	turn_enemy_id = 1;
+	turn_enemy_id = 0;
 	turn_enemy_a = 0;
 	turn_enemy_b = 0;
 	turn_actor_id = 1;

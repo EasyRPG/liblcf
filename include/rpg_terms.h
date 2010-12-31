@@ -68,6 +68,8 @@ namespace RPG {
 		std::string resistance_decrease;
 		std::string level_up;
 		std::string skill_learned;
+		std::string battle_start;
+		std::string miss;
 		std::string shop_greeting1;
 		std::string shop_regreeting1;
 		std::string shop_buy1;
@@ -127,6 +129,11 @@ namespace RPG {
 		std::string new_game;
 		std::string load_game;
 		std::string exit_game;
+		std::string status;
+		std::string row;
+		std::string order;
+		std::string wait_on;
+		std::string wait_off;
 		std::string level;
 		std::string health_points;
 		std::string spirit_points;

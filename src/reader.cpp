@@ -288,8 +288,10 @@ bool Reader::Ungetch(uint8_t ch) {
 #endif
 	if (filename == NULL) {
 		filename = file;
+	} else {
+		filename++;
 	}
-	printf("Skip: Chunk %02X, Length %d, File %s\n", chunk_info.ID, chunk_info.length, filename+1);
+	printf("Skip: Chunk %02X, Length %d, File %s\n", chunk_info.ID, chunk_info.length, filename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
 		printf("%02X ", Reader::Read8());
 		if ((i+1) % 8 == 0) {
@@ -332,16 +334,16 @@ const std::string& Reader::GetError() {
 #ifdef READER_BIG_ENDIAN
 void Reader::SwapByteOrder(uint16_t& us)
 {
-    us = (us >> 8) |
-         (us << 8);
+	us =	(us >> 8) |
+			(us << 8);
 }
 
 
 void Reader::SwapByteOrder(uint32_t& ui)
 {
-    ui = (ui >> 24) |
-         ((ui<<8) & 0x00FF0000) |
-         ((ui>>8) & 0x0000FF00) |
-      	  (ui << 24);
+	ui =	(ui >> 24) |
+			((ui<<8) & 0x00FF0000) |
+			((ui>>8) & 0x0000FF00) |
+			(ui << 24);
 }
 #endif

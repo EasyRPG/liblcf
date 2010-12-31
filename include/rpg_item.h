@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
+#include "rpg_itemanimation.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Item class
@@ -62,6 +63,7 @@ namespace RPG {
 		int agi_points;
 		std::vector<bool> attribute_set;
 		std::vector<bool> state_set;
+		bool state_effect; // RPG2003
 		int state_chance;
 		bool cursed; // RPG2003
 				
@@ -77,6 +79,8 @@ namespace RPG {
 		bool ignore_evasion;
 		int weapon_animation; // RPG2003
 		bool use_skill; // RPG2003
+		int ranged_trajectory; // RPG2003
+		int ranged_target; // RPG2003
 		
 		// Shield Armor Head Other
 		bool prevent_critical;
@@ -104,6 +108,8 @@ namespace RPG {
 		// Switch
 		int switch_id;
 		bool ocassion_battle;
+
+		std::vector<RPG::ItemAnimation> animation_data;
 	};
 }
 

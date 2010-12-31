@@ -30,6 +30,7 @@
       <File Name="../../src/rpg_eventpage.cpp"/>
       <File Name="../../src/rpg_eventpagecondition.cpp"/>
       <File Name="../../src/rpg_item.cpp"/>
+      <File Name="../../src/rpg_itemanimation.cpp"/>
       <File Name="../../src/rpg_learning.cpp"/>
       <File Name="../../src/rpg_map.cpp"/>
       <File Name="../../src/rpg_mapinfo.cpp"/>
@@ -69,6 +70,7 @@
       <File Name="../../src/ldb_enemy.cpp"/>
       <File Name="../../src/ldb_enemyaction.cpp"/>
       <File Name="../../src/ldb_item.cpp"/>
+      <File Name="../../src/ldb_itemanimation.cpp"/>
       <File Name="../../src/ldb_learning.cpp"/>
       <File Name="../../src/ldb_music.cpp"/>
       <File Name="../../src/ldb_reader.cpp"/>
@@ -129,6 +131,7 @@
       <File Name="../../include/rpg_eventpage.h"/>
       <File Name="../../include/rpg_eventpagecondition.h"/>
       <File Name="../../include/rpg_item.h"/>
+      <File Name="../../include/rpg_itemanimation.h"/>
       <File Name="../../include/rpg_learning.h"/>
       <File Name="../../include/rpg_map.h"/>
       <File Name="../../include/rpg_mapinfo.h"/>

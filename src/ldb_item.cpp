@@ -186,6 +186,9 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 		case ChunkItem::state_chance:
 			item.state_chance = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkItem::state_effect:
+			item.state_effect = stream.ReadBool();
+			break;
 		case ChunkItem::weapon_animation:
 			item.weapon_animation = stream.Read32(Reader::CompressedInteger);
 			break;
@@ -197,6 +200,17 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			break;
 		case ChunkItem::class_set:
 			stream.ReadBool(item.class_set, chunk_info.length);
+			break;
+		case ChunkItem::animation_data:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				item.animation_data.push_back(ReadItemAnimation(stream));
+			}
+			break;
+		case ChunkItem::ranged_target:
+			item.ranged_target = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkItem::ranged_trajectory:
+			item.ranged_trajectory = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);

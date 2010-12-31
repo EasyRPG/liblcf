@@ -132,7 +132,7 @@ RPG::Terrain LDB_Reader::ReadTerrain(Reader& stream) {
 		case ChunkTerrain::grid_location:
 			terrain.grid_location = stream.Read32(Reader::CompressedInteger);
 			break;
-		/*case ChunkTerrain::grid_a:
+		case ChunkTerrain::grid_a:
 			terrain.grid_a = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkTerrain::grid_b:
@@ -140,7 +140,7 @@ RPG::Terrain LDB_Reader::ReadTerrain(Reader& stream) {
 			break;
 		case ChunkTerrain::grid_c:
 			terrain.grid_c = stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		default:
 			stream.Skip(chunk_info);
 		}

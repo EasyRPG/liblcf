@@ -187,6 +187,9 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 		case ChunkSystem::show_frame:
 			system.show_frame = stream.ReadBool();
 			break;
+		case ChunkSystem::frame_name:
+			system.frame_name = stream.ReadString(chunk_info.length);
+			break;
 		case ChunkSystem::invert_animations:
 			system.invert_animations = stream.ReadBool();
 			break;

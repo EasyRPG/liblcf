@@ -80,4 +80,6 @@ RPG::Actor::Actor() {
 	// RPG Maker 2003
 	class_id = 0;
 	battler_animation = 1;
+	battle_x = 0;
+	battle_y = 0;
 }

@@ -48,11 +48,11 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 			condition.fatigue = (bitflag & 0x10) > 0;
 			condition.enemy_hp = (bitflag & 0x20) > 0;
 			condition.actor_hp = (bitflag & 0x40) > 0;
+			condition.turn_enemy = (bitflag & 0x80) > 0;
 			if (chunk_info.length == 2) {
 				bitflag = stream.Read8();
-				condition.turn_enemy = (bitflag & 0x01) > 0;
-				condition.turn_actor = (bitflag & 0x02) > 0;
-				condition.command_actor = (bitflag & 0x03) > 0;
+				condition.turn_actor = (bitflag & 0x01) > 0;
+				condition.command_actor = (bitflag & 0x02) > 0;
 			}
 			break;
 		case ChunkTroopPageCondition::switch_a_id:
@@ -97,7 +97,7 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 		case ChunkTroopPageCondition::actor_hp_max:
 			condition.actor_hp_max = stream.Read32(Reader::CompressedInteger);
 			break;
-		/*case ChunkTroopPageCondition::turn_enemy_id:
+		case ChunkTroopPageCondition::turn_enemy_id:
 			condition.turn_enemy_id = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkTroopPageCondition::turn_enemy_a:
@@ -120,7 +120,7 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 			break;
 		case ChunkTroopPageCondition::command_id:
 			condition.command_id = stream.Read32(Reader::CompressedInteger);
-			break;*/
+			break;
 		default:
 			stream.Skip(chunk_info);
 		}

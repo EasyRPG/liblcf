@@ -41,6 +41,7 @@ namespace RPG {
 		int actor_id;
 		int timer_sec;
 		int timer2_sec;
+		int compare_operator;
 	};
 }
 

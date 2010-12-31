@@ -287,6 +287,12 @@
     <ClCompile Include="..\..\src\rpg_battleranimationdata.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ldb_itemanimation.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_itemanimation.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\event_reader.h">
@@ -440,6 +446,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\rpg_battleranimationdata.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_itemanimation.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
   </ItemGroup>

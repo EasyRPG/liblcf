@@ -35,6 +35,7 @@ RPG::Item::Item() {
 	spi_points = 0;
 	agi_points = 0;
 	state_chance = 0;
+	state_effect = false;
 	cursed = false;
 	two_handed = false;
 	sp_cost = 0;
@@ -47,6 +48,8 @@ RPG::Item::Item() {
 	ignore_evasion = false;
 	weapon_animation = 1;
 	use_skill = false;
+	ranged_trajectory = 0;
+	ranged_target = 0;
 	prevent_critical = false;
 	raise_evasion = false;
 	half_sp_cost = false;

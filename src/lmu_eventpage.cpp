@@ -82,6 +82,9 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 		case ChunkEventPage::move_route:
 			eventpage.move_route = ReadMoveRoute(stream);
 			break;
+		case ChunkEventPage::event_commands_size:
+			stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkEventPage::event_commands:
 			// Event Commands is a special array
 			// Has no size information. Is terminated by 4 times 0x00.

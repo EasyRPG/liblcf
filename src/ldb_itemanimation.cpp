@@ -20,15 +20,14 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "event_reader.h"
 #include "reader.h"
 
 ////////////////////////////////////////////////////////////
-/// Read CommonEvent
+/// Read Item Animation
 ////////////////////////////////////////////////////////////
-RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
-	RPG::CommonEvent commonevent;
-	commonevent.ID = stream.Read32(Reader::CompressedInteger);
+RPG::ItemAnimation LDB_Reader::ReadItemAnimation(Reader& stream) {
+	RPG::ItemAnimation item_animation;
+	item_animation.ID = stream.Read32(Reader::CompressedInteger);
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
@@ -40,38 +39,36 @@ RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkCommonEvent::name:
-			commonevent.name = stream.ReadString(chunk_info.length);
+		case ChunkItemAnimation::type:
+			item_animation.type = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEvent::trigger:
-			commonevent.trigger = stream.Read32(Reader::CompressedInteger);
+		case ChunkItemAnimation::weapon_anim:
+			item_animation.weapon_anim = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEvent::switch_flag:
-			commonevent.switch_flag = stream.ReadBool();
+		case ChunkItemAnimation::movement:
+			item_animation.movement = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEvent::switch_id:
-			commonevent.switch_id = stream.Read32(Reader::CompressedInteger);
+		case ChunkItemAnimation::after_image:
+			item_animation.after_image = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEvent::event_commands_size:
-			stream.Read32(Reader::CompressedInteger);
+		case ChunkItemAnimation::attacks:
+			item_animation.attacks = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEvent::event_commands:
-			// Event Commands is a special array
-			// Has no size information. Is terminated by 4 times 0x00.
-			for (;;)
-			{
-				char ch = stream.Read8();
-				if (ch == 0) {
-					stream.Seek(3, Reader::FromCurrent);
-					break;
-				}
-				stream.Ungetch(ch);
-				commonevent.event_commands.push_back(Event_Reader::ReadEventCommand(stream));
-			}
+		case ChunkItemAnimation::ranged:
+			item_animation.ranged = stream.ReadBool();
+			break;
+		case ChunkItemAnimation::ranged_anim:
+			item_animation.ranged_anim = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkItemAnimation::ranged_speed:
+			item_animation.ranged_speed = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkItemAnimation::battle_anim:
+			item_animation.battle_anim = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);
 		}
 	}
-	return commonevent;
+	return item_animation;
 }
