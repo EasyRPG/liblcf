@@ -66,7 +66,7 @@ RPG::Actor::Actor() {
 	exp_inflation = 300;
 	#endif
 	exp_correction = 0;
-	unarmed_animation = 0;
+	unarmed_animation = 1;
 	weapon_id = 0;
 	shield_id = 0;
 	armor_id = 0;

@@ -212,7 +212,7 @@ bool Reader::Eof() const {
 void Reader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
 	case Reader::FromStart:
-		rewind(stream);
+		fseek(stream, pos, SEEK_SET);
 		break;
 	case Reader::FromCurrent:
 		fseek(stream, pos, SEEK_CUR);
