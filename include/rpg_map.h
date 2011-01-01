@@ -50,6 +50,7 @@ namespace RPG {
 		std::vector<short> upper_layer;
 		std::vector<RPG::Event> events;
 		int save_times;
+		bool top_level;
 
 		bool generator_flag;
 		int generator_mode;

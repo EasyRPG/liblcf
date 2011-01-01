@@ -38,16 +38,17 @@ RPG::Map::Map() {
 	parallax_auto_loop_y = false;
 	parallax_sy = 0;
 	save_times = 0;
+	top_level = false;
 
 	generator_flag = false;
 	generator_mode = 0;
 	generator_tiles = 0;
-	generator_width = 20;
-	generator_height = 15;
-	generator_surround = false;
-	generator_upper_wall = false;
-	generator_floor_b = false;
-	generator_floor_c = false;
-	generator_extra_b = false;
-	generator_extra_c = false;
+	generator_width = 4;
+	generator_height = 1;
+	generator_surround = true;
+	generator_upper_wall = true;
+	generator_floor_b = true;
+	generator_floor_c = true;
+	generator_extra_b = true;
+	generator_extra_c = true;
 }

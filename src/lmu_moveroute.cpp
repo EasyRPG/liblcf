@@ -39,6 +39,9 @@ RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
 		}
 		long startpos = 0;
 		switch (chunk_info.ID) {
+		case ChunkMoveRoute::move_commands_size:
+			stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMoveRoute::move_commands:
 			// Move Commands has no termination at the end
 			// The chunk length must be used instead

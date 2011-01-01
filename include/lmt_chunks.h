@@ -48,7 +48,7 @@ namespace LMT_Reader {
 		enum ChunkMapInfo { // Please don't remove editor specific chunks, readers are used by EasyRPG editor for project import
 			name			= 0x01, // String	// Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data), always use RPG_RT.ini GameTitle instead
 			parent_map		= 0x02, // Integer	// Used to inherit parent map properties
-			//indentation	= 0x03, // Integer	// Dummy editor dumped data, branch indentation level in TreeCtrl
+			indentation		= 0x03, // Integer	// Dummy editor dumped data, branch indentation level in TreeCtrl
 			type			= 0x04, // Integer	// 0=lmt root, can be ignored; 1=map; 2=area
 			scrollbar_x		= 0x05, // Integer	// Editor only
 			scrollbar_y		= 0x06, // Integer	// Editor only

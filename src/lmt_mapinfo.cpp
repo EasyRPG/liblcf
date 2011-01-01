@@ -46,8 +46,20 @@ RPG::MapInfo LMT_Reader::ReadMapInfo(Reader& stream) {
 		case ChunkMapInfo::parent_map:
 			mapinfo.parent_map = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMapInfo::type:
-			mapinfo.type = stream.Read32(Reader::CompressedInteger);
+		case ChunkMapInfo::indentation:
+			mapinfo.indentation = stream.Read32(Reader::CompressedInteger);
+			break;
+ 		case ChunkMapInfo::type:
+ 			mapinfo.type = stream.Read32(Reader::CompressedInteger);
+ 			break;
+		case ChunkMapInfo::scrollbar_x:
+			mapinfo.scrollbar_x = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapInfo::scrollbar_y:
+			mapinfo.scrollbar_y = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapInfo::expanded_node:
+			mapinfo.expanded_node = stream.ReadBool();
 			break;
 		case ChunkMapInfo::music_type:
 			mapinfo.music_type = stream.Read32(Reader::CompressedInteger);

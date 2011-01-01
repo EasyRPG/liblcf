@@ -51,6 +51,10 @@ namespace RPG {
 		int area_y;
 		int area_w;
 		int area_h;
+		int indentation;
+		int scrollbar_x;
+		int scrollbar_y;
+		bool expanded_node;
 	};
 }
 

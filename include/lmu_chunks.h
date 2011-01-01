@@ -42,6 +42,7 @@ namespace LMU_Reader {
 			parallax_sx				= 0x24, // Integer
 			parallax_auto_loop_y	= 0x25, // Flag
 			parallax_sy				= 0x26, // Integer
+			top_level				= 0x2A, // Bool
 			lower_layer				= 0x47, // Array - Short
 			upper_layer				= 0x48, // Array - Short
 			events					= 0x51, // Array - RPG::Event

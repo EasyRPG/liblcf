@@ -36,4 +36,8 @@ RPG::MapInfo::MapInfo() {
 	escape = 0;
 	save = 0;
 	encounter_steps = 25;
+	indentation = 0;
+	scrollbar_x = 0;
+	scrollbar_y = 0;
+	expanded_node = false;
 }

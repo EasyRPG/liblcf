@@ -113,6 +113,9 @@ RPG::Map* LMU_Reader::ReadMapData(Reader& stream) {
 		case ChunkMap::generator_mode:
 			map->generator_mode = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkMap::top_level:
+			map->top_level = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMap::generator_tiles:
 			map->generator_tiles = stream.Read32(Reader::CompressedInteger);
 			break;
