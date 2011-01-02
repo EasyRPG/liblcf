@@ -200,6 +200,7 @@
     <ClCompile Include="..\..\src\lmu_movecommand.cpp" />
     <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
+    <ClCompile Include="..\..\src\lsd_reader.cpp" />
     <ClCompile Include="..\..\src\reader.cpp" />
     <ClCompile Include="..\..\src\rpg_actor.cpp" />
     <ClCompile Include="..\..\src\rpg_animation.cpp" />
@@ -229,6 +230,7 @@
     <ClCompile Include="..\..\src\rpg_movecommand.cpp" />
     <ClCompile Include="..\..\src\rpg_moveroute.cpp" />
     <ClCompile Include="..\..\src\rpg_music.cpp" />
+    <ClCompile Include="..\..\src\rpg_save.cpp" />
     <ClCompile Include="..\..\src\rpg_skill.cpp" />
     <ClCompile Include="..\..\src\rpg_sound.cpp" />
     <ClCompile Include="..\..\src\rpg_state.cpp" />
@@ -253,6 +255,8 @@
     <ClInclude Include="..\..\include\lmt_reader.h" />
     <ClInclude Include="..\..\include\lmu_chunks.h" />
     <ClInclude Include="..\..\include\lmu_reader.h" />
+    <ClInclude Include="..\..\include\lsd_chunks.h" />
+    <ClInclude Include="..\..\include\lsd_reader.h" />
     <ClInclude Include="..\..\include\reader.h" />
     <ClInclude Include="..\..\include\reader_options.h" />
     <ClInclude Include="..\..\include\rpg_actor.h" />
@@ -283,6 +287,7 @@
     <ClInclude Include="..\..\include\rpg_movecommand.h" />
     <ClInclude Include="..\..\include\rpg_moveroute.h" />
     <ClInclude Include="..\..\include\rpg_music.h" />
+    <ClInclude Include="..\..\include\rpg_save.h" />
     <ClInclude Include="..\..\include\rpg_skill.h" />
     <ClInclude Include="..\..\include\rpg_sound.h" />
     <ClInclude Include="..\..\include\rpg_state.h" />
