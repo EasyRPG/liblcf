@@ -20,6 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
+#include "ldb_reader.h"
 #include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
@@ -55,8 +56,53 @@ RPG::Save* LSD_Reader::LoadChunks(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-			default:
-				stream.Skip(chunk_info);
+		case ChunkSave::title:
+			save->title = ReadSaveTitle(stream);
+			break;
+		case ChunkSave::data:
+			save->data = ReadSaveData(stream);
+			break;
+		case ChunkSave::unknown_66:
+			save->unknown_66 = ReadUnknown66(stream);
+			break;
+		case ChunkSave::pictures:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				save->pictures.push_back(ReadSavePicture(stream));
+			}
+			break;
+		case ChunkSave::party_location:
+			save->party_location = ReadSaveLocation(stream);
+			break;
+		case ChunkSave::boat_location:
+			save->boat_location = ReadSaveLocation(stream);
+			break;
+		case ChunkSave::ship_location:
+			save->ship_location = ReadSaveLocation(stream);
+			break;
+		case ChunkSave::airship_location:
+			save->airship_location = ReadSaveLocation(stream);
+			break;
+		case ChunkSave::party:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				save->party.push_back(ReadSaveActor(stream));
+			}
+			break;
+		case ChunkSave::inventory:
+			save->inventory = ReadSaveInventory(stream);
+			break;
+		case ChunkSave::map_info:
+			save->map_info = ReadSaveMapInfo(stream);
+			break;
+		case ChunkSave::events:
+			save->events = ReadSaveEvents(stream);
+			break;
+		case ChunkSave::common_events:
+			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+				save->common_events.push_back(ReadCommonEvent(stream));
+			}
+			break;
+		default:
+			stream.Skip(chunk_info);
 		}
 	}
 	return save;

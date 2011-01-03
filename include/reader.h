@@ -145,6 +145,12 @@ public:
 	int32_t Read32(IntegerType type);
 
 	////////////////////////////////////////////////////////
+	/// Reads a "double" from the stream
+	/// @return The double
+	////////////////////////////////////////////////////////
+	double ReadDouble();
+
+	////////////////////////////////////////////////////////
 	/// Reads bytes and converts them to bool (value > 0).
 	/// @param buffer : Vector to fill
 	/// @param size : How many bytes to read

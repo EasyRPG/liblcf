@@ -117,6 +117,20 @@ int32_t Reader::Read32(IntegerType type) {
 }
 
 ////////////////////////////////////////////////////////////
+double Reader::ReadDouble() {
+	double val = 0;
+#ifndef NDEBUG
+	assert(fread(&val, 8, 1, stream) == 1);
+#else
+	fread(&val, 8, 1, stream);
+#endif
+#ifdef READER_BIG_ENDIAN
+#error "Need 64-bit byte swap"
+#endif
+	return val;
+}
+
+////////////////////////////////////////////////////////////
 void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 	uint8_t val = 0;
 	buffer.clear();
