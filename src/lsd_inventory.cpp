@@ -60,6 +60,15 @@ RPG::SaveInventory LSD_Reader::ReadSaveInventory(Reader& stream) {
 		case ChunkInventory::gold:
 			inventory.gold = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkInventory::timer_secs:
+			inventory.timer_secs = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkInventory::timer_18:
+			inventory.timer_18 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkInventory::timer_19:
+			inventory.timer_19 = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkInventory::battles:
 			inventory.battles = stream.Read32(Reader::CompressedInteger);
 			break;

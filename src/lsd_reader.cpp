@@ -63,7 +63,7 @@ RPG::Save* LSD_Reader::LoadChunks(Reader& stream) {
 			save->data = ReadSaveData(stream);
 			break;
 		case ChunkSave::unknown_66:
-			save->unknown_66 = ReadUnknown66(stream);
+			save->screen = ReadSaveScreen(stream);
 			break;
 		case ChunkSave::pictures:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {

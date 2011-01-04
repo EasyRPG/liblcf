@@ -52,6 +52,12 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 		case ChunkActor::sprite_id:
 			actor.sprite_id = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkActor::face_name:
+			actor.face_name = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkActor::face_id:
+			actor.face_id = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkActor::level:
 			actor.level = stream.Read32(Reader::CompressedInteger);
 			break;

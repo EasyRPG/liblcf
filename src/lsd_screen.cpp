@@ -23,10 +23,10 @@
 #include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Unknown Chunk 0x66
+/// Read Screen Appearance
 ////////////////////////////////////////////////////////////
-RPG::SaveUnknown66 LSD_Reader::ReadUnknown66(Reader& stream) {
-	RPG::SaveUnknown66 result;
+RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
+	RPG::SaveScreen result;
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
@@ -38,52 +38,85 @@ RPG::SaveUnknown66 LSD_Reader::ReadUnknown66(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkUnknown66::unknown_01:
+		case ChunkScreen::unknown_01:
 			result.unknown_01 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_02:
+		case ChunkScreen::unknown_02:
 			result.unknown_02 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_03:
+		case ChunkScreen::unknown_03:
 			result.unknown_03 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_0b:
+		case ChunkScreen::tint_04:
+			result.tint_04 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::unknown_0b:
 			result.unknown_0b = stream.ReadDouble();
 			break;
-		case ChunkUnknown66::unknown_0c:
+		case ChunkScreen::unknown_0c:
 			result.unknown_0c = stream.ReadDouble();
 			break;
-		case ChunkUnknown66::unknown_0d:
+		case ChunkScreen::unknown_0d:
 			result.unknown_0d = stream.ReadDouble();
 			break;
-		case ChunkUnknown66::unknown_1e:
-			result.unknown_1e = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::tint_0e:
+			result.tint_0e = stream.ReadDouble();
 			break;
-		case ChunkUnknown66::unknown_1f:
-			result.unknown_1f = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::tint_0f:
+			result.tint_0f = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_20:
-			result.unknown_20 = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::flash_14:
+			result.flash_14 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_29:
-			result.unknown_29 = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::flash_16:
+			result.flash_16 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_2a:
-			result.unknown_2a = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::flash_17:
+			result.flash_17 = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_2b:
+		case ChunkScreen::flash_18:
+			result.flash_18 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::flash_19:
+			result.flash_19 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::shake_1e:
+			result.shake_1e = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::shake_1f:
+			result.shake_1f = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::shake_20:
+			result.shake_20 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::shake_21:
+			result.shake_21 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::shake_23:
+			result.shake_23 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::pan_x:
+			result.pan_x = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::pan_y:
+			result.pan_y = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::unknown_2b:
 			result.unknown_2b = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_2c:
+		case ChunkScreen::unknown_2c:
 			result.unknown_2c = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_2d:
+		case ChunkScreen::unknown_2d:
 			result.unknown_2d = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_2f:
+		case ChunkScreen::unknown_2f:
 			result.unknown_2f = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkUnknown66::unknown_31:
+		case ChunkScreen::weather:
+			result.weather = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkScreen::unknown_31:
 			result.unknown_31 = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:

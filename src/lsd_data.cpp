@@ -45,6 +45,9 @@ RPG::SaveData LSD_Reader::ReadSaveData(Reader& stream) {
 		case ChunkData::frame_count:
 			data.frame_count = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkData::graphics_name:
+			data.graphics_name = stream.ReadString(chunk_info.length);
+			break;
 		case ChunkData::switches_size:
 			data.switches_size = stream.Read32(Reader::CompressedInteger);
 			break;
@@ -74,6 +77,9 @@ RPG::SaveData LSD_Reader::ReadSaveData(Reader& stream) {
 			break;
 		case ChunkData::face_id:
 			data.face_id = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkData::unknown_36:
+			data.unknown_36 = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkData::transparent:
 			data.transparent = stream.ReadBool();

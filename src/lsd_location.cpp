@@ -109,6 +109,18 @@ RPG::SaveLocation LSD_Reader::ReadSaveLocation(Reader& stream) {
 		case ChunkLocation::unknown_65:
 			location.unknown_65 = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkLocation::sprite2_name:
+			location.sprite2_name = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkLocation::sprite2_id:
+			location.sprite2_id = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkLocation::pan_x:
+			location.pan_x = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkLocation::pan_y:
+			location.pan_y = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkLocation::unknown_79:
 			location.unknown_79 = stream.Read32(Reader::CompressedInteger);
 			break;

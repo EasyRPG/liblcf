@@ -38,6 +38,12 @@ RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
+		case ChunkMapInfo::pan_x:
+			map_info.pan_x = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapInfo::pan_y:
+			map_info.pan_y = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMapInfo::events:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
 				map_info.events.push_back(ReadSaveMapEvent(stream));

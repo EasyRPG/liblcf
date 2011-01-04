@@ -36,6 +36,7 @@ RPG::SaveTitle::SaveTitle() {
 RPG::SaveData::SaveData() {
 	screen = 0;
 	frame_count = 0;
+	graphics_name = "";
 	switches_size = 0;
 	variables_size = 0;
 	message_transparent = -1;
@@ -44,6 +45,7 @@ RPG::SaveData::SaveData() {
 	message_continue = -1;
 	face_name = "";
 	face_id = 0;
+	unknown_36 = -1;
 	transparent = false;
 	transition_out = -1;
 	transition_in = -1;
@@ -98,6 +100,10 @@ RPG::SaveLocation::SaveLocation() {
 	unknown_52 = -1;
 	unknown_53 = -1;
 	unknown_65 = -1;
+	sprite2_name = "";
+	sprite2_id = -1;
+	pan_x = -1;
+	pan_y = -1;
 	unknown_79 = -1;
 	unknown_7c = -1;
 	unknown_83 = -1;
@@ -108,7 +114,10 @@ RPG::SaveActor::SaveActor() {
 	ID = -1;
 	unknown_01 = -1;
 	unknown_02 = -1;
+	sprite_name = "";
 	sprite_id = -1;
+	face_name = "";
+	face_id = -1;
 	level = -1;
 	exp = -1;
 	hp_mod = 0;
@@ -128,6 +137,9 @@ RPG::SaveInventory::SaveInventory() {
 	party_size = 0;
 	items_size = 0;
 	gold = -1;
+	timer_secs = -1;
+	timer_18 = -1;
+	timer_19 = -1;
 	battles = -1;
 	defeats = -1;
 	unknown_22 = -1;
@@ -166,22 +178,34 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_67 = -1;
 }
 
-RPG::SaveUnknown66::SaveUnknown66() {
+RPG::SaveScreen::SaveScreen() {
 	unknown_01 = -1;
 	unknown_02 = -1;
 	unknown_03 = -1;
+	tint_04 = -1;
 	unknown_0b = -1.0;
 	unknown_0c = -1.0;
 	unknown_0d = -1.0;
+	tint_0e = -1.0;
+	tint_0f = -1;
+	flash_14 = -1;
+	flash_16 = -1;
+	flash_17 = -1;
+	flash_18 = -1;
+	flash_19 = -1;
 	unknown_2f = -1;
-	unknown_1e = -1;
-	unknown_1f = -1;
-	unknown_20 = -1;
-	unknown_29 = -1;
-	unknown_2a = -1;
+	shake_1e = -1;
+	shake_1f = -1;
+	shake_20 = -1;
+	shake_21 = -1;
+	shake_23 = -1;
+	pan_x = -1;
+	pan_y = -1;
 	unknown_2b = -1;
 	unknown_2c = -1;
 	unknown_2d = -1;
+	unknown_2f = -1;
+	weather = -1;
 	unknown_31 = -1;
 }
 
@@ -199,6 +223,8 @@ RPG::SaveCommonEvent::SaveCommonEvent() {
 }
 
 RPG::SaveMapInfo::SaveMapInfo() {
+	pan_x = -1;
+	pan_y = -1;
 }
 
 RPG::SaveEventCommands::SaveEventCommands() {

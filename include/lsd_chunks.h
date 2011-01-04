@@ -63,6 +63,7 @@ namespace LSD_Reader {
 		enum ChunkData {
 			screen					= 0x01, // 
 			frame_count				= 0x0B, // 
+			graphics_name			= 0x15, // string
 			switches_size			= 0x1F, // 
 			switches				= 0x20, // 
 			variables_size			= 0x21, // 
@@ -73,6 +74,7 @@ namespace LSD_Reader {
 			message_continue		= 0x2c, // 
 			face_name				= 0x33, // 
 			face_id					= 0x34, // 
+			unknown_36				= 0x36, // 
 			transparent				= 0x37, // 
 			title_music				= 0x47, // 
 			battle_music			= 0x48, // 
@@ -113,24 +115,35 @@ namespace LSD_Reader {
 			END						= 0x00	// End of chunk
 		};
 	}
-	namespace ChunkUnknown66 {
-		enum ChunkUnknown66 {
-			unknown_01		= 0x01, // ? int
-			unknown_02		= 0x02, // ? int
-			unknown_03		= 0x03, // ? int
-			unknown_0b		= 0x0B, // ? double
-			unknown_0c		= 0x0C, // ? double
-			unknown_0d		= 0x0D, // ? double
-			unknown_1e		= 0x1E, // ? int
-			unknown_1f		= 0x1F, // ? int
-			unknown_20		= 0x20, // ? int
-			unknown_29		= 0x29, // ? int
-			unknown_2a		= 0x2A, // ? int
-			unknown_2b		= 0x2B, // ? int
-			unknown_2c		= 0x2C, // ? int
-			unknown_2d		= 0x2D, // ? int
-			unknown_2f		= 0x2F, // ? int
-			unknown_31		= 0x31, // ? int
+	namespace ChunkScreen {
+		enum ChunkScreen {
+			unknown_01		= 0x01, // int
+			unknown_02		= 0x02, // int
+			unknown_03		= 0x03, // int
+			tint_04			= 0x04, // int
+			unknown_0b		= 0x0B, // double
+			unknown_0c		= 0x0C, // double
+			unknown_0d		= 0x0D, // double
+			tint_0e			= 0x0E, // double
+			tint_0f			= 0x0F, // int
+			flash_14		= 0x14, // int
+			flash_16		= 0x16, // int
+			flash_17		= 0x17, // int
+			flash_18		= 0x18, // double
+			flash_19		= 0x19, // int
+			shake_1e		= 0x1E, // int
+			shake_1f		= 0x1F, // int
+			shake_20		= 0x20, // int
+			shake_21		= 0x21, // int
+			shake_23		= 0x23, // int
+			pan_x			= 0x29, // int
+			pan_y			= 0x2A, // int
+			unknown_2b		= 0x2B, // int
+			unknown_2c		= 0x2C, // int
+			unknown_2d		= 0x2D, // int
+			unknown_2f		= 0x2F, // int
+			weather			= 0x30, // int
+			unknown_31		= 0x31, // int
 			END				= 0x00	// End of chunk
 		};
 	}
@@ -176,6 +189,10 @@ namespace LSD_Reader {
 			unknown_52		= 0x52, // ?
 			unknown_53		= 0x53, // ?
 			unknown_65		= 0x65, // ? 
+			sprite2_name	= 0x6F, // string
+			sprite2_id		= 0x70, // int
+			pan_x			= 0x71, // ?
+			pan_y			= 0x73, // ?
 			unknown_79		= 0x79, // ?
 			unknown_7c		= 0x7C, // ?
 			unknown_83		= 0x83, // ?
@@ -189,6 +206,8 @@ namespace LSD_Reader {
 			unknown_02		= 0x02, // ?
 			sprite_name		= 0x0B, // string
 			sprite_id		= 0x0C, // int
+			face_name		= 0x15, // string
+			face_id			= 0x16, // int
 			level			= 0x1F, // int
 			exp				= 0x20, // int
 			hp_mod			= 0x21, // ?
@@ -218,6 +237,9 @@ namespace LSD_Reader {
 			item_counts		= 0x0D, // ?
 			item_usage		= 0x0E, // ?
 			gold			= 0x15, // int: gold
+			timer_secs		= 0x17, // int
+			timer_18		= 0x18, // int
+			timer_19		= 0x19, // int
 			battles			= 0x20, // ?
 			defeats			= 0x21, // ?
 			unknown_22		= 0x22, // ?
@@ -229,6 +251,8 @@ namespace LSD_Reader {
 	}
 	namespace ChunkMapInfo {
 		enum ChunkMapInfo {
+			pan_x			= 0x01, // int
+			pan_y			= 0x02, // int
 			events			= 0x0B, // ? array
 			lower_tiles		= 0x15, // ? [00 01 02 ... 8E 8F]
 			upper_tiles		= 0x16,
@@ -289,7 +313,7 @@ namespace LSD_Reader {
 		};
 	}
 	namespace ChunkEvents {
-		enum ChunkUnknown71 {
+		enum ChunkEvents {
 			commands		= 0x01,	// array
 			unknown_04		= 0x04,	// int
 			END				= 0x00	// End of chunk

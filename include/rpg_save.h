@@ -55,6 +55,7 @@ namespace RPG {
 		SaveData();
 		int screen;
 		int frame_count;
+		std::string graphics_name;
 		int switches_size;
 		std::vector<bool> switches;
 		int variables_size;
@@ -65,6 +66,7 @@ namespace RPG {
 		int message_continue;
 		std::string face_name;
 		int face_id;
+		int unknown_36;
 		bool transparent;
 		Music title_music;
 		Music battle_music;
@@ -150,6 +152,10 @@ namespace RPG {
 		int unknown_52;
 		int unknown_53;
 		int unknown_65;
+		std::string sprite2_name;
+		int sprite2_id;
+		int pan_x;
+		int pan_y;
 		int unknown_79;
 		int unknown_7c;
 		int unknown_83;
@@ -165,6 +171,8 @@ namespace RPG {
 		int unknown_02;
 		std::string sprite_name;
 		int sprite_id;
+		std::string face_name;
+		int face_id;
 		int level;
 		int exp;
 		int hp_mod;
@@ -195,6 +203,9 @@ namespace RPG {
 		std::vector<uint8_t> item_counts;
 		std::vector<uint8_t> item_usage;
 		int gold;
+		int timer_secs;
+		int timer_18;
+		int timer_19;
 		int battles;
 		int defeats;
 		int unknown_22;
@@ -242,30 +253,43 @@ namespace RPG {
 	public:
 		SaveMapInfo();
 
+		int pan_x;
+		int pan_y;
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;
 	};
 
-	class SaveUnknown66 {
+	class SaveScreen {
 	public:
-		SaveUnknown66();
+		SaveScreen();
 
 		int unknown_01;
 		int unknown_02;
 		int unknown_03;
+		int tint_04;
 		double unknown_0b;
 		double unknown_0c;
 		double unknown_0d;
-		int unknown_1e;
-		int unknown_1f;
-		int unknown_20;
-		int unknown_29;
-		int unknown_2a;
+		double tint_0e;
+		int tint_0f;
+		int flash_14;
+		int flash_16;
+		int flash_17;
+		int flash_18;
+		int flash_19;
+		int shake_1e;
+		int shake_1f;
+		int shake_20;
+		int shake_21;
+		int shake_23;
+		int pan_x;
+		int pan_y;
 		int unknown_2b;
 		int unknown_2c;
 		int unknown_2d;
 		int unknown_2f;
+		int weather;
 		int unknown_31;
 	};
 
@@ -322,7 +346,7 @@ namespace RPG {
 
 		SaveTitle title;
 		SaveData data;
-		SaveUnknown66 unknown_66;
+		SaveScreen screen;
 		std::vector<SavePicture> pictures;
 		SaveLocation party_location;
 		SaveLocation boat_location;

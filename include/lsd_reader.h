@@ -39,7 +39,7 @@ namespace LSD_Reader {
 	RPG::SaveInventory ReadSaveInventory(Reader& stream);
 	RPG::SaveMapInfo ReadSaveMapInfo(Reader& stream);
 	RPG::SaveMapEvent ReadSaveMapEvent(Reader& stream);
-	RPG::SaveUnknown66 ReadUnknown66(Reader& stream);
+	RPG::SaveScreen ReadSaveScreen(Reader& stream);
 	RPG::SaveCommonEvent ReadCommonEvent(Reader& stream);
 	RPG::SaveCommonEventData ReadCommonEventData(Reader& stream);
 	RPG::SaveCommonEventCommands ReadCommonEventCommands(Reader& stream);
