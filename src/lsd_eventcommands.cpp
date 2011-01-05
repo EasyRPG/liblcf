@@ -56,8 +56,8 @@ RPG::SaveEventCommands LSD_Reader::ReadSaveEventCommands(Reader& stream) {
 				result.commands.push_back(Event_Reader::ReadEventCommand(stream));
 			}
 			break;
-		case ChunkEventCommands::unknown_0b:
-			result.unknown_0b = stream.Read32(Reader::CompressedInteger);
+		case ChunkEventCommands::current_command:
+			result.current_command = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkEventCommands::unknown_0c:
 			result.unknown_0c = stream.Read32(Reader::CompressedInteger);

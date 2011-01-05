@@ -40,7 +40,7 @@ RPG::SaveCommonEvent LSD_Reader::ReadCommonEvent(Reader& stream) {
 		}
 		switch (chunk_info.ID) {
 		case ChunkCommonEvent::event_data:
-			result.event_data = ReadCommonEventData(stream);
+			result.event_data = ReadSaveEventData(stream);
 			break;
 		default:
 			stream.Skip(chunk_info);

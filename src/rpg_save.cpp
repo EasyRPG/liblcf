@@ -210,6 +210,11 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	sprite_name = "";
 	sprite_id = -1;
 	unknown_4b = -1;
+	unknown_51 = -1;
+	unknown_52 = -1;
+	unknown_53 = -1;
+	unknown_54 = -1.0;
+	unknown_55 = -1;
 	unknown_66 = -1;
 	unknown_67 = -1;
 }
@@ -246,13 +251,17 @@ RPG::SaveScreen::SaveScreen() {
 	unknown_31 = -1;
 }
 
-RPG::SaveCommonEventCommands::SaveCommonEventCommands() {
+RPG::SaveEventCommands::SaveEventCommands() {
 	ID = -1;
 	commands_size = 0;
 	current_command = -1;
+	unknown_0c = -1;
+	unknown_0d = -1;
+	unknown_15 = -1;
+	unknown_16 = -1;
 }
 
-RPG::SaveCommonEventData::SaveCommonEventData() {
+RPG::SaveEventData::SaveEventData() {
 	time_left = -1;
 }
 
@@ -270,16 +279,6 @@ RPG::SaveMapInfo::SaveMapInfo() {
 	parallax_horz_speed = 0;
 	parallax_vert_auto = false;
 	parallax_vert_speed = 0;
-}
-
-RPG::SaveEventCommands::SaveEventCommands() {
-	ID = -1;
-	commands_size = 0;
-	unknown_0b = -1;
-	unknown_0c = -1;
-	unknown_0d = -1;
-	unknown_15 = -1;
-	unknown_16 = -1;
 }
 
 RPG::SaveEvents::SaveEvents() {

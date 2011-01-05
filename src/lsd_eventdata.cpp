@@ -23,10 +23,10 @@
 #include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Unknown Chunk 0x66
+/// Read Event Data
 ////////////////////////////////////////////////////////////
-RPG::SaveCommonEventData LSD_Reader::ReadCommonEventData(Reader& stream) {
-	RPG::SaveCommonEventData result;
+RPG::SaveEventData LSD_Reader::ReadSaveEventData(Reader& stream) {
+	RPG::SaveEventData result;
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
@@ -38,12 +38,12 @@ RPG::SaveCommonEventData LSD_Reader::ReadCommonEventData(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkCommonEventData::time_left:
+		case ChunkEventData::time_left:
 			result.time_left = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkCommonEventData::commands:
+		case ChunkEventData::commands:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-				result.commands.push_back(ReadCommonEventCommands(stream));
+				result.commands.push_back(ReadSaveEventCommands(stream));
 			}
 			break;
 		default:

@@ -333,9 +333,33 @@ namespace LSD_Reader {
 			sprite_name		= 0x49, // ?
 			sprite_id		= 0x4A, // ?
 			unknown_4b		= 0x4B, // ?
+			unknown_51		= 0x51, // int
+			unknown_52		= 0x52, // int
+			unknown_53		= 0x53, // int
+			unknown_54		= 0x54, // bytes
+			unknown_55		= 0x55, // int
 			unknown_66		= 0x66, // ?
 			unknown_67		= 0x67, // ?
-			unknown_6c		= 0x6C, // ?
+			event_data		= 0x6C, // chunks
+			END				= 0x00	// End of chunk
+		};
+	}
+	namespace ChunkEventData {
+		enum ChunkMapEventCommandData {
+			commands		= 0x01, // array
+			time_left		= 0x1F, // int
+			END				= 0x00	// End of chunk
+		};
+	}
+	namespace ChunkEventCommands {
+		enum ChunkEventCommands {
+			commands_size	= 0x01,	// int
+			commands		= 0x02,	// event command list
+			current_command	= 0x0B,	// int
+			unknown_0c		= 0x0C,	// int
+			unknown_0d		= 0x0D,	// int
+			unknown_15		= 0x15,	// byte
+			unknown_16		= 0x16,	// byte
 			END				= 0x00	// End of chunk
 		};
 	}
@@ -345,37 +369,10 @@ namespace LSD_Reader {
 			END				= 0x00	// End of chunk
 		};
 	}
-	namespace ChunkCommonEventData {
-		enum ChunkCommonEventData {
-			commands		= 0x01,	// array
-			time_left		= 0x1F, // int
-			END				= 0x00	// End of chunk
-		};
-	}
-	namespace ChunkCommonEventCommands {
-		enum ChunkCommonEventCommands {
-			commands_size	= 0x01,	// int
-			commands		= 0x02,	// event command list
-			current_command	= 0x0B, // int
-			END				= 0x00	// End of chunk
-		};
-	}
 	namespace ChunkEvents {
 		enum ChunkEvents {
 			commands		= 0x01,	// array
 			unknown_04		= 0x04,	// int
-			END				= 0x00	// End of chunk
-		};
-	}
-	namespace ChunkEventCommands {
-		enum ChunkEventCommands {
-			commands_size	= 0x01,	// int
-			commands		= 0x02,	// event command list
-			unknown_0b		= 0x0B,	// int
-			unknown_0c		= 0x0C,	// int
-			unknown_0d		= 0x0D,	// int
-			unknown_15		= 0x15,	// byte
-			unknown_16		= 0x16,	// byte
 			END				= 0x00	// End of chunk
 		};
 	}

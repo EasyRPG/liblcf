@@ -253,6 +253,28 @@ namespace RPG {
 		int steps;
 	};
 
+	class SaveEventCommands {
+	public:
+		SaveEventCommands();
+
+		int ID;
+		int commands_size;
+		std::vector<EventCommand> commands;
+		int current_command;
+		int unknown_0c;
+		int unknown_0d;
+		int unknown_15;
+		int unknown_16;
+	};
+
+	class SaveEventData {
+	public:
+		SaveEventData();
+
+		std::vector<SaveEventCommands> commands;
+		int time_left;
+	};
+
 	class SaveMapEvent {
 	public:
 		SaveMapEvent();
@@ -284,9 +306,14 @@ namespace RPG {
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;
+		int unknown_51;
+		int unknown_52;
+		int unknown_53;
+		double unknown_54;
+		int unknown_55;
 		int unknown_66;
 		int unknown_67;
-		std::vector<uint8_t> unknown_6c;
+		SaveEventData event_data;
 	};
 
 	class SaveMapInfo {
@@ -341,44 +368,12 @@ namespace RPG {
 		int unknown_31;
 	};
 
-	class SaveCommonEventCommands {
-	public:
-		SaveCommonEventCommands();
-
-		int ID;
-		int commands_size;
-		std::vector<EventCommand> commands;
-		int current_command;
-	};
-
-	class SaveCommonEventData {
-	public:
-		SaveCommonEventData();
-
-		std::vector<SaveCommonEventCommands> commands;
-		int time_left;
-	};
-
 	class SaveCommonEvent {
 	public:
 		SaveCommonEvent();
 
 		int ID;
-		SaveCommonEventData event_data;
-	};
-
-	class SaveEventCommands {
-	public:
-		SaveEventCommands();
-
-		int ID;
-		int commands_size;
-		std::vector<EventCommand> commands;
-		int unknown_0b;
-		int unknown_0c;
-		int unknown_0d;
-		int unknown_15;
-		int unknown_16;
+		SaveEventData event_data;
 	};
 
 	class SaveEvents {

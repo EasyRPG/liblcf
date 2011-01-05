@@ -40,12 +40,13 @@ namespace LSD_Reader {
 	RPG::SaveInventory ReadSaveInventory(Reader& stream);
 	RPG::SaveMapInfo ReadSaveMapInfo(Reader& stream);
 	RPG::SaveMapEvent ReadSaveMapEvent(Reader& stream);
+	RPG::SaveEventData ReadSaveEventData(Reader& stream);
+	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
 	RPG::SaveScreen ReadSaveScreen(Reader& stream);
 	RPG::SaveCommonEvent ReadCommonEvent(Reader& stream);
-	RPG::SaveCommonEventData ReadCommonEventData(Reader& stream);
-	RPG::SaveCommonEventCommands ReadCommonEventCommands(Reader& stream);
 	RPG::SaveEvents ReadSaveEvents(Reader& stream);
 	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
+
 	RPG::Save* Load(const std::string &filename);
 	RPG::Save* LoadChunks(Reader& stream);
 }
