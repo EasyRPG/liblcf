@@ -109,11 +109,10 @@
     <VirtualDirectory Name="LSD">
       <File Name="../../src/lsd_reader.cpp"/>
       <File Name="../../src/lsd_actor.cpp"/>
-      <File Name="../../src/lsd_commoneventcommands.cpp"/>
-      <File Name="../../src/lsd_commoneventdata.cpp"/>
       <File Name="../../src/lsd_commonevents.cpp"/>
       <File Name="../../src/lsd_data.cpp"/>
       <File Name="../../src/lsd_eventcommands.cpp"/>
+      <File Name="../../src/lsd_eventdata.cpp"/>
       <File Name="../../src/lsd_events.cpp"/>
       <File Name="../../src/lsd_inventory.cpp"/>
       <File Name="../../src/lsd_location.cpp"/>

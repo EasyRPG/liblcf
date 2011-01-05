@@ -202,11 +202,10 @@
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
     <ClCompile Include="..\..\src\lsd_reader.cpp" />
     <ClCompile Include="..\..\src\lsd_actor.cpp" />
-    <ClCompile Include="..\..\src\lsd_commoneventcommands.cpp" />
-    <ClCompile Include="..\..\src\lsd_commoneventdata.cpp" />
     <ClCompile Include="..\..\src\lsd_commonevents.cpp" />
     <ClCompile Include="..\..\src\lsd_data.cpp" />
     <ClCompile Include="..\..\src\lsd_eventcommands.cpp" />
+    <ClCompile Include="..\..\src\lsd_eventdata.cpp" />
     <ClCompile Include="..\..\src\lsd_events.cpp" />
     <ClCompile Include="..\..\src\lsd_inventory.cpp" />
     <ClCompile Include="..\..\src\lsd_location.cpp" />

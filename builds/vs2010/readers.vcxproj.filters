@@ -302,12 +302,6 @@
     <ClCompile Include="..\..\src\lsd_actor.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_commoneventcommands.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_commoneventdata.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\lsd_commonevents.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
@@ -315,6 +309,9 @@
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lsd_eventcommands.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_eventdata.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lsd_events.cpp">
