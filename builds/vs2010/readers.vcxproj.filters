@@ -299,6 +299,51 @@
     <ClCompile Include="..\..\src\lsd_reader.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\lsd_actor.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_commoneventcommands.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_commoneventdata.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_commonevents.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_data.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_eventcommands.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_events.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_inventory.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_location.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_mapevent.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_mapinfo.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_picture.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_screen.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_title.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_vehicle.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\rpg_save.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
