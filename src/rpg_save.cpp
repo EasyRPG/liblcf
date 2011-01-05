@@ -103,7 +103,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	unknown_21 = -1;
 	unknown_23 = -1;
 	unknown_25 = -1;
-	unknown_2b = -1;
+	unknown_2b = 0;
 	unknown_34 = -1;
 	unknown_35 = -1;
 	unknown_36 = -1;
@@ -147,8 +147,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 
 RPG::SaveActor::SaveActor() {
 	ID = -1;
-	unknown_01 = -1;
-	unknown_02 = -1;
+	name = "";
+	title = "";
 	sprite_name = "";
 	sprite_id = -1;
 	face_name = "";
@@ -165,7 +165,7 @@ RPG::SaveActor::SaveActor() {
 	current_hp = -1;
 	current_sp = -1;
 	unknown_51 = -1;
-	unknown_5e = -1;
+	auto_battle = false;
 }
 
 RPG::SaveInventory::SaveInventory() {
@@ -189,18 +189,19 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	unknown_15 = -1;
-	unknown_16 = -1;
-	unknown_17 = -1;
+	facing1 = -1;
+	facing2 = -1;
+	anim_frame = 1;
 	unknown_18 = -1;
 	unknown_1f = -1;
 	unknown_20 = -1;
-	unknown_21 = -1;
+	layer = -1;
 	unknown_22 = -1;
 	unknown_23 = -1;
 	unknown_24 = -1;
 	unknown_25 = -1;
 	unknown_2b = -1;
+	anim_paused = 0;
 	unknown_33 = -1;
 	unknown_34 = -1;
 	unknown_35 = -1;
@@ -214,27 +215,27 @@ RPG::SaveMapEvent::SaveMapEvent() {
 }
 
 RPG::SaveScreen::SaveScreen() {
-	unknown_01 = -1;
-	unknown_02 = -1;
-	unknown_03 = -1;
-	tint_04 = -1;
-	unknown_0b = -1.0;
-	unknown_0c = -1.0;
-	unknown_0d = -1.0;
-	tint_0e = -1.0;
-	tint_0f = -1;
-	flash_14 = -1;
-	flash_15 = -1;
-	flash_16 = -1;
-	flash_17 = -1;
-	flash_18 = -1.0;
-	flash_19 = -1;
+	tint_finish_red = -1;
+	tint_finish_green = -1;
+	tint_finish_blue = -1;
+	tint_finish_sat = -1;
+	tint_current_red = -1.0;
+	tint_current_green = -1.0;
+	tint_current_blue = -1.0;
+	tint_current_sat = -1.0;
+	tint_time_left = -1;
+	flash_status = -1;
+	flash_red = -1;
+	flash_green = -1;
+	flash_blue = -1;
+	flash_current_level = -1.0;
+	flash_time_left = -1;
 	unknown_2f = -1;
-	shake_1e = -1;
-	shake_1f = -1;
-	shake_20 = -1;
-	shake_21 = -1;
-	shake_23 = -1;
+	shake_status = -1;
+	shake_strength = -1;
+	shake_speed = -1;
+	shake_position = 0;
+	shake_time_left = -1;
 	pan_x = -1;
 	pan_y = -1;
 	unknown_2b = -1;
@@ -248,7 +249,7 @@ RPG::SaveScreen::SaveScreen() {
 RPG::SaveCommonEventCommands::SaveCommonEventCommands() {
 	ID = -1;
 	commands_size = 0;
-	unknown_0b = -1;
+	current_command = -1;
 }
 
 RPG::SaveCommonEventData::SaveCommonEventData() {
@@ -262,6 +263,13 @@ RPG::SaveCommonEvent::SaveCommonEvent() {
 RPG::SaveMapInfo::SaveMapInfo() {
 	pan_x = -1;
 	pan_y = -1;
+	parallax_name = "";
+	parallax_horz = false;
+	parallax_vert = false;
+	parallax_horz_auto = false;
+	parallax_horz_speed = 0;
+	parallax_vert_auto = false;
+	parallax_vert_speed = 0;
 }
 
 RPG::SaveEventCommands::SaveEventCommands() {

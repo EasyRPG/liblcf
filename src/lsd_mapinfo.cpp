@@ -55,6 +55,27 @@ RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
 		case ChunkMapInfo::upper_tiles:
 			stream.Read8(map_info.upper_tiles, chunk_info.length);
 			break;
+		case ChunkMapInfo::parallax_name:
+			map_info.parallax_name = stream.ReadString(chunk_info.length);
+			break;
+		case ChunkMapInfo::parallax_horz:
+			map_info.parallax_horz = stream.ReadBool();
+			break;
+		case ChunkMapInfo::parallax_vert:
+			map_info.parallax_vert = stream.ReadBool();
+			break;
+		case ChunkMapInfo::parallax_horz_auto:
+			map_info.parallax_horz_auto = stream.ReadBool();
+			break;
+		case ChunkMapInfo::parallax_horz_speed:
+			map_info.parallax_horz_speed = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapInfo::parallax_vert_auto:
+			map_info.parallax_vert_auto = stream.ReadBool();
+			break;
+		case ChunkMapInfo::parallax_vert_speed:
+			map_info.parallax_vert_speed = stream.Read32(Reader::CompressedInteger);
+			break;
 		default:
 			stream.Skip(chunk_info);
 		}

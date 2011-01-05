@@ -206,8 +206,8 @@ namespace RPG {
 		SaveActor();
 
 		int ID;
-		int unknown_01;
-		int unknown_02;
+		std::string name;
+		std::string title;
 		std::string sprite_name;
 		int sprite_id;
 		std::string face_name;
@@ -228,7 +228,7 @@ namespace RPG {
 		std::vector<uint8_t> unknown_50;
 		int unknown_51;
 		std::vector<int16_t> status;
-		int unknown_5e;
+		bool auto_battle;
 	};
 
 	class SaveInventory {
@@ -262,19 +262,20 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int unknown_15;
-		int unknown_16;
-		int unknown_17;
+		int facing1;
+		int facing2;
+		int anim_frame;
 		int unknown_18;
 		int unknown_1f;
 		int unknown_20;
-		int unknown_21;
+		int layer;
 		int unknown_22;
 		int unknown_23;
 		int unknown_24;
 		int unknown_25;
 		MoveRoute move_route;
 		int unknown_2b;
+		int anim_paused;
 		int unknown_33;
 		int unknown_34;
 		int unknown_35;
@@ -297,32 +298,39 @@ namespace RPG {
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;
+		std::string parallax_name;
+		bool parallax_horz;
+		bool parallax_vert;
+		bool parallax_horz_auto;
+		int parallax_horz_speed;
+		bool parallax_vert_auto;
+		int parallax_vert_speed;
 	};
 
 	class SaveScreen {
 	public:
 		SaveScreen();
 
-		int unknown_01;
-		int unknown_02;
-		int unknown_03;
-		int tint_04;
-		double unknown_0b;
-		double unknown_0c;
-		double unknown_0d;
-		double tint_0e;
-		int tint_0f;
-		int flash_14;
-		int flash_15;
-		int flash_16;
-		int flash_17;
-		double flash_18;
-		int flash_19;
-		int shake_1e;
-		int shake_1f;
-		int shake_20;
-		int shake_21;
-		int shake_23;
+		int tint_finish_red;
+		int tint_finish_green;
+		int tint_finish_blue;
+		int tint_finish_sat;
+		double tint_current_red;
+		double tint_current_green;
+		double tint_current_blue;
+		double tint_current_sat;
+		int tint_time_left;
+		int flash_status;
+		int flash_red;
+		int flash_green;
+		int flash_blue;
+		double flash_current_level;
+		int flash_time_left;
+		int shake_status;
+		int shake_strength;
+		int shake_speed;
+		int shake_position;
+		int shake_time_left;
 		int pan_x;
 		int pan_y;
 		int unknown_2b;
@@ -340,7 +348,7 @@ namespace RPG {
 		int ID;
 		int commands_size;
 		std::vector<EventCommand> commands;
-		int unknown_0b;
+		int current_command;
 	};
 
 	class SaveCommonEventData {

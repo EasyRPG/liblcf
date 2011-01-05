@@ -40,11 +40,11 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkActor::unknown_01:
-			actor.unknown_01 = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::name:
+			actor.name = stream.ReadString(chunk_info.length);
 			break;
-		case ChunkActor::unknown_02:
-			actor.unknown_02 = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::title:
+			actor.title = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkActor::sprite_name:
 			actor.sprite_name = stream.ReadString(chunk_info.length);
@@ -106,8 +106,8 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 		case ChunkActor::status:
 			stream.Read16(actor.status, chunk_info.length);
 			break;
-		case ChunkActor::unknown_5e:
-			actor.unknown_5e = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::auto_battle:
+			actor.auto_battle = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);
