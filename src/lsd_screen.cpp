@@ -68,6 +68,9 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 		case ChunkScreen::flash_14:
 			result.flash_14 = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkScreen::flash_15:
+			result.flash_15 = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkScreen::flash_16:
 			result.flash_16 = stream.Read32(Reader::CompressedInteger);
 			break;
@@ -75,7 +78,7 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 			result.flash_17 = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkScreen::flash_18:
-			result.flash_18 = stream.Read32(Reader::CompressedInteger);
+			result.flash_18 = stream.ReadDouble();
 			break;
 		case ChunkScreen::flash_19:
 			result.flash_19 = stream.Read32(Reader::CompressedInteger);

@@ -116,18 +116,34 @@ namespace RPG {
 		double start_y;
 		double current_x;
 		double current_y;
+		double current_magnify;
 		double current_top_trans;
 		bool transparency;
+		double current_red;
+		double current_green;
+		double current_blue;
+		double current_sat;
+		int effect_mode;
+		double effect_speed;
 		double current_bot_trans;
 		double finish_x;
 		double finish_y;
+		int finish_magnify;
 		int finish_top_trans;
 		int finish_bot_trans;
+		int finish_red;
+		int finish_green;
+		int finish_blue;
+		int finish_sat;
+		int effect2_speed;
+		int time_left;
+		double current_rotation;
+		int current_waver;
 	};
 
-	class SaveLocation {
+	class SavePartyLocation {
 	public:
-		SaveLocation();
+		SavePartyLocation();
 
 		int map_id;
 		int position_x;
@@ -151,15 +167,38 @@ namespace RPG {
 		int unknown_51;
 		int unknown_52;
 		int unknown_53;
-		int unknown_65;
-		std::string sprite2_name;
-		int sprite2_id;
-		int pan_x;
-		int pan_y;
+		int pan_current_x;
+		int pan_current_y;
+		int pan_finish_x;
+		int pan_finish_y;
 		int unknown_79;
 		int unknown_7c;
 		int unknown_83;
 		int unknown_84;
+	};
+
+	class SaveVehicleLocation {
+	public:
+		SaveVehicleLocation();
+
+		int map_id;
+		int position_x;
+		int position_y;
+		int facing1;
+		int facing2;
+		int unknown_17;
+		int unknown_21;
+		int unknown_23;
+		int unknown_25;
+		MoveRoute move_route;
+		int unknown_34;
+		int unknown_35;
+		std::string sprite_name;
+		int sprite_id;
+		int unknown_4b;
+		int unknown_65;
+		std::string sprite2_name;
+		int sprite2_id;
 	};
 
 	class SaveActor {
@@ -188,7 +227,7 @@ namespace RPG {
 		int current_sp;
 		std::vector<uint8_t> unknown_50;
 		int unknown_51;
-		std::vector<uint8_t> unknown_52;
+		std::vector<int16_t> status;
 		int unknown_5e;
 	};
 
@@ -274,9 +313,10 @@ namespace RPG {
 		double tint_0e;
 		int tint_0f;
 		int flash_14;
+		int flash_15;
 		int flash_16;
 		int flash_17;
-		int flash_18;
+		double flash_18;
 		int flash_19;
 		int shake_1e;
 		int shake_1f;
@@ -308,6 +348,7 @@ namespace RPG {
 		SaveCommonEventData();
 
 		std::vector<SaveCommonEventCommands> commands;
+		int time_left;
 	};
 
 	class SaveCommonEvent {
@@ -348,10 +389,10 @@ namespace RPG {
 		SaveData data;
 		SaveScreen screen;
 		std::vector<SavePicture> pictures;
-		SaveLocation party_location;
-		SaveLocation boat_location;
-		SaveLocation ship_location;
-		SaveLocation airship_location;
+		SavePartyLocation party_location;
+		SaveVehicleLocation boat_location;
+		SaveVehicleLocation ship_location;
+		SaveVehicleLocation airship_location;
 		std::vector<SaveActor> party;
 		SaveInventory inventory;
 		SaveMapInfo map_info;

@@ -38,6 +38,9 @@ RPG::SaveCommonEventData LSD_Reader::ReadCommonEventData(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
+		case ChunkCommonEventData::time_left:
+			result.time_left = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkCommonEventData::commands:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
 				result.commands.push_back(ReadCommonEventCommands(stream));

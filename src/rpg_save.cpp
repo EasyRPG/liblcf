@@ -68,16 +68,32 @@ RPG::SavePicture::SavePicture() {
 	start_y = 120.0;
 	current_x = 160.0;
 	current_y = 120.0;
+	current_magnify = -1.0;
 	current_top_trans = -1.0;
 	transparency = false;
+	current_red = -1.0;
+	current_green = -1.0;
+	current_blue = -1.0;
+	current_sat = -1.0;
+	effect_mode = -1;
+	effect_speed = -1.0;
 	current_bot_trans = -1.0;
 	finish_x = -1.0;
 	finish_y = -1.0;
+	finish_magnify = -1;
 	finish_top_trans = 0;
 	finish_bot_trans = 0;
+	finish_red = -1;
+	finish_green = -1;
+	finish_blue = -1;
+	finish_sat = -1;
+	effect2_speed = -1;
+	time_left = -1;
+	current_rotation = -1.0;
+	current_waver = -1;
 }
 
-RPG::SaveLocation::SaveLocation() {
+RPG::SavePartyLocation::SavePartyLocation() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
@@ -99,15 +115,34 @@ RPG::SaveLocation::SaveLocation() {
 	unknown_51 = -1;
 	unknown_52 = -1;
 	unknown_53 = -1;
-	unknown_65 = -1;
-	sprite2_name = "";
-	sprite2_id = -1;
-	pan_x = -1;
-	pan_y = -1;
+	pan_current_x = -1;
+	pan_current_y = -1;
+	pan_finish_x = -1;
+	pan_finish_y = -1;
 	unknown_79 = -1;
 	unknown_7c = -1;
 	unknown_83 = -1;
 	unknown_84 = -1;
+}
+
+RPG::SaveVehicleLocation::SaveVehicleLocation() {
+	map_id = -1;
+	position_x = -1;
+	position_y = -1;
+	facing1 = -1;
+	facing2 = -1;
+	unknown_17 = -1;
+	unknown_21 = -1;
+	unknown_23 = -1;
+	unknown_25 = -1;
+	unknown_34 = -1;
+	unknown_35 = -1;
+	sprite_name = "";
+	sprite_id = -1;
+	unknown_4b = -1;
+	unknown_65 = -1;
+	sprite2_name = "";
+	sprite2_id = -1;
 }
 
 RPG::SaveActor::SaveActor() {
@@ -189,9 +224,10 @@ RPG::SaveScreen::SaveScreen() {
 	tint_0e = -1.0;
 	tint_0f = -1;
 	flash_14 = -1;
+	flash_15 = -1;
 	flash_16 = -1;
 	flash_17 = -1;
-	flash_18 = -1;
+	flash_18 = -1.0;
 	flash_19 = -1;
 	unknown_2f = -1;
 	shake_1e = -1;
@@ -216,6 +252,7 @@ RPG::SaveCommonEventCommands::SaveCommonEventCommands() {
 }
 
 RPG::SaveCommonEventData::SaveCommonEventData() {
+	time_left = -1;
 }
 
 RPG::SaveCommonEvent::SaveCommonEvent() {

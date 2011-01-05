@@ -62,7 +62,7 @@ RPG::Save* LSD_Reader::LoadChunks(Reader& stream) {
 		case ChunkSave::data:
 			save->data = ReadSaveData(stream);
 			break;
-		case ChunkSave::unknown_66:
+		case ChunkSave::screen:
 			save->screen = ReadSaveScreen(stream);
 			break;
 		case ChunkSave::pictures:
@@ -71,16 +71,16 @@ RPG::Save* LSD_Reader::LoadChunks(Reader& stream) {
 			}
 			break;
 		case ChunkSave::party_location:
-			save->party_location = ReadSaveLocation(stream);
+			save->party_location = ReadSavePartyLocation(stream);
 			break;
 		case ChunkSave::boat_location:
-			save->boat_location = ReadSaveLocation(stream);
+			save->boat_location = ReadSaveVehicleLocation(stream);
 			break;
 		case ChunkSave::ship_location:
-			save->ship_location = ReadSaveLocation(stream);
+			save->ship_location = ReadSaveVehicleLocation(stream);
 			break;
 		case ChunkSave::airship_location:
-			save->airship_location = ReadSaveLocation(stream);
+			save->airship_location = ReadSaveVehicleLocation(stream);
 			break;
 		case ChunkSave::party:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {

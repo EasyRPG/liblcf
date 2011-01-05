@@ -24,21 +24,21 @@
 namespace LSD_Reader {
 	namespace ChunkSave {
 		enum ChunkSave {
-			title				= 0x64, // Name, level, HP, pictures
-			data				= 0x65, // Main game save data
-			unknown_66			= 0x66, // ? chunks
-			pictures			= 0x67, // ? array
-			party_location		= 0x68, // 
-			boat_location		= 0x69, // ? chunks (like 68, vehicle?)
-			ship_location		= 0x6A, // ? chunks (like 69, vehicle?)
-			airship_location	= 0x6B, // ? chunks (like 6A, vehicle?)
-			party				= 0x6C, // ? array (of actors)
-			inventory			= 0x6D, // ?
-			unknown_6e			= 0x6E, // ? [01 00 00] chunks?
-			map_info			= 0x6F, // ?
-			unknown_70			= 0x70, // ? [00] chunks?
-			events				= 0x71, // ? [01 01 00 00] chunks?
-			common_events		= 0x72, // ? array
+			title				= 0x64, // RPG::SaveTitle
+			data				= 0x65, // RPG::SaveData
+			screen				= 0x66, // RPG::SaveScreen
+			pictures			= 0x67, // array of RPG::SavePicture
+			party_location		= 0x68, // RPG::SavePartyLocation
+			boat_location		= 0x69, // RPG::SaveVehicleLocation
+			ship_location		= 0x6A, // RPG::SaveVehicleLocation
+			airship_location	= 0x6B, // RPG::SaveVehicleLocation
+			party				= 0x6C, // array of RPG::SaveActor
+			inventory			= 0x6D, // RPG::SaveInventory
+			unknown_6e			= 0x6E, // ? chunks?
+			map_info			= 0x6F, // RPG::SaveMapInfo
+			unknown_70			= 0x70, // ? chunks?
+			events				= 0x71, // RPG::SaveEvents
+			common_events		= 0x72, // array of RPG::SaveCommonEvent
 			END					= 0x00	// End of chunk
 		};
 	}
@@ -127,6 +127,7 @@ namespace LSD_Reader {
 			tint_0e			= 0x0E, // double
 			tint_0f			= 0x0F, // int
 			flash_14		= 0x14, // int
+			flash_15		= 0x15, // int
 			flash_16		= 0x16, // int
 			flash_17		= 0x17, // int
 			flash_18		= 0x18, // double
@@ -154,18 +155,34 @@ namespace LSD_Reader {
 			start_y				= 0x03, // double
 			current_x			= 0x04, // double
 			current_y			= 0x05, // double
+			current_magnify		= 0x07, // double
 			current_top_trans	= 0x08, // double
 			transparency		= 0x09, // bool
+			current_red			= 0x0B, // double
+			current_green		= 0x0C, // double
+			current_blue		= 0x0D, // double
+			current_sat			= 0x0E, // double
+			effect_mode			= 0x0F, // int
+			effect_speed		= 0x10, // double
 			current_bot_trans	= 0x12, // double
 			finish_x			= 0x1F, // double
 			finish_y			= 0x20, // double
+			finish_magnify		= 0x21, // int
 			finish_top_trans	= 0x22, // int
 			finish_bot_trans	= 0x23, // int
+			finish_red			= 0x29, // int
+			finish_green		= 0x2A, // int
+			finish_blue			= 0x2B, // int
+			finish_sat			= 0x2C, // int
+			effect2_speed		= 0x2E, // int
+			time_left			= 0x33, // int
+			current_rotation	= 0x34, // double
+			current_waver		= 0x35, // int
 			END					= 0x00	// End of chunk
 		};
 	}
-	namespace ChunkLocation {
-		enum ChunkLocation {
+	namespace ChunkPartyLocation {
+		enum ChunkPartyLocation {
 			map_id			= 0x0B, // ?
 			position_x		= 0x0C, // ?
 			position_y		= 0x0D, // ?
@@ -188,15 +205,37 @@ namespace LSD_Reader {
 			unknown_51		= 0x51, // ?
 			unknown_52		= 0x52, // ?
 			unknown_53		= 0x53, // ?
-			unknown_65		= 0x65, // ? 
-			sprite2_name	= 0x6F, // string
-			sprite2_id		= 0x70, // int
-			pan_x			= 0x71, // ?
-			pan_y			= 0x73, // ?
+			pan_current_x	= 0x70, // int
+			pan_current_y	= 0x71, // ?
+			pan_finish_x	= 0x72, // ?
+			pan_finish_y	= 0x73, // ?
 			unknown_79		= 0x79, // ?
 			unknown_7c		= 0x7C, // ?
 			unknown_83		= 0x83, // ?
 			unknown_84		= 0x84, // ?
+			END				= 0x00	// End of chunk
+		};
+	}
+	namespace ChunkVehicleLocation {
+		enum ChunkVehicleLocation {
+			map_id			= 0x0B, // ?
+			position_x		= 0x0C, // ?
+			position_y		= 0x0D, // ?
+			facing1			= 0x15, // ?
+			facing2			= 0x16, // ?
+			unknown_17		= 0x17, // ?
+			unknown_21		= 0x21, // ?
+			unknown_23		= 0x23, // ?
+			unknown_25		= 0x25, // ?
+			move_route		= 0x29, // chunks: RPG::MoveRoute
+			unknown_34		= 0x34, // ?
+			unknown_35		= 0x35, // ?
+			sprite_name		= 0x49, // ?
+			sprite_id		= 0x4A, // ?
+			unknown_4b		= 0x4B, // ?
+			unknown_65		= 0x65, // ? 
+			sprite2_name	= 0x6F, // string
+			sprite2_id		= 0x70, // int
 			END				= 0x00	// End of chunk
 		};
 	}
@@ -223,7 +262,7 @@ namespace LSD_Reader {
 			current_sp		= 0x48, // int
 			unknown_50		= 0x50, // ?
 			unknown_51		= 0x51, // ?
-			unknown_52		= 0x52, // ?
+			status			= 0x52, // array of short
 			unknown_5e		= 0x5E, // ?
 			END				= 0x00	// End of chunk
 		};
@@ -301,6 +340,7 @@ namespace LSD_Reader {
 	namespace ChunkCommonEventData {
 		enum ChunkCommonEventData {
 			commands		= 0x01,	// array
+			time_left		= 0x1F, // int
 			END				= 0x00	// End of chunk
 		};
 	}
