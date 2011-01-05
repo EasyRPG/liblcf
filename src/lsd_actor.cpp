@@ -107,7 +107,7 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			stream.Read16(actor.status, chunk_info.length);
 			break;
 		case ChunkActor::auto_battle:
-			actor.auto_battle = stream.Read32(Reader::CompressedInteger);
+			actor.auto_battle = stream.Read32(Reader::CompressedInteger) != 0;
 			break;
 		default:
 			stream.Skip(chunk_info);
