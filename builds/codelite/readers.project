@@ -108,6 +108,21 @@
     </VirtualDirectory>
     <VirtualDirectory Name="LSD">
       <File Name="../../src/lsd_reader.cpp"/>
+      <File Name="../../src/lsd_actor.cpp"/>
+      <File Name="../../src/lsd_commoneventcommands.cpp"/>
+      <File Name="../../src/lsd_commoneventdata.cpp"/>
+      <File Name="../../src/lsd_commonevents.cpp"/>
+      <File Name="../../src/lsd_data.cpp"/>
+      <File Name="../../src/lsd_eventcommands.cpp"/>
+      <File Name="../../src/lsd_events.cpp"/>
+      <File Name="../../src/lsd_inventory.cpp"/>
+      <File Name="../../src/lsd_location.cpp"/>
+      <File Name="../../src/lsd_mapevent.cpp"/>
+      <File Name="../../src/lsd_mapinfo.cpp"/>
+      <File Name="../../src/lsd_picture.cpp"/>
+      <File Name="../../src/lsd_screen.cpp"/>
+      <File Name="../../src/lsd_title.cpp"/>
+      <File Name="../../src/lsd_vehicle.cpp"/>
     </VirtualDirectory>
     <File Name="../../src/data.cpp"/>
     <File Name="../../src/reader.cpp"/>
@@ -171,8 +186,6 @@
     <File Name="../../include/reader.h"/>
     <File Name="../../include/reader_options.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
   <Settings Type="Static Library">
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-ansi;-pedantic;-Wall;-Wextra;-Wno-unused;-fno-rtti;-fno-exceptions" Required="yes" PreCompiledHeader=""/>
@@ -356,4 +369,10 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Dingux Debug"/>
+  <Dependencies Name="Dingux Release"/>
+  <Dependencies Name="Release"/>
+  <Dependencies Name="Win32 Debug"/>
+  <Dependencies Name="Win32 Release"/>
 </CodeLite_Project>
