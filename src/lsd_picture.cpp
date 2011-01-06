@@ -55,6 +55,9 @@ RPG::SavePicture LSD_Reader::ReadSavePicture(Reader& stream) {
 		case ChunkPicture::current_y:
 			picture.current_y = stream.ReadDouble();
 			break;
+		case ChunkPicture::picture_scrolls:
+			picture.picture_scrolls = stream.ReadBool();
+			break;
 		case ChunkPicture::current_magnify:
 			picture.current_magnify = stream.ReadDouble();
 			break;

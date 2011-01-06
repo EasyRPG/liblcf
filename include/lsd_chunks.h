@@ -144,7 +144,7 @@ namespace LSD_Reader {
 			unknown_2d			= 0x2D, // int
 			unknown_2f			= 0x2F, // int
 			weather				= 0x30, // int
-			unknown_31			= 0x31, // int
+			weather_strength	= 0x31, // int
 			END					= 0x00	// End of chunk
 		};
 	}
@@ -155,6 +155,7 @@ namespace LSD_Reader {
 			start_y				= 0x03, // double
 			current_x			= 0x04, // double
 			current_y			= 0x05, // double
+			picture_scrolls		= 0x06, // bool
 			current_magnify		= 0x07, // double
 			current_top_trans	= 0x08, // double
 			transparency		= 0x09, // bool
@@ -205,6 +206,7 @@ namespace LSD_Reader {
 			unknown_51		= 0x51, // ?
 			unknown_52		= 0x52, // ?
 			unknown_53		= 0x53, // ?
+			pan_state		= 0x6F, // int
 			pan_current_x	= 0x70, // int
 			pan_current_y	= 0x71, // ?
 			pan_finish_x	= 0x72, // ?
@@ -307,41 +309,42 @@ namespace LSD_Reader {
 	}
 	namespace ChunkMapEvent {
 		enum ChunkMapEvent {
-			unknown_01		= 0x01, // ?
-			map_id			= 0x0B, // ?
-			position_x		= 0x0C, // ?
-			position_y		= 0x0D, // ?
-			facing1			= 0x15, // ?
-			facing2			= 0x16, // ?
-			anim_frame		= 0x17, // ?
-			unknown_18		= 0x18, // ?
-			unknown_1f		= 0x1F, // ?
-			unknown_20		= 0x20, // ?
-			layer			= 0x21, // int
-			unknown_22		= 0x22, // ?
-			unknown_23		= 0x23, // ?
-			unknown_24		= 0x24, // ?
-			unknown_25		= 0x25, // ?
-			move_route		= 0x29, // chunks: RPG::MoveRoute
-			unknown_2b		= 0x2B, // ?
-			anim_paused		= 0x30, // bool
-			unknown_33		= 0x33, // int/bool?
-			unknown_34		= 0x34, // int:
-			unknown_35		= 0x35, // ?
-			unknown_36		= 0x36, // ?
-			unknown_47		= 0x47, // ?
-			sprite_name		= 0x49, // ?
-			sprite_id		= 0x4A, // ?
-			unknown_4b		= 0x4B, // ?
-			unknown_51		= 0x51, // int
-			unknown_52		= 0x52, // int
-			unknown_53		= 0x53, // int
-			unknown_54		= 0x54, // bytes
-			unknown_55		= 0x55, // int
-			unknown_66		= 0x66, // ?
-			unknown_67		= 0x67, // ?
-			event_data		= 0x6C, // chunks
-			END				= 0x00	// End of chunk
+			unknown_01			= 0x01, // ?
+			map_id				= 0x0B, // ?
+			position_x			= 0x0C, // ?
+			position_y			= 0x0D, // ?
+			facing1				= 0x15, // ?
+			facing2				= 0x16, // ?
+			anim_frame			= 0x17, // ?
+			unknown_18			= 0x18, // ?
+			unknown_1f			= 0x1F, // ?
+			unknown_20			= 0x20, // ?
+			layer				= 0x21, // int
+			unknown_22			= 0x22, // ?
+			unknown_23			= 0x23, // ?
+			unknown_24			= 0x24, // ?
+			unknown_25			= 0x25, // ?
+			move_route			= 0x29, // chunks: RPG::MoveRoute
+			unknown_2a			= 0x2A, // int/bool
+			unknown_2b			= 0x2B, // ?
+			anim_paused			= 0x30, // bool
+			unknown_33			= 0x33, // int/bool?
+			unknown_34			= 0x34, // int:
+			unknown_35			= 0x35, // ?
+			unknown_36			= 0x36, // ?
+			unknown_47			= 0x47, // ?
+			sprite_name			= 0x49, // ?
+			sprite_id			= 0x4A, // ?
+			unknown_4b			= 0x4B, // ?
+			flash_red			= 0x51, // int
+			flash_green			= 0x52, // int
+			flash_blue			= 0x53, // int
+			flash_current_level	= 0x54, // double
+			flash_time_left		= 0x55, // int
+			unknown_66			= 0x66, // ?
+			unknown_67			= 0x67, // ?
+			event_data			= 0x6C, // chunks
+			END					= 0x00	// End of chunk
 		};
 	}
 	namespace ChunkEventData {

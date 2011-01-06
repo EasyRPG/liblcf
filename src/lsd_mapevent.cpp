@@ -89,6 +89,9 @@ RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
 		case ChunkMapEvent::move_route:
 			map_event.move_route = LMU_Reader::ReadMoveRoute(stream);
 			break;
+		case ChunkMapEvent::unknown_2a:
+			map_event.unknown_2a = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMapEvent::unknown_2b:
 			map_event.unknown_2b = stream.Read32(Reader::CompressedInteger);
 			break;
@@ -119,20 +122,20 @@ RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
 		case ChunkMapEvent::unknown_4b:
 			map_event.unknown_4b = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMapEvent::unknown_51:
-			map_event.unknown_51 = stream.Read32(Reader::CompressedInteger);
+		case ChunkMapEvent::flash_red:
+			map_event.flash_red = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMapEvent::unknown_52:
-			map_event.unknown_52 = stream.Read32(Reader::CompressedInteger);
+		case ChunkMapEvent::flash_green:
+			map_event.flash_green = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMapEvent::unknown_53:
-			map_event.unknown_53 = stream.Read32(Reader::CompressedInteger);
+		case ChunkMapEvent::flash_blue:
+			map_event.flash_blue = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkMapEvent::unknown_54:
-			map_event.unknown_54 = stream.ReadDouble();
+		case ChunkMapEvent::flash_current_level:
+			map_event.flash_current_level = stream.ReadDouble();
 			break;
-		case ChunkMapEvent::unknown_55:
-			map_event.unknown_55 = stream.Read32(Reader::CompressedInteger);
+		case ChunkMapEvent::flash_time_left:
+			map_event.flash_time_left = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkMapEvent::unknown_66:
 			map_event.unknown_66 = stream.Read32(Reader::CompressedInteger);

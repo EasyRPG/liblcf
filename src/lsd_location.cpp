@@ -106,6 +106,9 @@ RPG::SavePartyLocation LSD_Reader::ReadSavePartyLocation(Reader& stream) {
 		case ChunkPartyLocation::unknown_53:
 			location.unknown_53 = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkPartyLocation::pan_state:
+			location.pan_state = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkPartyLocation::pan_current_x:
 			location.pan_current_x = stream.Read32(Reader::CompressedInteger);
 			break;

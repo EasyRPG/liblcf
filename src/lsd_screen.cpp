@@ -119,8 +119,8 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 		case ChunkScreen::weather:
 			result.weather = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkScreen::unknown_31:
-			result.unknown_31 = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::weather_strength:
+			result.weather_strength = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);

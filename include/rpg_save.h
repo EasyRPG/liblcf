@@ -117,6 +117,7 @@ namespace RPG {
 		double start_y;
 		double current_x;
 		double current_y;
+		bool picture_scrolls;
 		double current_magnify;
 		double current_top_trans;
 		bool transparency;
@@ -168,6 +169,7 @@ namespace RPG {
 		int unknown_51;
 		int unknown_52;
 		int unknown_53;
+		int pan_state;
 		int pan_current_x;
 		int pan_current_y;
 		int pan_finish_x;
@@ -297,6 +299,7 @@ namespace RPG {
 		int unknown_24;
 		int unknown_25;
 		MoveRoute move_route;
+		int unknown_2a;
 		int unknown_2b;
 		int anim_paused;
 		int unknown_33;
@@ -307,11 +310,11 @@ namespace RPG {
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;
-		int unknown_51;
-		int unknown_52;
-		int unknown_53;
-		double unknown_54;
-		int unknown_55;
+		int flash_red;
+		int flash_green;
+		int flash_blue;
+		double flash_current_level;
+		int flash_time_left;
 		int unknown_66;
 		int unknown_67;
 		SaveEventData event_data;
@@ -366,7 +369,7 @@ namespace RPG {
 		int unknown_2d;
 		int unknown_2f;
 		int weather;
-		int unknown_31;
+		int weather_strength;
 	};
 
 	class SaveCommonEvent {

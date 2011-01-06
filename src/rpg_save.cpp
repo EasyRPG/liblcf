@@ -68,6 +68,7 @@ RPG::SavePicture::SavePicture() {
 	start_y = 120.0;
 	current_x = 160.0;
 	current_y = 120.0;
+	picture_scrolls = false;
 	current_magnify = -1.0;
 	current_top_trans = -1.0;
 	transparency = false;
@@ -115,6 +116,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	unknown_51 = -1;
 	unknown_52 = -1;
 	unknown_53 = -1;
+	pan_state = -1;
 	pan_current_x = -1;
 	pan_current_y = -1;
 	pan_finish_x = -1;
@@ -200,6 +202,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_23 = -1;
 	unknown_24 = -1;
 	unknown_25 = -1;
+	unknown_2a = -1;
 	unknown_2b = -1;
 	anim_paused = 0;
 	unknown_33 = -1;
@@ -210,11 +213,11 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	sprite_name = "";
 	sprite_id = -1;
 	unknown_4b = -1;
-	unknown_51 = -1;
-	unknown_52 = -1;
-	unknown_53 = -1;
-	unknown_54 = -1.0;
-	unknown_55 = -1;
+	flash_red = -1;
+	flash_green = -1;
+	flash_blue = -1;
+	flash_current_level = 0.0;
+	flash_time_left = 0;
 	unknown_66 = -1;
 	unknown_67 = -1;
 }
@@ -247,8 +250,8 @@ RPG::SaveScreen::SaveScreen() {
 	unknown_2c = -1;
 	unknown_2d = -1;
 	unknown_2f = -1;
-	weather = -1;
-	unknown_31 = -1;
+	weather = 0;
+	weather_strength = 0;
 }
 
 RPG::SaveEventCommands::SaveEventCommands() {
