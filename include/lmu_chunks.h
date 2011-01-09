@@ -122,6 +122,53 @@ namespace LMU_Reader {
 			play_sound		= 0x23
 		};
 	}
+	// Contains the ids for RPG::MoveCommand
+	namespace ChunkMoveCommands {
+		enum ChunkMoveCommands {
+			move_up	= 0,
+			move_right,
+			move_down,
+			move_left,
+			move_upright,
+			move_downright,
+			move_downleft,
+			move_upleft,
+			move_random,
+			move_towards_hero,
+			move_away_from_hero,
+			move_forward,
+			face_up,
+			face_right,
+			face_down,
+			face_left,
+			turn_90_degree_right,
+			turn_90_degree_left,
+			turn_180_degree,
+			turn_90_degree_random,
+			face_random_direction,
+			face_hero,
+			face_away_from_hero,
+			wait,
+			begin_jump,
+			end_jump,
+			lock_facing,
+			unlock_facing,
+			increase_movement_speed,
+			decrease_movement_speed,
+			increase_movement_frequence,
+			decrease_movement_frequence,
+			switch_on, // Parameter A: Switch to turn on
+			switch_off, // Parameter A: Switch to turn off
+			change_graphic, // String: File, Parameter A: index
+			play_sound_effect, // String: File, Parameters: Volume, Tempo, Balance
+			walk_everywhere_on,
+			walk_everywhere_off,
+			stop_animation,
+			start_animation,
+			increase_transp, // ???
+			decrease_transp // ???
+		};
+	}
 }
 
 #endif
