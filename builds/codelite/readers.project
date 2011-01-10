@@ -368,10 +368,10 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
   </Settings>
+  <Dependencies Name="Debug"/>
   <Dependencies Name="Dingux Debug"/>
   <Dependencies Name="Dingux Release"/>
   <Dependencies Name="Release"/>
   <Dependencies Name="Win32 Debug"/>
   <Dependencies Name="Win32 Release"/>
-  <Dependencies Name="Debug"/>
 </CodeLite_Project>
