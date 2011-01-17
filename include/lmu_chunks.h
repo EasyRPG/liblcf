@@ -77,7 +77,7 @@ namespace LMU_Reader {
 			condition			= 0x02, // RPG::EventPageCondition
 			character_name		= 0x15, // String
 			character_index		= 0x16, // Integer
-			character_dir		= 0x17, // Integer
+			character_direction	= 0x17, // Integer
 			character_pattern	= 0x18, // Integer
 			translucent			= 0x19, // Integer
 			move_type			= 0x1F, // Integer

@@ -39,7 +39,7 @@ namespace RPG {
 		RPG::EventPageCondition condition;
 		std::string character_name;
 		int character_index;
-		int character_dir;
+		int character_direction;
 		int character_pattern;
 		bool translucent;
 		int move_type;

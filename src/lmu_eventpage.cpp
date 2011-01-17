@@ -49,8 +49,8 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 		case ChunkEventPage::character_index:
 			eventpage.character_index = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkEventPage::character_dir:
-			eventpage.character_dir = stream.Read32(Reader::CompressedInteger);
+		case ChunkEventPage::character_direction:
+			eventpage.character_direction = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkEventPage::character_pattern:
 			eventpage.character_pattern = stream.Read32(Reader::CompressedInteger);

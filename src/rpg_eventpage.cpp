@@ -27,7 +27,7 @@ RPG::EventPage::EventPage() {
 	ID = 0;
 	character_name = "";
 	character_index = 0;
-	character_dir = 2;
+	character_direction = 2;
 	character_pattern = 1;
 	translucent = false;
 	move_type = 1;
