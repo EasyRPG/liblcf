@@ -29,11 +29,6 @@
 /// ReaderUtil namespace
 ////////////////////////////////////////////////////////////
 namespace ReaderUtil {
-	// Are really all of these encodings used under Windows?
-	/// iconv <-> windows codepage table
-	/// Source: https://svn.apache.org/repos/asf/stdcxx/branches/4.1.3/util/iconv.cpp
-	/// (Apache Licence 2.0)
-
 	////////////////////////////////////////////////////////
 	/// Returns the iconv name of a windows codepage.
 	/// @param codepage : Codepage to lookup

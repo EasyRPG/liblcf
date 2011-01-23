@@ -47,16 +47,20 @@ std::string ReaderUtil::GetEncoding() {
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRpg", "Encoding", "");
 		if (!encoding.empty()) {
+#ifdef _WIN32
+			int codepage = atoi(encoding.c_str());
+			if (codepage > 0) {
+				// Looks like a valid codepage
+				return encoding.c_str();
+			}
+#else
 			std::string iconv_str = CodepageToIconv(atoi(encoding.c_str()));
 			// Check at first if the ini value is a codepage
 			if (!iconv_str.empty()) {
 				// Looks like a valid codepage
-#ifdef _WIN32
-				return encoding;
-#else
 				return iconv_str;
-#endif
 			}
+#endif
 		}
 	}
 	return "";

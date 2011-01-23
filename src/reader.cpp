@@ -324,6 +324,12 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 	// To Utf16
 	// Default codepage is 0, so we dont need a check here
 	int res = MultiByteToWideChar(atoi(encoding.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
+	if (res == 0) {
+		// Invalid codepage
+		delete [] widechar;
+		delete [] utf8char;
+		return str_to_encode;
+	}
 	widechar[res] = '\0';
 	// Back to Utf8 ...
 	res = WideCharToMultiByte(CP_UTF8, 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
