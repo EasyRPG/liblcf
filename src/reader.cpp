@@ -22,6 +22,8 @@
 #include <cstdarg>
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <iconv.h>
 #endif
 
 ////////////////////////////////////////////////////////////
@@ -335,9 +337,25 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 
 	return str;
 #else
-	// ToDo: Encode using iconv
-	// encoding contains the iconv name
-	return str_to_encode;
+	iconv_t cd = iconv_open("UTF-8", encoding.c_str());
+	if (cd == (iconv_t)-1)
+		return str_to_encode;
+	char *src = (char *) str_to_encode.c_str();
+	size_t src_left = str_to_encode.size();
+	size_t dst_size = str_to_encode.size() * 5 + 10;
+	char *dst = new char[dst_size];
+	size_t dst_left = dst_size;
+	char *p = src;
+	char *q = dst;
+	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
+	if (status == (size_t) -1 || src_left > 0) {
+		delete[] dst;
+		return "";
+	}
+	*q++ = '\0';
+	std::string result = std::string(dst);
+	delete[] dst;
+	return result;
 #endif
 }
 

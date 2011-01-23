@@ -23,6 +23,7 @@
 #endif
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 #include "inireader.h"
 #include "reader_util.h"
 
@@ -31,37 +32,13 @@ namespace ReaderUtil {
 }
 
 ////////////////////////////////////////////////////////////
-const char* ReaderUtil::CodepageToIconv(int codepage) {
-	if (codepage == 0) {
-		return NULL;
-	}
+std::string ReaderUtil::CodepageToIconv(int codepage) {
+	if (codepage == 0)
+		return "";
 
-    for (size_t i = 0; ; ++i) {
-		if (encoding_table[i].code == 0) {
-			return NULL;
-		}
-		
-		if (encoding_table[i].code == codepage) {
-			return encoding_table[i].name;
-		}
-    }
-}
-
-////////////////////////////////////////////////////////////
-int ReaderUtil::IconvToCodepage(const char* iconv_str) {
-    if (iconv_str == NULL) {
-		return 0;
-	}
-	
-	for (size_t i = 0; ; ++i) {
-		if (encoding_table[i].code == 0) {
-			return 0;
-		}
-		
-		if (!strcmp(encoding_table[i].name, iconv_str)) {
-			return encoding_table[i].code;
-		}
-    }
+	std::ostringstream out;
+	out << "CP" << codepage;
+	return out.str();
 }
 
 ////////////////////////////////////////////////////////////
@@ -70,27 +47,15 @@ std::string ReaderUtil::GetEncoding() {
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRpg", "Encoding", "");
 		if (!encoding.empty()) {
-			const char* iconv_str = CodepageToIconv(atoi(encoding.c_str()));
+			std::string iconv_str = CodepageToIconv(atoi(encoding.c_str()));
 			// Check at first if the ini value is a codepage
-			if (iconv_str != NULL) {
+			if (!iconv_str.empty()) {
 				// Looks like a valid codepage
 #ifdef _WIN32
 				return encoding;
 #else
-				return std::string(iconv_str);
+				return iconv_str;
 #endif
-			} else { // Now check if the ini value is an iconv value
-				int codepage = IconvToCodepage(encoding.c_str());
-				if (codepage != 0) {
-					// Looks like a valid codepage
-#ifdef _WIN32
-					char cpage[10];
-					sprintf(cpage, "%d", codepage);
-					return std::string(cpage);
-#else
-					return std::string(iconv_str);
-#endif
-				}
 			}
 		}
 	}
