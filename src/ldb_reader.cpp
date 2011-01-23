@@ -21,12 +21,13 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "data.h"
+#include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Database
 ////////////////////////////////////////////////////////////
 bool LDB_Reader::Load(const std::string& filename) {
-	Reader reader(filename);
+	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s database file.\n", filename.c_str());
 		return false;

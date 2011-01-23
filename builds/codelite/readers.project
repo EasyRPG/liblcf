@@ -125,6 +125,7 @@
     </VirtualDirectory>
     <File Name="../../src/data.cpp"/>
     <File Name="../../src/reader.cpp"/>
+    <File Name="../../src/reader_util.cpp"/>	
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <VirtualDirectory Name="RPG">
@@ -184,6 +185,7 @@
     <File Name="../../include/lsd_reader.h"/>
     <File Name="../../include/reader.h"/>
     <File Name="../../include/reader_options.h"/>
+    <File Name="../../include/reader_util.h"/>	
   </VirtualDirectory>
   <Settings Type="Static Library">
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">

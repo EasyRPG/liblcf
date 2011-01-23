@@ -21,12 +21,13 @@
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "data.h"
+#include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Map Tree
 ////////////////////////////////////////////////////////////
 bool LMT_Reader::Load(const std::string& filename) {
-	Reader reader(filename);
+	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;

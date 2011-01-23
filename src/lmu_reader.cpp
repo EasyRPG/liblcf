@@ -21,12 +21,13 @@
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader.h"
+#include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Map
 ////////////////////////////////////////////////////////////
 RPG::Map* LMU_Reader::LoadMap(const std::string& filename) {
-	Reader reader(filename);
+	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return NULL;

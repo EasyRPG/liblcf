@@ -216,6 +216,7 @@
     <ClCompile Include="..\..\src\lsd_title.cpp" />
     <ClCompile Include="..\..\src\lsd_vehicle.cpp" />
     <ClCompile Include="..\..\src\reader.cpp" />
+    <ClCompile Include="..\..\src\reader_util.cpp" />
     <ClCompile Include="..\..\src\rpg_actor.cpp" />
     <ClCompile Include="..\..\src\rpg_animation.cpp" />
     <ClCompile Include="..\..\src\rpg_animationcelldata.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="..\..\include\lsd_reader.h" />
     <ClInclude Include="..\..\include\reader.h" />
     <ClInclude Include="..\..\include\reader_options.h" />
+    <ClInclude Include="..\..\include\reader_util.h" />
     <ClInclude Include="..\..\include\rpg_actor.h" />
     <ClInclude Include="..\..\include\rpg_animation.h" />
     <ClInclude Include="..\..\include\rpg_animationcelldata.h" />

@@ -39,6 +39,7 @@
 	typedef unsigned int	uint32_t;
 #endif
 #include "reader_options.h"
+#include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
 // Defines
@@ -56,13 +57,13 @@ public:
 	/// Constructs a new File Reader.
 	/// @param filename : File to open.
 	////////////////////////////////////////////////////////
-	Reader(char* filename);
+	Reader(char* filename, std::string encoding = "");
 
 	////////////////////////////////////////////////////////
 	/// Constructs a new File Reader.
 	/// @param filename : File to open.
 	////////////////////////////////////////////////////////
-	Reader(const std::string& filename);
+	Reader(const std::string& filename, std::string encoding = "");
 
 	////////////////////////////////////////////////////////
 	/// Destructor. Closes the opened file.
@@ -245,8 +246,19 @@ private:
 	FILE* stream;
 	/// Name of the file that is associated with the stream
 	std::string filename;
+	/// Name of the encoding
+	std::string encoding;
+
 	/// Contains the last set error
 	static std::string error_str;
+
+	////////////////////////////////////////////////////////
+	/// Encodes a string to Utf8 using the set encoding
+	/// in the reader constructor.
+	/// @param str_to_encode : String to encode
+	/// @return Utf8 version of string
+	////////////////////////////////////////////////////////
+	std::string Encode(const std::string& str_to_encode);
 
 #ifdef READER_BIG_ENDIAN
 	////////////////////////////////////////////////////////

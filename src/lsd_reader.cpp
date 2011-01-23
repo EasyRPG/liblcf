@@ -22,12 +22,13 @@
 #include "lsd_chunks.h"
 #include "ldb_reader.h"
 #include "rpg_save.h"
+#include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Database
 ////////////////////////////////////////////////////////////
 RPG::Save* LSD_Reader::Load(const std::string& filename) {
-	Reader reader(filename);
+	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s save file.\n", filename.c_str());
 		return false;
