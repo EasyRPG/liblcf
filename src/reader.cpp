@@ -348,6 +348,7 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 	char *p = src;
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
+	iconv_close(cd);
 	if (status == (size_t) -1 || src_left > 0) {
 		delete[] dst;
 		return "";
