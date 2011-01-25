@@ -360,7 +360,7 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 		return "";
 	}
 	*q++ = '\0';
-	std::string result = std::string(dst);
+	std::string result(dst);
 	delete[] dst;
 	return result;
 #endif
