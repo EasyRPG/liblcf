@@ -27,5 +27,5 @@ RPG::Event::Event() {
 	ID = 0;
 	name = "";
 	x = 0;
-	y = 5;
+	y = 0;
 }
