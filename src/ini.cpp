@@ -44,16 +44,16 @@
 
 /// Strip whitespace chars off end of given string, in place.
 /// @returns s.
-static char* rstrip(char* s)
+static unsigned char* rstrip(unsigned char* s)
 {
-	char* p = s + strlen(s);
+	unsigned char* p = s + strlen((char*)s);
 	while (p > s && isspace(*--p))
 		*p = '\0';
 	return s;
 }
 
 /// @returns pointer to first non-whitespace char in given string.
-static char* lskip(const char* s)
+static char* lskip(const unsigned char* s)
 {
 	while (*s && isspace(*s))
 		s++;
@@ -63,7 +63,7 @@ static char* lskip(const char* s)
 /// @returns pointer to first char c or ';' comment in given string, or pointer to
 ///	null at end of string if neither found. ';' must be prefixed by a whitespace
 ///	character to register as a comment.
-static char* find_char_or_comment(const char* s, char c)
+static char* find_char_or_comment(const unsigned char* s, char c)
 {
 	int was_whitespace = 0;
 	while (*s && *s != c && !(was_whitespace && *s == ';')) {
@@ -106,7 +106,7 @@ int ini_parse(const char* filename,
 	// Scan through file line by line
 	while (fgets(line, sizeof(line), file) != NULL) {
 		lineno++;
-		start = lskip(rstrip(line));
+		start = lskip(rstrip((unsigned char*)line));
 
 #if INI_ALLOW_MULTILINE
 		if (*prev_name && *start && start > line) {
@@ -122,7 +122,7 @@ int ini_parse(const char* filename,
 		}
 		else if (*start == '[') {
 			// A "[section]" line
-			end = find_char_or_comment(start + 1, ']');
+			end = find_char_or_comment((unsigned char*)start + 1, ']');
 			if (*end == ']') {
 				*end = '\0';
 				strncpy0(section, start + 1, sizeof(section));
@@ -135,15 +135,15 @@ int ini_parse(const char* filename,
 		}
 		else if (*start && *start != ';') {
 			// Not a comment, must be a name=value pair
-			end = find_char_or_comment(start, '=');
+			end = find_char_or_comment((unsigned char*)start, '=');
 			if (*end == '=') {
 				*end = '\0';
-				name = rstrip(start);
-				value = lskip(end + 1);
-				end = find_char_or_comment(value, '\0');
+				name = (char*)rstrip((unsigned char*)start);
+				value = lskip((unsigned char*)end + 1);
+				end = find_char_or_comment((unsigned char*)value, '\0');
 				if (*end == ';')
 					*end = '\0';
-				rstrip(value);
+				rstrip((unsigned char*)value);
 
 				// Valid name=value pair found, call handler
 				strncpy0(prev_name, name, sizeof(prev_name));
