@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "rpg_learning.h"
+#include "reader.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Class class

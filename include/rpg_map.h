@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "rpg_event.h"
+#include "reader.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Map class
