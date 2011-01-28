@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "rpg_learning.h"
+#include "reader.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Actor class
@@ -74,7 +75,7 @@ namespace RPG {
 		// RPG Maker 2003
 		int class_id;
 		int battler_animation;
-		std::vector<unsigned int> battle_commands;
+		std::vector<uint32_t> battle_commands;
 		int battle_x;
 		int battle_y;
 	};

@@ -178,7 +178,6 @@ public:
 	/// @param size : How many 32bit-values to read
 	////////////////////////////////////////////////////////
 	void Read32(std::vector<uint32_t> &buffer, size_t size);
-	void Read32(std::vector<unsigned int> &buffer, size_t size);
 
 	////////////////////////////////////////////////////////
 	/// Reads a string.

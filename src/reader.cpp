@@ -21,6 +21,8 @@
 #include "reader.h"
 #include <cstdarg>
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
 #include <windows.h>
 #else
 #include <iconv.h>
@@ -189,23 +191,6 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 
 ////////////////////////////////////////////////////////////
 void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
-	uint32_t val;
-	buffer.clear();
-	size_t items = size / 4;
-	for (unsigned int i = 0; i < items; ++i) {
-#ifndef NDEBUG
-		assert(fread(&val, 4, 1, stream) == 1);
-#else
-		fread(&val, 4, 1, stream);
-#endif
-	#ifdef READER_BIG_ENDIAN
-		SwapByteOrder(val);
-	#endif
-		buffer.push_back(val);
-	}
-}
-
-void Reader::Read32(std::vector<unsigned int> &buffer, size_t size) {
 	uint32_t val;
 	buffer.clear();
 	size_t items = size / 4;
