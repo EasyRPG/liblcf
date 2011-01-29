@@ -45,7 +45,13 @@ std::string ReaderUtil::CodepageToIconv(int codepage) {
 std::string ReaderUtil::GetEncoding() {
 	INIReader ini("RPG_RT.ini");
 	if (ini.ParseError() != -1) {
-		std::string encoding = ini.Get("EasyRpg", "Encoding", "");
+#if defined(GEKKO) || defined(PSP)
+		std::string default_enc = "1252";
+#else
+		std::string default_enc = "";
+#endif
+		std::string encoding = ini.Get("EasyRpg", "Encoding", default_enc);
+
 		if (!encoding.empty()) {
 #ifdef _WIN32
 			int codepage = atoi(encoding.c_str());
