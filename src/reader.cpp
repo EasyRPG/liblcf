@@ -134,7 +134,7 @@ double Reader::ReadDouble() {
 	fread(&val, 8, 1, stream);
 #endif
 #ifdef READER_BIG_ENDIAN
-#error "Need 64-bit byte swap"
+#warning "Need 64-bit Double byte swap"
 #endif
 	return val;
 }
@@ -318,10 +318,10 @@ const std::string& Reader::GetError() {
 
 ////////////////////////////////////////////////////////////
 std::string Reader::Encode(const std::string& str_to_encode) {
-	size_t strsize = str_to_encode.size();
 #ifdef _WIN32
+	size_t strsize = str_to_encode.size();
+
 	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
-	char* utf8char = new char[strsize * 5 + 1];
 
 	// To Utf16
 	// Default codepage is 0, so we dont need a check here
@@ -329,11 +329,12 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 	if (res == 0) {
 		// Invalid codepage
 		delete [] widechar;
-		delete [] utf8char;
 		return str_to_encode;
 	}
 	widechar[res] = '\0';
+
 	// Back to Utf8 ...
+	char* utf8char = new char[strsize * 5 + 1];
 	res = WideCharToMultiByte(CP_UTF8, 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
 	utf8char[res] = '\0';
 
