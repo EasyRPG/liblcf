@@ -31,12 +31,12 @@ RPG::Save* LSD_Reader::Load(const std::string& filename) {
 	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return false;
+		return NULL;
 	}
 	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
 	if (header != "LcfSaveData") {
 		Reader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
-		return false;
+		return NULL;
 	}
 	return LoadChunks(reader);
 }
