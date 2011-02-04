@@ -262,14 +262,14 @@ private:
 
 #ifdef READER_BIG_ENDIAN
 	////////////////////////////////////////////////////////
-	/// Utiility function for Big Endian Systems.
+	/// Utility function for Big Endian Systems.
 	/// Convert a 16bit integer from little to big endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
 	void SwapByteOrder(uint16_t &us);
 
 	////////////////////////////////////////////////////////
-	/// Utiility function for Big Endian Systems.
+	/// Utility function for Big Endian Systems.
 	/// Convert a 32bit integer from little to big endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
