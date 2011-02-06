@@ -22,7 +22,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include <iostream>
 #include "reader.h"
 #include "rpg_eventcommand.h"
 

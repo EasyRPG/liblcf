@@ -25,18 +25,18 @@
 #include "reader_util.h"
 
 ////////////////////////////////////////////////////////////
-/// Load Database
+/// Load Save
 ////////////////////////////////////////////////////////////
-RPG::Save* LSD_Reader::Load(const std::string& filename) {
+std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return NULL;
+		return std::auto_ptr<RPG::Save>(NULL);
 	}
 	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
 	if (header != "LcfSaveData") {
 		Reader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
-		return NULL;
+		return std::auto_ptr<RPG::Save>(NULL);
 	}
 	return LoadChunks(reader);
 }
@@ -44,8 +44,8 @@ RPG::Save* LSD_Reader::Load(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Load data chunks
 ////////////////////////////////////////////////////////////
-RPG::Save* LSD_Reader::LoadChunks(Reader& stream) {
-	RPG::Save* save = new RPG::Save();
+std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
+	std::auto_ptr<RPG::Save> save(new RPG::Save());
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {

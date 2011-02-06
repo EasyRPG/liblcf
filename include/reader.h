@@ -23,12 +23,10 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include <iostream>
-#include <string.h>
-#include <stdio.h>
-#ifndef NDEBUG
-#include <assert.h>
-#endif
+#include <iosfwd>
+#include <cstring>
+#include <cstdio>
+#include <cassert>
 #ifndef _MSC_VER
 	#include <stdint.h>
 #else
@@ -57,7 +55,7 @@ public:
 	/// Constructs a new File Reader.
 	/// @param filename : File to open.
 	////////////////////////////////////////////////////////
-	Reader(char* filename, std::string encoding = "");
+	Reader(const char* filename, std::string encoding = "");
 
 	////////////////////////////////////////////////////////
 	/// Constructs a new File Reader.

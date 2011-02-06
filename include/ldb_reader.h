@@ -23,7 +23,6 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include <iostream>
 #include "reader.h"
 #include "rpg_actor.h"
 #include "rpg_skill.h"

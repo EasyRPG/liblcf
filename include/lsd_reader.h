@@ -23,7 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include <iostream>
+#include <memory>
 #include "reader.h"
 #include "rpg_save.h"
 
@@ -47,8 +47,8 @@ namespace LSD_Reader {
 	RPG::SaveEvents ReadSaveEvents(Reader& stream);
 	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
 
-	RPG::Save* Load(const std::string &filename);
-	RPG::Save* LoadChunks(Reader& stream);
+	std::auto_ptr<RPG::Save> Load(const std::string &filename);
+	std::auto_ptr<RPG::Save> LoadChunks(Reader& stream);
 }
 
 #endif

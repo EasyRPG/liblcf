@@ -26,26 +26,25 @@
 ////////////////////////////////////////////////////////////
 /// Load Map
 ////////////////////////////////////////////////////////////
-RPG::Map* LMU_Reader::LoadMap(const std::string& filename) {
+std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 	Reader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
 		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
-		return NULL;
+		return std::auto_ptr<RPG::Map>(NULL);
 	}
 	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
 	if (header != "LcfMapUnit") {
 		Reader::SetError("%s is not a valid RPG2000 map.\n", filename.c_str());
-		return NULL;
+		return std::auto_ptr<RPG::Map>(NULL);
 	}
-	RPG::Map* map = ReadMapData(reader);
-	return map;
+	return ReadMapData(reader);
 }
 
 ////////////////////////////////////////////////////////////
 /// Read Map
 ////////////////////////////////////////////////////////////
-RPG::Map* LMU_Reader::ReadMapData(Reader& stream) {
-	RPG::Map* map = new RPG::Map();
+std::auto_ptr<RPG::Map> LMU_Reader::ReadMapData(Reader& stream) {
+	std::auto_ptr<RPG::Map> map(new RPG::Map());
 	//stream.Read32(Reader::CompressedInteger);
 
 	Reader::Chunk chunk_info;

@@ -34,7 +34,7 @@
 std::string Reader::error_str;
 
 ////////////////////////////////////////////////////////////
-Reader::Reader(char* filename, std::string encoding) {
+Reader::Reader(const char* filename, std::string encoding) {
 	stream = fopen(filename, "rb");
 	this->encoding = encoding;
 	this->filename = std::string(filename);

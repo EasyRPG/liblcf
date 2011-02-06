@@ -22,7 +22,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include <iostream>
+#include <memory>
 #include "reader.h"
 #include "rpg_map.h"
 
@@ -30,8 +30,8 @@
 /// LMU Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LMU_Reader {
-	RPG::Map* LoadMap(const std::string &filename);
-	RPG::Map* ReadMapData(Reader& stream);
+	std::auto_ptr<RPG::Map> LoadMap(const std::string &filename);
+	std::auto_ptr<RPG::Map> ReadMapData(Reader& stream);
 	RPG::Event ReadEvent(Reader& stream);
 	RPG::EventPage ReadEventPage(Reader& stream);
 	RPG::EventPageCondition ReadEventPageCondition(Reader& stream);
