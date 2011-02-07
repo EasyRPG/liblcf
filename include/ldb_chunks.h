@@ -754,6 +754,6 @@ namespace LDB_Reader {
 			name	= 0x01 // String
 		};
 	};
-};
+}
 
 #endif

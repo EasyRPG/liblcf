@@ -70,6 +70,6 @@ namespace LMT_Reader {
 			ID = 0x01 // Integer
 		};
 	};
-};
+}
 
 #endif

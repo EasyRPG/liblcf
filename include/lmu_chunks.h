@@ -169,6 +169,6 @@ namespace LMU_Reader {
 			decrease_transp // ???
 		};
 	};
-};
+}
 
 #endif

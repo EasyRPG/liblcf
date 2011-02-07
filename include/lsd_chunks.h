@@ -379,6 +379,6 @@ namespace LSD_Reader {
 			END				= 0x00	// End of chunk
 		};
 	};
-};
+}
 
 #endif
