@@ -22,8 +22,8 @@
 /// LSD Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LSD_Reader {
-	namespace ChunkSave {
-		enum ChunkSave {
+	struct ChunkSave {
+		enum Index {
 			title				= 0x64, // RPG::SaveTitle
 			data				= 0x65, // RPG::SaveData
 			screen				= 0x66, // RPG::SaveScreen
@@ -41,9 +41,9 @@ namespace LSD_Reader {
 			common_events		= 0x72, // array of RPG::SaveCommonEvent
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkTitle {
-		enum ChunkTitle {
+	};
+	struct ChunkTitle {
+		enum Index {
 			timestamp		= 0x01, // ?
 			hero_name		= 0x0B, // char[]: hero name
 			hero_level		= 0x0C, // int: hero level
@@ -58,9 +58,9 @@ namespace LSD_Reader {
 			face4_id		= 0x1C, // int: face id
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkData {
-		enum ChunkData {
+	};
+	struct ChunkData {
+		enum Index {
 			screen					= 0x01, // 
 			frame_count				= 0x0B, // 
 			graphics_name			= 0x15, // string
@@ -114,9 +114,9 @@ namespace LSD_Reader {
 			save_slot				= 0x84, //
 			END						= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkScreen {
-		enum ChunkScreen {
+	};
+	struct ChunkScreen {
+		enum Index {
 			tint_finish_red		= 0x01, // int
 			tint_finish_green	= 0x02, // int
 			tint_finish_blue	= 0x03, // int
@@ -147,9 +147,9 @@ namespace LSD_Reader {
 			weather_strength	= 0x31, // int
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkPicture {
-		enum ChunkPicture {
+	};
+	struct ChunkPicture {
+		enum Index {
 			name				= 0x01, // string
 			start_x				= 0x02, // double
 			start_y				= 0x03, // double
@@ -181,9 +181,9 @@ namespace LSD_Reader {
 			current_waver		= 0x35, // int
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkPartyLocation {
-		enum ChunkPartyLocation {
+	};
+	struct ChunkPartyLocation {
+		enum Index {
 			map_id			= 0x0B, // ?
 			position_x		= 0x0C, // ?
 			position_y		= 0x0D, // ?
@@ -217,9 +217,9 @@ namespace LSD_Reader {
 			unknown_84		= 0x84, // ?
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkVehicleLocation {
-		enum ChunkVehicleLocation {
+	};
+	struct ChunkVehicleLocation {
+		enum Index {
 			map_id			= 0x0B, // ?
 			position_x		= 0x0C, // ?
 			position_y		= 0x0D, // ?
@@ -240,9 +240,9 @@ namespace LSD_Reader {
 			sprite2_id		= 0x70, // int
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkActor {
-		enum ChunkActor {
+	};
+	struct ChunkActor {
+		enum Index {
 			name			= 0x01, // string, "\x01" for default!?!?
 			title			= 0x02, // string, "\x01" for default!?!?
 			sprite_name		= 0x0B, // string
@@ -268,9 +268,9 @@ namespace LSD_Reader {
 			auto_battle		= 0x5E, // ?
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkInventory {
-		enum ChunkInventory {
+	};
+	struct ChunkInventory {
+		enum Index {
 			party_size		= 0x01, // ?
 			party			= 0x02, // ?
 			items_size		= 0x0B, // ?
@@ -289,9 +289,9 @@ namespace LSD_Reader {
 			steps			= 0x2A, // ?
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkMapInfo {
-		enum ChunkMapInfo {
+	};
+	struct ChunkMapInfo {
+		enum Index {
 			pan_x				= 0x01, // int
 			pan_y				= 0x02, // int
 			events				= 0x0B, // ? array
@@ -306,9 +306,9 @@ namespace LSD_Reader {
 			parallax_vert_speed	= 0x26, // int
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkMapEvent {
-		enum ChunkMapEvent {
+	};
+	struct ChunkMapEvent {
+		enum Index {
 			unknown_01			= 0x01, // ?
 			map_id				= 0x0B, // ?
 			position_x			= 0x0C, // ?
@@ -346,16 +346,16 @@ namespace LSD_Reader {
 			event_data			= 0x6C, // chunks
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkEventData {
-		enum ChunkMapEventCommandData {
+	};
+	struct ChunkEventData {
+		enum Index {
 			commands		= 0x01, // array
 			time_left		= 0x1F, // int
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkEventCommands {
-		enum ChunkEventCommands {
+	};
+	struct ChunkEventCommands {
+		enum Index {
 			commands_size	= 0x01,	// int
 			commands		= 0x02,	// event command list
 			current_command	= 0x0B,	// int
@@ -365,20 +365,20 @@ namespace LSD_Reader {
 			unknown_16		= 0x16,	// byte
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkCommonEvent {
-		enum ChunkCommonEvent {
+	};
+	struct ChunkCommonEvent {
+		enum Index {
 			event_data		= 0x01,	// chunks
 			END				= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkEvents {
-		enum ChunkEvents {
+	};
+	struct ChunkEvents {
+		enum Index {
 			commands		= 0x01,	// array
 			unknown_04		= 0x04,	// int
 			END				= 0x00	// End of chunk
 		};
-	}
-}
+	};
+};
 
 #endif

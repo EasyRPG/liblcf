@@ -22,14 +22,14 @@
 /// LMU Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LMU_Reader {
-	namespace ChunkData {
-		enum ChunkData {
+	struct ChunkData {
+		enum Index {
 			END = 0x00 // End of chunk
 		};
-	}
+	};
 
-	namespace ChunkMap {
-		enum ChunkMap {
+	struct ChunkMap {
+		enum Index {
 			chipset_id				= 0x01, // Integer
 			width					= 0x02, // Integer
 			height					= 0x03, // Integer
@@ -62,18 +62,18 @@ namespace LMU_Reader {
 			generator_y				= 0x3D, // Uint32 x 9
 			generator_tile_ids		= 0x3E	// Array - Short
 		};
-	}
-	namespace ChunkEvent {
-		enum ChunkEvent {
+	};
+	struct ChunkEvent {
+		enum Index {
 			name	= 0x01, // String
 			x		= 0x02, // Integer
 			y		= 0x03, // Integer
 			//???	= 0x04, // ???
 			pages	= 0x05	// Array - RPG::EventPage
 		};
-	}
-	namespace ChunkEventPage {
-		enum ChunkEventPage {
+	};
+	struct ChunkEventPage {
+		enum Index {
 			condition			= 0x02, // RPG::EventPageCondition
 			character_name		= 0x15, // String
 			character_index		= 0x16, // Integer
@@ -91,9 +91,9 @@ namespace LMU_Reader {
 			event_commands_size = 0x33, // Integer
 			event_commands		= 0x34	// Array - RPG::EventCommand
 		};
-	}
-	namespace ChunkEventPageCondition {
-		enum ChunkEventPageCondition {
+	};
+	struct ChunkEventPageCondition {
+		enum Index {
 			condition_flags = 0x01, // Bitflag
 			switch_a_id		= 0x02, // Integer
 			switch_b_id		= 0x03, // Integer
@@ -105,26 +105,26 @@ namespace LMU_Reader {
 			timer2_sec		= 0x09, // Integer - RPG2003
 			compare_operator= 0x0A	// Integer - RPG2003
 		};
-	}
-	namespace ChunkMoveRoute {
-		enum ChunkMoveRoute {
+	};
+	struct ChunkMoveRoute {
+		enum Index {
 			move_commands_size	= 0x0B, // Integer
 			move_commands		= 0x0C, // Array - RPG::MoveCommand
 			repeat				= 0x15, // Flag
 			skippable			= 0x16	// Flag
 		};
-	}
-	namespace ChunkMoveCommand {
-		enum ChunkMoveCommand {
+	};
+	struct ChunkMoveCommand {
+		enum Index {
 			switch_on		= 0x20,
 			switch_off		= 0x21,
 			change_graphic	= 0x22,
 			play_sound		= 0x23
 		};
-	}
+	};
 	// Contains the ids for RPG::MoveCommand
-	namespace ChunkMoveCommands {
-		enum ChunkMoveCommands {
+	struct ChunkMoveCommands {
+		enum Index {
 			move_up	= 0,
 			move_right,
 			move_down,
@@ -168,7 +168,7 @@ namespace LMU_Reader {
 			increase_transp, // ???
 			decrease_transp // ???
 		};
-	}
-}
+	};
+};
 
 #endif

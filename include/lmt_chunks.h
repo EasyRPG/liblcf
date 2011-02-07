@@ -22,14 +22,14 @@
 /// LMT Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LMT_Reader {
-	namespace ChunkData {
-		enum ChunkData {
+	struct ChunkData {
+		enum Index {
 			END = 0x00 // End of chunk
 		};
-	}
+	};
 
-	namespace ChunkTreeMap {
-		enum ChunkTreeMap {
+	struct ChunkTreeMap {
+		enum Index {
 			start_map_id	= 0x01, // Integer
 			start_x			= 0x02, // Integer
 			start_y			= 0x03, // Integer
@@ -43,9 +43,9 @@ namespace LMT_Reader {
 			airship_x		= 0x20, // Integer
 			airship_y		= 0x21	// Integer
 		};
-	}
-	namespace ChunkMapInfo { //TODO FIXME: this enum can be used by areas, too
-		enum ChunkMapInfo { // Please don't remove editor specific chunks, readers are used by EasyRPG editor for project import
+	};
+	struct ChunkMapInfo { //TODO FIXME: this enum Index be used by areas, too
+		enum Index { // Please don't remove editor specific chunks, readers are used by EasyRPG editor for project import
 			name			= 0x01, // String	// Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data), always use RPG_RT.ini GameTitle instead
 			parent_map		= 0x02, // Integer	// Used to inherit parent map properties
 			indentation		= 0x03, // Integer	// Dummy editor dumped data, branch indentation level in TreeCtrl
@@ -64,12 +64,12 @@ namespace LMT_Reader {
 			encounter_steps = 0x2C, // Integer // 0 inherits from parent (?) FIXME
 			area_rect		= 0x33	// Uint32 x 4 (X,Y,W,H) // normal map (non-area) is 0,0,0,0
 		};
-	}
-	namespace ChunkEncounter {
-		enum ChunkEncounter {
+	};
+	struct ChunkEncounter {
+		enum Index {
 			ID = 0x01 // Integer
 		};
-	}
-}
+	};
+};
 
 #endif

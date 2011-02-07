@@ -2,7 +2,7 @@
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it undrer the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
@@ -22,8 +22,8 @@
 /// LDB Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LDB_Reader {
-	namespace ChunkData {
-		enum ChunkData {
+	struct ChunkData {
+		enum Index {
 			Actor				= 0x0B, // RPG::Actor
 			Skill				= 0x0C, // RPG::Skill
 			Item				= 0x0D, // RPG::Item
@@ -50,9 +50,9 @@ namespace LDB_Reader {
 			
 			END					= 0x00	// End of chunk
 		};
-	}
-	namespace ChunkActor {
-		enum ChunkActor {
+	};
+	struct ChunkActor {
+		enum Index {
 			name					= 0x01, // String
 			title					= 0x02, // String
 			character_name			= 0x03, // String
@@ -87,15 +87,15 @@ namespace LDB_Reader {
 			attribute_ranks			= 0x4A, // Array - Short
 			battle_commands			= 0x50	// Array - RPG::BattleCommand - RPG2003
 		};
-	}
-	namespace ChunkLearning {
-		enum ChunkLearning {
+	};
+	struct ChunkLearning {
+		enum Index {
 			level		= 0x01, // Integer
 			skill_id	= 0x02	// Integer
 		};
-	}
-	namespace ChunkSkill {
-		enum ChunkSkill {
+	};
+	struct ChunkSkill {
+		enum Index {
 			name				= 0x01, // String
 			description			= 0x02, // String
 			using_message1		= 0x03, // String - RPG2000
@@ -133,9 +133,9 @@ namespace LDB_Reader {
 			battler_animation	= 0x31, // Integer - RPG2003
 			battler_animation_data	= 0x32	// ? - RPG2003
 		};
-	}
-	namespace ChunkItem {
-		enum ChunkItem {
+	};
+	struct ChunkItem {
+		enum Index {
 			name				= 0x01, // String
 			description			= 0x02, // String
 			type				= 0x03, // Integer
@@ -193,9 +193,9 @@ namespace LDB_Reader {
 			ranged_trajectory	= 0x4B, // Integer
 			ranged_target		= 0x4C  // Integer
 		};
-	}
-	namespace ChunkItemAnimation {
-		enum ChunkItemAnimation {
+	};
+	struct ChunkItemAnimation {
+		enum Index {
 			type				= 0x03,
 			weapon_anim			= 0x04,
 			movement			= 0x05,
@@ -206,9 +206,9 @@ namespace LDB_Reader {
 			ranged_speed		= 0x0c,
 			battle_anim			= 0x0d
 		};
-	}
-	namespace ChunkEnemy {
-		enum ChunkEnemy {
+	};
+	struct ChunkEnemy {
+		enum Index {
 			name					= 0x01, // String
 			battler_name			= 0x02, // String
 			battler_hue				= 0x03, // Integer
@@ -233,9 +233,9 @@ namespace LDB_Reader {
 			attribute_ranks			= 0x22, // Array - Short
 			actions					= 0x2A	// Array - RPG::EnemyAction
 		};
-	}
-	namespace ChunkEnemyAction {
-		enum ChunkEnemyAction {
+	};
+	struct ChunkEnemyAction {
+		enum Index {
 			kind				= 0x01, // Integer
 			basic				= 0x02, // Integer
 			skill_id			= 0x03, // Integer
@@ -250,33 +250,33 @@ namespace LDB_Reader {
 			switch_off_id		= 0x0C, // Integer
 			rating				= 0x0D	// Integer
 		};
-	}
-	namespace ChunkTroop {
-		enum ChunkTroop {
+	};
+	struct ChunkTroop {
+		enum Index {
 			name				= 0x01, // String
 			members				= 0x02, // Array - RPG::TroopMember
 			terrain_set_size	= 0x04, // Integer
 			terrain_set			= 0x05, // Array - Flag
 			pages				= 0x0B	// Array - RPG::TroopPage
 		};
-	}
-	namespace ChunkTroopMember {
-		enum ChunkTroopMember {
+	};
+	struct ChunkTroopMember {
+		enum Index {
 			ID		= 0x01, // Integer
 			x		= 0x02, // Integer
 			y		= 0x03, // Integer
 			middle	= 0x04	// Flag
 		};
-	}
-	namespace ChunkTroopPage {
-		enum ChunkTroopPage {
+	};
+	struct ChunkTroopPage {
+		enum Index {
 			condition			= 0x02, // RPG::TroopPageCondition
 			event_commands_size	= 0x0B, // Integer
 			event_commands		= 0x0C	// Array - RPG::EventCommand
 		};
-	}
-	namespace ChunkTroopPageCondition { // TODO - Get RPG2003 unknown chunks id
-		enum ChunkTroopPageCondition {
+	};
+	struct ChunkTroopPageCondition { // TODO - Get RPG2003 unknown chunks id
+		enum Index {
 			condition_flags		= 0x01, // Bitflag - x 2 if RPG2003
 			switch_a_id			= 0x02, // Integer
 			switch_b_id			= 0x03, // Integer
@@ -301,9 +301,9 @@ namespace LDB_Reader {
 			command_actor_id	= 0x16, // Integer - RPG2003
 			command_id			= 0x17	// Integer - RPG2003
 		};
-	}
-	namespace ChunkTerrain { // TODO - Get RPG2003 unknown chunks id
-		enum ChunkTerrain {
+	};
+	struct ChunkTerrain { // TODO - Get RPG2003 unknown chunks id
+		enum Index {
 			name						= 0x01, // String
 			damage						= 0x02, // Integer
 			encounter_rate				= 0x03, // Integer
@@ -337,9 +337,9 @@ namespace LDB_Reader {
 			grid_b						= 0x2F, // Integer - RPG2003
 			grid_c						= 0x30	// Integer - RPG2003
 		};
-	}
-	namespace ChunkAttribute {
-		enum ChunkAttribute {
+	};
+	struct ChunkAttribute {
+		enum Index {
 			name	= 0x01, // String
 			type	= 0x02, // Integer
 			a_rate	= 0x0B, // Integer
@@ -348,9 +348,9 @@ namespace LDB_Reader {
 			d_rate	= 0x0E, // Integer
 			e_rate	= 0x0F	// Integer
 		};
-	}
-	namespace ChunkState {
-		enum ChunkState {
+	};
+	struct ChunkState {
+		enum Index {
 			name					= 0x01, // String
 			type					= 0x02, // Integer
 			color					= 0x03, // Integer
@@ -394,9 +394,9 @@ namespace LDB_Reader {
 			sp_change_map_val		= 0x43, // Integer
 			sp_change_map_steps		= 0x44	// Integer
 		};
-	}
-	namespace ChunkAnimation {
-		enum ChunkAnimation {
+	};
+	struct ChunkAnimation {
+		enum Index {
 			name			= 0x01, // String
 			animation_name	= 0x02, // String
 			timings			= 0x06, // Array - RPG::AnimationTiming
@@ -404,9 +404,9 @@ namespace LDB_Reader {
 			position		= 0x0A, // Integer
 			frames				= 0x0C	// Array - RPG::AnimationFrames
 		};
-	}
-	namespace ChunkAnimationTiming {
-		enum ChunkAnimationTiming {
+	};
+	struct ChunkAnimationTiming {
+		enum Index {
 			frame			= 0x01, // Integer
 			se				= 0x02, // RPG::Sound
 			flash_scope		= 0x03, // Integer
@@ -416,14 +416,14 @@ namespace LDB_Reader {
 			flash_power		= 0x07,	// Integer
 			screen_shake	= 0x08  // Integer - RPG2003 - TODO: Get chunk id
 		};
-	}
-	namespace ChunkAnimationFrame {
-		enum ChunkAnimationFrame {
+	};
+	struct ChunkAnimationFrame {
+		enum Index {
 			cells	= 0x01 // Array - RPG::AnimationCellData
 		};
-	}
-	namespace ChunkAnimationCellData {
-		enum ChunkAnimationCellData {
+	};
+	struct ChunkAnimationCellData {
+		enum Index {
 			priority	= 0x01, // Bool - TODO: Needs confirmation
 			ID			= 0x02, // Integer
 			x			= 0x03, // Integer
@@ -435,9 +435,9 @@ namespace LDB_Reader {
 			tone_gray	= 0x09, // Integer
 			opacity		= 0x0A	// Integer
 		};
-	}
-	namespace ChunkChipset {
-		enum ChunkChipset {
+	};
+	struct ChunkChipset {
+		enum Index {
 			name				= 0x01, // String
 			chipset_name		= 0x02, // String
 			terrain_data		= 0x03, // Array - Short x 162
@@ -446,9 +446,9 @@ namespace LDB_Reader {
 			animation_type		= 0x0B, // Integer
 			animation_speed		= 0x0C	// Integer
 		};
-	}
-	namespace ChunkTerms {
-		enum ChunkTerms {
+	};
+	struct ChunkTerms {
+		enum Index {
 			encounter			= 0x01, // String
 			special_combat		= 0x02, // String
 			escape_success		= 0x03, // String
@@ -577,9 +577,9 @@ namespace LDB_Reader {
 			yes					= 0x98, // String
 			no					= 0x99	// String
 		};
-	}
-	namespace ChunkCommonEvent {
-		enum ChunkCommonEvent {
+	};
+	struct ChunkCommonEvent {
+		enum Index {
 			name				= 0x01, // String
 			trigger				= 0x0B, // Integer
 			switch_flag			= 0x0C, // Flag
@@ -587,9 +587,9 @@ namespace LDB_Reader {
 			event_commands_size	= 0x15, // Integer
 			event_commands		= 0x16	// Array - RPG::EventCommand
 		};
-	}
-	namespace ChunkSystem {
-		enum ChunkSystem {
+	};
+	struct ChunkSystem {
+		enum Index {
 			ldb_id					= 0x0A, // Integer - RPG2003
 			boat_name				= 0x0B, // String
 			ship_name				= 0x0C, // String
@@ -646,9 +646,9 @@ namespace LDB_Reader {
 			frame_name				= 0x64, // String - RPG2003
 			invert_animations		= 0x65	// Flag - RPG2003
 		};
-	}
-	namespace ChunkTestBattler {
-		enum ChunkTestBattler {
+	};
+	struct ChunkTestBattler {
+		enum Index {
 			ID				= 0x01, // Integer
 			level			= 0x02, // Integer
 			weapon_id		= 0x0B, // Integer
@@ -657,15 +657,15 @@ namespace LDB_Reader {
 			helmet_id		= 0x0E, // Integer
 			accessory_id	= 0x0F	// Integer
 		};
-	}
-	namespace ChunkBattleCommand {
-		enum ChunkBattleCommand {
+	};
+	struct ChunkBattleCommand {
+		enum Index {
 			name	= 0x01, // String
 			type	= 0x02	// Integer
 		};
-	}
-	namespace ChunkBattleCommands {
-		enum ChunkBattleCommands {
+	};
+	struct ChunkBattleCommands {
+		enum Index {
 			placement		= 0x02,	// Integer
 			death_handler1	= 0x04,	// Integer
 			row				= 0x06,	// Integer
@@ -682,33 +682,33 @@ namespace LDB_Reader {
 			teleport_y		= 0x1C,	// Integer
 			teleport_face	= 0x1D	// Integer
 		};
-	}
-	namespace ChunkBattlerAnimation {
-		enum ChunkBattlerAnimation {
+	};
+	struct ChunkBattlerAnimation {
+		enum Index {
 			name		= 0x01, // String
 			speed		= 0x02, // Integer
 			base_data	= 0x0A, // Array - RPG::BattlerAnimationExtension
 			weapon_data	= 0x0B	// Array - RPG::BattlerAnimationExtension
 		};
-	}
-	namespace ChunkBattlerAnimationData {
-		enum ChunkBattlerAnimationData { // RPG2k3
+	};
+	struct ChunkBattlerAnimationData {
+		enum Index { // RPG2k3
 			move		= 0x05,	// Integer
 			after_image	= 0x06,	// Integer
 			pose		= 0x0E	// Integer
 		};
-	}
-	namespace ChunkBattlerAnimationExtension {
-		enum ChunkBattlerAnimationExtension {
+	};
+	struct ChunkBattlerAnimationExtension {
+		enum Index {
 			name			= 0x01, // String
 			battler_name	= 0x02, // String
 			battler_index	= 0x03, // Integer
 			animation_type	= 0x04, // Integer
 			animation_id	= 0x05	// Integer
 		};
-	}
-	namespace ChunkClass {
-		enum ChunkClass {
+	};
+	struct ChunkClass {
+		enum Index {
 			name					= 0x01, // String
 			two_swords_style		= 0x15, // Flag
 			fix_equipment			= 0x16, // Flag
@@ -726,34 +726,34 @@ namespace LDB_Reader {
 			attribute_ranks			= 0x4A, // Array - Short
 			battle_commands			= 0x50	// Array - Uint32
 		};
-	}
-	namespace ChunkMusic {
-		enum ChunkMusic {
+	};
+	struct ChunkMusic {
+		enum Index {
 			name	= 0x01, // String
 			fadein	= 0x02, // Integer
 			volume	= 0x03, // Integer
 			tempo	= 0x04, // Integer
 			balance	= 0x05	// Integer
 		};
-	}
-	namespace ChunkSound {
-		enum ChunkSound {
+	};
+	struct ChunkSound {
+		enum Index {
 			name	= 0x01, // String
 			volume	= 0x03, // Integer
 			tempo	= 0x04, // Integer
 			balance	= 0x05	// Integer
 		};
-	}
-	namespace ChunkSwitch {
-		enum ChunkSwitch {
+	};
+	struct ChunkSwitch {
+		enum Index {
 			name	= 0x01 // String
 		};
-	}
-	namespace ChunkVariable {
-		enum ChunkVariable {
+	};
+	struct ChunkVariable {
+		enum Index {
 			name	= 0x01 // String
 		};
-	}
-}
+	};
+};
 
 #endif
