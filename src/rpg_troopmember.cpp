@@ -27,5 +27,5 @@ RPG::TroopMember::TroopMember() {
 	ID = 1;
 	x = 0;
 	y = 0;
-	middle = false;
+	invisible = false;
 }

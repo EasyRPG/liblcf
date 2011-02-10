@@ -262,10 +262,10 @@ namespace LDB_Reader {
 	};
 	struct ChunkTroopMember {
 		enum Index {
-			ID		= 0x01, // Integer
-			x		= 0x02, // Integer
-			y		= 0x03, // Integer
-			middle	= 0x04	// Flag
+			ID			= 0x01, // Integer
+			x			= 0x02, // Integer
+			y			= 0x03, // Integer
+			invisible	= 0x04	// Flag
 		};
 	};
 	struct ChunkTroopPage {

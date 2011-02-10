@@ -48,8 +48,8 @@ RPG::TroopMember LDB_Reader::ReadTroopMember(Reader& stream) {
 		case ChunkTroopMember::y:
 			member.y = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkTroopMember::middle:
-			member.middle = stream.ReadBool();
+		case ChunkTroopMember::invisible:
+			member.invisible = stream.ReadBool();
 			break;
 		default:
 			stream.Skip(chunk_info);

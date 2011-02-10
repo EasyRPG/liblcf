@@ -29,7 +29,7 @@ namespace RPG {
 		int ID;
 		int x;
 		int y;
-		bool middle;
+		bool invisible;
 	};
 }
 
