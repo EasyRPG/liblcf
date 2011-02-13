@@ -25,7 +25,7 @@
 ////////////////////////////////////////////////////////////
 RPG::AnimationCellData::AnimationCellData() {
 	priority = 1;
-	ID = 1;
+	ID = 0;
 	x = 0;
 	y = 0;
 	zoom = 100;
@@ -33,5 +33,5 @@ RPG::AnimationCellData::AnimationCellData() {
 	tone_green = 0;
 	tone_blue = 0;
 	tone_gray = 0;
-	opacity = 0;
+	transparency = 0;
 }

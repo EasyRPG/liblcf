@@ -424,16 +424,16 @@ namespace LDB_Reader {
 	};
 	struct ChunkAnimationCellData {
 		enum Index {
-			priority	= 0x01, // Bool - TODO: Needs confirmation
-			ID			= 0x02, // Integer
-			x			= 0x03, // Integer
-			y			= 0x04, // Integer
-			zoom		= 0x05, // Integer
-			tone_red	= 0x06, // Integer
-			tone_green	= 0x07, // Integer
-			tone_blue	= 0x08, // Integer
-			tone_gray	= 0x09, // Integer
-			opacity		= 0x0A	// Integer
+			priority		= 0x01, // Bool - TODO: Needs confirmation
+			ID				= 0x02, // Integer
+			x				= 0x03, // Integer
+			y				= 0x04, // Integer
+			zoom			= 0x05, // Integer
+			tone_red		= 0x06, // Integer
+			tone_green		= 0x07, // Integer
+			tone_blue		= 0x08, // Integer
+			tone_gray		= 0x09, // Integer
+			transparency	= 0x0A	// Integer
 		};
 	};
 	struct ChunkChipset {

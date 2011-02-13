@@ -66,8 +66,8 @@ RPG::AnimationCellData LDB_Reader::ReadAnimationCellData(Reader& stream) {
 		case ChunkAnimationCellData::tone_gray:
 			celldata.tone_gray = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkAnimationCellData::opacity:
-			celldata.opacity = stream.Read32(Reader::CompressedInteger);
+		case ChunkAnimationCellData::transparency:
+			celldata.transparency = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);
