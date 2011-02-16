@@ -109,6 +109,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	unknown_2a = -1;
 	unknown_2b = -1;
 	unknown_2c = -1;
+	sprite_transparent = false;
 	unknown_2f = -1;
 	unknown_33 = -1;
 	unknown_34 = -1;
@@ -159,6 +160,7 @@ RPG::SaveActor::SaveActor() {
 	title = "";
 	sprite_name = "";
 	sprite_id = -1;
+	sprite_flags = -1;
 	face_name = "";
 	face_id = -1;
 	level = -1;
@@ -173,8 +175,8 @@ RPG::SaveActor::SaveActor() {
 	current_hp = -1;
 	current_sp = -1;
 	unknown_51 = -1;
-	unknown_53 = -1;
-	unknown_5a = -1;
+	changed_class = false;
+	new_class = -1;
 	unknown_5b = -1;
 	unknown_5c = -1;
 	auto_battle = false;
@@ -301,7 +303,7 @@ RPG::SaveMapInfo::SaveMapInfo() {
 }
 
 RPG::SaveEvents::SaveEvents() {
-	unknown_04 = -1;
+	events_size = -1;
 }
 
 RPG::Save::Save() {

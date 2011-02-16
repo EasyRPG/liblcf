@@ -39,13 +39,13 @@ RPG::SaveEvents LSD_Reader::ReadSaveEvents(Reader& stream) {
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
-		case ChunkEvents::commands:
+		case ChunkEvents::events:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
-				events.commands.push_back(ReadSaveEventCommands(stream));
+				events.events.push_back(ReadSaveEventCommands(stream));
 			}
 			break;
-		case ChunkEvents::unknown_04:
-			events.unknown_04 = stream.Read32(Reader::CompressedInteger);
+		case ChunkEvents::events_size:
+			events.events_size = stream.Read32(Reader::CompressedInteger);
 			break;
 		default:
 			stream.Skip(chunk_info);

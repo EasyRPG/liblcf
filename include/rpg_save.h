@@ -163,6 +163,7 @@ namespace RPG {
 		int unknown_2a;
 		int unknown_2b;
 		int unknown_2c;
+		bool sprite_transparent;
 		int unknown_2f;
 		int unknown_33;
 		int unknown_34;
@@ -220,6 +221,7 @@ namespace RPG {
 		std::string title;
 		std::string sprite_name;
 		int sprite_id;
+		int sprite_flags;
 		std::string face_name;
 		int face_id;
 		int level;
@@ -235,11 +237,11 @@ namespace RPG {
 		std::vector<int16_t> equipped;
 		int current_hp;
 		int current_sp;
-		std::vector<uint8_t> unknown_50;
+		std::vector<uint32_t> battle_commands;
 		int unknown_51;
 		std::vector<int16_t> status;
-		int unknown_53;
-		int unknown_5a;
+		bool changed_class;
+		int new_class;
 		int unknown_5b;
 		int unknown_5c;
 		bool auto_battle;
@@ -402,8 +404,8 @@ namespace RPG {
 	public:
 		SaveEvents();
 
-		std::vector<SaveEventCommands> commands;
-		int unknown_04;
+		std::vector<SaveEventCommands> events;
+		int events_size;
 	};
 
 	class Save {

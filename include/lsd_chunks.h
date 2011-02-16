@@ -186,43 +186,44 @@ namespace LSD_Reader {
 	};
 	struct ChunkPartyLocation {
 		enum Index {
-			map_id			= 0x0B, // ?
-			position_x		= 0x0C, // ?
-			position_y		= 0x0D, // ?
-			facing1			= 0x15, // ?
-			facing2			= 0x16, // ?
-			unknown_17		= 0x17, // ?
-			unknown_20		= 0x20, // ?
-			unknown_21		= 0x21, // ?
-			unknown_23		= 0x23, // ?
-			unknown_25		= 0x25, // ?
-			move_route		= 0x29, // chunks: RPG::MoveRoute
-			unknown_2a		= 0x2A, // ? 
-			unknown_2b		= 0x2B, // ? 
-			unknown_2c		= 0x2C, // ? 
-			unknown_2f		= 0x2F, // ? 
-			unknown_33		= 0x33, // ?
-			unknown_34		= 0x34, // ?
-			unknown_35		= 0x35, // ?
-			unknown_36		= 0x36, // ?
-			unknown_3e		= 0x3E, // ?
-			unknown_3f		= 0x3F, // ?
-			sprite_name		= 0x49, // ?
-			sprite_id		= 0x4A, // ?
-			unknown_4b		= 0x4B, // ?
-			unknown_51		= 0x51, // ?
-			unknown_52		= 0x52, // ?
-			unknown_53		= 0x53, // ?
-			pan_state		= 0x6F, // int
-			pan_current_x	= 0x70, // int
-			pan_current_y	= 0x71, // ?
-			pan_finish_x	= 0x72, // ?
-			pan_finish_y	= 0x73, // ?
-			unknown_79		= 0x79, // ?
-			unknown_7c		= 0x7C, // ?
-			unknown_83		= 0x83, // ?
-			unknown_84		= 0x84, // ?
-			END				= 0x00	// End of chunk
+			map_id				= 0x0B, // ?
+			position_x			= 0x0C, // ?
+			position_y			= 0x0D, // ?
+			facing1				= 0x15, // ?
+			facing2				= 0x16, // ?
+			unknown_17			= 0x17, // ?
+			unknown_20			= 0x20, // ?
+			unknown_21			= 0x21, // ?
+			unknown_23			= 0x23, // ?
+			unknown_25			= 0x25, // ?
+			move_route			= 0x29, // chunks: RPG::MoveRoute
+			unknown_2a			= 0x2A, // ? 
+			unknown_2b			= 0x2B, // ? 
+			unknown_2c			= 0x2C, // ?
+			sprite_transparent	= 0x2E, // bool
+			unknown_2f			= 0x2F, // ? 
+			unknown_33			= 0x33, // ?
+			unknown_34			= 0x34, // ?
+			unknown_35			= 0x35, // ?
+			unknown_36			= 0x36, // ?
+			unknown_3e			= 0x3E, // ?
+			unknown_3f			= 0x3F, // ?
+			sprite_name			= 0x49, // ?
+			sprite_id			= 0x4A, // ?
+			unknown_4b			= 0x4B, // ?
+			unknown_51			= 0x51, // ?
+			unknown_52			= 0x52, // ?
+			unknown_53			= 0x53, // ?
+			pan_state			= 0x6F, // int
+			pan_current_x		= 0x70, // int
+			pan_current_y		= 0x71, // ?
+			pan_finish_x		= 0x72, // ?
+			pan_finish_y		= 0x73, // ?
+			unknown_79			= 0x79, // ?
+			unknown_7c			= 0x7C, // ?
+			unknown_83			= 0x83, // ?
+			unknown_84			= 0x84, // ?
+			END					= 0x00	// End of chunk
 		};
 	};
 	struct ChunkVehicleLocation {
@@ -254,6 +255,7 @@ namespace LSD_Reader {
 			title			= 0x02, // string, "\x01" for default!?!?
 			sprite_name		= 0x0B, // string
 			sprite_id		= 0x0C, // int
+			sprite_flags	= 0x0D, // int
 			face_name		= 0x15, // string
 			face_id			= 0x16, // int
 			level			= 0x1F, // int
@@ -269,11 +271,11 @@ namespace LSD_Reader {
 			equipped		= 0x3D, // short[5]
 			current_hp		= 0x47, // int
 			current_sp		= 0x48, // int
-			unknown_50		= 0x50, // ?
+			battle_commands	= 0x50, // array of (uncompressed) int32
 			unknown_51		= 0x51, // ?
 			status			= 0x52, // array of short
-			unknown_53		= 0x53, // ?
-			unknown_5a		= 0x5A, // ?
+			changed_class	= 0x53, // bool
+			new_class		= 0x5A, // int class-id
 			unknown_5b		= 0x5B, // ?
 			unknown_5c		= 0x5C, // ?
 			auto_battle		= 0x5E, // ?
@@ -392,8 +394,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkEvents {
 		enum Index {
-			commands		= 0x01,	// array
-			unknown_04		= 0x04,	// int
+			events			= 0x01,	// array
+			events_size		= 0x04,	// int
 			END				= 0x00	// End of chunk
 		};
 	};
