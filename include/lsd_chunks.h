@@ -74,7 +74,8 @@ namespace LSD_Reader {
 			message_continue		= 0x2c, // 
 			face_name				= 0x33, // 
 			face_id					= 0x34, // 
-			unknown_36				= 0x36, // 
+			face_right				= 0x35, // bool
+			face_flip				= 0x36, // bool
 			transparent				= 0x37, // 
 			unknown_3d				= 0x3D, // 
 			title_music				= 0x47, // 
@@ -141,10 +142,10 @@ namespace LSD_Reader {
 			shake_time_left		= 0x23, // int
 			pan_x				= 0x29, // int
 			pan_y				= 0x2A, // int
-			unknown_2b			= 0x2B, // int
-			unknown_2c			= 0x2C, // int
-			unknown_2d			= 0x2D, // int
-			unknown_2f			= 0x2F, // int
+			battleanim_id		= 0x2B, // int  - battle animation ID
+			battleanim_target	= 0x2C, // int	- battle animation target
+			battleanim_unk_2d	= 0x2D, // int  - battle animation ??
+			battleanim_global	= 0x2F, // int  - battle animation global scope
 			weather				= 0x30, // int
 			weather_strength	= 0x31, // int
 			END					= 0x00	// End of chunk
@@ -272,17 +273,20 @@ namespace LSD_Reader {
 			current_hp		= 0x47, // int
 			current_sp		= 0x48, // int
 			battle_commands	= 0x50, // array of (uncompressed) int32
-			unknown_51		= 0x51, // ?
+			status_size		= 0x51, // ?
 			status			= 0x52, // array of short
 			changed_class	= 0x53, // bool
 			new_class		= 0x5A, // int class-id
 			unknown_5b		= 0x5B, // ?
-			unknown_5c		= 0x5C, // ?
-			auto_battle		= 0x5E, // ?
+			two_weapon		= 0x5C, // bool
+			lock_equipment	= 0x5D, // bool
+			auto_battle		= 0x5E, // bool
+			mighty_guard	= 0x5F, // bool
 			unknown_60		= 0x60, // ?
 			END				= 0x00	// End of chunk
 		};
 	};
+
 	struct ChunkInventory {
 		enum Index {
 			party_size		= 0x01, // ?
@@ -308,6 +312,7 @@ namespace LSD_Reader {
 		enum Index {
 			pan_x				= 0x01, // int
 			pan_y				= 0x02, // int
+			encounter_rate		= 0x03, // int
 			events				= 0x0B, // ? array
 			lower_tiles			= 0x15, // ? [00 01 02 ... 8E 8F]
 			upper_tiles			= 0x16, //
@@ -396,6 +401,9 @@ namespace LSD_Reader {
 		enum Index {
 			events			= 0x01,	// array
 			events_size		= 0x04,	// int
+			unknown_16		= 0x16, // int
+			unknown_17		= 0x17, // int
+			unknown_18		= 0x18, // int
 			END				= 0x00	// End of chunk
 		};
 	};

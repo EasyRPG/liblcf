@@ -67,7 +67,8 @@ namespace RPG {
 		int message_continue;
 		std::string face_name;
 		int face_id;
-		int unknown_36;
+		bool face_right;
+		bool face_flip;
 		bool transparent;
 		int unknown_3d;
 		Music title_music;
@@ -238,13 +239,15 @@ namespace RPG {
 		int current_hp;
 		int current_sp;
 		std::vector<uint32_t> battle_commands;
-		int unknown_51;
+		int status_size;
 		std::vector<int16_t> status;
 		bool changed_class;
 		int new_class;
 		int unknown_5b;
-		int unknown_5c;
+		bool two_weapon;
+		bool lock_equipment;
 		bool auto_battle;
+		bool mighty_guard;
 		int unknown_60;
 	};
 
@@ -346,6 +349,7 @@ namespace RPG {
 
 		int pan_x;
 		int pan_y;
+		int encounter_rate;
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;
@@ -384,10 +388,10 @@ namespace RPG {
 		int shake_time_left;
 		int pan_x;
 		int pan_y;
-		int unknown_2b;
-		int unknown_2c;
-		int unknown_2d;
-		int unknown_2f;
+		int battleanim_id;
+		int battleanim_target;
+		int battleanim_unk_2d;
+		bool battleanim_global;
 		int weather;
 		int weather_strength;
 	};
@@ -406,6 +410,9 @@ namespace RPG {
 
 		std::vector<SaveEventCommands> events;
 		int events_size;
+		int unknown_16;
+		int unknown_17;
+		int unknown_18;
 	};
 
 	class Save {
