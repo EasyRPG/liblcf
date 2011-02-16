@@ -95,6 +95,9 @@ RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
 		case ChunkMapEvent::unknown_2b:
 			map_event.unknown_2b = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkMapEvent::unknown_2f:
+			map_event.unknown_2f = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMapEvent::anim_paused:
 			map_event.anim_paused = stream.ReadBool();
 			break;
@@ -109,6 +112,12 @@ RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
 			break;
 		case ChunkMapEvent::unknown_36:
 			map_event.unknown_36 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapEvent::unknown_3e:
+			map_event.unknown_3e = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkMapEvent::unknown_3f:
+			map_event.unknown_3f = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkMapEvent::unknown_47:
 			map_event.unknown_47 = stream.Read32(Reader::CompressedInteger);

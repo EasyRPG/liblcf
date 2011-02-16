@@ -76,6 +76,7 @@ namespace LSD_Reader {
 			face_id					= 0x34, // 
 			unknown_36				= 0x36, // 
 			transparent				= 0x37, // 
+			unknown_3d				= 0x3D, // 
 			title_music				= 0x47, // 
 			battle_music			= 0x48, // 
 			battle_end_music		= 0x49, // 
@@ -110,6 +111,7 @@ namespace LSD_Reader {
 			escape_allowed			= 0x7A, // 
 			save_allowed			= 0x7B, // 
 			menu_allowed			= 0x7C, // 
+			background				= 0x7D, // string
 			save_count				= 0x83, // 
 			save_slot				= 0x84, //
 			END						= 0x00	// End of chunk
@@ -190,11 +192,16 @@ namespace LSD_Reader {
 			facing1			= 0x15, // ?
 			facing2			= 0x16, // ?
 			unknown_17		= 0x17, // ?
+			unknown_20		= 0x20, // ?
 			unknown_21		= 0x21, // ?
 			unknown_23		= 0x23, // ?
 			unknown_25		= 0x25, // ?
 			move_route		= 0x29, // chunks: RPG::MoveRoute
-			unknown_2b		= 0x2b, // ? 
+			unknown_2a		= 0x2A, // ? 
+			unknown_2b		= 0x2B, // ? 
+			unknown_2c		= 0x2C, // ? 
+			unknown_2f		= 0x2F, // ? 
+			unknown_33		= 0x33, // ?
 			unknown_34		= 0x34, // ?
 			unknown_35		= 0x35, // ?
 			unknown_36		= 0x36, // ?
@@ -265,7 +272,12 @@ namespace LSD_Reader {
 			unknown_50		= 0x50, // ?
 			unknown_51		= 0x51, // ?
 			status			= 0x52, // array of short
+			unknown_53		= 0x53, // ?
+			unknown_5a		= 0x5A, // ?
+			unknown_5b		= 0x5B, // ?
+			unknown_5c		= 0x5C, // ?
 			auto_battle		= 0x5E, // ?
+			unknown_60		= 0x60, // ?
 			END				= 0x00	// End of chunk
 		};
 	};
@@ -283,8 +295,8 @@ namespace LSD_Reader {
 			timer_19		= 0x19, // int
 			battles			= 0x20, // ?
 			defeats			= 0x21, // ?
-			unknown_22		= 0x22, // ?
-			unknown_23		= 0x23, // ?
+			escapes			= 0x22, // ?
+			victories		= 0x23, // ?
 			unknown_29		= 0x29, // ?
 			steps			= 0x2A, // ?
 			END				= 0x00	// End of chunk
@@ -327,11 +339,14 @@ namespace LSD_Reader {
 			move_route			= 0x29, // chunks: RPG::MoveRoute
 			unknown_2a			= 0x2A, // int/bool
 			unknown_2b			= 0x2B, // ?
+			unknown_2f			= 0x2F, // ?
 			anim_paused			= 0x30, // bool
 			unknown_33			= 0x33, // int/bool?
 			unknown_34			= 0x34, // int:
 			unknown_35			= 0x35, // ?
 			unknown_36			= 0x36, // ?
+			unknown_3e			= 0x3E, // ?
+			unknown_3f			= 0x3F, // ?
 			unknown_47			= 0x47, // ?
 			sprite_name			= 0x49, // ?
 			sprite_id			= 0x4A, // ?
@@ -350,7 +365,10 @@ namespace LSD_Reader {
 	struct ChunkEventData {
 		enum Index {
 			commands		= 0x01, // array
+			unknown_16		= 0x16, // 
+			unknown_17		= 0x17, // 
 			time_left		= 0x1F, // int
+			unknown_20		= 0x20, // 
 			END				= 0x00	// End of chunk
 		};
 	};

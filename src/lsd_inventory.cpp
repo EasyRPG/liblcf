@@ -75,11 +75,11 @@ RPG::SaveInventory LSD_Reader::ReadSaveInventory(Reader& stream) {
 		case ChunkInventory::defeats:
 			inventory.defeats = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkInventory::unknown_22:
-			inventory.unknown_22 = stream.Read32(Reader::CompressedInteger);
+		case ChunkInventory::escapes:
+			inventory.escapes = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkInventory::unknown_23:
-			inventory.unknown_23 = stream.Read32(Reader::CompressedInteger);
+		case ChunkInventory::victories:
+			inventory.victories = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkInventory::unknown_29:
 			inventory.unknown_29 = stream.Read32(Reader::CompressedInteger);

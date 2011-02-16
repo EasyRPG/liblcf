@@ -47,6 +47,7 @@ RPG::SaveData::SaveData() {
 	face_id = 0;
 	unknown_36 = -1;
 	transparent = false;
+	unknown_3d = -1;
 	transition_out = -1;
 	transition_in = -1;
 	battle_start_fadeout = -1;
@@ -101,10 +102,15 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	facing1 = -1;
 	facing2 = -1;
 	unknown_17 = -1;
+	unknown_20 = -1;
 	unknown_21 = -1;
 	unknown_23 = -1;
 	unknown_25 = -1;
-	unknown_2b = 0;
+	unknown_2a = -1;
+	unknown_2b = -1;
+	unknown_2c = -1;
+	unknown_2f = -1;
+	unknown_33 = -1;
 	unknown_34 = -1;
 	unknown_35 = -1;
 	unknown_36 = -1;
@@ -167,7 +173,12 @@ RPG::SaveActor::SaveActor() {
 	current_hp = -1;
 	current_sp = -1;
 	unknown_51 = -1;
+	unknown_53 = -1;
+	unknown_5a = -1;
+	unknown_5b = -1;
+	unknown_5c = -1;
 	auto_battle = false;
+	unknown_60 = -1;
 }
 
 RPG::SaveInventory::SaveInventory() {
@@ -179,8 +190,8 @@ RPG::SaveInventory::SaveInventory() {
 	timer_19 = -1;
 	battles = -1;
 	defeats = -1;
-	unknown_22 = -1;
-	unknown_23 = -1;
+	escapes = -1;
+	victories = -1;
 	unknown_29 = -1;
 	steps = -1;
 }
@@ -204,11 +215,14 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_25 = -1;
 	unknown_2a = -1;
 	unknown_2b = -1;
+	unknown_2f = -1;
 	anim_paused = 0;
 	unknown_33 = -1;
 	unknown_34 = -1;
 	unknown_35 = -1;
 	unknown_36 = -1;
+	unknown_3e = -1;
+	unknown_3f = -1;
 	unknown_47 = -1;
 	sprite_name = "";
 	sprite_id = -1;
@@ -261,11 +275,13 @@ RPG::SaveEventCommands::SaveEventCommands() {
 	unknown_0c = -1;
 	unknown_0d = -1;
 	unknown_15 = -1;
-	unknown_16 = -1;
 }
 
 RPG::SaveEventData::SaveEventData() {
 	time_left = -1;
+	unknown_16 = -1;
+	unknown_17 = -1;
+	unknown_20 = -1;
 }
 
 RPG::SaveCommonEvent::SaveCommonEvent() {
@@ -289,5 +305,6 @@ RPG::SaveEvents::SaveEvents() {
 }
 
 RPG::Save::Save() {
+	unknown_70 = -1;
 }
 

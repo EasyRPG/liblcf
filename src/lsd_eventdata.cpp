@@ -46,6 +46,15 @@ RPG::SaveEventData LSD_Reader::ReadSaveEventData(Reader& stream) {
 				result.commands.push_back(ReadSaveEventCommands(stream));
 			}
 			break;
+		case ChunkEventData::unknown_16:
+			result.unknown_16 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkEventData::unknown_17:
+			result.unknown_17 = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkEventData::unknown_20:
+			result.unknown_20 = stream.Read32(Reader::CompressedInteger);
+			break;
 		default:
 			stream.Skip(chunk_info);
 		}

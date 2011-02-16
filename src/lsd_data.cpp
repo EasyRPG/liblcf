@@ -84,6 +84,9 @@ RPG::SaveData LSD_Reader::ReadSaveData(Reader& stream) {
 		case ChunkData::transparent:
 			data.transparent = stream.ReadBool();
 			break;
+		case ChunkData::unknown_3d:
+			data.unknown_3d = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkData::title_music:
 			data.title_music = LDB_Reader::ReadMusic(stream);
 			break;
@@ -185,6 +188,9 @@ RPG::SaveData LSD_Reader::ReadSaveData(Reader& stream) {
 			break;
 		case ChunkData::menu_allowed:
 			data.menu_allowed = stream.ReadBool();
+			break;
+		case ChunkData::background:
+			data.background = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkData::save_count:
 			data.save_count = stream.Read32(Reader::CompressedInteger);

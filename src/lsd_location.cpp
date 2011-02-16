@@ -58,6 +58,9 @@ RPG::SavePartyLocation LSD_Reader::ReadSavePartyLocation(Reader& stream) {
 		case ChunkPartyLocation::unknown_17:
 			location.unknown_17 = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkPartyLocation::unknown_20:
+			location.unknown_20 = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkPartyLocation::unknown_21:
 			location.unknown_21 = stream.Read32(Reader::CompressedInteger);
 			break;
@@ -70,8 +73,20 @@ RPG::SavePartyLocation LSD_Reader::ReadSavePartyLocation(Reader& stream) {
 		case ChunkPartyLocation::move_route:
 			location.move_route = LMU_Reader::ReadMoveRoute(stream);
 			break;
+		case ChunkPartyLocation::unknown_2a:
+			location.unknown_2a = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkPartyLocation::unknown_2b:
 			location.unknown_2b = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkPartyLocation::unknown_2c:
+			location.unknown_2c = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkPartyLocation::unknown_2f:
+			location.unknown_2f = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkPartyLocation::unknown_33:
+			location.unknown_33 = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkPartyLocation::unknown_34:
 			location.unknown_34 = stream.Read32(Reader::CompressedInteger);

@@ -91,8 +91,14 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 		case ChunkSave::inventory:
 			save->inventory = ReadSaveInventory(stream);
 			break;
+		case ChunkSave::unknown_6e:
+			stream.Read8(save->unknown_6e, chunk_info.length);
+			break;
 		case ChunkSave::map_info:
 			save->map_info = ReadSaveMapInfo(stream);
+			break;
+		case ChunkSave::unknown_70:
+			save->unknown_70 = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkSave::events:
 			save->events = ReadSaveEvents(stream);

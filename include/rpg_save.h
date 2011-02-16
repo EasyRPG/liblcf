@@ -69,6 +69,7 @@ namespace RPG {
 		int face_id;
 		int unknown_36;
 		bool transparent;
+		int unknown_3d;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;
@@ -103,6 +104,7 @@ namespace RPG {
 		bool escape_allowed;
 		bool save_allowed;
 		bool menu_allowed;
+		std::string background;
 		int save_count;
 		int save_slot;
 	};
@@ -153,11 +155,16 @@ namespace RPG {
 		int facing1;
 		int facing2;
 		int unknown_17;
+		int unknown_20;
 		int unknown_21;
 		int unknown_23;
 		int unknown_25;
 		MoveRoute move_route;
+		int unknown_2a;
 		int unknown_2b;
+		int unknown_2c;
+		int unknown_2f;
+		int unknown_33;
 		int unknown_34;
 		int unknown_35;
 		int unknown_36;
@@ -231,7 +238,12 @@ namespace RPG {
 		std::vector<uint8_t> unknown_50;
 		int unknown_51;
 		std::vector<int16_t> status;
+		int unknown_53;
+		int unknown_5a;
+		int unknown_5b;
+		int unknown_5c;
 		bool auto_battle;
+		int unknown_60;
 	};
 
 	class SaveInventory {
@@ -250,8 +262,8 @@ namespace RPG {
 		int timer_19;
 		int battles;
 		int defeats;
-		int unknown_22;
-		int unknown_23;
+		int escapes;
+		int victories;
 		int unknown_29;
 		int steps;
 	};
@@ -267,7 +279,7 @@ namespace RPG {
 		int unknown_0c;
 		int unknown_0d;
 		int unknown_15;
-		int unknown_16;
+		std::vector<uint8_t> unknown_16;
 	};
 
 	class SaveEventData {
@@ -276,6 +288,9 @@ namespace RPG {
 
 		std::vector<SaveEventCommands> commands;
 		int time_left;
+		int unknown_16;
+		int unknown_17;
+		int unknown_20;
 	};
 
 	class SaveMapEvent {
@@ -301,11 +316,14 @@ namespace RPG {
 		MoveRoute move_route;
 		int unknown_2a;
 		int unknown_2b;
+		int unknown_2f;
 		int anim_paused;
 		int unknown_33;
 		int unknown_34;
 		int unknown_35;
 		int unknown_36;
+		int unknown_3e;
+		int unknown_3f;
 		int unknown_47;
 		std::string sprite_name;
 		int sprite_id;
@@ -402,7 +420,9 @@ namespace RPG {
 		SaveVehicleLocation airship_location;
 		std::vector<SaveActor> party;
 		SaveInventory inventory;
+		std::vector<uint8_t> unknown_6e;
 		SaveMapInfo map_info;
+		int unknown_70;
 		std::vector<SaveCommonEvent> common_events;
 		SaveEvents events;
 	};
