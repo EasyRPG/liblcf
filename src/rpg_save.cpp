@@ -45,7 +45,8 @@ RPG::SaveData::SaveData() {
 	message_continue = -1;
 	face_name = "";
 	face_id = 0;
-	unknown_36 = -1;
+	face_right = false;
+	face_flip = false;
 	transparent = false;
 	unknown_3d = -1;
 	transition_out = -1;
@@ -174,12 +175,54 @@ RPG::SaveActor::SaveActor() {
 	skills_size = -1;
 	current_hp = -1;
 	current_sp = -1;
-	unknown_51 = -1;
+	status_size = -1;
 	changed_class = false;
 	new_class = -1;
 	unknown_5b = -1;
-	unknown_5c = -1;
+	two_weapon = false;
+	lock_equipment = false;
 	auto_battle = false;
+	mighty_guard = false;
+	unknown_60 = -1;
+}
+
+RPG::SaveActor::SaveActor(const RPG::Actor& actor) {
+	ID = actor.ID;
+	name = actor.name;
+	title = actor.title;
+	sprite_name = actor.character_name;
+	sprite_id = actor.character_index;
+	sprite_flags = actor.transparent ? 3 : 0;
+	face_name = actor.face_name;
+	face_id = actor.face_index;
+	level = actor.initial_level;
+	exp = 0;
+	hp_mod = 0;
+	sp_mod = 0;
+	attack_mod = 0;
+	defense_mod = 0;
+	spirit_mod = 0;
+	agility_mod = 0;
+	skills_size = 0;
+	skills.clear();
+	equipped.clear();
+	equipped.push_back(actor.weapon_id);
+	equipped.push_back(actor.shield_id);
+	equipped.push_back(actor.armor_id);
+	equipped.push_back(actor.helmet_id);
+	equipped.push_back(actor.accessory_id);
+	current_hp = 0;
+	current_sp = 0;
+	battle_commands = actor.battle_commands;
+	status_size = 0;
+	status.clear();
+	changed_class = false;
+	new_class = actor.class_id;
+	unknown_5b = -1;
+	two_weapon = actor.two_swords_style;
+	lock_equipment = actor.fix_equipment;
+	auto_battle = actor.auto_battle;
+	mighty_guard = actor.super_guard;
 	unknown_60 = -1;
 }
 
@@ -254,7 +297,6 @@ RPG::SaveScreen::SaveScreen() {
 	flash_blue = -1;
 	flash_current_level = -1.0;
 	flash_time_left = -1;
-	unknown_2f = -1;
 	shake_status = -1;
 	shake_strength = -1;
 	shake_speed = -1;
@@ -262,10 +304,10 @@ RPG::SaveScreen::SaveScreen() {
 	shake_time_left = -1;
 	pan_x = -1;
 	pan_y = -1;
-	unknown_2b = -1;
-	unknown_2c = -1;
-	unknown_2d = -1;
-	unknown_2f = -1;
+	battleanim_id = -1;
+	battleanim_target = -1;
+	battleanim_unk_2d = -1;
+	battleanim_global = false;
 	weather = 0;
 	weather_strength = 0;
 }
@@ -293,6 +335,7 @@ RPG::SaveCommonEvent::SaveCommonEvent() {
 RPG::SaveMapInfo::SaveMapInfo() {
 	pan_x = -1;
 	pan_y = -1;
+	encounter_rate = -1;
 	parallax_name = "";
 	parallax_horz = false;
 	parallax_vert = false;
@@ -304,6 +347,9 @@ RPG::SaveMapInfo::SaveMapInfo() {
 
 RPG::SaveEvents::SaveEvents() {
 	events_size = -1;
+	unknown_16 = -1;
+	unknown_17 = -1;
+	unknown_18 = -1;
 }
 
 RPG::Save::Save() {

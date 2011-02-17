@@ -78,8 +78,11 @@ RPG::SaveData LSD_Reader::ReadSaveData(Reader& stream) {
 		case ChunkData::face_id:
 			data.face_id = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkData::unknown_36:
-			data.unknown_36 = stream.Read32(Reader::CompressedInteger);
+		case ChunkData::face_right:
+			data.face_right = stream.ReadBool();
+			break;
+		case ChunkData::face_flip:
+			data.face_flip = stream.ReadBool();
 			break;
 		case ChunkData::transparent:
 			data.transparent = stream.ReadBool();

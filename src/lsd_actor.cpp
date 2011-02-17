@@ -103,8 +103,8 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 		case ChunkActor::battle_commands:
 			stream.Read32(actor.battle_commands, chunk_info.length);
 			break;
-		case ChunkActor::unknown_51:
-			actor.unknown_51 = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::status_size:
+			actor.status_size = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkActor::status:
 			stream.Read16(actor.status, chunk_info.length);
@@ -118,11 +118,17 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 		case ChunkActor::unknown_5b:
 			actor.unknown_5b = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkActor::unknown_5c:
-			actor.unknown_5c = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::two_weapon:
+			actor.two_weapon = stream.ReadBool();
+			break;
+		case ChunkActor::lock_equipment:
+			actor.lock_equipment = stream.ReadBool();
 			break;
 		case ChunkActor::auto_battle:
-			actor.auto_battle = stream.Read32(Reader::CompressedInteger) != 0;
+			actor.auto_battle = stream.ReadBool();
+			break;
+		case ChunkActor::mighty_guard:
+			actor.mighty_guard = stream.ReadBool();
 			break;
 		case ChunkActor::unknown_60:
 			actor.unknown_60 = stream.Read32(Reader::CompressedInteger);

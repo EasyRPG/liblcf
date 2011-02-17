@@ -28,6 +28,7 @@
 #include "rpg_sound.h"
 #include "rpg_eventcommand.h"
 #include "rpg_moveroute.h"
+#include "rpg_actor.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Map class
@@ -216,6 +217,7 @@ namespace RPG {
 	class SaveActor {
 	public:
 		SaveActor();
+		SaveActor(const Actor& actor);
 
 		int ID;
 		std::string name;
