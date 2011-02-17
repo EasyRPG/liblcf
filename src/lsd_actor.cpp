@@ -112,8 +112,8 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 		case ChunkActor::changed_class:
 			actor.changed_class = stream.ReadBool();
 			break;
-		case ChunkActor::new_class:
-			actor.new_class = stream.Read32(Reader::CompressedInteger);
+		case ChunkActor::class_id:
+			actor.class_id = stream.Read32(Reader::CompressedInteger);
 			break;
 		case ChunkActor::unknown_5b:
 			actor.unknown_5b = stream.Read32(Reader::CompressedInteger);

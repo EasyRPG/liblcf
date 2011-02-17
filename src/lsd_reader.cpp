@@ -61,7 +61,7 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 			save->title = ReadSaveTitle(stream);
 			break;
 		case ChunkSave::data:
-			save->data = ReadSaveData(stream);
+			save->system = ReadSaveSystem(stream);
 			break;
 		case ChunkSave::screen:
 			save->screen = ReadSaveScreen(stream);

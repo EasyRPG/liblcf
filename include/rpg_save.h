@@ -29,6 +29,7 @@
 #include "rpg_eventcommand.h"
 #include "rpg_moveroute.h"
 #include "rpg_actor.h"
+#include "rpg_system.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Map class
@@ -52,9 +53,10 @@ namespace RPG {
 		int face4_id;
 	};
 
-	class SaveData {
+	class SaveSystem {
 	public:
-		SaveData();
+		SaveSystem();
+		void Setup();
 		int screen;
 		int frame_count;
 		std::string graphics_name;
@@ -217,7 +219,7 @@ namespace RPG {
 	class SaveActor {
 	public:
 		SaveActor();
-		SaveActor(const Actor& actor);
+		void Setup(int actor_id);
 
 		int ID;
 		std::string name;
@@ -244,7 +246,7 @@ namespace RPG {
 		int status_size;
 		std::vector<int16_t> status;
 		bool changed_class;
-		int new_class;
+		int class_id;
 		int unknown_5b;
 		bool two_weapon;
 		bool lock_equipment;
@@ -420,9 +422,10 @@ namespace RPG {
 	class Save {
 	public:
 		Save();
+		void Setup();
 
 		SaveTitle title;
-		SaveData data;
+		SaveSystem system;
 		SaveScreen screen;
 		std::vector<SavePicture> pictures;
 		SavePartyLocation party_location;

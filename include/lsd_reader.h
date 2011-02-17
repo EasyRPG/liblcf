@@ -32,7 +32,7 @@
 ////////////////////////////////////////////////////////////
 namespace LSD_Reader {
 	RPG::SaveTitle ReadSaveTitle(Reader& stream);
-	RPG::SaveData ReadSaveData(Reader& stream);
+	RPG::SaveSystem ReadSaveSystem(Reader& stream);
 	RPG::SavePicture ReadSavePicture(Reader& stream);
 	RPG::SavePartyLocation ReadSavePartyLocation(Reader& stream);
 	RPG::SaveVehicleLocation ReadSaveVehicleLocation(Reader& stream);

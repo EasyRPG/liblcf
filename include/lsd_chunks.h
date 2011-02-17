@@ -59,7 +59,7 @@ namespace LSD_Reader {
 			END				= 0x00	// End of chunk
 		};
 	};
-	struct ChunkData {
+	struct ChunkSystem {
 		enum Index {
 			screen					= 0x01, // 
 			frame_count				= 0x0B, // 
@@ -276,7 +276,7 @@ namespace LSD_Reader {
 			status_size		= 0x51, // ?
 			status			= 0x52, // array of short
 			changed_class	= 0x53, // bool
-			new_class		= 0x5A, // int class-id
+			class_id		= 0x5A, // int class-id
 			unknown_5b		= 0x5B, // ?
 			two_weapon		= 0x5C, // bool
 			lock_equipment	= 0x5D, // bool
