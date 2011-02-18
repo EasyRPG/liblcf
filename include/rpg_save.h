@@ -258,6 +258,7 @@ namespace RPG {
 	class SaveInventory {
 	public:
 		SaveInventory();
+		void Setup();
 
 		int party_size;
 		std::vector<int16_t> party;
@@ -266,9 +267,14 @@ namespace RPG {
 		std::vector<uint8_t> item_counts;
 		std::vector<uint8_t> item_usage;
 		int gold;
-		int timer_secs;
-		int timer_18;
-		int timer_19;
+		int timer1_secs;
+		bool timer1_active;
+		bool timer1_visible;
+		bool timer1_battle;
+		int timer2_secs;
+		bool timer2_active;
+		bool timer2_visible;
+		bool timer2_battle;
 		int battles;
 		int defeats;
 		int escapes;
@@ -419,6 +425,18 @@ namespace RPG {
 		int unknown_18;
 	};
 
+	class SaveTarget {
+	public:
+		SaveTarget();
+
+		int ID;
+		int map_id;
+		int map_x;
+		int map_y;
+		bool switch_on;
+		int switch_id;
+	};
+
 	class Save {
 	public:
 		Save();
@@ -434,7 +452,7 @@ namespace RPG {
 		SaveVehicleLocation airship_location;
 		std::vector<SaveActor> party;
 		SaveInventory inventory;
-		std::vector<uint8_t> unknown_6e;
+		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
 		int unknown_70;
 		std::vector<SaveCommonEvent> common_events;

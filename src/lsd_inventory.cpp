@@ -60,14 +60,29 @@ RPG::SaveInventory LSD_Reader::ReadSaveInventory(Reader& stream) {
 		case ChunkInventory::gold:
 			inventory.gold = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkInventory::timer_secs:
-			inventory.timer_secs = stream.Read32(Reader::CompressedInteger);
+		case ChunkInventory::timer1_secs:
+			inventory.timer1_secs = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkInventory::timer_18:
-			inventory.timer_18 = stream.Read32(Reader::CompressedInteger);
+		case ChunkInventory::timer1_active:
+			inventory.timer1_active = stream.ReadBool();
 			break;
-		case ChunkInventory::timer_19:
-			inventory.timer_19 = stream.Read32(Reader::CompressedInteger);
+		case ChunkInventory::timer1_visible:
+			inventory.timer1_visible = stream.ReadBool();
+			break;
+		case ChunkInventory::timer1_battle:
+			inventory.timer1_battle = stream.ReadBool();
+			break;
+		case ChunkInventory::timer2_secs:
+			inventory.timer2_secs = stream.Read32(Reader::CompressedInteger);
+			break;
+		case ChunkInventory::timer2_active:
+			inventory.timer2_active = stream.ReadBool();
+			break;
+		case ChunkInventory::timer2_visible:
+			inventory.timer2_visible = stream.ReadBool();
+			break;
+		case ChunkInventory::timer2_battle:
+			inventory.timer2_battle = stream.ReadBool();
 			break;
 		case ChunkInventory::battles:
 			inventory.battles = stream.Read32(Reader::CompressedInteger);

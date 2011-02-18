@@ -289,16 +289,26 @@ void RPG::SaveActor::Setup(int actor_id) {
 RPG::SaveInventory::SaveInventory() {
 	party_size = 0;
 	items_size = 0;
-	gold = -1;
-	timer_secs = -1;
-	timer_18 = -1;
-	timer_19 = -1;
-	battles = -1;
-	defeats = -1;
-	escapes = -1;
-	victories = -1;
+	gold = 0;
+	timer1_secs = 0;
+	timer1_active = false;
+	timer1_visible = false;
+	timer1_battle = false;
+	timer2_secs = 0;
+	timer2_active = false;
+	timer2_visible = false;
+	timer2_battle = false;
+	battles = 0;
+	defeats = 0;
+	escapes = 0;
+	victories = 0;
 	unknown_29 = -1;
-	steps = -1;
+	steps = 0;
+}
+
+void RPG::SaveInventory::Setup() {
+	party = Data::system.party;
+	party_size = party.size();
 }
 
 RPG::SaveMapEvent::SaveMapEvent() {
@@ -410,6 +420,15 @@ RPG::SaveEvents::SaveEvents() {
 	unknown_16 = -1;
 	unknown_17 = -1;
 	unknown_18 = -1;
+}
+
+RPG::SaveTarget::SaveTarget() {
+	ID = -1;
+	map_id = -1;
+	map_x = -1;
+	map_y = -1;
+	switch_on = false;
+	switch_id = -1;
 }
 
 RPG::Save::Save() {

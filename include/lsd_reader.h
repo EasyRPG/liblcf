@@ -46,6 +46,7 @@ namespace LSD_Reader {
 	RPG::SaveCommonEvent ReadCommonEvent(Reader& stream);
 	RPG::SaveEvents ReadSaveEvents(Reader& stream);
 	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
+	RPG::SaveTarget ReadSaveTarget(Reader& stream);
 
 	std::auto_ptr<RPG::Save> Load(const std::string &filename);
 	std::auto_ptr<RPG::Save> LoadChunks(Reader& stream);

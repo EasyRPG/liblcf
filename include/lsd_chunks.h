@@ -34,7 +34,7 @@ namespace LSD_Reader {
 			airship_location	= 0x6B, // RPG::SaveVehicleLocation
 			party				= 0x6C, // array of RPG::SaveActor
 			inventory			= 0x6D, // RPG::SaveInventory
-			unknown_6e			= 0x6E, // ? chunks?
+			targets				= 0x6E, // array of RPG::SaveTarget
 			map_info			= 0x6F, // RPG::SaveMapInfo
 			unknown_70			= 0x70, // ? chunks?
 			events				= 0x71, // RPG::SaveEvents
@@ -295,10 +295,15 @@ namespace LSD_Reader {
 			item_ids		= 0x0C, // short[]: item list
 			item_counts		= 0x0D, // ?
 			item_usage		= 0x0E, // ?
-			gold			= 0x15, // int: gold
-			timer_secs		= 0x17, // int
-			timer_18		= 0x18, // int
-			timer_19		= 0x19, // int
+			gold			= 0x15, // int
+			timer1_secs		= 0x17, // int
+			timer1_active	= 0x18, // bool
+			timer1_visible	= 0x19, // bool
+			timer1_battle	= 0x1A, // bool
+			timer2_secs		= 0x1B, // int
+			timer2_active	= 0x1C, // bool
+			timer2_visible	= 0x1D, // bool
+			timer2_battle	= 0x1E, // bool
 			battles			= 0x20, // ?
 			defeats			= 0x21, // ?
 			escapes			= 0x22, // ?
@@ -405,6 +410,15 @@ namespace LSD_Reader {
 			unknown_17		= 0x17, // int
 			unknown_18		= 0x18, // int
 			END				= 0x00	// End of chunk
+		};
+	};
+	struct ChunkTarget {
+		enum Index {
+			map_id			= 0x01, // int
+			map_x			= 0x02, // int
+			map_y			= 0x03, // int
+			switch_on		= 0x04, // bool
+			switch_id		= 0x05  // int
 		};
 	};
 }
