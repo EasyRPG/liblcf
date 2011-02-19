@@ -361,13 +361,13 @@ RPG::SaveScreen::SaveScreen() {
 	tint_current_blue = -1.0;
 	tint_current_sat = -1.0;
 	tint_time_left = -1;
-	flash_status = -1;
+	flash_continuous = false;
 	flash_red = -1;
 	flash_green = -1;
 	flash_blue = -1;
 	flash_current_level = -1.0;
 	flash_time_left = -1;
-	shake_status = -1;
+	shake_continuous = false;
 	shake_strength = -1;
 	shake_speed = -1;
 	shake_position = 0;
@@ -403,9 +403,10 @@ RPG::SaveCommonEvent::SaveCommonEvent() {
 }
 
 RPG::SaveMapInfo::SaveMapInfo() {
-	pan_x = -1;
-	pan_y = -1;
+	pan_x = 0;
+	pan_y = 0;
 	encounter_rate = -1;
+	chipset_id = -1;
 	parallax_name = "";
 	parallax_horz = false;
 	parallax_vert = false;
@@ -413,6 +414,32 @@ RPG::SaveMapInfo::SaveMapInfo() {
 	parallax_horz_speed = 0;
 	parallax_vert_auto = false;
 	parallax_vert_speed = 0;
+}
+
+void RPG::SaveMapInfo::Setup() {
+	pan_x = 0;
+	pan_y = 0;
+	lower_tiles.resize(144);
+	upper_tiles.resize(144);
+	for (int i = 0; i < 144; i++) {
+		lower_tiles[i] = i;
+		upper_tiles[i] = i;
+	}
+}
+
+void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
+	chipset_id = map.chipset_id;
+	parallax_name = map.parallax_name;
+	parallax_horz = map.parallax_loop_x;
+	parallax_vert = map.parallax_loop_y;
+	parallax_horz_auto = map.parallax_auto_loop_x;
+	parallax_vert_auto = map.parallax_auto_loop_y;
+	parallax_horz_speed = map.parallax_sx;
+	parallax_vert_speed = map.parallax_sy;
+}
+
+void RPG::SaveMapInfo::Setup(const RPG::MapInfo& map_info) {
+	encounter_rate = map_info.encounter_steps;
 }
 
 RPG::SaveEvents::SaveEvents() {
@@ -441,5 +468,6 @@ void RPG::Save::Setup() {
 	party.resize(Data::actors.size());
 	for (int i = 1; i <= (int) party.size(); i++)
 		party[i - 1].Setup(i);
+	map_info.Setup();
 }
 

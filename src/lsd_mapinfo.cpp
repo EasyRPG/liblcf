@@ -47,6 +47,9 @@ RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
 		case ChunkMapInfo::encounter_rate:
 			map_info.encounter_rate = stream.Read32(Reader::CompressedInteger);
 			break;
+		case ChunkMapInfo::chipset_id:
+			map_info.chipset_id = stream.Read32(Reader::CompressedInteger);
+			break;
 		case ChunkMapInfo::events:
 			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
 				map_info.events.push_back(ReadSaveMapEvent(stream));

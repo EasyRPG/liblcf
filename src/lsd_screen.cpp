@@ -65,8 +65,8 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 		case ChunkScreen::tint_time_left:
 			result.tint_time_left = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkScreen::flash_status:
-			result.flash_status = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::flash_continuous:
+			result.flash_continuous = stream.ReadBool();
 			break;
 		case ChunkScreen::flash_red:
 			result.flash_red = stream.Read32(Reader::CompressedInteger);
@@ -83,8 +83,8 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 		case ChunkScreen::flash_time_left:
 			result.flash_time_left = stream.Read32(Reader::CompressedInteger);
 			break;
-		case ChunkScreen::shake_status:
-			result.shake_status = stream.Read32(Reader::CompressedInteger);
+		case ChunkScreen::shake_continuous:
+			result.shake_continuous = stream.ReadBool();
 			break;
 		case ChunkScreen::shake_strength:
 			result.shake_strength = stream.Read32(Reader::CompressedInteger);

@@ -129,13 +129,13 @@ namespace LSD_Reader {
 			tint_current_blue	= 0x0D, // double
 			tint_current_sat	= 0x0E, // double
 			tint_time_left		= 0x0F, // int
-			flash_status		= 0x14, // int
+			flash_continuous	= 0x14, // int
 			flash_red			= 0x15, // int
 			flash_green			= 0x16, // int
 			flash_blue			= 0x17, // int
 			flash_current_level	= 0x18, // double
 			flash_time_left		= 0x19, // int
-			shake_status		= 0x1E, // int
+			shake_continuous	= 0x1E, // int
 			shake_strength		= 0x1F, // int
 			shake_speed			= 0x20, // int
 			shake_position		= 0x21, // int
@@ -318,6 +318,7 @@ namespace LSD_Reader {
 			pan_x				= 0x01, // int
 			pan_y				= 0x02, // int
 			encounter_rate		= 0x03, // int
+			chipset_id			= 0x05, // int
 			events				= 0x0B, // ? array
 			lower_tiles			= 0x15, // ? [00 01 02 ... 8E 8F]
 			upper_tiles			= 0x16, //

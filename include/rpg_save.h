@@ -30,6 +30,8 @@
 #include "rpg_moveroute.h"
 #include "rpg_actor.h"
 #include "rpg_system.h"
+#include "rpg_map.h"
+#include "rpg_mapinfo.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Map class
@@ -356,10 +358,14 @@ namespace RPG {
 	class SaveMapInfo {
 	public:
 		SaveMapInfo();
+		void Setup();
+		void Setup(const RPG::Map& map);
+		void Setup(const RPG::MapInfo& map_info);
 
 		int pan_x;
 		int pan_y;
 		int encounter_rate;
+		int chipset_id;
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;
@@ -385,13 +391,13 @@ namespace RPG {
 		double tint_current_blue;
 		double tint_current_sat;
 		int tint_time_left;
-		int flash_status;
+		bool flash_continuous;
 		int flash_red;
 		int flash_green;
 		int flash_blue;
 		double flash_current_level;
 		int flash_time_left;
-		int shake_status;
+		bool shake_continuous;
 		int shake_strength;
 		int shake_speed;
 		int shake_position;
