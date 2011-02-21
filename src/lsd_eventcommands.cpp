@@ -40,7 +40,7 @@ RPG::SaveEventCommands LSD_Reader::ReadSaveEventCommands(Reader& stream) {
 			chunk_info.length = stream.Read32(Reader::CompressedInteger);
 			if (chunk_info.length == 0) continue;
 		}
-		uint32_t pos = stream.Tell();
+		// uint32_t pos = stream.Tell();
 		switch (chunk_info.ID) {
 		case ChunkEventCommands::commands_size:
 			result.commands_size = stream.Read32(Reader::CompressedInteger);
