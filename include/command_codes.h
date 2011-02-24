@@ -147,7 +147,9 @@ namespace Cmd {
 		Comment_2				= 22410,
 
 		ElseBranch_B			= 23310,
-		EndBranch_B				= 23311
+		EndBranch_B				= 23311,
+
+		DUMMY					=    -1
 	};
 }
 
