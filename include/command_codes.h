@@ -153,6 +153,8 @@ struct Cmd {
 		#define PP_enum(VAL, CODE) VAL = CODE,
 		PP_rpgEnumCommandCode(PP_enum)
 		#undef PP_enum
+
+		DUMMY = -1
 	};
 };
 
