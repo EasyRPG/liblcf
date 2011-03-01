@@ -28,15 +28,15 @@
 ////////////////////////////////////////////////////////////
 RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 	RPG::EventPage eventpage;
-	eventpage.ID = stream.Read32(Reader::CompressedInteger);
+	eventpage.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -47,43 +47,43 @@ RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
 			eventpage.character_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkEventPage::character_index:
-			eventpage.character_index = stream.Read32(Reader::CompressedInteger);
+			eventpage.character_index = stream.ReadInt();
 			break;
 		case ChunkEventPage::character_direction:
-			eventpage.character_direction = stream.Read32(Reader::CompressedInteger);
+			eventpage.character_direction = stream.ReadInt();
 			break;
 		case ChunkEventPage::character_pattern:
-			eventpage.character_pattern = stream.Read32(Reader::CompressedInteger);
+			eventpage.character_pattern = stream.ReadInt();
 			break;
 		case ChunkEventPage::translucent:
 			eventpage.translucent = stream.ReadBool();
 			break;
 		case ChunkEventPage::move_type:
-			eventpage.move_type = stream.Read32(Reader::CompressedInteger);
+			eventpage.move_type = stream.ReadInt();
 			break;
 		case ChunkEventPage::move_frequency:
-			eventpage.move_frequency = stream.Read32(Reader::CompressedInteger);
+			eventpage.move_frequency = stream.ReadInt();
 			break;
 		case ChunkEventPage::trigger:
-			eventpage.trigger = stream.Read32(Reader::CompressedInteger);
+			eventpage.trigger = stream.ReadInt();
 			break;
 		case ChunkEventPage::priority_type:
-			eventpage.priority_type = stream.Read32(Reader::CompressedInteger);
+			eventpage.priority_type = stream.ReadInt();
 			break;
 		case ChunkEventPage::overlap:
 			eventpage.overlap = stream.ReadBool();
 			break;
 		case ChunkEventPage::animation_type:
-			eventpage.animation_type = stream.Read32(Reader::CompressedInteger);
+			eventpage.animation_type = stream.ReadInt();
 			break;
 		case ChunkEventPage::move_speed:
-			eventpage.move_speed = stream.Read32(Reader::CompressedInteger);
+			eventpage.move_speed = stream.ReadInt();
 			break;
 		case ChunkEventPage::move_route:
 			eventpage.move_route = ReadMoveRoute(stream);
 			break;
 		case ChunkEventPage::event_commands_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkEventPage::event_commands:
 			// Event Commands is a special array

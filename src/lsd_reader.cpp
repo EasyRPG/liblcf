@@ -33,7 +33,7 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 		Reader::SetError("Couldn't find %s save file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
 	}
-	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
+	std::string header = reader.ReadString(reader.ReadInt());
 	if (header != "LcfSaveData") {
 		Reader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
@@ -49,11 +49,11 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -67,7 +67,7 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 			save->screen = ReadSaveScreen(stream);
 			break;
 		case ChunkSave::pictures:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				save->pictures.push_back(ReadSavePicture(stream));
 			}
 			break;
@@ -84,7 +84,7 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 			save->airship_location = ReadSaveVehicleLocation(stream);
 			break;
 		case ChunkSave::party:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				save->party.push_back(ReadSaveActor(stream));
 			}
 			break;
@@ -92,7 +92,7 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 			save->inventory = ReadSaveInventory(stream);
 			break;
 		case ChunkSave::targets:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				save->targets.push_back(ReadSaveTarget(stream));
 			}
 			break;
@@ -100,13 +100,13 @@ std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
 			save->map_info = ReadSaveMapInfo(stream);
 			break;
 		case ChunkSave::unknown_70:
-			save->unknown_70 = stream.Read32(Reader::CompressedInteger);
+			save->unknown_70 = stream.ReadInt();
 			break;
 		case ChunkSave::events:
 			save->events = ReadSaveEvents(stream);
 			break;
 		case ChunkSave::common_events:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				save->common_events.push_back(ReadCommonEvent(stream));
 			}
 			break;

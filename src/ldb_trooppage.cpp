@@ -28,15 +28,15 @@
 ////////////////////////////////////////////////////////////
 RPG::TroopPage LDB_Reader::ReadTroopPage(Reader& stream) {
 	RPG::TroopPage page;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -44,7 +44,7 @@ RPG::TroopPage LDB_Reader::ReadTroopPage(Reader& stream) {
 			page.condition = ReadTroopPageCondition(stream);
 			break;
 		case ChunkTroopPage::event_commands_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkTroopPage::event_commands:
 			// Event Commands is a special array

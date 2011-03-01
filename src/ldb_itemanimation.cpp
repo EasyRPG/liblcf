@@ -27,44 +27,44 @@
 ////////////////////////////////////////////////////////////
 RPG::ItemAnimation LDB_Reader::ReadItemAnimation(Reader& stream) {
 	RPG::ItemAnimation item_animation;
-	item_animation.ID = stream.Read32(Reader::CompressedInteger);
+	item_animation.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkItemAnimation::type:
-			item_animation.type = stream.Read32(Reader::CompressedInteger);
+			item_animation.type = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::weapon_anim:
-			item_animation.weapon_anim = stream.Read32(Reader::CompressedInteger);
+			item_animation.weapon_anim = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::movement:
-			item_animation.movement = stream.Read32(Reader::CompressedInteger);
+			item_animation.movement = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::after_image:
-			item_animation.after_image = stream.Read32(Reader::CompressedInteger);
+			item_animation.after_image = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::attacks:
-			item_animation.attacks = stream.Read32(Reader::CompressedInteger);
+			item_animation.attacks = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::ranged:
 			item_animation.ranged = stream.ReadBool();
 			break;
 		case ChunkItemAnimation::ranged_anim:
-			item_animation.ranged_anim = stream.Read32(Reader::CompressedInteger);
+			item_animation.ranged_anim = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::ranged_speed:
-			item_animation.ranged_speed = stream.Read32(Reader::CompressedInteger);
+			item_animation.ranged_speed = stream.ReadInt();
 			break;
 		case ChunkItemAnimation::battle_anim:
-			item_animation.battle_anim = stream.Read32(Reader::CompressedInteger);
+			item_animation.battle_anim = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

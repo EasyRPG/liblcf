@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Troop LDB_Reader::ReadTroop(Reader& stream) {
 	RPG::Troop troop;
-	troop.ID = stream.Read32(Reader::CompressedInteger);
+	troop.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -43,18 +43,18 @@ RPG::Troop LDB_Reader::ReadTroop(Reader& stream) {
 			troop.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTroop::members:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				troop.members.push_back(ReadTroopMember(stream));
 			}
 			break;
 		case ChunkTroop::terrain_set_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkTroop::terrain_set:
 			stream.ReadBool(troop.terrain_set, chunk_info.length);
 			break;
 		case ChunkTroop::pages:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				troop.pages.push_back(ReadTroopPage(stream));
 			}
 			break;

@@ -28,129 +28,129 @@
 ////////////////////////////////////////////////////////////
 RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
 	RPG::SaveMapEvent map_event;
-	map_event.ID = stream.Read32(Reader::CompressedInteger);
+	map_event.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkMapEvent::unknown_01:
-			map_event.unknown_01 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_01 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::map_id:
-			map_event.map_id = stream.Read32(Reader::CompressedInteger);
+			map_event.map_id = stream.ReadInt();
 			break;
 		case ChunkMapEvent::position_x:
-			map_event.position_x = stream.Read32(Reader::CompressedInteger);
+			map_event.position_x = stream.ReadInt();
 			break;
 		case ChunkMapEvent::position_y:
-			map_event.position_y = stream.Read32(Reader::CompressedInteger);
+			map_event.position_y = stream.ReadInt();
 			break;
 		case ChunkMapEvent::facing1:
-			map_event.facing1 = stream.Read32(Reader::CompressedInteger);
+			map_event.facing1 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::facing2:
-			map_event.facing2 = stream.Read32(Reader::CompressedInteger);
+			map_event.facing2 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::anim_frame:
-			map_event.anim_frame = stream.Read32(Reader::CompressedInteger);
+			map_event.anim_frame = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_18:
-			map_event.unknown_18 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_18 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_1f:
-			map_event.unknown_1f = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_1f = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_20:
-			map_event.unknown_20 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_20 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::layer:
-			map_event.layer = stream.Read32(Reader::CompressedInteger);
+			map_event.layer = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_22:
-			map_event.unknown_22 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_22 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_23:
-			map_event.unknown_23 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_23 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_24:
-			map_event.unknown_24 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_24 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_25:
-			map_event.unknown_25 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_25 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::move_route:
 			map_event.move_route = LMU_Reader::ReadMoveRoute(stream);
 			break;
 		case ChunkMapEvent::unknown_2a:
-			map_event.unknown_2a = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_2a = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_2b:
-			map_event.unknown_2b = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_2b = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_2f:
-			map_event.unknown_2f = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_2f = stream.ReadInt();
 			break;
 		case ChunkMapEvent::anim_paused:
 			map_event.anim_paused = stream.ReadBool();
 			break;
 		case ChunkMapEvent::unknown_33:
-			map_event.unknown_33 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_33 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_34:
-			map_event.unknown_34 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_34 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_35:
-			map_event.unknown_35 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_35 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_36:
-			map_event.unknown_36 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_36 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_3e:
-			map_event.unknown_3e = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_3e = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_3f:
-			map_event.unknown_3f = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_3f = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_47:
-			map_event.unknown_47 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_47 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::sprite_name:
 			map_event.sprite_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkMapEvent::sprite_id:
-			map_event.sprite_id = stream.Read32(Reader::CompressedInteger);
+			map_event.sprite_id = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_4b:
-			map_event.unknown_4b = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_4b = stream.ReadInt();
 			break;
 		case ChunkMapEvent::flash_red:
-			map_event.flash_red = stream.Read32(Reader::CompressedInteger);
+			map_event.flash_red = stream.ReadInt();
 			break;
 		case ChunkMapEvent::flash_green:
-			map_event.flash_green = stream.Read32(Reader::CompressedInteger);
+			map_event.flash_green = stream.ReadInt();
 			break;
 		case ChunkMapEvent::flash_blue:
-			map_event.flash_blue = stream.Read32(Reader::CompressedInteger);
+			map_event.flash_blue = stream.ReadInt();
 			break;
 		case ChunkMapEvent::flash_current_level:
 			map_event.flash_current_level = stream.ReadDouble();
 			break;
 		case ChunkMapEvent::flash_time_left:
-			map_event.flash_time_left = stream.Read32(Reader::CompressedInteger);
+			map_event.flash_time_left = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_66:
-			map_event.unknown_66 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_66 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::unknown_67:
-			map_event.unknown_67 = stream.Read32(Reader::CompressedInteger);
+			map_event.unknown_67 = stream.ReadInt();
 			break;
 		case ChunkMapEvent::event_data:
 			map_event.event_data = ReadSaveEventData(stream);

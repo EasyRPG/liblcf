@@ -27,33 +27,33 @@
 ////////////////////////////////////////////////////////////
 RPG::SaveTarget LSD_Reader::ReadSaveTarget(Reader& stream) {
 	RPG::SaveTarget target;
-	target.ID = stream.Read32(Reader::CompressedInteger);
+	target.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkTarget::map_id:
-			target.map_id = stream.Read32(Reader::CompressedInteger);
+			target.map_id = stream.ReadInt();
 			break;
 		case ChunkTarget::map_x:
-			target.map_x = stream.Read32(Reader::CompressedInteger);
+			target.map_x = stream.ReadInt();
 			break;
 		case ChunkTarget::map_y:
-			target.map_y = stream.Read32(Reader::CompressedInteger);
+			target.map_y = stream.ReadInt();
 			break;
 		case ChunkTarget::switch_on:
 			target.switch_on = stream.ReadBool();
 			break;
 		case ChunkTarget::switch_id:
-			target.switch_id = stream.Read32(Reader::CompressedInteger);
+			target.switch_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

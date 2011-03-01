@@ -30,28 +30,28 @@ RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkMapInfo::pan_x:
-			map_info.pan_x = stream.Read32(Reader::CompressedInteger);
+			map_info.pan_x = stream.ReadInt();
 			break;
 		case ChunkMapInfo::pan_y:
-			map_info.pan_y = stream.Read32(Reader::CompressedInteger);
+			map_info.pan_y = stream.ReadInt();
 			break;
 		case ChunkMapInfo::encounter_rate:
-			map_info.encounter_rate = stream.Read32(Reader::CompressedInteger);
+			map_info.encounter_rate = stream.ReadInt();
 			break;
 		case ChunkMapInfo::chipset_id:
-			map_info.chipset_id = stream.Read32(Reader::CompressedInteger);
+			map_info.chipset_id = stream.ReadInt();
 			break;
 		case ChunkMapInfo::events:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				map_info.events.push_back(ReadSaveMapEvent(stream));
 			}
 			break;
@@ -74,13 +74,13 @@ RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
 			map_info.parallax_horz_auto = stream.ReadBool();
 			break;
 		case ChunkMapInfo::parallax_horz_speed:
-			map_info.parallax_horz_speed = stream.Read32(Reader::CompressedInteger);
+			map_info.parallax_horz_speed = stream.ReadInt();
 			break;
 		case ChunkMapInfo::parallax_vert_auto:
 			map_info.parallax_vert_auto = stream.ReadBool();
 			break;
 		case ChunkMapInfo::parallax_vert_speed:
-			map_info.parallax_vert_speed = stream.Read32(Reader::CompressedInteger);
+			map_info.parallax_vert_speed = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

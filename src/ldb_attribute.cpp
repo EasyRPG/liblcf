@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Attribute LDB_Reader::ReadAttribute(Reader& stream) {
 	RPG::Attribute attribute;
-	attribute.ID = stream.Read32(Reader::CompressedInteger);
+	attribute.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -43,22 +43,22 @@ RPG::Attribute LDB_Reader::ReadAttribute(Reader& stream) {
 			attribute.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkAttribute::type:
-			attribute.type = stream.Read32(Reader::CompressedInteger);
+			attribute.type = stream.ReadInt();
 			break;
 		case ChunkAttribute::a_rate:
-			attribute.a_rate = stream.Read32(Reader::CompressedInteger);
+			attribute.a_rate = stream.ReadInt();
 			break;
 		case ChunkAttribute::b_rate:
-			attribute.b_rate = stream.Read32(Reader::CompressedInteger);
+			attribute.b_rate = stream.ReadInt();
 			break;
 		case ChunkAttribute::c_rate:
-			attribute.c_rate = stream.Read32(Reader::CompressedInteger);
+			attribute.c_rate = stream.ReadInt();
 			break;
 		case ChunkAttribute::d_rate:
-			attribute.d_rate = stream.Read32(Reader::CompressedInteger);
+			attribute.d_rate = stream.ReadInt();
 			break;
 		case ChunkAttribute::e_rate:
-			attribute.e_rate = stream.Read32(Reader::CompressedInteger);
+			attribute.e_rate = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

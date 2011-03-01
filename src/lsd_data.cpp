@@ -31,52 +31,52 @@ RPG::SaveSystem LSD_Reader::ReadSaveSystem(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkSystem::screen:
-			data.screen = stream.Read32(Reader::CompressedInteger);
+			data.screen = stream.ReadInt();
 			break;
 		case ChunkSystem::frame_count:
-			data.frame_count = stream.Read32(Reader::CompressedInteger);
+			data.frame_count = stream.ReadInt();
 			break;
 		case ChunkSystem::graphics_name:
 			data.graphics_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::switches_size:
-			data.switches_size = stream.Read32(Reader::CompressedInteger);
+			data.switches_size = stream.ReadInt();
 			break;
 		case ChunkSystem::switches:
 			stream.ReadBool(data.switches, chunk_info.length);
 			break;
 		case ChunkSystem::variables_size:
-			data.variables_size = stream.Read32(Reader::CompressedInteger);
+			data.variables_size = stream.ReadInt();
 			break;
 		case ChunkSystem::variables:
 			stream.Read32(data.variables, chunk_info.length);
 			break;
 		case ChunkSystem::message_transparent:
-			data.message_transparent = stream.Read32(Reader::CompressedInteger);
+			data.message_transparent = stream.ReadInt();
 			break;
 		case ChunkSystem::message_position:
-			data.message_position = stream.Read32(Reader::CompressedInteger);
+			data.message_position = stream.ReadInt();
 			break;
 		case ChunkSystem::message_placement:
-			data.message_placement = stream.Read32(Reader::CompressedInteger);
+			data.message_placement = stream.ReadInt();
 			break;
 		case ChunkSystem::message_continue:
-			data.message_continue = stream.Read32(Reader::CompressedInteger);
+			data.message_continue = stream.ReadInt();
 			break;
 		case ChunkSystem::face_name:
 			data.face_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::face_id:
-			data.face_id = stream.Read32(Reader::CompressedInteger);
+			data.face_id = stream.ReadInt();
 			break;
 		case ChunkSystem::face_right:
 			data.face_right = stream.ReadBool();
@@ -88,7 +88,7 @@ RPG::SaveSystem LSD_Reader::ReadSaveSystem(Reader& stream) {
 			data.transparent = stream.ReadBool();
 			break;
 		case ChunkSystem::unknown_3d:
-			data.unknown_3d = stream.Read32(Reader::CompressedInteger);
+			data.unknown_3d = stream.ReadInt();
 			break;
 		case ChunkSystem::title_music:
 			data.title_music = LDB_Reader::ReadMusic(stream);
@@ -196,10 +196,10 @@ RPG::SaveSystem LSD_Reader::ReadSaveSystem(Reader& stream) {
 			data.background = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::save_count:
-			data.save_count = stream.Read32(Reader::CompressedInteger);
+			data.save_count = stream.ReadInt();
 			break;
 		case ChunkSystem::save_slot:
-			data.save_slot = stream.Read32(Reader::CompressedInteger);
+			data.save_slot = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

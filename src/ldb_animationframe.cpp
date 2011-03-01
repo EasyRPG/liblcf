@@ -27,20 +27,20 @@
 ////////////////////////////////////////////////////////////
 RPG::AnimationFrame LDB_Reader::ReadAnimationFrame(Reader& stream) {
 	RPG::AnimationFrame frame;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkAnimationFrame::cells:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				frame.cells.push_back(ReadAnimationCellData(stream));
 			}
 			break;

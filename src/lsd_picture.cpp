@@ -27,16 +27,16 @@
 ////////////////////////////////////////////////////////////
 RPG::SavePicture LSD_Reader::ReadSavePicture(Reader& stream) {
 	RPG::SavePicture picture;
-	picture.ID = stream.Read32(Reader::CompressedInteger);
+	picture.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -80,7 +80,7 @@ RPG::SavePicture LSD_Reader::ReadSavePicture(Reader& stream) {
 			picture.current_sat = stream.ReadDouble();
 			break;
 		case ChunkPicture::effect_mode:
-			picture.effect_mode = stream.Read32(Reader::CompressedInteger);
+			picture.effect_mode = stream.ReadInt();
 			break;
 		case ChunkPicture::effect_speed:
 			picture.effect_speed = stream.ReadDouble();
@@ -95,37 +95,37 @@ RPG::SavePicture LSD_Reader::ReadSavePicture(Reader& stream) {
 			picture.finish_y = stream.ReadDouble();
 			break;
 		case ChunkPicture::finish_magnify:
-			picture.finish_magnify = stream.Read32(Reader::CompressedInteger);
+			picture.finish_magnify = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_top_trans:
-			picture.finish_top_trans = stream.Read32(Reader::CompressedInteger);
+			picture.finish_top_trans = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_bot_trans:
-			picture.finish_bot_trans = stream.Read32(Reader::CompressedInteger);
+			picture.finish_bot_trans = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_red:
-			picture.finish_red = stream.Read32(Reader::CompressedInteger);
+			picture.finish_red = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_green:
-			picture.finish_green = stream.Read32(Reader::CompressedInteger);
+			picture.finish_green = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_blue:
-			picture.finish_blue = stream.Read32(Reader::CompressedInteger);
+			picture.finish_blue = stream.ReadInt();
 			break;
 		case ChunkPicture::finish_sat:
-			picture.finish_sat = stream.Read32(Reader::CompressedInteger);
+			picture.finish_sat = stream.ReadInt();
 			break;
 		case ChunkPicture::effect2_speed:
-			picture.effect2_speed = stream.Read32(Reader::CompressedInteger);
+			picture.effect2_speed = stream.ReadInt();
 			break;
 		case ChunkPicture::time_left:
-			picture.time_left = stream.Read32(Reader::CompressedInteger);
+			picture.time_left = stream.ReadInt();
 			break;
 		case ChunkPicture::current_rotation:
 			picture.current_rotation = stream.ReadDouble();
 			break;
 		case ChunkPicture::current_waver:
-			picture.current_waver = stream.Read32(Reader::CompressedInteger);
+			picture.current_waver = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

@@ -30,11 +30,11 @@ RPG::SaveTitle LSD_Reader::ReadSaveTitle(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -45,34 +45,34 @@ RPG::SaveTitle LSD_Reader::ReadSaveTitle(Reader& stream) {
 			title.hero_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTitle::hero_level:
-			title.hero_level = stream.Read32(Reader::CompressedInteger);
+			title.hero_level = stream.ReadInt();
 			break;
 		case ChunkTitle::hero_hp:
-			title.hero_hp = stream.Read32(Reader::CompressedInteger);
+			title.hero_hp = stream.ReadInt();
 			break;
 		case ChunkTitle::face1_name:
 			title.face1_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTitle::face1_id:
-			title.face1_id = stream.Read32(Reader::CompressedInteger);
+			title.face1_id = stream.ReadInt();
 			break;
 		case ChunkTitle::face2_name:
 			title.face2_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTitle::face2_id:
-			title.face2_id = stream.Read32(Reader::CompressedInteger);
+			title.face2_id = stream.ReadInt();
 			break;
 		case ChunkTitle::face3_name:
 			title.face3_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTitle::face3_id:
-			title.face3_id = stream.Read32(Reader::CompressedInteger);
+			title.face3_id = stream.ReadInt();
 			break;
 		case ChunkTitle::face4_name:
 			title.face4_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkTitle::face4_id:
-			title.face4_id = stream.Read32(Reader::CompressedInteger);
+			title.face4_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

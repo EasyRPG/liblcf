@@ -27,26 +27,26 @@
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimationData LDB_Reader::ReadBattlerAnimationData(Reader& stream) {
 	RPG::BattlerAnimationData battler_animation_data;
-	battler_animation_data.ID = stream.Read32(Reader::CompressedInteger);
+	battler_animation_data.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkBattlerAnimationData::move:
-			battler_animation_data.move = stream.Read32(Reader::CompressedInteger);
+			battler_animation_data.move = stream.ReadInt();
 			break;
 		case ChunkBattlerAnimationData::after_image:
-			battler_animation_data.after_image = stream.Read32(Reader::CompressedInteger);
+			battler_animation_data.after_image = stream.ReadInt();
 			break;
 		case ChunkBattlerAnimationData::pose:
-			battler_animation_data.pose = stream.Read32(Reader::CompressedInteger);
+			battler_animation_data.pose = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

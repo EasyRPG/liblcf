@@ -351,6 +351,12 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_67 = -1;
 }
 
+void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
+	ID = event.ID;
+	position_x = event.x;
+	position_y = event.y;
+}
+
 RPG::SaveScreen::SaveScreen() {
 	tint_finish_red = -1;
 	tint_finish_green = -1;
@@ -447,6 +453,10 @@ RPG::SaveEvents::SaveEvents() {
 	unknown_16 = -1;
 	unknown_17 = -1;
 	unknown_18 = -1;
+	unknown_1c = -1;
+	unknown_20 = -1;
+	unknown_24 = -1;
+	unknown_25 = -1;
 }
 
 RPG::SaveTarget::SaveTarget() {

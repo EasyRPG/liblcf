@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 	RPG::Skill skill;
-	skill.ID = stream.Read32(Reader::CompressedInteger);
+	skill.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -52,28 +52,28 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 			skill.using_message2 = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSkill::failure_message:
-			skill.failure_message = stream.Read32(Reader::CompressedInteger);
+			skill.failure_message = stream.ReadInt();
 			break;
 		case ChunkSkill::type:
-			skill.type = stream.Read32(Reader::CompressedInteger);
+			skill.type = stream.ReadInt();
 			break;
 		case ChunkSkill::sp_type:
-			skill.sp_type = stream.Read32(Reader::CompressedInteger);
+			skill.sp_type = stream.ReadInt();
 			break;
 		case ChunkSkill::sp_percent:
-			skill.sp_percent = stream.Read32(Reader::CompressedInteger);
+			skill.sp_percent = stream.ReadInt();
 			break;
 		case ChunkSkill::sp_cost:
-			skill.sp_cost = stream.Read32(Reader::CompressedInteger);
+			skill.sp_cost = stream.ReadInt();
 			break;
 		case ChunkSkill::scope:
-			skill.scope = stream.Read32(Reader::CompressedInteger);
+			skill.scope = stream.ReadInt();
 			break;
 		case ChunkSkill::switch_id:
-			skill.switch_id = stream.Read32(Reader::CompressedInteger);
+			skill.switch_id = stream.ReadInt();
 			break;
 		case ChunkSkill::animation_id:
-			skill.animation_id = stream.Read32(Reader::CompressedInteger);
+			skill.animation_id = stream.ReadInt();
 			break;
 		case ChunkSkill::sound_effect:
 			skill.sound_effect = ReadSound(stream);
@@ -88,19 +88,19 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 			skill.state_effect = stream.ReadBool();
 			break;
 		case ChunkSkill::pdef_f:
-			skill.pdef_f = stream.Read32(Reader::CompressedInteger);
+			skill.pdef_f = stream.ReadInt();
 			break;
 		case ChunkSkill::mdef_f:
-			skill.mdef_f = stream.Read32(Reader::CompressedInteger);
+			skill.mdef_f = stream.ReadInt();
 			break;
 		case ChunkSkill::variance:
-			skill.variance = stream.Read32(Reader::CompressedInteger);
+			skill.variance = stream.ReadInt();
 			break;
 		case ChunkSkill::power:
-			skill.power = stream.Read32(Reader::CompressedInteger);
+			skill.power = stream.ReadInt();
 			break;
 		case ChunkSkill::hit:
-			skill.hit = stream.Read32(Reader::CompressedInteger);
+			skill.hit = stream.ReadInt();
 			break;
 		case ChunkSkill::affect_hp:
 			skill.affect_hp = stream.ReadBool();
@@ -127,13 +127,13 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 			skill.ignore_defense = stream.ReadBool();
 			break;
 		case ChunkSkill::state_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkSkill::state_effects:
 			stream.ReadBool(skill.state_effects, chunk_info.length);
 			break;
 		case ChunkSkill::attribute_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkSkill::attribute_effects:
 			stream.ReadBool(skill.attribute_effects, chunk_info.length);
@@ -142,10 +142,10 @@ RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
 			skill.affect_attr_defence = stream.ReadBool();
 			break;
 		case ChunkSkill::battler_animation:
-			skill.battler_animation = stream.Read32(Reader::CompressedInteger);
+			skill.battler_animation = stream.ReadInt();
 			break;
 		case ChunkSkill::battler_animation_data:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				skill.battler_animation_data.push_back(ReadBattlerAnimationData(stream));
 			}
 			break;

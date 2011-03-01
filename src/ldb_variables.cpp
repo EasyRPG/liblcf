@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 std::vector<std::string> LDB_Reader::ReadVariables(Reader& stream) {
 	std::vector<std::string> variables;
-	variables.resize(stream.Read32(Reader::CompressedInteger) + 1);
+	variables.resize(stream.ReadInt() + 1);
 
 	int pos;
 	Reader::Chunk chunk_info;
 	for (int i = variables.size() - 1; i > 0; i--) {
-		pos = stream.Read32(Reader::CompressedInteger);
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		pos = stream.ReadInt();
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID != ChunkData::END) {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {

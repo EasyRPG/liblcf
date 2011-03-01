@@ -30,30 +30,30 @@ RPG::SaveEventData LSD_Reader::ReadSaveEventData(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkEventData::time_left:
-			result.time_left = stream.Read32(Reader::CompressedInteger);
+			result.time_left = stream.ReadInt();
 			break;
 		case ChunkEventData::commands:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				result.commands.push_back(ReadSaveEventCommands(stream));
 			}
 			break;
 		case ChunkEventData::unknown_16:
-			result.unknown_16 = stream.Read32(Reader::CompressedInteger);
+			result.unknown_16 = stream.ReadInt();
 			break;
 		case ChunkEventData::unknown_17:
-			result.unknown_17 = stream.Read32(Reader::CompressedInteger);
+			result.unknown_17 = stream.ReadInt();
 			break;
 		case ChunkEventData::unknown_20:
-			result.unknown_20 = stream.Read32(Reader::CompressedInteger);
+			result.unknown_20 = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

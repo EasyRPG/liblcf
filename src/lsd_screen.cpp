@@ -30,25 +30,25 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkScreen::tint_finish_red:
-			result.tint_finish_red = stream.Read32(Reader::CompressedInteger);
+			result.tint_finish_red = stream.ReadInt();
 			break;
 		case ChunkScreen::tint_finish_green:
-			result.tint_finish_green = stream.Read32(Reader::CompressedInteger);
+			result.tint_finish_green = stream.ReadInt();
 			break;
 		case ChunkScreen::tint_finish_blue:
-			result.tint_finish_blue = stream.Read32(Reader::CompressedInteger);
+			result.tint_finish_blue = stream.ReadInt();
 			break;
 		case ChunkScreen::tint_finish_sat:
-			result.tint_finish_sat = stream.Read32(Reader::CompressedInteger);
+			result.tint_finish_sat = stream.ReadInt();
 			break;
 		case ChunkScreen::tint_current_red:
 			result.tint_current_red = stream.ReadDouble();
@@ -63,64 +63,64 @@ RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
 			result.tint_current_sat = stream.ReadDouble();
 			break;
 		case ChunkScreen::tint_time_left:
-			result.tint_time_left = stream.Read32(Reader::CompressedInteger);
+			result.tint_time_left = stream.ReadInt();
 			break;
 		case ChunkScreen::flash_continuous:
 			result.flash_continuous = stream.ReadBool();
 			break;
 		case ChunkScreen::flash_red:
-			result.flash_red = stream.Read32(Reader::CompressedInteger);
+			result.flash_red = stream.ReadInt();
 			break;
 		case ChunkScreen::flash_green:
-			result.flash_green = stream.Read32(Reader::CompressedInteger);
+			result.flash_green = stream.ReadInt();
 			break;
 		case ChunkScreen::flash_blue:
-			result.flash_blue = stream.Read32(Reader::CompressedInteger);
+			result.flash_blue = stream.ReadInt();
 			break;
 		case ChunkScreen::flash_current_level:
 			result.flash_current_level = stream.ReadDouble();
 			break;
 		case ChunkScreen::flash_time_left:
-			result.flash_time_left = stream.Read32(Reader::CompressedInteger);
+			result.flash_time_left = stream.ReadInt();
 			break;
 		case ChunkScreen::shake_continuous:
 			result.shake_continuous = stream.ReadBool();
 			break;
 		case ChunkScreen::shake_strength:
-			result.shake_strength = stream.Read32(Reader::CompressedInteger);
+			result.shake_strength = stream.ReadInt();
 			break;
 		case ChunkScreen::shake_speed:
-			result.shake_speed = stream.Read32(Reader::CompressedInteger);
+			result.shake_speed = stream.ReadInt();
 			break;
 		case ChunkScreen::shake_position:
-			result.shake_position = stream.Read32(Reader::CompressedInteger);
+			result.shake_position = stream.ReadInt();
 			break;
 		case ChunkScreen::shake_time_left:
-			result.shake_time_left = stream.Read32(Reader::CompressedInteger);
+			result.shake_time_left = stream.ReadInt();
 			break;
 		case ChunkScreen::pan_x:
-			result.pan_x = stream.Read32(Reader::CompressedInteger);
+			result.pan_x = stream.ReadInt();
 			break;
 		case ChunkScreen::pan_y:
-			result.pan_y = stream.Read32(Reader::CompressedInteger);
+			result.pan_y = stream.ReadInt();
 			break;
 		case ChunkScreen::battleanim_id:
-			result.battleanim_id = stream.Read32(Reader::CompressedInteger);
+			result.battleanim_id = stream.ReadInt();
 			break;
 		case ChunkScreen::battleanim_target:
-			result.battleanim_target = stream.Read32(Reader::CompressedInteger);
+			result.battleanim_target = stream.ReadInt();
 			break;
 		case ChunkScreen::battleanim_unk_2d:
-			result.battleanim_unk_2d = stream.Read32(Reader::CompressedInteger);
+			result.battleanim_unk_2d = stream.ReadInt();
 			break;
 		case ChunkScreen::battleanim_global:
 			result.battleanim_global = stream.ReadBool();
 			break;
 		case ChunkScreen::weather:
-			result.weather = stream.Read32(Reader::CompressedInteger);
+			result.weather = stream.ReadInt();
 			break;
 		case ChunkScreen::weather_strength:
-			result.weather_strength = stream.Read32(Reader::CompressedInteger);
+			result.weather_strength = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

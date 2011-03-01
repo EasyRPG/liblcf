@@ -410,6 +410,10 @@ namespace LSD_Reader {
 			unknown_16		= 0x16, // int
 			unknown_17		= 0x17, // int
 			unknown_18		= 0x18, // int
+			unknown_1c		= 0x1C, // int/bool
+			unknown_20		= 0x20, // int/bool
+			unknown_24		= 0x24, // int/bool
+			unknown_25		= 0x25, // int/bool
 			END				= 0x00	// End of chunk
 		};
 	};

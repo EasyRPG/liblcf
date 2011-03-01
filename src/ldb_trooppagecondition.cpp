@@ -31,11 +31,11 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -56,70 +56,70 @@ RPG::TroopPageCondition LDB_Reader::ReadTroopPageCondition(Reader& stream) {
 			}
 			break;
 		case ChunkTroopPageCondition::switch_a_id:
-			condition.switch_a_id = stream.Read32(Reader::CompressedInteger);
+			condition.switch_a_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::switch_b_id:
-			condition.switch_b_id = stream.Read32(Reader::CompressedInteger);
+			condition.switch_b_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::variable_id:
-			condition.variable_id = stream.Read32(Reader::CompressedInteger);
+			condition.variable_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::variable_value:
-			condition.variable_value = stream.Read32(Reader::CompressedInteger);
+			condition.variable_value = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_a:
-			condition.turn_a = stream.Read32(Reader::CompressedInteger);
+			condition.turn_a = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_b:
-			condition.turn_b = stream.Read32(Reader::CompressedInteger);
+			condition.turn_b = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::fatigue_min:
-			condition.fatigue_min = stream.Read32(Reader::CompressedInteger);
+			condition.fatigue_min = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::fatigue_max:
-			condition.fatigue_max = stream.Read32(Reader::CompressedInteger);
+			condition.fatigue_max = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::enemy_id:
-			condition.enemy_id = stream.Read32(Reader::CompressedInteger);
+			condition.enemy_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::enemy_hp_min:
-			condition.enemy_hp_min = stream.Read32(Reader::CompressedInteger);
+			condition.enemy_hp_min = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::enemy_hp_max:
-			condition.enemy_hp_max = stream.Read32(Reader::CompressedInteger);
+			condition.enemy_hp_max = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::actor_id:
-			condition.actor_id = stream.Read32(Reader::CompressedInteger);
+			condition.actor_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::actor_hp_min:
-			condition.actor_hp_min = stream.Read32(Reader::CompressedInteger);
+			condition.actor_hp_min = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::actor_hp_max:
-			condition.actor_hp_max = stream.Read32(Reader::CompressedInteger);
+			condition.actor_hp_max = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_enemy_id:
-			condition.turn_enemy_id = stream.Read32(Reader::CompressedInteger);
+			condition.turn_enemy_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_enemy_a:
-			condition.turn_enemy_a = stream.Read32(Reader::CompressedInteger);
+			condition.turn_enemy_a = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_enemy_b:
-			condition.turn_enemy_b = stream.Read32(Reader::CompressedInteger);
+			condition.turn_enemy_b = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_actor_id:
-			condition.turn_actor_id = stream.Read32(Reader::CompressedInteger);
+			condition.turn_actor_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_actor_a:
-			condition.turn_actor_a = stream.Read32(Reader::CompressedInteger);
+			condition.turn_actor_a = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::turn_actor_b:
-			condition.turn_actor_b = stream.Read32(Reader::CompressedInteger);
+			condition.turn_actor_b = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::command_actor_id:
-			condition.command_actor_id = stream.Read32(Reader::CompressedInteger);
+			condition.command_actor_id = stream.ReadInt();
 			break;
 		case ChunkTroopPageCondition::command_id:
-			condition.command_id = stream.Read32(Reader::CompressedInteger);
+			condition.command_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 	RPG::Item item;
-	item.ID = stream.Read32(Reader::CompressedInteger);
+	item.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -46,43 +46,43 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			item.description = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkItem::type:
-			item.type = stream.Read32(Reader::CompressedInteger);
+			item.type = stream.ReadInt();
 			if (item.type == RPG::Item::Type_switch) {
 				item.ocassion_field = true;
 			}
 			break;
 		case ChunkItem::price:
-			item.price = stream.Read32(Reader::CompressedInteger);
+			item.price = stream.ReadInt();
 			break;
 		case ChunkItem::uses:
-			item.uses = stream.Read32(Reader::CompressedInteger);
+			item.uses = stream.ReadInt();
 			break;
 		case ChunkItem::atk_points1:
-			item.atk_points = stream.Read32(Reader::CompressedInteger);
+			item.atk_points = stream.ReadInt();
 			break;
 		case ChunkItem::def_points1:
-			item.def_points = stream.Read32(Reader::CompressedInteger);
+			item.def_points = stream.ReadInt();
 			break;
 		case ChunkItem::spi_points1:
-			item.spi_points = stream.Read32(Reader::CompressedInteger);
+			item.spi_points = stream.ReadInt();
 			break;
 		case ChunkItem::agi_points1:
-			item.agi_points = stream.Read32(Reader::CompressedInteger);
+			item.agi_points = stream.ReadInt();
 			break;
 		case ChunkItem::two_handed:
 			item.two_handed = stream.ReadBool();
 			break;
 		case ChunkItem::sp_cost:
-			item.sp_cost = stream.Read32(Reader::CompressedInteger);
+			item.sp_cost = stream.ReadInt();
 			break;
 		case ChunkItem::hit:
-			item.hit = stream.Read32(Reader::CompressedInteger);
+			item.hit = stream.ReadInt();
 			break;
 		case ChunkItem::critical_hit:
-			item.critical_hit = stream.Read32(Reader::CompressedInteger);
+			item.critical_hit = stream.ReadInt();
 			break;
 		case ChunkItem::animation_id:
-			item.animation_id = stream.Read32(Reader::CompressedInteger);
+			item.animation_id = stream.ReadInt();
 			break;
 		case ChunkItem::preemptive:
 			item.preemptive = stream.ReadBool();
@@ -115,16 +115,16 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			item.entire_party = stream.ReadBool();
 			break;
 		case ChunkItem::recover_hp:
-			item.recover_hp = stream.Read32(Reader::CompressedInteger);
+			item.recover_hp = stream.ReadInt();
 			break;
 		case ChunkItem::recover_hp_rate:
-			item.recover_hp_rate = stream.Read32(Reader::CompressedInteger);
+			item.recover_hp_rate = stream.ReadInt();
 			break;
 		case ChunkItem::recover_sp:
-			item.recover_sp = stream.Read32(Reader::CompressedInteger);
+			item.recover_sp = stream.ReadInt();
 			break;
 		case ChunkItem::recover_sp_rate:
-			item.recover_sp_rate = stream.Read32(Reader::CompressedInteger);
+			item.recover_sp_rate = stream.ReadInt();
 			break;
 		case ChunkItem::ocassion_field1:
 			item.ocassion_field = stream.ReadBool();
@@ -133,31 +133,31 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			item.ko_only = stream.ReadBool();
 			break;
 		case ChunkItem::max_hp_points:
-			item.max_hp_points = stream.Read32(Reader::CompressedInteger);
+			item.max_hp_points = stream.ReadInt();
 			break;
 		case ChunkItem::max_sp_points:
-			item.max_sp_points = stream.Read32(Reader::CompressedInteger);
+			item.max_sp_points = stream.ReadInt();
 			break;
 		case ChunkItem::atk_points2:
-			item.atk_points = stream.Read32(Reader::CompressedInteger);
+			item.atk_points = stream.ReadInt();
 			break;
 		case ChunkItem::def_points2:
-			item.def_points = stream.Read32(Reader::CompressedInteger);
+			item.def_points = stream.ReadInt();
 			break;
 		case ChunkItem::spi_points2:
-			item.spi_points = stream.Read32(Reader::CompressedInteger);
+			item.spi_points = stream.ReadInt();
 			break;
 		case ChunkItem::agi_points2:
-			item.agi_points = stream.Read32(Reader::CompressedInteger);
+			item.agi_points = stream.ReadInt();
 			break;
 		case ChunkItem::using_message:
-			item.using_message = stream.Read32(Reader::CompressedInteger);
+			item.using_message = stream.ReadInt();
 			break;
 		case ChunkItem::skill_id:
-			item.skill_id = stream.Read32(Reader::CompressedInteger);
+			item.skill_id = stream.ReadInt();
 			break;
 		case ChunkItem::switch_id:
-			item.switch_id = stream.Read32(Reader::CompressedInteger);
+			item.switch_id = stream.ReadInt();
 			break;
 		case ChunkItem::ocassion_field2:
 			item.ocassion_field = stream.ReadBool();
@@ -166,51 +166,51 @@ RPG::Item LDB_Reader::ReadItem(Reader& stream) {
 			item.ocassion_battle = stream.ReadBool();
 			break;
 		case ChunkItem::actor_set_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkItem::actor_set:
 			stream.ReadBool(item.actor_set, chunk_info.length);
 			break;
 		case ChunkItem::state_set_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkItem::state_set:
 			stream.ReadBool(item.state_set, chunk_info.length);
 			break;
 		case ChunkItem::attribute_set_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkItem::attribute_set:
 			stream.ReadBool(item.attribute_set, chunk_info.length);
 			break;
 		case ChunkItem::state_chance:
-			item.state_chance = stream.Read32(Reader::CompressedInteger);
+			item.state_chance = stream.ReadInt();
 			break;
 		case ChunkItem::state_effect:
 			item.state_effect = stream.ReadBool();
 			break;
 		case ChunkItem::weapon_animation:
-			item.weapon_animation = stream.Read32(Reader::CompressedInteger);
+			item.weapon_animation = stream.ReadInt();
 			break;
 		case ChunkItem::use_skill:
 			item.use_skill = stream.ReadBool();
 			break;
 		case ChunkItem::class_set_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkItem::class_set:
 			stream.ReadBool(item.class_set, chunk_info.length);
 			break;
 		case ChunkItem::animation_data:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				item.animation_data.push_back(ReadItemAnimation(stream));
 			}
 			break;
 		case ChunkItem::ranged_target:
-			item.ranged_target = stream.Read32(Reader::CompressedInteger);
+			item.ranged_target = stream.ReadInt();
 			break;
 		case ChunkItem::ranged_trajectory:
-			item.ranged_trajectory = stream.Read32(Reader::CompressedInteger);
+			item.ranged_trajectory = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

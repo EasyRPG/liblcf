@@ -27,16 +27,16 @@
 ////////////////////////////////////////////////////////////
 RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 	RPG::SaveActor actor;
-	actor.ID = stream.Read32(Reader::CompressedInteger);
+	actor.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -50,43 +50,43 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			actor.sprite_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkActor::sprite_id:
-			actor.sprite_id = stream.Read32(Reader::CompressedInteger);
+			actor.sprite_id = stream.ReadInt();
 			break;
 		case ChunkActor::sprite_flags:
-			actor.sprite_flags = stream.Read32(Reader::CompressedInteger);
+			actor.sprite_flags = stream.ReadInt();
 			break;
 		case ChunkActor::face_name:
 			actor.face_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkActor::face_id:
-			actor.face_id = stream.Read32(Reader::CompressedInteger);
+			actor.face_id = stream.ReadInt();
 			break;
 		case ChunkActor::level:
-			actor.level = stream.Read32(Reader::CompressedInteger);
+			actor.level = stream.ReadInt();
 			break;
 		case ChunkActor::exp:
-			actor.exp = stream.Read32(Reader::CompressedInteger);
+			actor.exp = stream.ReadInt();
 			break;
 		case ChunkActor::hp_mod:
-			actor.hp_mod = stream.Read32(Reader::CompressedInteger);
+			actor.hp_mod = stream.ReadInt();
 			break;
 		case ChunkActor::sp_mod:
-			actor.sp_mod = stream.Read32(Reader::CompressedInteger);
+			actor.sp_mod = stream.ReadInt();
 			break;
 		case ChunkActor::attack_mod:
-			actor.attack_mod = stream.Read32(Reader::CompressedInteger);
+			actor.attack_mod = stream.ReadInt();
 			break;
 		case ChunkActor::defense_mod:
-			actor.defense_mod = stream.Read32(Reader::CompressedInteger);
+			actor.defense_mod = stream.ReadInt();
 			break;
 		case ChunkActor::spirit_mod:
-			actor.spirit_mod = stream.Read32(Reader::CompressedInteger);
+			actor.spirit_mod = stream.ReadInt();
 			break;
 		case ChunkActor::agility_mod:
-			actor.agility_mod = stream.Read32(Reader::CompressedInteger);
+			actor.agility_mod = stream.ReadInt();
 			break;
 		case ChunkActor::skills_size:
-			actor.skills_size = stream.Read32(Reader::CompressedInteger);
+			actor.skills_size = stream.ReadInt();
 			break;
 		case ChunkActor::skills:
 			stream.Read16(actor.skills, chunk_info.length);
@@ -95,16 +95,16 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			stream.Read16(actor.equipped, chunk_info.length);
 			break;
 		case ChunkActor::current_hp:
-			actor.current_hp = stream.Read32(Reader::CompressedInteger);
+			actor.current_hp = stream.ReadInt();
 			break;
 		case ChunkActor::current_sp:
-			actor.current_sp = stream.Read32(Reader::CompressedInteger);
+			actor.current_sp = stream.ReadInt();
 			break;
 		case ChunkActor::battle_commands:
 			stream.Read32(actor.battle_commands, chunk_info.length);
 			break;
 		case ChunkActor::status_size:
-			actor.status_size = stream.Read32(Reader::CompressedInteger);
+			actor.status_size = stream.ReadInt();
 			break;
 		case ChunkActor::status:
 			stream.Read16(actor.status, chunk_info.length);
@@ -113,10 +113,10 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			actor.changed_class = stream.ReadBool();
 			break;
 		case ChunkActor::class_id:
-			actor.class_id = stream.Read32(Reader::CompressedInteger);
+			actor.class_id = stream.ReadInt();
 			break;
 		case ChunkActor::unknown_5b:
-			actor.unknown_5b = stream.Read32(Reader::CompressedInteger);
+			actor.unknown_5b = stream.ReadInt();
 			break;
 		case ChunkActor::two_weapon:
 			actor.two_weapon = stream.ReadBool();
@@ -131,7 +131,7 @@ RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
 			actor.mighty_guard = stream.ReadBool();
 			break;
 		case ChunkActor::unknown_60:
-			actor.unknown_60 = stream.Read32(Reader::CompressedInteger);
+			actor.unknown_60 = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

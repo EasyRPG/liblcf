@@ -32,7 +32,7 @@ std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
 	}
-	std::string header = reader.ReadString(reader.Read32(Reader::CompressedInteger));
+	std::string header = reader.ReadString(reader.ReadInt());
 	if (header != "LcfMapUnit") {
 		Reader::SetError("%s is not a valid RPG2000 map.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
@@ -45,29 +45,29 @@ std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 std::auto_ptr<RPG::Map> LMU_Reader::ReadMapData(Reader& stream) {
 	std::auto_ptr<RPG::Map> map(new RPG::Map());
-	//stream.Read32(Reader::CompressedInteger);
+	//stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkMap::chipset_id:
-			map->chipset_id = stream.Read32(Reader::CompressedInteger);
+			map->chipset_id = stream.ReadInt();
 			break;
 		case ChunkMap::width:
-			map->width = stream.Read32(Reader::CompressedInteger);
+			map->width = stream.ReadInt();
 			break;
 		case ChunkMap::height:
-			map->height = stream.Read32(Reader::CompressedInteger);
+			map->height = stream.ReadInt();
 			break;
 		case ChunkMap::scroll_type:
-			map->scroll_type = stream.Read32(Reader::CompressedInteger);
+			map->scroll_type = stream.ReadInt();
 			break;
 		case ChunkMap::parallax_flag:
 			map->parallax_flag = stream.ReadBool();
@@ -85,13 +85,13 @@ std::auto_ptr<RPG::Map> LMU_Reader::ReadMapData(Reader& stream) {
 			map->parallax_auto_loop_x = stream.ReadBool();
 			break;
 		case ChunkMap::parallax_sx:
-			map->parallax_sx = stream.Read32(Reader::CompressedInteger);
+			map->parallax_sx = stream.ReadInt();
 			break;
 		case ChunkMap::parallax_auto_loop_y:
 			map->parallax_auto_loop_y = stream.ReadBool();
 			break;
 		case ChunkMap::parallax_sy:
-			map->parallax_sy = stream.Read32(Reader::CompressedInteger);
+			map->parallax_sy = stream.ReadInt();
 			break;
 		case ChunkMap::lower_layer:
 			stream.Read16(map->lower_layer, chunk_info.length);
@@ -100,30 +100,30 @@ std::auto_ptr<RPG::Map> LMU_Reader::ReadMapData(Reader& stream) {
 			stream.Read16(map->upper_layer, chunk_info.length);
 			break;
 		case ChunkMap::events:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				map->events.push_back(ReadEvent(stream));
 			}
 			break;
 		case ChunkMap::save_times:
-			map->save_times = stream.Read32(Reader::CompressedInteger);
+			map->save_times = stream.ReadInt();
 			break;
 		case ChunkMap::generator_flag:
 			map->generator_flag = stream.ReadBool();
 			break;
 		case ChunkMap::generator_mode:
-			map->generator_mode = stream.Read32(Reader::CompressedInteger);
+			map->generator_mode = stream.ReadInt();
 			break;
 		case ChunkMap::top_level:
-			map->top_level = stream.Read32(Reader::CompressedInteger) != 0;
+			map->top_level = stream.ReadInt() != 0;
 			break;
 		case ChunkMap::generator_tiles:
-			map->generator_tiles = stream.Read32(Reader::CompressedInteger);
+			map->generator_tiles = stream.ReadInt();
 			break;
 		case ChunkMap::generator_width:
-			map->generator_width = stream.Read32(Reader::CompressedInteger);
+			map->generator_width = stream.ReadInt();
 			break;
 		case ChunkMap::generator_height:
-			map->generator_height = stream.Read32(Reader::CompressedInteger);
+			map->generator_height = stream.ReadInt();
 			break;
 		case ChunkMap::generator_surround:
 			map->generator_surround = stream.ReadBool();

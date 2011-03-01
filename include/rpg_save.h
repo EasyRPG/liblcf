@@ -32,6 +32,7 @@
 #include "rpg_system.h"
 #include "rpg_map.h"
 #include "rpg_mapinfo.h"
+#include "rpg_event.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Map class
@@ -313,6 +314,7 @@ namespace RPG {
 	class SaveMapEvent {
 	public:
 		SaveMapEvent();
+		void Setup(const RPG::Event& event);
 
 		int ID;
 		int unknown_01;
@@ -429,6 +431,10 @@ namespace RPG {
 		int unknown_16;
 		int unknown_17;
 		int unknown_18;
+		int unknown_1c;
+		int unknown_20;
+		int unknown_24;
+		int unknown_25;
 	};
 
 	class SaveTarget {

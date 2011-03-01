@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Class LDB_Reader::ReadClass(Reader& stream) {
 	RPG::Class _class;
-	_class.ID = stream.Read32(Reader::CompressedInteger);
+	_class.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -63,30 +63,30 @@ RPG::Class LDB_Reader::ReadClass(Reader& stream) {
 			stream.Read16(_class.parameter_agility, chunk_info.length / 6);
 			break;
 		case ChunkClass::exp_base:
-			_class.exp_base = stream.Read32(Reader::CompressedInteger);
+			_class.exp_base = stream.ReadInt();
 			break;
 		case ChunkClass::exp_inflation:
-			_class.exp_inflation = stream.Read32(Reader::CompressedInteger);
+			_class.exp_inflation = stream.ReadInt();
 			break;
 		case ChunkClass::exp_correction:
-			_class.exp_correction = stream.Read32(Reader::CompressedInteger);
+			_class.exp_correction = stream.ReadInt();
 			break;
 		case ChunkClass::unarmed_animation:
-			_class.unarmed_animation = stream.Read32(Reader::CompressedInteger);
+			_class.unarmed_animation = stream.ReadInt();
 			break;
 		case ChunkClass::skills:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				_class.skills.push_back(ReadLearning(stream));
 			}
 			break;
 		case ChunkClass::state_ranks_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkClass::state_ranks:
 			stream.Read8(_class.state_ranks, chunk_info.length);
 			break;
 		case ChunkClass::attribute_ranks_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkClass::attribute_ranks:
 			stream.Read8(_class.attribute_ranks, chunk_info.length);

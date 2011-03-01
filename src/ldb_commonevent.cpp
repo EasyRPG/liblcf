@@ -28,15 +28,15 @@
 ////////////////////////////////////////////////////////////
 RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
 	RPG::CommonEvent commonevent;
-	commonevent.ID = stream.Read32(Reader::CompressedInteger);
+	commonevent.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -44,16 +44,16 @@ RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
 			commonevent.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkCommonEvent::trigger:
-			commonevent.trigger = stream.Read32(Reader::CompressedInteger);
+			commonevent.trigger = stream.ReadInt();
 			break;
 		case ChunkCommonEvent::switch_flag:
 			commonevent.switch_flag = stream.ReadBool();
 			break;
 		case ChunkCommonEvent::switch_id:
-			commonevent.switch_id = stream.Read32(Reader::CompressedInteger);
+			commonevent.switch_id = stream.ReadInt();
 			break;
 		case ChunkCommonEvent::event_commands_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkCommonEvent::event_commands:
 			// Event Commands is a special array

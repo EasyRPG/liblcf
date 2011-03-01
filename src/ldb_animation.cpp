@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Animation LDB_Reader::ReadAnimation(Reader& stream) {
 	RPG::Animation animation;
-	animation.ID = stream.Read32(Reader::CompressedInteger);
+	animation.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -46,18 +46,18 @@ RPG::Animation LDB_Reader::ReadAnimation(Reader& stream) {
 			animation.animation_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkAnimation::timings:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				animation.timings.push_back(ReadAnimationTiming(stream));
 			}
 			break;
 		case ChunkAnimation::scope:
-			animation.scope = stream.Read32(Reader::CompressedInteger);
+			animation.scope = stream.ReadInt();
 			break;
 		case ChunkAnimation::position:
-			animation.position = stream.Read32(Reader::CompressedInteger);
+			animation.position = stream.ReadInt();
 			break;
 		case ChunkAnimation::frames:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				animation.frames.push_back(ReadAnimationFrame(stream));
 			}
 			break;

@@ -28,23 +28,23 @@
 RPG::MoveCommand LMU_Reader::ReadMoveCommand(Reader& stream) {
 	RPG::MoveCommand movecommand;
 
-	movecommand.command_id = stream.Read32(Reader::CompressedInteger);
+	movecommand.command_id = stream.ReadInt();
 	switch (movecommand.command_id) {
 	case ChunkMoveCommand::switch_on:
-		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_a = stream.ReadInt();
 		break;
 	case ChunkMoveCommand::switch_off:
-		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_a = stream.ReadInt();
 		break;
 	case ChunkMoveCommand::change_graphic:
-		movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
-		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_string = stream.ReadString(stream.ReadInt());
+		movecommand.parameter_a = stream.ReadInt();
 		break;
 	case ChunkMoveCommand::play_sound:
-		movecommand.parameter_string = stream.ReadString(stream.Read32(Reader::CompressedInteger));
-		movecommand.parameter_a = stream.Read32(Reader::CompressedInteger);
-		movecommand.parameter_b = stream.Read32(Reader::CompressedInteger);
-		movecommand.parameter_c = stream.Read32(Reader::CompressedInteger);
+		movecommand.parameter_string = stream.ReadString(stream.ReadInt());
+		movecommand.parameter_a = stream.ReadInt();
+		movecommand.parameter_b = stream.ReadInt();
+		movecommand.parameter_c = stream.ReadInt();
 		break;
 	}
 	return movecommand;

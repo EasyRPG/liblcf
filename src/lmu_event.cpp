@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Event LMU_Reader::ReadEvent(Reader& stream) {
 	RPG::Event evnt;
-	evnt.ID = stream.Read32(Reader::CompressedInteger);
+	evnt.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -43,13 +43,13 @@ RPG::Event LMU_Reader::ReadEvent(Reader& stream) {
 			evnt.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkEvent::x:
-			evnt.x = stream.Read32(Reader::CompressedInteger);
+			evnt.x = stream.ReadInt();
 			break;
 		case ChunkEvent::y:
-			evnt.y = stream.Read32(Reader::CompressedInteger);
+			evnt.y = stream.ReadInt();
 			break;
 		case ChunkEvent::pages:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				evnt.pages.push_back(ReadEventPage(stream));
 			}
 			break;

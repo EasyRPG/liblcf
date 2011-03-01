@@ -32,67 +32,67 @@ RPG::SaveVehicleLocation LSD_Reader::ReadSaveVehicleLocation(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkVehicleLocation::map_id:
-			location.map_id = stream.Read32(Reader::CompressedInteger);
+			location.map_id = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::position_x:
-			location.position_x = stream.Read32(Reader::CompressedInteger);
+			location.position_x = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::position_y:
-			location.position_y = stream.Read32(Reader::CompressedInteger);
+			location.position_y = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::facing1:
-			location.facing1 = stream.Read32(Reader::CompressedInteger);
+			location.facing1 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::facing2:
-			location.facing2 = stream.Read32(Reader::CompressedInteger);
+			location.facing2 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_17:
-			location.unknown_17 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_17 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_21:
-			location.unknown_21 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_21 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_23:
-			location.unknown_23 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_23 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_25:
-			location.unknown_25 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_25 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::move_route:
 			location.move_route = LMU_Reader::ReadMoveRoute(stream);
 			break;
 		case ChunkVehicleLocation::unknown_34:
-			location.unknown_34 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_34 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_35:
-			location.unknown_35 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_35 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::sprite_name:
 			location.sprite_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkVehicleLocation::sprite_id:
-			location.sprite_id = stream.Read32(Reader::CompressedInteger);
+			location.sprite_id = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_4b:
-			location.unknown_4b = stream.Read32(Reader::CompressedInteger);
+			location.unknown_4b = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::unknown_65:
-			location.unknown_65 = stream.Read32(Reader::CompressedInteger);
+			location.unknown_65 = stream.ReadInt();
 			break;
 		case ChunkVehicleLocation::sprite2_name:
 			location.sprite2_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkVehicleLocation::sprite2_id:
-			location.sprite2_id = stream.Read32(Reader::CompressedInteger);
+			location.sprite2_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

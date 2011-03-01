@@ -27,23 +27,23 @@
 ////////////////////////////////////////////////////////////
 RPG::Learning LDB_Reader::ReadLearning(Reader& stream) {
 	RPG::Learning learning;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkLearning::level:
-			learning.level = stream.Read32(Reader::CompressedInteger);
+			learning.level = stream.ReadInt();
 			break;
 		case ChunkLearning::skill_id:
-			learning.skill_id = stream.Read32(Reader::CompressedInteger);
+			learning.skill_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

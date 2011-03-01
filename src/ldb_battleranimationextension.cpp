@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimationExtension LDB_Reader::ReadBattlerAnimationExtension(Reader& stream) {
 	RPG::BattlerAnimationExtension extension;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -46,13 +46,13 @@ RPG::BattlerAnimationExtension LDB_Reader::ReadBattlerAnimationExtension(Reader&
 			extension.battler_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkBattlerAnimationExtension::battler_index:
-			extension.battler_index = stream.Read32(Reader::CompressedInteger);
+			extension.battler_index = stream.ReadInt();
 			break;
 		case ChunkBattlerAnimationExtension::animation_type:
-			extension.animation_type = stream.Read32(Reader::CompressedInteger);
+			extension.animation_type = stream.ReadInt();
 			break;
 		case ChunkBattlerAnimationExtension::animation_id:
-			extension.animation_id = stream.Read32(Reader::CompressedInteger);
+			extension.animation_id = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

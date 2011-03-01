@@ -30,16 +30,16 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkSystem::ldb_id:
-			system.ldb_id = stream.Read32(Reader::CompressedInteger);
+			system.ldb_id = stream.ReadInt();
 			break;
 		case ChunkSystem::boat_name:
 			system.boat_name = stream.ReadString(chunk_info.length);
@@ -51,13 +51,13 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 			system.airship_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::boat_index:
-			system.boat_index = stream.Read32(Reader::CompressedInteger);
+			system.boat_index = stream.ReadInt();
 			break;
 		case ChunkSystem::ship_index:
-			system.ship_index = stream.Read32(Reader::CompressedInteger);
+			system.ship_index = stream.ReadInt();
 			break;
 		case ChunkSystem::airship_index:
-			system.airship_index = stream.Read32(Reader::CompressedInteger);
+			system.airship_index = stream.ReadInt();
 			break;
 		case ChunkSystem::title_name:
 			system.title_name = stream.ReadString(chunk_info.length);
@@ -72,13 +72,13 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 			system.system2_name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::party_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkSystem::party:
 			stream.Read16(system.party, chunk_info.length);
 			break;
 		case ChunkSystem::menu_commands_size:
-			stream.Read32(Reader::CompressedInteger);
+			stream.ReadInt();
 			break;
 		case ChunkSystem::menu_commands:
 			stream.Read16(system.menu_commands, chunk_info.length);
@@ -144,54 +144,54 @@ RPG::System LDB_Reader::ReadSystem(Reader& stream) {
 			system.item_se = ReadSound(stream);
 			break;
 		case ChunkSystem::transition_out:
-			system.transition_out = stream.Read32(Reader::CompressedInteger);
+			system.transition_out = stream.ReadInt();
 			break;
 		case ChunkSystem::transition_in:
-			system.transition_in = stream.Read32(Reader::CompressedInteger);
+			system.transition_in = stream.ReadInt();
 			break;
 		case ChunkSystem::battle_start_fadeout:
-			system.battle_start_fadeout = stream.Read32(Reader::CompressedInteger);
+			system.battle_start_fadeout = stream.ReadInt();
 			break;
 		case ChunkSystem::battle_start_fadein:
-			system.battle_start_fadein = stream.Read32(Reader::CompressedInteger);
+			system.battle_start_fadein = stream.ReadInt();
 			break;
 		case ChunkSystem::battle_end_fadeout:
-			system.battle_end_fadeout = stream.Read32(Reader::CompressedInteger);
+			system.battle_end_fadeout = stream.ReadInt();
 			break;
 		case ChunkSystem::battle_end_fadein:
-			system.battle_end_fadein = stream.Read32(Reader::CompressedInteger);
+			system.battle_end_fadein = stream.ReadInt();
 			break;
 		case ChunkSystem::message_stretch:
-			system.message_stretch = stream.Read32(Reader::CompressedInteger);
+			system.message_stretch = stream.ReadInt();
 			break;
 		case ChunkSystem::font_id:
-			system.font_id = stream.Read32(Reader::CompressedInteger);
+			system.font_id = stream.ReadInt();
 			break;
 		case ChunkSystem::selected_condition:
-			system.selected_condition = stream.Read32(Reader::CompressedInteger);
+			system.selected_condition = stream.ReadInt();
 			break;
 		case ChunkSystem::selected_hero:
-			system.selected_hero = stream.Read32(Reader::CompressedInteger);
+			system.selected_hero = stream.ReadInt();
 			break;
 		case ChunkSystem::battletest_background:
 			system.battletest_background = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSystem::battletest_data:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				system.battletest_data.push_back(ReadTestBattler(stream));
 			}
 			break;
 		case ChunkSystem::saved_times:
-			system.saved_times = stream.Read32(Reader::CompressedInteger);
+			system.saved_times = stream.ReadInt();
 			break;
 		case ChunkSystem::battletest_terrain:
-			system.battletest_terrain = stream.Read32(Reader::CompressedInteger);
+			system.battletest_terrain = stream.ReadInt();
 			break;
 		case ChunkSystem::battletest_formation:
-			system.battletest_formation = stream.Read32(Reader::CompressedInteger);
+			system.battletest_formation = stream.ReadInt();
 			break;
 		case ChunkSystem::battletest_condition:
-			system.battletest_condition = stream.Read32(Reader::CompressedInteger);
+			system.battletest_condition = stream.ReadInt();
 			break;
 		case ChunkSystem::show_frame:
 			system.show_frame = stream.ReadBool();

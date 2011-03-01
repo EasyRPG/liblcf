@@ -31,30 +31,42 @@ RPG::SaveEvents LSD_Reader::ReadSaveEvents(Reader& stream) {
 	Reader::Chunk chunk_info;
 
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkEvents::events:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				events.events.push_back(ReadSaveEventCommands(stream));
 			}
 			break;
 		case ChunkEvents::events_size:
-			events.events_size = stream.Read32(Reader::CompressedInteger);
+			events.events_size = stream.ReadInt();
 			break;
 		case ChunkEvents::unknown_16:
-			events.unknown_16 = stream.Read32(Reader::CompressedInteger);
+			events.unknown_16 = stream.ReadInt();
 			break;
 		case ChunkEvents::unknown_17:
-			events.unknown_17 = stream.Read32(Reader::CompressedInteger);
+			events.unknown_17 = stream.ReadInt();
 			break;
 		case ChunkEvents::unknown_18:
-			events.unknown_18 = stream.Read32(Reader::CompressedInteger);
+			events.unknown_18 = stream.ReadInt();
+			break;
+		case ChunkEvents::unknown_1c:
+			events.unknown_1c = stream.ReadInt();
+			break;
+		case ChunkEvents::unknown_20:
+			events.unknown_20 = stream.ReadInt();
+			break;
+		case ChunkEvents::unknown_24:
+			events.unknown_24 = stream.ReadInt();
+			break;
+		case ChunkEvents::unknown_25:
+			events.unknown_25 = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

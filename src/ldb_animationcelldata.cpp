@@ -27,47 +27,47 @@
 ////////////////////////////////////////////////////////////
 RPG::AnimationCellData LDB_Reader::ReadAnimationCellData(Reader& stream) {
 	RPG::AnimationCellData celldata;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkAnimationCellData::priority:
-			celldata.priority = stream.Read32(Reader::CompressedInteger);
+			celldata.priority = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::ID:
-			celldata.ID = stream.Read32(Reader::CompressedInteger);
+			celldata.ID = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::x:
-			celldata.x = stream.Read32(Reader::CompressedInteger);
+			celldata.x = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::y:
-			celldata.y = stream.Read32(Reader::CompressedInteger);
+			celldata.y = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::zoom:
-			celldata.zoom = stream.Read32(Reader::CompressedInteger);
+			celldata.zoom = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::tone_red:
-			celldata.tone_red = stream.Read32(Reader::CompressedInteger);
+			celldata.tone_red = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::tone_green:
-			celldata.tone_green = stream.Read32(Reader::CompressedInteger);
+			celldata.tone_green = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::tone_blue:
-			celldata.tone_blue = stream.Read32(Reader::CompressedInteger);
+			celldata.tone_blue = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::tone_gray:
-			celldata.tone_gray = stream.Read32(Reader::CompressedInteger);
+			celldata.tone_gray = stream.ReadInt();
 			break;
 		case ChunkAnimationCellData::transparency:
-			celldata.transparency = stream.Read32(Reader::CompressedInteger);
+			celldata.transparency = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

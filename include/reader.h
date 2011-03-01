@@ -96,17 +96,6 @@ public:
 	};
 
 	////////////////////////////////////////////////////////
-	/// Defines the two different types of integers used
-	/// by the RPG Maker.
-	/// Compressed Integer: BER-compressed integer
-	/// Normal Integer: Normal 4byte-Integer
-	////////////////////////////////////////////////////////
-	enum IntegerType {
-		CompressedInteger,
-		NormalInteger
-	};
-
-	////////////////////////////////////////////////////////
 	/// Defines the Seek start position for the Seek function
 	////////////////////////////////////////////////////////
 	enum SeekMode {
@@ -130,18 +119,21 @@ public:
 
 	////////////////////////////////////////////////////////
 	/// Reads two bytes from the stream.
-	/// @return The two read bytes
+	/// @return The 16-bit integer
 	////////////////////////////////////////////////////////
 	int16_t Read16();
 
 	////////////////////////////////////////////////////////
-	/// Reads up to four bytes from the stream. Depending
-	/// on the IntegerType.
-	/// If it's a normal Integer four bytes are read.
-	/// For compressed Integers up to four bytes are read.
-	/// @return (uncompressed) integer
+	/// Reads four bytes from the stream.
+	/// @return The 32-bit integer
 	////////////////////////////////////////////////////////
-	int32_t Read32(IntegerType type);
+	int32_t Read32();
+
+	////////////////////////////////////////////////////////
+	/// Reads up to four bytes from the stream.
+	/// @return The decompressed integer
+	////////////////////////////////////////////////////////
+	int32_t ReadInt();
 
 	////////////////////////////////////////////////////////
 	/// Reads a "double" from the stream

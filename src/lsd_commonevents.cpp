@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::SaveCommonEvent LSD_Reader::ReadCommonEvent(Reader& stream) {
 	RPG::SaveCommonEvent result;
-	result.ID = stream.Read32(Reader::CompressedInteger);
+	result.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkSave::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {

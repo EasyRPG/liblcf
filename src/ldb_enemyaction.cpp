@@ -27,56 +27,56 @@
 ////////////////////////////////////////////////////////////
 RPG::EnemyAction LDB_Reader::ReadEnemyAction(Reader& stream) {
 	RPG::EnemyAction enemyaction;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkEnemyAction::kind:
-			enemyaction.kind = stream.Read32(Reader::CompressedInteger);
+			enemyaction.kind = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::basic:
-			enemyaction.basic = stream.Read32(Reader::CompressedInteger);
+			enemyaction.basic = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::skill_id:
-			enemyaction.skill_id = stream.Read32(Reader::CompressedInteger);
+			enemyaction.skill_id = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::enemy_id:
-			enemyaction.enemy_id = stream.Read32(Reader::CompressedInteger);
+			enemyaction.enemy_id = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::condition_type:
-			enemyaction.condition_type = stream.Read32(Reader::CompressedInteger);
+			enemyaction.condition_type = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::condition_param1:
-			enemyaction.condition_param1 = stream.Read32(Reader::CompressedInteger);
+			enemyaction.condition_param1 = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::condition_param2:
-			enemyaction.condition_param2 = stream.Read32(Reader::CompressedInteger);
+			enemyaction.condition_param2 = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::switch_id:
-			enemyaction.switch_id = stream.Read32(Reader::CompressedInteger);
+			enemyaction.switch_id = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::switch_on:
 			enemyaction.switch_on = stream.ReadBool();
 			break;
 		case ChunkEnemyAction::switch_on_id:
-			enemyaction.switch_on_id = stream.Read32(Reader::CompressedInteger);
+			enemyaction.switch_on_id = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::switch_off:
 			enemyaction.switch_off = stream.ReadBool();
 			break;
 		case ChunkEnemyAction::switch_off_id:
-			enemyaction.switch_off_id = stream.Read32(Reader::CompressedInteger);
+			enemyaction.switch_off_id = stream.ReadInt();
 			break;
 		case ChunkEnemyAction::rating:
-			enemyaction.rating = stream.Read32(Reader::CompressedInteger);
+			enemyaction.rating = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

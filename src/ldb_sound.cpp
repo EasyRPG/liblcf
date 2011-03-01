@@ -30,11 +30,11 @@ RPG::Sound LDB_Reader::ReadSound(Reader& stream) {
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -42,13 +42,13 @@ RPG::Sound LDB_Reader::ReadSound(Reader& stream) {
 			sound.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkSound::volume:
-			sound.volume = stream.Read32(Reader::CompressedInteger);
+			sound.volume = stream.ReadInt();
 			break;
 		case ChunkSound::tempo:
-			sound.tempo = stream.Read32(Reader::CompressedInteger);
+			sound.tempo = stream.ReadInt();
 			break;
 		case ChunkSound::balance:
-			sound.balance = stream.Read32(Reader::CompressedInteger);
+			sound.balance = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

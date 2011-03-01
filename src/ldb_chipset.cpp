@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::Chipset LDB_Reader::ReadChipset(Reader& stream) {
 	RPG::Chipset chipset;
-	chipset.ID = stream.Read32(Reader::CompressedInteger);
+	chipset.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -55,10 +55,10 @@ RPG::Chipset LDB_Reader::ReadChipset(Reader& stream) {
 			stream.Read8(chipset.passable_data_upper, chunk_info.length);
 			break;
 		case ChunkChipset::animation_type:
-			chipset.animation_type = stream.Read32(Reader::CompressedInteger);
+			chipset.animation_type = stream.ReadInt();
 			break;
 		case ChunkChipset::animation_speed:
-			chipset.animation_speed = stream.Read32(Reader::CompressedInteger);
+			chipset.animation_speed = stream.ReadInt();
 			break;
 		default:
 			stream.Skip(chunk_info);

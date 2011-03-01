@@ -27,15 +27,15 @@
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimation LDB_Reader::ReadBattlerAnimation(Reader& stream) {
 	RPG::BattlerAnimation battler_animation;
-	battler_animation.ID = stream.Read32(Reader::CompressedInteger);
+	battler_animation.ID = stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
@@ -43,15 +43,15 @@ RPG::BattlerAnimation LDB_Reader::ReadBattlerAnimation(Reader& stream) {
 			battler_animation.name = stream.ReadString(chunk_info.length);
 			break;
 		case ChunkBattlerAnimation::speed:
-			battler_animation.speed = stream.Read32(Reader::CompressedInteger);
+			battler_animation.speed = stream.ReadInt();
 			break;
 		case ChunkBattlerAnimation::base_data:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				battler_animation.base_data.push_back(ReadBattlerAnimationExtension(stream));
 			}
 			break;
 		case ChunkBattlerAnimation::weapon_data:
-			for (int i = stream.Read32(Reader::CompressedInteger); i > 0; i--) {
+			for (int i = stream.ReadInt(); i > 0; i--) {
 				battler_animation.weapon_data.push_back(ReadBattlerAnimationExtension(stream));
 			}
 			break;

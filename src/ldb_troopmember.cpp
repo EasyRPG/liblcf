@@ -27,26 +27,26 @@
 ////////////////////////////////////////////////////////////
 RPG::TroopMember LDB_Reader::ReadTroopMember(Reader& stream) {
 	RPG::TroopMember member;
-	stream.Read32(Reader::CompressedInteger);
+	stream.ReadInt();
 
 	Reader::Chunk chunk_info;
 	while (!stream.Eof()) {
-		chunk_info.ID = stream.Read32(Reader::CompressedInteger);
+		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == ChunkData::END) {
 			break;
 		} else {
-			chunk_info.length = stream.Read32(Reader::CompressedInteger);
+			chunk_info.length = stream.ReadInt();
 			if (chunk_info.length == 0) continue;
 		}
 		switch (chunk_info.ID) {
 		case ChunkTroopMember::ID:
-			member.ID = stream.Read32(Reader::CompressedInteger);
+			member.ID = stream.ReadInt();
 			break;
 		case ChunkTroopMember::x:
-			member.x = stream.Read32(Reader::CompressedInteger);
+			member.x = stream.ReadInt();
 			break;
 		case ChunkTroopMember::y:
-			member.y = stream.Read32(Reader::CompressedInteger);
+			member.y = stream.ReadInt();
 			break;
 		case ChunkTroopMember::invisible:
 			member.invisible = stream.ReadBool();
