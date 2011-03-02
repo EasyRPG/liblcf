@@ -21,46 +21,22 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Troop
 ////////////////////////////////////////////////////////////
-RPG::Troop LDB_Reader::ReadTroop(Reader& stream) {
-	RPG::Troop troop;
-	troop.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTroop::name:
-			troop.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTroop::members:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				troop.members.push_back(ReadTroopMember(stream));
-			}
-			break;
-		case ChunkTroop::terrain_set_size:
-			stream.ReadInt();
-			break;
-		case ChunkTroop::terrain_set:
-			stream.ReadBool(troop.terrain_set, chunk_info.length);
-			break;
-		case ChunkTroop::pages:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				troop.pages.push_back(ReadTroopPage(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return troop;
+template <>
+void Struct<RPG::Troop>::ReadID(RPG::Troop& obj, Reader& stream) {
+	IDReader<RPG::Troop, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Troop>* Struct<RPG::Troop>::fields[] = {
+	new TypedField<RPG::Troop, std::string>						(&RPG::Troop::name,			LDB_Reader::ChunkTroop::name,				"name"			),
+	new TypedField<RPG::Troop, std::vector<RPG::TroopMember> >	(&RPG::Troop::members,		LDB_Reader::ChunkTroop::members,			"members"		),
+	new TypedField<RPG::Troop, int>								(NULL,						LDB_Reader::ChunkTroop::terrain_set_size,	""				),
+	new TypedField<RPG::Troop, std::vector<bool> >				(&RPG::Troop::terrain_set,	LDB_Reader::ChunkTroop::terrain_set,		"terrain_set"	),
+	new TypedField<RPG::Troop, std::vector<RPG::TroopPage> >	(&RPG::Troop::pages,		LDB_Reader::ChunkTroop::pages,				"pages"			),
+	NULL
+};

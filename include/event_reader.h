@@ -22,6 +22,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
+#include <vector>
 #include "reader.h"
 #include "rpg_eventcommand.h"
 
@@ -30,6 +31,8 @@
 ////////////////////////////////////////////////////////////
 namespace Event_Reader {
 	RPG::EventCommand ReadEventCommand(Reader& stream);
+	void ReadEventCommand(RPG::EventCommand& command, Reader& stream);
+	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, Reader& stream);
 }
 
 #endif

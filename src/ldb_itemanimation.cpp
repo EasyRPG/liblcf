@@ -21,54 +21,26 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Item Animation
 ////////////////////////////////////////////////////////////
-RPG::ItemAnimation LDB_Reader::ReadItemAnimation(Reader& stream) {
-	RPG::ItemAnimation item_animation;
-	item_animation.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkItemAnimation::type:
-			item_animation.type = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::weapon_anim:
-			item_animation.weapon_anim = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::movement:
-			item_animation.movement = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::after_image:
-			item_animation.after_image = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::attacks:
-			item_animation.attacks = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::ranged:
-			item_animation.ranged = stream.ReadBool();
-			break;
-		case ChunkItemAnimation::ranged_anim:
-			item_animation.ranged_anim = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::ranged_speed:
-			item_animation.ranged_speed = stream.ReadInt();
-			break;
-		case ChunkItemAnimation::battle_anim:
-			item_animation.battle_anim = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return item_animation;
+template <>
+void Struct<RPG::ItemAnimation>::ReadID(RPG::ItemAnimation& obj, Reader& stream) {
+	IDReader<RPG::ItemAnimation, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::ItemAnimation>* Struct<RPG::ItemAnimation>::fields[] = {
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::type,			LDB_Reader::ChunkItemAnimation::type,			"type"			),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::weapon_anim,	LDB_Reader::ChunkItemAnimation::weapon_anim,	"weapon_anim"	),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::movement,		LDB_Reader::ChunkItemAnimation::movement,		"movement"		),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::after_image,	LDB_Reader::ChunkItemAnimation::after_image,	"after_image"	),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::attacks,		LDB_Reader::ChunkItemAnimation::attacks,		"attacks"		),
+	new TypedField<RPG::ItemAnimation, bool>(&RPG::ItemAnimation::ranged,		LDB_Reader::ChunkItemAnimation::ranged,			"ranged"		),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_anim,	LDB_Reader::ChunkItemAnimation::ranged_anim,	"ranged_anim"	),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_speed,	LDB_Reader::ChunkItemAnimation::ranged_speed,	"ranged_speed"	),
+	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::battle_anim,	LDB_Reader::ChunkItemAnimation::battle_anim,	"battle_anim"	),
+	NULL
+};

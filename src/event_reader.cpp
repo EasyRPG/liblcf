@@ -26,6 +26,11 @@
 ////////////////////////////////////////////////////////////
 RPG::EventCommand Event_Reader::ReadEventCommand(Reader& stream) {
 	RPG::EventCommand event_command;
+	ReadEventCommand(event_command, stream);
+	return event_command;
+}
+
+void Event_Reader::ReadEventCommand(RPG::EventCommand& event_command, Reader& stream) {
 	event_command.code = stream.ReadInt();
 	if (event_command.code != 0) {
 		event_command.indent = stream.ReadInt();
@@ -34,5 +39,19 @@ RPG::EventCommand Event_Reader::ReadEventCommand(Reader& stream) {
 			event_command.parameters.push_back(stream.ReadInt());
 		}
 	}
-	return event_command;
 }
+
+void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_commands, Reader& stream) {
+	// Event Commands is a special array
+	// Has no size information. Is terminated by 4 times 0x00.
+	for (;;) {
+		char ch = stream.Read8();
+		if (ch == 0) {
+			stream.Seek(3, Reader::FromCurrent);
+			break;
+		}
+		stream.Ungetch(ch);
+		event_commands.push_back(Event_Reader::ReadEventCommand(stream));
+	}
+}
+

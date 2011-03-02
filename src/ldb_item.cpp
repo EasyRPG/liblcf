@@ -21,200 +21,81 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Item
 ////////////////////////////////////////////////////////////
-RPG::Item LDB_Reader::ReadItem(Reader& stream) {
-	RPG::Item item;
-	item.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkItem::name:
-			item.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkItem::description:
-			item.description = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkItem::type:
-			item.type = stream.ReadInt();
-			if (item.type == RPG::Item::Type_switch) {
-				item.ocassion_field = true;
-			}
-			break;
-		case ChunkItem::price:
-			item.price = stream.ReadInt();
-			break;
-		case ChunkItem::uses:
-			item.uses = stream.ReadInt();
-			break;
-		case ChunkItem::atk_points1:
-			item.atk_points = stream.ReadInt();
-			break;
-		case ChunkItem::def_points1:
-			item.def_points = stream.ReadInt();
-			break;
-		case ChunkItem::spi_points1:
-			item.spi_points = stream.ReadInt();
-			break;
-		case ChunkItem::agi_points1:
-			item.agi_points = stream.ReadInt();
-			break;
-		case ChunkItem::two_handed:
-			item.two_handed = stream.ReadBool();
-			break;
-		case ChunkItem::sp_cost:
-			item.sp_cost = stream.ReadInt();
-			break;
-		case ChunkItem::hit:
-			item.hit = stream.ReadInt();
-			break;
-		case ChunkItem::critical_hit:
-			item.critical_hit = stream.ReadInt();
-			break;
-		case ChunkItem::animation_id:
-			item.animation_id = stream.ReadInt();
-			break;
-		case ChunkItem::preemptive:
-			item.preemptive = stream.ReadBool();
-			break;
-		case ChunkItem::dual_attack:
-			item.dual_attack = stream.ReadBool();
-			break;
-		case ChunkItem::attack_all:
-			item.attack_all = stream.ReadBool();
-			break;
-		case ChunkItem::ignore_evasion:
-			item.ignore_evasion = stream.ReadBool();
-			break;
-		case ChunkItem::prevent_critical:
-			item.prevent_critical = stream.ReadBool();
-			break;
-		case ChunkItem::raise_evasion:
-			item.raise_evasion = stream.ReadBool();
-			break;
-		case ChunkItem::half_sp_cost:
-			item.half_sp_cost = stream.ReadBool();
-			break;
-		case ChunkItem::no_terrain_damage:
-			item.no_terrain_damage = stream.ReadBool();
-			break;
-		case ChunkItem::cursed:
-			item.cursed = stream.ReadBool();
-			break;
-		case ChunkItem::entire_party:
-			item.entire_party = stream.ReadBool();
-			break;
-		case ChunkItem::recover_hp:
-			item.recover_hp = stream.ReadInt();
-			break;
-		case ChunkItem::recover_hp_rate:
-			item.recover_hp_rate = stream.ReadInt();
-			break;
-		case ChunkItem::recover_sp:
-			item.recover_sp = stream.ReadInt();
-			break;
-		case ChunkItem::recover_sp_rate:
-			item.recover_sp_rate = stream.ReadInt();
-			break;
-		case ChunkItem::ocassion_field1:
-			item.ocassion_field = stream.ReadBool();
-			break;
-		case ChunkItem::ko_only:
-			item.ko_only = stream.ReadBool();
-			break;
-		case ChunkItem::max_hp_points:
-			item.max_hp_points = stream.ReadInt();
-			break;
-		case ChunkItem::max_sp_points:
-			item.max_sp_points = stream.ReadInt();
-			break;
-		case ChunkItem::atk_points2:
-			item.atk_points = stream.ReadInt();
-			break;
-		case ChunkItem::def_points2:
-			item.def_points = stream.ReadInt();
-			break;
-		case ChunkItem::spi_points2:
-			item.spi_points = stream.ReadInt();
-			break;
-		case ChunkItem::agi_points2:
-			item.agi_points = stream.ReadInt();
-			break;
-		case ChunkItem::using_message:
-			item.using_message = stream.ReadInt();
-			break;
-		case ChunkItem::skill_id:
-			item.skill_id = stream.ReadInt();
-			break;
-		case ChunkItem::switch_id:
-			item.switch_id = stream.ReadInt();
-			break;
-		case ChunkItem::ocassion_field2:
-			item.ocassion_field = stream.ReadBool();
-			break;
-		case ChunkItem::ocassion_battle:
-			item.ocassion_battle = stream.ReadBool();
-			break;
-		case ChunkItem::actor_set_size:
-			stream.ReadInt();
-			break;
-		case ChunkItem::actor_set:
-			stream.ReadBool(item.actor_set, chunk_info.length);
-			break;
-		case ChunkItem::state_set_size:
-			stream.ReadInt();
-			break;
-		case ChunkItem::state_set:
-			stream.ReadBool(item.state_set, chunk_info.length);
-			break;
-		case ChunkItem::attribute_set_size:
-			stream.ReadInt();
-			break;
-		case ChunkItem::attribute_set:
-			stream.ReadBool(item.attribute_set, chunk_info.length);
-			break;
-		case ChunkItem::state_chance:
-			item.state_chance = stream.ReadInt();
-			break;
-		case ChunkItem::state_effect:
-			item.state_effect = stream.ReadBool();
-			break;
-		case ChunkItem::weapon_animation:
-			item.weapon_animation = stream.ReadInt();
-			break;
-		case ChunkItem::use_skill:
-			item.use_skill = stream.ReadBool();
-			break;
-		case ChunkItem::class_set_size:
-			stream.ReadInt();
-			break;
-		case ChunkItem::class_set:
-			stream.ReadBool(item.class_set, chunk_info.length);
-			break;
-		case ChunkItem::animation_data:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				item.animation_data.push_back(ReadItemAnimation(stream));
-			}
-			break;
-		case ChunkItem::ranged_target:
-			item.ranged_target = stream.ReadInt();
-			break;
-		case ChunkItem::ranged_trajectory:
-			item.ranged_trajectory = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return item;
+template <>
+void Struct<RPG::Item>::ReadID(RPG::Item& obj, Reader& stream) {
+	IDReader<RPG::Item, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
+	new TypedField<RPG::Item, std::string>			(&RPG::Item::name,				LDB_Reader::ChunkItem::name,				"name"				),
+	new TypedField<RPG::Item, std::string>			(&RPG::Item::description,		LDB_Reader::ChunkItem::description,			"description"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::type,				LDB_Reader::ChunkItem::type,				"type"				),
+	new TypedField<RPG::Item, int>					(&RPG::Item::price,				LDB_Reader::ChunkItem::price,				"price"				),
+	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::actor_set_size,		""					),
+	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::actor_set,			LDB_Reader::ChunkItem::actor_set,			"actor_set"			),
+	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::class_set_size,		""					),
+	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::class_set,			LDB_Reader::ChunkItem::class_set,			"class_set"			),
+	new TypedField<RPG::Item, int>					(&RPG::Item::uses,				LDB_Reader::ChunkItem::uses,				"uses"				),
+	new TypedField<RPG::Item, int>					(&RPG::Item::atk_points,		LDB_Reader::ChunkItem::atk_points1,			"atk_points1"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::def_points,		LDB_Reader::ChunkItem::def_points1,			"def_points1"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::spi_points,		LDB_Reader::ChunkItem::spi_points1,			"spi_points1"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::agi_points,		LDB_Reader::ChunkItem::agi_points1,			"agi_points1"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::atk_points,		LDB_Reader::ChunkItem::atk_points2,			"atk_points2"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::def_points,		LDB_Reader::ChunkItem::def_points2,			"def_points2"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::spi_points,		LDB_Reader::ChunkItem::spi_points2,			"spi_points2"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::agi_points,		LDB_Reader::ChunkItem::agi_points2,			"agi_points2"		),
+	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::attribute_set_size,	""					),
+	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::attribute_set,		LDB_Reader::ChunkItem::attribute_set,		"attribute_set"		),
+	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::state_set_size,		""					),
+	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::state_set,			LDB_Reader::ChunkItem::state_set,			"state_set"			),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::state_effect,		LDB_Reader::ChunkItem::state_effect,		"state_effect"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::state_chance,		LDB_Reader::ChunkItem::state_chance,		"state_chance"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::cursed,			LDB_Reader::ChunkItem::cursed,				"cursed"			),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::two_handed,		LDB_Reader::ChunkItem::two_handed,			"two_handed"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::sp_cost,			LDB_Reader::ChunkItem::sp_cost,				"sp_cost"			),
+	new TypedField<RPG::Item, int>					(&RPG::Item::hit,				LDB_Reader::ChunkItem::hit,					"hit"				),
+	new TypedField<RPG::Item, int>					(&RPG::Item::critical_hit,		LDB_Reader::ChunkItem::critical_hit,		"critical_hit"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::animation_id,		LDB_Reader::ChunkItem::animation_id,		"animation_id"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::preemptive,		LDB_Reader::ChunkItem::preemptive,			"preemptive"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::dual_attack,		LDB_Reader::ChunkItem::dual_attack,			"dual_attack"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::attack_all,		LDB_Reader::ChunkItem::attack_all,			"attack_all"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::ignore_evasion,	LDB_Reader::ChunkItem::ignore_evasion,		"ignore_evasion"	),
+	new TypedField<RPG::Item, int>					(&RPG::Item::weapon_animation,	LDB_Reader::ChunkItem::weapon_animation,	"weapon_animation"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::use_skill,			LDB_Reader::ChunkItem::use_skill,			"use_skill"			),
+	new TypedField<RPG::Item, int>					(&RPG::Item::ranged_trajectory,	LDB_Reader::ChunkItem::ranged_trajectory,	"ranged_trajectory"	),
+	new TypedField<RPG::Item, int>					(&RPG::Item::ranged_target,		LDB_Reader::ChunkItem::ranged_target,		"ranged_target"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::prevent_critical,	LDB_Reader::ChunkItem::prevent_critical,	"prevent_critical"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::raise_evasion,		LDB_Reader::ChunkItem::raise_evasion,		"raise_evasion"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::half_sp_cost,		LDB_Reader::ChunkItem::half_sp_cost,		"half_sp_cost"		),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::no_terrain_damage,	LDB_Reader::ChunkItem::no_terrain_damage,	"no_terrain_damage"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::entire_party,		LDB_Reader::ChunkItem::entire_party,		"entire_party"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::recover_hp,		LDB_Reader::ChunkItem::recover_hp,			"recover_hp"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::recover_hp_rate,	LDB_Reader::ChunkItem::recover_hp_rate,		"recover_hp_rate"	),
+	new TypedField<RPG::Item, int>					(&RPG::Item::recover_sp,		LDB_Reader::ChunkItem::recover_sp,			"recover_sp"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::recover_sp_rate,	LDB_Reader::ChunkItem::recover_sp_rate,		"recover_sp_rate"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::ocassion_field,	LDB_Reader::ChunkItem::ocassion_field1,		"ocassion_field1"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::ocassion_field,	LDB_Reader::ChunkItem::ocassion_field2,		"ocassion_field2"	),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::ko_only,			LDB_Reader::ChunkItem::ko_only,				"ko_only"			),
+	new TypedField<RPG::Item, int>					(&RPG::Item::skill_id,			LDB_Reader::ChunkItem::skill_id,			"skill_id"			),
+	new TypedField<RPG::Item, int>					(&RPG::Item::using_message,		LDB_Reader::ChunkItem::using_message,		"using_message"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::max_hp_points,		LDB_Reader::ChunkItem::max_hp_points,		"max_hp_points"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::max_sp_points,		LDB_Reader::ChunkItem::max_sp_points,		"max_sp_points"		),
+	new TypedField<RPG::Item, int>					(&RPG::Item::switch_id,			LDB_Reader::ChunkItem::switch_id,			"switch_id"			),
+	new TypedField<RPG::Item, bool>					(&RPG::Item::ocassion_battle,	LDB_Reader::ChunkItem::ocassion_battle,		"ocassion_battle"	),
+	new TypedField<RPG::Item, std::vector<RPG::ItemAnimation> >	(&RPG::Item::animation_data,	LDB_Reader::ChunkItem::animation_data,	"animation_data"	),
+	NULL
+};
+
+// FIXME
+// 		case ChunkItem::type:
+// 			item.type = stream.ReadInt();
+// 			if (item.type == RPG::Item::Type_switch) {
+// 				item.ocassion_field = true;
+// 			}
+// 			break;

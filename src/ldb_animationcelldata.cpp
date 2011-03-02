@@ -21,57 +21,27 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read AnimationCellData
 ////////////////////////////////////////////////////////////
-RPG::AnimationCellData LDB_Reader::ReadAnimationCellData(Reader& stream) {
-	RPG::AnimationCellData celldata;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkAnimationCellData::priority:
-			celldata.priority = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::ID:
-			celldata.ID = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::x:
-			celldata.x = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::y:
-			celldata.y = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::zoom:
-			celldata.zoom = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::tone_red:
-			celldata.tone_red = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::tone_green:
-			celldata.tone_green = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::tone_blue:
-			celldata.tone_blue = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::tone_gray:
-			celldata.tone_gray = stream.ReadInt();
-			break;
-		case ChunkAnimationCellData::transparency:
-			celldata.transparency = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return celldata;
+template <>
+void Struct<RPG::AnimationCellData>::ReadID(RPG::AnimationCellData& obj, Reader& stream) {
+	IDReader<RPG::AnimationCellData, SkipID>::ReadID(obj, stream);
 }
+
+ template<>
+const Field<RPG::AnimationCellData>* Struct<RPG::AnimationCellData>::fields[] = {
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::priority,		LDB_Reader::ChunkAnimationCellData::priority,		"priority"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::ID,			LDB_Reader::ChunkAnimationCellData::ID,				"ID"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::x,			LDB_Reader::ChunkAnimationCellData::x,				"x"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::y,			LDB_Reader::ChunkAnimationCellData::y,				"y"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::zoom,			LDB_Reader::ChunkAnimationCellData::zoom,			"zoom"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_red,		LDB_Reader::ChunkAnimationCellData::tone_red,		"tone_red"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_green,	LDB_Reader::ChunkAnimationCellData::tone_green,		"tone_green"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_blue,	LDB_Reader::ChunkAnimationCellData::tone_blue,		"tone_blue"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_gray,	LDB_Reader::ChunkAnimationCellData::tone_gray,		"tone_gray"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::transparency,	LDB_Reader::ChunkAnimationCellData::transparency,	"transparency"),
+	NULL
+};

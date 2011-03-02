@@ -22,56 +22,23 @@
 #include "ldb_chunks.h"
 #include "event_reader.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read CommonEvent
 ////////////////////////////////////////////////////////////
-RPG::CommonEvent LDB_Reader::ReadCommonEvent(Reader& stream) {
-	RPG::CommonEvent commonevent;
-	commonevent.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkCommonEvent::name:
-			commonevent.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkCommonEvent::trigger:
-			commonevent.trigger = stream.ReadInt();
-			break;
-		case ChunkCommonEvent::switch_flag:
-			commonevent.switch_flag = stream.ReadBool();
-			break;
-		case ChunkCommonEvent::switch_id:
-			commonevent.switch_id = stream.ReadInt();
-			break;
-		case ChunkCommonEvent::event_commands_size:
-			stream.ReadInt();
-			break;
-		case ChunkCommonEvent::event_commands:
-			// Event Commands is a special array
-			// Has no size information. Is terminated by 4 times 0x00.
-			for (;;)
-			{
-				char ch = stream.Read8();
-				if (ch == 0) {
-					stream.Seek(3, Reader::FromCurrent);
-					break;
-				}
-				stream.Ungetch(ch);
-				commonevent.event_commands.push_back(Event_Reader::ReadEventCommand(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return commonevent;
+template <>
+void Struct<RPG::CommonEvent>::ReadID(RPG::CommonEvent& obj, Reader& stream) {
+	IDReader<RPG::CommonEvent, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {
+	new TypedField<RPG::CommonEvent, std::string>						(&RPG::CommonEvent::name,			LDB_Reader::ChunkCommonEvent::name,					"name"			),
+	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::trigger,		LDB_Reader::ChunkCommonEvent::trigger,				"trigger"		),
+	new TypedField<RPG::CommonEvent, bool>								(&RPG::CommonEvent::switch_flag,	LDB_Reader::ChunkCommonEvent::switch_flag,			"switch_flag"	),
+	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::switch_id,		LDB_Reader::ChunkCommonEvent::switch_id,			"switch_id"		),
+	new TypedField<RPG::CommonEvent, int>								(NULL,								LDB_Reader::ChunkCommonEvent::event_commands_size,	""				),
+	new TypedField<RPG::CommonEvent, std::vector<RPG::EventCommand> >	(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands,		"event_commands"),
+	NULL
+};

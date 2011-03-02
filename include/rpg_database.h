@@ -15,47 +15,57 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _RPG_CLASS_H_
-#define _RPG_CLASS_H_
+#ifndef _RPG_DATA_H_
+#define _RPG_DATA_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "rpg_learning.h"
-#include "reader.h"
+#include "rpg_actor.h"
+#include "rpg_skill.h"
+#include "rpg_item.h"
+#include "rpg_enemy.h"
+#include "rpg_troop.h"
+#include "rpg_terrain.h"
+#include "rpg_attribute.h"
+#include "rpg_state.h"
+#include "rpg_animation.h"
+#include "rpg_chipset.h"
+#include "rpg_commonevent.h"
+#include "rpg_battlecommand.h"
+#include "rpg_class.h"
+#include "rpg_battleranimation.h"
+#include "rpg_terms.h"
+#include "rpg_system.h"
+#include "rpg_switch.h"
+#include "rpg_variable.h"
 
 ////////////////////////////////////////////////////////////
-/// RPG::Class class
+/// RPG::Data class
 ////////////////////////////////////////////////////////////
 namespace RPG {
-	class Class {
+	class Database {
 	public:
-		Class();
-		
-		int ID;
-		std::string name;
-		bool two_swords_style;
-		bool fix_equipment;
-		bool auto_battle;
-		bool super_guard;
-		struct Parameters {
-			std::vector<short> maxhp;
-			std::vector<short> maxsp;
-			std::vector<short> attack;
-			std::vector<short> defense;
-			std::vector<short> spirit;
-			std::vector<short> agility;
-		} parameters;
-		int exp_base;
-		int exp_inflation;
-		int exp_correction;
-		int unarmed_animation;
-		std::vector<Learning> skills;
-		std::vector<unsigned char> state_ranks;
-		std::vector<unsigned char> attribute_ranks;
-		std::vector<uint32_t> battle_commands;
+		std::vector<Actor> actors;
+		std::vector<Skill> skills;
+		std::vector<Item> items;
+		std::vector<Enemy> enemies;
+		std::vector<Troop> troops;
+		std::vector<Terrain> terrains;
+		std::vector<Attribute> attributes;
+		std::vector<State> states;
+		std::vector<Animation> animations;
+		std::vector<Chipset> chipsets;
+		std::vector<CommonEvent> commonevents;
+		BattleCommands battlecommands;
+		std::vector<Class> classes;
+		std::vector<BattlerAnimation> battleranimations;
+		Terms terms;
+		System system;
+		std::vector<Switch> switches;
+		std::vector<Variable> variables;
 	};
 }
 

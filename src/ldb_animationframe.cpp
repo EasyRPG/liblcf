@@ -21,32 +21,18 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read AnimationFrame
 ////////////////////////////////////////////////////////////
-RPG::AnimationFrame LDB_Reader::ReadAnimationFrame(Reader& stream) {
-	RPG::AnimationFrame frame;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkAnimationFrame::cells:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				frame.cells.push_back(ReadAnimationCellData(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return frame;
+template <>
+void Struct<RPG::AnimationFrame>::ReadID(RPG::AnimationFrame& obj, Reader& stream) {
+	IDReader<RPG::AnimationFrame, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::fields[] = {
+	new TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData> > (&RPG::AnimationFrame::cells, LDB_Reader::ChunkAnimationFrame::cells, "cells"),
+	NULL
+};

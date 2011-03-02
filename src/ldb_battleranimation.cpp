@@ -21,43 +21,21 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimation
 ////////////////////////////////////////////////////////////
-RPG::BattlerAnimation LDB_Reader::ReadBattlerAnimation(Reader& stream) {
-	RPG::BattlerAnimation battler_animation;
-	battler_animation.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkBattlerAnimation::name:
-			battler_animation.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkBattlerAnimation::speed:
-			battler_animation.speed = stream.ReadInt();
-			break;
-		case ChunkBattlerAnimation::base_data:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				battler_animation.base_data.push_back(ReadBattlerAnimationExtension(stream));
-			}
-			break;
-		case ChunkBattlerAnimation::weapon_data:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				battler_animation.weapon_data.push_back(ReadBattlerAnimationExtension(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return battler_animation;
+template <>
+void Struct<RPG::BattlerAnimation>::ReadID(RPG::BattlerAnimation& obj, Reader& stream) {
+	IDReader<RPG::BattlerAnimation, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::BattlerAnimation>* Struct<RPG::BattlerAnimation>::fields[] = {
+	new TypedField<RPG::BattlerAnimation, std::string>									(&RPG::BattlerAnimation::name,			LDB_Reader::ChunkBattlerAnimation::name,		"name"			),
+	new TypedField<RPG::BattlerAnimation, int>											(&RPG::BattlerAnimation::speed,			LDB_Reader::ChunkBattlerAnimation::speed,		"speed"			),
+	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::base_data,		LDB_Reader::ChunkBattlerAnimation::base_data,	"base_data"		),
+	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::weapon_data,	LDB_Reader::ChunkBattlerAnimation::weapon_data,	"weapon_data"	),
+	NULL
+};

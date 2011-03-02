@@ -50,20 +50,24 @@ namespace RPG {
 		bool fix_equipment;
 		bool auto_battle;
 		bool super_guard;
-		std::vector<short> parameter_maxhp;
-		std::vector<short> parameter_maxsp;
-		std::vector<short> parameter_attack;
-		std::vector<short> parameter_defense;
-		std::vector<short> parameter_spirit;
-		std::vector<short> parameter_agility;
+		struct Parameters {
+			std::vector<short> maxhp;
+			std::vector<short> maxsp;
+			std::vector<short> attack;
+			std::vector<short> defense;
+			std::vector<short> spirit;
+			std::vector<short> agility;
+		} parameters;
 		int exp_base;
 		int exp_inflation;
 		int exp_correction;
-		int weapon_id;
-		int shield_id;
-		int armor_id;
-		int helmet_id;
-		int accessory_id;
+		struct Equipment {
+			int weapon_id;
+			int shield_id;
+			int armor_id;
+			int helmet_id;
+			int accessory_id;
+		} initial_equipment;
 		int unarmed_animation;
 		std::vector<Learning> skills;
 		std::vector<unsigned char> state_ranks;

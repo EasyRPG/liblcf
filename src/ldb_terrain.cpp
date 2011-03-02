@@ -21,129 +21,60 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Terrain
 ////////////////////////////////////////////////////////////
-RPG::Terrain LDB_Reader::ReadTerrain(Reader& stream) {
-	RPG::Terrain terrain;
-	terrain.ID = stream.ReadInt();
-
-	unsigned char bitflag;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTerrain::name:
-			terrain.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerrain::damage:
-			terrain.damage = stream.ReadInt();
-			break;
-		case ChunkTerrain::encounter_rate:
-			terrain.encounter_rate = stream.ReadInt();
-			break;
-		case ChunkTerrain::background_name:
-			terrain.background_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerrain::boat_pass:
-			terrain.boat_pass = stream.ReadBool();
-			break;
-		case ChunkTerrain::ship_pass:
-			terrain.ship_pass = stream.ReadBool();
-			break;
-		case ChunkTerrain::airship_pass:
-			terrain.airship_pass = stream.ReadBool();
-			break;
-		case ChunkTerrain::airship_land:
-			terrain.airship_land = stream.ReadBool();
-			break;
-		case ChunkTerrain::bush_depth:
-			terrain.bush_depth = stream.ReadInt();
-			break;
-		case ChunkTerrain::footstep:
-			terrain.footstep = ReadSound(stream);
-			break;
-		case ChunkTerrain::on_damage_se:
-			terrain.on_damage_se = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_type:
-			terrain.background_type = stream.ReadInt();
-			break;
-		case ChunkTerrain::background_a_name:
-			terrain.background_a_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerrain::background_a_scrollh:
-			terrain.background_a_scrollh = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_a_scrollv:
-			terrain.background_a_scrollv = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_a_scrollh_speed:
-			terrain.background_a_scrollh_speed = stream.ReadInt();
-			break;
-		case ChunkTerrain::background_a_scrollv_speed:
-			terrain.background_a_scrollv_speed = stream.ReadInt();
-			break;
-		case ChunkTerrain::background_b:
-			terrain.background_b = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_b_name:
-			terrain.background_b_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerrain::background_b_scrollh:
-			terrain.background_b_scrollh = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_b_scrollv:
-			terrain.background_b_scrollv = stream.ReadBool();
-			break;
-		case ChunkTerrain::background_b_scrollh_speed:
-			terrain.background_b_scrollh_speed = stream.ReadInt();
-			break;
-		case ChunkTerrain::background_b_scrollv_speed:
-			terrain.background_b_scrollv_speed = stream.ReadInt();
-			break;
-		case ChunkTerrain::special_flags:
-			bitflag = stream.Read8();
-			terrain.special_back_party_flag = (bitflag & 0x01) > 0;
-			terrain.special_back_enemies_flag = (bitflag & 0x02) > 0;
-			terrain.special_lateral_party_flag = (bitflag & 0x04) > 0;
-			terrain.special_lateral_enemies_flag = (bitflag & 0x08) > 0;
-			break;
-		case ChunkTerrain::special_back_party:
-			terrain.special_back_party = stream.ReadInt();
-			break;
-		case ChunkTerrain::special_back_enemies:
-			terrain.special_back_enemies = stream.ReadInt();
-			break;
-		case ChunkTerrain::special_lateral_party:
-			terrain.special_lateral_party = stream.ReadInt();
-			break;
-		case ChunkTerrain::special_lateral_enemies:
-			terrain.special_lateral_enemies = stream.ReadInt();
-			break;
-		case ChunkTerrain::grid_location:
-			terrain.grid_location = stream.ReadInt();
-			break;
-		case ChunkTerrain::grid_a:
-			terrain.grid_a = stream.ReadInt();
-			break;
-		case ChunkTerrain::grid_b:
-			terrain.grid_b = stream.ReadInt();
-			break;
-		case ChunkTerrain::grid_c:
-			terrain.grid_c = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
+template <>
+struct TypeReader<RPG::Terrain::Flags> {
+	static inline void ReadLcf(RPG::Terrain::Flags& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		uint8_t bitflag = stream.Read8();
+		ref.back_party		= (bitflag & 0x01) != 0;
+		ref.back_enemies	= (bitflag & 0x02) != 0;
+		ref.lateral_party	= (bitflag & 0x04) != 0;
+		ref.lateral_enemies	= (bitflag & 0x08) != 0;
 	}
-	return terrain;
+};
+
+template <>
+void Struct<RPG::Terrain>::ReadID(RPG::Terrain& obj, Reader& stream) {
+	IDReader<RPG::Terrain, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Terrain>* Struct<RPG::Terrain>::fields[] = {
+	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::name,							LDB_Reader::ChunkTerrain::name,							"name"							),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::damage,							LDB_Reader::ChunkTerrain::damage,						"damage"						),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::encounter_rate,					LDB_Reader::ChunkTerrain::encounter_rate,				"encounter_rate"				),
+	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_name,				LDB_Reader::ChunkTerrain::background_name,				"background_name"				),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::boat_pass,						LDB_Reader::ChunkTerrain::boat_pass,					"boat_pass"						),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::ship_pass,						LDB_Reader::ChunkTerrain::ship_pass,					"ship_pass"						),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::airship_pass,					LDB_Reader::ChunkTerrain::airship_pass,					"airship_pass"					),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::airship_land,					LDB_Reader::ChunkTerrain::airship_land,					"airship_land"					),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::bush_depth,						LDB_Reader::ChunkTerrain::bush_depth,					"bush_depth"					),
+	new TypedField<RPG::Terrain, RPG::Sound>			(&RPG::Terrain::footstep,						LDB_Reader::ChunkTerrain::footstep,						"footstep"						),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::on_damage_se,					LDB_Reader::ChunkTerrain::on_damage_se,					"on_damage_se"					),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_type,				LDB_Reader::ChunkTerrain::background_type,				"background_type"				),
+	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_a_name,				LDB_Reader::ChunkTerrain::background_a_name,			"background_a_name"				),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_a_scrollh,			LDB_Reader::ChunkTerrain::background_a_scrollh,			"background_a_scrollh"			),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_a_scrollv,			LDB_Reader::ChunkTerrain::background_a_scrollv,			"background_a_scrollv"			),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_a_scrollh_speed,		LDB_Reader::ChunkTerrain::background_a_scrollh_speed,	"background_a_scrollh_speed"	),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_a_scrollv_speed,		LDB_Reader::ChunkTerrain::background_a_scrollv_speed,	"background_a_scrollv_speed"	),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b,					LDB_Reader::ChunkTerrain::background_b,					"background_b"					),
+	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_b_name,				LDB_Reader::ChunkTerrain::background_b_name,			"background_b_name"				),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b_scrollh,			LDB_Reader::ChunkTerrain::background_b_scrollh,			"background_b_scrollh"			),
+	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b_scrollv,			LDB_Reader::ChunkTerrain::background_b_scrollv,			"background_b_scrollv"			),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_b_scrollh_speed,		LDB_Reader::ChunkTerrain::background_b_scrollh_speed,	"background_b_scrollh_speed"	),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_b_scrollv_speed,		LDB_Reader::ChunkTerrain::background_b_scrollv_speed,	"background_b_scrollv_speed"	),
+	new TypedField<RPG::Terrain, RPG::Terrain::Flags>	(&RPG::Terrain::special_flags,					LDB_Reader::ChunkTerrain::special_flags,				"special_flags"					),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_back_party,				LDB_Reader::ChunkTerrain::special_back_party,			"special_back_party"			),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_back_enemies,			LDB_Reader::ChunkTerrain::special_back_enemies,			"special_back_enemies"			),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_lateral_party,			LDB_Reader::ChunkTerrain::special_lateral_party,		"special_lateral_party"			),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_lateral_enemies,		LDB_Reader::ChunkTerrain::special_lateral_enemies,		"special_lateral_enemies"		),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_location,					LDB_Reader::ChunkTerrain::grid_location,				"grid_location"					),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_a,							LDB_Reader::ChunkTerrain::grid_a,						"grid_a"						),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_b,							LDB_Reader::ChunkTerrain::grid_b,						"grid_b"						),
+	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_c,							LDB_Reader::ChunkTerrain::grid_c,						"grid_c"						),
+	NULL
+};

@@ -21,66 +21,29 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read EnemyAction
 ////////////////////////////////////////////////////////////
-RPG::EnemyAction LDB_Reader::ReadEnemyAction(Reader& stream) {
-	RPG::EnemyAction enemyaction;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEnemyAction::kind:
-			enemyaction.kind = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::basic:
-			enemyaction.basic = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::skill_id:
-			enemyaction.skill_id = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::enemy_id:
-			enemyaction.enemy_id = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::condition_type:
-			enemyaction.condition_type = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::condition_param1:
-			enemyaction.condition_param1 = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::condition_param2:
-			enemyaction.condition_param2 = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::switch_id:
-			enemyaction.switch_id = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::switch_on:
-			enemyaction.switch_on = stream.ReadBool();
-			break;
-		case ChunkEnemyAction::switch_on_id:
-			enemyaction.switch_on_id = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::switch_off:
-			enemyaction.switch_off = stream.ReadBool();
-			break;
-		case ChunkEnemyAction::switch_off_id:
-			enemyaction.switch_off_id = stream.ReadInt();
-			break;
-		case ChunkEnemyAction::rating:
-			enemyaction.rating = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return enemyaction;
+template <>
+void Struct<RPG::EnemyAction>::ReadID(RPG::EnemyAction& obj, Reader& stream) {
+	IDReader<RPG::EnemyAction, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::EnemyAction>* Struct<RPG::EnemyAction>::fields[] = {
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::kind,				LDB_Reader::ChunkEnemyAction::kind,					"kind"				),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::basic,				LDB_Reader::ChunkEnemyAction::basic,				"basic"				),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::skill_id,			LDB_Reader::ChunkEnemyAction::skill_id,				"skill_id"			),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::enemy_id,			LDB_Reader::ChunkEnemyAction::enemy_id,				"enemy_id"			),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::condition_type,		LDB_Reader::ChunkEnemyAction::condition_type,		"condition_type"	),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::condition_param1,	LDB_Reader::ChunkEnemyAction::condition_param1,		"condition_param1"	),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::condition_param2,	LDB_Reader::ChunkEnemyAction::condition_param2,		"condition_param2"	),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::switch_id,			LDB_Reader::ChunkEnemyAction::switch_id,			"switch_id"			),
+	new TypedField<RPG::EnemyAction, bool>	(&RPG::EnemyAction::switch_on,			LDB_Reader::ChunkEnemyAction::switch_on,			"switch_on"			),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::switch_on_id,		LDB_Reader::ChunkEnemyAction::switch_on_id,			"switch_on_id"		),
+	new TypedField<RPG::EnemyAction, bool>	(&RPG::EnemyAction::switch_off,			LDB_Reader::ChunkEnemyAction::switch_off,			"switch_off"		),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::switch_off_id,		LDB_Reader::ChunkEnemyAction::switch_off_id,		"switch_off_id"		),
+	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::rating,				LDB_Reader::ChunkEnemyAction::rating,				"rating"			),
+};

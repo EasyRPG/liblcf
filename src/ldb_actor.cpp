@@ -20,138 +20,75 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
+#include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Actor
 ////////////////////////////////////////////////////////////
-RPG::Actor LDB_Reader::ReadActor(Reader& stream) {
-	RPG::Actor actor;
-
-	actor.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkActor::name:
-			actor.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::title:
-			actor.title = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::character_name:
-			actor.character_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::character_index:
-			actor.character_index = stream.ReadInt();
-			break;
-		case ChunkActor::transparent:
-			actor.transparent = stream.ReadBool();
-			break;
-		case ChunkActor::initial_level:
-			actor.initial_level = stream.ReadInt();
-			break;
-		case ChunkActor::final_level:
-			actor.final_level = stream.ReadInt();
-			break;
-		case ChunkActor::critical_hit:
-			actor.critical_hit = stream.ReadBool();
-			break;
-		case ChunkActor::critical_hit_chance:
-			actor.critical_hit_chance = stream.ReadInt();
-			break;
-		case ChunkActor::face_name:
-			actor.face_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::face_index:
-			actor.face_index = stream.ReadInt();
-			break;
-		case ChunkActor::two_swords_style:
-			actor.two_swords_style = stream.ReadBool();
-			break;
-		case ChunkActor::fix_equipment:
-			actor.fix_equipment = stream.ReadBool();
-			break;
-		case ChunkActor::auto_battle:
-			actor.auto_battle = stream.ReadBool();
-			break;
-		case ChunkActor::super_guard:
-			actor.super_guard = stream.ReadBool();
-			break;
-		case ChunkActor::parameters:
-			stream.Read16(actor.parameter_maxhp, chunk_info.length / 6);
-			stream.Read16(actor.parameter_maxsp, chunk_info.length / 6);
-			stream.Read16(actor.parameter_attack, chunk_info.length / 6);
-			stream.Read16(actor.parameter_defense, chunk_info.length / 6);
-			stream.Read16(actor.parameter_spirit, chunk_info.length / 6);
-			stream.Read16(actor.parameter_agility, chunk_info.length / 6);
-			break;
-		case ChunkActor::exp_base:
-			actor.exp_base = stream.ReadInt();
-			break;
-		case ChunkActor::exp_inflation:
-			actor.exp_inflation = stream.ReadInt();
-			break;
-		case ChunkActor::exp_correction:
-			actor.exp_correction = stream.ReadInt();
-			break;
-		case ChunkActor::initial_equipment:
-			actor.weapon_id = stream.Read16();
-			actor.shield_id = stream.Read16();
-			actor.armor_id = stream.Read16();
-			actor.helmet_id = stream.Read16();
-			actor.accessory_id = stream.Read16();
-			break;
-		case ChunkActor::unarmed_animation:
-			actor.unarmed_animation = stream.ReadInt();
-			break;
-		case ChunkActor::class_id:
-			actor.class_id = stream.ReadInt();
-			break;
-		case ChunkActor::battler_animation:
-			actor.battler_animation = stream.ReadInt();
-			break;
-		case ChunkActor::skills:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				actor.skills.push_back(ReadLearning(stream));
-			}
-			break;
-		case ChunkActor::rename_skill:
-			actor.rename_skill = stream.ReadBool();
-			break;
-		case ChunkActor::skill_name:
-			actor.skill_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::state_ranks_size:
-			stream.ReadInt();
-			break;
-		case ChunkActor::state_ranks:
-			stream.Read8(actor.state_ranks, chunk_info.length);
-			break;
-		case ChunkActor::attribute_ranks_size:
-			stream.ReadInt();
-			break;
-		case ChunkActor::attribute_ranks:
-			stream.Read8(actor.attribute_ranks, chunk_info.length);
-			break;
-		case ChunkActor::battle_commands:
-			stream.Read32(actor.battle_commands, chunk_info.length);
-			break;
-		case ChunkActor::battle_x:
-			actor.battle_x = stream.ReadInt();
-			break;
-		case ChunkActor::battle_y:
-			actor.battle_y = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
+template <>
+struct TypeReader<RPG::Actor::Parameters> {
+	static inline void ReadLcf(RPG::Actor::Parameters& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		int n = chunk_info.length / 6;
+		stream.Read16(ref.maxhp, n);
+		stream.Read16(ref.maxsp, n);
+		stream.Read16(ref.attack, n);
+		stream.Read16(ref.defense, n);
+		stream.Read16(ref.spirit, n);
+		stream.Read16(ref.agility, n);
 	}
-	return actor;
+};
+
+template <>
+struct TypeReader<RPG::Actor::Equipment> {
+	static inline void ReadLcf(RPG::Actor::Equipment& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		ref.weapon_id = stream.Read16();
+		ref.shield_id = stream.Read16();
+		ref.armor_id = stream.Read16();
+		ref.helmet_id = stream.Read16();
+		ref.accessory_id = stream.Read16();
+	}
+};
+
+template <>
+void Struct<RPG::Actor>::ReadID(RPG::Actor& obj, Reader& stream) {
+	IDReader<RPG::Actor, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {
+	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::name,					LDB_Reader::ChunkActor::name,					"name"					),
+	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::title,				LDB_Reader::ChunkActor::title,					"title"					),
+	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::character_name,		LDB_Reader::ChunkActor::character_name,			"character_name"		),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::character_index,		LDB_Reader::ChunkActor::character_index,		"character_index"		),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::transparent,			LDB_Reader::ChunkActor::transparent,			"transparent"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::initial_level,		LDB_Reader::ChunkActor::initial_level,			"initial_level"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::final_level,			LDB_Reader::ChunkActor::final_level,			"final_level"			),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::critical_hit,			LDB_Reader::ChunkActor::critical_hit,			"critical_hit"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::critical_hit_chance,	LDB_Reader::ChunkActor::critical_hit_chance,	"critical_hit_chance"	),
+	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::face_name,			LDB_Reader::ChunkActor::face_name,				"face_name"				),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::face_index,			LDB_Reader::ChunkActor::face_index,				"face_index"			),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::two_swords_style,		LDB_Reader::ChunkActor::two_swords_style,		"two_swords_style"		),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::fix_equipment,		LDB_Reader::ChunkActor::fix_equipment,			"fix_equipment"			),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::auto_battle,			LDB_Reader::ChunkActor::auto_battle,			"auto_battle"			),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::super_guard,			LDB_Reader::ChunkActor::super_guard,			"super_guard"			),
+	new TypedField<RPG::Actor, RPG::Actor::Parameters>			(&RPG::Actor::parameters,			LDB_Reader::ChunkActor::parameters,				"parameters"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_base,				LDB_Reader::ChunkActor::exp_base,				"exp_base"				),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_inflation,		LDB_Reader::ChunkActor::exp_inflation,			"exp_inflation"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_correction,		LDB_Reader::ChunkActor::exp_correction,			"exp_correction"		),
+	new TypedField<RPG::Actor, RPG::Actor::Equipment>			(&RPG::Actor::initial_equipment,	LDB_Reader::ChunkActor::initial_equipment,		"initial_equipment"		),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::unarmed_animation,	LDB_Reader::ChunkActor::unarmed_animation,		"unarmed_animation"		),
+	new TypedField<RPG::Actor, std::vector<RPG::Learning> >		(&RPG::Actor::skills,				LDB_Reader::ChunkActor::skills,					"skills"				),
+	new TypedField<RPG::Actor, int>								(NULL,								LDB_Reader::ChunkActor::state_ranks_size,		""						),
+	new TypedField<RPG::Actor, std::vector<unsigned char> >		(&RPG::Actor::state_ranks,			LDB_Reader::ChunkActor::state_ranks,			"state_ranks"			),
+	new TypedField<RPG::Actor, int>								(NULL,								LDB_Reader::ChunkActor::attribute_ranks_size,	""						),
+	new TypedField<RPG::Actor, std::vector<unsigned char> >		(&RPG::Actor::attribute_ranks,		LDB_Reader::ChunkActor::attribute_ranks,		"attribute_ranks"		),
+	new TypedField<RPG::Actor, bool>							(&RPG::Actor::rename_skill,			LDB_Reader::ChunkActor::rename_skill,			"rename_skill"			),
+	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::skill_name,			LDB_Reader::ChunkActor::skill_name,				"skill_name"			),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::class_id,				LDB_Reader::ChunkActor::class_id,				"class_id"				),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::battler_animation,	LDB_Reader::ChunkActor::battler_animation,		"battler_animation"		),
+	new TypedField<RPG::Actor, std::vector<uint32_t> >			(&RPG::Actor::battle_commands,		LDB_Reader::ChunkActor::battle_commands,		"battle_commands"		),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::battle_x,				LDB_Reader::ChunkActor::battle_x,				"battle_x"				),
+	new TypedField<RPG::Actor, int>								(&RPG::Actor::battle_y,				LDB_Reader::ChunkActor::battle_y,				"battle_y"				),
+	NULL
+};

@@ -277,7 +277,7 @@ namespace LDB_Reader {
 	};
 	struct ChunkTroopPageCondition { // TODO - Get RPG2003 unknown chunks id
 		enum Index {
-			condition_flags		= 0x01, // Bitflag - x 2 if RPG2003
+			flags				= 0x01, // Bitflag - x 2 if RPG2003
 			switch_a_id			= 0x02, // Integer
 			switch_b_id			= 0x03, // Integer
 			variable_id			= 0x04, // Integer
@@ -671,7 +671,7 @@ namespace LDB_Reader {
 			row				= 0x06,	// Integer
 			battle_type		= 0x07,	// Integer
 			unknown1		= 0x09,	// Integer
-			command 		= 0x0A, // Array - RPG::BattleCommand
+			commands 		= 0x0A, // Array - RPG::BattleCommand
 			death_handler2	= 0x0F,	// Integer
 			death_event  	= 0x10,	// Integer
 			window_size		= 0x14, // Integer

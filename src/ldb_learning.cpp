@@ -21,33 +21,20 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Learning
 ////////////////////////////////////////////////////////////
-RPG::Learning LDB_Reader::ReadLearning(Reader& stream) {
-	RPG::Learning learning;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkLearning::level:
-			learning.level = stream.ReadInt();
-			break;
-		case ChunkLearning::skill_id:
-			learning.skill_id = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return learning;
+template <>
+void Struct<RPG::Learning>::ReadID(RPG::Learning& obj, Reader& stream) {
+	IDReader<RPG::Learning, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Learning>* Struct<RPG::Learning>::fields[] = {
+	new TypedField<RPG::Learning, int> (&RPG::Learning::level,		LDB_Reader::ChunkLearning::level,		"level"),
+	new TypedField<RPG::Learning, int> (&RPG::Learning::skill_id,	LDB_Reader::ChunkLearning::skill_id,	"skill_id"),
+	NULL
+};
+

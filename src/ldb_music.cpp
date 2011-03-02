@@ -21,41 +21,28 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Music
 ////////////////////////////////////////////////////////////
+template <>
+void Struct<RPG::Music>::ReadID(RPG::Music& obj, Reader& stream) {
+	IDReader<RPG::Music, NoID>::ReadID(obj, stream);
+}
+
+template <>
+const Field<RPG::Music>* Struct<RPG::Music>::fields[] = {
+	new TypedField<RPG::Music, std::string>	(&RPG::Music::name,		LDB_Reader::ChunkMusic::name,		"name"		),
+	new TypedField<RPG::Music, int>			(&RPG::Music::fadein,	LDB_Reader::ChunkMusic::fadein,		"fadein"	),
+	new TypedField<RPG::Music, int>			(&RPG::Music::volume,	LDB_Reader::ChunkMusic::volume,		"volume"	),
+	new TypedField<RPG::Music, int>			(&RPG::Music::tempo,	LDB_Reader::ChunkMusic::tempo,		"tempo"		),
+	new TypedField<RPG::Music, int>			(&RPG::Music::balance,	LDB_Reader::ChunkMusic::balance,	"balance"	),
+	NULL
+};
+
 RPG::Music LDB_Reader::ReadMusic(Reader& stream) {
 	RPG::Music music;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkMusic::name:
-			music.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkMusic::fadein:
-			music.fadein = stream.ReadInt();
-			break;
-		case ChunkMusic::volume:
-			music.volume = stream.ReadInt();
-			break;
-		case ChunkMusic::tempo:
-			music.tempo = stream.ReadInt();
-			break;
-		case ChunkMusic::balance:
-			music.balance = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
+	Struct<RPG::Music>::ReadLcf(music, stream);
 	return music;
 }

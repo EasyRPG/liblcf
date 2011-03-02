@@ -21,36 +21,20 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimation
 ////////////////////////////////////////////////////////////
-RPG::BattlerAnimationData LDB_Reader::ReadBattlerAnimationData(Reader& stream) {
-	RPG::BattlerAnimationData battler_animation_data;
-	battler_animation_data.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkBattlerAnimationData::move:
-			battler_animation_data.move = stream.ReadInt();
-			break;
-		case ChunkBattlerAnimationData::after_image:
-			battler_animation_data.after_image = stream.ReadInt();
-			break;
-		case ChunkBattlerAnimationData::pose:
-			battler_animation_data.pose = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return battler_animation_data;
+template <>
+void Struct<RPG::BattlerAnimationData>::ReadID(RPG::BattlerAnimationData& obj, Reader& stream) {
+	IDReader<RPG::BattlerAnimationData, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::BattlerAnimationData>* Struct<RPG::BattlerAnimationData>::fields[] = {
+	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::move,			LDB_Reader::ChunkBattlerAnimationData::move,		"move"			),
+	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::after_image,	LDB_Reader::ChunkBattlerAnimationData::after_image,	"after_image"	),
+	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::pose,			LDB_Reader::ChunkBattlerAnimationData::pose,		"pose"			),
+	NULL
+};

@@ -21,190 +21,71 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read System
 ////////////////////////////////////////////////////////////
-RPG::System LDB_Reader::ReadSystem(Reader& stream) {
-	RPG::System system;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkSystem::ldb_id:
-			system.ldb_id = stream.ReadInt();
-			break;
-		case ChunkSystem::boat_name:
-			system.boat_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::ship_name:
-			system.ship_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::airship_name:
-			system.airship_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::boat_index:
-			system.boat_index = stream.ReadInt();
-			break;
-		case ChunkSystem::ship_index:
-			system.ship_index = stream.ReadInt();
-			break;
-		case ChunkSystem::airship_index:
-			system.airship_index = stream.ReadInt();
-			break;
-		case ChunkSystem::title_name:
-			system.title_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::gameover_name:
-			system.gameover_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::system_name:
-			system.system_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::system2_name:
-			system.system2_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::party_size:
-			stream.ReadInt();
-			break;
-		case ChunkSystem::party:
-			stream.Read16(system.party, chunk_info.length);
-			break;
-		case ChunkSystem::menu_commands_size:
-			stream.ReadInt();
-			break;
-		case ChunkSystem::menu_commands:
-			stream.Read16(system.menu_commands, chunk_info.length);
-			break;
-		case ChunkSystem::title_music:
-			system.title_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::battle_music:
-			system.battle_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::battle_end_music:
-			system.battle_end_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::inn_music:
-			system.inn_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::boat_music:
-			system.boat_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::ship_music:
-			system.ship_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::airship_music:
-			system.airship_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::gameover_music:
-			system.gameover_music = ReadMusic(stream);
-			break;
-		case ChunkSystem::cursor_se:
-			system.cursor_se = ReadSound(stream);
-			break;
-		case ChunkSystem::decision_se:
-			system.decision_se = ReadSound(stream);
-			break;
-		case ChunkSystem::cancel_se:
-			system.cancel_se = ReadSound(stream);
-			break;
-		case ChunkSystem::buzzer_se:
-			system.buzzer_se = ReadSound(stream);
-			break;
-		case ChunkSystem::battle_se:
-			system.battle_se = ReadSound(stream);
-			break;
-		case ChunkSystem::escape_se:
-			system.escape_se = ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_attack_se:
-			system.enemy_attack_se = ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_damaged_se:
-			system.enemy_damaged_se = ReadSound(stream);
-			break;
-		case ChunkSystem::actor_damaged_se:
-			system.actor_damaged_se = ReadSound(stream);
-			break;
-		case ChunkSystem::dodge_se:
-			system.dodge_se = ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_death_se:
-			system.enemy_death_se = ReadSound(stream);
-			break;
-		case ChunkSystem::item_se:
-			system.item_se = ReadSound(stream);
-			break;
-		case ChunkSystem::transition_out:
-			system.transition_out = stream.ReadInt();
-			break;
-		case ChunkSystem::transition_in:
-			system.transition_in = stream.ReadInt();
-			break;
-		case ChunkSystem::battle_start_fadeout:
-			system.battle_start_fadeout = stream.ReadInt();
-			break;
-		case ChunkSystem::battle_start_fadein:
-			system.battle_start_fadein = stream.ReadInt();
-			break;
-		case ChunkSystem::battle_end_fadeout:
-			system.battle_end_fadeout = stream.ReadInt();
-			break;
-		case ChunkSystem::battle_end_fadein:
-			system.battle_end_fadein = stream.ReadInt();
-			break;
-		case ChunkSystem::message_stretch:
-			system.message_stretch = stream.ReadInt();
-			break;
-		case ChunkSystem::font_id:
-			system.font_id = stream.ReadInt();
-			break;
-		case ChunkSystem::selected_condition:
-			system.selected_condition = stream.ReadInt();
-			break;
-		case ChunkSystem::selected_hero:
-			system.selected_hero = stream.ReadInt();
-			break;
-		case ChunkSystem::battletest_background:
-			system.battletest_background = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::battletest_data:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				system.battletest_data.push_back(ReadTestBattler(stream));
-			}
-			break;
-		case ChunkSystem::saved_times:
-			system.saved_times = stream.ReadInt();
-			break;
-		case ChunkSystem::battletest_terrain:
-			system.battletest_terrain = stream.ReadInt();
-			break;
-		case ChunkSystem::battletest_formation:
-			system.battletest_formation = stream.ReadInt();
-			break;
-		case ChunkSystem::battletest_condition:
-			system.battletest_condition = stream.ReadInt();
-			break;
-		case ChunkSystem::show_frame:
-			system.show_frame = stream.ReadBool();
-			break;
-		case ChunkSystem::frame_name:
-			system.frame_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::invert_animations:
-			system.invert_animations = stream.ReadBool();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return system;
+template <>
+void Struct<RPG::System>::ReadID(RPG::System& obj, Reader& stream) {
+	IDReader<RPG::System, NoID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::System>* Struct<RPG::System>::fields[] = {
+	new TypedField<RPG::System, int>							(&RPG::System::ldb_id,					LDB_Reader::ChunkSystem::ldb_id,					"ldb_id"				),
+	new TypedField<RPG::System, std::string>					(&RPG::System::boat_name,				LDB_Reader::ChunkSystem::boat_name,					"boat_name"				),
+	new TypedField<RPG::System, std::string>					(&RPG::System::ship_name,				LDB_Reader::ChunkSystem::ship_name,					"ship_name"				),
+	new TypedField<RPG::System, std::string>					(&RPG::System::airship_name,			LDB_Reader::ChunkSystem::airship_name,				"airship_name"			),
+	new TypedField<RPG::System, int>							(&RPG::System::boat_index,				LDB_Reader::ChunkSystem::boat_index,				"boat_index"			),
+	new TypedField<RPG::System, int>							(&RPG::System::ship_index,				LDB_Reader::ChunkSystem::ship_index,				"ship_index"			),
+	new TypedField<RPG::System, int>							(&RPG::System::airship_index,			LDB_Reader::ChunkSystem::airship_index,				"airship_index"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::title_name,				LDB_Reader::ChunkSystem::title_name,				"title_name"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::gameover_name,			LDB_Reader::ChunkSystem::gameover_name,				"gameover_name"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::system_name,				LDB_Reader::ChunkSystem::system_name,				"system_name"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::system2_name,			LDB_Reader::ChunkSystem::system2_name,				"system2_name"			),
+	new TypedField<RPG::System, int>							(NULL,									LDB_Reader::ChunkSystem::party_size,				""						),
+	new TypedField<RPG::System, std::vector<short> >			(&RPG::System::party,					LDB_Reader::ChunkSystem::party,						"party"					),
+	new TypedField<RPG::System, int>							(NULL,									LDB_Reader::ChunkSystem::menu_commands_size,		""						),
+	new TypedField<RPG::System, std::vector<short> >			(&RPG::System::menu_commands,			LDB_Reader::ChunkSystem::menu_commands,				"menu_commands"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::title_music,				LDB_Reader::ChunkSystem::title_music,				"title_music"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::battle_music,			LDB_Reader::ChunkSystem::battle_music,				"battle_music"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::battle_end_music,		LDB_Reader::ChunkSystem::battle_end_music,			"battle_end_music"		),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::inn_music,				LDB_Reader::ChunkSystem::inn_music,					"inn_music"				),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::boat_music,				LDB_Reader::ChunkSystem::boat_music,				"boat_music"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::ship_music,				LDB_Reader::ChunkSystem::ship_music,				"ship_music"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::airship_music,			LDB_Reader::ChunkSystem::airship_music,				"airship_music"			),
+	new TypedField<RPG::System, RPG::Music>						(&RPG::System::gameover_music,			LDB_Reader::ChunkSystem::gameover_music,			"gameover_music"		),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::cursor_se,				LDB_Reader::ChunkSystem::cursor_se,					"cursor_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::decision_se,				LDB_Reader::ChunkSystem::decision_se,				"decision_se"			),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::cancel_se,				LDB_Reader::ChunkSystem::cancel_se,					"cancel_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::buzzer_se,				LDB_Reader::ChunkSystem::buzzer_se,					"buzzer_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::battle_se,				LDB_Reader::ChunkSystem::battle_se,					"battle_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::escape_se,				LDB_Reader::ChunkSystem::escape_se,					"escape_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::enemy_attack_se,			LDB_Reader::ChunkSystem::enemy_attack_se,			"enemy_attack_se"		),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::enemy_damaged_se,		LDB_Reader::ChunkSystem::enemy_damaged_se,			"enemy_damaged_se"		),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::actor_damaged_se,		LDB_Reader::ChunkSystem::actor_damaged_se,			"actor_damaged_se"		),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::dodge_se,				LDB_Reader::ChunkSystem::dodge_se,					"dodge_se"				),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::enemy_death_se,			LDB_Reader::ChunkSystem::enemy_death_se,			"enemy_death_se"		),
+	new TypedField<RPG::System, RPG::Sound>						(&RPG::System::item_se,					LDB_Reader::ChunkSystem::item_se,					"item_se"				),
+	new TypedField<RPG::System, int>							(&RPG::System::transition_out,			LDB_Reader::ChunkSystem::transition_out,			"transition_out"		),
+	new TypedField<RPG::System, int>							(&RPG::System::transition_in,			LDB_Reader::ChunkSystem::transition_in,				"transition_in"			),
+	new TypedField<RPG::System, int>							(&RPG::System::battle_start_fadeout,	LDB_Reader::ChunkSystem::battle_start_fadeout,		"battle_start_fadeout"	),
+	new TypedField<RPG::System, int>							(&RPG::System::battle_start_fadein,		LDB_Reader::ChunkSystem::battle_start_fadein,		"battle_start_fadein"	),
+	new TypedField<RPG::System, int>							(&RPG::System::battle_end_fadeout,		LDB_Reader::ChunkSystem::battle_end_fadeout,		"battle_end_fadeout"	),
+	new TypedField<RPG::System, int>							(&RPG::System::battle_end_fadein,		LDB_Reader::ChunkSystem::battle_end_fadein,			"battle_end_fadein"		),
+	new TypedField<RPG::System, int>							(&RPG::System::message_stretch,			LDB_Reader::ChunkSystem::message_stretch,			"message_stretch"		),
+	new TypedField<RPG::System, int>							(&RPG::System::font_id,					LDB_Reader::ChunkSystem::font_id,					"font_id"				),
+	new TypedField<RPG::System, int>							(&RPG::System::selected_condition,		LDB_Reader::ChunkSystem::selected_condition,		"selected_condition"	),
+	new TypedField<RPG::System, int>							(&RPG::System::selected_hero,			LDB_Reader::ChunkSystem::selected_hero,				"selected_hero"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::battletest_background,	LDB_Reader::ChunkSystem::battletest_background,		"battletest_background"	),
+	new TypedField<RPG::System, std::vector<RPG::TestBattler> >	(&RPG::System::battletest_data,			LDB_Reader::ChunkSystem::battletest_data,			"battletest_data"		),
+	new TypedField<RPG::System, int>							(&RPG::System::battletest_terrain,		LDB_Reader::ChunkSystem::battletest_terrain,		"battletest_terrain"	),
+	new TypedField<RPG::System, int>							(&RPG::System::battletest_formation,	LDB_Reader::ChunkSystem::battletest_formation,		"battletest_formation"	),
+	new TypedField<RPG::System, int>							(&RPG::System::battletest_condition,	LDB_Reader::ChunkSystem::battletest_condition,		"battletest_condition"	),
+	new TypedField<RPG::System, int>							(&RPG::System::saved_times,				LDB_Reader::ChunkSystem::saved_times,				"saved_times"			),
+	new TypedField<RPG::System, bool>							(&RPG::System::show_frame,				LDB_Reader::ChunkSystem::show_frame,				"show_frame"			),
+	new TypedField<RPG::System, std::string>					(&RPG::System::frame_name,				LDB_Reader::ChunkSystem::frame_name,				"frame_name"			),
+	new TypedField<RPG::System, bool>							(&RPG::System::invert_animations,		LDB_Reader::ChunkSystem::invert_animations,			"invert_animations"		),
+	NULL
+};

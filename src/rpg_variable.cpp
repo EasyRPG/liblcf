@@ -18,22 +18,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
-#include "reader.h"
-#include "reader_struct.h"
+#include "rpg_variable.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Switch
+/// Constructor
 ////////////////////////////////////////////////////////////
-template <>
-void Struct<RPG::Switch>::ReadID(RPG::Switch& obj, Reader& stream) {
-	IDReader<RPG::Switch, WithID>::ReadID(obj, stream);
+RPG::Variable::Variable() {
+	ID = 0;
+	name = "";
 }
-
-template <>
-const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {
-	new TypedField<RPG::Switch, std::string>(&RPG::Switch::name, LDB_Reader::ChunkSwitch::name, "name"),
-	NULL
-};
-

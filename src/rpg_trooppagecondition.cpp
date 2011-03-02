@@ -24,13 +24,13 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::TroopPageCondition::TroopPageCondition() {
-	switch_a = false;
-	switch_b = false;
-	variable = false;
-	turn = false;
-	fatigue = false;
-	enemy_hp = false;
-	actor_hp = false;
+	flags.switch_a = false;
+	flags.switch_b = false;
+	flags.variable = false;
+	flags.turn = false;
+	flags.fatigue = false;
+	flags.enemy_hp = false;
+	flags.actor_hp = false;
 	switch_a_id = 1;
 	switch_b_id = 1;
 	variable_id = 1;
@@ -46,9 +46,9 @@ RPG::TroopPageCondition::TroopPageCondition() {
 	actor_hp_min = 0;
 	actor_hp_max = 100;
 
-	turn_enemy = false;
-	turn_actor = false;
-	command_actor = false;
+	flags.turn_enemy = false;
+	flags.turn_actor = false;
+	flags.command_actor = false;
 	turn_enemy_id = 0;
 	turn_enemy_a = 0;
 	turn_enemy_b = 0;

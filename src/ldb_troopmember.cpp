@@ -21,39 +21,21 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read TroopMember
 ////////////////////////////////////////////////////////////
-RPG::TroopMember LDB_Reader::ReadTroopMember(Reader& stream) {
-	RPG::TroopMember member;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTroopMember::ID:
-			member.ID = stream.ReadInt();
-			break;
-		case ChunkTroopMember::x:
-			member.x = stream.ReadInt();
-			break;
-		case ChunkTroopMember::y:
-			member.y = stream.ReadInt();
-			break;
-		case ChunkTroopMember::invisible:
-			member.invisible = stream.ReadBool();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return member;
+template <>
+void Struct<RPG::TroopMember>::ReadID(RPG::TroopMember& obj, Reader& stream) {
+	IDReader<RPG::TroopMember, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::TroopMember>* Struct<RPG::TroopMember>::fields[] = {
+	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::ID,			LDB_Reader::ChunkTroopMember::ID,			"ID"		),
+	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::x,			LDB_Reader::ChunkTroopMember::x,			"x"			),
+	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::y,			LDB_Reader::ChunkTroopMember::y,			"y"			),
+	new TypedField<RPG::TroopMember, bool>	(&RPG::TroopMember::invisible,	LDB_Reader::ChunkTroopMember::invisible,	"invisible"	),
+	NULL
+};

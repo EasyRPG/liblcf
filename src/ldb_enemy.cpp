@@ -21,98 +21,39 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Enemy
 ////////////////////////////////////////////////////////////
-RPG::Enemy LDB_Reader::ReadEnemy(Reader& stream) {
-	RPG::Enemy enemy;
-	enemy.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEnemy::name:
-			enemy.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkEnemy::battler_name:
-			enemy.battler_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkEnemy::battler_hue:
-			enemy.battler_hue = stream.ReadInt();
-			break;
-		case ChunkEnemy::max_hp:
-			enemy.max_hp = stream.ReadInt();
-			break;
-		case ChunkEnemy::max_sp:
-			enemy.max_sp = stream.ReadInt();
-			break;
-		case ChunkEnemy::attack:
-			enemy.attack = stream.ReadInt();
-			break;
-		case ChunkEnemy::defense:
-			enemy.defense = stream.ReadInt();
-			break;
-		case ChunkEnemy::spirit:
-			enemy.spirit = stream.ReadInt();
-			break;
-		case ChunkEnemy::agility:
-			enemy.agility = stream.ReadInt();
-			break;
-		case ChunkEnemy::transparent:
-			enemy.transparent = stream.ReadBool();
-			break;
-		case ChunkEnemy::exp:
-			enemy.exp = stream.ReadInt();
-			break;
-		case ChunkEnemy::gold:
-			enemy.gold = stream.ReadInt();
-			break;
-		case ChunkEnemy::drop_id:
-			enemy.drop_id = stream.ReadInt();
-			break;
-		case ChunkEnemy::drop_prob:
-			enemy.drop_prob = stream.ReadInt();
-			break;
-		case ChunkEnemy::critical_hit:
-			enemy.critical_hit = stream.ReadBool();
-			break;
-		case ChunkEnemy::critical_hit_chance:
-			enemy.critical_hit_chance = stream.ReadInt();
-			break;
-		case ChunkEnemy::miss:
-			enemy.miss = stream.ReadBool();
-			break;
-		case ChunkEnemy::levitate:
-			enemy.levitate = stream.ReadBool();
-			break;
-		case ChunkEnemy::state_ranks_size:
-			stream.ReadInt();
-			break;
-		case ChunkEnemy::state_ranks:
-			stream.Read8(enemy.state_ranks, chunk_info.length);
-			break;
-		case ChunkEnemy::attribute_ranks_size:
-			stream.ReadInt();
-			break;
-		case ChunkEnemy::attribute_ranks:
-			stream.Read8(enemy.attribute_ranks, chunk_info.length);
-			break;
-		case ChunkEnemy::actions:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				enemy.actions.push_back(ReadEnemyAction(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return enemy;
+template <>
+void Struct<RPG::Enemy>::ReadID(RPG::Enemy& obj, Reader& stream) {
+	IDReader<RPG::Enemy, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Enemy>* Struct<RPG::Enemy>::fields[] = {
+	new TypedField<RPG::Enemy, std::string>						(&RPG::Enemy::name,					LDB_Reader::ChunkEnemy::name,					"name"					),
+	new TypedField<RPG::Enemy, std::string>						(&RPG::Enemy::battler_name,			LDB_Reader::ChunkEnemy::battler_name,			"battler_name"			),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::battler_hue,			LDB_Reader::ChunkEnemy::battler_hue,			"battler_hue"			),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::max_hp,				LDB_Reader::ChunkEnemy::max_hp,					"max_hp"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::max_sp,				LDB_Reader::ChunkEnemy::max_sp,					"max_sp"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::attack,				LDB_Reader::ChunkEnemy::attack,					"attack"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::defense,				LDB_Reader::ChunkEnemy::defense,				"defense"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::spirit,				LDB_Reader::ChunkEnemy::spirit,					"spirit"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::agility,				LDB_Reader::ChunkEnemy::agility,				"agility"				),
+	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::transparent,			LDB_Reader::ChunkEnemy::transparent,			"transparent"			),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::exp,					LDB_Reader::ChunkEnemy::exp,					"exp"					),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::gold,					LDB_Reader::ChunkEnemy::gold,					"gold"					),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::drop_id,				LDB_Reader::ChunkEnemy::drop_id,				"drop_id"				),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::drop_prob,			LDB_Reader::ChunkEnemy::drop_prob,				"drop_prob"				),
+	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::critical_hit,			LDB_Reader::ChunkEnemy::critical_hit,			"critical_hit"			),
+	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::critical_hit_chance,	LDB_Reader::ChunkEnemy::critical_hit_chance,	"critical_hit_chance"	),
+	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::miss,					LDB_Reader::ChunkEnemy::miss,					"miss"					),
+	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::levitate,				LDB_Reader::ChunkEnemy::levitate,				"levitate"				),
+	new TypedField<RPG::Enemy, int>								(NULL,								LDB_Reader::ChunkEnemy::state_ranks_size,		""						),
+	new TypedField<RPG::Enemy, std::vector<unsigned char> >		(&RPG::Enemy::state_ranks,			LDB_Reader::ChunkEnemy::state_ranks,			"state_ranks"			),
+	new TypedField<RPG::Enemy, int>								(NULL,								LDB_Reader::ChunkEnemy::attribute_ranks_size,	""						),
+	new TypedField<RPG::Enemy, std::vector<unsigned char> >		(&RPG::Enemy::attribute_ranks,		LDB_Reader::ChunkEnemy::attribute_ranks,		"attribute_ranks"		),
+	new TypedField<RPG::Enemy, std::vector<RPG::EnemyAction> >	(&RPG::Enemy::actions,				LDB_Reader::ChunkEnemy::actions,				"actions"				),
+};

@@ -21,51 +21,25 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read AnimationTiming
 ////////////////////////////////////////////////////////////
-RPG::AnimationTiming LDB_Reader::ReadAnimationTiming(Reader& stream) {
-	RPG::AnimationTiming timing;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkAnimationTiming::frame:
-			timing.frame = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::se:
-			timing.se = ReadSound(stream);
-			break;
-		case ChunkAnimationTiming::flash_scope:
-			timing.flash_scope = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::flash_red:
-			timing.flash_red = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::flash_green:
-			timing.flash_green = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::flash_blue:
-			timing.flash_blue = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::flash_power:
-			timing.flash_power = stream.ReadInt();
-			break;
-		case ChunkAnimationTiming::screen_shake:
-			timing.screen_shake = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return timing;
+template <>
+void Struct<RPG::AnimationTiming>::ReadID(RPG::AnimationTiming& obj, Reader& stream) {
+	IDReader<RPG::AnimationTiming, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::fields[] = {
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::frame,			LDB_Reader::ChunkAnimationTiming::frame,		"frame"			),
+	new TypedField<RPG::AnimationTiming, RPG::Sound>(&RPG::AnimationTiming::se,				LDB_Reader::ChunkAnimationTiming::se,			"se"			),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_scope,	LDB_Reader::ChunkAnimationTiming::flash_scope,	"flash_scope"	),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_red,		LDB_Reader::ChunkAnimationTiming::flash_red,	"flash_red"		),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_green,	LDB_Reader::ChunkAnimationTiming::flash_green,	"flash_green"	),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_blue,		LDB_Reader::ChunkAnimationTiming::flash_blue,	"flash_blue"	),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_power,	LDB_Reader::ChunkAnimationTiming::flash_power,	"flash_power"	),
+	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::screen_shake,	LDB_Reader::ChunkAnimationTiming::screen_shake,	"screen_shake"	),
+	NULL
+};

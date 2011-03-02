@@ -21,407 +21,144 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Terms
 ////////////////////////////////////////////////////////////
-RPG::Terms LDB_Reader::ReadTerms(Reader& stream) {
-	RPG::Terms terms;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTerms::encounter:
-			terms.encounter = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::special_combat:
-			terms.special_combat = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::escape_success:
-			terms.escape_success = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::escape_failure:
-			terms.escape_failure = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::victory:
-			terms.victory = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::defeat:
-			terms.defeat = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::exp_received:
-			terms.exp_received = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::gold_recieved_a:
-			terms.gold_recieved_a = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::gold_recieved_b:
-			terms.gold_recieved_b = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::item_recieved:
-			terms.item_recieved = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::attacking:
-			terms.attacking = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::actor_critical:
-			terms.actor_critical = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_critical:
-			terms.enemy_critical = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::defending:
-			terms.defending = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::observing:
-			terms.observing = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::focus:
-			terms.focus = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::autodestruction:
-			terms.autodestruction = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_escape:
-			terms.enemy_escape = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_transform:
-			terms.enemy_transform = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_damaged:
-			terms.enemy_damaged = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_undamaged:
-			terms.enemy_undamaged = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::actor_damaged:
-			terms.actor_damaged = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::actor_undamaged:
-			terms.actor_undamaged = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::skill_failure_a:
-			terms.skill_failure_a = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::skill_failure_b:
-			terms.skill_failure_b = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::skill_failure_c:
-			terms.skill_failure_c = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::dodge:
-			terms.dodge = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::use_item:
-			terms.use_item = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::hp_recovery:
-			terms.hp_recovery = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::parameter_increase:
-			terms.parameter_increase = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::parameter_decrease:
-			terms.parameter_decrease = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::actor_hp_absorbed:
-			terms.actor_hp_absorbed = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::enemy_hp_absorbed:
-			terms.enemy_hp_absorbed = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::resistance_increase:
-			terms.resistance_increase = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::resistance_decrease:
-			terms.resistance_decrease = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::level_up:
-			terms.level_up = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::skill_learned:
-			terms.skill_learned = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::battle_start:
-			terms.battle_start = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::miss:
-			terms.miss = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_greeting1:
-			terms.shop_greeting1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_regreeting1:
-			terms.shop_regreeting1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy1:
-			terms.shop_buy1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell1:
-			terms.shop_sell1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_leave1:
-			terms.shop_leave1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_select1:
-			terms.shop_buy_select1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_number1:
-			terms.shop_buy_number1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_purchased1:
-			terms.shop_purchased1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_select1:
-			terms.shop_sell_select1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_number1:
-			terms.shop_sell_number1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sold1:
-			terms.shop_sold1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_greeting2:
-			terms.shop_greeting2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_regreeting2:
-			terms.shop_regreeting2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy2:
-			terms.shop_buy2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell2:
-			terms.shop_sell2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_leave2:
-			terms.shop_leave2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_select2:
-			terms.shop_buy_select2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_number2:
-			terms.shop_buy_number2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_purchased2:
-			terms.shop_purchased2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_select2:
-			terms.shop_sell_select2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_number2:
-			terms.shop_sell_number2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sold2:
-			terms.shop_sold2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_greeting3:
-			terms.shop_greeting3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_regreeting3:
-			terms.shop_regreeting3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy3:
-			terms.shop_buy3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell3:
-			terms.shop_sell3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_leave3:
-			terms.shop_leave3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_select3:
-			terms.shop_buy_select3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_buy_number3:
-			terms.shop_buy_number3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_purchased3:
-			terms.shop_purchased3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_select3:
-			terms.shop_sell_select3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sell_number3:
-			terms.shop_sell_number3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shop_sold3:
-			terms.shop_sold3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_a_greeting_1:
-			terms.inn_a_greeting_1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_a_greeting_2:
-			terms.inn_a_greeting_2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_a_greeting_3:
-			terms.inn_a_greeting_3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_a_accept:
-			terms.inn_a_accept = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_a_cancel:
-			terms.inn_a_cancel = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_b_greeting_1:
-			terms.inn_b_greeting_1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_b_greeting_2:
-			terms.inn_b_greeting_2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_b_greeting_3:
-			terms.inn_b_greeting_3 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_b_accept:
-			terms.inn_b_accept = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::inn_b_cancel:
-			terms.inn_b_cancel = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::possessed_items:
-			terms.possessed_items = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::equipped_items:
-			terms.equipped_items = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::gold:
-			terms.gold = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::battle_fight:
-			terms.battle_fight = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::battle_auto:
-			terms.battle_auto = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::battle_escape:
-			terms.battle_escape = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::command_attack:
-			terms.command_attack = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::command_defend:
-			terms.command_defend = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::command_item:
-			terms.command_item = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::command_skill:
-			terms.command_skill = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::menu_equipment:
-			terms.menu_equipment = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::menu_save:
-			terms.menu_save = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::menu_quit:
-			terms.menu_quit = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::new_game:
-			terms.new_game = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::load_game:
-			terms.load_game = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::exit_game:
-			terms.exit_game = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::status:
-			terms.status = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::row:
-			terms.row = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::order:
-			terms.order = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::wait_on:
-			terms.wait_on = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::wait_off:
-			terms.wait_off = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::level:
-			terms.level = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::health_points:
-			terms.health_points = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::spirit_points:
-			terms.spirit_points = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::normal_status:
-			terms.normal_status = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::exp_short:
-			terms.exp_short = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::lvl_short:
-			terms.lvl_short = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::hp_short:
-			terms.hp_short = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::sp_short:
-			terms.sp_short = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::sp_cost:
-			terms.sp_cost = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::attack:
-			terms.attack = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::defense:
-			terms.defense = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::spirit:
-			terms.spirit = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::agility:
-			terms.agility = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::weapon:
-			terms.weapon = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::shield:
-			terms.shield = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::armor:
-			terms.armor = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::helmet:
-			terms.helmet = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::accessory:
-			terms.accessory = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::save_game_message:
-			terms.save_game_message = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::load_game_message:
-			terms.load_game_message = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::exit_game_message:
-			terms.exit_game_message = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::file:
-			terms.file = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::yes:
-			terms.yes = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTerms::no:
-			terms.no = stream.ReadString(chunk_info.length);
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return terms;
+template <>
+void Struct<RPG::Terms>::ReadID(RPG::Terms& obj, Reader& stream) {
+	IDReader<RPG::Terms, NoID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Terms>* Struct<RPG::Terms>::fields[] = {
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::encounter,			LDB_Reader::ChunkTerms::encounter,				"encounter"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::special_combat,		LDB_Reader::ChunkTerms::special_combat,			"special_combat"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::escape_success,		LDB_Reader::ChunkTerms::escape_success,			"escape_success"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::escape_failure,		LDB_Reader::ChunkTerms::escape_failure,			"escape_failure"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::victory,				LDB_Reader::ChunkTerms::victory,				"victory"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::defeat,				LDB_Reader::ChunkTerms::defeat,					"defeat"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exp_received,			LDB_Reader::ChunkTerms::exp_received,			"exp_received"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::gold_recieved_a,		LDB_Reader::ChunkTerms::gold_recieved_a,		"gold_recieved_a"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::gold_recieved_b,		LDB_Reader::ChunkTerms::gold_recieved_b,		"gold_recieved_b"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::item_recieved,		LDB_Reader::ChunkTerms::item_recieved,			"item_recieved"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::attacking,			LDB_Reader::ChunkTerms::attacking,				"attacking"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::actor_critical,		LDB_Reader::ChunkTerms::actor_critical,			"actor_critical"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_critical,		LDB_Reader::ChunkTerms::enemy_critical,			"enemy_critical"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::defending,			LDB_Reader::ChunkTerms::defending,				"defending"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::observing,			LDB_Reader::ChunkTerms::observing,				"observing"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::focus,				LDB_Reader::ChunkTerms::focus,					"focus"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::autodestruction,		LDB_Reader::ChunkTerms::autodestruction,		"autodestruction"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_escape,			LDB_Reader::ChunkTerms::enemy_escape,			"enemy_escape"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_transform,		LDB_Reader::ChunkTerms::enemy_transform,		"enemy_transform"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_damaged,		LDB_Reader::ChunkTerms::enemy_damaged,			"enemy_damaged"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_undamaged,		LDB_Reader::ChunkTerms::enemy_undamaged,		"enemy_undamaged"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::actor_damaged,		LDB_Reader::ChunkTerms::actor_damaged,			"actor_damaged"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::actor_undamaged,		LDB_Reader::ChunkTerms::actor_undamaged,		"actor_undamaged"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::skill_failure_a,		LDB_Reader::ChunkTerms::skill_failure_a,		"skill_failure_a"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::skill_failure_b,		LDB_Reader::ChunkTerms::skill_failure_b,		"skill_failure_b"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::skill_failure_c,		LDB_Reader::ChunkTerms::skill_failure_c,		"skill_failure_c"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::dodge,				LDB_Reader::ChunkTerms::dodge,					"dodge"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::use_item,				LDB_Reader::ChunkTerms::use_item,				"use_item"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::hp_recovery,			LDB_Reader::ChunkTerms::hp_recovery,			"hp_recovery"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::parameter_increase,	LDB_Reader::ChunkTerms::parameter_increase,		"parameter_increase"	),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::parameter_decrease,	LDB_Reader::ChunkTerms::parameter_decrease,		"parameter_decrease"	),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::actor_hp_absorbed,	LDB_Reader::ChunkTerms::actor_hp_absorbed,		"actor_hp_absorbed"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::enemy_hp_absorbed,	LDB_Reader::ChunkTerms::enemy_hp_absorbed,		"enemy_hp_absorbed"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::resistance_increase,	LDB_Reader::ChunkTerms::resistance_increase,	"resistance_increase"	),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::resistance_decrease,	LDB_Reader::ChunkTerms::resistance_decrease,	"resistance_decrease"	),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::level_up,				LDB_Reader::ChunkTerms::level_up,				"level_up"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::skill_learned,		LDB_Reader::ChunkTerms::skill_learned,			"skill_learned"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::battle_start,			LDB_Reader::ChunkTerms::battle_start,			"battle_start"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::miss,					LDB_Reader::ChunkTerms::miss,					"miss"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_greeting1,		LDB_Reader::ChunkTerms::shop_greeting1,			"shop_greeting1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_regreeting1,		LDB_Reader::ChunkTerms::shop_regreeting1,		"shop_regreeting1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy1,			LDB_Reader::ChunkTerms::shop_buy1,				"shop_buy1"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell1,			LDB_Reader::ChunkTerms::shop_sell1,				"shop_sell1"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_leave1,			LDB_Reader::ChunkTerms::shop_leave1,			"shop_leave1"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_select1,		LDB_Reader::ChunkTerms::shop_buy_select1,		"shop_buy_select1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_number1,		LDB_Reader::ChunkTerms::shop_buy_number1,		"shop_buy_number1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_purchased1,		LDB_Reader::ChunkTerms::shop_purchased1,		"shop_purchased1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_select1,	LDB_Reader::ChunkTerms::shop_sell_select1,		"shop_sell_select1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_number1,	LDB_Reader::ChunkTerms::shop_sell_number1,		"shop_sell_number1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sold1,			LDB_Reader::ChunkTerms::shop_sold1,				"shop_sold1"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_greeting2,		LDB_Reader::ChunkTerms::shop_greeting2,			"shop_greeting2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_regreeting2,		LDB_Reader::ChunkTerms::shop_regreeting2,		"shop_regreeting2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy2,			LDB_Reader::ChunkTerms::shop_buy2,				"shop_buy2"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell2,			LDB_Reader::ChunkTerms::shop_sell2,				"shop_sell2"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_leave2,			LDB_Reader::ChunkTerms::shop_leave2,			"shop_leave2"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_select2,		LDB_Reader::ChunkTerms::shop_buy_select2,		"shop_buy_select2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_number2,		LDB_Reader::ChunkTerms::shop_buy_number2,		"shop_buy_number2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_purchased2,		LDB_Reader::ChunkTerms::shop_purchased2,		"shop_purchased2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_select2,	LDB_Reader::ChunkTerms::shop_sell_select2,		"shop_sell_select2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_number2,	LDB_Reader::ChunkTerms::shop_sell_number2,		"shop_sell_number2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sold2,			LDB_Reader::ChunkTerms::shop_sold2,				"shop_sold2"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_greeting3,		LDB_Reader::ChunkTerms::shop_greeting3,			"shop_greeting3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_regreeting3,		LDB_Reader::ChunkTerms::shop_regreeting3,		"shop_regreeting3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy3,			LDB_Reader::ChunkTerms::shop_buy3,				"shop_buy3"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell3,			LDB_Reader::ChunkTerms::shop_sell3,				"shop_sell3"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_leave3,			LDB_Reader::ChunkTerms::shop_leave3,			"shop_leave3"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_select3,		LDB_Reader::ChunkTerms::shop_buy_select3,		"shop_buy_select3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_buy_number3,		LDB_Reader::ChunkTerms::shop_buy_number3,		"shop_buy_number3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_purchased3,		LDB_Reader::ChunkTerms::shop_purchased3,		"shop_purchased3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_select3,	LDB_Reader::ChunkTerms::shop_sell_select3,		"shop_sell_select3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sell_number3,	LDB_Reader::ChunkTerms::shop_sell_number3,		"shop_sell_number3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shop_sold3,			LDB_Reader::ChunkTerms::shop_sold3,				"shop_sold3"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_a_greeting_1,		LDB_Reader::ChunkTerms::inn_a_greeting_1,		"inn_a_greeting_1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_a_greeting_2,		LDB_Reader::ChunkTerms::inn_a_greeting_2,		"inn_a_greeting_2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_a_greeting_3,		LDB_Reader::ChunkTerms::inn_a_greeting_3,		"inn_a_greeting_3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_a_accept,			LDB_Reader::ChunkTerms::inn_a_accept,			"inn_a_accept"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_a_cancel,			LDB_Reader::ChunkTerms::inn_a_cancel,			"inn_a_cancel"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_b_greeting_1,		LDB_Reader::ChunkTerms::inn_b_greeting_1,		"inn_b_greeting_1"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_b_greeting_2,		LDB_Reader::ChunkTerms::inn_b_greeting_2,		"inn_b_greeting_2"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_b_greeting_3,		LDB_Reader::ChunkTerms::inn_b_greeting_3,		"inn_b_greeting_3"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_b_accept,			LDB_Reader::ChunkTerms::inn_b_accept,			"inn_b_accept"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::inn_b_cancel,			LDB_Reader::ChunkTerms::inn_b_cancel,			"inn_b_cancel"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::possessed_items,		LDB_Reader::ChunkTerms::possessed_items,		"possessed_items"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::equipped_items,		LDB_Reader::ChunkTerms::equipped_items,			"equipped_items"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::gold,					LDB_Reader::ChunkTerms::gold,					"gold"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::battle_fight,			LDB_Reader::ChunkTerms::battle_fight,			"battle_fight"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::battle_auto,			LDB_Reader::ChunkTerms::battle_auto,			"battle_auto"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::battle_escape,		LDB_Reader::ChunkTerms::battle_escape,			"battle_escape"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::command_attack,		LDB_Reader::ChunkTerms::command_attack,			"command_attack"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::command_defend,		LDB_Reader::ChunkTerms::command_defend,			"command_defend"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::command_item,			LDB_Reader::ChunkTerms::command_item,			"command_item"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::command_skill,		LDB_Reader::ChunkTerms::command_skill,			"command_skill"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::menu_equipment,		LDB_Reader::ChunkTerms::menu_equipment,			"menu_equipment"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::menu_save,			LDB_Reader::ChunkTerms::menu_save,				"menu_save"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::menu_quit,			LDB_Reader::ChunkTerms::menu_quit,				"menu_quit"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::new_game,				LDB_Reader::ChunkTerms::new_game,				"new_game"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::load_game,			LDB_Reader::ChunkTerms::load_game,				"load_game"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exit_game,			LDB_Reader::ChunkTerms::exit_game,				"exit_game"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::status,				LDB_Reader::ChunkTerms::status,					"status"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::row,					LDB_Reader::ChunkTerms::row,					"row"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::order,				LDB_Reader::ChunkTerms::order,					"order"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::wait_on,				LDB_Reader::ChunkTerms::wait_on,				"wait_on"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::wait_off,				LDB_Reader::ChunkTerms::wait_off,				"wait_off"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::level,				LDB_Reader::ChunkTerms::level,					"level"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::health_points,		LDB_Reader::ChunkTerms::health_points,			"health_points"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::spirit_points,		LDB_Reader::ChunkTerms::spirit_points,			"spirit_points"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::normal_status,		LDB_Reader::ChunkTerms::normal_status,			"normal_status"			),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exp_short,			LDB_Reader::ChunkTerms::exp_short,				"exp_short"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::lvl_short,			LDB_Reader::ChunkTerms::lvl_short,				"lvl_short"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::hp_short,				LDB_Reader::ChunkTerms::hp_short,				"hp_short"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::sp_short,				LDB_Reader::ChunkTerms::sp_short,				"sp_short"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::sp_cost,				LDB_Reader::ChunkTerms::sp_cost,				"sp_cost"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::attack,				LDB_Reader::ChunkTerms::attack,					"attack"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::defense,				LDB_Reader::ChunkTerms::defense,				"defense"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::spirit,				LDB_Reader::ChunkTerms::spirit,					"spirit"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::agility,				LDB_Reader::ChunkTerms::agility,				"agility"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::weapon,				LDB_Reader::ChunkTerms::weapon,					"weapon"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::shield,				LDB_Reader::ChunkTerms::shield,					"shield"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::armor,				LDB_Reader::ChunkTerms::armor,					"armor"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::helmet,				LDB_Reader::ChunkTerms::helmet,					"helmet"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::accessory,			LDB_Reader::ChunkTerms::accessory,				"accessory"				),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::save_game_message,	LDB_Reader::ChunkTerms::save_game_message,		"save_game_message"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::load_game_message,	LDB_Reader::ChunkTerms::load_game_message,		"load_game_message"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exit_game_message,	LDB_Reader::ChunkTerms::exit_game_message,		"exit_game_message"		),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::file,					LDB_Reader::ChunkTerms::file,					"file"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::yes,					LDB_Reader::ChunkTerms::yes,					"yes"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::no,					LDB_Reader::ChunkTerms::no,						"no"					),
+	NULL
+};

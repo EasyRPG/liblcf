@@ -21,137 +21,53 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Skill
 ////////////////////////////////////////////////////////////
-RPG::Skill LDB_Reader::ReadSkill(Reader& stream) {
-	RPG::Skill skill;
-	skill.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkSkill::name:
-			skill.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSkill::description:
-			skill.description = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSkill::using_message1:
-			skill.using_message1 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSkill::using_message2:
-			skill.using_message2 = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSkill::failure_message:
-			skill.failure_message = stream.ReadInt();
-			break;
-		case ChunkSkill::type:
-			skill.type = stream.ReadInt();
-			break;
-		case ChunkSkill::sp_type:
-			skill.sp_type = stream.ReadInt();
-			break;
-		case ChunkSkill::sp_percent:
-			skill.sp_percent = stream.ReadInt();
-			break;
-		case ChunkSkill::sp_cost:
-			skill.sp_cost = stream.ReadInt();
-			break;
-		case ChunkSkill::scope:
-			skill.scope = stream.ReadInt();
-			break;
-		case ChunkSkill::switch_id:
-			skill.switch_id = stream.ReadInt();
-			break;
-		case ChunkSkill::animation_id:
-			skill.animation_id = stream.ReadInt();
-			break;
-		case ChunkSkill::sound_effect:
-			skill.sound_effect = ReadSound(stream);
-			break;
-		case ChunkSkill::occasion_field:
-			skill.occasion_field = stream.ReadBool();
-			break;
-		case ChunkSkill::occasion_battle:
-			skill.occasion_battle = stream.ReadBool();
-			break;
-		case ChunkSkill::state_effect:
-			skill.state_effect = stream.ReadBool();
-			break;
-		case ChunkSkill::pdef_f:
-			skill.pdef_f = stream.ReadInt();
-			break;
-		case ChunkSkill::mdef_f:
-			skill.mdef_f = stream.ReadInt();
-			break;
-		case ChunkSkill::variance:
-			skill.variance = stream.ReadInt();
-			break;
-		case ChunkSkill::power:
-			skill.power = stream.ReadInt();
-			break;
-		case ChunkSkill::hit:
-			skill.hit = stream.ReadInt();
-			break;
-		case ChunkSkill::affect_hp:
-			skill.affect_hp = stream.ReadBool();
-			break;
-		case ChunkSkill::affect_sp:
-			skill.affect_sp = stream.ReadBool();
-			break;
-		case ChunkSkill::affect_attack:
-			skill.affect_attack = stream.ReadBool();
-			break;
-		case ChunkSkill::affect_defense:
-			skill.affect_defense = stream.ReadBool();
-			break;
-		case ChunkSkill::affect_spirit:
-			skill.affect_spirit = stream.ReadBool();
-			break;
-		case ChunkSkill::affect_agility:
-			skill.affect_agility = stream.ReadBool();
-			break;
-		case ChunkSkill::absorb_damage:
-			skill.absorb_damage = stream.ReadBool();
-			break;
-		case ChunkSkill::ignore_defense:
-			skill.ignore_defense = stream.ReadBool();
-			break;
-		case ChunkSkill::state_size:
-			stream.ReadInt();
-			break;
-		case ChunkSkill::state_effects:
-			stream.ReadBool(skill.state_effects, chunk_info.length);
-			break;
-		case ChunkSkill::attribute_size:
-			stream.ReadInt();
-			break;
-		case ChunkSkill::attribute_effects:
-			stream.ReadBool(skill.attribute_effects, chunk_info.length);
-			break;
-		case ChunkSkill::affect_attr_defence:
-			skill.affect_attr_defence = stream.ReadBool();
-			break;
-		case ChunkSkill::battler_animation:
-			skill.battler_animation = stream.ReadInt();
-			break;
-		case ChunkSkill::battler_animation_data:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				skill.battler_animation_data.push_back(ReadBattlerAnimationData(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return skill;
+template <>
+void Struct<RPG::Skill>::ReadID(RPG::Skill& obj, Reader& stream) {
+	IDReader<RPG::Skill, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {
+	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::name,					LDB_Reader::ChunkSkill::name,					"name"					),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::type,					LDB_Reader::ChunkSkill::type,					"type"					),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::sp_type,				LDB_Reader::ChunkSkill::sp_type,				"sp_type"				),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::sp_cost,				LDB_Reader::ChunkSkill::sp_cost,				"sp_cost"				),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::sp_percent,			LDB_Reader::ChunkSkill::sp_percent,				"sp_percent"			),
+	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::description,			LDB_Reader::ChunkSkill::description,			"description"			),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::scope,				LDB_Reader::ChunkSkill::scope,					"scope"					),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::animation_id,			LDB_Reader::ChunkSkill::animation_id,			"animation_id"			),
+	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::using_message1,		LDB_Reader::ChunkSkill::using_message1,			"using_message1"		),
+	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::using_message2,		LDB_Reader::ChunkSkill::using_message2,			"using_message2"		),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::failure_message,		LDB_Reader::ChunkSkill::failure_message,		"failure_message"		),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::pdef_f,				LDB_Reader::ChunkSkill::pdef_f,					"pdef_f"				),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::mdef_f,				LDB_Reader::ChunkSkill::mdef_f,					"mdef_f"				),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::variance,				LDB_Reader::ChunkSkill::variance,				"variance"				),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::power,				LDB_Reader::ChunkSkill::power,					"power"					),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::hit,					LDB_Reader::ChunkSkill::hit,					"hit"					),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_hp,			LDB_Reader::ChunkSkill::affect_hp,				"affect_hp"				),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_sp,			LDB_Reader::ChunkSkill::affect_sp,				"affect_sp"				),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_attack,		LDB_Reader::ChunkSkill::affect_attack,			"affect_attack"			),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_defense,		LDB_Reader::ChunkSkill::affect_defense,			"affect_defense"		),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_spirit,		LDB_Reader::ChunkSkill::affect_spirit,			"affect_spirit"			),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_agility,		LDB_Reader::ChunkSkill::affect_agility,			"affect_agility"		),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::absorb_damage,		LDB_Reader::ChunkSkill::absorb_damage,			"absorb_damage"			),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::ignore_defense,		LDB_Reader::ChunkSkill::ignore_defense,			"ignore_defense"		),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::state_effect,			LDB_Reader::ChunkSkill::state_effect,			"state_effect"			),
+	new TypedField<RPG::Skill, int >				(NULL,								LDB_Reader::ChunkSkill::state_size,				""						),
+	new TypedField<RPG::Skill, std::vector<bool> >	(&RPG::Skill::state_effects,		LDB_Reader::ChunkSkill::state_effects,			"state_effects"			),
+	new TypedField<RPG::Skill, int >				(NULL,								LDB_Reader::ChunkSkill::attribute_size,			""						),
+	new TypedField<RPG::Skill, std::vector<bool> >	(&RPG::Skill::attribute_effects,	LDB_Reader::ChunkSkill::attribute_effects,		"attribute_effects"		),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_attr_defence,	LDB_Reader::ChunkSkill::affect_attr_defence,	"affect_attr_defence"	),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::battler_animation,	LDB_Reader::ChunkSkill::battler_animation,		"battler_animation"		),
+	new TypedField<RPG::Skill, RPG::Sound>			(&RPG::Skill::sound_effect,			LDB_Reader::ChunkSkill::sound_effect,			"sound_effect"			),
+	new TypedField<RPG::Skill, int>					(&RPG::Skill::switch_id,			LDB_Reader::ChunkSkill::switch_id,				"switch_id"				),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::occasion_field,		LDB_Reader::ChunkSkill::occasion_field,			"occasion_field"		),
+	new TypedField<RPG::Skill, bool>				(&RPG::Skill::occasion_battle,		LDB_Reader::ChunkSkill::occasion_battle,		"occasion_battle"		),
+	new TypedField<RPG::Skill, std::vector<RPG::BattlerAnimationData> >	(&RPG::Skill::battler_animation_data,	LDB_Reader::ChunkSkill::battler_animation_data,	"battler_animation_data"),
+	NULL
+};

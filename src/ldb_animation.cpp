@@ -21,49 +21,23 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Animation
 ////////////////////////////////////////////////////////////
-RPG::Animation LDB_Reader::ReadAnimation(Reader& stream) {
-	RPG::Animation animation;
-	animation.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkAnimation::name:
-			animation.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkAnimation::animation_name:
-			animation.animation_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkAnimation::timings:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				animation.timings.push_back(ReadAnimationTiming(stream));
-			}
-			break;
-		case ChunkAnimation::scope:
-			animation.scope = stream.ReadInt();
-			break;
-		case ChunkAnimation::position:
-			animation.position = stream.ReadInt();
-			break;
-		case ChunkAnimation::frames:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				animation.frames.push_back(ReadAnimationFrame(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return animation;
+template <>
+void Struct<RPG::Animation>::ReadID(RPG::Animation& obj, Reader& stream) {
+	IDReader<RPG::Animation, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Animation>* Struct<RPG::Animation>::fields[] = {
+	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::name,				LDB_Reader::ChunkAnimation::name,			"name"			),
+	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::animation_name,	LDB_Reader::ChunkAnimation::animation_name,	"animation_name"),
+	new TypedField<RPG::Animation,	std::vector<RPG::AnimationTiming> >	(&RPG::Animation::timings,			LDB_Reader::ChunkAnimation::timings,		"timings"		),
+	new TypedField<RPG::Animation,	int>								(&RPG::Animation::scope,			LDB_Reader::ChunkAnimation::scope,			"scope"			),
+	new TypedField<RPG::Animation,	int>								(&RPG::Animation::position,			LDB_Reader::ChunkAnimation::position,		"position"		),
+	new TypedField<RPG::Animation,	std::vector<RPG::AnimationFrame> >	(&RPG::Animation::frames,			LDB_Reader::ChunkAnimation::frames,			"frames"		),
+	NULL
+};

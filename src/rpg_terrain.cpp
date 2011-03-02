@@ -47,10 +47,10 @@ RPG::Terrain::Terrain() {
 	background_b_scrollv = false;
 	background_b_scrollh_speed = 0;
 	background_b_scrollv_speed = 0;
-	special_back_party_flag = false;
-	special_back_enemies_flag = false;
-	special_lateral_party_flag = false;
-	special_lateral_enemies_flag = false;
+	special_flags.back_party = false;
+	special_flags.back_enemies = false;
+	special_flags.lateral_party = false;
+	special_flags.lateral_enemies = false;
 	special_back_party = 15;
 	special_back_enemies = 10;
 	special_lateral_party = 10;

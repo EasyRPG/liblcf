@@ -266,11 +266,11 @@ void RPG::SaveActor::Setup(int actor_id) {
 	skills_size = 0;
 	skills.clear();
 	equipped.clear();
-	equipped.push_back(actor.weapon_id);
-	equipped.push_back(actor.shield_id);
-	equipped.push_back(actor.armor_id);
-	equipped.push_back(actor.helmet_id);
-	equipped.push_back(actor.accessory_id);
+	equipped.push_back(actor.initial_equipment.weapon_id);
+	equipped.push_back(actor.initial_equipment.shield_id);
+	equipped.push_back(actor.initial_equipment.armor_id);
+	equipped.push_back(actor.initial_equipment.helmet_id);
+	equipped.push_back(actor.initial_equipment.accessory_id);
 	current_hp = 0;
 	current_sp = 0;
 	battle_commands = actor.battle_commands;

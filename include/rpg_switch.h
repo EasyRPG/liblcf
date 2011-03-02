@@ -15,25 +15,24 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
+#ifndef _RPG_SWITCH_H_
+#define _RPG_SWITCH_H_
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
-#include "reader.h"
-#include "reader_struct.h"
+#include <string>
 
 ////////////////////////////////////////////////////////////
-/// Read Switch
+/// RPG::Switch class
 ////////////////////////////////////////////////////////////
-template <>
-void Struct<RPG::Switch>::ReadID(RPG::Switch& obj, Reader& stream) {
-	IDReader<RPG::Switch, WithID>::ReadID(obj, stream);
+namespace RPG {
+	class Switch {
+	public:
+		Switch();
+		int ID;
+		std::string name;
+	};
 }
 
-template <>
-const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {
-	new TypedField<RPG::Switch, std::string>(&RPG::Switch::name, LDB_Reader::ChunkSwitch::name, "name"),
-	NULL
-};
-
+#endif

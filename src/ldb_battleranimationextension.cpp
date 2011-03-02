@@ -21,42 +21,22 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimationExtension
 ////////////////////////////////////////////////////////////
-RPG::BattlerAnimationExtension LDB_Reader::ReadBattlerAnimationExtension(Reader& stream) {
-	RPG::BattlerAnimationExtension extension;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkBattlerAnimationExtension::name:
-			extension.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkBattlerAnimationExtension::battler_name:
-			extension.battler_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkBattlerAnimationExtension::battler_index:
-			extension.battler_index = stream.ReadInt();
-			break;
-		case ChunkBattlerAnimationExtension::animation_type:
-			extension.animation_type = stream.ReadInt();
-			break;
-		case ChunkBattlerAnimationExtension::animation_id:
-			extension.animation_id = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return extension;
+template <>
+void Struct<RPG::BattlerAnimationExtension>::ReadID(RPG::BattlerAnimationExtension& obj, Reader& stream) {
+	IDReader<RPG::BattlerAnimationExtension, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::fields[] = {
+	new TypedField<RPG::BattlerAnimationExtension, std::string>	(&RPG::BattlerAnimationExtension::name,				LDB_Reader::ChunkBattlerAnimationExtension::name,			"name"				),
+	new TypedField<RPG::BattlerAnimationExtension, std::string>	(&RPG::BattlerAnimationExtension::battler_name,		LDB_Reader::ChunkBattlerAnimationExtension::battler_name,	"battler_name"		),
+	new TypedField<RPG::BattlerAnimationExtension, int>			(&RPG::BattlerAnimationExtension::battler_index,	LDB_Reader::ChunkBattlerAnimationExtension::battler_index,	"battler_index"		),
+	new TypedField<RPG::BattlerAnimationExtension, int>			(&RPG::BattlerAnimationExtension::animation_type,	LDB_Reader::ChunkBattlerAnimationExtension::animation_type,	"animation_type"	),
+	new TypedField<RPG::BattlerAnimationExtension, int>			(&RPG::BattlerAnimationExtension::animation_id,		LDB_Reader::ChunkBattlerAnimationExtension::animation_id,	"animation_id"		),
+	NULL
+};

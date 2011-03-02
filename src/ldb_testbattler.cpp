@@ -21,48 +21,24 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read TestBattler
 ////////////////////////////////////////////////////////////
-RPG::TestBattler LDB_Reader::ReadTestBattler(Reader& stream) {
-	RPG::TestBattler testbattler;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTestBattler::ID:
-			testbattler.ID = stream.ReadInt();
-			break;
-		case ChunkTestBattler::level:
-			testbattler.level = stream.ReadInt();
-			break;
-		case ChunkTestBattler::weapon_id:
-			testbattler.weapon_id = stream.ReadInt();
-			break;
-		case ChunkTestBattler::shield_id:
-			testbattler.shield_id = stream.ReadInt();
-			break;
-		case ChunkTestBattler::armor_id:
-			testbattler.armor_id = stream.ReadInt();
-			break;
-		case ChunkTestBattler::helmet_id:
-			testbattler.helmet_id = stream.ReadInt();
-			break;
-		case ChunkTestBattler::accessory_id:
-			testbattler.accessory_id = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return testbattler;
+template <>
+void Struct<RPG::TestBattler>::ReadID(RPG::TestBattler& obj, Reader& stream) {
+	IDReader<RPG::TestBattler, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::TestBattler>* Struct<RPG::TestBattler>::fields[] = {
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::ID,				LDB_Reader::ChunkTestBattler::ID,			"ID"			),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::level,			LDB_Reader::ChunkTestBattler::level,		"level"			),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::weapon_id,		LDB_Reader::ChunkTestBattler::weapon_id,	"weapon_id"		),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::shield_id,		LDB_Reader::ChunkTestBattler::shield_id,	"shield_id"		),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::armor_id,		LDB_Reader::ChunkTestBattler::armor_id,		"armor_id"		),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::helmet_id,		LDB_Reader::ChunkTestBattler::helmet_id,	"helmet_id"		),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::accessory_id,	LDB_Reader::ChunkTestBattler::accessory_id,	"accessory_id"	),
+	NULL
+};

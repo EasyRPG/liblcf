@@ -56,10 +56,12 @@ namespace RPG {
 		bool background_b_scrollv;
 		int background_b_scrollh_speed;
 		int background_b_scrollv_speed;
-		bool special_back_party_flag;
-		bool special_back_enemies_flag;
-		bool special_lateral_party_flag;
-		bool special_lateral_enemies_flag;
+		struct Flags {
+			bool back_party;
+			bool back_enemies;
+			bool lateral_party;
+			bool lateral_enemies;
+		} special_flags;
 		int special_back_party;
 		int special_back_enemies;
 		int special_lateral_party;

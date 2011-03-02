@@ -18,29 +18,32 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include "rpg_database.h"
 #include "data.h"
 
 ////////////////////////////////////////////////////////////
 namespace Data {
 	// Database Data (ldb)
-	std::vector<RPG::Actor> actors;
-	std::vector<RPG::Skill> skills;
-	std::vector<RPG::Item> items;
-	std::vector<RPG::Enemy> enemies;
-	std::vector<RPG::Troop> troops;
-	std::vector<RPG::Terrain> terrains;
-	std::vector<RPG::Attribute> attributes;
-	std::vector<RPG::State> states;
-	std::vector<RPG::Animation> animations;
-	std::vector<RPG::Chipset> chipsets;
-	std::vector<RPG::CommonEvent> commonevents;
-	RPG::BattleCommands battlecommands;
-	std::vector<RPG::Class> classes;
-	std::vector<RPG::BattlerAnimation> battleranimations;
-	RPG::Terms terms;
-	RPG::System system;
-	std::vector<std::string> switches;
-	std::vector<std::string> variables;
+	RPG::Database data;
+
+	std::vector<RPG::Actor>& actors = data.actors;
+	std::vector<RPG::Skill>& skills = data.skills;
+	std::vector<RPG::Item>& items = data.items;
+	std::vector<RPG::Enemy>& enemies = data.enemies;
+	std::vector<RPG::Troop>& troops = data.troops;
+	std::vector<RPG::Terrain>& terrains = data.terrains;
+	std::vector<RPG::Attribute>& attributes = data.attributes;
+	std::vector<RPG::State>& states = data.states;
+	std::vector<RPG::Animation>& animations = data.animations;
+	std::vector<RPG::Chipset>& chipsets = data.chipsets;
+	std::vector<RPG::CommonEvent>& commonevents = data.commonevents;
+	RPG::BattleCommands& battlecommands = data.battlecommands;
+	std::vector<RPG::Class>& classes = data.classes;
+	std::vector<RPG::BattlerAnimation>& battleranimations = data.battleranimations;
+	RPG::Terms& terms = data.terms;
+	RPG::System& system = data.system;
+	std::vector<RPG::Switch>& switches = data.switches;
+	std::vector<RPG::Variable>& variables = data.variables;
 
 	// TreeMap (lmt)
 	RPG::TreeMap treemap;

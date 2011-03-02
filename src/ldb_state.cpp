@@ -21,153 +21,59 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read State
 ////////////////////////////////////////////////////////////
-RPG::State LDB_Reader::ReadState(Reader& stream) {
-	RPG::State state;
-	state.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkState::name:
-			state.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::type:
-			state.type = stream.ReadInt();
-			break;
-		case ChunkState::color:
-			state.color = stream.ReadInt();
-			break;
-		case ChunkState::priority:
-			state.priority = stream.ReadInt();
-			break;
-		case ChunkState::restriction:
-			state.restriction = stream.ReadInt();
-			break;
-		case ChunkState::a_rate:
-			state.a_rate = stream.ReadInt();
-			break;
-		case ChunkState::b_rate:
-			state.b_rate = stream.ReadInt();
-			break;
-		case ChunkState::c_rate:
-			state.c_rate = stream.ReadInt();
-			break;
-		case ChunkState::d_rate:
-			state.d_rate = stream.ReadInt();
-			break;
-		case ChunkState::e_rate:
-			state.e_rate = stream.ReadInt();
-			break;
-		case ChunkState::hold_turn:
-			state.hold_turn = stream.ReadInt();
-			break;
-		case ChunkState::auto_release_prob:
-			state.auto_release_prob = stream.ReadInt();
-			break;
-		case ChunkState::release_by_damage:
-			state.release_by_damage = stream.ReadInt();
-			break;
-		case ChunkState::affect_type:
-			state.affect_type = stream.ReadInt();
-			break;
-		case ChunkState::affect_attack:
-			state.affect_attack = stream.ReadBool();
-			break;
-		case ChunkState::affect_defense:
-			state.affect_defense = stream.ReadBool();
-			break;
-		case ChunkState::affect_spirit:
-			state.affect_spirit = stream.ReadBool();
-			break;
-		case ChunkState::affect_agility:
-			state.affect_agility = stream.ReadBool();
-			break;
-		case ChunkState::reduce_hit_ratio:
-			state.reduce_hit_ratio = stream.ReadInt();
-			break;
-		case ChunkState::avoid_attacks:
-			state.avoid_attacks = stream.ReadBool();
-			break;
-		case ChunkState::reflect_magic:
-			state.reflect_magic = stream.ReadBool();
-			break;
-		case ChunkState::cursed:
-			state.cursed = stream.ReadBool();
-			break;
-		case ChunkState::battler_animation_id:
-			state.battler_animation_id = stream.ReadInt();
-			break;
-		case ChunkState::restrict_skill:
-			state.restrict_skill = stream.ReadBool();
-			break;
-		case ChunkState::restrict_skill_level:
-			state.restrict_skill_level = stream.ReadInt();
-			break;
-		case ChunkState::restrict_magic:
-			state.restrict_magic = stream.ReadBool();
-			break;
-		case ChunkState::restrict_magic_level:
-			state.restrict_magic_level = stream.ReadInt();
-			break;
-		case ChunkState::hp_change_type:
-			state.hp_change_type = stream.ReadInt();
-			break;
-		case ChunkState::sp_change_type:
-			state.sp_change_type = stream.ReadInt();
-			break;
-		case ChunkState::message_actor:
-			state.message_actor = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::message_enemy:
-			state.message_enemy = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::message_already:
-			state.message_already = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::message_affected:
-			state.message_affected = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::message_recovery:
-			state.message_recovery = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkState::hp_change_max:
-			state.hp_change_max = stream.ReadInt();
-			break;
-		case ChunkState::hp_change_val:
-			state.hp_change_val = stream.ReadInt();
-			break;
-		case ChunkState::hp_change_map_val:
-			state.hp_change_map_val = stream.ReadInt();
-			break;
-		case ChunkState::hp_change_map_steps:
-			state.hp_change_map_steps = stream.ReadInt();
-			break;
-		case ChunkState::sp_change_max:
-			state.sp_change_max = stream.ReadInt();
-			break;
-		case ChunkState::sp_change_val:
-			state.sp_change_val = stream.ReadInt();
-			break;
-		case ChunkState::sp_change_map_val:
-			state.sp_change_map_val = stream.ReadInt();
-			break;
-		case ChunkState::sp_change_map_steps:
-			state.sp_change_map_steps = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return state;
+template <>
+void Struct<RPG::State>::ReadID(RPG::State& obj, Reader& stream) {
+	IDReader<RPG::State, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::State>* Struct<RPG::State>::fields[] = {
+	new TypedField<RPG::State, std::string>	(&RPG::State::name,					LDB_Reader::ChunkState::name,					"name"					),
+	new TypedField<RPG::State, int>			(&RPG::State::type,					LDB_Reader::ChunkState::type,					"type"					),
+	new TypedField<RPG::State, int>			(&RPG::State::color,				LDB_Reader::ChunkState::color,					"color"					),
+	new TypedField<RPG::State, int>			(&RPG::State::priority,				LDB_Reader::ChunkState::priority,				"priority"				),
+	new TypedField<RPG::State, int>			(&RPG::State::restriction,			LDB_Reader::ChunkState::restriction,			"restriction"			),
+	new TypedField<RPG::State, int>			(&RPG::State::a_rate,				LDB_Reader::ChunkState::a_rate,					"a_rate"				),
+	new TypedField<RPG::State, int>			(&RPG::State::b_rate,				LDB_Reader::ChunkState::b_rate,					"b_rate"				),
+	new TypedField<RPG::State, int>			(&RPG::State::c_rate,				LDB_Reader::ChunkState::c_rate,					"c_rate"				),
+	new TypedField<RPG::State, int>			(&RPG::State::d_rate,				LDB_Reader::ChunkState::d_rate,					"d_rate"				),
+	new TypedField<RPG::State, int>			(&RPG::State::e_rate,				LDB_Reader::ChunkState::e_rate,					"e_rate"				),
+	new TypedField<RPG::State, int>			(&RPG::State::hold_turn,			LDB_Reader::ChunkState::hold_turn,				"hold_turn"				),
+	new TypedField<RPG::State, int>			(&RPG::State::auto_release_prob,	LDB_Reader::ChunkState::auto_release_prob,		"auto_release_prob"		),
+	new TypedField<RPG::State, int>			(&RPG::State::release_by_damage,	LDB_Reader::ChunkState::release_by_damage,		"release_by_damage"		),
+	new TypedField<RPG::State, int>			(&RPG::State::affect_type,			LDB_Reader::ChunkState::affect_type,			"affect_type"			),
+	new TypedField<RPG::State, bool>		(&RPG::State::affect_attack,		LDB_Reader::ChunkState::affect_attack,			"affect_attack"			),
+	new TypedField<RPG::State, bool>		(&RPG::State::affect_defense,		LDB_Reader::ChunkState::affect_defense,			"affect_defense"		),
+	new TypedField<RPG::State, bool>		(&RPG::State::affect_spirit,		LDB_Reader::ChunkState::affect_spirit,			"affect_spirit"			),
+	new TypedField<RPG::State, bool>		(&RPG::State::affect_agility,		LDB_Reader::ChunkState::affect_agility,			"affect_agility"		),
+	new TypedField<RPG::State, int>			(&RPG::State::reduce_hit_ratio,		LDB_Reader::ChunkState::reduce_hit_ratio,		"reduce_hit_ratio"		),
+	new TypedField<RPG::State, bool>		(&RPG::State::avoid_attacks,		LDB_Reader::ChunkState::avoid_attacks,			"avoid_attacks"			),
+	new TypedField<RPG::State, bool>		(&RPG::State::reflect_magic,		LDB_Reader::ChunkState::reflect_magic,			"reflect_magic"			),
+	new TypedField<RPG::State, bool>		(&RPG::State::cursed,				LDB_Reader::ChunkState::cursed,					"cursed"				),
+	new TypedField<RPG::State, int>			(&RPG::State::battler_animation_id,	LDB_Reader::ChunkState::battler_animation_id,	"battler_animation_id"	),
+	new TypedField<RPG::State, bool>		(&RPG::State::restrict_skill,		LDB_Reader::ChunkState::restrict_skill,			"restrict_skill"		),
+	new TypedField<RPG::State, int>			(&RPG::State::restrict_skill_level,	LDB_Reader::ChunkState::restrict_skill_level,	"restrict_skill_level"	),
+	new TypedField<RPG::State, bool>		(&RPG::State::restrict_magic,		LDB_Reader::ChunkState::restrict_magic,			"restrict_magic"		),
+	new TypedField<RPG::State, int>			(&RPG::State::restrict_magic_level,	LDB_Reader::ChunkState::restrict_magic_level,	"restrict_magic_level"	),
+	new TypedField<RPG::State, int>			(&RPG::State::hp_change_type,		LDB_Reader::ChunkState::hp_change_type,			"hp_change_type"		),
+	new TypedField<RPG::State, int>			(&RPG::State::sp_change_type,		LDB_Reader::ChunkState::sp_change_type,			"sp_change_type"		),
+	new TypedField<RPG::State, std::string>	(&RPG::State::message_actor,		LDB_Reader::ChunkState::message_actor,			"message_actor"			),
+	new TypedField<RPG::State, std::string>	(&RPG::State::message_enemy,		LDB_Reader::ChunkState::message_enemy,			"message_enemy"			),
+	new TypedField<RPG::State, std::string>	(&RPG::State::message_already,		LDB_Reader::ChunkState::message_already,		"message_already"		),
+	new TypedField<RPG::State, std::string>	(&RPG::State::message_affected,		LDB_Reader::ChunkState::message_affected,		"message_affected"		),
+	new TypedField<RPG::State, std::string>	(&RPG::State::message_recovery,		LDB_Reader::ChunkState::message_recovery,		"message_recovery"		),
+	new TypedField<RPG::State, int>			(&RPG::State::hp_change_max,		LDB_Reader::ChunkState::hp_change_max,			"hp_change_max"			),
+	new TypedField<RPG::State, int>			(&RPG::State::hp_change_val,		LDB_Reader::ChunkState::hp_change_val,			"hp_change_val"			),
+	new TypedField<RPG::State, int>			(&RPG::State::hp_change_map_val,	LDB_Reader::ChunkState::hp_change_map_val,		"hp_change_map_val"		),
+	new TypedField<RPG::State, int>			(&RPG::State::hp_change_map_steps,	LDB_Reader::ChunkState::hp_change_map_steps,	"hp_change_map_steps"	),
+	new TypedField<RPG::State, int>			(&RPG::State::sp_change_max,		LDB_Reader::ChunkState::sp_change_max,			"sp_change_max"			),
+	new TypedField<RPG::State, int>			(&RPG::State::sp_change_val,		LDB_Reader::ChunkState::sp_change_val,			"sp_change_val"			),
+	new TypedField<RPG::State, int>			(&RPG::State::sp_change_map_val,	LDB_Reader::ChunkState::sp_change_map_val,		"sp_change_map_val"		),
+	new TypedField<RPG::State, int>			(&RPG::State::sp_change_map_steps,	LDB_Reader::ChunkState::sp_change_map_steps,	"sp_change_map_steps"	),
+	NULL
+};

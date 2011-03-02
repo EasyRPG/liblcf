@@ -21,33 +21,19 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Variables
+/// Read Variable
 ////////////////////////////////////////////////////////////
-std::vector<std::string> LDB_Reader::ReadVariables(Reader& stream) {
-	std::vector<std::string> variables;
-	variables.resize(stream.ReadInt() + 1);
-
-	int pos;
-	Reader::Chunk chunk_info;
-	for (int i = variables.size() - 1; i > 0; i--) {
-		pos = stream.ReadInt();
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID != ChunkData::END) {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkData::END:
-			break;
-		case ChunkVariable::name:
-			// This string is null-terminated
-			variables[pos] = stream.ReadString(chunk_info.length + 1);
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return variables;
+template <>
+void Struct<RPG::Variable>::ReadID(RPG::Variable& obj, Reader& stream) {
+	IDReader<RPG::Variable, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Variable>* Struct<RPG::Variable>::fields[] = {
+	new TypedField<RPG::Variable, std::string>(&RPG::Variable::name, LDB_Reader::ChunkVariable::name, "name"),
+	NULL
+};
+

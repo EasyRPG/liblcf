@@ -21,48 +21,24 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Attribute
 ////////////////////////////////////////////////////////////
-RPG::Attribute LDB_Reader::ReadAttribute(Reader& stream) {
-	RPG::Attribute attribute;
-	attribute.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkAttribute::name:
-			attribute.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkAttribute::type:
-			attribute.type = stream.ReadInt();
-			break;
-		case ChunkAttribute::a_rate:
-			attribute.a_rate = stream.ReadInt();
-			break;
-		case ChunkAttribute::b_rate:
-			attribute.b_rate = stream.ReadInt();
-			break;
-		case ChunkAttribute::c_rate:
-			attribute.c_rate = stream.ReadInt();
-			break;
-		case ChunkAttribute::d_rate:
-			attribute.d_rate = stream.ReadInt();
-			break;
-		case ChunkAttribute::e_rate:
-			attribute.e_rate = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return attribute;
+template <>
+void Struct<RPG::Attribute>::ReadID(RPG::Attribute& obj, Reader& stream) {
+	IDReader<RPG::Attribute, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Attribute>* Struct<RPG::Attribute>::fields[] = {
+	new TypedField<RPG::Attribute, std::string>	(&RPG::Attribute::name,		LDB_Reader::ChunkAttribute::name,	"name"		),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::type,		LDB_Reader::ChunkAttribute::type,	"type"		),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::a_rate,	LDB_Reader::ChunkAttribute::a_rate,	"a_rate"	),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::b_rate,	LDB_Reader::ChunkAttribute::b_rate,	"b_rate"	),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::c_rate,	LDB_Reader::ChunkAttribute::c_rate,	"c_rate"	),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::d_rate,	LDB_Reader::ChunkAttribute::d_rate,	"d_rate"	),
+	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::e_rate,	LDB_Reader::ChunkAttribute::e_rate,	"e_rate"	),
+	NULL
+};

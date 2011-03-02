@@ -22,47 +22,21 @@
 #include "ldb_chunks.h"
 #include "event_reader.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read TroopPage
 ////////////////////////////////////////////////////////////
-RPG::TroopPage LDB_Reader::ReadTroopPage(Reader& stream) {
-	RPG::TroopPage page;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTroopPage::condition:
-			page.condition = ReadTroopPageCondition(stream);
-			break;
-		case ChunkTroopPage::event_commands_size:
-			stream.ReadInt();
-			break;
-		case ChunkTroopPage::event_commands:
-			// Event Commands is a special array
-			// Has no size information. Is terminated by 4 times 0x00.
-			for (;;)
-			{
-				char ch = stream.Read8();
-				if (ch == 0) {
-					stream.Seek(3, Reader::FromCurrent);
-					break;
-				}
-				stream.Ungetch(ch);
-				page.event_commands.push_back(Event_Reader::ReadEventCommand(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return page;
+template <>
+void Struct<RPG::TroopPage>::ReadID(RPG::TroopPage& obj, Reader& stream) {
+	IDReader<RPG::TroopPage, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::TroopPage>* Struct<RPG::TroopPage>::fields[] = {
+	new TypedField<RPG::TroopPage, RPG::TroopPageCondition>			(&RPG::TroopPage::condition,			LDB_Reader::ChunkTroopPage::condition,				"condition"			),
+	new TypedField<RPG::TroopPage, int>								(NULL,									LDB_Reader::ChunkTroopPage::event_commands_size,	""					),
+	new TypedField<RPG::TroopPage, std::vector<RPG::EventCommand> >	(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands,			"event_commands"	),
+	NULL
+};
+

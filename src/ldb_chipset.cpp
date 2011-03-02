@@ -21,48 +21,24 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Chipset
 ////////////////////////////////////////////////////////////
-RPG::Chipset LDB_Reader::ReadChipset(Reader& stream) {
-	RPG::Chipset chipset;
-	chipset.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkChipset::name:
-			chipset.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkChipset::chipset_name:
-			chipset.chipset_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkChipset::terrain_data:
-			stream.Read16(chipset.terrain_data, chunk_info.length);
-			break;
-		case ChunkChipset::passable_data_lower:
-			stream.Read8(chipset.passable_data_lower, chunk_info.length);
-			break;
-		case ChunkChipset::passable_data_upper:
-			stream.Read8(chipset.passable_data_upper, chunk_info.length);
-			break;
-		case ChunkChipset::animation_type:
-			chipset.animation_type = stream.ReadInt();
-			break;
-		case ChunkChipset::animation_speed:
-			chipset.animation_speed = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return chipset;
+template <>
+void Struct<RPG::Chipset>::ReadID(RPG::Chipset& obj, Reader& stream) {
+	IDReader<RPG::Chipset, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {
+	new TypedField<RPG::Chipset, std::string>					(&RPG::Chipset::name,					LDB_Reader::ChunkChipset::name,					"name"					),
+	new TypedField<RPG::Chipset, std::string>					(&RPG::Chipset::chipset_name,			LDB_Reader::ChunkChipset::chipset_name,			"chipset_name"			),
+	new TypedField<RPG::Chipset, std::vector<short> >			(&RPG::Chipset::terrain_data,			LDB_Reader::ChunkChipset::terrain_data,			"terrain_data"			),
+	new TypedField<RPG::Chipset, std::vector<unsigned char> >	(&RPG::Chipset::passable_data_lower,	LDB_Reader::ChunkChipset::passable_data_lower,	"passable_data_lower"	),
+	new TypedField<RPG::Chipset, std::vector<unsigned char> >	(&RPG::Chipset::passable_data_upper,	LDB_Reader::ChunkChipset::passable_data_upper,	"passable_data_upper"	),
+	new TypedField<RPG::Chipset, int>							(&RPG::Chipset::animation_type,			LDB_Reader::ChunkChipset::animation_type,		"animation_type"		),
+	new TypedField<RPG::Chipset, int>							(&RPG::Chipset::animation_speed,		LDB_Reader::ChunkChipset::animation_speed,		"animation_speed"		),
+	NULL
+};
