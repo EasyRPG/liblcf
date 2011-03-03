@@ -332,12 +332,14 @@
     <ClCompile Include="..\..\src\ldb_animationtiming.cpp" />
     <ClCompile Include="..\..\src\ldb_attribute.cpp" />
     <ClCompile Include="..\..\src\ldb_battlecommand.cpp" />
+    <ClCompile Include="..\..\src\ldb_battlecommands.cpp" />
     <ClCompile Include="..\..\src\ldb_battleranimation.cpp" />
     <ClCompile Include="..\..\src\ldb_battleranimationdata.cpp" />
     <ClCompile Include="..\..\src\ldb_battleranimationextension.cpp" />
     <ClCompile Include="..\..\src\ldb_chipset.cpp" />
     <ClCompile Include="..\..\src\ldb_class.cpp" />
     <ClCompile Include="..\..\src\ldb_commonevent.cpp" />
+    <ClCompile Include="..\..\src\ldb_database.cpp" />
     <ClCompile Include="..\..\src\ldb_enemy.cpp" />
     <ClCompile Include="..\..\src\ldb_enemyaction.cpp" />
     <ClCompile Include="..\..\src\ldb_item.cpp" />
@@ -361,10 +363,11 @@
     <ClCompile Include="..\..\src\lmt_encounter.cpp" />
     <ClCompile Include="..\..\src\lmt_mapinfo.cpp" />
     <ClCompile Include="..\..\src\lmt_reader.cpp" />
+    <ClCompile Include="..\..\src\lmt_treemap.cpp" />
     <ClCompile Include="..\..\src\lmu_event.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpage.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp" />
-    <ClCompile Include="..\..\src\lmu_movecommand.cpp" />
+    <ClCompile Include="..\..\src\lmu_map.cpp" />
     <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
     <ClCompile Include="..\..\src\lsd_reader.cpp" />
@@ -379,9 +382,12 @@
     <ClCompile Include="..\..\src\lsd_mapevent.cpp" />
     <ClCompile Include="..\..\src\lsd_mapinfo.cpp" />
     <ClCompile Include="..\..\src\lsd_picture.cpp" />
+    <ClCompile Include="..\..\src\lsd_save.cpp" />
     <ClCompile Include="..\..\src\lsd_screen.cpp" />
+    <ClCompile Include="..\..\src\lsd_target.cpp" />
     <ClCompile Include="..\..\src\lsd_title.cpp" />
     <ClCompile Include="..\..\src\lsd_vehicle.cpp" />
+    <ClCompile Include="..\..\src\move_reader.cpp" />
     <ClCompile Include="..\..\src\reader.cpp" />
     <ClCompile Include="..\..\src\reader_util.cpp" />
     <ClCompile Include="..\..\src\rpg_actor.cpp" />
@@ -416,6 +422,7 @@
     <ClCompile Include="..\..\src\rpg_skill.cpp" />
     <ClCompile Include="..\..\src\rpg_sound.cpp" />
     <ClCompile Include="..\..\src\rpg_state.cpp" />
+    <ClCompile Include="..\..\src\rpg_switch.cpp" />
     <ClCompile Include="..\..\src\rpg_system.cpp" />
     <ClCompile Include="..\..\src\rpg_terms.cpp" />
     <ClCompile Include="..\..\src\rpg_terrain.cpp" />
@@ -425,6 +432,7 @@
     <ClCompile Include="..\..\src\rpg_troopmember.cpp" />
     <ClCompile Include="..\..\src\rpg_trooppage.cpp" />
     <ClCompile Include="..\..\src\rpg_trooppagecondition.cpp" />
+    <ClCompile Include="..\..\src\rpg_variable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\data.h" />

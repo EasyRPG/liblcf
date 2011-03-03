@@ -155,9 +155,6 @@
     <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_movecommand.cpp">
-      <Filter>Source Files\LMU</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\lmu_moveroute.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
@@ -346,6 +343,33 @@
     </ClCompile>
     <ClCompile Include="..\..\src\reader_util.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_map.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmt_treemap.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_database.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_target.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_save.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\move_reader.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_battlecommands.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_variable.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_switch.cpp">
+      <Filter>Source Files\RPG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
