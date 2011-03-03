@@ -24,13 +24,13 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::EventPageCondition::EventPageCondition() {
-	switch_a = false;
-	switch_b = false;
-	variable = false;
-	item = false;
-	actor = false;
-	timer = false;
-	timer2 = false;
+	flags.switch_a = false;
+	flags.switch_b = false;
+	flags.variable = false;
+	flags.item = false;
+	flags.actor = false;
+	flags.timer = false;
+	flags.timer2 = false;
 	switch_a_id = 1;
 	switch_b_id = 1;
 	variable_id = 1;

@@ -27,6 +27,7 @@
 #include <map>
 #include "reader.h"
 #include "event_reader.h"
+#include "move_reader.h"
 
 ////////////////////////////////////////////////////////////
 // Typed data readers
@@ -49,6 +50,13 @@ template <>
 struct TypeReader<std::vector<RPG::EventCommand> > {
 	static void ReadLcf(std::vector<RPG::EventCommand>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
 		Event_Reader::ReadEventCommands(ref, stream);
+	}
+};
+
+template <>
+struct TypeReader<std::vector<RPG::MoveCommand> > {
+	static inline void ReadLcf(std::vector<RPG::MoveCommand>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		Move_Reader::ReadMoveCommands(ref, stream, chunk_info);
 	}
 };
 
@@ -84,6 +92,13 @@ template <>
 struct TypeReader<bool> {
 	static inline void ReadLcf(bool& ref, Reader& stream, const Reader::Chunk& chunk_info) {
 		ref = stream.ReadBool();
+	}
+};
+
+template <>
+struct TypeReader<double> {
+	static inline void ReadLcf(double& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		ref = stream.ReadDouble();
 	}
 };
 

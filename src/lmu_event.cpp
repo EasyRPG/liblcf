@@ -21,41 +21,21 @@
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Event
 ////////////////////////////////////////////////////////////
-RPG::Event LMU_Reader::ReadEvent(Reader& stream) {
-	RPG::Event evnt;
-	evnt.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEvent::name:
-			evnt.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkEvent::x:
-			evnt.x = stream.ReadInt();
-			break;
-		case ChunkEvent::y:
-			evnt.y = stream.ReadInt();
-			break;
-		case ChunkEvent::pages:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				evnt.pages.push_back(ReadEventPage(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return evnt;
+template <>
+void Struct<RPG::Event>::ReadID(RPG::Event& obj, Reader& stream) {
+	IDReader<RPG::Event, WithID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Event>* Struct<RPG::Event>::fields[] = {
+	new TypedField<RPG::Event, std::string>	(&RPG::Event::name,	LMU_Reader::ChunkEvent::name,	"name"	),
+	new TypedField<RPG::Event, int>			(&RPG::Event::x,	LMU_Reader::ChunkEvent::x,		"x"		),
+	new TypedField<RPG::Event, int>			(&RPG::Event::y,	LMU_Reader::ChunkEvent::y,		"y"		),
+	new TypedField<RPG::Event, std::vector<RPG::EventPage> >(&RPG::Event::pages, LMU_Reader::ChunkEvent::pages, "pages"	),
+	NULL
+};

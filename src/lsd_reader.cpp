@@ -23,6 +23,7 @@
 #include "ldb_reader.h"
 #include "rpg_save.h"
 #include "reader_util.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Save
@@ -38,81 +39,8 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 		Reader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
 	}
-	return LoadChunks(reader);
-}
 
-////////////////////////////////////////////////////////////
-/// Load data chunks
-////////////////////////////////////////////////////////////
-std::auto_ptr<RPG::Save> LSD_Reader::LoadChunks(Reader& stream) {
-	std::auto_ptr<RPG::Save> save(new RPG::Save());
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkSave::title:
-			save->title = ReadSaveTitle(stream);
-			break;
-		case ChunkSave::data:
-			save->system = ReadSaveSystem(stream);
-			break;
-		case ChunkSave::screen:
-			save->screen = ReadSaveScreen(stream);
-			break;
-		case ChunkSave::pictures:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				save->pictures.push_back(ReadSavePicture(stream));
-			}
-			break;
-		case ChunkSave::party_location:
-			save->party_location = ReadSavePartyLocation(stream);
-			break;
-		case ChunkSave::boat_location:
-			save->boat_location = ReadSaveVehicleLocation(stream);
-			break;
-		case ChunkSave::ship_location:
-			save->ship_location = ReadSaveVehicleLocation(stream);
-			break;
-		case ChunkSave::airship_location:
-			save->airship_location = ReadSaveVehicleLocation(stream);
-			break;
-		case ChunkSave::party:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				save->party.push_back(ReadSaveActor(stream));
-			}
-			break;
-		case ChunkSave::inventory:
-			save->inventory = ReadSaveInventory(stream);
-			break;
-		case ChunkSave::targets:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				save->targets.push_back(ReadSaveTarget(stream));
-			}
-			break;
-		case ChunkSave::map_info:
-			save->map_info = ReadSaveMapInfo(stream);
-			break;
-		case ChunkSave::unknown_70:
-			save->unknown_70 = stream.ReadInt();
-			break;
-		case ChunkSave::events:
-			save->events = ReadSaveEvents(stream);
-			break;
-		case ChunkSave::common_events:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				save->common_events.push_back(ReadCommonEvent(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return save;
+	RPG::Save* save = new RPG::Save();
+	Struct<RPG::Save>::ReadLcf(*save, reader);
+	return std::auto_ptr<RPG::Save>(save);
 }

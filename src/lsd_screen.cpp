@@ -21,112 +21,45 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Screen Appearance
+/// Read Saved Screen Appearance
 ////////////////////////////////////////////////////////////
-RPG::SaveScreen LSD_Reader::ReadSaveScreen(Reader& stream) {
-	RPG::SaveScreen result;
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkScreen::tint_finish_red:
-			result.tint_finish_red = stream.ReadInt();
-			break;
-		case ChunkScreen::tint_finish_green:
-			result.tint_finish_green = stream.ReadInt();
-			break;
-		case ChunkScreen::tint_finish_blue:
-			result.tint_finish_blue = stream.ReadInt();
-			break;
-		case ChunkScreen::tint_finish_sat:
-			result.tint_finish_sat = stream.ReadInt();
-			break;
-		case ChunkScreen::tint_current_red:
-			result.tint_current_red = stream.ReadDouble();
-			break;
-		case ChunkScreen::tint_current_green:
-			result.tint_current_green = stream.ReadDouble();
-			break;
-		case ChunkScreen::tint_current_blue:
-			result.tint_current_blue = stream.ReadDouble();
-			break;
-		case ChunkScreen::tint_current_sat:
-			result.tint_current_sat = stream.ReadDouble();
-			break;
-		case ChunkScreen::tint_time_left:
-			result.tint_time_left = stream.ReadInt();
-			break;
-		case ChunkScreen::flash_continuous:
-			result.flash_continuous = stream.ReadBool();
-			break;
-		case ChunkScreen::flash_red:
-			result.flash_red = stream.ReadInt();
-			break;
-		case ChunkScreen::flash_green:
-			result.flash_green = stream.ReadInt();
-			break;
-		case ChunkScreen::flash_blue:
-			result.flash_blue = stream.ReadInt();
-			break;
-		case ChunkScreen::flash_current_level:
-			result.flash_current_level = stream.ReadDouble();
-			break;
-		case ChunkScreen::flash_time_left:
-			result.flash_time_left = stream.ReadInt();
-			break;
-		case ChunkScreen::shake_continuous:
-			result.shake_continuous = stream.ReadBool();
-			break;
-		case ChunkScreen::shake_strength:
-			result.shake_strength = stream.ReadInt();
-			break;
-		case ChunkScreen::shake_speed:
-			result.shake_speed = stream.ReadInt();
-			break;
-		case ChunkScreen::shake_position:
-			result.shake_position = stream.ReadInt();
-			break;
-		case ChunkScreen::shake_time_left:
-			result.shake_time_left = stream.ReadInt();
-			break;
-		case ChunkScreen::pan_x:
-			result.pan_x = stream.ReadInt();
-			break;
-		case ChunkScreen::pan_y:
-			result.pan_y = stream.ReadInt();
-			break;
-		case ChunkScreen::battleanim_id:
-			result.battleanim_id = stream.ReadInt();
-			break;
-		case ChunkScreen::battleanim_target:
-			result.battleanim_target = stream.ReadInt();
-			break;
-		case ChunkScreen::battleanim_unk_2d:
-			result.battleanim_unk_2d = stream.ReadInt();
-			break;
-		case ChunkScreen::battleanim_global:
-			result.battleanim_global = stream.ReadBool();
-			break;
-		case ChunkScreen::weather:
-			result.weather = stream.ReadInt();
-			break;
-		case ChunkScreen::weather_strength:
-			result.weather_strength = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return result;
+template <>
+void Struct<RPG::SaveScreen>::ReadID(RPG::SaveScreen& obj, Reader& stream) {
+	IDReader<RPG::SaveScreen, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_red,			LSD_Reader::ChunkScreen::tint_finish_red,		"tint_finish_red"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_green,		LSD_Reader::ChunkScreen::tint_finish_green,		"tint_finish_green"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_blue,		LSD_Reader::ChunkScreen::tint_finish_blue,		"tint_finish_blue"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_sat,			LSD_Reader::ChunkScreen::tint_finish_sat,		"tint_finish_sat"		),
+	new TypedField<RPG::SaveScreen, double>	(&RPG::SaveScreen::tint_current_red,		LSD_Reader::ChunkScreen::tint_current_red,		"tint_current_red"		),
+	new TypedField<RPG::SaveScreen, double>	(&RPG::SaveScreen::tint_current_green,		LSD_Reader::ChunkScreen::tint_current_green,	"tint_current_green"	),
+	new TypedField<RPG::SaveScreen, double>	(&RPG::SaveScreen::tint_current_blue,		LSD_Reader::ChunkScreen::tint_current_blue,		"tint_current_blue"		),
+	new TypedField<RPG::SaveScreen, double>	(&RPG::SaveScreen::tint_current_sat,		LSD_Reader::ChunkScreen::tint_current_sat,		"tint_current_sat"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_time_left,			LSD_Reader::ChunkScreen::tint_time_left,		"tint_time_left"		),
+	new TypedField<RPG::SaveScreen, bool>	(&RPG::SaveScreen::flash_continuous,		LSD_Reader::ChunkScreen::flash_continuous,		"flash_continuous"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::flash_red,				LSD_Reader::ChunkScreen::flash_red,				"flash_red"				),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::flash_green,				LSD_Reader::ChunkScreen::flash_green,			"flash_green"			),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::flash_blue,				LSD_Reader::ChunkScreen::flash_blue,			"flash_blue"			),
+	new TypedField<RPG::SaveScreen, double>	(&RPG::SaveScreen::flash_current_level,		LSD_Reader::ChunkScreen::flash_current_level,	"flash_current_level"	),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::flash_time_left,			LSD_Reader::ChunkScreen::flash_time_left,		"flash_time_left"		),
+	new TypedField<RPG::SaveScreen, bool>	(&RPG::SaveScreen::shake_continuous,		LSD_Reader::ChunkScreen::shake_continuous,		"shake_continuous"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::shake_strength,			LSD_Reader::ChunkScreen::shake_strength,		"shake_strength"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::shake_speed,				LSD_Reader::ChunkScreen::shake_speed,			"shake_speed"			),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::shake_position,			LSD_Reader::ChunkScreen::shake_position,		"shake_position"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::shake_time_left,			LSD_Reader::ChunkScreen::shake_time_left,		"shake_time_left"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::pan_x,					LSD_Reader::ChunkScreen::pan_x,					"pan_x"					),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::pan_y,					LSD_Reader::ChunkScreen::pan_y,					"pan_y"					),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::battleanim_id,			LSD_Reader::ChunkScreen::battleanim_id,			"battleanim_id"			),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::battleanim_target,		LSD_Reader::ChunkScreen::battleanim_target,		"battleanim_target"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::battleanim_unk_2d,		LSD_Reader::ChunkScreen::battleanim_unk_2d,		"battleanim_unk_2d"		),
+	new TypedField<RPG::SaveScreen, bool>	(&RPG::SaveScreen::battleanim_global,		LSD_Reader::ChunkScreen::battleanim_global,		"battleanim_global"		),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::weather,					LSD_Reader::ChunkScreen::weather,				"weather"				),
+	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::weather_strength,		LSD_Reader::ChunkScreen::weather_strength,		"weather_strength"		),
+	NULL
+};

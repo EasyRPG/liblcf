@@ -21,117 +21,46 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Save Cover
 ////////////////////////////////////////////////////////////
-RPG::SavePicture LSD_Reader::ReadSavePicture(Reader& stream) {
-	RPG::SavePicture picture;
-	picture.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkPicture::name:
-			picture.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkPicture::start_x:
-			picture.start_x = stream.ReadDouble();
-			break;
-		case ChunkPicture::start_y:
-			picture.start_y = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_x:
-			picture.current_x = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_y:
-			picture.current_y = stream.ReadDouble();
-			break;
-		case ChunkPicture::picture_scrolls:
-			picture.picture_scrolls = stream.ReadBool();
-			break;
-		case ChunkPicture::current_magnify:
-			picture.current_magnify = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_top_trans:
-			picture.current_top_trans = stream.ReadDouble();
-			break;
-		case ChunkPicture::transparency:
-			picture.transparency = stream.ReadBool();
-			break;
-		case ChunkPicture::current_red:
-			picture.current_red = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_green:
-			picture.current_green = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_blue:
-			picture.current_blue = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_sat:
-			picture.current_sat = stream.ReadDouble();
-			break;
-		case ChunkPicture::effect_mode:
-			picture.effect_mode = stream.ReadInt();
-			break;
-		case ChunkPicture::effect_speed:
-			picture.effect_speed = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_bot_trans:
-			picture.current_bot_trans = stream.ReadDouble();
-			break;
-		case ChunkPicture::finish_x:
-			picture.finish_x = stream.ReadDouble();
-			break;
-		case ChunkPicture::finish_y:
-			picture.finish_y = stream.ReadDouble();
-			break;
-		case ChunkPicture::finish_magnify:
-			picture.finish_magnify = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_top_trans:
-			picture.finish_top_trans = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_bot_trans:
-			picture.finish_bot_trans = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_red:
-			picture.finish_red = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_green:
-			picture.finish_green = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_blue:
-			picture.finish_blue = stream.ReadInt();
-			break;
-		case ChunkPicture::finish_sat:
-			picture.finish_sat = stream.ReadInt();
-			break;
-		case ChunkPicture::effect2_speed:
-			picture.effect2_speed = stream.ReadInt();
-			break;
-		case ChunkPicture::time_left:
-			picture.time_left = stream.ReadInt();
-			break;
-		case ChunkPicture::current_rotation:
-			picture.current_rotation = stream.ReadDouble();
-			break;
-		case ChunkPicture::current_waver:
-			picture.current_waver = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return picture;
+template <>
+void Struct<RPG::SavePicture>::ReadID(RPG::SavePicture& obj, Reader& stream) {
+	IDReader<RPG::SavePicture, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {
+	new TypedField<RPG::SavePicture, std::string>	(&RPG::SavePicture::name,					LSD_Reader::ChunkPicture::name,					"name"				),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::start_x,				LSD_Reader::ChunkPicture::start_x,				"start_x"			),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::start_y,				LSD_Reader::ChunkPicture::start_y,				"start_y"			),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_x,				LSD_Reader::ChunkPicture::current_x,			"current_x"			),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_y,				LSD_Reader::ChunkPicture::current_y,			"current_y"			),
+	new TypedField<RPG::SavePicture, bool>			(&RPG::SavePicture::picture_scrolls,		LSD_Reader::ChunkPicture::picture_scrolls,		"picture_scrolls"	),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_magnify,		LSD_Reader::ChunkPicture::current_magnify,		"current_magnify"	),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_top_trans,		LSD_Reader::ChunkPicture::current_top_trans,	"current_top_trans"	),
+	new TypedField<RPG::SavePicture, bool>			(&RPG::SavePicture::transparency,			LSD_Reader::ChunkPicture::transparency,			"transparency"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_red,			LSD_Reader::ChunkPicture::current_red,			"current_red"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_green,			LSD_Reader::ChunkPicture::current_green,		"current_green"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_blue,			LSD_Reader::ChunkPicture::current_blue,			"current_blue"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_sat,			LSD_Reader::ChunkPicture::current_sat,			"current_sat"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::effect_mode,			LSD_Reader::ChunkPicture::effect_mode,			"effect_mode"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::effect_speed,			LSD_Reader::ChunkPicture::effect_speed,			"effect_speed"		),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_bot_trans,		LSD_Reader::ChunkPicture::current_bot_trans,	"current_bot_trans"	),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::finish_x,				LSD_Reader::ChunkPicture::finish_x,				"finish_x"			),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::finish_y,				LSD_Reader::ChunkPicture::finish_y,				"finish_y"			),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_magnify,			LSD_Reader::ChunkPicture::finish_magnify,		"finish_magnify"	),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_top_trans,		LSD_Reader::ChunkPicture::finish_top_trans,		"finish_top_trans"	),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_bot_trans,		LSD_Reader::ChunkPicture::finish_bot_trans,		"finish_bot_trans"	),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_red,				LSD_Reader::ChunkPicture::finish_red,			"finish_red"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_green,			LSD_Reader::ChunkPicture::finish_green,			"finish_green"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_blue,			LSD_Reader::ChunkPicture::finish_blue,			"finish_blue"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::finish_sat,				LSD_Reader::ChunkPicture::finish_sat,			"finish_sat"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::effect2_speed,			LSD_Reader::ChunkPicture::effect2_speed,		"effect2_speed"		),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::time_left,				LSD_Reader::ChunkPicture::time_left,			"time_left"			),
+	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_rotation,		LSD_Reader::ChunkPicture::current_rotation,		"current_rotation"	),
+	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::current_waver,			LSD_Reader::ChunkPicture::current_waver,		"current_waver"		),
+	NULL
+};

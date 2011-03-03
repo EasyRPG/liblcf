@@ -22,6 +22,7 @@
 #include "lmu_chunks.h"
 #include "reader.h"
 #include "reader_util.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Map
@@ -37,125 +38,8 @@ std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 		Reader::SetError("%s is not a valid RPG2000 map.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
 	}
-	return ReadMapData(reader);
+
+	RPG::Map* map = new RPG::Map();
+	Struct<RPG::Map>::ReadLcf(*map, reader);
+	return std::auto_ptr<RPG::Map>(map);
 }
-
-////////////////////////////////////////////////////////////
-/// Read Map
-////////////////////////////////////////////////////////////
-std::auto_ptr<RPG::Map> LMU_Reader::ReadMapData(Reader& stream) {
-	std::auto_ptr<RPG::Map> map(new RPG::Map());
-	//stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkMap::chipset_id:
-			map->chipset_id = stream.ReadInt();
-			break;
-		case ChunkMap::width:
-			map->width = stream.ReadInt();
-			break;
-		case ChunkMap::height:
-			map->height = stream.ReadInt();
-			break;
-		case ChunkMap::scroll_type:
-			map->scroll_type = stream.ReadInt();
-			break;
-		case ChunkMap::parallax_flag:
-			map->parallax_flag = stream.ReadBool();
-			break;
-		case ChunkMap::parallax_name:
-			map->parallax_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkMap::parallax_loop_x:
-			map->parallax_loop_x = stream.ReadBool();
-			break;
-		case ChunkMap::parallax_loop_y:
-			map->parallax_loop_y = stream.ReadBool();
-			break;
-		case ChunkMap::parallax_auto_loop_x:
-			map->parallax_auto_loop_x = stream.ReadBool();
-			break;
-		case ChunkMap::parallax_sx:
-			map->parallax_sx = stream.ReadInt();
-			break;
-		case ChunkMap::parallax_auto_loop_y:
-			map->parallax_auto_loop_y = stream.ReadBool();
-			break;
-		case ChunkMap::parallax_sy:
-			map->parallax_sy = stream.ReadInt();
-			break;
-		case ChunkMap::lower_layer:
-			stream.Read16(map->lower_layer, chunk_info.length);
-			break;
-		case ChunkMap::upper_layer:
-			stream.Read16(map->upper_layer, chunk_info.length);
-			break;
-		case ChunkMap::events:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				map->events.push_back(ReadEvent(stream));
-			}
-			break;
-		case ChunkMap::save_times:
-			map->save_times = stream.ReadInt();
-			break;
-		case ChunkMap::generator_flag:
-			map->generator_flag = stream.ReadBool();
-			break;
-		case ChunkMap::generator_mode:
-			map->generator_mode = stream.ReadInt();
-			break;
-		case ChunkMap::top_level:
-			map->top_level = stream.ReadInt() != 0;
-			break;
-		case ChunkMap::generator_tiles:
-			map->generator_tiles = stream.ReadInt();
-			break;
-		case ChunkMap::generator_width:
-			map->generator_width = stream.ReadInt();
-			break;
-		case ChunkMap::generator_height:
-			map->generator_height = stream.ReadInt();
-			break;
-		case ChunkMap::generator_surround:
-			map->generator_surround = stream.ReadBool();
-			break;
-		case ChunkMap::generator_upper_wall:
-			map->generator_upper_wall = stream.ReadBool();
-			break;
-		case ChunkMap::generator_floor_b:
-			map->generator_floor_b = stream.ReadBool();
-			break;
-		case ChunkMap::generator_floor_c:
-			map->generator_floor_c = stream.ReadBool();
-			break;
-		case ChunkMap::generator_extra_b:
-			map->generator_extra_b = stream.ReadBool();
-			break;
-		case ChunkMap::generator_extra_c:
-			map->generator_extra_c = stream.ReadBool();
-			break;
-		case ChunkMap::generator_x:
-			stream.Read32(map->generator_x, chunk_info.length);
-			break;
-		case ChunkMap::generator_y:
-			stream.Read32(map->generator_y, chunk_info.length);
-			break;
-		case ChunkMap::generator_tile_ids:
-			stream.Read16(map->generator_tile_ids, chunk_info.length);
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return map;
-}
-

@@ -21,58 +21,26 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Saved Events
 ////////////////////////////////////////////////////////////
-RPG::SaveEvents LSD_Reader::ReadSaveEvents(Reader& stream) {
-	RPG::SaveEvents events;
-
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEvents::events:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				events.events.push_back(ReadSaveEventCommands(stream));
-			}
-			break;
-		case ChunkEvents::events_size:
-			events.events_size = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_16:
-			events.unknown_16 = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_17:
-			events.unknown_17 = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_18:
-			events.unknown_18 = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_1c:
-			events.unknown_1c = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_20:
-			events.unknown_20 = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_24:
-			events.unknown_24 = stream.ReadInt();
-			break;
-		case ChunkEvents::unknown_25:
-			events.unknown_25 = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return events;
+template <>
+void Struct<RPG::SaveEvents>::ReadID(RPG::SaveEvents& obj, Reader& stream) {
+	IDReader<RPG::SaveEvents, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::events_size,	LSD_Reader::ChunkEvents::events_size,	"events_size"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_16,	LSD_Reader::ChunkEvents::unknown_16,	"unknown_16"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_17,	LSD_Reader::ChunkEvents::unknown_17,	"unknown_17"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_18,	LSD_Reader::ChunkEvents::unknown_18,	"unknown_18"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_1c,	LSD_Reader::ChunkEvents::unknown_1c,	"unknown_1c"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_20,	LSD_Reader::ChunkEvents::unknown_20,	"unknown_20"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_24,	LSD_Reader::ChunkEvents::unknown_24,	"unknown_24"	),
+	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_25,	LSD_Reader::ChunkEvents::unknown_25,	"unknown_25"	),
+	new TypedField<RPG::SaveEvents, std::vector<RPG::SaveEventCommands> >	(&RPG::SaveEvents::events,	LSD_Reader::ChunkEvents::events,	"events"	),
+	NULL
+};

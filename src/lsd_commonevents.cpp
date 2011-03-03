@@ -21,32 +21,18 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Unknown Chunk 0x66
+/// Read Save Common Event
 ////////////////////////////////////////////////////////////
-RPG::SaveCommonEvent LSD_Reader::ReadCommonEvent(Reader& stream) {
-	RPG::SaveCommonEvent result;
-	result.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkCommonEvent::event_data:
-			result.event_data = ReadSaveEventData(stream);
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return result;
+template <>
+void Struct<RPG::SaveCommonEvent>::ReadID(RPG::SaveCommonEvent& obj, Reader& stream) {
+	IDReader<RPG::SaveCommonEvent, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::fields[] = {
+	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventData>	(&RPG::SaveCommonEvent::event_data,	LSD_Reader::ChunkCommonEvent::event_data,	"event_data"	),
+	NULL
+};

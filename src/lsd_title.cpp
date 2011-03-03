@@ -21,64 +21,29 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Save Title
 ////////////////////////////////////////////////////////////
-RPG::SaveTitle LSD_Reader::ReadSaveTitle(Reader& stream) {
-	RPG::SaveTitle title;
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTitle::timestamp:
-			stream.Read8(title.timestamp, chunk_info.length);
-			break;
-		case ChunkTitle::hero_name:
-			title.hero_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTitle::hero_level:
-			title.hero_level = stream.ReadInt();
-			break;
-		case ChunkTitle::hero_hp:
-			title.hero_hp = stream.ReadInt();
-			break;
-		case ChunkTitle::face1_name:
-			title.face1_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTitle::face1_id:
-			title.face1_id = stream.ReadInt();
-			break;
-		case ChunkTitle::face2_name:
-			title.face2_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTitle::face2_id:
-			title.face2_id = stream.ReadInt();
-			break;
-		case ChunkTitle::face3_name:
-			title.face3_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTitle::face3_id:
-			title.face3_id = stream.ReadInt();
-			break;
-		case ChunkTitle::face4_name:
-			title.face4_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkTitle::face4_id:
-			title.face4_id = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return title;
+template <>
+void Struct<RPG::SaveTitle>::ReadID(RPG::SaveTitle& obj, Reader& stream) {
+	IDReader<RPG::SaveTitle, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {
+	new TypedField<RPG::SaveTitle, std::vector<uint8_t> >	(&RPG::SaveTitle::timestamp,	LSD_Reader::ChunkTitle::timestamp,		"timestamp"		),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::hero_name,	LSD_Reader::ChunkTitle::hero_name,		"hero_name"		),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_level,	LSD_Reader::ChunkTitle::hero_level,		"hero_level"	),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_hp,		LSD_Reader::ChunkTitle::hero_hp,		"hero_hp"		),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face1_name,	LSD_Reader::ChunkTitle::face1_name,		"face1_name"	),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face2_name,	LSD_Reader::ChunkTitle::face2_name,		"face2_name"	),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face3_name,	LSD_Reader::ChunkTitle::face3_name,		"face3_name"	),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face4_name,	LSD_Reader::ChunkTitle::face4_name,		"face4_name"	),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face1_id,		LSD_Reader::ChunkTitle::face1_id,		"face1_id"		),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face2_id,		LSD_Reader::ChunkTitle::face2_id,		"face2_id"		),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face3_id,		LSD_Reader::ChunkTitle::face3_id,		"face3_id"		),
+	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face4_id,		LSD_Reader::ChunkTitle::face4_id,		"face4_id"		),
+	NULL
+};

@@ -21,45 +21,22 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Saved Events
+/// Read Saved Target
 ////////////////////////////////////////////////////////////
-RPG::SaveTarget LSD_Reader::ReadSaveTarget(Reader& stream) {
-	RPG::SaveTarget target;
-	target.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkTarget::map_id:
-			target.map_id = stream.ReadInt();
-			break;
-		case ChunkTarget::map_x:
-			target.map_x = stream.ReadInt();
-			break;
-		case ChunkTarget::map_y:
-			target.map_y = stream.ReadInt();
-			break;
-		case ChunkTarget::switch_on:
-			target.switch_on = stream.ReadBool();
-			break;
-		case ChunkTarget::switch_id:
-			target.switch_id = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return target;
+template <>
+void Struct<RPG::SaveTarget>::ReadID(RPG::SaveTarget& obj, Reader& stream) {
+	IDReader<RPG::SaveTarget, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveTarget>* Struct<RPG::SaveTarget>::fields[] = {
+	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_id,		LSD_Reader::ChunkTarget::map_id,	"map_id"	),
+	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_x,		LSD_Reader::ChunkTarget::map_x,		"map_x"		),
+	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_y,		LSD_Reader::ChunkTarget::map_y,		"map_y"		),
+	new TypedField<RPG::SaveTarget, bool>	(&RPG::SaveTarget::switch_on,	LSD_Reader::ChunkTarget::switch_on,	"switch_on"	),
+	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::switch_id,	LSD_Reader::ChunkTarget::switch_id,	"switch_id"	),
+	NULL
+};

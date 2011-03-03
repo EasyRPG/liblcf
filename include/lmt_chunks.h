@@ -54,7 +54,7 @@ namespace LMT_Reader {
 			scrollbar_y		= 0x06, // Integer	// Editor only
 			expanded_node	= 0x07, // Flag		// Editor only
 			music_type		= 0x0B, // Integer	// 0=inherit; 1=from event; 2=specified in 0x0C
-			music_name		= 0x0C, // Array - RPG::Music
+			music			= 0x0C, // Array - RPG::Music
 			background_type = 0x15, // Integer // 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
 			background_name = 0x16, // String
 			teleport		= 0x1F, // Flag // 0=inherit; 1=allow; 2=disallow

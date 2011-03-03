@@ -21,30 +21,19 @@
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Encounter
 ////////////////////////////////////////////////////////////
-RPG::Encounter LMT_Reader::ReadEncounter(Reader& stream) {
-	RPG::Encounter encounter;
-	stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEncounter::ID:
-			encounter.ID = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return encounter;
+template <>
+void Struct<RPG::Encounter>::ReadID(RPG::Encounter& obj, Reader& stream) {
+	IDReader<RPG::Encounter, SkipID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::Encounter>* Struct<RPG::Encounter>::fields[] = {
+	new TypedField<RPG::Encounter, int>(&RPG::Encounter::ID, LMT_Reader::ChunkEncounter::ID, "ID"),
+	NULL
+};
+

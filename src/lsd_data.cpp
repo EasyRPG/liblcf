@@ -22,190 +22,71 @@
 #include "lsd_chunks.h"
 #include "ldb_reader.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Cover
+/// Read Save System
 ////////////////////////////////////////////////////////////
-RPG::SaveSystem LSD_Reader::ReadSaveSystem(Reader& stream) {
-	RPG::SaveSystem data;
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkSystem::screen:
-			data.screen = stream.ReadInt();
-			break;
-		case ChunkSystem::frame_count:
-			data.frame_count = stream.ReadInt();
-			break;
-		case ChunkSystem::graphics_name:
-			data.graphics_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::switches_size:
-			data.switches_size = stream.ReadInt();
-			break;
-		case ChunkSystem::switches:
-			stream.ReadBool(data.switches, chunk_info.length);
-			break;
-		case ChunkSystem::variables_size:
-			data.variables_size = stream.ReadInt();
-			break;
-		case ChunkSystem::variables:
-			stream.Read32(data.variables, chunk_info.length);
-			break;
-		case ChunkSystem::message_transparent:
-			data.message_transparent = stream.ReadInt();
-			break;
-		case ChunkSystem::message_position:
-			data.message_position = stream.ReadInt();
-			break;
-		case ChunkSystem::message_placement:
-			data.message_placement = stream.ReadInt();
-			break;
-		case ChunkSystem::message_continue:
-			data.message_continue = stream.ReadInt();
-			break;
-		case ChunkSystem::face_name:
-			data.face_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::face_id:
-			data.face_id = stream.ReadInt();
-			break;
-		case ChunkSystem::face_right:
-			data.face_right = stream.ReadBool();
-			break;
-		case ChunkSystem::face_flip:
-			data.face_flip = stream.ReadBool();
-			break;
-		case ChunkSystem::transparent:
-			data.transparent = stream.ReadBool();
-			break;
-		case ChunkSystem::unknown_3d:
-			data.unknown_3d = stream.ReadInt();
-			break;
-		case ChunkSystem::title_music:
-			data.title_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::battle_music:
-			data.battle_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::battle_end_music:
-			data.battle_end_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::inn_music:
-			data.inn_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::current_music:
-			data.current_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::unknown1_music:
-			data.unknown1_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::unknown2_music:
-			data.unknown2_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::stored_music:
-			data.stored_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::boat_music:
-			data.boat_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::ship_music:
-			data.ship_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::airship_music:
-			data.airship_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::gameover_music:
-			data.gameover_music = LDB_Reader::ReadMusic(stream);
-			break;
-		case ChunkSystem::cursor_se:
-			data.cursor_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::decision_se:
-			data.decision_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::cancel_se:
-			data.cancel_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::buzzer_se:
-			data.buzzer_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::battle_se:
-			data.battle_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::escape_se:
-			data.escape_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_attack_se:
-			data.enemy_attack_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_damaged_se:
-			data.enemy_damaged_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::actor_damaged_se:
-			data.actor_damaged_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::dodge_se:
-			data.dodge_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::enemy_death_se:
-			data.enemy_death_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::item_se:
-			data.item_se = LDB_Reader::ReadSound(stream);
-			break;
-		case ChunkSystem::transition_out:
-			data.transition_out = stream.Read8();
-			break;
-		case ChunkSystem::transition_in:
-			data.transition_in = stream.Read8();
-			break;
-		case ChunkSystem::battle_start_fadeout:
-			data.battle_start_fadeout = stream.Read8();
-			break;
-		case ChunkSystem::battle_start_fadein:
-			data.battle_start_fadein = stream.Read8();
-			break;
-		case ChunkSystem::battle_end_fadeout:
-			data.battle_end_fadeout = stream.Read8();
-			break;
-		case ChunkSystem::battle_end_fadein:
-			data.battle_end_fadein = stream.Read8();
-			break;
-		case ChunkSystem::teleport_allowed:
-			data.teleport_allowed = stream.ReadBool();
-			break;
-		case ChunkSystem::escape_allowed:
-			data.escape_allowed = stream.ReadBool();
-			break;
-		case ChunkSystem::save_allowed:
-			data.save_allowed = stream.ReadBool();
-			break;
-		case ChunkSystem::menu_allowed:
-			data.menu_allowed = stream.ReadBool();
-			break;
-		case ChunkSystem::background:
-			data.background = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkSystem::save_count:
-			data.save_count = stream.ReadInt();
-			break;
-		case ChunkSystem::save_slot:
-			data.save_slot = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return data;
+template <>
+void Struct<RPG::SaveSystem>::ReadID(RPG::SaveSystem& obj, Reader& stream) {
+	IDReader<RPG::SaveSystem, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::screen,					LSD_Reader::ChunkSystem::screen,					"screen"				),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::frame_count,				LSD_Reader::ChunkSystem::frame_count,				"frame_count"			),
+	new TypedField<RPG::SaveSystem, std::string>			(&RPG::SaveSystem::graphics_name,			LSD_Reader::ChunkSystem::graphics_name,				"graphics_name"			),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::switches_size,			LSD_Reader::ChunkSystem::switches_size,				"switches_size"			),
+	new TypedField<RPG::SaveSystem, std::vector<bool> >		(&RPG::SaveSystem::switches,				LSD_Reader::ChunkSystem::switches,					"switches"				),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::variables_size,			LSD_Reader::ChunkSystem::variables_size,			"variables_size"		),
+	new TypedField<RPG::SaveSystem, std::vector<uint32_t> >	(&RPG::SaveSystem::variables,				LSD_Reader::ChunkSystem::variables,					"variables"				),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::message_transparent,		LSD_Reader::ChunkSystem::message_transparent,		"message_transparent"	),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::message_position,		LSD_Reader::ChunkSystem::message_position,			"message_position"		),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::message_placement,		LSD_Reader::ChunkSystem::message_placement,			"message_placement"		),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::message_continue,		LSD_Reader::ChunkSystem::message_continue,			"message_continue"		),
+	new TypedField<RPG::SaveSystem, std::string>			(&RPG::SaveSystem::face_name,				LSD_Reader::ChunkSystem::face_name,					"face_name"				),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::face_id,					LSD_Reader::ChunkSystem::face_id,					"face_id"				),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::face_right,				LSD_Reader::ChunkSystem::face_right,				"face_right"			),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::face_flip,				LSD_Reader::ChunkSystem::face_flip,					"face_flip"				),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::transparent,				LSD_Reader::ChunkSystem::transparent,				"transparent"			),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::unknown_3d,				LSD_Reader::ChunkSystem::unknown_3d,				"unknown_3d"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::title_music,				LSD_Reader::ChunkSystem::title_music,				"title_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::battle_music,			LSD_Reader::ChunkSystem::battle_music,				"battle_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::battle_end_music,		LSD_Reader::ChunkSystem::battle_end_music,			"battle_end_music"		),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::inn_music,				LSD_Reader::ChunkSystem::inn_music,					"inn_music"				),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::current_music,			LSD_Reader::ChunkSystem::current_music,				"current_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::unknown1_music,			LSD_Reader::ChunkSystem::unknown1_music,			"unknown1_music"		),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::unknown2_music,			LSD_Reader::ChunkSystem::unknown2_music,			"unknown2_music"		),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::stored_music,			LSD_Reader::ChunkSystem::stored_music,				"stored_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::boat_music,				LSD_Reader::ChunkSystem::boat_music,				"boat_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::ship_music,				LSD_Reader::ChunkSystem::ship_music,				"ship_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::airship_music,			LSD_Reader::ChunkSystem::airship_music,				"airship_music"			),
+	new TypedField<RPG::SaveSystem, RPG::Music>				(&RPG::SaveSystem::gameover_music,			LSD_Reader::ChunkSystem::gameover_music,			"gameover_music"		),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::cursor_se,				LSD_Reader::ChunkSystem::cursor_se,					"cursor_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::decision_se,				LSD_Reader::ChunkSystem::decision_se,				"decision_se"			),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::cancel_se,				LSD_Reader::ChunkSystem::cancel_se,					"cancel_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::buzzer_se,				LSD_Reader::ChunkSystem::buzzer_se,					"buzzer_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::battle_se,				LSD_Reader::ChunkSystem::battle_se,					"battle_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::escape_se,				LSD_Reader::ChunkSystem::escape_se,					"escape_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::enemy_attack_se,			LSD_Reader::ChunkSystem::enemy_attack_se,			"enemy_attack_se"		),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::enemy_damaged_se,		LSD_Reader::ChunkSystem::enemy_damaged_se,			"enemy_damaged_se"		),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::actor_damaged_se,		LSD_Reader::ChunkSystem::actor_damaged_se,			"actor_damaged_se"		),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::dodge_se,				LSD_Reader::ChunkSystem::dodge_se,					"dodge_se"				),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::enemy_death_se,			LSD_Reader::ChunkSystem::enemy_death_se,			"enemy_death_se"		),
+	new TypedField<RPG::SaveSystem, RPG::Sound>				(&RPG::SaveSystem::item_se,					LSD_Reader::ChunkSystem::item_se,					"item_se"				),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::transition_out,			LSD_Reader::ChunkSystem::transition_out,			"transition_out"		),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::transition_in,			LSD_Reader::ChunkSystem::transition_in,				"transition_in"			),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::battle_start_fadeout,	LSD_Reader::ChunkSystem::battle_start_fadeout,		"battle_start_fadeout"	),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::battle_start_fadein,		LSD_Reader::ChunkSystem::battle_start_fadein,		"battle_start_fadein"	),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::battle_end_fadeout,		LSD_Reader::ChunkSystem::battle_end_fadeout,		"battle_end_fadeout"	),
+	new TypedField<RPG::SaveSystem, uint8_t>				(&RPG::SaveSystem::battle_end_fadein,		LSD_Reader::ChunkSystem::battle_end_fadein,			"battle_end_fadein"		),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::teleport_allowed,		LSD_Reader::ChunkSystem::teleport_allowed,			"teleport_allowed"		),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::escape_allowed,			LSD_Reader::ChunkSystem::escape_allowed,			"escape_allowed"		),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::save_allowed,			LSD_Reader::ChunkSystem::save_allowed,				"save_allowed"			),
+	new TypedField<RPG::SaveSystem, bool>					(&RPG::SaveSystem::menu_allowed,			LSD_Reader::ChunkSystem::menu_allowed,				"menu_allowed"			),
+	new TypedField<RPG::SaveSystem, std::string>			(&RPG::SaveSystem::background,				LSD_Reader::ChunkSystem::background,				"background"			),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::save_count,				LSD_Reader::ChunkSystem::save_count,				"save_count"			),
+	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::save_slot,				LSD_Reader::ChunkSystem::save_slot,					"save_slot"				),
+	NULL
+};

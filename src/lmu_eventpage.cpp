@@ -22,87 +22,33 @@
 #include "lmu_chunks.h"
 #include "event_reader.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Event Page
 ////////////////////////////////////////////////////////////
-RPG::EventPage LMU_Reader::ReadEventPage(Reader& stream) {
-	RPG::EventPage eventpage;
-	eventpage.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEventPage::condition:
-			eventpage.condition = ReadEventPageCondition(stream);
-			break;
-		case ChunkEventPage::character_name:
-			eventpage.character_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkEventPage::character_index:
-			eventpage.character_index = stream.ReadInt();
-			break;
-		case ChunkEventPage::character_direction:
-			eventpage.character_direction = stream.ReadInt();
-			break;
-		case ChunkEventPage::character_pattern:
-			eventpage.character_pattern = stream.ReadInt();
-			break;
-		case ChunkEventPage::translucent:
-			eventpage.translucent = stream.ReadBool();
-			break;
-		case ChunkEventPage::move_type:
-			eventpage.move_type = stream.ReadInt();
-			break;
-		case ChunkEventPage::move_frequency:
-			eventpage.move_frequency = stream.ReadInt();
-			break;
-		case ChunkEventPage::trigger:
-			eventpage.trigger = stream.ReadInt();
-			break;
-		case ChunkEventPage::priority_type:
-			eventpage.priority_type = stream.ReadInt();
-			break;
-		case ChunkEventPage::overlap:
-			eventpage.overlap = stream.ReadBool();
-			break;
-		case ChunkEventPage::animation_type:
-			eventpage.animation_type = stream.ReadInt();
-			break;
-		case ChunkEventPage::move_speed:
-			eventpage.move_speed = stream.ReadInt();
-			break;
-		case ChunkEventPage::move_route:
-			eventpage.move_route = ReadMoveRoute(stream);
-			break;
-		case ChunkEventPage::event_commands_size:
-			stream.ReadInt();
-			break;
-		case ChunkEventPage::event_commands:
-			// Event Commands is a special array
-			// Has no size information. Is terminated by 4 times 0x00.
-			for (;;)
-			{
-				char ch = stream.Read8();
-				if (ch == 0) {
-					stream.Seek(3, Reader::FromCurrent);
-					break;
-				}
-				stream.Ungetch(ch);
-				eventpage.event_commands.push_back(Event_Reader::ReadEventCommand(stream));
-			}
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return eventpage;
+template <>
+void Struct<RPG::EventPage>::ReadID(RPG::EventPage& obj, Reader& stream) {
+	IDReader<RPG::EventPage, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {
+	new TypedField<RPG::EventPage, RPG::EventPageCondition>			(&RPG::EventPage::condition,			LMU_Reader::ChunkEventPage::condition,				"condition"				),
+	new TypedField<RPG::EventPage, std::string>						(&RPG::EventPage::character_name,		LMU_Reader::ChunkEventPage::character_name,			"character_name"		),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_index,		LMU_Reader::ChunkEventPage::character_index,		"character_index"		),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_direction,	LMU_Reader::ChunkEventPage::character_direction,	"character_direction"	),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_pattern,	LMU_Reader::ChunkEventPage::character_pattern,		"character_pattern"		),
+	new TypedField<RPG::EventPage, bool>							(&RPG::EventPage::translucent,			LMU_Reader::ChunkEventPage::translucent,			"translucent"			),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_type,			LMU_Reader::ChunkEventPage::move_type,				"move_type"				),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_frequency,		LMU_Reader::ChunkEventPage::move_frequency,			"move_frequency"		),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::trigger,				LMU_Reader::ChunkEventPage::trigger,				"trigger"				),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::priority_type,		LMU_Reader::ChunkEventPage::priority_type,			"priority_type"			),
+	new TypedField<RPG::EventPage, bool>							(&RPG::EventPage::overlap,				LMU_Reader::ChunkEventPage::overlap,				"overlap"				),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::animation_type,		LMU_Reader::ChunkEventPage::animation_type,			"animation_type"		),
+	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_speed,			LMU_Reader::ChunkEventPage::move_speed,				"move_speed"			),
+	new TypedField<RPG::EventPage, RPG::MoveRoute>					(&RPG::EventPage::move_route,			LMU_Reader::ChunkEventPage::move_route,				"move_route"			),
+	new TypedField<RPG::EventPage, int>								(NULL,									LMU_Reader::ChunkEventPage::event_commands_size,	"event_commands_size"	),
+	new TypedField<RPG::EventPage, std::vector<RPG::EventCommand> >	(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands,			"event_commands"		),
+	NULL
+};

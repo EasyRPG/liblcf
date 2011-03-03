@@ -21,44 +21,22 @@
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Move Route
 ////////////////////////////////////////////////////////////
-RPG::MoveRoute LMU_Reader::ReadMoveRoute(Reader& stream) {
-	RPG::MoveRoute moveroute;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		unsigned long startpos = 0;
-		switch (chunk_info.ID) {
-		case ChunkMoveRoute::move_commands_size:
-			stream.ReadInt();
-			break;
-		case ChunkMoveRoute::move_commands:
-			// Move Commands has no termination at the end
-			// The chunk length must be used instead
-			startpos = stream.Tell();
-			do {
-				moveroute.move_commands.push_back(ReadMoveCommand(stream));
-			} while ((stream.Tell() - chunk_info.length) != startpos);
-			break;
-		case ChunkMoveRoute::skippable:
-			moveroute.skippable = stream.ReadBool();
-			break;
-		case ChunkMoveRoute::repeat:
-			moveroute.repeat = stream.ReadBool();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-	return moveroute;
+template <>
+void Struct<RPG::MoveRoute>::ReadID(RPG::MoveRoute& obj, Reader& stream) {
+	IDReader<RPG::MoveRoute, NoID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
+	new TypedField<RPG::MoveRoute, bool>	(&RPG::MoveRoute::repeat,		LMU_Reader::ChunkMoveRoute::repeat,				"repeat"				),
+	new TypedField<RPG::MoveRoute, bool>	(&RPG::MoveRoute::skippable,	LMU_Reader::ChunkMoveRoute::skippable,			"skippable"				),
+	new TypedField<RPG::MoveRoute, int>		(NULL,							LMU_Reader::ChunkMoveRoute::move_commands_size,	"move_commands_size"	),
+	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >(&RPG::MoveRoute::move_commands, LMU_Reader::ChunkMoveRoute::move_commands, "move_commands"),
+	NULL
+};
+

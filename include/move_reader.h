@@ -15,37 +15,24 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
+#ifndef _MOVE_READER_H_
+#define _MOVE_READER_H_
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "lmu_reader.h"
-#include "lmu_chunks.h"
+#include <string>
+#include <vector>
 #include "reader.h"
+#include "rpg_movecommand.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Move Command
+/// Move Reader namespace
 ////////////////////////////////////////////////////////////
-RPG::MoveCommand LMU_Reader::ReadMoveCommand(Reader& stream) {
-	RPG::MoveCommand movecommand;
-
-	movecommand.command_id = stream.ReadInt();
-	switch (movecommand.command_id) {
-	case ChunkMoveCommand::switch_on:
-		movecommand.parameter_a = stream.ReadInt();
-		break;
-	case ChunkMoveCommand::switch_off:
-		movecommand.parameter_a = stream.ReadInt();
-		break;
-	case ChunkMoveCommand::change_graphic:
-		movecommand.parameter_string = stream.ReadString(stream.ReadInt());
-		movecommand.parameter_a = stream.ReadInt();
-		break;
-	case ChunkMoveCommand::play_sound:
-		movecommand.parameter_string = stream.ReadString(stream.ReadInt());
-		movecommand.parameter_a = stream.ReadInt();
-		movecommand.parameter_b = stream.ReadInt();
-		movecommand.parameter_c = stream.ReadInt();
-		break;
-	}
-	return movecommand;
+namespace Move_Reader {
+	RPG::MoveCommand ReadMoveCommand(Reader& stream);
+	void ReadMoveCommand(RPG::MoveCommand& command, Reader& stream);
+	void ReadMoveCommands(std::vector<RPG::MoveCommand>& commands, Reader& stream, const Reader::Chunk& chunk_info);
 }
+
+#endif

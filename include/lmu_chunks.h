@@ -94,7 +94,7 @@ namespace LMU_Reader {
 	};
 	struct ChunkEventPageCondition {
 		enum Index {
-			condition_flags = 0x01, // Bitflag
+			flags			= 0x01, // Bitflag
 			switch_a_id		= 0x02, // Integer
 			switch_b_id		= 0x03, // Integer
 			variable_id		= 0x04, // Integer
@@ -112,61 +112,6 @@ namespace LMU_Reader {
 			move_commands		= 0x0C, // Array - RPG::MoveCommand
 			repeat				= 0x15, // Flag
 			skippable			= 0x16	// Flag
-		};
-	};
-	struct ChunkMoveCommand {
-		enum Index {
-			switch_on		= 0x20,
-			switch_off		= 0x21,
-			change_graphic	= 0x22,
-			play_sound		= 0x23
-		};
-	};
-	// Contains the ids for RPG::MoveCommand
-	struct ChunkMoveCommands {
-		enum Index {
-			move_up	= 0,
-			move_right,
-			move_down,
-			move_left,
-			move_upright,
-			move_downright,
-			move_downleft,
-			move_upleft,
-			move_random,
-			move_towards_hero,
-			move_away_from_hero,
-			move_forward,
-			face_up,
-			face_right,
-			face_down,
-			face_left,
-			turn_90_degree_right,
-			turn_90_degree_left,
-			turn_180_degree,
-			turn_90_degree_random,
-			face_random_direction,
-			face_hero,
-			face_away_from_hero,
-			wait,
-			begin_jump,
-			end_jump,
-			lock_facing,
-			unlock_facing,
-			increase_movement_speed,
-			decrease_movement_speed,
-			increase_movement_frequence,
-			decrease_movement_frequence,
-			switch_on, // Parameter A: Switch to turn on
-			switch_off, // Parameter A: Switch to turn off
-			change_graphic, // String: File, Parameter A: index
-			play_sound_effect, // String: File, Parameters: Volume, Tempo, Balance
-			walk_everywhere_on,
-			walk_everywhere_off,
-			stop_animation,
-			start_animation,
-			increase_transp, // ???
-			decrease_transp // ???
 		};
 	};
 }

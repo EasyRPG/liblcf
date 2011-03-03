@@ -22,144 +22,55 @@
 #include "lsd_chunks.h"
 #include "lmu_reader.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Cover
+/// Read Save Map Event
 ////////////////////////////////////////////////////////////
-RPG::SaveMapEvent LSD_Reader::ReadSaveMapEvent(Reader& stream) {
-	RPG::SaveMapEvent map_event;
-	map_event.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkMapEvent::unknown_01:
-			map_event.unknown_01 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::map_id:
-			map_event.map_id = stream.ReadInt();
-			break;
-		case ChunkMapEvent::position_x:
-			map_event.position_x = stream.ReadInt();
-			break;
-		case ChunkMapEvent::position_y:
-			map_event.position_y = stream.ReadInt();
-			break;
-		case ChunkMapEvent::facing1:
-			map_event.facing1 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::facing2:
-			map_event.facing2 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::anim_frame:
-			map_event.anim_frame = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_18:
-			map_event.unknown_18 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_1f:
-			map_event.unknown_1f = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_20:
-			map_event.unknown_20 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::layer:
-			map_event.layer = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_22:
-			map_event.unknown_22 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_23:
-			map_event.unknown_23 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_24:
-			map_event.unknown_24 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_25:
-			map_event.unknown_25 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::move_route:
-			map_event.move_route = LMU_Reader::ReadMoveRoute(stream);
-			break;
-		case ChunkMapEvent::unknown_2a:
-			map_event.unknown_2a = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_2b:
-			map_event.unknown_2b = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_2f:
-			map_event.unknown_2f = stream.ReadInt();
-			break;
-		case ChunkMapEvent::anim_paused:
-			map_event.anim_paused = stream.ReadBool();
-			break;
-		case ChunkMapEvent::unknown_33:
-			map_event.unknown_33 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_34:
-			map_event.unknown_34 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_35:
-			map_event.unknown_35 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_36:
-			map_event.unknown_36 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_3e:
-			map_event.unknown_3e = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_3f:
-			map_event.unknown_3f = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_47:
-			map_event.unknown_47 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::sprite_name:
-			map_event.sprite_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkMapEvent::sprite_id:
-			map_event.sprite_id = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_4b:
-			map_event.unknown_4b = stream.ReadInt();
-			break;
-		case ChunkMapEvent::flash_red:
-			map_event.flash_red = stream.ReadInt();
-			break;
-		case ChunkMapEvent::flash_green:
-			map_event.flash_green = stream.ReadInt();
-			break;
-		case ChunkMapEvent::flash_blue:
-			map_event.flash_blue = stream.ReadInt();
-			break;
-		case ChunkMapEvent::flash_current_level:
-			map_event.flash_current_level = stream.ReadDouble();
-			break;
-		case ChunkMapEvent::flash_time_left:
-			map_event.flash_time_left = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_66:
-			map_event.unknown_66 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::unknown_67:
-			map_event.unknown_67 = stream.ReadInt();
-			break;
-		case ChunkMapEvent::event_data:
-			map_event.event_data = ReadSaveEventData(stream);
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return map_event;
+template <>
+void Struct<RPG::SaveMapEvent>::ReadID(RPG::SaveMapEvent& obj, Reader& stream) {
+	IDReader<RPG::SaveMapEvent, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::fields[] = {
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_01,			LSD_Reader::ChunkMapEvent::unknown_01,			"unknown_01"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::map_id,				LSD_Reader::ChunkMapEvent::map_id,				"map_id"				),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::position_x,			LSD_Reader::ChunkMapEvent::position_x,			"position_x"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::position_y,			LSD_Reader::ChunkMapEvent::position_y,			"position_y"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::facing1,				LSD_Reader::ChunkMapEvent::facing1,				"facing1"				),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::facing2,				LSD_Reader::ChunkMapEvent::facing2,				"facing2"				),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::anim_frame,			LSD_Reader::ChunkMapEvent::anim_frame,			"anim_frame"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_18,			LSD_Reader::ChunkMapEvent::unknown_18,			"unknown_18"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_1f,			LSD_Reader::ChunkMapEvent::unknown_1f,			"unknown_1f"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_20,			LSD_Reader::ChunkMapEvent::unknown_20,			"unknown_20"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::layer,					LSD_Reader::ChunkMapEvent::layer,				"layer"					),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_22,			LSD_Reader::ChunkMapEvent::unknown_22,			"unknown_22"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_23,			LSD_Reader::ChunkMapEvent::unknown_23,			"unknown_23"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_24,			LSD_Reader::ChunkMapEvent::unknown_24,			"unknown_24"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_25,			LSD_Reader::ChunkMapEvent::unknown_25,			"unknown_25"			),
+	new TypedField<RPG::SaveMapEvent, RPG::MoveRoute>		(&RPG::SaveMapEvent::move_route,			LSD_Reader::ChunkMapEvent::move_route,			"move_route"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_2a,			LSD_Reader::ChunkMapEvent::unknown_2a,			"unknown_2a"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_2b,			LSD_Reader::ChunkMapEvent::unknown_2b,			"unknown_2b"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_2f,			LSD_Reader::ChunkMapEvent::unknown_2f,			"unknown_2f"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::anim_paused,			LSD_Reader::ChunkMapEvent::anim_paused,			"anim_paused"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_33,			LSD_Reader::ChunkMapEvent::unknown_33,			"unknown_33"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_34,			LSD_Reader::ChunkMapEvent::unknown_34,			"unknown_34"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_35,			LSD_Reader::ChunkMapEvent::unknown_35,			"unknown_35"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_36,			LSD_Reader::ChunkMapEvent::unknown_36,			"unknown_36"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_3e,			LSD_Reader::ChunkMapEvent::unknown_3e,			"unknown_3e"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_3f,			LSD_Reader::ChunkMapEvent::unknown_3f,			"unknown_3f"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_47,			LSD_Reader::ChunkMapEvent::unknown_47,			"unknown_47"			),
+	new TypedField<RPG::SaveMapEvent, std::string>			(&RPG::SaveMapEvent::sprite_name,			LSD_Reader::ChunkMapEvent::sprite_name,			"sprite_name"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::sprite_id,				LSD_Reader::ChunkMapEvent::sprite_id,			"sprite_id"				),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_4b,			LSD_Reader::ChunkMapEvent::unknown_4b,			"unknown_4b"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::flash_red,				LSD_Reader::ChunkMapEvent::flash_red,			"flash_red"				),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::flash_green,			LSD_Reader::ChunkMapEvent::flash_green,			"flash_green"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::flash_blue,			LSD_Reader::ChunkMapEvent::flash_blue,			"flash_blue"			),
+	new TypedField<RPG::SaveMapEvent, double>				(&RPG::SaveMapEvent::flash_current_level,	LSD_Reader::ChunkMapEvent::flash_current_level,	"flash_current_level"	),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::flash_time_left,		LSD_Reader::ChunkMapEvent::flash_time_left,		"flash_time_left"		),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_66,			LSD_Reader::ChunkMapEvent::unknown_66,			"unknown_66"			),
+	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_67,			LSD_Reader::ChunkMapEvent::unknown_67,			"unknown_67"			),
+	new TypedField<RPG::SaveMapEvent, RPG::SaveEventData>	(&RPG::SaveMapEvent::event_data,			LSD_Reader::ChunkMapEvent::event_data,			"event_data"			),
+	NULL
+};

@@ -21,64 +21,41 @@
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Event Page Condition
 ////////////////////////////////////////////////////////////
-RPG::EventPageCondition LMU_Reader::ReadEventPageCondition(Reader& stream) {
-	RPG::EventPageCondition eventpagecondition;
-	unsigned char bitflag;
-
-	Reader::Chunk chunk_info;
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkData::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEventPageCondition::condition_flags:
-			bitflag = stream.Read8();
-			eventpagecondition.switch_a = (bitflag & 0x01) > 0;
-			eventpagecondition.switch_b = (bitflag & 0x02) > 0;
-			eventpagecondition.variable = (bitflag & 0x04) > 0;
-			eventpagecondition.item = (bitflag & 0x08) > 0;
-			eventpagecondition.actor = (bitflag & 0x10) > 0;
-			eventpagecondition.timer = (bitflag & 0x20) > 0;
-			eventpagecondition.timer2 = (bitflag & 0x40) > 0;
-			break;
-		case ChunkEventPageCondition::switch_a_id:
-			eventpagecondition.switch_a_id = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::switch_b_id:
-			eventpagecondition.switch_b_id = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::variable_id:
-			eventpagecondition.variable_id = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::variable_value:
-			eventpagecondition.variable_value = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::item_id:
-			eventpagecondition.item_id = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::actor_id:
-			eventpagecondition.actor_id = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::timer_sec:
-			eventpagecondition.timer_sec = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::timer2_sec:
-			eventpagecondition.timer2_sec = stream.ReadInt();
-			break;
-		case ChunkEventPageCondition::compare_operator:
-			eventpagecondition.compare_operator = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
+template <>
+struct TypeReader<RPG::EventPageCondition::Flags> {
+	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+		uint8_t bitflag = stream.Read8();
+		ref.switch_a	= (bitflag & 0x01) != 0;
+		ref.switch_b	= (bitflag & 0x02) != 0;
+		ref.variable	= (bitflag & 0x04) != 0;
+		ref.item		= (bitflag & 0x08) != 0;
+		ref.actor		= (bitflag & 0x10) != 0;
+		ref.timer		= (bitflag & 0x20) != 0;
+		ref.timer2		= (bitflag & 0x40) != 0;
 	}
-	return eventpagecondition;
+};
+
+template <>
+void Struct<RPG::EventPageCondition>::ReadID(RPG::EventPageCondition& obj, Reader& stream) {
+	IDReader<RPG::EventPageCondition, NoID>::ReadID(obj, stream);
 }
+
+template <>
+const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::switch_a_id,			LMU_Reader::ChunkEventPageCondition::switch_a_id,		"switch_a_id"		),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::switch_b_id,			LMU_Reader::ChunkEventPageCondition::switch_b_id,		"switch_b_id"		),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::variable_id,			LMU_Reader::ChunkEventPageCondition::variable_id,		"variable_id"		),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::variable_value,		LMU_Reader::ChunkEventPageCondition::variable_value,	"variable_value"	),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::item_id,				LMU_Reader::ChunkEventPageCondition::item_id,			"item_id"			),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::actor_id,			LMU_Reader::ChunkEventPageCondition::actor_id,			"actor_id"			),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer_sec,			LMU_Reader::ChunkEventPageCondition::timer_sec,			"timer_sec"			),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer2_sec,			LMU_Reader::ChunkEventPageCondition::timer2_sec,		"timer2_sec"		),
+	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::compare_operator,	LMU_Reader::ChunkEventPageCondition::compare_operator,	"compare_operator"	),
+	new TypedField<RPG::EventPageCondition, struct RPG::EventPageCondition::Flags>(&RPG::EventPageCondition::flags,	LMU_Reader::ChunkEventPageCondition::flags,	"flags"),
+	NULL
+};

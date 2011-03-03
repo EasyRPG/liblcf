@@ -30,9 +30,7 @@
 ////////////////////////////////////////////////////////////
 namespace LMT_Reader {
 	bool Load(const std::string &filename);
-	void ReadTreeMap(Reader& stream);
-	RPG::MapInfo ReadMapInfo(Reader& stream);
-	RPG::Encounter ReadEncounter(Reader& stream);
+	void ReadTreeMap(RPG::TreeMap& treemap, Reader& stream);
 }
 
 #endif

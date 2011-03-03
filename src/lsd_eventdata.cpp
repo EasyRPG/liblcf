@@ -21,45 +21,22 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Event Data
+/// Read Save Event Data
 ////////////////////////////////////////////////////////////
-RPG::SaveEventData LSD_Reader::ReadSaveEventData(Reader& stream) {
-	RPG::SaveEventData result;
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkEventData::time_left:
-			result.time_left = stream.ReadInt();
-			break;
-		case ChunkEventData::commands:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				result.commands.push_back(ReadSaveEventCommands(stream));
-			}
-			break;
-		case ChunkEventData::unknown_16:
-			result.unknown_16 = stream.ReadInt();
-			break;
-		case ChunkEventData::unknown_17:
-			result.unknown_17 = stream.ReadInt();
-			break;
-		case ChunkEventData::unknown_20:
-			result.unknown_20 = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return result;
+template <>
+void Struct<RPG::SaveEventData>::ReadID(RPG::SaveEventData& obj, Reader& stream) {
+	IDReader<RPG::SaveEventData, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveEventData>* Struct<RPG::SaveEventData>::fields[] = {
+	new TypedField<RPG::SaveEventData, int>	(&RPG::SaveEventData::time_left,	LSD_Reader::ChunkEventData::time_left,	"time_left"		),
+	new TypedField<RPG::SaveEventData, int>	(&RPG::SaveEventData::unknown_16,	LSD_Reader::ChunkEventData::unknown_16,	"unknown_16"	),
+	new TypedField<RPG::SaveEventData, int>	(&RPG::SaveEventData::unknown_17,	LSD_Reader::ChunkEventData::unknown_17,	"unknown_17"	),
+	new TypedField<RPG::SaveEventData, int>	(&RPG::SaveEventData::unknown_20,	LSD_Reader::ChunkEventData::unknown_20,	"unknown_20"	),
+	new TypedField<RPG::SaveEventData, std::vector<RPG::SaveEventCommands> >	(&RPG::SaveEventData::commands,	LSD_Reader::ChunkEventData::commands,	"commands"	),
+	NULL
+};

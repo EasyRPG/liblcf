@@ -21,123 +21,48 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Cover
+/// Read Save Actor
 ////////////////////////////////////////////////////////////
-RPG::SaveActor LSD_Reader::ReadSaveActor(Reader& stream) {
-	RPG::SaveActor actor;
-	actor.ID = stream.ReadInt();
-
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkActor::name:
-			actor.name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::title:
-			actor.title = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::sprite_name:
-			actor.sprite_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::sprite_id:
-			actor.sprite_id = stream.ReadInt();
-			break;
-		case ChunkActor::sprite_flags:
-			actor.sprite_flags = stream.ReadInt();
-			break;
-		case ChunkActor::face_name:
-			actor.face_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkActor::face_id:
-			actor.face_id = stream.ReadInt();
-			break;
-		case ChunkActor::level:
-			actor.level = stream.ReadInt();
-			break;
-		case ChunkActor::exp:
-			actor.exp = stream.ReadInt();
-			break;
-		case ChunkActor::hp_mod:
-			actor.hp_mod = stream.ReadInt();
-			break;
-		case ChunkActor::sp_mod:
-			actor.sp_mod = stream.ReadInt();
-			break;
-		case ChunkActor::attack_mod:
-			actor.attack_mod = stream.ReadInt();
-			break;
-		case ChunkActor::defense_mod:
-			actor.defense_mod = stream.ReadInt();
-			break;
-		case ChunkActor::spirit_mod:
-			actor.spirit_mod = stream.ReadInt();
-			break;
-		case ChunkActor::agility_mod:
-			actor.agility_mod = stream.ReadInt();
-			break;
-		case ChunkActor::skills_size:
-			actor.skills_size = stream.ReadInt();
-			break;
-		case ChunkActor::skills:
-			stream.Read16(actor.skills, chunk_info.length);
-			break;
-		case ChunkActor::equipped:
-			stream.Read16(actor.equipped, chunk_info.length);
-			break;
-		case ChunkActor::current_hp:
-			actor.current_hp = stream.ReadInt();
-			break;
-		case ChunkActor::current_sp:
-			actor.current_sp = stream.ReadInt();
-			break;
-		case ChunkActor::battle_commands:
-			stream.Read32(actor.battle_commands, chunk_info.length);
-			break;
-		case ChunkActor::status_size:
-			actor.status_size = stream.ReadInt();
-			break;
-		case ChunkActor::status:
-			stream.Read16(actor.status, chunk_info.length);
-			break;
-		case ChunkActor::changed_class:
-			actor.changed_class = stream.ReadBool();
-			break;
-		case ChunkActor::class_id:
-			actor.class_id = stream.ReadInt();
-			break;
-		case ChunkActor::unknown_5b:
-			actor.unknown_5b = stream.ReadInt();
-			break;
-		case ChunkActor::two_weapon:
-			actor.two_weapon = stream.ReadBool();
-			break;
-		case ChunkActor::lock_equipment:
-			actor.lock_equipment = stream.ReadBool();
-			break;
-		case ChunkActor::auto_battle:
-			actor.auto_battle = stream.ReadBool();
-			break;
-		case ChunkActor::mighty_guard:
-			actor.mighty_guard = stream.ReadBool();
-			break;
-		case ChunkActor::unknown_60:
-			actor.unknown_60 = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return actor;
+template <>
+void Struct<RPG::SaveActor>::ReadID(RPG::SaveActor& obj, Reader& stream) {
+	IDReader<RPG::SaveActor, WithID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveActor>* Struct<RPG::SaveActor>::fields[] = {
+	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::name,				LSD_Reader::ChunkActor::name,				"name"				),
+	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::title,			LSD_Reader::ChunkActor::title,				"title"				),
+	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::sprite_name,		LSD_Reader::ChunkActor::sprite_name,		"sprite_name"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::sprite_id,		LSD_Reader::ChunkActor::sprite_id,			"sprite_id"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::sprite_flags,		LSD_Reader::ChunkActor::sprite_flags,		"sprite_flags"		),
+	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::face_name,		LSD_Reader::ChunkActor::face_name,			"face_name"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::face_id,			LSD_Reader::ChunkActor::face_id,			"face_id"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::level,			LSD_Reader::ChunkActor::level,				"level"				),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::exp,				LSD_Reader::ChunkActor::exp,				"exp"				),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::hp_mod,			LSD_Reader::ChunkActor::hp_mod,				"hp_mod"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::sp_mod,			LSD_Reader::ChunkActor::sp_mod,				"sp_mod"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::attack_mod,		LSD_Reader::ChunkActor::attack_mod,			"attack_mod"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::defense_mod,		LSD_Reader::ChunkActor::defense_mod,		"defense_mod"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::spirit_mod,		LSD_Reader::ChunkActor::spirit_mod,			"spirit_mod"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::agility_mod,		LSD_Reader::ChunkActor::agility_mod,		"agility_mod"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::skills_size,		LSD_Reader::ChunkActor::skills_size,		"skills_size"		),
+	new TypedField<RPG::SaveActor, std::vector<int16_t> >	(&RPG::SaveActor::skills,			LSD_Reader::ChunkActor::skills,				"skills"			),
+	new TypedField<RPG::SaveActor, std::vector<int16_t> >	(&RPG::SaveActor::equipped,			LSD_Reader::ChunkActor::equipped,			"equipped"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::current_hp,		LSD_Reader::ChunkActor::current_hp,			"current_hp"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::current_sp,		LSD_Reader::ChunkActor::current_sp,			"current_sp"		),
+	new TypedField<RPG::SaveActor, std::vector<uint32_t> >	(&RPG::SaveActor::battle_commands,	LSD_Reader::ChunkActor::battle_commands,	"battle_commands"	),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::status_size,		LSD_Reader::ChunkActor::status_size,		"status_size"		),
+	new TypedField<RPG::SaveActor, std::vector<int16_t> >	(&RPG::SaveActor::status,			LSD_Reader::ChunkActor::status,				"status"			),
+	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::changed_class,	LSD_Reader::ChunkActor::changed_class,		"changed_class"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::class_id,			LSD_Reader::ChunkActor::class_id,			"class_id"			),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::unknown_5b,		LSD_Reader::ChunkActor::unknown_5b,			"unknown_5b"		),
+	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::two_weapon,		LSD_Reader::ChunkActor::two_weapon,			"two_weapon"		),
+	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::lock_equipment,	LSD_Reader::ChunkActor::lock_equipment,		"lock_equipment"	),
+	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::auto_battle,		LSD_Reader::ChunkActor::auto_battle,		"auto_battle"		),
+	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::mighty_guard,		LSD_Reader::ChunkActor::mighty_guard,		"mighty_guard"		),
+	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::unknown_60,		LSD_Reader::ChunkActor::unknown_60,			"unknown_60"		),
+	NULL
+};

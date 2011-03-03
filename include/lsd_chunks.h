@@ -25,7 +25,7 @@ namespace LSD_Reader {
 	struct ChunkSave {
 		enum Index {
 			title				= 0x64, // RPG::SaveTitle
-			data				= 0x65, // RPG::SaveData
+			system				= 0x65, // RPG::SaveSystem
 			screen				= 0x66, // RPG::SaveScreen
 			pictures			= 0x67, // array of RPG::SavePicture
 			party_location		= 0x68, // RPG::SavePartyLocation

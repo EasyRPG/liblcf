@@ -21,72 +21,31 @@
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "rpg_save.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Cover
+/// Read Save Map Info
 ////////////////////////////////////////////////////////////
-RPG::SaveMapInfo LSD_Reader::ReadSaveMapInfo(Reader& stream) {
-	RPG::SaveMapInfo map_info;
-	Reader::Chunk chunk_info;
-
-	while (!stream.Eof()) {
-		chunk_info.ID = stream.ReadInt();
-		if (chunk_info.ID == ChunkSave::END) {
-			break;
-		} else {
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0) continue;
-		}
-		switch (chunk_info.ID) {
-		case ChunkMapInfo::pan_x:
-			map_info.pan_x = stream.ReadInt();
-			break;
-		case ChunkMapInfo::pan_y:
-			map_info.pan_y = stream.ReadInt();
-			break;
-		case ChunkMapInfo::encounter_rate:
-			map_info.encounter_rate = stream.ReadInt();
-			break;
-		case ChunkMapInfo::chipset_id:
-			map_info.chipset_id = stream.ReadInt();
-			break;
-		case ChunkMapInfo::events:
-			for (int i = stream.ReadInt(); i > 0; i--) {
-				map_info.events.push_back(ReadSaveMapEvent(stream));
-			}
-			break;
-		case ChunkMapInfo::lower_tiles:
-			stream.Read8(map_info.lower_tiles, chunk_info.length);
-			break;
-		case ChunkMapInfo::upper_tiles:
-			stream.Read8(map_info.upper_tiles, chunk_info.length);
-			break;
-		case ChunkMapInfo::parallax_name:
-			map_info.parallax_name = stream.ReadString(chunk_info.length);
-			break;
-		case ChunkMapInfo::parallax_horz:
-			map_info.parallax_horz = stream.ReadBool();
-			break;
-		case ChunkMapInfo::parallax_vert:
-			map_info.parallax_vert = stream.ReadBool();
-			break;
-		case ChunkMapInfo::parallax_horz_auto:
-			map_info.parallax_horz_auto = stream.ReadBool();
-			break;
-		case ChunkMapInfo::parallax_horz_speed:
-			map_info.parallax_horz_speed = stream.ReadInt();
-			break;
-		case ChunkMapInfo::parallax_vert_auto:
-			map_info.parallax_vert_auto = stream.ReadBool();
-			break;
-		case ChunkMapInfo::parallax_vert_speed:
-			map_info.parallax_vert_speed = stream.ReadInt();
-			break;
-		default:
-			stream.Skip(chunk_info);
-		}
-	}
-
-	return map_info;
+template <>
+void Struct<RPG::SaveMapInfo>::ReadID(RPG::SaveMapInfo& obj, Reader& stream) {
+	IDReader<RPG::SaveMapInfo, NoID>::ReadID(obj, stream);
 }
 
+template <>
+const Field<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::fields[] = {
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_x,					LSD_Reader::ChunkMapInfo::pan_x,				"pan_x"					),
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_y,					LSD_Reader::ChunkMapInfo::pan_y,				"pan_y"					),
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::encounter_rate,			LSD_Reader::ChunkMapInfo::encounter_rate,		"encounter_rate"		),
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::chipset_id,				LSD_Reader::ChunkMapInfo::chipset_id,			"chipset_id"			),
+	new TypedField<RPG::SaveMapInfo, std::vector<RPG::SaveMapEvent> >	(&RPG::SaveMapInfo::events,					LSD_Reader::ChunkMapInfo::events,				"events"				),
+	new TypedField<RPG::SaveMapInfo, std::vector<uint8_t> >				(&RPG::SaveMapInfo::lower_tiles,			LSD_Reader::ChunkMapInfo::lower_tiles,			"lower_tiles"			),
+	new TypedField<RPG::SaveMapInfo, std::vector<uint8_t> >				(&RPG::SaveMapInfo::upper_tiles,			LSD_Reader::ChunkMapInfo::upper_tiles,			"upper_tiles"			),
+	new TypedField<RPG::SaveMapInfo, std::string>						(&RPG::SaveMapInfo::parallax_name,			LSD_Reader::ChunkMapInfo::parallax_name,		"parallax_name"			),
+	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_horz,			LSD_Reader::ChunkMapInfo::parallax_horz,		"parallax_horz"			),
+	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_vert,			LSD_Reader::ChunkMapInfo::parallax_vert,		"parallax_vert"			),
+	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_horz_auto,		LSD_Reader::ChunkMapInfo::parallax_horz_auto,	"parallax_horz_auto"	),
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_horz_speed,	LSD_Reader::ChunkMapInfo::parallax_horz_speed,	"parallax_horz_speed"	),
+	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_vert_auto,		LSD_Reader::ChunkMapInfo::parallax_vert_auto,	"parallax_vert_auto"	),
+	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_vert_speed,	LSD_Reader::ChunkMapInfo::parallax_vert_speed,	"parallax_vert_speed"	),
+	NULL
+};

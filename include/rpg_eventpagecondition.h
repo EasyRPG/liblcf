@@ -26,13 +26,15 @@ namespace RPG {
 	public:
 		EventPageCondition();
 		
-		bool switch_a;
-		bool switch_b;
-		bool variable;
-		bool item;
-		bool actor;
-		bool timer;
-		bool timer2;
+		struct Flags {
+			bool switch_a;
+			bool switch_b;
+			bool variable;
+			bool item;
+			bool actor;
+			bool timer;
+			bool timer2;
+		} flags;
 		int switch_a_id;
 		int switch_b_id;
 		int variable_id;

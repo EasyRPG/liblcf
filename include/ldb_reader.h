@@ -53,41 +53,9 @@ namespace LDB_Reader {
 	bool Load(const std::string &filename);
 	void LoadChunks(Reader& stream);
 
-//	RPG::Actor ReadActor(Reader& stream);
-//	RPG::Learning ReadLearning(Reader& stream);
-//	RPG::Skill ReadSkill(Reader& stream);
-//	RPG::Item ReadItem(Reader& stream);
-//	RPG::Enemy ReadEnemy(Reader& stream);
-//	RPG::EnemyAction ReadEnemyAction(Reader& stream);
-//	RPG::Troop ReadTroop(Reader& stream);
-//	RPG::TroopMember ReadTroopMember(Reader& stream);
-//	RPG::TroopPage ReadTroopPage(Reader& stream);
-//	RPG::TroopPageCondition ReadTroopPageCondition(Reader& stream);
-//	RPG::Attribute ReadAttribute(Reader& stream);
-//	RPG::State ReadState(Reader& stream);
-//	RPG::Terrain ReadTerrain(Reader& stream);
-//	RPG::Chipset ReadChipset(Reader& stream);
-//	RPG::Animation ReadAnimation(Reader& stream);
-//	RPG::AnimationTiming ReadAnimationTiming(Reader& stream);
-//	RPG::AnimationFrame ReadAnimationFrame(Reader& stream);
-//	RPG::AnimationCellData ReadAnimationCellData(Reader& stream);
-//	RPG::Terms ReadTerms(Reader& stream);
-//	RPG::System ReadSystem(Reader& stream);
-//	RPG::CommonEvent ReadCommonEvent(Reader& stream);
 	RPG::Sound ReadSound(Reader& stream);
 	RPG::Music ReadMusic(Reader& stream);
-	std::vector<std::string> ReadVariables(Reader& stream);
-	std::vector<std::string> ReadSwitches(Reader& stream);
-//	RPG::TestBattler ReadTestBattler(Reader& stream);
-//
-//	// 2003
-//	RPG::BattleCommands ReadBattleCommands(Reader& stream);
-//	RPG::BattleCommand ReadBattleCommand(Reader& stream);
-//	RPG::Class ReadClass(Reader& stream);
-//	RPG::BattlerAnimation ReadBattlerAnimation(Reader& stream);
-//	RPG::BattlerAnimationExtension ReadBattlerAnimationExtension(Reader& stream);
-//	RPG::BattlerAnimationData ReadBattlerAnimationData(Reader& stream);
-//	RPG::ItemAnimation ReadItemAnimation(Reader& stream);
+
 	void ReadDatabase(RPG::Database& data, Reader& stream);
 }
 
