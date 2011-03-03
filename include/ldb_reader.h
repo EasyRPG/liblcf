@@ -51,12 +51,6 @@
 ////////////////////////////////////////////////////////////
 namespace LDB_Reader {
 	bool Load(const std::string &filename);
-	void LoadChunks(Reader& stream);
-
-	RPG::Sound ReadSound(Reader& stream);
-	RPG::Music ReadMusic(Reader& stream);
-
-	void ReadDatabase(RPG::Database& data, Reader& stream);
 }
 
 #endif

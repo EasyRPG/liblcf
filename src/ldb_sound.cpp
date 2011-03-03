@@ -39,9 +39,3 @@ const Field<RPG::Sound>* Struct<RPG::Sound>::fields[] = {
 	new TypedField<RPG::Sound, int>			(&RPG::Sound::balance,	LDB_Reader::ChunkSound::balance,	"balance"	),
 	NULL
 };
-
-RPG::Sound LDB_Reader::ReadSound(Reader& stream) {
-	RPG::Sound sound;
-	Struct<RPG::Sound>::ReadLcf(sound, stream);
-	return sound;
-}

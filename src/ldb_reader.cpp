@@ -22,6 +22,7 @@
 #include "ldb_chunks.h"
 #include "data.h"
 #include "reader_util.h"
+#include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Database
@@ -37,14 +38,7 @@ bool LDB_Reader::Load(const std::string& filename) {
 		Reader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
 		return false;
 	}
-	LoadChunks(reader);
+	Struct<RPG::Database>::ReadLcf(Data::data, reader);
 	return true;
-}
-
-////////////////////////////////////////////////////////////
-/// Load data chunks
-////////////////////////////////////////////////////////////
-void LDB_Reader::LoadChunks(Reader& stream) {
-	LDB_Reader::ReadDatabase(Data::data, stream);
 }
 

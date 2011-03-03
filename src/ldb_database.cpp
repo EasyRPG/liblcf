@@ -54,6 +54,3 @@ const Field<RPG::Database>* Struct<RPG::Database>::fields[] = {
 	NULL
 };
 
-void LDB_Reader::ReadDatabase(RPG::Database& data, Reader& stream) {
-	Struct<RPG::Database>::ReadLcf(data, stream);
-}
