@@ -27,9 +27,7 @@
 /// Read Variable
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Variable>::ReadID(RPG::Variable& obj, Reader& stream) {
-	IDReader<RPG::Variable, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Variable>* Struct<RPG::Variable>::ID_reader = new IDReaderT<RPG::Variable, WithID>();
 
 template <>
 const Field<RPG::Variable>* Struct<RPG::Variable>::fields[] = {

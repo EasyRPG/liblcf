@@ -27,9 +27,7 @@
 /// Read Learning
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Learning>::ReadID(RPG::Learning& obj, Reader& stream) {
-	IDReader<RPG::Learning, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::Learning>* Struct<RPG::Learning>::ID_reader = new IDReaderT<RPG::Learning, WithID>();
 
 template <>
 const Field<RPG::Learning>* Struct<RPG::Learning>::fields[] = {

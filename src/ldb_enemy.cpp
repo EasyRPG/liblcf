@@ -27,9 +27,7 @@
 /// Read Enemy
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Enemy>::ReadID(RPG::Enemy& obj, Reader& stream) {
-	IDReader<RPG::Enemy, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Enemy>* Struct<RPG::Enemy>::ID_reader = new IDReaderT<RPG::Enemy, WithID>();
 
 template <>
 const Field<RPG::Enemy>* Struct<RPG::Enemy>::fields[] = {
@@ -51,9 +49,9 @@ const Field<RPG::Enemy>* Struct<RPG::Enemy>::fields[] = {
 	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::critical_hit_chance,	LDB_Reader::ChunkEnemy::critical_hit_chance,	"critical_hit_chance"	),
 	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::miss,					LDB_Reader::ChunkEnemy::miss,					"miss"					),
 	new TypedField<RPG::Enemy, bool>							(&RPG::Enemy::levitate,				LDB_Reader::ChunkEnemy::levitate,				"levitate"				),
-	new TypedField<RPG::Enemy, int>								(NULL,								LDB_Reader::ChunkEnemy::state_ranks_size,		""						),
-	new TypedField<RPG::Enemy, std::vector<unsigned char> >		(&RPG::Enemy::state_ranks,			LDB_Reader::ChunkEnemy::state_ranks,			"state_ranks"			),
-	new TypedField<RPG::Enemy, int>								(NULL,								LDB_Reader::ChunkEnemy::attribute_ranks_size,	""						),
-	new TypedField<RPG::Enemy, std::vector<unsigned char> >		(&RPG::Enemy::attribute_ranks,		LDB_Reader::ChunkEnemy::attribute_ranks,		"attribute_ranks"		),
+	new SizeField<RPG::Enemy, uint8_t>							(&RPG::Enemy::state_ranks,			LDB_Reader::ChunkEnemy::state_ranks_size								),
+	new TypedField<RPG::Enemy, std::vector<uint8_t> >			(&RPG::Enemy::state_ranks,			LDB_Reader::ChunkEnemy::state_ranks,			"state_ranks"			),
+	new SizeField<RPG::Enemy, uint8_t>							(&RPG::Enemy::attribute_ranks,		LDB_Reader::ChunkEnemy::attribute_ranks_size							),
+	new TypedField<RPG::Enemy, std::vector<uint8_t> >			(&RPG::Enemy::attribute_ranks,		LDB_Reader::ChunkEnemy::attribute_ranks,		"attribute_ranks"		),
 	new TypedField<RPG::Enemy, std::vector<RPG::EnemyAction> >	(&RPG::Enemy::actions,				LDB_Reader::ChunkEnemy::actions,				"actions"				),
 };

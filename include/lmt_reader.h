@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include "reader.h"
+#include "writer.h"
 #include "rpg_treemap.h"
 
 ////////////////////////////////////////////////////////////
@@ -31,6 +32,8 @@
 namespace LMT_Reader {
 	bool Load(const std::string &filename);
 	void ReadTreeMap(RPG::TreeMap& treemap, Reader& stream);
+	bool Save(const std::string& filename);
+	void WriteTreeMap(const RPG::TreeMap& treemap, Writer& stream);
 }
 
 #endif

@@ -21,13 +21,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
-#include <windows.h>
-#endif
+#include <string>
 
 ////////////////////////////////////////////////////////////
 /// ReaderUtil namespace
@@ -46,6 +40,17 @@ namespace ReaderUtil {
 	/// Empty string if not found
 	////////////////////////////////////////////////////////
 	std::string GetEncoding();
+
+	////////////////////////////////////////////////////////
+	/// Converts a string between encodings
+	/// @param str_to_encode : the string to convert
+	/// @param src_enc : the source encoding
+	/// @param dst_enc : the destination encoding
+	/// @return : the recoded string
+	////////////////////////////////////////////////////////
+	std::string Recode(const std::string& str_to_encode,
+					   const std::string& src_enc,
+					   const std::string& dst_enc);
 }
 
 #endif

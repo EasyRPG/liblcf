@@ -43,3 +43,19 @@ std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 	Struct<RPG::Map>::ReadLcf(*map, reader);
 	return std::auto_ptr<RPG::Map>(map);
 }
+
+////////////////////////////////////////////////////////////
+/// Save Map
+////////////////////////////////////////////////////////////
+void LMU_Reader::SaveMap(const std::string& filename, const RPG::Map& map) {
+	Writer writer(filename, ReaderUtil::GetEncoding());
+	if (!writer.IsOk()) {
+		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
+		return;
+	}
+	const std::string header("LcfMapUnit");
+	writer.WriteInt(header.size());
+	writer.WriteString(header);
+
+	Struct<RPG::Map>::WriteLcf(map, writer);
+}

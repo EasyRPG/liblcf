@@ -24,7 +24,8 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::TroopMember::TroopMember() {
-	ID = 1;
+	ID = 0;
+	enemy_id = 1;
 	x = 0;
 	y = 0;
 	invisible = false;

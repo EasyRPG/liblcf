@@ -24,6 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::BattlerAnimationExtension::BattlerAnimationExtension() {
+	ID = 0;
 	name = "";
 	battler_name = "";
 	battler_index = 0;

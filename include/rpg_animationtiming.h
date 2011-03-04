@@ -41,7 +41,8 @@ namespace RPG {
 		};
 
 		AnimationTiming();
-		
+
+		int ID;
 		int frame;
 		Sound se;
 		int flash_scope;

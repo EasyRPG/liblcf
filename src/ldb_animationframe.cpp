@@ -27,9 +27,7 @@
 /// Read AnimationFrame
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::AnimationFrame>::ReadID(RPG::AnimationFrame& obj, Reader& stream) {
-	IDReader<RPG::AnimationFrame, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::ID_reader = new IDReaderT<RPG::AnimationFrame, WithID>();
 
 template <>
 const Field<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::fields[] = {

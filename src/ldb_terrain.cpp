@@ -35,12 +35,21 @@ struct TypeReader<RPG::Terrain::Flags> {
 		ref.lateral_party	= (bitflag & 0x04) != 0;
 		ref.lateral_enemies	= (bitflag & 0x08) != 0;
 	}
+	static inline void WriteLcf(const RPG::Terrain::Flags& ref, Writer& stream) {
+		uint8_t bitflag = 0;
+		if (ref.back_party)		 bitflag |= 0x01;
+		if (ref.back_enemies)	 bitflag |= 0x02;
+		if (ref.lateral_party)	 bitflag |= 0x04;
+		if (ref.lateral_enemies) bitflag |= 0x08;
+		stream.Write8(bitflag);
+	}
+	static inline int LcfSize(const RPG::Terrain::Flags& ref, Writer& stream) {
+		return 1;
+	}
 };
 
 template <>
-void Struct<RPG::Terrain>::ReadID(RPG::Terrain& obj, Reader& stream) {
-	IDReader<RPG::Terrain, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Terrain>* Struct<RPG::Terrain>::ID_reader = new IDReaderT<RPG::Terrain, WithID>();
 
 template <>
 const Field<RPG::Terrain>* Struct<RPG::Terrain>::fields[] = {

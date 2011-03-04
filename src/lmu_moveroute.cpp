@@ -27,16 +27,14 @@
 /// Read Move Route
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::MoveRoute>::ReadID(RPG::MoveRoute& obj, Reader& stream) {
-	IDReader<RPG::MoveRoute, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::MoveRoute>* Struct<RPG::MoveRoute>::ID_reader = new IDReaderT<RPG::MoveRoute, NoID>();
 
 template <>
 const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
-	new TypedField<RPG::MoveRoute, bool>	(&RPG::MoveRoute::repeat,		LMU_Reader::ChunkMoveRoute::repeat,				"repeat"				),
-	new TypedField<RPG::MoveRoute, bool>	(&RPG::MoveRoute::skippable,	LMU_Reader::ChunkMoveRoute::skippable,			"skippable"				),
-	new TypedField<RPG::MoveRoute, int>		(NULL,							LMU_Reader::ChunkMoveRoute::move_commands_size,	"move_commands_size"	),
-	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >(&RPG::MoveRoute::move_commands, LMU_Reader::ChunkMoveRoute::move_commands, "move_commands"),
+	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::repeat,			LMU_Reader::ChunkMoveRoute::repeat,				"repeat"		),
+	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::skippable,		LMU_Reader::ChunkMoveRoute::skippable,			"skippable"		),
+	new SizeField<RPG::MoveRoute, RPG::MoveCommand>					(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands_size					),
+	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >	(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands,		"move_commands"	),
 	NULL
 };
 

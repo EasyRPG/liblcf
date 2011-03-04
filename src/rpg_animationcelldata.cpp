@@ -24,8 +24,9 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::AnimationCellData::AnimationCellData() {
-	priority = 1;
 	ID = 0;
+	priority = 1;
+	cell_id = 0;
 	x = 0;
 	y = 0;
 	zoom = 100;

@@ -27,14 +27,12 @@
 /// Read AnimationCellData
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::AnimationCellData>::ReadID(RPG::AnimationCellData& obj, Reader& stream) {
-	IDReader<RPG::AnimationCellData, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::AnimationCellData>* Struct<RPG::AnimationCellData>::ID_reader = new IDReaderT<RPG::AnimationCellData, WithID>();
 
  template<>
 const Field<RPG::AnimationCellData>* Struct<RPG::AnimationCellData>::fields[] = {
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::priority,		LDB_Reader::ChunkAnimationCellData::priority,		"priority"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::ID,			LDB_Reader::ChunkAnimationCellData::ID,				"ID"),
+	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::cell_id,		LDB_Reader::ChunkAnimationCellData::cell_id,		"cell_id"),
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::x,			LDB_Reader::ChunkAnimationCellData::x,				"x"),
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::y,			LDB_Reader::ChunkAnimationCellData::y,				"y"),
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::zoom,			LDB_Reader::ChunkAnimationCellData::zoom,			"zoom"),

@@ -38,12 +38,24 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		ref.timer		= (bitflag & 0x20) != 0;
 		ref.timer2		= (bitflag & 0x40) != 0;
 	}
+	static inline void WriteLcf(const RPG::EventPageCondition::Flags& ref, Writer& stream) {
+		uint8_t bitflag = 0;
+		if (ref.switch_a	) bitflag |= 0x01;
+		if (ref.switch_b	) bitflag |= 0x02;
+		if (ref.variable	) bitflag |= 0x04;
+		if (ref.item		) bitflag |= 0x08;
+		if (ref.actor		) bitflag |= 0x10;
+		if (ref.timer		) bitflag |= 0x20;
+		if (ref.timer2		) bitflag |= 0x40;
+		stream.Write8(bitflag);
+	}
+	static inline int LcfSize(const RPG::EventPageCondition::Flags& ref, Writer& stream) {
+		return 1;
+	}
 };
 
 template <>
-void Struct<RPG::EventPageCondition>::ReadID(RPG::EventPageCondition& obj, Reader& stream) {
-	IDReader<RPG::EventPageCondition, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::ID_reader = new IDReaderT<RPG::EventPageCondition, NoID>();
 
 template <>
 const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {

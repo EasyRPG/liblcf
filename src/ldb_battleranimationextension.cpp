@@ -27,9 +27,7 @@
 /// Read BattlerAnimationExtension
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::BattlerAnimationExtension>::ReadID(RPG::BattlerAnimationExtension& obj, Reader& stream) {
-	IDReader<RPG::BattlerAnimationExtension, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::ID_reader = new IDReaderT<RPG::BattlerAnimationExtension, WithID>();
 
 template <>
 const Field<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::fields[] = {

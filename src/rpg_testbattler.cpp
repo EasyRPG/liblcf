@@ -24,7 +24,8 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::TestBattler::TestBattler() {
-	ID = 1;
+	ID = 0;
+	actor_id = 1;
 	level = 1;
 	weapon_id = 0;
 	shield_id = 0;

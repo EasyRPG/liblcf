@@ -27,9 +27,7 @@
 /// Read Item
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Item>::ReadID(RPG::Item& obj, Reader& stream) {
-	IDReader<RPG::Item, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Item>* Struct<RPG::Item>::ID_reader = new IDReaderT<RPG::Item, WithID>();
 
 template <>
 const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
@@ -37,9 +35,9 @@ const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
 	new TypedField<RPG::Item, std::string>			(&RPG::Item::description,		LDB_Reader::ChunkItem::description,			"description"		),
 	new TypedField<RPG::Item, int>					(&RPG::Item::type,				LDB_Reader::ChunkItem::type,				"type"				),
 	new TypedField<RPG::Item, int>					(&RPG::Item::price,				LDB_Reader::ChunkItem::price,				"price"				),
-	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::actor_set_size,		""					),
+	new SizeField<RPG::Item, bool>					(&RPG::Item::actor_set,			LDB_Reader::ChunkItem::actor_set_size		),
 	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::actor_set,			LDB_Reader::ChunkItem::actor_set,			"actor_set"			),
-	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::class_set_size,		""					),
+	new SizeField<RPG::Item, bool>					(&RPG::Item::class_set,			LDB_Reader::ChunkItem::class_set_size		),
 	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::class_set,			LDB_Reader::ChunkItem::class_set,			"class_set"			),
 	new TypedField<RPG::Item, int>					(&RPG::Item::uses,				LDB_Reader::ChunkItem::uses,				"uses"				),
 	new TypedField<RPG::Item, int>					(&RPG::Item::atk_points,		LDB_Reader::ChunkItem::atk_points1,			"atk_points1"		),
@@ -50,9 +48,9 @@ const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
 	new TypedField<RPG::Item, int>					(&RPG::Item::def_points,		LDB_Reader::ChunkItem::def_points2,			"def_points2"		),
 	new TypedField<RPG::Item, int>					(&RPG::Item::spi_points,		LDB_Reader::ChunkItem::spi_points2,			"spi_points2"		),
 	new TypedField<RPG::Item, int>					(&RPG::Item::agi_points,		LDB_Reader::ChunkItem::agi_points2,			"agi_points2"		),
-	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::attribute_set_size,	""					),
+	new SizeField<RPG::Item, bool>					(&RPG::Item::attribute_set,		LDB_Reader::ChunkItem::attribute_set_size	),
 	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::attribute_set,		LDB_Reader::ChunkItem::attribute_set,		"attribute_set"		),
-	new TypedField<RPG::Item, int>					(NULL,							LDB_Reader::ChunkItem::state_set_size,		""					),
+	new SizeField<RPG::Item, bool>					(&RPG::Item::state_set,			LDB_Reader::ChunkItem::state_set_size		),
 	new TypedField<RPG::Item, std::vector<bool> >	(&RPG::Item::state_set,			LDB_Reader::ChunkItem::state_set,			"state_set"			),
 	new TypedField<RPG::Item, bool>					(&RPG::Item::state_effect,		LDB_Reader::ChunkItem::state_effect,		"state_effect"		),
 	new TypedField<RPG::Item, int>					(&RPG::Item::state_chance,		LDB_Reader::ChunkItem::state_chance,		"state_chance"		),

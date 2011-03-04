@@ -18,15 +18,8 @@
 ////////////////////////////////////////////////////////////
 /// Headers
 ////////////////////////////////////////////////////////////
-#include "reader.h"
 #include <cstdarg>
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <windows.h>
-#else
-#include <iconv.h>
-#endif
+#include "reader.h"
 
 ////////////////////////////////////////////////////////////
 /// Statics
@@ -34,24 +27,40 @@
 std::string Reader::error_str;
 
 ////////////////////////////////////////////////////////////
-Reader::Reader(const char* filename, std::string encoding) {
-	stream = fopen(filename, "rb");
-	this->encoding = encoding;
-	this->filename = std::string(filename);
+Reader::Reader(const char* filename, std::string encoding) :
+	filename(filename),
+	encoding(encoding),
+	stream(fopen(filename, "rb"))
+{
 }
 
 ////////////////////////////////////////////////////////////
-Reader::Reader(const std::string& filename, std::string encoding) {
-	stream = fopen(filename.c_str(), "rb");
-	this->encoding = encoding;
-	this->filename = std::string(filename);
+Reader::Reader(const std::string& filename, std::string encoding) :
+	filename(filename),
+	encoding(encoding),
+	stream(fopen(filename.c_str(), "rb"))
+{
 }
 
 ////////////////////////////////////////////////////////////
 Reader::~Reader() {
-	if (stream != NULL) {
+	Close();
+}
+
+////////////////////////////////////////////////////////////
+void Reader::Close() {
+	if (stream != NULL)
 		fclose(stream);
-	}
+	stream = NULL;
+}
+
+////////////////////////////////////////////////////////////
+void Reader::Read(void *ptr, size_t size, size_t nmemb) {
+#ifndef NDEBUG
+	assert(fread(ptr, size, nmemb, stream) == nmemb);
+#else
+	fread(ptr, size, nmemb, stream);
+#endif
 }
 
 ////////////////////////////////////////////////////////////
@@ -62,22 +71,14 @@ bool Reader::ReadBool() {
 ////////////////////////////////////////////////////////////
 uint8_t Reader::Read8() {
 	uint8_t val = 0;
-#ifndef NDEBUG
-	assert(fread(&val, 1, 1, stream) == 1);
-#else
-	fread(&val, 1, 1, stream);
-#endif
+	Read(&val, 1, 1);
 	return val;
 }
 
 ////////////////////////////////////////////////////////////
 int16_t Reader::Read16() {
 	int16_t val = 0;
-#ifndef NDEBUG
-	assert(fread(&val, 2, 1, stream) == 1);
-#else
-	fread(&val, 2, 1, stream);
-#endif
+	Read(&val, 2, 1);
 #ifdef READER_BIG_ENDIAN
 	uint16_t val2 = (uint16_t)val;
 	SwapByteOrder(val2);
@@ -89,11 +90,7 @@ int16_t Reader::Read16() {
 ////////////////////////////////////////////////////////////
 int32_t Reader::Read32() {
 	int32_t val = 0;
-#ifndef NDEBUG
-	assert(fread(&val, 4, 1, stream) == 1);
-#else
-	fread(&val, 4, 1, stream);
-#endif
+	Read(&val, 4, 1);
 #ifdef READER_BIG_ENDIAN
 	uint32_t val2 = (uint32_t)val;
 	SwapByteOrder(val2);
@@ -120,11 +117,7 @@ int32_t Reader::ReadInt() {
 ////////////////////////////////////////////////////////////
 double Reader::ReadDouble() {
 	double val = 0;
-#ifndef NDEBUG
-	assert(fread(&val, 8, 1, stream) == 1);
-#else
-	fread(&val, 8, 1, stream);
-#endif
+	Read(&val, 8, 1);
 #ifdef READER_BIG_ENDIAN
 #warning "Need 64-bit Double byte swap"
 #endif
@@ -137,11 +130,7 @@ void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 	buffer.clear();
 
 	for (unsigned i = 0; i < size; ++i) {
-#ifndef NDEBUG
-		assert(fread(&val, 1, 1, stream) == 1);
-#else
-		fread(&val, 1, 1, stream);
-#endif
+		Read(&val, 1, 1);
 		buffer.push_back(val > 0);
 	}
 }
@@ -152,11 +141,7 @@ void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 	buffer.clear();
 
 	for (unsigned int i = 0; i < size; ++i) {
-#ifndef NDEBUG
-		assert(fread(&val, 1, 1, stream) == 1);
-#else
-		fread(&val, 1, 1, stream);
-#endif
+		Read(&val, 1, 1);
 		buffer.push_back(val);
 	}
 }
@@ -170,7 +155,7 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 #ifndef NDEBUG
 		assert(fread(&val, 2, 1, stream) == 1);
 #else
-		fread(&val, 2, 1, stream);
+		Read(&val, 2, 1);
 #endif
 	#ifdef READER_BIG_ENDIAN
 		uint16_t val2 = (uint16_t)val;
@@ -187,11 +172,7 @@ void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 	buffer.clear();
 	size_t items = size / 4;
 	for (unsigned int i = 0; i < items; ++i) {
-#ifndef NDEBUG
-		assert(fread(&val, 4, 1, stream) == 1);
-#else
-		fread(&val, 4, 1, stream);
-#endif
+		Read(&val, 4, 1);
 	#ifdef READER_BIG_ENDIAN
 		SwapByteOrder(val);
 	#endif
@@ -203,11 +184,7 @@ void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 std::string Reader::ReadString(size_t size) {
 	char* chars = new char[size + 1];
 	chars[size] = '\0';
-#ifndef NDEBUG
-	assert(fread(chars, 1, size, stream) == size);
-#else
-	fread(chars, 1, size, stream);
-#endif
+	Read(chars, 1, size);
 
 	std::string str;
 	str = Encode(std::string(chars));
@@ -311,53 +288,9 @@ const std::string& Reader::GetError() {
 ////////////////////////////////////////////////////////////
 std::string Reader::Encode(const std::string& str_to_encode) {
 #ifdef _WIN32
-	size_t strsize = str_to_encode.size();
-
-	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
-
-	// To Utf16
-	// Default codepage is 0, so we dont need a check here
-	int res = MultiByteToWideChar(atoi(encoding.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
-	if (res == 0) {
-		// Invalid codepage
-		delete [] widechar;
-		return str_to_encode;
-	}
-	widechar[res] = '\0';
-
-	// Back to Utf8 ...
-	char* utf8char = new char[strsize * 5 + 1];
-	res = WideCharToMultiByte(CP_UTF8, 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
-	utf8char[res] = '\0';
-
-	// Result in str
-	std::string str = std::string(utf8char, res);
-
-	delete [] widechar;
-	delete [] utf8char;
-
-	return str;
+	return ReaderUtil::Recode(str_to_encode, encoding, "65001");
 #else
-	iconv_t cd = iconv_open("UTF-8", encoding.c_str());
-	if (cd == (iconv_t)-1)
-		return str_to_encode;
-	char *src = (char *) str_to_encode.c_str();
-	size_t src_left = str_to_encode.size();
-	size_t dst_size = str_to_encode.size() * 5 + 10;
-	char *dst = new char[dst_size];
-	size_t dst_left = dst_size;
-	char *p = src;
-	char *q = dst;
-	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
-	iconv_close(cd);
-	if (status == (size_t) -1 || src_left > 0) {
-		delete[] dst;
-		return "";
-	}
-	*q++ = '\0';
-	std::string result(dst);
-	delete[] dst;
-	return result;
+	return ReaderUtil::Recode(str_to_encode, encoding, "UTF-8");
 #endif
 }
 

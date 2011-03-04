@@ -28,9 +28,7 @@
 /// Read Event Page
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::EventPage>::ReadID(RPG::EventPage& obj, Reader& stream) {
-	IDReader<RPG::EventPage, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::EventPage>* Struct<RPG::EventPage>::ID_reader = new IDReaderT<RPG::EventPage, WithID>();
 
 template <>
 const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {
@@ -48,7 +46,7 @@ const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {
 	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::animation_type,		LMU_Reader::ChunkEventPage::animation_type,			"animation_type"		),
 	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_speed,			LMU_Reader::ChunkEventPage::move_speed,				"move_speed"			),
 	new TypedField<RPG::EventPage, RPG::MoveRoute>					(&RPG::EventPage::move_route,			LMU_Reader::ChunkEventPage::move_route,				"move_route"			),
-	new TypedField<RPG::EventPage, int>								(NULL,									LMU_Reader::ChunkEventPage::event_commands_size,	"event_commands_size"	),
+	new SizeField<RPG::EventPage, RPG::EventCommand>				(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands_size								),
 	new TypedField<RPG::EventPage, std::vector<RPG::EventCommand> >	(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands,			"event_commands"		),
 	NULL
 };

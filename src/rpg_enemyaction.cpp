@@ -24,6 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::EnemyAction::EnemyAction() {
+	ID = 0;
 	kind = 0;
 	basic = 1;
 	skill_id = 1;

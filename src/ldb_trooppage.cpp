@@ -28,14 +28,12 @@
 /// Read TroopPage
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::TroopPage>::ReadID(RPG::TroopPage& obj, Reader& stream) {
-	IDReader<RPG::TroopPage, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::TroopPage>* Struct<RPG::TroopPage>::ID_reader = new IDReaderT<RPG::TroopPage, WithID>();
 
 template <>
 const Field<RPG::TroopPage>* Struct<RPG::TroopPage>::fields[] = {
 	new TypedField<RPG::TroopPage, RPG::TroopPageCondition>			(&RPG::TroopPage::condition,			LDB_Reader::ChunkTroopPage::condition,				"condition"			),
-	new TypedField<RPG::TroopPage, int>								(NULL,									LDB_Reader::ChunkTroopPage::event_commands_size,	""					),
+	new SizeField<RPG::TroopPage, RPG::EventCommand>				(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands_size							),
 	new TypedField<RPG::TroopPage, std::vector<RPG::EventCommand> >	(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands,			"event_commands"	),
 	NULL
 };

@@ -27,13 +27,11 @@
 /// Read TestBattler
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::TestBattler>::ReadID(RPG::TestBattler& obj, Reader& stream) {
-	IDReader<RPG::TestBattler, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::TestBattler>* Struct<RPG::TestBattler>::ID_reader = new IDReaderT<RPG::TestBattler, WithID>();
 
 template <>
 const Field<RPG::TestBattler>* Struct<RPG::TestBattler>::fields[] = {
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::ID,				LDB_Reader::ChunkTestBattler::ID,			"ID"			),
+	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::actor_id,		LDB_Reader::ChunkTestBattler::actor_id,		"actor_id"		),
 	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::level,			LDB_Reader::ChunkTestBattler::level,		"level"			),
 	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::weapon_id,		LDB_Reader::ChunkTestBattler::weapon_id,	"weapon_id"		),
 	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::shield_id,		LDB_Reader::ChunkTestBattler::shield_id,	"shield_id"		),

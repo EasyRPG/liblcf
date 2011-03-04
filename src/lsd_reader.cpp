@@ -44,3 +44,16 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 	Struct<RPG::Save>::ReadLcf(*save, reader);
 	return std::auto_ptr<RPG::Save>(save);
 }
+
+void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
+	Writer writer(filename, ReaderUtil::GetEncoding());
+	if (!writer.IsOk()) {
+		Reader::SetError("Couldn't find %s save file.\n", filename.c_str());
+		return;
+	}
+	const std::string header("LcfSaveData");
+	writer.WriteInt(header.size());
+	writer.WriteString(header);
+
+	Struct<RPG::Save>::WriteLcf(save, writer);
+}

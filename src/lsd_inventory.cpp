@@ -27,9 +27,7 @@
 /// Read Save Inventory
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveInventory>::ReadID(RPG::SaveInventory& obj, Reader& stream) {
-	IDReader<RPG::SaveInventory, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveInventory>* Struct<RPG::SaveInventory>::ID_reader = new IDReaderT<RPG::SaveInventory, NoID>();
 
 template <>
 const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {

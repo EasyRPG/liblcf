@@ -30,7 +30,8 @@ namespace RPG {
 	class BattlerAnimationExtension {
 	public:
 		BattlerAnimationExtension();
-		
+
+		int ID;
 		std::string name;
 		std::string battler_name;
 		int battler_index;

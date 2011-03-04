@@ -28,9 +28,7 @@
 /// Read Save System
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveSystem>::ReadID(RPG::SaveSystem& obj, Reader& stream) {
-	IDReader<RPG::SaveSystem, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveSystem>* Struct<RPG::SaveSystem>::ID_reader = new IDReaderT<RPG::SaveSystem, NoID>();
 
 template <>
 const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {

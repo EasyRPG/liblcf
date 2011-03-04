@@ -27,9 +27,7 @@
 /// Read Map
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Map>::ReadID(RPG::Map& obj, Reader& stream) {
-	IDReader<RPG::Map, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::Map>* Struct<RPG::Map>::ID_reader = new IDReaderT<RPG::Map, NoID>();
 
 template <>
 const Field<RPG::Map>* Struct<RPG::Map>::fields[] = {

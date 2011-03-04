@@ -27,9 +27,7 @@
 /// Read System
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::System>::ReadID(RPG::System& obj, Reader& stream) {
-	IDReader<RPG::System, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::System>* Struct<RPG::System>::ID_reader = new IDReaderT<RPG::System, NoID>();
 
 template <>
 const Field<RPG::System>* Struct<RPG::System>::fields[] = {
@@ -44,9 +42,9 @@ const Field<RPG::System>* Struct<RPG::System>::fields[] = {
 	new TypedField<RPG::System, std::string>					(&RPG::System::gameover_name,			LDB_Reader::ChunkSystem::gameover_name,				"gameover_name"			),
 	new TypedField<RPG::System, std::string>					(&RPG::System::system_name,				LDB_Reader::ChunkSystem::system_name,				"system_name"			),
 	new TypedField<RPG::System, std::string>					(&RPG::System::system2_name,			LDB_Reader::ChunkSystem::system2_name,				"system2_name"			),
-	new TypedField<RPG::System, int>							(NULL,									LDB_Reader::ChunkSystem::party_size,				""						),
+	new SizeField<RPG::System, short>							(&RPG::System::party,					LDB_Reader::ChunkSystem::party_size											),
 	new TypedField<RPG::System, std::vector<short> >			(&RPG::System::party,					LDB_Reader::ChunkSystem::party,						"party"					),
-	new TypedField<RPG::System, int>							(NULL,									LDB_Reader::ChunkSystem::menu_commands_size,		""						),
+	new SizeField<RPG::System, short>							(&RPG::System::menu_commands,			LDB_Reader::ChunkSystem::menu_commands_size									),
 	new TypedField<RPG::System, std::vector<short> >			(&RPG::System::menu_commands,			LDB_Reader::ChunkSystem::menu_commands,				"menu_commands"			),
 	new TypedField<RPG::System, RPG::Music>						(&RPG::System::title_music,				LDB_Reader::ChunkSystem::title_music,				"title_music"			),
 	new TypedField<RPG::System, RPG::Music>						(&RPG::System::battle_music,			LDB_Reader::ChunkSystem::battle_music,				"battle_music"			),

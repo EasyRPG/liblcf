@@ -27,9 +27,7 @@
 /// Read Save Common Event
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveCommonEvent>::ReadID(RPG::SaveCommonEvent& obj, Reader& stream) {
-	IDReader<RPG::SaveCommonEvent, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::ID_reader = new IDReaderT<RPG::SaveCommonEvent, WithID>();
 
 template <>
 const Field<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::fields[] = {

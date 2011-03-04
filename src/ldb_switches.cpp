@@ -27,9 +27,7 @@
 /// Read Switch
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Switch>::ReadID(RPG::Switch& obj, Reader& stream) {
-	IDReader<RPG::Switch, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Switch>* Struct<RPG::Switch>::ID_reader = new IDReaderT<RPG::Switch, WithID>();
 
 template <>
 const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {

@@ -20,7 +20,6 @@
 ////////////////////////////////////////////////////////////
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "lmu_reader.h"
 #include "rpg_save.h"
 #include "reader_struct.h"
 
@@ -28,9 +27,7 @@
 /// Read Save Vehicle Location
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveVehicleLocation>::ReadID(RPG::SaveVehicleLocation& obj, Reader& stream) {
-	IDReader<RPG::SaveVehicleLocation, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::ID_reader = new IDReaderT<RPG::SaveVehicleLocation, NoID>();
 
 template <>
 const Field<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::fields[] = {

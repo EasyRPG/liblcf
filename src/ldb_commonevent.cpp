@@ -28,9 +28,7 @@
 /// Read CommonEvent
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::CommonEvent>::ReadID(RPG::CommonEvent& obj, Reader& stream) {
-	IDReader<RPG::CommonEvent, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::CommonEvent>* Struct<RPG::CommonEvent>::ID_reader = new IDReaderT<RPG::CommonEvent, WithID>();
 
 template <>
 const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {
@@ -38,7 +36,7 @@ const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {
 	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::trigger,		LDB_Reader::ChunkCommonEvent::trigger,				"trigger"		),
 	new TypedField<RPG::CommonEvent, bool>								(&RPG::CommonEvent::switch_flag,	LDB_Reader::ChunkCommonEvent::switch_flag,			"switch_flag"	),
 	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::switch_id,		LDB_Reader::ChunkCommonEvent::switch_id,			"switch_id"		),
-	new TypedField<RPG::CommonEvent, int>								(NULL,								LDB_Reader::ChunkCommonEvent::event_commands_size,	""				),
+	new SizeField<RPG::CommonEvent, RPG::EventCommand>					(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands_size					),
 	new TypedField<RPG::CommonEvent, std::vector<RPG::EventCommand> >	(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands,		"event_commands"),
 	NULL
 };

@@ -27,9 +27,7 @@
 /// Read EnemyAction
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::EnemyAction>::ReadID(RPG::EnemyAction& obj, Reader& stream) {
-	IDReader<RPG::EnemyAction, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::EnemyAction>* Struct<RPG::EnemyAction>::ID_reader = new IDReaderT<RPG::EnemyAction, WithID>();
 
 template <>
 const Field<RPG::EnemyAction>* Struct<RPG::EnemyAction>::fields[] = {

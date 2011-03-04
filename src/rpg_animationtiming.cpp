@@ -24,6 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::AnimationTiming::AnimationTiming() {
+	ID = 0;
 	frame = 0;
 	flash_scope = 0;
 	flash_red = 31;

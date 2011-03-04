@@ -31,25 +31,8 @@
 /// LDB Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LSD_Reader {
-	RPG::SaveTitle ReadSaveTitle(Reader& stream);
-	RPG::SaveSystem ReadSaveSystem(Reader& stream);
-	RPG::SavePicture ReadSavePicture(Reader& stream);
-	RPG::SavePartyLocation ReadSavePartyLocation(Reader& stream);
-	RPG::SaveVehicleLocation ReadSaveVehicleLocation(Reader& stream);
-	RPG::SaveActor ReadSaveActor(Reader& stream);
-	RPG::SaveInventory ReadSaveInventory(Reader& stream);
-	RPG::SaveMapInfo ReadSaveMapInfo(Reader& stream);
-	RPG::SaveMapEvent ReadSaveMapEvent(Reader& stream);
-	RPG::SaveEventData ReadSaveEventData(Reader& stream);
-	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
-	RPG::SaveScreen ReadSaveScreen(Reader& stream);
-	RPG::SaveCommonEvent ReadCommonEvent(Reader& stream);
-	RPG::SaveEvents ReadSaveEvents(Reader& stream);
-	RPG::SaveEventCommands ReadSaveEventCommands(Reader& stream);
-	RPG::SaveTarget ReadSaveTarget(Reader& stream);
-
 	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	std::auto_ptr<RPG::Save> LoadChunks(Reader& stream);
+	void Save(const std::string& filename, const RPG::Save& save);
 }
 
 #endif

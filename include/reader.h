@@ -69,6 +69,11 @@ public:
 	~Reader();
 
 	////////////////////////////////////////////////////////
+	/// Closes the opened file.
+	////////////////////////////////////////////////////////
+	void Close();
+
+	////////////////////////////////////////////////////////
 	/// Returns the last set error.
 	/// @return Error Message
 	////////////////////////////////////////////////////////
@@ -103,6 +108,14 @@ public:
 		FromEnd,
 		FromCurrent
 	};
+
+	////////////////////////////////////////////////////////
+	/// Reads raw data from the stream (fread() wrapper)
+	/// @param ptr : pointer to buffer
+	/// @param size : size of each element
+	/// @param nmemb : number of elements
+	////////////////////////////////////////////////////////
+	void Read(void *ptr, size_t size, size_t nmemb);
 
 	////////////////////////////////////////////////////////
 	/// Reads a compressed integer and checks if it's value
@@ -231,17 +244,6 @@ public:
 	void Skip(const struct Reader::Chunk& chunk_info);
 #endif
 
-private:
-	/// File-stream managed by this Reader
-	FILE* stream;
-	/// Name of the file that is associated with the stream
-	std::string filename;
-	/// Name of the encoding
-	std::string encoding;
-
-	/// Contains the last set error
-	static std::string error_str;
-
 	////////////////////////////////////////////////////////
 	/// Encodes a string to Utf8 using the set encoding
 	/// in the reader constructor.
@@ -250,20 +252,31 @@ private:
 	////////////////////////////////////////////////////////
 	std::string Encode(const std::string& str_to_encode);
 
+private:
+	/// Name of the file that is associated with the stream
+	std::string filename;
+	/// Name of the encoding
+	std::string encoding;
+	/// File-stream managed by this Reader
+	FILE* stream;
+
+	/// Contains the last set error
+	static std::string error_str;
+
 #ifdef READER_BIG_ENDIAN
 	////////////////////////////////////////////////////////
 	/// Utility function for Big Endian Systems.
 	/// Convert a 16bit integer from little to big endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
-	void SwapByteOrder(uint16_t &us);
+	static void SwapByteOrder(uint16_t &us);
 
 	////////////////////////////////////////////////////////
 	/// Utility function for Big Endian Systems.
 	/// Convert a 32bit integer from little to big endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
-	void SwapByteOrder(uint32_t &ui);
+	static void SwapByteOrder(uint32_t &ui);
 #endif
 };
 

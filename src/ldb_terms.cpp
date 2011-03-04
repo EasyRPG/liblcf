@@ -27,9 +27,7 @@
 /// Read Terms
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Terms>::ReadID(RPG::Terms& obj, Reader& stream) {
-	IDReader<RPG::Terms, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::Terms>* Struct<RPG::Terms>::ID_reader = new IDReaderT<RPG::Terms, NoID>();
 
 template <>
 const Field<RPG::Terms>* Struct<RPG::Terms>::fields[] = {

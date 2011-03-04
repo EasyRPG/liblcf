@@ -27,9 +27,7 @@
 /// Read Saved Screen Appearance
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveScreen>::ReadID(RPG::SaveScreen& obj, Reader& stream) {
-	IDReader<RPG::SaveScreen, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveScreen>* Struct<RPG::SaveScreen>::ID_reader = new IDReaderT<RPG::SaveScreen, NoID>();
 
 template <>
 const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {

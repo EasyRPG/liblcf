@@ -27,9 +27,7 @@
 /// Read Skill
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Skill>::ReadID(RPG::Skill& obj, Reader& stream) {
-	IDReader<RPG::Skill, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Skill>* Struct<RPG::Skill>::ID_reader = new IDReaderT<RPG::Skill, WithID>();
 
 template <>
 const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {
@@ -58,9 +56,9 @@ const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {
 	new TypedField<RPG::Skill, bool>				(&RPG::Skill::absorb_damage,		LDB_Reader::ChunkSkill::absorb_damage,			"absorb_damage"			),
 	new TypedField<RPG::Skill, bool>				(&RPG::Skill::ignore_defense,		LDB_Reader::ChunkSkill::ignore_defense,			"ignore_defense"		),
 	new TypedField<RPG::Skill, bool>				(&RPG::Skill::state_effect,			LDB_Reader::ChunkSkill::state_effect,			"state_effect"			),
-	new TypedField<RPG::Skill, int >				(NULL,								LDB_Reader::ChunkSkill::state_size,				""						),
+	new SizeField<RPG::Skill, bool>					(&RPG::Skill::state_effects,		LDB_Reader::ChunkSkill::state_size										),
 	new TypedField<RPG::Skill, std::vector<bool> >	(&RPG::Skill::state_effects,		LDB_Reader::ChunkSkill::state_effects,			"state_effects"			),
-	new TypedField<RPG::Skill, int >				(NULL,								LDB_Reader::ChunkSkill::attribute_size,			""						),
+	new SizeField<RPG::Skill, bool>					(&RPG::Skill::attribute_effects,	LDB_Reader::ChunkSkill::attribute_size									),
 	new TypedField<RPG::Skill, std::vector<bool> >	(&RPG::Skill::attribute_effects,	LDB_Reader::ChunkSkill::attribute_effects,		"attribute_effects"		),
 	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_attr_defence,	LDB_Reader::ChunkSkill::affect_attr_defence,	"affect_attr_defence"	),
 	new TypedField<RPG::Skill, int>					(&RPG::Skill::battler_animation,	LDB_Reader::ChunkSkill::battler_animation,		"battler_animation"		),

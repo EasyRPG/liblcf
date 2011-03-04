@@ -28,9 +28,7 @@
 /// Read Save Map Event
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveMapEvent>::ReadID(RPG::SaveMapEvent& obj, Reader& stream) {
-	IDReader<RPG::SaveMapEvent, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::ID_reader = new IDReaderT<RPG::SaveMapEvent, WithID>();
 
 template <>
 const Field<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::fields[] = {

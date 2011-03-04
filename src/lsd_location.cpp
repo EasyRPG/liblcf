@@ -28,9 +28,7 @@
 /// Read Save Party Location
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SavePartyLocation>::ReadID(RPG::SavePartyLocation& obj, Reader& stream) {
-	IDReader<RPG::SavePartyLocation, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::ID_reader = new IDReaderT<RPG::SavePartyLocation, NoID>();
 
 template <>
 const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = {

@@ -27,9 +27,7 @@
 /// Read Saved Events
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveEvents>::ReadID(RPG::SaveEvents& obj, Reader& stream) {
-	IDReader<RPG::SaveEvents, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveEvents>* Struct<RPG::SaveEvents>::ID_reader = new IDReaderT<RPG::SaveEvents, NoID>();
 
 template <>
 const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {

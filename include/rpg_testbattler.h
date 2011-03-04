@@ -25,8 +25,9 @@ namespace RPG {
 	class TestBattler {
 	public:
 		TestBattler();
-		
+
 		int ID;
+		int actor_id;
 		int level;
 		int weapon_id;
 		int shield_id;

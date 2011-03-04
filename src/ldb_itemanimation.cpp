@@ -27,9 +27,7 @@
 /// Read Item Animation
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::ItemAnimation>::ReadID(RPG::ItemAnimation& obj, Reader& stream) {
-	IDReader<RPG::ItemAnimation, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::ItemAnimation>* Struct<RPG::ItemAnimation>::ID_reader = new IDReaderT<RPG::ItemAnimation, WithID>();
 
 template <>
 const Field<RPG::ItemAnimation>* Struct<RPG::ItemAnimation>::fields[] = {

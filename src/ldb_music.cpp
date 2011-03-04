@@ -27,9 +27,7 @@
 /// Read Music
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Music>::ReadID(RPG::Music& obj, Reader& stream) {
-	IDReader<RPG::Music, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::Music>* Struct<RPG::Music>::ID_reader = new IDReaderT<RPG::Music, NoID>();
 
 template <>
 const Field<RPG::Music>* Struct<RPG::Music>::fields[] = {

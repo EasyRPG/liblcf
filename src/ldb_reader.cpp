@@ -42,3 +42,19 @@ bool LDB_Reader::Load(const std::string& filename) {
 	return true;
 }
 
+////////////////////////////////////////////////////////////
+/// Save Database
+////////////////////////////////////////////////////////////
+bool LDB_Reader::Save(const std::string& filename) {
+	Writer writer(filename, ReaderUtil::GetEncoding());
+	if (!writer.IsOk()) {
+		Reader::SetError("Couldn't open %s database file.\n", filename.c_str());
+		return false;
+	}
+	const std::string header("LcfDataBase");
+	writer.WriteInt(header.size());
+	writer.WriteString(header);
+	Struct<RPG::Database>::WriteLcf(Data::data, writer);
+	return true;
+}
+

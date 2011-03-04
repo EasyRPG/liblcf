@@ -50,7 +50,8 @@ namespace RPG {
 		};
 
 		EnemyAction();
-		
+
+		int ID;
 		int kind;
 		int basic;
 		int skill_id;

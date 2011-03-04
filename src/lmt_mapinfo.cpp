@@ -34,12 +34,19 @@ struct TypeReader<RPG::MapInfo::Rect> {
 		ref.w = stream.Read32() - ref.x;
 		ref.h = stream.Read32() - ref.y;
 	}
+	static inline void WriteLcf(const RPG::MapInfo::Rect& ref, Writer& stream) {
+		stream.Write32(ref.x);
+		stream.Write32(ref.y);
+		stream.Write32(ref.w + ref.x);
+		stream.Write32(ref.h + ref.y);
+	}
+	static inline int LcfSize(const RPG::MapInfo::Rect& ref, Writer& stream) {
+		return 4 * 4;
+	}
 };
 
 template <>
-void Struct<RPG::MapInfo>::ReadID(RPG::MapInfo& obj, Reader& stream) {
-	IDReader<RPG::MapInfo, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::MapInfo>* Struct<RPG::MapInfo>::ID_reader = new IDReaderT<RPG::MapInfo, WithID>();
 
 template <>
 const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {

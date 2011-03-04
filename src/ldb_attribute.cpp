@@ -27,9 +27,7 @@
 /// Read Attribute
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Attribute>::ReadID(RPG::Attribute& obj, Reader& stream) {
-	IDReader<RPG::Attribute, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Attribute>* Struct<RPG::Attribute>::ID_reader = new IDReaderT<RPG::Attribute, WithID>();
 
 template <>
 const Field<RPG::Attribute>* Struct<RPG::Attribute>::fields[] = {

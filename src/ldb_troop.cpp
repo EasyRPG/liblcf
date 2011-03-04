@@ -27,15 +27,13 @@
 /// Read Troop
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Troop>::ReadID(RPG::Troop& obj, Reader& stream) {
-	IDReader<RPG::Troop, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Troop>* Struct<RPG::Troop>::ID_reader = new IDReaderT<RPG::Troop, WithID>();
 
 template <>
 const Field<RPG::Troop>* Struct<RPG::Troop>::fields[] = {
 	new TypedField<RPG::Troop, std::string>						(&RPG::Troop::name,			LDB_Reader::ChunkTroop::name,				"name"			),
 	new TypedField<RPG::Troop, std::vector<RPG::TroopMember> >	(&RPG::Troop::members,		LDB_Reader::ChunkTroop::members,			"members"		),
-	new TypedField<RPG::Troop, int>								(NULL,						LDB_Reader::ChunkTroop::terrain_set_size,	""				),
+	new SizeField<RPG::Troop, bool>								(&RPG::Troop::terrain_set,	LDB_Reader::ChunkTroop::terrain_set_size					),
 	new TypedField<RPG::Troop, std::vector<bool> >				(&RPG::Troop::terrain_set,	LDB_Reader::ChunkTroop::terrain_set,		"terrain_set"	),
 	new TypedField<RPG::Troop, std::vector<RPG::TroopPage> >	(&RPG::Troop::pages,		LDB_Reader::ChunkTroop::pages,				"pages"			),
 	NULL

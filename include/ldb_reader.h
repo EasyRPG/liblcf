@@ -51,6 +51,7 @@
 ////////////////////////////////////////////////////////////
 namespace LDB_Reader {
 	bool Load(const std::string &filename);
+	bool Save(const std::string &filename);
 }
 
 #endif

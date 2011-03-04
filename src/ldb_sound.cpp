@@ -27,9 +27,7 @@
 /// Read Sound
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Sound>::ReadID(RPG::Sound& obj, Reader& stream) {
-	IDReader<RPG::Sound, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::Sound>* Struct<RPG::Sound>::ID_reader = new IDReaderT<RPG::Sound, NoID>();
 
 template <>
 const Field<RPG::Sound>* Struct<RPG::Sound>::fields[] = {

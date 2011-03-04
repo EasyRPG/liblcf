@@ -262,7 +262,7 @@ namespace LDB_Reader {
 	};
 	struct ChunkTroopMember {
 		enum Index {
-			ID			= 0x01, // Integer
+			enemy_id	= 0x01, // Integer
 			x			= 0x02, // Integer
 			y			= 0x03, // Integer
 			invisible	= 0x04	// Flag
@@ -425,7 +425,7 @@ namespace LDB_Reader {
 	struct ChunkAnimationCellData {
 		enum Index {
 			priority		= 0x01, // Bool - TODO: Needs confirmation
-			ID				= 0x02, // Integer
+			cell_id			= 0x02, // Integer
 			x				= 0x03, // Integer
 			y				= 0x04, // Integer
 			zoom			= 0x05, // Integer
@@ -649,7 +649,7 @@ namespace LDB_Reader {
 	};
 	struct ChunkTestBattler {
 		enum Index {
-			ID				= 0x01, // Integer
+			actor_id		= 0x01, // Integer
 			level			= 0x02, // Integer
 			weapon_id		= 0x0B, // Integer
 			shield_id		= 0x0C, // Integer

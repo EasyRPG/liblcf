@@ -27,9 +27,7 @@
 /// Read Chipset
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::Chipset>::ReadID(RPG::Chipset& obj, Reader& stream) {
-	IDReader<RPG::Chipset, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Chipset>* Struct<RPG::Chipset>::ID_reader = new IDReaderT<RPG::Chipset, WithID>();
 
 template <>
 const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {

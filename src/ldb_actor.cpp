@@ -37,6 +37,17 @@ struct TypeReader<RPG::Actor::Parameters> {
 		stream.Read16(ref.spirit, n);
 		stream.Read16(ref.agility, n);
 	}
+	static inline void WriteLcf(const RPG::Actor::Parameters& ref, Writer& stream) {
+		stream.Write16(ref.maxhp);
+		stream.Write16(ref.maxsp);
+		stream.Write16(ref.attack);
+		stream.Write16(ref.defense);
+		stream.Write16(ref.spirit);
+		stream.Write16(ref.agility);
+	}
+	static inline int LcfSize(const RPG::Actor::Parameters& ref, Writer& stream) {
+		return ref.maxhp.size() * 2 * 6;
+	}
 };
 
 template <>
@@ -48,12 +59,20 @@ struct TypeReader<RPG::Actor::Equipment> {
 		ref.helmet_id = stream.Read16();
 		ref.accessory_id = stream.Read16();
 	}
+	static inline void WriteLcf(const RPG::Actor::Equipment& ref, Writer& stream) {
+		stream.Write16(ref.weapon_id);
+		stream.Write16(ref.shield_id);
+		stream.Write16(ref.armor_id);
+		stream.Write16(ref.helmet_id);
+		stream.Write16(ref.accessory_id);
+	}
+	static inline int LcfSize(const RPG::Actor::Equipment& ref, Writer& stream) {
+		return 2 * 5;
+	}
 };
 
 template <>
-void Struct<RPG::Actor>::ReadID(RPG::Actor& obj, Reader& stream) {
-	IDReader<RPG::Actor, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::Actor>* Struct<RPG::Actor>::ID_reader = new IDReaderT<RPG::Actor, WithID>();
 
 template <>
 const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {
@@ -79,10 +98,10 @@ const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {
 	new TypedField<RPG::Actor, RPG::Actor::Equipment>			(&RPG::Actor::initial_equipment,	LDB_Reader::ChunkActor::initial_equipment,		"initial_equipment"		),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::unarmed_animation,	LDB_Reader::ChunkActor::unarmed_animation,		"unarmed_animation"		),
 	new TypedField<RPG::Actor, std::vector<RPG::Learning> >		(&RPG::Actor::skills,				LDB_Reader::ChunkActor::skills,					"skills"				),
-	new TypedField<RPG::Actor, int>								(NULL,								LDB_Reader::ChunkActor::state_ranks_size,		""						),
-	new TypedField<RPG::Actor, std::vector<unsigned char> >		(&RPG::Actor::state_ranks,			LDB_Reader::ChunkActor::state_ranks,			"state_ranks"			),
-	new TypedField<RPG::Actor, int>								(NULL,								LDB_Reader::ChunkActor::attribute_ranks_size,	""						),
-	new TypedField<RPG::Actor, std::vector<unsigned char> >		(&RPG::Actor::attribute_ranks,		LDB_Reader::ChunkActor::attribute_ranks,		"attribute_ranks"		),
+	new SizeField<RPG::Actor, uint8_t>							(&RPG::Actor::state_ranks,			LDB_Reader::ChunkActor::state_ranks_size		),
+	new TypedField<RPG::Actor, std::vector<uint8_t> >			(&RPG::Actor::state_ranks,			LDB_Reader::ChunkActor::state_ranks,			"state_ranks"			),
+	new SizeField<RPG::Actor, uint8_t>							(&RPG::Actor::attribute_ranks,		LDB_Reader::ChunkActor::attribute_ranks_size	),
+	new TypedField<RPG::Actor, std::vector<uint8_t> >			(&RPG::Actor::attribute_ranks,		LDB_Reader::ChunkActor::attribute_ranks,		"attribute_ranks"		),
 	new TypedField<RPG::Actor, bool>							(&RPG::Actor::rename_skill,			LDB_Reader::ChunkActor::rename_skill,			"rename_skill"			),
 	new TypedField<RPG::Actor, std::string>						(&RPG::Actor::skill_name,			LDB_Reader::ChunkActor::skill_name,				"skill_name"			),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::class_id,				LDB_Reader::ChunkActor::class_id,				"class_id"				),

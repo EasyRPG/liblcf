@@ -27,9 +27,7 @@
 /// Read BattleCommands
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::BattleCommands>::ReadID(RPG::BattleCommands& obj, Reader& stream) {
-	IDReader<RPG::BattleCommands, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::BattleCommands>* Struct<RPG::BattleCommands>::ID_reader = new IDReaderT<RPG::BattleCommands, NoID>();
 
 template <>
 const Field<RPG::BattleCommands>* Struct<RPG::BattleCommands>::fields[] = {

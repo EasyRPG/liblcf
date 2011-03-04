@@ -27,13 +27,11 @@
 /// Read TroopMember
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::TroopMember>::ReadID(RPG::TroopMember& obj, Reader& stream) {
-	IDReader<RPG::TroopMember, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::TroopMember>* Struct<RPG::TroopMember>::ID_reader = new IDReaderT<RPG::TroopMember, WithID>();
 
 template <>
 const Field<RPG::TroopMember>* Struct<RPG::TroopMember>::fields[] = {
-	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::ID,			LDB_Reader::ChunkTroopMember::ID,			"ID"		),
+	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::enemy_id,	LDB_Reader::ChunkTroopMember::enemy_id,		"enemy_id"	),
 	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::x,			LDB_Reader::ChunkTroopMember::x,			"x"			),
 	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::y,			LDB_Reader::ChunkTroopMember::y,			"y"			),
 	new TypedField<RPG::TroopMember, bool>	(&RPG::TroopMember::invisible,	LDB_Reader::ChunkTroopMember::invisible,	"invisible"	),

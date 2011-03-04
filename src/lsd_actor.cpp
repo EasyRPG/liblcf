@@ -27,9 +27,7 @@
 /// Read Save Actor
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SaveActor>::ReadID(RPG::SaveActor& obj, Reader& stream) {
-	IDReader<RPG::SaveActor, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::SaveActor>* Struct<RPG::SaveActor>::ID_reader = new IDReaderT<RPG::SaveActor, WithID>();
 
 template <>
 const Field<RPG::SaveActor>* Struct<RPG::SaveActor>::fields[] = {

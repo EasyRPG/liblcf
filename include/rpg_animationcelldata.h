@@ -25,9 +25,10 @@ namespace RPG {
 	class AnimationCellData {
 	public:
 		AnimationCellData();
-		
-		int priority;
+
 		int ID;
+		int priority;
+		int cell_id;
 		int x;
 		int y;
 		int zoom;

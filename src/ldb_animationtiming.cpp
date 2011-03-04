@@ -27,9 +27,7 @@
 /// Read AnimationTiming
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::AnimationTiming>::ReadID(RPG::AnimationTiming& obj, Reader& stream) {
-	IDReader<RPG::AnimationTiming, SkipID>::ReadID(obj, stream);
-}
+IDReader<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::ID_reader = new IDReaderT<RPG::AnimationTiming, WithID>();
 
 template <>
 const Field<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::fields[] = {

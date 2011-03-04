@@ -25,8 +25,9 @@ namespace RPG {
 	class TroopMember {
 	public:
 		TroopMember();
-		
+
 		int ID;
+		int enemy_id;
 		int x;
 		int y;
 		bool invisible;

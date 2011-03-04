@@ -25,7 +25,8 @@ namespace RPG {
 	class Learning {
 	public:
 		Learning();
-		
+
+		int ID;
 		int level;
 		int skill_id;
 	};

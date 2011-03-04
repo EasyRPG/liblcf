@@ -46,12 +46,32 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		ref.turn_actor		= (bitflag & 0x01) != 0;
 		ref.command_actor	= (bitflag & 0x02) != 0;
 	}
+	static inline void WriteLcf(const RPG::TroopPageCondition::Flags& ref, Writer& stream) {
+		uint8_t bitflag1 = 0;
+		if (ref.switch_a	) bitflag1 |= 0x01;
+		if (ref.switch_b	) bitflag1 |= 0x02;
+		if (ref.variable	) bitflag1 |= 0x04;
+		if (ref.turn		) bitflag1 |= 0x08;
+		if (ref.fatigue		) bitflag1 |= 0x10;
+		if (ref.enemy_hp	) bitflag1 |= 0x20;
+		if (ref.actor_hp	) bitflag1 |= 0x40;
+		if (ref.turn_enemy	) bitflag1 |= 0x80;
+		stream.Write8(bitflag1);
+
+		uint8_t bitflag2 = 0;
+		if (ref.turn_actor		) bitflag2 |= 0x01;
+		if (ref.command_actor	) bitflag2 |= 0x02;
+		if (bitflag2 == 0)
+			return;
+		stream.Write8(bitflag2);
+	}
+	static inline int LcfSize(const RPG::TroopPageCondition::Flags& ref, Writer& stream) {
+		return (ref.turn_actor || ref.command_actor) ? 2 : 1;
+	}
 };
 
 template <>
-void Struct<RPG::TroopPageCondition>::ReadID(RPG::TroopPageCondition& obj, Reader& stream) {
-	IDReader<RPG::TroopPageCondition, NoID>::ReadID(obj, stream);
-}
+IDReader<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::ID_reader = new IDReaderT<RPG::TroopPageCondition, NoID>();
 
 template <>
 const Field<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::fields[] = {

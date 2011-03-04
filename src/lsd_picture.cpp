@@ -27,9 +27,7 @@
 /// Read Save Cover
 ////////////////////////////////////////////////////////////
 template <>
-void Struct<RPG::SavePicture>::ReadID(RPG::SavePicture& obj, Reader& stream) {
-	IDReader<RPG::SavePicture, WithID>::ReadID(obj, stream);
-}
+IDReader<RPG::SavePicture>* Struct<RPG::SavePicture>::ID_reader = new IDReaderT<RPG::SavePicture, WithID>();
 
 template <>
 const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {

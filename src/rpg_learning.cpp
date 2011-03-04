@@ -24,6 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::Learning::Learning() {
+	ID = 0;
 	level = 1;
 	skill_id = 1;
 }
