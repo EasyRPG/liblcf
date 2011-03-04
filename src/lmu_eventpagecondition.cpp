@@ -28,7 +28,8 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::EventPageCondition::Flags> {
-	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, Reader& stream, uint32_t length) {
+		assert(length == 1);
 		uint8_t bitflag = stream.Read8();
 		ref.switch_a	= (bitflag & 0x01) != 0;
 		ref.switch_b	= (bitflag & 0x02) != 0;

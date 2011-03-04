@@ -37,27 +37,13 @@
 template <class T>
 class Struct;
 
-static int IntSize(unsigned int x) {
-	int result = 0;
-	do {
-		x >>= 7;
-		result++;
-	} while (x != 0);
-	return result;
-}
-
-template <class T>
-static void ReadVectorLcf(std::vector<T>& vec, Reader& stream, const Reader::Chunk& chunk_info);
-
-template <class T>
-static void WriteVectorLcf(const std::vector<T>& vec, Writer& stream);
-
-template <class T>
-static int VectorLcfSize(const std::vector<T>& vec, Writer& stream);
+////////////////////////////////////////////////////////////
+// Typed data readers
+////////////////////////////////////////////////////////////
 
 template <class T>
 struct TypeReader {
-	static void ReadLcf(T& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static void ReadLcf(T& ref, Reader& stream, uint32_t length) {
 		Struct<T>::ReadLcf(ref, stream);
 	}
 	static void WriteLcf(const T& ref, Writer& stream) {
@@ -70,48 +56,47 @@ struct TypeReader {
 
 template <>
 struct TypeReader<std::vector<RPG::EventCommand> > {
-	static void ReadLcf(std::vector<RPG::EventCommand>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		Event_Reader::ReadEventCommands(ref, stream);
+	static void ReadLcf(std::vector<RPG::EventCommand>& ref, Reader& stream, uint32_t length) {
+		Event_Reader::ReadEventCommands(ref, stream, length);
 	}
 	static void WriteLcf(const std::vector<RPG::EventCommand>& ref, Writer& stream) {
-		// Event_Reader::WriteEventCommands(ref, stream);
+		Event_Reader::WriteEventCommands(ref, stream);
 	}
 	static int LcfSize(const std::vector<RPG::EventCommand>& ref, Writer& stream) {
-		// return Event_Reader::EventCommandsSize(ref);
-		return 0;
+		return Event_Reader::EventCommandsSize(ref, stream);
 	}
 };
 
 template <>
 struct TypeReader<std::vector<RPG::MoveCommand> > {
-	static inline void ReadLcf(std::vector<RPG::MoveCommand>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		Move_Reader::ReadMoveCommands(ref, stream, chunk_info);
+	static inline void ReadLcf(std::vector<RPG::MoveCommand>& ref, Reader& stream, uint32_t length) {
+		Move_Reader::ReadMoveCommands(ref, stream, length);
 	}
 	static void WriteLcf(const std::vector<RPG::MoveCommand>& ref, Writer& stream) {
-		// Move_Reader::WriteMoveCommands(ref, stream);
+		Move_Reader::WriteMoveCommands(ref, stream);
 	}
 	static int LcfSize(const std::vector<RPG::MoveCommand>& ref, Writer& stream) {
-		// return Move_Reader::MoveCommandsSize(ref);
-		return 0;
+		return Move_Reader::MoveCommandsSize(ref, stream);
 	}
 };
 
 template <class T>
 struct TypeReader<std::vector<T> > {
-	static void ReadLcf(std::vector<T>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		ReadVectorLcf<T>(ref, stream, chunk_info);
+	static void ReadLcf(std::vector<T>& ref, Reader& stream, uint32_t length) {
+		Struct<T>::ReadLcf(ref, stream);
 	}
 	static void WriteLcf(const std::vector<T>& ref, Writer& stream) {
-		WriteVectorLcf<T>(ref, stream);
+		Struct<T>::WriteLcf(ref, stream);
 	}
 	static int LcfSize(const std::vector<T>& ref, Writer& stream) {
-		return VectorLcfSize(ref, stream);
+		return Struct<T>::LcfSize(ref, stream);
 	}
 };
 
 template <>
 struct TypeReader<uint8_t> {
-	static inline void ReadLcf(uint8_t& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(uint8_t& ref, Reader& stream, uint32_t length) {
+		assert(length == 1);
 		ref = stream.Read8();
 	}
 	static inline void WriteLcf(const uint8_t& ref, Writer& stream) {
@@ -124,7 +109,8 @@ struct TypeReader<uint8_t> {
 
 template <>
 struct TypeReader<int16_t> {
-	static inline void ReadLcf(int16_t& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(int16_t& ref, Reader& stream, uint32_t length) {
+		assert(length == 2);
 		ref = stream.Read16();
 	}
 	static inline void WriteLcf(const uint16_t& ref, Writer& stream) {
@@ -137,20 +123,22 @@ struct TypeReader<int16_t> {
 
 template <>
 struct TypeReader<int> {
-	static inline void ReadLcf(int& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(int& ref, Reader& stream, uint32_t length) {
+		assert(length >= 1 && length <= 5);
 		ref = stream.ReadInt();
 	}
 	static inline void WriteLcf(const int& ref, Writer& stream) {
 		stream.WriteInt(ref);
 	}
-	static int LcfSize(const uint32_t& ref, Writer& stream) {
-		return IntSize(ref);
+	static int LcfSize(const int& ref, Writer& stream) {
+		return Reader::IntSize(ref);
 	}
 };
 
 template <>
 struct TypeReader<bool> {
-	static inline void ReadLcf(bool& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(bool& ref, Reader& stream, uint32_t length) {
+		assert(length == 1);
 		ref = stream.ReadBool();
 	}
 	static inline void WriteLcf(const bool& ref, Writer& stream) {
@@ -163,7 +151,8 @@ struct TypeReader<bool> {
 
 template <>
 struct TypeReader<double> {
-	static inline void ReadLcf(double& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(double& ref, Reader& stream, uint32_t length) {
+		assert(length == 8);
 		ref = stream.ReadDouble();
 	}
 	static inline void WriteLcf(const double& ref, Writer& stream) {
@@ -176,8 +165,8 @@ struct TypeReader<double> {
 
 template <>
 struct TypeReader<std::string> {
-	static inline void ReadLcf(std::string& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		ref = stream.ReadString(chunk_info.length);
+	static inline void ReadLcf(std::string& ref, Reader& stream, uint32_t length) {
+		ref = stream.ReadString(length);
 	}
 	static inline void WriteLcf(const std::string& ref, Writer& stream) {
 		stream.WriteString(ref);
@@ -189,8 +178,8 @@ struct TypeReader<std::string> {
 
 template <>
 struct TypeReader<std::vector<uint8_t> > {
-	static inline void ReadLcf(std::vector<uint8_t>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		stream.Read8(ref, chunk_info.length);
+	static inline void ReadLcf(std::vector<uint8_t>& ref, Reader& stream, uint32_t length) {
+		stream.Read8(ref, length);
 	}
 	static inline void WriteLcf(const std::vector<uint8_t>& ref, Writer& stream) {
 		stream.Write8(ref);
@@ -202,8 +191,8 @@ struct TypeReader<std::vector<uint8_t> > {
 
 template <>
 struct TypeReader<std::vector<int16_t> > {
-	static inline void ReadLcf(std::vector<int16_t>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		stream.Read16(ref, chunk_info.length);
+	static inline void ReadLcf(std::vector<int16_t>& ref, Reader& stream, uint32_t length) {
+		stream.Read16(ref, length);
 	}
 	static inline void WriteLcf(const std::vector<int16_t>& ref, Writer& stream) {
 		stream.Write16(ref);
@@ -215,8 +204,8 @@ struct TypeReader<std::vector<int16_t> > {
 
 template <>
 struct TypeReader<std::vector<uint32_t> > {
-	static inline void ReadLcf(std::vector<uint32_t>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		stream.Read32(ref, chunk_info.length);
+	static inline void ReadLcf(std::vector<uint32_t>& ref, Reader& stream, uint32_t length) {
+		stream.Read32(ref, length);
 	}
 	static inline void WriteLcf(const std::vector<uint32_t>& ref, Writer& stream) {
 		stream.Write32(ref);
@@ -228,8 +217,8 @@ struct TypeReader<std::vector<uint32_t> > {
 
 template <>
 struct TypeReader<std::vector<bool> > {
-	static inline void ReadLcf(std::vector<bool>& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		stream.ReadBool(ref, chunk_info.length);
+	static inline void ReadLcf(std::vector<bool>& ref, Reader& stream, uint32_t length) {
+		stream.ReadBool(ref, length);
 	}
 	static inline void WriteLcf(const std::vector<bool>& ref, Writer& stream) {
 		stream.WriteBool(ref);
@@ -245,8 +234,8 @@ struct TypeReader<std::vector<bool> > {
 
 template <class S, class T>
 struct FieldReader {
-	static void ReadLcf(S& obj, T S::*ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		TypeReader<T>::ReadLcf(obj.*ref, stream, chunk_info);
+	static void ReadLcf(S& obj, T S::*ref, Reader& stream, uint32_t length) {
+		TypeReader<T>::ReadLcf(obj.*ref, stream, length);
 	}
 	static void WriteLcf(const S& obj, const T S::*ref, Writer& stream) {
 		TypeReader<T>::WriteLcf(obj.*ref, stream);
@@ -267,7 +256,7 @@ struct Field {
 	int id;
 	const std::string name;
 
-	virtual void ReadLcf(S& obj, Reader& stream, const Reader::Chunk& chunk_info) const = 0;
+	virtual void ReadLcf(S& obj, Reader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, Writer& stream) const = 0;
 	virtual int LcfSize(const S& obj, Writer& stream) const = 0;
 
@@ -283,8 +272,8 @@ template <class S, class T>
 struct TypedField : public Field<S> {
 	T S::*ref;
 
-	void ReadLcf(S& obj, Reader& stream, const Reader::Chunk& chunk_info) const {
-		FieldReader<S, T>::ReadLcf(obj, ref, stream, chunk_info);
+	void ReadLcf(S& obj, Reader& stream, uint32_t length) const {
+		FieldReader<S, T>::ReadLcf(obj, ref, stream, length);
 	}
 	void WriteLcf(const S& obj, Writer& stream) const {
 		FieldReader<S, T>::WriteLcf(obj, ref, stream);
@@ -305,9 +294,9 @@ template <class S, class T>
 struct SizeField : public Field<S> {
 	const std::vector<T> S::*ref;
 
-	void ReadLcf(S& obj, Reader& stream, const Reader::Chunk& chunk_info) const {
+	void ReadLcf(S& obj, Reader& stream, uint32_t length) const {
 		int dummy;
-		TypeReader<int>::ReadLcf(dummy, stream, chunk_info);
+		TypeReader<int>::ReadLcf(dummy, stream, length);
 	}
 	void WriteLcf(const S& obj, Writer& stream) const {
 		int size = (obj.*ref).size();
@@ -315,7 +304,7 @@ struct SizeField : public Field<S> {
 	}
 	int LcfSize(const S& obj, Writer& stream) const {
 		int size = (obj.*ref).size();
-		return IntSize(size);
+		return Reader::IntSize(size);
 	}
 
 	SizeField(const std::vector<T> S::*ref, int id) :
@@ -355,7 +344,7 @@ struct IDReaderT<S, WithID> : public IDReader<S> {
 		stream.WriteInt(obj.ID);
 	}
 	int IDSize(const S& obj) const {
-		return IntSize(obj.ID);
+		return Reader::IntSize(obj.ID);
 	}
 };
 
@@ -377,60 +366,16 @@ class Struct {
 	static field_map_type field_map;
 	static IDReader<S>* ID_reader;
 
+	static void MakeFieldMap();
+
 public:
-	static void MakeFieldMap() {
-		for (int i = 0; fields[i] != NULL; i++)
-			field_map[fields[i]->id] = fields[i];
-	}
+	static void ReadLcf(S& obj, Reader& stream);
+	static void WriteLcf(const S& obj, Writer& stream);
+	static int LcfSize(const S& obj, Writer& stream);
 
-	static void ReadLcf(S& obj, Reader& stream) {
-		if (field_map.empty())
-			MakeFieldMap();
-
-		Reader::Chunk chunk_info;
-
-		ID_reader->ReadID(obj, stream);
-
-		while (!stream.Eof()) {
-			chunk_info.ID = stream.ReadInt();
-			if (chunk_info.ID == 0)
-				break;
-
-			chunk_info.length = stream.ReadInt();
-			if (chunk_info.length == 0)
-				continue;
-
-			typename field_map_type::const_iterator it = field_map.find(chunk_info.ID);
-			if (it != field_map.end())
-				it->second->ReadLcf(obj, stream, chunk_info);
-			else
-				stream.Skip(chunk_info);
-		}
-	}
-
-	static void WriteLcf(const S& obj, Writer& stream) {
-		ID_reader->WriteID(obj, stream);
-		for (int i = 0; fields[i] != NULL; i++) {
-			const Field<S>* field = fields[i];
-			stream.WriteInt(field->id);
-			stream.WriteInt(field->LcfSize(obj, stream));
-			field->WriteLcf(obj, stream);
-		}
-		stream.WriteInt(0);
-	}
-
-	static int LcfSize(const S& obj, Writer& stream) {
-		int result = ID_reader->IDSize(obj);
-		for (int i = 0; fields[i] != NULL; i++) {
-			const Field<S>* field = fields[i];
-			result += IntSize(field->id);
-			int size = field->LcfSize(obj, stream);
-			result += IntSize(size);
-			result += size;
-		}
-		result += IntSize(0);
-		return result;
-	}
+	static void ReadLcf(std::vector<S>& obj, Reader& stream);
+	static void WriteLcf(const std::vector<S>& obj, Writer& stream);
+	static int LcfSize(const std::vector<S>& obj, Writer& stream);
 };
 
 template <class S>
@@ -439,32 +384,6 @@ std::map<int, const Field<S>* > Struct<S>::field_map;
 ////////////////////////////////////////////////////////////
 // Vector reader
 ////////////////////////////////////////////////////////////
-
-template <class T>
-static void ReadVectorLcf(std::vector<T>& vec, Reader& stream, const Reader::Chunk& chunk_info) {
-	int count = stream.ReadInt();
-	vec.resize(count);
-	for (int i = 0; i < count; i++)
-		TypeReader<T>::ReadLcf(vec[i], stream, chunk_info);
-}
-
-template <class T>
-static void WriteVectorLcf(const std::vector<T>& vec, Writer& stream) {
-	int count = vec.size();
-	stream.WriteInt(count);
-	for (int i = 0; i < count; i++)
-		TypeReader<T>::WriteLcf(vec[i], stream);
-}
-
-template <class T>
-static int VectorLcfSize(const std::vector<T>& vec, Writer& stream) {
-	int result = 0;
-	int count = vec.size();
-	result += IntSize(count);
-	for (int i = 0; i < count; i++)
-		result += TypeReader<T>::LcfSize(vec[i], stream);
-	return result;
-}
 
 #endif
 

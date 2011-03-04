@@ -28,7 +28,8 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::TroopPageCondition::Flags> {
-	static inline void ReadLcf(RPG::TroopPageCondition::Flags& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(RPG::TroopPageCondition::Flags& ref, Reader& stream, uint32_t length) {
+		assert(length >= 1 && length <= 2);
 		uint8_t bitflag = stream.Read8();
 		ref.switch_a		= (bitflag & 0x01) != 0;
 		ref.switch_b		= (bitflag & 0x02) != 0;
@@ -39,7 +40,7 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		ref.actor_hp		= (bitflag & 0x40) != 0;
 		ref.turn_enemy		= (bitflag & 0x80) != 0;
 	
-		if (chunk_info.length < 2)
+		if (length < 2)
 			return;
 
 		bitflag = stream.Read8();

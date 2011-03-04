@@ -28,8 +28,8 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::Actor::Parameters> {
-	static inline void ReadLcf(RPG::Actor::Parameters& ref, Reader& stream, const Reader::Chunk& chunk_info) {
-		int n = chunk_info.length / 6;
+	static inline void ReadLcf(RPG::Actor::Parameters& ref, Reader& stream, uint32_t length) {
+		int n = length / 6;
 		stream.Read16(ref.maxhp, n);
 		stream.Read16(ref.maxsp, n);
 		stream.Read16(ref.attack, n);
@@ -52,7 +52,7 @@ struct TypeReader<RPG::Actor::Parameters> {
 
 template <>
 struct TypeReader<RPG::Actor::Equipment> {
-	static inline void ReadLcf(RPG::Actor::Equipment& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(RPG::Actor::Equipment& ref, Reader& stream, uint32_t length) {
 		ref.weapon_id = stream.Read16();
 		ref.shield_id = stream.Read16();
 		ref.armor_id = stream.Read16();

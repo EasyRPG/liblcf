@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "reader.h"
+#include "writer.h"
 #include "rpg_movecommand.h"
 
 ////////////////////////////////////////////////////////////
@@ -32,7 +33,12 @@
 namespace Move_Reader {
 	RPG::MoveCommand ReadMoveCommand(Reader& stream);
 	void ReadMoveCommand(RPG::MoveCommand& command, Reader& stream);
-	void ReadMoveCommands(std::vector<RPG::MoveCommand>& commands, Reader& stream, const Reader::Chunk& chunk_info);
+	void WriteMoveCommand(const RPG::MoveCommand& command, Writer& stream);
+	int MoveCommandSize(const RPG::MoveCommand& command, Writer& stream);
+
+	void ReadMoveCommands(std::vector<RPG::MoveCommand>& commands, Reader& stream, uint32_t length);
+	void WriteMoveCommands(const std::vector<RPG::MoveCommand>& commands, Writer& stream);
+	int MoveCommandsSize(const std::vector<RPG::MoveCommand>& commands, Writer& stream);
 }
 
 #endif

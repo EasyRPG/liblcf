@@ -91,7 +91,7 @@ void Writer::Write32(int32_t val) {
 void Writer::WriteInt(int32_t val) {
 	uint32_t value = (uint32_t) val;
 	for (int i = 28; i >= 0; i -= 7)
-		if (value >= (1U << i))
+		if (value >= (1U << i) || i == 0)
 			Write8((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
 }
 

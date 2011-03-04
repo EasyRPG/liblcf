@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "reader.h"
+#include "writer.h"
 #include "rpg_eventcommand.h"
 
 ////////////////////////////////////////////////////////////
@@ -32,7 +33,12 @@
 namespace Event_Reader {
 	RPG::EventCommand ReadEventCommand(Reader& stream);
 	void ReadEventCommand(RPG::EventCommand& command, Reader& stream);
-	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, Reader& stream);
+	void WriteEventCommand(const RPG::EventCommand& event_command, Writer& stream);
+	int EventCommandSize(const RPG::EventCommand& event_command, Writer& stream);
+
+	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, Reader& stream, uint32_t length);
+	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, Writer& stream);
+	int EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, Writer& stream);
 }
 
 #endif

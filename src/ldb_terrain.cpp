@@ -28,7 +28,8 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::Terrain::Flags> {
-	static inline void ReadLcf(RPG::Terrain::Flags& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(RPG::Terrain::Flags& ref, Reader& stream, uint32_t length) {
+		assert(length == 1);
 		uint8_t bitflag = stream.Read8();
 		ref.back_party		= (bitflag & 0x01) != 0;
 		ref.back_enemies	= (bitflag & 0x02) != 0;

@@ -41,9 +41,35 @@ void Event_Reader::ReadEventCommand(RPG::EventCommand& event_command, Reader& st
 	}
 }
 
-void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_commands, Reader& stream) {
+void Event_Reader::WriteEventCommand(const RPG::EventCommand& event_command, Writer& stream) {
+	stream.WriteInt(event_command.code);
+	stream.WriteInt(event_command.indent);
+	stream.WriteInt(event_command.string.size());
+	stream.WriteString(event_command.string);
+	int count = event_command.parameters.size();
+	stream.WriteInt(count);
+	for (int i = 0; i < count; i++)
+		stream.WriteInt(event_command.parameters[i]);
+}
+
+int Event_Reader::EventCommandSize(const RPG::EventCommand& event_command, Writer& stream) {
+	int result = 0;
+	result += Reader::IntSize(event_command.code);
+	result += Reader::IntSize(event_command.indent);
+	result += Reader::IntSize(event_command.string.size());
+	result += stream.Decode(event_command.string).size();
+	int count = event_command.parameters.size();
+	result += Reader::IntSize(count);
+	for (int i = 0; i < count; i++)
+		result += Reader::IntSize(event_command.parameters[i]);
+	return result;
+}
+
+void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_commands, Reader& stream, uint32_t length) {
 	// Event Commands is a special array
 	// Has no size information. Is terminated by 4 times 0x00.
+	unsigned long startpos = stream.Tell();
+	unsigned long endpos = startpos + length;
 	for (;;) {
 		char ch = stream.Read8();
 		if (ch == 0) {
@@ -53,5 +79,22 @@ void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_comma
 		stream.Ungetch(ch);
 		event_commands.push_back(Event_Reader::ReadEventCommand(stream));
 	}
+	assert(stream.Tell() == endpos);
 }
 
+void Event_Reader::WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, Writer& stream) {
+	int count = event_commands.size();
+	for (int i = 0; i < count; i++)
+		WriteEventCommand(event_commands[i], stream);
+	for (int i = 0; i < 4; i++)
+		stream.WriteInt(0);
+}
+
+int Event_Reader::EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, Writer& stream) {
+	int result = 0;
+	int count = event_commands.size();
+	for (int i = 0; i < count; i++)
+		result += EventCommandSize(event_commands[i], stream);
+	result += 4;
+	return result;
+}

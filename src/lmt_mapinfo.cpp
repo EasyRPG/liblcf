@@ -28,7 +28,8 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::MapInfo::Rect> {
-	static inline void ReadLcf(RPG::MapInfo::Rect& ref, Reader& stream, const Reader::Chunk& chunk_info) {
+	static inline void ReadLcf(RPG::MapInfo::Rect& ref, Reader& stream, uint32_t length) {
+		assert(length == 16);
 		ref.x = stream.Read32();
 		ref.y = stream.Read32();
 		ref.w = stream.Read32() - ref.x;

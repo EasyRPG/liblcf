@@ -143,7 +143,7 @@ public:
 	int32_t Read32();
 
 	////////////////////////////////////////////////////////
-	/// Reads up to four bytes from the stream.
+	/// Reads a compressed integer from the stream.
 	/// @return The decompressed integer
 	////////////////////////////////////////////////////////
 	int32_t ReadInt();
@@ -169,14 +169,14 @@ public:
 	void Read8(std::vector<uint8_t> &buffer, size_t size);
 
 	////////////////////////////////////////////////////////
-	/// Writes 16bit-values into a vector.
+	/// Reads 16bit-values into a vector.
 	/// @param buffer : Vector to fill
 	/// @param size : How many 16bit-values to read
 	////////////////////////////////////////////////////////
 	void Read16(std::vector<int16_t> &buffer, size_t size);
 
 	////////////////////////////////////////////////////////
-	/// Writes Normal 32bit-integers into a vector.
+	/// Reads Normal 32bit-integers into a vector.
 	/// @param buffer : Vector to fill
 	/// @param size : How many 32bit-values to read
 	////////////////////////////////////////////////////////
@@ -251,6 +251,13 @@ public:
 	/// @return Utf8 version of string
 	////////////////////////////////////////////////////////
 	std::string Encode(const std::string& str_to_encode);
+
+	////////////////////////////////////////////////////////
+	/// Calculates the size of a compressed integer
+	/// @param x : The integer
+	/// @return : The compressed size
+	////////////////////////////////////////////////////////
+	static int IntSize(unsigned int x);
 
 private:
 	/// Name of the file that is associated with the stream

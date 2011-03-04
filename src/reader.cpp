@@ -295,6 +295,16 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 }
 
 ////////////////////////////////////////////////////////////
+int Reader::IntSize(unsigned int x) {
+	int result = 0;
+	do {
+		x >>= 7;
+		result++;
+	} while (x != 0);
+	return result;
+}
+
+////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
 void Reader::SwapByteOrder(uint16_t& us)
 {
