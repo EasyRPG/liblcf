@@ -1,3 +1,5 @@
+#include <iostream>
+#include <iomanip>
 #include "ldb_reader.h"
 #include "lmt_reader.h"
 #include "lmu_reader.h"
@@ -39,8 +41,11 @@ void Struct<S>::ReadLcf(S& obj, Reader& stream) {
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, Writer& stream) {
 	ID_reader->WriteID(obj, stream);
+	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		if (field->IsDefault(obj, ref))
+			continue;
 		stream.WriteInt(field->id);
 		stream.WriteInt(field->LcfSize(obj, stream));
 		field->WriteLcf(obj, stream);
@@ -51,8 +56,11 @@ void Struct<S>::WriteLcf(const S& obj, Writer& stream) {
 template <class S>
 int Struct<S>::LcfSize(const S& obj, Writer& stream) {
 	int result = ID_reader->IDSize(obj);
+	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		if (field->IsDefault(obj, ref))
+			continue;
 		result += Reader::IntSize(field->id);
 		int size = field->LcfSize(obj, stream);
 		result += Reader::IntSize(size);

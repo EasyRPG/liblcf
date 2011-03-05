@@ -259,9 +259,74 @@ struct Field {
 	virtual void ReadLcf(S& obj, Reader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, Writer& stream) const = 0;
 	virtual int LcfSize(const S& obj, Writer& stream) const = 0;
+	virtual bool IsDefault(const S& obj, const S& ref) const { return false; }
 
 	Field(int id, const char* name) :
 		id(id), name(name) {}
+};
+
+////////////////////////////////////////////////////////////
+// Equivalence traits
+////////////////////////////////////////////////////////////
+
+template <class T>
+struct Class_Test {
+	typedef char yes;
+	typedef int no;
+
+	template <class C>
+	static yes& check(void(C::*)(void));
+	template <class C>
+	static no&  check(...);
+
+	static const bool value = sizeof(check<T>(0)) == sizeof(yes);
+};
+
+template <class T>
+struct Compare_Test {
+	static const bool value = !Class_Test<T>::value;
+};
+
+template <class T>
+struct Compare_Test<std::vector<T> > {
+	static const bool value = Compare_Test<T>::value;
+};
+
+template <>
+struct Compare_Test<std::string> {
+	static const bool value = true;
+};
+
+template <class T, bool comparable>
+struct Compare_Traits_Impl {};
+
+template <class T>
+struct Compare_Traits_Impl<T, true> {
+	static bool IsEqual(const T& a, const T& b) {
+		return a == b;
+	}
+};
+
+template <class T>
+struct Compare_Traits_Impl<T, false> {
+	static bool IsEqual(const T& a, const T& b) {
+		return false;
+	}
+};
+
+template <class T>
+struct Compare_Traits_Impl<std::vector<T>, false> {
+	static bool IsEqual(const std::vector<T>& a, const std::vector<T>& b) {
+		return a.empty() && b.empty();
+	}
+};
+
+template <class T>
+struct Compare_Traits {
+	typedef Compare_Traits_Impl<T, Compare_Test<T>::value> impl_type;
+	static bool IsEqual(const T& a, const T& b) {
+		return impl_type::IsEqual(a, b);
+	}
 };
 
 ////////////////////////////////////////////////////////////
@@ -281,6 +346,9 @@ struct TypedField : public Field<S> {
 	int LcfSize(const S& obj, Writer& stream) const {
 		return FieldReader<S, T>::LcfSize(obj, ref, stream);
 	}
+	bool IsDefault(const S& a, const S& b) const {
+		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
+	}
 
 	TypedField(T S::*ref, int id, const char* name) :
 		Field<S>(id, name), ref(ref) {}
@@ -299,11 +367,13 @@ struct SizeField : public Field<S> {
 		TypeReader<int>::ReadLcf(dummy, stream, length);
 	}
 	void WriteLcf(const S& obj, Writer& stream) const {
-		int size = (obj.*ref).size();
+		// int size = (obj.*ref).size();
+		int size = TypeReader<std::vector<T> >::LcfSize(obj.*ref, stream);
 		TypeReader<int>::WriteLcf(size, stream);
 	}
 	int LcfSize(const S& obj, Writer& stream) const {
-		int size = (obj.*ref).size();
+		// int size = (obj.*ref).size();
+		int size = TypeReader<std::vector<T> >::LcfSize(obj.*ref, stream);
 		return Reader::IntSize(size);
 	}
 
