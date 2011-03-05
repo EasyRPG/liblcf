@@ -81,6 +81,6 @@ const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] 
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer_sec,			LMU_Reader::ChunkEventPageCondition::timer_sec,			"timer_sec"			),
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer2_sec,			LMU_Reader::ChunkEventPageCondition::timer2_sec,		"timer2_sec"		),
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::compare_operator,	LMU_Reader::ChunkEventPageCondition::compare_operator,	"compare_operator"	),
-	new TypedField<RPG::EventPageCondition, struct RPG::EventPageCondition::Flags>(&RPG::EventPageCondition::flags,	LMU_Reader::ChunkEventPageCondition::flags,	"flags"),
+	new TypedField<RPG::EventPageCondition, RPG::EventPageCondition::Flags>(&RPG::EventPageCondition::flags,	LMU_Reader::ChunkEventPageCondition::flags,	"flags"),
 	NULL
 };

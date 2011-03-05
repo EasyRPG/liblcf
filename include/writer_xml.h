@@ -42,6 +42,7 @@ public:
 	XmlWriter(const std::string& filename);
 	~XmlWriter();
 
+	void Open();
 	void Close();
 
 	void WriteInt(int val);

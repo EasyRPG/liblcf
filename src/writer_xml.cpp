@@ -24,24 +24,30 @@
 ////////////////////////////////////////////////////////////
 XmlWriter::XmlWriter(const char* filename) :
 	filename(filename),
-	stream(fopen(filename, "w")),
 	indent(0),
 	at_bol(true)
 {
+	Open();
 }
 
 ////////////////////////////////////////////////////////////
 XmlWriter::XmlWriter(const std::string& filename) :
 	filename(filename),
-	stream(fopen(filename.c_str(), "w")),
 	indent(0),
 	at_bol(true)
 {
+	Open();
 }
 
 ////////////////////////////////////////////////////////////
 XmlWriter::~XmlWriter() {
 	Close();
+}
+
+////////////////////////////////////////////////////////////
+void XmlWriter::Open() {
+	stream = fopen(filename.c_str(), "w");
+	fputs("<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n", stream);
 }
 
 ////////////////////////////////////////////////////////////
@@ -91,7 +97,7 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 	Indent();
 	std::string::const_iterator it;
 	for (it = val.begin(); it != val.end(); it++) {
-		char c = *it;
+		int c = (int) *it;
 		switch (c) {
 			case '<':
 				fputs("&lt;", stream);
@@ -106,8 +112,15 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 				fputc(c, stream);
 				at_bol = true;
 				Indent();
+			case '\r':
+			case '\t':
+				fputc(c, stream);
+				break;
 			default:
-				fputc((int) c, stream);
+				if (c >= 0 && c < 32)
+					fprintf(stream, "&#%02x;", c);
+				else
+					fputc(c, stream);
 				break;
 		}
 	}
@@ -182,7 +195,7 @@ void XmlWriter::BeginElement(const std::string& name) {
 void XmlWriter::BeginElement(const std::string& name, int ID) {
 	NewLine();
 	Indent();
-	fprintf(stream, "<%s id=%04d>", name.c_str(), ID);
+	fprintf(stream, "<%s id=\"%04d\">", name.c_str(), ID);
 	indent++;
 }
 
