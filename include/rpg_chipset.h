@@ -35,9 +35,9 @@ namespace RPG {
 		int ID;
 		std::string name;
 		std::string chipset_name;
-		std::vector<short> terrain_data;
-		std::vector<unsigned char> passable_data_lower;
-		std::vector<unsigned char> passable_data_upper;
+		std::vector<int16_t> terrain_data;
+		std::vector<uint8_t> passable_data_lower;
+		std::vector<uint8_t> passable_data_upper;
 		int animation_type;
 		int animation_speed;
 	};

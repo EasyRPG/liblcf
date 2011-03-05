@@ -52,8 +52,8 @@ namespace RPG {
 		int critical_hit_chance;
 		bool miss;
 		bool levitate;
-		std::vector<unsigned char> state_ranks;
-		std::vector<unsigned char> attribute_ranks;
+		std::vector<uint8_t> state_ranks;
+		std::vector<uint8_t> attribute_ranks;
 		std::vector<EnemyAction> actions;
 	};
 }

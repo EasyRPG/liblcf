@@ -46,8 +46,8 @@ namespace RPG {
 		std::string gameover_name;
 		std::string system_name;
 		std::string system2_name;
-		std::vector<short> party;
-		std::vector<short> menu_commands;
+		std::vector<int16_t> party;
+		std::vector<int16_t> menu_commands;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;

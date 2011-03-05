@@ -46,8 +46,8 @@ namespace RPG {
 		int parallax_sx;
 		bool parallax_auto_loop_y;
 		int parallax_sy;
-		std::vector<short> lower_layer;
-		std::vector<short> upper_layer;
+		std::vector<int16_t> lower_layer;
+		std::vector<int16_t> upper_layer;
 		std::vector<RPG::Event> events;
 		int save_times;
 		bool top_level;
@@ -65,7 +65,7 @@ namespace RPG {
 		bool generator_extra_c;
 		std::vector<uint32_t> generator_x;
 		std::vector<uint32_t> generator_y;
-		std::vector<short> generator_tile_ids;
+		std::vector<int16_t> generator_tile_ids;
 	};
 }
 

@@ -48,10 +48,12 @@ struct TypeReader<RPG::Terrain::Flags> {
 		return 1;
 	}
 	static inline void WriteXml(const RPG::Terrain::Flags& ref, XmlWriter& stream) {
+		stream.BeginElement("Terrain_Flags");
 		stream.WriteNode<bool>("back_party", ref.back_party);
 		stream.WriteNode<bool>("back_enemies", ref.back_enemies);
 		stream.WriteNode<bool>("lateral_party", ref.lateral_party);
 		stream.WriteNode<bool>("lateral_enemies", ref.lateral_enemies);
+		stream.EndElement("Terrain_Flags");
 	}
 };
 

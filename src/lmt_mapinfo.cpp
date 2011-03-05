@@ -45,10 +45,12 @@ struct TypeReader<RPG::MapInfo::Rect> {
 		return 4 * 4;
 	}
 	static inline void WriteXml(const RPG::MapInfo::Rect& ref, XmlWriter& stream) {
+		stream.BeginElement("Rect");
 		stream.WriteNode<int>("x", ref.x);
 		stream.WriteNode<int>("y", ref.y);
 		stream.WriteNode<int>("w", ref.w);
 		stream.WriteNode<int>("h", ref.h);
+		stream.EndElement("Rect");
 	}
 };
 

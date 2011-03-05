@@ -60,9 +60,9 @@ const Field<RPG::Map>* Struct<RPG::Map>::fields[] = {
 	new TypedField<RPG::Map, bool>						(&RPG::Map::generator_extra_c,		LMU_Reader::ChunkMap::generator_extra_c,	"generator_extra_c"		),
 	new TypedField<RPG::Map, std::vector<uint32_t> >	(&RPG::Map::generator_x,			LMU_Reader::ChunkMap::generator_x,			"generator_x"			),
 	new TypedField<RPG::Map, std::vector<uint32_t> >	(&RPG::Map::generator_y,			LMU_Reader::ChunkMap::generator_y,			"generator_y"			),
-	new TypedField<RPG::Map, std::vector<short> >		(&RPG::Map::generator_tile_ids,		LMU_Reader::ChunkMap::generator_tile_ids,	"generator_tile_ids"	),
-	new TypedField<RPG::Map, std::vector<short> >		(&RPG::Map::lower_layer,			LMU_Reader::ChunkMap::lower_layer,			"lower_layer"			),
-	new TypedField<RPG::Map, std::vector<short> >		(&RPG::Map::upper_layer,			LMU_Reader::ChunkMap::upper_layer,			"upper_layer"			),
+	new TypedField<RPG::Map, std::vector<int16_t> >		(&RPG::Map::generator_tile_ids,		LMU_Reader::ChunkMap::generator_tile_ids,	"generator_tile_ids"	),
+	new TypedField<RPG::Map, std::vector<int16_t> >		(&RPG::Map::lower_layer,			LMU_Reader::ChunkMap::lower_layer,			"lower_layer"			),
+	new TypedField<RPG::Map, std::vector<int16_t> >		(&RPG::Map::upper_layer,			LMU_Reader::ChunkMap::upper_layer,			"upper_layer"			),
 	new TypedField<RPG::Map, std::vector<RPG::Event> >	(&RPG::Map::events,					LMU_Reader::ChunkMap::events,				"events"				),
 	new TypedField<RPG::Map, int>						(&RPG::Map::save_times,				LMU_Reader::ChunkMap::save_times,			"save_times"			),
 	NULL

@@ -55,12 +55,14 @@ struct TypeReader<RPG::Class::Parameters> {
 		return ref.maxhp.size() * 2 * 6;
 	}
 	static inline void WriteXml(const RPG::Class::Parameters& ref, XmlWriter& stream) {
+		stream.BeginElement("Parameters");
 		stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
 		stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
 		stream.WriteNode<std::vector<int16_t> >("attack", ref.attack);
 		stream.WriteNode<std::vector<int16_t> >("defense", ref.defense);
 		stream.WriteNode<std::vector<int16_t> >("spirit", ref.spirit);
 		stream.WriteNode<std::vector<int16_t> >("agility", ref.agility);
+		stream.EndElement("Parameters");
 	}
 };
 

@@ -70,6 +70,7 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		return (ref.turn_actor || ref.command_actor) ? 2 : 1;
 	}
 	static inline void WriteXml(const RPG::TroopPageCondition::Flags& ref, XmlWriter& stream) {
+		stream.BeginElement("TroopPageCondition_Flags");
 		stream.WriteNode<bool>("switch_a", ref.switch_a);
 		stream.WriteNode<bool>("switch_b", ref.switch_b);
 		stream.WriteNode<bool>("variable", ref.variable);
@@ -80,6 +81,7 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		stream.WriteNode<bool>("turn_enemy", ref.turn_enemy);
 		stream.WriteNode<bool>("turn_actor", ref.turn_actor);
 		stream.WriteNode<bool>("command_actor", ref.command_actor);
+		stream.EndElement("TroopPageCondition_Flags");
 	}
 };
 

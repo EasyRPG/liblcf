@@ -40,20 +40,20 @@ namespace RPG {
 		bool auto_battle;
 		bool super_guard;
 		struct Parameters {
-			std::vector<short> maxhp;
-			std::vector<short> maxsp;
-			std::vector<short> attack;
-			std::vector<short> defense;
-			std::vector<short> spirit;
-			std::vector<short> agility;
+			std::vector<int16_t> maxhp;
+			std::vector<int16_t> maxsp;
+			std::vector<int16_t> attack;
+			std::vector<int16_t> defense;
+			std::vector<int16_t> spirit;
+			std::vector<int16_t> agility;
 		} parameters;
 		int exp_base;
 		int exp_inflation;
 		int exp_correction;
 		int unarmed_animation;
 		std::vector<Learning> skills;
-		std::vector<unsigned char> state_ranks;
-		std::vector<unsigned char> attribute_ranks;
+		std::vector<uint8_t> state_ranks;
+		std::vector<uint8_t> attribute_ranks;
 		std::vector<uint32_t> battle_commands;
 	};
 }

@@ -34,12 +34,12 @@ const std::string Struct<RPG::Chipset>::name("Chipset");
 
 template <>
 const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {
-	new TypedField<RPG::Chipset, std::string>					(&RPG::Chipset::name,					LDB_Reader::ChunkChipset::name,					"name"					),
-	new TypedField<RPG::Chipset, std::string>					(&RPG::Chipset::chipset_name,			LDB_Reader::ChunkChipset::chipset_name,			"chipset_name"			),
-	new TypedField<RPG::Chipset, std::vector<short> >			(&RPG::Chipset::terrain_data,			LDB_Reader::ChunkChipset::terrain_data,			"terrain_data"			),
-	new TypedField<RPG::Chipset, std::vector<unsigned char> >	(&RPG::Chipset::passable_data_lower,	LDB_Reader::ChunkChipset::passable_data_lower,	"passable_data_lower"	),
-	new TypedField<RPG::Chipset, std::vector<unsigned char> >	(&RPG::Chipset::passable_data_upper,	LDB_Reader::ChunkChipset::passable_data_upper,	"passable_data_upper"	),
-	new TypedField<RPG::Chipset, int>							(&RPG::Chipset::animation_type,			LDB_Reader::ChunkChipset::animation_type,		"animation_type"		),
-	new TypedField<RPG::Chipset, int>							(&RPG::Chipset::animation_speed,		LDB_Reader::ChunkChipset::animation_speed,		"animation_speed"		),
+	new TypedField<RPG::Chipset, std::string>			(&RPG::Chipset::name,					LDB_Reader::ChunkChipset::name,					"name"					),
+	new TypedField<RPG::Chipset, std::string>			(&RPG::Chipset::chipset_name,			LDB_Reader::ChunkChipset::chipset_name,			"chipset_name"			),
+	new TypedField<RPG::Chipset, std::vector<int16_t> >	(&RPG::Chipset::terrain_data,			LDB_Reader::ChunkChipset::terrain_data,			"terrain_data"			),
+	new TypedField<RPG::Chipset, std::vector<uint8_t> >	(&RPG::Chipset::passable_data_lower,	LDB_Reader::ChunkChipset::passable_data_lower,	"passable_data_lower"	),
+	new TypedField<RPG::Chipset, std::vector<uint8_t> >	(&RPG::Chipset::passable_data_upper,	LDB_Reader::ChunkChipset::passable_data_upper,	"passable_data_upper"	),
+	new TypedField<RPG::Chipset, int>					(&RPG::Chipset::animation_type,			LDB_Reader::ChunkChipset::animation_type,		"animation_type"		),
+	new TypedField<RPG::Chipset, int>					(&RPG::Chipset::animation_speed,		LDB_Reader::ChunkChipset::animation_speed,		"animation_speed"		),
 	NULL
 };

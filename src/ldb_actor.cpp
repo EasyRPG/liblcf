@@ -49,12 +49,14 @@ struct TypeReader<RPG::Actor::Parameters> {
 		return ref.maxhp.size() * 2 * 6;
 	}
 	static inline void WriteXml(const RPG::Actor::Parameters& ref, XmlWriter& stream) {
+		stream.BeginElement("Parameters");
 		stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
 		stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
 		stream.WriteNode<std::vector<int16_t> >("attack", ref.attack);
 		stream.WriteNode<std::vector<int16_t> >("defense", ref.defense);
 		stream.WriteNode<std::vector<int16_t> >("spirit", ref.spirit);
 		stream.WriteNode<std::vector<int16_t> >("agility", ref.agility);
+		stream.EndElement("Parameters");
 	}
 };
 
@@ -78,11 +80,13 @@ struct TypeReader<RPG::Actor::Equipment> {
 		return 2 * 5;
 	}
 	static inline void WriteXml(const RPG::Actor::Equipment& ref, XmlWriter& stream) {
+		stream.BeginElement("Equipment");
 		stream.WriteNode<int16_t>("weapon_id", ref.weapon_id);
 		stream.WriteNode<int16_t>("shield_id", ref.shield_id);
 		stream.WriteNode<int16_t>("armor_id", ref.armor_id);
 		stream.WriteNode<int16_t>("helmet_id", ref.helmet_id);
 		stream.WriteNode<int16_t>("accessory_id", ref.accessory_id);
+		stream.EndElement("Equipment");
 	}
 };
 

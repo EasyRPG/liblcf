@@ -54,6 +54,7 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		return 1;
 	}
 	static inline void WriteXml(const RPG::EventPageCondition::Flags& ref, XmlWriter& stream) {
+		stream.BeginElement("EventPageCondition_Flags");
 		stream.WriteNode<bool>("switch_a", ref.switch_a);
 		stream.WriteNode<bool>("switch_b", ref.switch_b);
 		stream.WriteNode<bool>("variable", ref.variable);
@@ -61,6 +62,7 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		stream.WriteNode<bool>("actor", ref.actor);
 		stream.WriteNode<bool>("timer", ref.timer);
 		stream.WriteNode<bool>("timer2", ref.timer2);
+		stream.EndElement("EventPageCondition_Flags");
 	}
 };
 
