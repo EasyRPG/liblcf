@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::TreeMap>* Struct<RPG::TreeMap>::ID_reader = new IDReaderT<RPG::TreeMap, NoID>();
 
 template <>
+const std::string Struct<RPG::TreeMap>::name("TreeMap");
+
+template <>
 const Field<RPG::TreeMap>* Struct<RPG::TreeMap>::fields[] = {
 	new TypedField<RPG::TreeMap, int>	(&RPG::TreeMap::start_map_id,	LMT_Reader::ChunkTreeMap::start_map_id,		"start_map_id"		),
 	new TypedField<RPG::TreeMap, int>	(&RPG::TreeMap::start_x,		LMT_Reader::ChunkTreeMap::start_x,			"start_x"			),

@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::ID_reader = new IDReaderT<RPG::SaveCommonEvent, WithID>();
 
 template <>
+const std::string Struct<RPG::SaveCommonEvent>::name("SaveCommonEvent");
+
+template <>
 const Field<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::fields[] = {
 	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventData>	(&RPG::SaveCommonEvent::event_data,	LSD_Reader::ChunkCommonEvent::event_data,	"event_data"	),
 	NULL

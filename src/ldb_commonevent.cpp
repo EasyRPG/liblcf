@@ -21,7 +21,7 @@
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "event_reader.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -29,6 +29,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::CommonEvent>* Struct<RPG::CommonEvent>::ID_reader = new IDReaderT<RPG::CommonEvent, WithID>();
+
+template <>
+const std::string Struct<RPG::CommonEvent>::name("CommonEvent");
 
 template <>
 const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {

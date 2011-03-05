@@ -15,58 +15,53 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _RPG_MAP_H_
-#define _RPG_MAP_H_
+#ifndef _EASYRPG_WRITER_XML_H_
+#define _EASYRPG_WRITER_XML_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "rpg_event.h"
+#ifndef _MSC_VER
+	#include <stdint.h>
+#else
+	typedef	unsigned char	uint8_t;
+	typedef	signed short	int16_t;
+	typedef unsigned short	uint16_t;
+	typedef	signed int		int32_t;
+	typedef unsigned int	uint32_t;
+#endif
 
 ////////////////////////////////////////////////////////////
-/// RPG::Map class
+/// XmlWriter class.
 ////////////////////////////////////////////////////////////
-namespace RPG {
-	class Map {
-	public:
-		Map();
-		
-		int ID;
-		int chipset_id;
-		int width;
-		int height;
-		int scroll_type;
-		bool parallax_flag;
-		std::string parallax_name;
-		bool parallax_loop_x;
-		bool parallax_loop_y;
-		bool parallax_auto_loop_x;
-		int parallax_sx;
-		bool parallax_auto_loop_y;
-		int parallax_sy;
-		std::vector<short> lower_layer;
-		std::vector<short> upper_layer;
-		std::vector<RPG::Event> events;
-		int save_times;
-		bool top_level;
+class XmlWriter {
+public:
+	XmlWriter(const char* filename);
+	XmlWriter(const std::string& filename);
+	~XmlWriter();
 
-		bool generator_flag;
-		int generator_mode;
-		int generator_tiles;
-		int generator_width;
-		int generator_height;
-		bool generator_surround;
-		bool generator_upper_wall;
-		bool generator_floor_b;
-		bool generator_floor_c;
-		bool generator_extra_b;
-		bool generator_extra_c;
-		std::vector<uint32_t> generator_x;
-		std::vector<uint32_t> generator_y;
-		std::vector<short> generator_tile_ids;
-	};
-}
+	void Close();
+
+	void WriteInt(int val);
+	template <class T>	void Write(const T& val);
+	template <class T>	void WriteVector(const std::vector<T>& val);
+	template <class T>	void WriteNode(const std::string& name, const T& val);
+	void BeginElement(const std::string& name);
+	void BeginElement(const std::string& name, int ID);
+	void EndElement(const std::string& name);
+	void NewLine();
+
+	bool IsOk() const;
+protected:
+	std::string filename;
+	FILE *stream;
+	int indent;
+	bool at_bol;
+
+	void Indent();
+};
 
 #endif
+

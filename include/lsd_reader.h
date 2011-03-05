@@ -24,7 +24,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "reader.h"
 #include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
@@ -33,6 +32,7 @@
 namespace LSD_Reader {
 	std::auto_ptr<RPG::Save> Load(const std::string &filename);
 	void Save(const std::string& filename, const RPG::Save& save);
+	void SaveXml(const std::string& filename, const RPG::Save& save);
 }
 
 #endif

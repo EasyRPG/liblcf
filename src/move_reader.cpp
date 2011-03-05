@@ -19,18 +19,18 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "move_reader.h"
-#include "reader.h"
+#include "reader_lcf.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Move Command
 ////////////////////////////////////////////////////////////
-RPG::MoveCommand Move_Reader::ReadMoveCommand(Reader& stream) {
+RPG::MoveCommand Move_Reader::ReadMoveCommand(LcfReader& stream) {
 	RPG::MoveCommand move_command;
 	ReadMoveCommand(move_command, stream);
 	return move_command;
 }
 
-void Move_Reader::ReadMoveCommand(RPG::MoveCommand& ref, Reader& stream) {
+void Move_Reader::ReadMoveCommand(RPG::MoveCommand& ref, LcfReader& stream) {
 	ref.command_id = stream.ReadInt();
 	switch (ref.command_id) {
 		case RPG::MoveCommand::Code::switch_on:
@@ -52,7 +52,7 @@ void Move_Reader::ReadMoveCommand(RPG::MoveCommand& ref, Reader& stream) {
 	}
 }
 
-void Move_Reader::WriteMoveCommand(const RPG::MoveCommand& ref, Writer& stream) {
+void Move_Reader::WriteMoveCommand(const RPG::MoveCommand& ref, LcfWriter& stream) {
 	stream.WriteInt(ref.command_id);
 	switch (ref.command_id) {
 		case RPG::MoveCommand::Code::switch_on:
@@ -76,33 +76,57 @@ void Move_Reader::WriteMoveCommand(const RPG::MoveCommand& ref, Writer& stream) 
 	}
 }
 
-int Move_Reader::MoveCommandSize(const RPG::MoveCommand& ref, Writer& stream) {
+int Move_Reader::MoveCommandSize(const RPG::MoveCommand& ref, LcfWriter& stream) {
 	int result = 0;
-	result += Reader::IntSize(ref.command_id);
+	result += LcfReader::IntSize(ref.command_id);
 	switch (ref.command_id) {
 		case RPG::MoveCommand::Code::switch_on:
-			result += Reader::IntSize(ref.parameter_a);
+			result += LcfReader::IntSize(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::switch_off:
-			result += Reader::IntSize(ref.parameter_a);
+			result += LcfReader::IntSize(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::change_graphic:
-			result += Reader::IntSize(ref.parameter_string.size());
+			result += LcfReader::IntSize(ref.parameter_string.size());
 			result += stream.Decode(ref.parameter_string).size();
-			result += Reader::IntSize(ref.parameter_a);
+			result += LcfReader::IntSize(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::play_sound_effect:
-			result += Reader::IntSize(ref.parameter_string.size());
+			result += LcfReader::IntSize(ref.parameter_string.size());
 			result += stream.Decode(ref.parameter_string).size();
-			result += Reader::IntSize(ref.parameter_a);
-			result += Reader::IntSize(ref.parameter_b);
-			result += Reader::IntSize(ref.parameter_c);
+			result += LcfReader::IntSize(ref.parameter_a);
+			result += LcfReader::IntSize(ref.parameter_b);
+			result += LcfReader::IntSize(ref.parameter_c);
 			break;
 	}
 	return result;
 }
 
-void Move_Reader::ReadMoveCommands(std::vector<RPG::MoveCommand>& ref, Reader& stream, uint32_t length) {
+void Move_Reader::WriteMoveCommand(const RPG::MoveCommand& ref, XmlWriter& stream) {
+	stream.BeginElement("MoveCommand");
+	stream.WriteNode<int>("command_id", ref.command_id);
+	switch (ref.command_id) {
+		case RPG::MoveCommand::Code::switch_on:
+			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			break;
+		case RPG::MoveCommand::Code::switch_off:
+			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			break;
+		case RPG::MoveCommand::Code::change_graphic:
+			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
+			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			break;
+		case RPG::MoveCommand::Code::play_sound_effect:
+			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
+			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			stream.WriteNode<int>("parameter_b", ref.parameter_b);
+			stream.WriteNode<int>("parameter_c", ref.parameter_c);
+			break;
+	}
+	stream.EndElement("MoveCommand");
+}
+
+void Move_Reader::ReadMoveCommands(std::vector<RPG::MoveCommand>& ref, LcfReader& stream, uint32_t length) {
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;
 	do {
@@ -110,17 +134,23 @@ void Move_Reader::ReadMoveCommands(std::vector<RPG::MoveCommand>& ref, Reader& s
 	} while (stream.Tell() != endpos);
 }
 
-void Move_Reader::WriteMoveCommands(const std::vector<RPG::MoveCommand>& ref, Writer& stream) {
+void Move_Reader::WriteMoveCommands(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream) {
 	std::vector<RPG::MoveCommand>::const_iterator it;
 	for (it = ref.begin(); it != ref.end(); it++)
 		WriteMoveCommand(*it, stream);
 }
 
-int Move_Reader::MoveCommandsSize(const std::vector<RPG::MoveCommand>& ref, Writer& stream) {
+int Move_Reader::MoveCommandsSize(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream) {
 	int result = 0;
 	std::vector<RPG::MoveCommand>::const_iterator it;
 	for (it = ref.begin(); it != ref.end(); it++)
 		result += MoveCommandSize(*it, stream);
 	return result;
+}
+
+void Move_Reader::WriteMoveCommands(const std::vector<RPG::MoveCommand>& ref, XmlWriter& stream) {
+	std::vector<RPG::MoveCommand>::const_iterator it;
+	for (it = ref.begin(); it != ref.end(); it++)
+		WriteMoveCommand(*it, stream);
 }
 

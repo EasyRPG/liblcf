@@ -19,15 +19,15 @@
 /// Headers
 ////////////////////////////////////////////////////////////
 #include <cstdarg>
-#include "reader.h"
+#include "reader_lcf.h"
 
 ////////////////////////////////////////////////////////////
 /// Statics
 ////////////////////////////////////////////////////////////
-std::string Reader::error_str;
+std::string LcfReader::error_str;
 
 ////////////////////////////////////////////////////////////
-Reader::Reader(const char* filename, std::string encoding) :
+LcfReader::LcfReader(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
 	stream(fopen(filename, "rb"))
@@ -35,7 +35,7 @@ Reader::Reader(const char* filename, std::string encoding) :
 }
 
 ////////////////////////////////////////////////////////////
-Reader::Reader(const std::string& filename, std::string encoding) :
+LcfReader::LcfReader(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
 	stream(fopen(filename.c_str(), "rb"))
@@ -43,19 +43,19 @@ Reader::Reader(const std::string& filename, std::string encoding) :
 }
 
 ////////////////////////////////////////////////////////////
-Reader::~Reader() {
+LcfReader::~LcfReader() {
 	Close();
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Close() {
+void LcfReader::Close() {
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Read(void *ptr, size_t size, size_t nmemb) {
+void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 #ifndef NDEBUG
 	assert(fread(ptr, size, nmemb, stream) == nmemb);
 #else
@@ -64,19 +64,19 @@ void Reader::Read(void *ptr, size_t size, size_t nmemb) {
 }
 
 ////////////////////////////////////////////////////////////
-bool Reader::ReadBool() {
+bool LcfReader::ReadBool() {
 	return (ReadInt() > 0);
 }
 
 ////////////////////////////////////////////////////////////
-uint8_t Reader::Read8() {
+uint8_t LcfReader::Read8() {
 	uint8_t val = 0;
 	Read(&val, 1, 1);
 	return val;
 }
 
 ////////////////////////////////////////////////////////////
-int16_t Reader::Read16() {
+int16_t LcfReader::Read16() {
 	int16_t val = 0;
 	Read(&val, 2, 1);
 #ifdef READER_BIG_ENDIAN
@@ -88,7 +88,7 @@ int16_t Reader::Read16() {
 }
 
 ////////////////////////////////////////////////////////////
-int32_t Reader::Read32() {
+int32_t LcfReader::Read32() {
 	int32_t val = 0;
 	Read(&val, 4, 1);
 #ifdef READER_BIG_ENDIAN
@@ -100,7 +100,7 @@ int32_t Reader::Read32() {
 }
 
 ////////////////////////////////////////////////////////////
-int32_t Reader::ReadInt() {
+int32_t LcfReader::ReadInt() {
 	int32_t value = 0;
 	unsigned char temp = 0;
 
@@ -115,7 +115,7 @@ int32_t Reader::ReadInt() {
 }
 
 ////////////////////////////////////////////////////////////
-double Reader::ReadDouble() {
+double LcfReader::ReadDouble() {
 	double val = 0;
 	Read(&val, 8, 1);
 #ifdef READER_BIG_ENDIAN
@@ -125,7 +125,7 @@ double Reader::ReadDouble() {
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
+void LcfReader::ReadBool(std::vector<bool> &buffer, size_t size) {
 	uint8_t val = 0;
 	buffer.clear();
 
@@ -136,7 +136,7 @@ void Reader::ReadBool(std::vector<bool> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
+void LcfReader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 	uint8_t val;
 	buffer.clear();
 
@@ -147,7 +147,7 @@ void Reader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
+void LcfReader::Read16(std::vector<int16_t> &buffer, size_t size) {
 	int16_t val;
 	buffer.clear();
 	size_t items = size / 2;
@@ -167,7 +167,7 @@ void Reader::Read16(std::vector<int16_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
+void LcfReader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 	uint32_t val;
 	buffer.clear();
 	size_t items = size / 4;
@@ -181,7 +181,7 @@ void Reader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-std::string Reader::ReadString(size_t size) {
+std::string LcfReader::ReadString(size_t size) {
 	char* chars = new char[size + 1];
 	chars[size] = '\0';
 	Read(chars, 1, size);
@@ -195,25 +195,25 @@ std::string Reader::ReadString(size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-bool Reader::IsOk() const {
+bool LcfReader::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }
 
 ////////////////////////////////////////////////////////////
-bool Reader::Eof() const {
+bool LcfReader::Eof() const {
 	return feof(stream) != 0;
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::Seek(size_t pos, SeekMode mode) {
+void LcfReader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
-	case Reader::FromStart:
+	case LcfReader::FromStart:
 		fseek(stream, pos, SEEK_SET);
 		break;
-	case Reader::FromCurrent:
+	case LcfReader::FromCurrent:
 		fseek(stream, pos, SEEK_CUR);
 		break;
-	case Reader::FromEnd:
+	case LcfReader::FromEnd:
 		fseek(stream, pos, SEEK_END);
 		break;
 	default:
@@ -226,20 +226,20 @@ void Reader::Seek(size_t pos, SeekMode mode) {
 }
 
 ////////////////////////////////////////////////////////////
-uint32_t Reader::Tell() {
+uint32_t LcfReader::Tell() {
 	return (uint32_t)ftell(stream);
 }
 
 ////////////////////////////////////////////////////////////
-bool Reader::Ungetch(uint8_t ch) {
+bool LcfReader::Ungetch(uint8_t ch) {
 	return (ungetc(ch, stream) == ch);
 }
 
 ////////////////////////////////////////////////////////////
 #ifdef _DEBUG
-	void Reader::SkipDebug(const struct Reader::Chunk& chunk_info, const char* srcfile) {
+	void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile) {
 #else
-	void Reader::Skip(const struct Reader::Chunk& chunk_info) {
+	void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info) {
 #endif
 #ifdef _DEBUG
 	// Dump the Chunk Data in Debug Mode
@@ -255,7 +255,7 @@ bool Reader::Ungetch(uint8_t ch) {
 	}
 	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n", chunk_info.ID, chunk_info.length, filename.c_str(), Tell(), srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
-		fprintf(stderr, "%02X ", Reader::Read8());
+		fprintf(stderr, "%02X ", LcfReader::Read8());
 		if ((i+1) % 16 == 0) {
 			fprintf(stderr, "\n");
 		}
@@ -267,7 +267,7 @@ bool Reader::Ungetch(uint8_t ch) {
 }
 
 ////////////////////////////////////////////////////////////
-void Reader::SetError(const char* fmt, ...) {
+void LcfReader::SetError(const char* fmt, ...) {
 	va_list args;
 	va_start(args, fmt);
 
@@ -281,12 +281,12 @@ void Reader::SetError(const char* fmt, ...) {
 }
 
 ////////////////////////////////////////////////////////////
-const std::string& Reader::GetError() {
+const std::string& LcfReader::GetError() {
 	return error_str;
 }
 
 ////////////////////////////////////////////////////////////
-std::string Reader::Encode(const std::string& str_to_encode) {
+std::string LcfReader::Encode(const std::string& str_to_encode) {
 #ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, encoding, "65001");
 #else
@@ -295,7 +295,7 @@ std::string Reader::Encode(const std::string& str_to_encode) {
 }
 
 ////////////////////////////////////////////////////////////
-int Reader::IntSize(unsigned int x) {
+int LcfReader::IntSize(unsigned int x) {
 	int result = 0;
 	do {
 		x >>= 7;
@@ -306,14 +306,14 @@ int Reader::IntSize(unsigned int x) {
 
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
-void Reader::SwapByteOrder(uint16_t& us)
+void LcfReader::SwapByteOrder(uint16_t& us)
 {
 	us =	(us >> 8) |
 			(us << 8);
 }
 
 
-void Reader::SwapByteOrder(uint32_t& ui)
+void LcfReader::SwapByteOrder(uint32_t& ui)
 {
 	ui =	(ui >> 24) |
 			((ui<<8) & 0x00FF0000) |

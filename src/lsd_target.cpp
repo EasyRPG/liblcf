@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveTarget>* Struct<RPG::SaveTarget>::ID_reader = new IDReaderT<RPG::SaveTarget, WithID>();
 
 template <>
+const std::string Struct<RPG::SaveTarget>::name("SaveTarget");
+
+template <>
 const Field<RPG::SaveTarget>* Struct<RPG::SaveTarget>::fields[] = {
 	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_id,		LSD_Reader::ChunkTarget::map_id,	"map_id"	),
 	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_x,		LSD_Reader::ChunkTarget::map_x,		"map_x"		),

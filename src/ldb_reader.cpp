@@ -28,14 +28,14 @@
 /// Load Database
 ////////////////////////////////////////////////////////////
 bool LDB_Reader::Load(const std::string& filename) {
-	Reader reader(filename, ReaderUtil::GetEncoding());
+	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
-		Reader::SetError("Couldn't find %s database file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't find %s database file.\n", filename.c_str());
 		return false;
 	}
 	std::string header = reader.ReadString(reader.ReadInt());
 	if (header != "LcfDataBase") {
-		Reader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
+		LcfReader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
 		return false;
 	}
 	Struct<RPG::Database>::ReadLcf(Data::data, reader);
@@ -46,15 +46,30 @@ bool LDB_Reader::Load(const std::string& filename) {
 /// Save Database
 ////////////////////////////////////////////////////////////
 bool LDB_Reader::Save(const std::string& filename) {
-	Writer writer(filename, ReaderUtil::GetEncoding());
+	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
-		Reader::SetError("Couldn't open %s database file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't open %s database file.\n", filename.c_str());
 		return false;
 	}
 	const std::string header("LcfDataBase");
 	writer.WriteInt(header.size());
 	writer.WriteString(header);
 	Struct<RPG::Database>::WriteLcf(Data::data, writer);
+	return true;
+}
+
+////////////////////////////////////////////////////////////
+/// Save Database as XML
+////////////////////////////////////////////////////////////
+bool LDB_Reader::SaveXml(const std::string& filename) {
+	XmlWriter writer(filename);
+	if (!writer.IsOk()) {
+		LcfReader::SetError("Couldn't open %s database file.\n", filename.c_str());
+		return false;
+	}
+	writer.BeginElement("LDB");
+	Struct<RPG::Database>::WriteXml(Data::data, writer);
+	writer.EndElement("LDB");
 	return true;
 }
 

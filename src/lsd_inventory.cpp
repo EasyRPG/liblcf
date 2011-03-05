@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveInventory>* Struct<RPG::SaveInventory>::ID_reader = new IDReaderT<RPG::SaveInventory, NoID>();
 
 template <>
+const std::string Struct<RPG::SaveInventory>::name("SaveInventory");
+
+template <>
 const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::party_size,		LSD_Reader::ChunkInventory::party_size,		"party_size"		),
 	new TypedField<RPG::SaveInventory, std::vector<int16_t> >	(&RPG::SaveInventory::party,			LSD_Reader::ChunkInventory::party,			"party"				),

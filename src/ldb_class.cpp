@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -30,8 +30,11 @@ template <>
 IDReader<RPG::Class>* Struct<RPG::Class>::ID_reader = new IDReaderT<RPG::Class, WithID>();
 
 template <>
+const std::string Struct<RPG::Class>::name("Class");
+
+template <>
 struct TypeReader<RPG::Class::Parameters> {
-	static inline void ReadLcf(RPG::Class::Parameters& ref, Reader& stream, uint32_t length) {
+	static inline void ReadLcf(RPG::Class::Parameters& ref, LcfReader& stream, uint32_t length) {
 		int n = length / 6;
 		stream.Read16(ref.maxhp, n);
 		stream.Read16(ref.maxsp, n);
@@ -40,7 +43,7 @@ struct TypeReader<RPG::Class::Parameters> {
 		stream.Read16(ref.spirit, n);
 		stream.Read16(ref.agility, n);
 	}
-	static inline void WriteLcf(const RPG::Class::Parameters& ref, Writer& stream) {
+	static inline void WriteLcf(const RPG::Class::Parameters& ref, LcfWriter& stream) {
 		stream.Write16(ref.maxhp);
 		stream.Write16(ref.maxsp);
 		stream.Write16(ref.attack);
@@ -48,8 +51,16 @@ struct TypeReader<RPG::Class::Parameters> {
 		stream.Write16(ref.spirit);
 		stream.Write16(ref.agility);
 	}
-	static inline int LcfSize(const RPG::Class::Parameters& ref, Writer& stream) {
+	static inline int LcfSize(const RPG::Class::Parameters& ref, LcfWriter& stream) {
 		return ref.maxhp.size() * 2 * 6;
+	}
+	static inline void WriteXml(const RPG::Class::Parameters& ref, XmlWriter& stream) {
+		stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
+		stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
+		stream.WriteNode<std::vector<int16_t> >("attack", ref.attack);
+		stream.WriteNode<std::vector<int16_t> >("defense", ref.defense);
+		stream.WriteNode<std::vector<int16_t> >("spirit", ref.spirit);
+		stream.WriteNode<std::vector<int16_t> >("agility", ref.agility);
 	}
 };
 

@@ -47,26 +47,26 @@
 #endif
 
 ////////////////////////////////////////////////////////////
-/// Reader class.
+/// LcfReader class.
 ////////////////////////////////////////////////////////////
-class Reader {
+class LcfReader {
 public:
 	////////////////////////////////////////////////////////
 	/// Constructs a new File Reader.
 	/// @param filename : File to open.
 	////////////////////////////////////////////////////////
-	Reader(const char* filename, std::string encoding = "");
+	LcfReader(const char* filename, std::string encoding = "");
 
 	////////////////////////////////////////////////////////
 	/// Constructs a new File Reader.
 	/// @param filename : File to open.
 	////////////////////////////////////////////////////////
-	Reader(const std::string& filename, std::string encoding = "");
+	LcfReader(const std::string& filename, std::string encoding = "");
 
 	////////////////////////////////////////////////////////
 	/// Destructor. Closes the opened file.
 	////////////////////////////////////////////////////////
-	~Reader();
+	~LcfReader();
 
 	////////////////////////////////////////////////////////
 	/// Closes the opened file.
@@ -234,14 +234,14 @@ public:
 	/// @param chunk_info : Chunk that will be skipped
 	/// @param srclife : Name of the calling cpp-file
 	////////////////////////////////////////////////////////
-	void SkipDebug(const struct Reader::Chunk& chunk_info, const char* srcfile);
+	void SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile);
 #else
 	////////////////////////////////////////////////////////
 	/// Skips a Chunk (Seeks chunk_info.length bytes from
 	/// the current stream position).
 	/// @param chunk_info : Chunk that will be skipped
 	////////////////////////////////////////////////////////
-	void Skip(const struct Reader::Chunk& chunk_info);
+	void Skip(const struct LcfReader::Chunk& chunk_info);
 #endif
 
 	////////////////////////////////////////////////////////

@@ -23,22 +23,25 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "reader.h"
-#include "writer.h"
+#include "reader_lcf.h"
+#include "writer_lcf.h"
+#include "writer_xml.h"
 #include "rpg_movecommand.h"
 
 ////////////////////////////////////////////////////////////
 /// Move Reader namespace
 ////////////////////////////////////////////////////////////
 namespace Move_Reader {
-	RPG::MoveCommand ReadMoveCommand(Reader& stream);
-	void ReadMoveCommand(RPG::MoveCommand& command, Reader& stream);
-	void WriteMoveCommand(const RPG::MoveCommand& command, Writer& stream);
-	int MoveCommandSize(const RPG::MoveCommand& command, Writer& stream);
+	RPG::MoveCommand ReadMoveCommand(LcfReader& stream);
+	void ReadMoveCommand(RPG::MoveCommand& command, LcfReader& stream);
+	void WriteMoveCommand(const RPG::MoveCommand& command, LcfWriter& stream);
+	int MoveCommandSize(const RPG::MoveCommand& command, LcfWriter& stream);
+	void WriteMoveCommand(const RPG::MoveCommand& command, XmlWriter& stream);
 
-	void ReadMoveCommands(std::vector<RPG::MoveCommand>& commands, Reader& stream, uint32_t length);
-	void WriteMoveCommands(const std::vector<RPG::MoveCommand>& commands, Writer& stream);
-	int MoveCommandsSize(const std::vector<RPG::MoveCommand>& commands, Writer& stream);
+	void ReadMoveCommands(std::vector<RPG::MoveCommand>& commands, LcfReader& stream, uint32_t length);
+	void WriteMoveCommands(const std::vector<RPG::MoveCommand>& commands, LcfWriter& stream);
+	int MoveCommandsSize(const std::vector<RPG::MoveCommand>& commands, LcfWriter& stream);
+	void WriteMoveCommands(const std::vector<RPG::MoveCommand>& commands, XmlWriter& stream);
 }
 
 #endif

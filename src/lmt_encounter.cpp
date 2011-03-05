@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::Encounter>* Struct<RPG::Encounter>::ID_reader = new IDReaderT<RPG::Encounter, WithID>();
+
+template <>
+const std::string Struct<RPG::Encounter>::name("Encounter");
 
 template <>
 const Field<RPG::Encounter>* Struct<RPG::Encounter>::fields[] = {

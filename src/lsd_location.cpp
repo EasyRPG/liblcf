@@ -31,6 +31,9 @@ template <>
 IDReader<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::ID_reader = new IDReaderT<RPG::SavePartyLocation, NoID>();
 
 template <>
+const std::string Struct<RPG::SavePartyLocation>::name("SavePartyLocation");
+
+template <>
 const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = {
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::map_id,				LSD_Reader::ChunkPartyLocation::map_id,				"map_id"				),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::position_x,			LSD_Reader::ChunkPartyLocation::position_x,			"position_x"			),

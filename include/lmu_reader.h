@@ -23,15 +23,15 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <memory>
-#include "reader.h"
 #include "rpg_map.h"
 
 ////////////////////////////////////////////////////////////
 /// LMU Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LMU_Reader {
-	std::auto_ptr<RPG::Map> LoadMap(const std::string &filename);
-	void SaveMap(const std::string& filename, const RPG::Map& map);
+	std::auto_ptr<RPG::Map> Load(const std::string &filename);
+	void Save(const std::string& filename, const RPG::Map& map);
+	void SaveXml(const std::string& filename, const RPG::Map& map);
 }
 
 #endif

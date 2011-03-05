@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::ID_reader = new IDReaderT<RPG::AnimationFrame, WithID>();
+
+template <>
+const std::string Struct<RPG::AnimationFrame>::name("AnimationFrame");
 
 template <>
 const Field<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::fields[] = {

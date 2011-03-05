@@ -19,18 +19,20 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "event_reader.h"
-#include "reader.h"
+#include "reader_lcf.h"
+#include "writer_lcf.h"
+#include "writer_xml.h"
 
 ////////////////////////////////////////////////////////////
 /// Read EventCommand
 ////////////////////////////////////////////////////////////
-RPG::EventCommand Event_Reader::ReadEventCommand(Reader& stream) {
+RPG::EventCommand Event_Reader::ReadEventCommand(LcfReader& stream) {
 	RPG::EventCommand event_command;
 	ReadEventCommand(event_command, stream);
 	return event_command;
 }
 
-void Event_Reader::ReadEventCommand(RPG::EventCommand& event_command, Reader& stream) {
+void Event_Reader::ReadEventCommand(RPG::EventCommand& event_command, LcfReader& stream) {
 	event_command.code = stream.ReadInt();
 	if (event_command.code != 0) {
 		event_command.indent = stream.ReadInt();
@@ -41,7 +43,7 @@ void Event_Reader::ReadEventCommand(RPG::EventCommand& event_command, Reader& st
 	}
 }
 
-void Event_Reader::WriteEventCommand(const RPG::EventCommand& event_command, Writer& stream) {
+void Event_Reader::WriteEventCommand(const RPG::EventCommand& event_command, LcfWriter& stream) {
 	stream.WriteInt(event_command.code);
 	stream.WriteInt(event_command.indent);
 	stream.WriteInt(event_command.string.size());
@@ -52,20 +54,29 @@ void Event_Reader::WriteEventCommand(const RPG::EventCommand& event_command, Wri
 		stream.WriteInt(event_command.parameters[i]);
 }
 
-int Event_Reader::EventCommandSize(const RPG::EventCommand& event_command, Writer& stream) {
+int Event_Reader::EventCommandSize(const RPG::EventCommand& event_command, LcfWriter& stream) {
 	int result = 0;
-	result += Reader::IntSize(event_command.code);
-	result += Reader::IntSize(event_command.indent);
-	result += Reader::IntSize(event_command.string.size());
+	result += LcfReader::IntSize(event_command.code);
+	result += LcfReader::IntSize(event_command.indent);
+	result += LcfReader::IntSize(event_command.string.size());
 	result += stream.Decode(event_command.string).size();
 	int count = event_command.parameters.size();
-	result += Reader::IntSize(count);
+	result += LcfReader::IntSize(count);
 	for (int i = 0; i < count; i++)
-		result += Reader::IntSize(event_command.parameters[i]);
+		result += LcfReader::IntSize(event_command.parameters[i]);
 	return result;
 }
 
-void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_commands, Reader& stream, uint32_t length) {
+void Event_Reader::WriteEventCommand(const RPG::EventCommand& event_command, XmlWriter& stream) {
+	stream.BeginElement("EventCommand");
+	stream.WriteNode<int>("code", event_command.code);
+	stream.WriteNode<int>("indent", event_command.indent);
+	stream.WriteNode<std::string>("string", event_command.string);
+	stream.WriteNode<std::vector<int> >("parameters", event_command.parameters);
+	stream.EndElement("EventCommand");
+}
+
+void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_commands, LcfReader& stream, uint32_t length) {
 	// Event Commands is a special array
 	// Has no size information. Is terminated by 4 times 0x00.
 	unsigned long startpos = stream.Tell();
@@ -73,7 +84,7 @@ void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_comma
 	for (;;) {
 		char ch = stream.Read8();
 		if (ch == 0) {
-			stream.Seek(3, Reader::FromCurrent);
+			stream.Seek(3, LcfReader::FromCurrent);
 			break;
 		}
 		stream.Ungetch(ch);
@@ -82,7 +93,7 @@ void Event_Reader::ReadEventCommands(std::vector<RPG::EventCommand>& event_comma
 	assert(stream.Tell() == endpos);
 }
 
-void Event_Reader::WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, Writer& stream) {
+void Event_Reader::WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream) {
 	int count = event_commands.size();
 	for (int i = 0; i < count; i++)
 		WriteEventCommand(event_commands[i], stream);
@@ -90,11 +101,17 @@ void Event_Reader::WriteEventCommands(const std::vector<RPG::EventCommand>& even
 		stream.WriteInt(0);
 }
 
-int Event_Reader::EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, Writer& stream) {
+int Event_Reader::EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream) {
 	int result = 0;
 	int count = event_commands.size();
 	for (int i = 0; i < count; i++)
 		result += EventCommandSize(event_commands[i], stream);
 	result += 4;
 	return result;
+}
+
+void Event_Reader::WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, XmlWriter& stream) {
+	std::vector<RPG::EventCommand>::const_iterator it;
+	for (it = event_commands.begin(); it != event_commands.end(); it++)
+		WriteEventCommand(*it, stream);
 }

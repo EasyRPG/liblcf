@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveEvents>* Struct<RPG::SaveEvents>::ID_reader = new IDReaderT<RPG::SaveEvents, NoID>();
 
 template <>
+const std::string Struct<RPG::SaveEvents>::name("SaveEvents");
+
+template <>
 const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {
 	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::events_size,	LSD_Reader::ChunkEvents::events_size,	"events_size"	),
 	new TypedField<RPG::SaveEvents, int>	(&RPG::SaveEvents::unknown_16,	LSD_Reader::ChunkEvents::unknown_16,	"unknown_16"	),

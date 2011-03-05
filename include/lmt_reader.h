@@ -22,8 +22,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include "reader.h"
-#include "writer.h"
+#include "reader_lcf.h"
+#include "writer_lcf.h"
+#include "writer_xml.h"
 #include "rpg_treemap.h"
 
 ////////////////////////////////////////////////////////////
@@ -31,9 +32,11 @@
 ////////////////////////////////////////////////////////////
 namespace LMT_Reader {
 	bool Load(const std::string &filename);
-	void ReadTreeMap(RPG::TreeMap& treemap, Reader& stream);
+	void ReadTreeMap(RPG::TreeMap& treemap, LcfReader& stream);
 	bool Save(const std::string& filename);
-	void WriteTreeMap(const RPG::TreeMap& treemap, Writer& stream);
+	void WriteTreeMap(const RPG::TreeMap& treemap, LcfWriter& stream);
+	bool SaveXml(const std::string& filename);
+	void WriteTreeMap(const RPG::TreeMap& treemap, XmlWriter& stream);
 }
 
 #endif

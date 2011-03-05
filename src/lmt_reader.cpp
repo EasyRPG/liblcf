@@ -28,14 +28,14 @@
 /// Load Map Tree
 ////////////////////////////////////////////////////////////
 bool LMT_Reader::Load(const std::string& filename) {
-	Reader reader(filename, ReaderUtil::GetEncoding());
+	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
-		Reader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;
 	}
 	std::string header = reader.ReadString(reader.ReadInt());
 	if (header != "LcfMapTree") {
-		Reader::SetError("%s is not a valid RPG2000 map tree.\n", filename.c_str());
+		LcfReader::SetError("%s is not a valid RPG2000 map tree.\n", filename.c_str());
 		return false;
 	}
 	ReadTreeMap(Data::treemap, reader);
@@ -45,7 +45,7 @@ bool LMT_Reader::Load(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Read Tree Map
 ////////////////////////////////////////////////////////////
-void LMT_Reader::ReadTreeMap(RPG::TreeMap& treemap, Reader& stream) {
+void LMT_Reader::ReadTreeMap(RPG::TreeMap& treemap, LcfReader& stream) {
 	// Array - RPG::MapInfo
 	treemap.maps.resize(stream.ReadInt() + 1);
 	for (unsigned int i = 1; i < treemap.maps.size(); i++)
@@ -67,9 +67,9 @@ void LMT_Reader::ReadTreeMap(RPG::TreeMap& treemap, Reader& stream) {
 /// Save Map Tree
 ////////////////////////////////////////////////////////////
 bool LMT_Reader::Save(const std::string& filename) {
-	Writer writer(filename, ReaderUtil::GetEncoding());
+	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
-		Reader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;
 	}
 	const std::string header("LcfMapTree");
@@ -82,7 +82,7 @@ bool LMT_Reader::Save(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Write Tree Map
 ////////////////////////////////////////////////////////////
-void LMT_Reader::WriteTreeMap(const RPG::TreeMap& treemap, Writer& stream) {
+void LMT_Reader::WriteTreeMap(const RPG::TreeMap& treemap, LcfWriter& stream) {
 	// Array - RPG::MapInfo
 	stream.WriteInt(treemap.maps.size() - 1);
 	for (unsigned int i = 1; i < treemap.maps.size(); i++)
@@ -99,4 +99,37 @@ void LMT_Reader::WriteTreeMap(const RPG::TreeMap& treemap, Writer& stream) {
 
 	// RPG::TreeMap
 	Struct<RPG::TreeMap>::WriteLcf(Data::treemap, stream);
+}
+
+////////////////////////////////////////////////////////////
+/// Save Map Tree as Xml
+////////////////////////////////////////////////////////////
+bool LMT_Reader::SaveXml(const std::string& filename) {
+	XmlWriter writer(filename);
+	if (!writer.IsOk()) {
+		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
+		return false;
+	}
+	writer.BeginElement("LMT");
+	WriteTreeMap(Data::treemap, writer);
+	writer.EndElement("LMT");
+	return true;
+}
+
+////////////////////////////////////////////////////////////
+/// Write Tree Map
+////////////////////////////////////////////////////////////
+void LMT_Reader::WriteTreeMap(const RPG::TreeMap& treemap, XmlWriter& stream) {
+	// Array - RPG::MapInfo
+	stream.BeginElement("maps");
+	Struct<RPG::MapInfo>::WriteXml(treemap.maps, stream);
+	stream.EndElement("maps");
+
+	stream.BeginElement("tree_order");
+	stream.Write<std::vector<int> >(treemap.tree_order);
+	stream.EndElement("tree_order");
+
+	stream.WriteNode<int>("active_node", treemap.active_node);
+
+	Struct<RPG::TreeMap>::WriteXml(Data::treemap, stream);
 }

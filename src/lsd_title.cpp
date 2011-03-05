@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveTitle>* Struct<RPG::SaveTitle>::ID_reader = new IDReaderT<RPG::SaveTitle, NoID>();
 
 template <>
+const std::string Struct<RPG::SaveTitle>::name("SaveTitle");
+
+template <>
 const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {
 	new TypedField<RPG::SaveTitle, std::vector<uint8_t> >	(&RPG::SaveTitle::timestamp,	LSD_Reader::ChunkTitle::timestamp,		"timestamp"		),
 	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::hero_name,	LSD_Reader::ChunkTitle::hero_name,		"hero_name"		),

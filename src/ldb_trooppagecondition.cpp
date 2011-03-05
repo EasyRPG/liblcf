@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::TroopPageCondition::Flags> {
-	static inline void ReadLcf(RPG::TroopPageCondition::Flags& ref, Reader& stream, uint32_t length) {
+	static inline void ReadLcf(RPG::TroopPageCondition::Flags& ref, LcfReader& stream, uint32_t length) {
 		assert(length >= 1 && length <= 2);
 		uint8_t bitflag = stream.Read8();
 		ref.switch_a		= (bitflag & 0x01) != 0;
@@ -47,7 +47,7 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		ref.turn_actor		= (bitflag & 0x01) != 0;
 		ref.command_actor	= (bitflag & 0x02) != 0;
 	}
-	static inline void WriteLcf(const RPG::TroopPageCondition::Flags& ref, Writer& stream) {
+	static inline void WriteLcf(const RPG::TroopPageCondition::Flags& ref, LcfWriter& stream) {
 		uint8_t bitflag1 = 0;
 		if (ref.switch_a	) bitflag1 |= 0x01;
 		if (ref.switch_b	) bitflag1 |= 0x02;
@@ -66,13 +66,28 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 			return;
 		stream.Write8(bitflag2);
 	}
-	static inline int LcfSize(const RPG::TroopPageCondition::Flags& ref, Writer& stream) {
+	static inline int LcfSize(const RPG::TroopPageCondition::Flags& ref, LcfWriter& stream) {
 		return (ref.turn_actor || ref.command_actor) ? 2 : 1;
+	}
+	static inline void WriteXml(const RPG::TroopPageCondition::Flags& ref, XmlWriter& stream) {
+		stream.WriteNode<bool>("switch_a", ref.switch_a);
+		stream.WriteNode<bool>("switch_b", ref.switch_b);
+		stream.WriteNode<bool>("variable", ref.variable);
+		stream.WriteNode<bool>("turn", ref.turn);
+		stream.WriteNode<bool>("fatigue", ref.fatigue);
+		stream.WriteNode<bool>("enemy_hp", ref.enemy_hp);
+		stream.WriteNode<bool>("actor_hp", ref.actor_hp);
+		stream.WriteNode<bool>("turn_enemy", ref.turn_enemy);
+		stream.WriteNode<bool>("turn_actor", ref.turn_actor);
+		stream.WriteNode<bool>("command_actor", ref.command_actor);
 	}
 };
 
 template <>
 IDReader<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::ID_reader = new IDReaderT<RPG::TroopPageCondition, NoID>();
+
+template <>
+const std::string Struct<RPG::TroopPageCondition>::name("TroopPageCondition");
 
 template <>
 const Field<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::fields[] = {

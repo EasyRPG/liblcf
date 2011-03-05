@@ -13,11 +13,11 @@ void Struct<S>::MakeFieldMap() {
 }
 
 template <class S>
-void Struct<S>::ReadLcf(S& obj, Reader& stream) {
+void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 	if (field_map.empty())
 		MakeFieldMap();
 
-	Reader::Chunk chunk_info;
+	LcfReader::Chunk chunk_info;
 
 	ID_reader->ReadID(obj, stream);
 
@@ -39,7 +39,7 @@ void Struct<S>::ReadLcf(S& obj, Reader& stream) {
 }
 
 template <class S>
-void Struct<S>::WriteLcf(const S& obj, Writer& stream) {
+void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 	ID_reader->WriteID(obj, stream);
 	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
@@ -54,24 +54,34 @@ void Struct<S>::WriteLcf(const S& obj, Writer& stream) {
 }
 
 template <class S>
-int Struct<S>::LcfSize(const S& obj, Writer& stream) {
+int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 	int result = ID_reader->IDSize(obj);
 	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		if (field->IsDefault(obj, ref))
 			continue;
-		result += Reader::IntSize(field->id);
+		result += LcfReader::IntSize(field->id);
 		int size = field->LcfSize(obj, stream);
-		result += Reader::IntSize(size);
+		result += LcfReader::IntSize(size);
 		result += size;
 	}
-	result += Reader::IntSize(0);
+	result += LcfReader::IntSize(0);
 	return result;
 }
 
 template <class S>
-void Struct<S>::ReadLcf(std::vector<S>& vec, Reader& stream) {
+void Struct<S>::WriteXml(const S& obj, XmlWriter& stream) {
+	ID_reader->WriteXmlTag(obj, name, stream);
+	for (int i = 0; fields[i] != NULL; i++) {
+		const Field<S>* field = fields[i];
+		field->WriteXml(obj, stream);
+	}
+	stream.EndElement(name);
+}
+
+template <class S>
+void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
 	vec.resize(count);
 	for (int i = 0; i < count; i++)
@@ -79,7 +89,7 @@ void Struct<S>::ReadLcf(std::vector<S>& vec, Reader& stream) {
 }
 
 template <class S>
-void Struct<S>::WriteLcf(const std::vector<S>& vec, Writer& stream) {
+void Struct<S>::WriteLcf(const std::vector<S>& vec, LcfWriter& stream) {
 	int count = vec.size();
 	stream.WriteInt(count);
 	for (int i = 0; i < count; i++)
@@ -87,13 +97,20 @@ void Struct<S>::WriteLcf(const std::vector<S>& vec, Writer& stream) {
 }
 
 template <class S>
-int Struct<S>::LcfSize(const std::vector<S>& vec, Writer& stream) {
+int Struct<S>::LcfSize(const std::vector<S>& vec, LcfWriter& stream) {
 	int result = 0;
 	int count = vec.size();
-	result += Reader::IntSize(count);
+	result += LcfReader::IntSize(count);
 	for (int i = 0; i < count; i++)
 		result += TypeReader<S>::LcfSize(vec[i], stream);
 	return result;
+}
+
+template <class S>
+void Struct<S>::WriteXml(const std::vector<S>& vec, XmlWriter& stream) {
+	int count = vec.size();
+	for (int i = 0; i < count; i++)
+		TypeReader<S>::WriteXml(vec[i], stream);
 }
 
 template class Struct<RPG::Actor>;

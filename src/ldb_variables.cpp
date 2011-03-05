@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::Variable>* Struct<RPG::Variable>::ID_reader = new IDReaderT<RPG::Variable, WithID>();
+
+template <>
+const std::string Struct<RPG::Variable>::name("Variable");
 
 template <>
 const Field<RPG::Variable>* Struct<RPG::Variable>::fields[] = {

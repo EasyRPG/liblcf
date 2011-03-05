@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SaveScreen>* Struct<RPG::SaveScreen>::ID_reader = new IDReaderT<RPG::SaveScreen, NoID>();
 
 template <>
+const std::string Struct<RPG::SaveScreen>::name("SaveScreen");
+
+template <>
 const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_red,			LSD_Reader::ChunkScreen::tint_finish_red,		"tint_finish_red"		),
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_green,		LSD_Reader::ChunkScreen::tint_finish_green,		"tint_finish_green"		),

@@ -31,6 +31,9 @@ template <>
 IDReader<RPG::SaveEventCommands>* Struct<RPG::SaveEventCommands>::ID_reader = new IDReaderT<RPG::SaveEventCommands, WithID>();
 
 template <>
+const std::string Struct<RPG::SaveEventCommands>::name("SaveEventCommands");
+
+template <>
 const Field<RPG::SaveEventCommands>* Struct<RPG::SaveEventCommands>::fields[] = {
 	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::current_command,	LSD_Reader::ChunkEventCommands::current_command,	"current_command"	),
 	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::unknown_0c,		LSD_Reader::ChunkEventCommands::unknown_0c,			"unknown_0c"		),

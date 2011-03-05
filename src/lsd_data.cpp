@@ -31,6 +31,9 @@ template <>
 IDReader<RPG::SaveSystem>* Struct<RPG::SaveSystem>::ID_reader = new IDReaderT<RPG::SaveSystem, NoID>();
 
 template <>
+const std::string Struct<RPG::SaveSystem>::name("SaveSystem");
+
+template <>
 const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::screen,					LSD_Reader::ChunkSystem::screen,					"screen"				),
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::frame_count,				LSD_Reader::ChunkSystem::frame_count,				"frame_count"			),

@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::Map>* Struct<RPG::Map>::ID_reader = new IDReaderT<RPG::Map, NoID>();
+
+template <>
+const std::string Struct<RPG::Map>::name("Map");
 
 template <>
 const Field<RPG::Map>* Struct<RPG::Map>::fields[] = {

@@ -23,7 +23,6 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "reader.h"
 #include "rpg_actor.h"
 #include "rpg_skill.h"
 #include "rpg_item.h"
@@ -52,6 +51,7 @@
 namespace LDB_Reader {
 	bool Load(const std::string &filename);
 	bool Save(const std::string &filename);
+	bool SaveXml(const std::string &filename);
 }
 
 #endif

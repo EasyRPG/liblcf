@@ -31,6 +31,9 @@ template <>
 IDReader<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::ID_reader = new IDReaderT<RPG::SaveMapEvent, WithID>();
 
 template <>
+const std::string Struct<RPG::SaveMapEvent>::name("SaveMapEvent");
+
+template <>
 const Field<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::fields[] = {
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_01,			LSD_Reader::ChunkMapEvent::unknown_01,			"unknown_01"			),
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::map_id,				LSD_Reader::ChunkMapEvent::map_id,				"map_id"				),

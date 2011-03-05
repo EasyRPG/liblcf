@@ -30,6 +30,9 @@ template <>
 IDReader<RPG::SavePicture>* Struct<RPG::SavePicture>::ID_reader = new IDReaderT<RPG::SavePicture, WithID>();
 
 template <>
+const std::string Struct<RPG::SavePicture>::name("SavePicture");
+
+template <>
 const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {
 	new TypedField<RPG::SavePicture, std::string>	(&RPG::SavePicture::name,					LSD_Reader::ChunkPicture::name,					"name"				),
 	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::start_x,				LSD_Reader::ChunkPicture::start_x,				"start_x"			),

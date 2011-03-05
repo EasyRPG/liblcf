@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::Terrain::Flags> {
-	static inline void ReadLcf(RPG::Terrain::Flags& ref, Reader& stream, uint32_t length) {
+	static inline void ReadLcf(RPG::Terrain::Flags& ref, LcfReader& stream, uint32_t length) {
 		assert(length == 1);
 		uint8_t bitflag = stream.Read8();
 		ref.back_party		= (bitflag & 0x01) != 0;
@@ -36,7 +36,7 @@ struct TypeReader<RPG::Terrain::Flags> {
 		ref.lateral_party	= (bitflag & 0x04) != 0;
 		ref.lateral_enemies	= (bitflag & 0x08) != 0;
 	}
-	static inline void WriteLcf(const RPG::Terrain::Flags& ref, Writer& stream) {
+	static inline void WriteLcf(const RPG::Terrain::Flags& ref, LcfWriter& stream) {
 		uint8_t bitflag = 0;
 		if (ref.back_party)		 bitflag |= 0x01;
 		if (ref.back_enemies)	 bitflag |= 0x02;
@@ -44,13 +44,22 @@ struct TypeReader<RPG::Terrain::Flags> {
 		if (ref.lateral_enemies) bitflag |= 0x08;
 		stream.Write8(bitflag);
 	}
-	static inline int LcfSize(const RPG::Terrain::Flags& ref, Writer& stream) {
+	static inline int LcfSize(const RPG::Terrain::Flags& ref, LcfWriter& stream) {
 		return 1;
+	}
+	static inline void WriteXml(const RPG::Terrain::Flags& ref, XmlWriter& stream) {
+		stream.WriteNode<bool>("back_party", ref.back_party);
+		stream.WriteNode<bool>("back_enemies", ref.back_enemies);
+		stream.WriteNode<bool>("lateral_party", ref.lateral_party);
+		stream.WriteNode<bool>("lateral_enemies", ref.lateral_enemies);
 	}
 };
 
 template <>
 IDReader<RPG::Terrain>* Struct<RPG::Terrain>::ID_reader = new IDReaderT<RPG::Terrain, WithID>();
+
+template <>
+const std::string Struct<RPG::Terrain>::name("Terrain");
 
 template <>
 const Field<RPG::Terrain>* Struct<RPG::Terrain>::fields[] = {

@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,26 +28,35 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::MapInfo::Rect> {
-	static inline void ReadLcf(RPG::MapInfo::Rect& ref, Reader& stream, uint32_t length) {
+	static inline void ReadLcf(RPG::MapInfo::Rect& ref, LcfReader& stream, uint32_t length) {
 		assert(length == 16);
 		ref.x = stream.Read32();
 		ref.y = stream.Read32();
 		ref.w = stream.Read32() - ref.x;
 		ref.h = stream.Read32() - ref.y;
 	}
-	static inline void WriteLcf(const RPG::MapInfo::Rect& ref, Writer& stream) {
+	static inline void WriteLcf(const RPG::MapInfo::Rect& ref, LcfWriter& stream) {
 		stream.Write32(ref.x);
 		stream.Write32(ref.y);
 		stream.Write32(ref.w + ref.x);
 		stream.Write32(ref.h + ref.y);
 	}
-	static inline int LcfSize(const RPG::MapInfo::Rect& ref, Writer& stream) {
+	static inline int LcfSize(const RPG::MapInfo::Rect& ref, LcfWriter& stream) {
 		return 4 * 4;
+	}
+	static inline void WriteXml(const RPG::MapInfo::Rect& ref, XmlWriter& stream) {
+		stream.WriteNode<int>("x", ref.x);
+		stream.WriteNode<int>("y", ref.y);
+		stream.WriteNode<int>("w", ref.w);
+		stream.WriteNode<int>("h", ref.h);
 	}
 };
 
 template <>
 IDReader<RPG::MapInfo>* Struct<RPG::MapInfo>::ID_reader = new IDReaderT<RPG::MapInfo, WithID>();
+
+template <>
+const std::string Struct<RPG::MapInfo>::name("MapInfo");
 
 template <>
 const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {

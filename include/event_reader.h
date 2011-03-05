@@ -23,22 +23,25 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "reader.h"
-#include "writer.h"
+#include "reader_lcf.h"
+#include "writer_lcf.h"
+#include "writer_xml.h"
 #include "rpg_eventcommand.h"
 
 ////////////////////////////////////////////////////////////
 /// Event Reader namespace
 ////////////////////////////////////////////////////////////
 namespace Event_Reader {
-	RPG::EventCommand ReadEventCommand(Reader& stream);
-	void ReadEventCommand(RPG::EventCommand& command, Reader& stream);
-	void WriteEventCommand(const RPG::EventCommand& event_command, Writer& stream);
-	int EventCommandSize(const RPG::EventCommand& event_command, Writer& stream);
+	RPG::EventCommand ReadEventCommand(LcfReader& stream);
+	void ReadEventCommand(RPG::EventCommand& command, LcfReader& stream);
+	void WriteEventCommand(const RPG::EventCommand& event_command, LcfWriter& stream);
+	int EventCommandSize(const RPG::EventCommand& event_command, LcfWriter& stream);
+	void WriteEventCommand(const RPG::EventCommand& event_command, XmlWriter& stream);
 
-	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, Reader& stream, uint32_t length);
-	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, Writer& stream);
-	int EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, Writer& stream);
+	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, LcfReader& stream, uint32_t length);
+	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream);
+	int EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream);
+	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, XmlWriter& stream);
 }
 
 #endif

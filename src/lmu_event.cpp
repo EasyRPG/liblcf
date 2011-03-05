@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::Event>* Struct<RPG::Event>::ID_reader = new IDReaderT<RPG::Event, WithID>();
+
+template <>
+const std::string Struct<RPG::Event>::name("Event");
 
 template <>
 const Field<RPG::Event>* Struct<RPG::Event>::fields[] = {

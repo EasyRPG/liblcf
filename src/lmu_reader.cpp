@@ -20,22 +20,22 @@
 ////////////////////////////////////////////////////////////
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_util.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Load Map
 ////////////////////////////////////////////////////////////
-std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
-	Reader reader(filename, ReaderUtil::GetEncoding());
+std::auto_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename) {
+	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
-		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
 	}
 	std::string header = reader.ReadString(reader.ReadInt());
 	if (header != "LcfMapUnit") {
-		Reader::SetError("%s is not a valid RPG2000 map.\n", filename.c_str());
+		LcfReader::SetError("%s is not a valid RPG2000 map.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
 	}
 
@@ -47,10 +47,10 @@ std::auto_ptr<RPG::Map> LMU_Reader::LoadMap(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Save Map
 ////////////////////////////////////////////////////////////
-void LMU_Reader::SaveMap(const std::string& filename, const RPG::Map& map) {
-	Writer writer(filename, ReaderUtil::GetEncoding());
+void LMU_Reader::Save(const std::string& filename, const RPG::Map& map) {
+	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
-		Reader::SetError("Couldn't find %s map file.\n", filename.c_str());
+		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return;
 	}
 	const std::string header("LcfMapUnit");
@@ -58,4 +58,18 @@ void LMU_Reader::SaveMap(const std::string& filename, const RPG::Map& map) {
 	writer.WriteString(header);
 
 	Struct<RPG::Map>::WriteLcf(map, writer);
+}
+
+////////////////////////////////////////////////////////////
+/// Save Map as XML
+////////////////////////////////////////////////////////////
+void LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& map) {
+	XmlWriter writer(filename);
+	if (!writer.IsOk()) {
+		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
+		return;
+	}
+	writer.BeginElement("LMU");
+	Struct<RPG::Map>::WriteXml(map, writer);
+	writer.EndElement("LMU");
 }

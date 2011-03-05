@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 template <>
 struct TypeReader<RPG::EventPageCondition::Flags> {
-	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, Reader& stream, uint32_t length) {
+	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, LcfReader& stream, uint32_t length) {
 		assert(length == 1);
 		uint8_t bitflag = stream.Read8();
 		ref.switch_a	= (bitflag & 0x01) != 0;
@@ -39,7 +39,7 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		ref.timer		= (bitflag & 0x20) != 0;
 		ref.timer2		= (bitflag & 0x40) != 0;
 	}
-	static inline void WriteLcf(const RPG::EventPageCondition::Flags& ref, Writer& stream) {
+	static inline void WriteLcf(const RPG::EventPageCondition::Flags& ref, LcfWriter& stream) {
 		uint8_t bitflag = 0;
 		if (ref.switch_a	) bitflag |= 0x01;
 		if (ref.switch_b	) bitflag |= 0x02;
@@ -50,13 +50,25 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		if (ref.timer2		) bitflag |= 0x40;
 		stream.Write8(bitflag);
 	}
-	static inline int LcfSize(const RPG::EventPageCondition::Flags& ref, Writer& stream) {
+	static inline int LcfSize(const RPG::EventPageCondition::Flags& ref, LcfWriter& stream) {
 		return 1;
+	}
+	static inline void WriteXml(const RPG::EventPageCondition::Flags& ref, XmlWriter& stream) {
+		stream.WriteNode<bool>("switch_a", ref.switch_a);
+		stream.WriteNode<bool>("switch_b", ref.switch_b);
+		stream.WriteNode<bool>("variable", ref.variable);
+		stream.WriteNode<bool>("item", ref.item);
+		stream.WriteNode<bool>("actor", ref.actor);
+		stream.WriteNode<bool>("timer", ref.timer);
+		stream.WriteNode<bool>("timer2", ref.timer2);
 	}
 };
 
 template <>
 IDReader<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::ID_reader = new IDReaderT<RPG::EventPageCondition, NoID>();
+
+template <>
+const std::string Struct<RPG::EventPageCondition>::name("EventPageCondition");
 
 template <>
 const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {

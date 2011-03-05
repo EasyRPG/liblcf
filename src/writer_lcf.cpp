@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////
 /// Headers
 ////////////////////////////////////////////////////////////
-#include "writer.h"
+#include "writer_lcf.h"
 
 ////////////////////////////////////////////////////////////
-Writer::Writer(const char* filename, std::string encoding) :
+LcfWriter::LcfWriter(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
 	stream(fopen(filename, "wb"))
@@ -29,7 +29,7 @@ Writer::Writer(const char* filename, std::string encoding) :
 }
 
 ////////////////////////////////////////////////////////////
-Writer::Writer(const std::string& filename, std::string encoding) :
+LcfWriter::LcfWriter(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
 	stream(fopen(filename.c_str(), "wb"))
@@ -37,19 +37,19 @@ Writer::Writer(const std::string& filename, std::string encoding) :
 }
 
 ////////////////////////////////////////////////////////////
-Writer::~Writer() {
+LcfWriter::~LcfWriter() {
 	Close();
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Close() {
+void LcfWriter::Close() {
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write(const void *ptr, size_t size, size_t nmemb) {
+void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 #ifndef NDEBUG
 	assert(fwrite(ptr, size, nmemb, stream) == nmemb);
 #else
@@ -58,17 +58,17 @@ void Writer::Write(const void *ptr, size_t size, size_t nmemb) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::WriteBool(bool val) {
+void LcfWriter::WriteBool(bool val) {
 	Write8(val ? 1 : 0);
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write8(uint8_t val) {
+void LcfWriter::Write8(uint8_t val) {
 	Write(&val, 1, 1);
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write16(int16_t val) {
+void LcfWriter::Write16(int16_t val) {
 #ifdef READER_BIG_ENDIAN
 	uint16_t val2 = (uint16_t)val;
 	SwapByteOrder(val2);
@@ -78,7 +78,7 @@ void Writer::Write16(int16_t val) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write32(int32_t val) {
+void LcfWriter::Write32(int32_t val) {
 #ifdef READER_BIG_ENDIAN
 	uint32_t val2 = (uint32_t)val;
 	SwapByteOrder(val2);
@@ -88,7 +88,7 @@ void Writer::Write32(int32_t val) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::WriteInt(int32_t val) {
+void LcfWriter::WriteInt(int32_t val) {
 	uint32_t value = (uint32_t) val;
 	for (int i = 28; i >= 0; i -= 7)
 		if (value >= (1U << i) || i == 0)
@@ -96,7 +96,7 @@ void Writer::WriteInt(int32_t val) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::WriteDouble(double val) {
+void LcfWriter::WriteDouble(double val) {
 #ifdef READER_BIG_ENDIAN
 #warning "Need 64-bit Double byte swap"
 #endif
@@ -104,7 +104,7 @@ void Writer::WriteDouble(double val) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::WriteBool(const std::vector<bool>& buffer) {
+void LcfWriter::WriteBool(const std::vector<bool>& buffer) {
 	std::vector<bool>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++) {
 		uint8_t val = *it ? 1 : 0;
@@ -113,12 +113,12 @@ void Writer::WriteBool(const std::vector<bool>& buffer) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write8(const std::vector<uint8_t>& buffer) {
+void LcfWriter::Write8(const std::vector<uint8_t>& buffer) {
 	Write(&buffer.front(), 1, buffer.size());
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write16(const std::vector<int16_t>& buffer) {
+void LcfWriter::Write16(const std::vector<int16_t>& buffer) {
 #ifdef READER_BIG_ENDIAN
 	std::vector<int16_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
@@ -129,7 +129,7 @@ void Writer::Write16(const std::vector<int16_t>& buffer) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::Write32(const std::vector<uint32_t>& buffer) {
+void LcfWriter::Write32(const std::vector<uint32_t>& buffer) {
 #ifdef READER_BIG_ENDIAN
 	std::vector<uint32_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
@@ -140,18 +140,18 @@ void Writer::Write32(const std::vector<uint32_t>& buffer) {
 }
 
 ////////////////////////////////////////////////////////////
-void Writer::WriteString(const std::string& _str) {
+void LcfWriter::WriteString(const std::string& _str) {
 	std::string str = Decode(_str);
 	Write(&*str.begin(), 1, str.size());
 }
 
 ////////////////////////////////////////////////////////////
-bool Writer::IsOk() const {
+bool LcfWriter::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }
 
 ////////////////////////////////////////////////////////////
-std::string Writer::Decode(const std::string& str_to_encode) {
+std::string LcfWriter::Decode(const std::string& str_to_encode) {
 #ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, "65001", encoding);
 #else
@@ -161,14 +161,14 @@ std::string Writer::Decode(const std::string& str_to_encode) {
 
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
-void Writer::SwapByteOrder(uint16_t& us)
+void LcfWriter::SwapByteOrder(uint16_t& us)
 {
 	us =	(us >> 8) |
 			(us << 8);
 }
 
 
-void Writer::SwapByteOrder(uint32_t& ui)
+void LcfWriter::SwapByteOrder(uint32_t& ui)
 {
 	ui =	(ui >> 24) |
 			((ui<<8) & 0x00FF0000) |

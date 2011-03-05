@@ -20,7 +20,7 @@
 ////////////////////////////////////////////////////////////
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader.h"
+#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 ////////////////////////////////////////////////////////////
 template <>
 IDReader<RPG::MoveRoute>* Struct<RPG::MoveRoute>::ID_reader = new IDReaderT<RPG::MoveRoute, NoID>();
+
+template <>
+const std::string Struct<RPG::MoveRoute>::name("MoveRoute");
 
 template <>
 const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
