@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::Skill>* Struct<RPG::Skill>::ID_reader = new IDReaderT<RPG::Skill, WithID>();
 
 template <>
-const std::string Struct<RPG::Skill>::name("Skill");
+char const* const Struct<RPG::Skill>::name("Skill");
 
 template <>
 const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {

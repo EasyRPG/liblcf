@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::Switch>* Struct<RPG::Switch>::ID_reader = new IDReaderT<RPG::Switch, WithID>();
 
 template <>
-const std::string Struct<RPG::Switch>::name("Switch");
+char const* const Struct<RPG::Switch>::name("Switch");
 
 template <>
 const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {

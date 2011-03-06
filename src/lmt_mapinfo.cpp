@@ -58,7 +58,7 @@ template <>
 IDReader<RPG::MapInfo>* Struct<RPG::MapInfo>::ID_reader = new IDReaderT<RPG::MapInfo, WithID>();
 
 template <>
-const std::string Struct<RPG::MapInfo>::name("MapInfo");
+char const* const Struct<RPG::MapInfo>::name("MapInfo");
 
 template <>
 const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {

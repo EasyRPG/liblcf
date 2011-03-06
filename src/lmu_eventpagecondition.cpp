@@ -70,7 +70,7 @@ template <>
 IDReader<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::ID_reader = new IDReaderT<RPG::EventPageCondition, NoID>();
 
 template <>
-const std::string Struct<RPG::EventPageCondition>::name("EventPageCondition");
+char const* const Struct<RPG::EventPageCondition>::name("EventPageCondition");
 
 template <>
 const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {

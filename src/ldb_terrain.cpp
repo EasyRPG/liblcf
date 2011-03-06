@@ -61,7 +61,7 @@ template <>
 IDReader<RPG::Terrain>* Struct<RPG::Terrain>::ID_reader = new IDReaderT<RPG::Terrain, WithID>();
 
 template <>
-const std::string Struct<RPG::Terrain>::name("Terrain");
+char const* const Struct<RPG::Terrain>::name("Terrain");
 
 template <>
 const Field<RPG::Terrain>* Struct<RPG::Terrain>::fields[] = {

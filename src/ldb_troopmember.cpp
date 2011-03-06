@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::TroopMember>* Struct<RPG::TroopMember>::ID_reader = new IDReaderT<RPG::TroopMember, WithID>();
 
 template <>
-const std::string Struct<RPG::TroopMember>::name("TroopMember");
+char const* const Struct<RPG::TroopMember>::name("TroopMember");
 
 template <>
 const Field<RPG::TroopMember>* Struct<RPG::TroopMember>::fields[] = {

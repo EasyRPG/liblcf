@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::Chipset>* Struct<RPG::Chipset>::ID_reader = new IDReaderT<RPG::Chipset, WithID>();
 
 template <>
-const std::string Struct<RPG::Chipset>::name("Chipset");
+char const* const Struct<RPG::Chipset>::name("Chipset");
 
 template <>
 const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {

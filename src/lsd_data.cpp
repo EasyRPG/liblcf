@@ -31,7 +31,7 @@ template <>
 IDReader<RPG::SaveSystem>* Struct<RPG::SaveSystem>::ID_reader = new IDReaderT<RPG::SaveSystem, NoID>();
 
 template <>
-const std::string Struct<RPG::SaveSystem>::name("SaveSystem");
+char const* const Struct<RPG::SaveSystem>::name("SaveSystem");
 
 template <>
 const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {

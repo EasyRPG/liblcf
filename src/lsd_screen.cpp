@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::SaveScreen>* Struct<RPG::SaveScreen>::ID_reader = new IDReaderT<RPG::SaveScreen, NoID>();
 
 template <>
-const std::string Struct<RPG::SaveScreen>::name("SaveScreen");
+char const* const Struct<RPG::SaveScreen>::name("SaveScreen");
 
 template <>
 const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {

@@ -31,7 +31,7 @@ template <>
 IDReader<RPG::TroopPage>* Struct<RPG::TroopPage>::ID_reader = new IDReaderT<RPG::TroopPage, WithID>();
 
 template <>
-const std::string Struct<RPG::TroopPage>::name("TroopPage");
+char const* const Struct<RPG::TroopPage>::name("TroopPage");
 
 template <>
 const Field<RPG::TroopPage>* Struct<RPG::TroopPage>::fields[] = {

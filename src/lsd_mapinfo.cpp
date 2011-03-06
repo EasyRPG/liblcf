@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::ID_reader = new IDReaderT<RPG::SaveMapInfo, NoID>();
 
 template <>
-const std::string Struct<RPG::SaveMapInfo>::name("SaveMapInfo");
+char const* const Struct<RPG::SaveMapInfo>::name("SaveMapInfo");
 
 template <>
 const Field<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::fields[] = {

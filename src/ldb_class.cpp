@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::Class>* Struct<RPG::Class>::ID_reader = new IDReaderT<RPG::Class, WithID>();
 
 template <>
-const std::string Struct<RPG::Class>::name("Class");
+char const* const Struct<RPG::Class>::name("Class");
 
 template <>
 struct TypeReader<RPG::Class::Parameters> {

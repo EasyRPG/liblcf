@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::System>* Struct<RPG::System>::ID_reader = new IDReaderT<RPG::System, NoID>();
 
 template <>
-const std::string Struct<RPG::System>::name("System");
+char const* const Struct<RPG::System>::name("System");
 
 template <>
 const Field<RPG::System>* Struct<RPG::System>::fields[] = {

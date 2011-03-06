@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::SaveInventory>* Struct<RPG::SaveInventory>::ID_reader = new IDReaderT<RPG::SaveInventory, NoID>();
 
 template <>
-const std::string Struct<RPG::SaveInventory>::name("SaveInventory");
+char const* const Struct<RPG::SaveInventory>::name("SaveInventory");
 
 template <>
 const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {

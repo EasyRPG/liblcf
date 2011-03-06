@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::ID_reader = new IDReaderT<RPG::BattlerAnimationExtension, WithID>();
 
 template <>
-const std::string Struct<RPG::BattlerAnimationExtension>::name("BattlerAnimationExtension");
+char const* const Struct<RPG::BattlerAnimationExtension>::name("BattlerAnimationExtension");
 
 template <>
 const Field<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::fields[] = {

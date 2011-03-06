@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::ID_reader = new IDReaderT<RPG::AnimationTiming, WithID>();
 
 template <>
-const std::string Struct<RPG::AnimationTiming>::name("AnimationTiming");
+char const* const Struct<RPG::AnimationTiming>::name("AnimationTiming");
 
 template <>
 const Field<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::fields[] = {

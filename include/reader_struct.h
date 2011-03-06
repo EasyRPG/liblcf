@@ -300,7 +300,7 @@ struct Field {
 	typedef S struct_type;
 
 	int id;
-	const std::string name;
+	const char const* const name;
 
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, LcfWriter& stream) const = 0;
@@ -495,7 +495,7 @@ class Struct {
 	static const Field<S>* fields[];
 	static field_map_type field_map;
 	static IDReader<S>* ID_reader;
-	static const std::string name;
+	static char const* const name;
 
 	static void MakeFieldMap();
 

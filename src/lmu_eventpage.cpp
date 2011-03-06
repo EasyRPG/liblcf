@@ -31,7 +31,7 @@ template <>
 IDReader<RPG::EventPage>* Struct<RPG::EventPage>::ID_reader = new IDReaderT<RPG::EventPage, WithID>();
 
 template <>
-const std::string Struct<RPG::EventPage>::name("EventPage");
+char const* const Struct<RPG::EventPage>::name("EventPage");
 
 template <>
 const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {

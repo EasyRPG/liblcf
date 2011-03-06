@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::MoveRoute>* Struct<RPG::MoveRoute>::ID_reader = new IDReaderT<RPG::MoveRoute, NoID>();
 
 template <>
-const std::string Struct<RPG::MoveRoute>::name("MoveRoute");
+char const* const Struct<RPG::MoveRoute>::name("MoveRoute");
 
 template <>
 const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {

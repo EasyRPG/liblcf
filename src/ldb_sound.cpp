@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::Sound>* Struct<RPG::Sound>::ID_reader = new IDReaderT<RPG::Sound, NoID>();
 
 template <>
-const std::string Struct<RPG::Sound>::name("Sound");
+char const* const Struct<RPG::Sound>::name("Sound");
 
 template <>
 const Field<RPG::Sound>* Struct<RPG::Sound>::fields[] = {

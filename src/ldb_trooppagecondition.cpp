@@ -89,7 +89,7 @@ template <>
 IDReader<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::ID_reader = new IDReaderT<RPG::TroopPageCondition, NoID>();
 
 template <>
-const std::string Struct<RPG::TroopPageCondition>::name("TroopPageCondition");
+char const* const Struct<RPG::TroopPageCondition>::name("TroopPageCondition");
 
 template <>
 const Field<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::fields[] = {

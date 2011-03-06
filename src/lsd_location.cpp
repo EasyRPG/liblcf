@@ -31,7 +31,7 @@ template <>
 IDReader<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::ID_reader = new IDReaderT<RPG::SavePartyLocation, NoID>();
 
 template <>
-const std::string Struct<RPG::SavePartyLocation>::name("SavePartyLocation");
+char const* const Struct<RPG::SavePartyLocation>::name("SavePartyLocation");
 
 template <>
 const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = {

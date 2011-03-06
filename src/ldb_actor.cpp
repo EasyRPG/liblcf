@@ -94,7 +94,7 @@ template <>
 IDReader<RPG::Actor>* Struct<RPG::Actor>::ID_reader = new IDReaderT<RPG::Actor, WithID>();
 
 template <>
-const std::string Struct<RPG::Actor>::name("Actor");
+char const* const Struct<RPG::Actor>::name("Actor");
 
 template <>
 const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {

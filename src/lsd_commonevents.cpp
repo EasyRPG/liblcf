@@ -30,7 +30,7 @@ template <>
 IDReader<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::ID_reader = new IDReaderT<RPG::SaveCommonEvent, WithID>();
 
 template <>
-const std::string Struct<RPG::SaveCommonEvent>::name("SaveCommonEvent");
+char const* const Struct<RPG::SaveCommonEvent>::name("SaveCommonEvent");
 
 template <>
 const Field<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::fields[] = {
