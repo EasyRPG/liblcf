@@ -15,33 +15,31 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _EVENT_READER_H_
-#define _EVENT_READER_H_
+#ifndef _RPG_PARAMETERS_H_
+#define _RPG_PARAMETERS_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "reader_lcf.h"
-#include "writer_lcf.h"
-#include "writer_xml.h"
-#include "rpg_eventcommand.h"
 
 ////////////////////////////////////////////////////////////
-/// Event Reader namespace
+/// RPG::Parameters class
 ////////////////////////////////////////////////////////////
-namespace Event_Reader {
-	RPG::EventCommand ReadEventCommand(LcfReader& stream);
-	void ReadEventCommand(RPG::EventCommand& command, LcfReader& stream);
-	void WriteEventCommand(const RPG::EventCommand& event_command, LcfWriter& stream);
-	int EventCommandSize(const RPG::EventCommand& event_command, LcfWriter& stream);
-	void WriteEventCommand(const RPG::EventCommand& event_command, XmlWriter& stream);
-
-	void ReadEventCommands(std::vector<RPG::EventCommand>& commands, LcfReader& stream, uint32_t length);
-	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream);
-	int EventCommandsSize(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream);
-	void WriteEventCommands(const std::vector<RPG::EventCommand>& event_commands, XmlWriter& stream);
+namespace RPG {
+	class Parameters {
+	public:
+		Parameters();
+		void Setup(int final_level);
+		
+		std::vector<int16_t> maxhp;
+		std::vector<int16_t> maxsp;
+		std::vector<int16_t> attack;
+		std::vector<int16_t> defense;
+		std::vector<int16_t> spirit;
+		std::vector<int16_t> agility;
+	};
 }
 
 #endif

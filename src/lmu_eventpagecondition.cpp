@@ -64,6 +64,42 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 		stream.WriteNode<bool>("timer2", ref.timer2);
 		stream.EndElement("EventPageCondition_Flags");
 	}
+
+	class FlagsXmlHandler : public XmlHandler {
+	private:
+		RPG::EventPageCondition::Flags& ref;
+		bool* field;
+	public:
+		FlagsXmlHandler(RPG::EventPageCondition::Flags& ref) : ref(ref), field(NULL) {}
+		void StartElement(XmlReader& stream, const char* name, const char** atts) {
+			if (strcmp(name, "switch_a") == 0)
+				field = &ref.switch_a;
+			else if (strcmp(name, "switch_b") == 0)
+				field = &ref.switch_b;
+			else if (strcmp(name, "variable") == 0)
+				field = &ref.variable;
+			else if (strcmp(name, "item") == 0)
+				field = &ref.item;
+			else if (strcmp(name, "actor") == 0)
+				field = &ref.actor;
+			else if (strcmp(name, "timer") == 0)
+				field = &ref.timer;
+			else if (strcmp(name, "timer2") == 0)
+				field = &ref.timer2;
+			else {
+				// error
+			}
+		}
+		void CharacterData(XmlReader& stream, const char* s, int len) {
+			XmlReader::Read<bool>(*field, std::string(s, len));
+		}
+	};
+
+	static inline void BeginXml(RPG::EventPageCondition::Flags& ref, XmlReader& stream) {
+		stream.SetHandler(new WrapperXmlHandler("EventPageCondition_Flags", new FlagsXmlHandler(ref)));
+	}
+	static void ParseXml(RPG::EventPageCondition::Flags& ref, const std::string& data) {
+	}
 };
 
 template <>

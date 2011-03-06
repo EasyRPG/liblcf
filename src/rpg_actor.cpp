@@ -44,20 +44,7 @@ RPG::Actor::Actor() {
 	fix_equipment = false;
 	auto_battle = false;
 	super_guard = false;
-	parameters.maxhp.resize(final_level + 1);
-	parameters.maxsp.resize(final_level + 1);
-	parameters.attack.resize(final_level + 1);
-	parameters.defense.resize(final_level + 1);
-	parameters.spirit.resize(final_level + 1);
-	parameters.agility.resize(final_level + 1);
-	for (int i = 0; i <= final_level; i++) {
-		parameters.maxhp[i] = 1;
-		parameters.maxsp[i] = 0;
-		parameters.attack[i] = 1;
-		parameters.defense[i] = 1;
-		parameters.spirit[i] = 1;
-		parameters.agility[i] = 1;
-	}
+	parameters.Setup(final_level);
 	#if RPGMAKER == RPG2K
 	exp_base = 30;
 	exp_inflation =30;
@@ -67,11 +54,6 @@ RPG::Actor::Actor() {
 	#endif
 	exp_correction = 0;
 	unarmed_animation = 1;
-	initial_equipment.weapon_id = 0;
-	initial_equipment.shield_id = 0;
-	initial_equipment.armor_id = 0;
-	initial_equipment.helmet_id = 0;
-	initial_equipment.accessory_id = 0;
 	
 	// RPG Maker 2000
 	rename_skill = false;

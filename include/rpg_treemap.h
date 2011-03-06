@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <vector>
 #include "rpg_mapinfo.h"
+#include "rpg_start.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::TreeMap class
@@ -35,18 +36,7 @@ namespace RPG {
 		std::vector<MapInfo> maps;
 		std::vector<int> tree_order;
 		int active_node;
-		int start_map_id;
-		int start_x;
-		int start_y;
-		int boat_map_id;
-		int boat_x;
-		int boat_y;
-		int ship_map_id;
-		int ship_x;
-		int ship_y;
-		int airship_map_id;
-		int airship_x;
-		int airship_y;
+		Start start;
 	};
 }
 

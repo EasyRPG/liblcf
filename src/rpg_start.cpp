@@ -18,11 +18,22 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "rpg_treemap.h"
+#include "rpg_start.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
 ////////////////////////////////////////////////////////////
-RPG::TreeMap::TreeMap() {
-	active_node = 0;
+RPG::Start::Start() {
+	party_map_id = 0;
+	party_x = 0;
+	party_y = 0;
+	boat_map_id = 0;
+	boat_x = 0;
+	boat_y = 0;
+	ship_map_id = 0;
+	ship_x = 0;
+	ship_y = 0;
+	airship_map_id = 0;
+	airship_x = 0;
+	airship_y = 0;
 }

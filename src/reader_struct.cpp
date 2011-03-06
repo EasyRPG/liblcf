@@ -1,3 +1,4 @@
+#include <cstring>
 #include <iostream>
 #include <iomanip>
 #include "ldb_reader.h"
@@ -6,16 +7,27 @@
 #include "lsd_reader.h"
 #include "reader_struct.h"
 
+/// Read/Write Struct
+
 template <class S>
 void Struct<S>::MakeFieldMap() {
+	if (!field_map.empty())
+		return;
 	for (int i = 0; fields[i] != NULL; i++)
 		field_map[fields[i]->id] = fields[i];
 }
 
 template <class S>
+void Struct<S>::MakeTagMap() {
+	if (!tag_map.empty())
+		return;
+	for (int i = 0; fields[i] != NULL; i++)
+		tag_map[fields[i]->name] = fields[i];
+}
+
+template <class S>
 void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
-	if (field_map.empty())
-		MakeFieldMap();
+	MakeFieldMap();
 
 	LcfReader::Chunk chunk_info;
 
@@ -81,6 +93,48 @@ void Struct<S>::WriteXml(const S& obj, XmlWriter& stream) {
 }
 
 template <class S>
+class StructXmlHandler : public XmlHandler {
+public:
+	StructXmlHandler(S& ref) : ref(ref), field(NULL) {
+		Struct<S>::MakeTagMap();
+	}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		field = Struct<S>::tag_map[name];
+		field->BeginXml(ref, stream);
+	}
+
+	void CharacterData(XmlReader& stream, const char* s, int len) {
+		if (field)
+			field->ParseXml(ref, std::string(s, len));
+	}
+private:
+	S& ref;
+	const Field<S>* field;
+};
+
+template <class S>
+class StructFieldXmlHandler : public XmlHandler {
+public:
+	StructFieldXmlHandler(S& ref) : ref(ref) {}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		// if (strcmp(name, Struct<S>::name) != 0) error();
+		Struct<S>::ID_reader->ReadIDXml(ref, atts);
+		stream.SetHandler(new StructXmlHandler<S>(ref));
+	}
+private:
+	S& ref;
+};
+
+template <class S>
+void Struct<S>::BeginXml(S& obj, XmlReader& stream) {
+	stream.SetHandler(new StructFieldXmlHandler<S>(obj));
+}
+
+/// Read/Write std::vector<Struct>
+
+template <class S>
 void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
 	vec.resize(count);
@@ -112,6 +166,29 @@ void Struct<S>::WriteXml(const std::vector<S>& vec, XmlWriter& stream) {
 	for (int i = 0; i < count; i++)
 		TypeReader<S>::WriteXml(vec[i], stream);
 }
+
+template <class S>
+class StructVectorXmlHandler : public XmlHandler {
+public:
+	StructVectorXmlHandler(std::vector<S>& ref) : ref(ref) {}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		// if (strcmp(name, Struct<S>::name) != 0) error();
+		ref.resize(ref.size() + 1);
+		S& obj = ref.back();
+		Struct<S>::ID_reader->ReadIDXml(obj, atts);
+		stream.SetHandler(new StructXmlHandler<S>(obj));
+	}
+private:
+	std::vector<S>& ref;
+};
+
+template <class S>
+void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
+	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
+}
+
+/// Instantiate templates
 
 template class Struct<RPG::Actor>;
 template class Struct<RPG::Animation>;
@@ -159,13 +236,13 @@ template class Struct<RPG::SaveTitle>;
 template class Struct<RPG::SaveVehicleLocation>;
 template class Struct<RPG::Skill>;
 template class Struct<RPG::Sound>;
+template class Struct<RPG::Start>;
 template class Struct<RPG::State>;
 template class Struct<RPG::Switch>;
 template class Struct<RPG::System>;
 template class Struct<RPG::Terms>;
 template class Struct<RPG::Terrain>;
 template class Struct<RPG::TestBattler>;
-template class Struct<RPG::TreeMap>;
 template class Struct<RPG::Troop>;
 template class Struct<RPG::TroopMember>;
 template class Struct<RPG::TroopPage>;

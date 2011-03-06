@@ -20,7 +20,6 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
@@ -33,47 +32,13 @@ template <>
 char const* const Struct<RPG::Class>::name("Class");
 
 template <>
-struct TypeReader<RPG::Class::Parameters> {
-	static inline void ReadLcf(RPG::Class::Parameters& ref, LcfReader& stream, uint32_t length) {
-		int n = length / 6;
-		stream.Read16(ref.maxhp, n);
-		stream.Read16(ref.maxsp, n);
-		stream.Read16(ref.attack, n);
-		stream.Read16(ref.defense, n);
-		stream.Read16(ref.spirit, n);
-		stream.Read16(ref.agility, n);
-	}
-	static inline void WriteLcf(const RPG::Class::Parameters& ref, LcfWriter& stream) {
-		stream.Write16(ref.maxhp);
-		stream.Write16(ref.maxsp);
-		stream.Write16(ref.attack);
-		stream.Write16(ref.defense);
-		stream.Write16(ref.spirit);
-		stream.Write16(ref.agility);
-	}
-	static inline int LcfSize(const RPG::Class::Parameters& ref, LcfWriter& stream) {
-		return ref.maxhp.size() * 2 * 6;
-	}
-	static inline void WriteXml(const RPG::Class::Parameters& ref, XmlWriter& stream) {
-		stream.BeginElement("Parameters");
-		stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
-		stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
-		stream.WriteNode<std::vector<int16_t> >("attack", ref.attack);
-		stream.WriteNode<std::vector<int16_t> >("defense", ref.defense);
-		stream.WriteNode<std::vector<int16_t> >("spirit", ref.spirit);
-		stream.WriteNode<std::vector<int16_t> >("agility", ref.agility);
-		stream.EndElement("Parameters");
-	}
-};
-
-template <>
 const Field<RPG::Class>* Struct<RPG::Class>::fields[] = {
 	new TypedField<RPG::Class, std::string>					(&RPG::Class::name,					LDB_Reader::ChunkClass::name,				"name"				),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::two_swords_style,		LDB_Reader::ChunkClass::two_swords_style,	"two_swords_style"	),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::fix_equipment,		LDB_Reader::ChunkClass::fix_equipment,		"fix_equipment"		),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::auto_battle,			LDB_Reader::ChunkClass::auto_battle,		"auto_battle"		),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::super_guard,			LDB_Reader::ChunkClass::super_guard,		"super_guard"		),
-	new TypedField<RPG::Class, RPG::Class::Parameters>		(&RPG::Class::parameters,			LDB_Reader::ChunkClass::parameters,			"parameters"		),
+	new TypedField<RPG::Class, RPG::Parameters>				(&RPG::Class::parameters,			LDB_Reader::ChunkClass::parameters,			"parameters"		),
 	new TypedField<RPG::Class, int>							(&RPG::Class::exp_base,				LDB_Reader::ChunkClass::exp_base,			"exp_base"			),
 	new TypedField<RPG::Class, int>							(&RPG::Class::exp_inflation,		LDB_Reader::ChunkClass::exp_inflation,		"exp_inflation"		),
 	new TypedField<RPG::Class, int>							(&RPG::Class::exp_correction,		LDB_Reader::ChunkClass::exp_correction,		"exp_correction"	),

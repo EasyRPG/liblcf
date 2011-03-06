@@ -43,6 +43,8 @@
 #include "rpg_battleranimation.h"
 #include "rpg_battleranimationdata.h"
 #include "rpg_itemanimation.h"
+#include "rpg_parameters.h"
+#include "rpg_equipment.h"
 #include "rpg_database.h"
 
 ////////////////////////////////////////////////////////////
@@ -52,6 +54,7 @@ namespace LDB_Reader {
 	bool Load(const std::string &filename);
 	bool Save(const std::string &filename);
 	bool SaveXml(const std::string &filename);
+	bool LoadXml(const std::string &filename);
 }
 
 #endif

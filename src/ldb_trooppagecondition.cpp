@@ -83,6 +83,48 @@ struct TypeReader<RPG::TroopPageCondition::Flags> {
 		stream.WriteNode<bool>("command_actor", ref.command_actor);
 		stream.EndElement("TroopPageCondition_Flags");
 	}
+
+	class FlagsXmlHandler : public XmlHandler {
+	private:
+		RPG::TroopPageCondition::Flags& ref;
+		bool* field;
+	public:
+		FlagsXmlHandler(RPG::TroopPageCondition::Flags& ref) : ref(ref), field(NULL) {}
+		void StartElement(XmlReader& stream, const char* name, const char** atts) {
+			if (strcmp(name, "switch_a") == 0)
+				field = &ref.switch_a;
+			else if (strcmp(name, "switch_b") == 0)
+				field = &ref.switch_b;
+			else if (strcmp(name, "variable") == 0)
+				field = &ref.variable;
+			else if (strcmp(name, "turn") == 0)
+				field = &ref.turn;
+			else if (strcmp(name, "fatigue") == 0)
+				field = &ref.fatigue;
+			else if (strcmp(name, "enemy_hp") == 0)
+				field = &ref.enemy_hp;
+			else if (strcmp(name, "actor_hp") == 0)
+				field = &ref.actor_hp;
+			else if (strcmp(name, "turn_enemy") == 0)
+				field = &ref.turn_enemy;
+			else if (strcmp(name, "turn_actor") == 0)
+				field = &ref.turn_actor;
+			else if (strcmp(name, "command_actor") == 0)
+				field = &ref.command_actor;
+			else {
+				// error
+			}
+		}
+		void CharacterData(XmlReader& stream, const char* s, int len) {
+			XmlReader::Read<bool>(*field, std::string(s, len));
+		}
+	};
+
+	static inline void BeginXml(RPG::TroopPageCondition::Flags& ref, XmlReader& stream) {
+		stream.SetHandler(new WrapperXmlHandler("TroopPageCondition_Flags", new FlagsXmlHandler(ref)));
+	}
+	static void ParseXml(RPG::TroopPageCondition::Flags& ref, const std::string& data) {
+	}
 };
 
 template <>

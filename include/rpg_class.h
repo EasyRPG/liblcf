@@ -24,6 +24,7 @@
 #include <string>
 #include <vector>
 #include "rpg_learning.h"
+#include "rpg_parameters.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Class class
@@ -39,14 +40,7 @@ namespace RPG {
 		bool fix_equipment;
 		bool auto_battle;
 		bool super_guard;
-		struct Parameters {
-			std::vector<int16_t> maxhp;
-			std::vector<int16_t> maxsp;
-			std::vector<int16_t> attack;
-			std::vector<int16_t> defense;
-			std::vector<int16_t> spirit;
-			std::vector<int16_t> agility;
-		} parameters;
+		Parameters parameters;
 		int exp_base;
 		int exp_inflation;
 		int exp_correction;

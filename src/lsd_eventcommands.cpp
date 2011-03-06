@@ -20,7 +20,6 @@
 ////////////////////////////////////////////////////////////
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "event_reader.h"
 #include "rpg_save.h"
 #include "reader_struct.h"
 

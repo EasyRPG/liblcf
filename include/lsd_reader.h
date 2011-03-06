@@ -33,6 +33,7 @@ namespace LSD_Reader {
 	std::auto_ptr<RPG::Save> Load(const std::string &filename);
 	void Save(const std::string& filename, const RPG::Save& save);
 	void SaveXml(const std::string& filename, const RPG::Save& save);
+	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
 }
 
 #endif

@@ -73,3 +73,20 @@ void LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& map) {
 	Struct<RPG::Map>::WriteXml(map, writer);
 	writer.EndElement("LMU");
 }
+
+////////////////////////////////////////////////////////////
+/// Load Map as XML
+////////////////////////////////////////////////////////////
+std::auto_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
+	XmlReader reader(filename);
+	if (!reader.IsOk()) {
+		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
+		return std::auto_ptr<RPG::Map>(NULL);
+	}
+
+	RPG::Map* map = new RPG::Map();
+	reader.SetHandler(new RootXmlHandler<RPG::Map>(*map, "LMU"));
+	reader.Parse();
+	return std::auto_ptr<RPG::Map>(map);
+}
+

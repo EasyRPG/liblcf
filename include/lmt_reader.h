@@ -32,11 +32,9 @@
 ////////////////////////////////////////////////////////////
 namespace LMT_Reader {
 	bool Load(const std::string &filename);
-	void ReadTreeMap(RPG::TreeMap& treemap, LcfReader& stream);
 	bool Save(const std::string& filename);
-	void WriteTreeMap(const RPG::TreeMap& treemap, LcfWriter& stream);
 	bool SaveXml(const std::string& filename);
-	void WriteTreeMap(const RPG::TreeMap& treemap, XmlWriter& stream);
+	bool LoadXml(const std::string &filename);
 }
 
 #endif

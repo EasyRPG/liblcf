@@ -28,11 +28,11 @@ namespace LMT_Reader {
 		};
 	};
 
-	struct ChunkTreeMap {
+	struct ChunkStart {
 		enum Index {
-			start_map_id	= 0x01, // Integer
-			start_x			= 0x02, // Integer
-			start_y			= 0x03, // Integer
+			party_map_id	= 0x01, // Integer
+			party_x			= 0x02, // Integer
+			party_y			= 0x03, // Integer
 			boat_map_id		= 0x0B, // Integer
 			boat_x			= 0x0C, // Integer
 			boat_y			= 0x0D, // Integer

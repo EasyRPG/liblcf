@@ -38,7 +38,7 @@ bool LDB_Reader::Load(const std::string& filename) {
 		LcfReader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
 		return false;
 	}
-	Struct<RPG::Database>::ReadLcf(Data::data, reader);
+	TypeReader<RPG::Database>::ReadLcf(Data::data, reader, 0);
 	return true;
 }
 
@@ -54,7 +54,7 @@ bool LDB_Reader::Save(const std::string& filename) {
 	const std::string header("LcfDataBase");
 	writer.WriteInt(header.size());
 	writer.WriteString(header);
-	Struct<RPG::Database>::WriteLcf(Data::data, writer);
+	TypeReader<RPG::Database>::WriteLcf(Data::data, writer);
 	return true;
 }
 
@@ -68,8 +68,21 @@ bool LDB_Reader::SaveXml(const std::string& filename) {
 		return false;
 	}
 	writer.BeginElement("LDB");
-	Struct<RPG::Database>::WriteXml(Data::data, writer);
+	TypeReader<RPG::Database>::WriteXml(Data::data, writer);
 	writer.EndElement("LDB");
 	return true;
 }
 
+////////////////////////////////////////////////////////////
+/// Load Database as XML
+////////////////////////////////////////////////////////////
+bool LDB_Reader::LoadXml(const std::string& filename) {
+	XmlReader reader(filename);
+	if (!reader.IsOk()) {
+		LcfReader::SetError("Couldn't open %s database file.\n", filename.c_str());
+		return false;
+	}
+	reader.SetHandler(new RootXmlHandler<RPG::Database>(Data::data, "LDB"));
+	reader.Parse();
+	return true;
+}

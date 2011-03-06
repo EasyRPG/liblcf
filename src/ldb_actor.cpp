@@ -20,76 +20,11 @@
 ////////////////////////////////////////////////////////////
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_lcf.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
 /// Read Actor
 ////////////////////////////////////////////////////////////
-template <>
-struct TypeReader<RPG::Actor::Parameters> {
-	static inline void ReadLcf(RPG::Actor::Parameters& ref, LcfReader& stream, uint32_t length) {
-		int n = length / 6;
-		stream.Read16(ref.maxhp, n);
-		stream.Read16(ref.maxsp, n);
-		stream.Read16(ref.attack, n);
-		stream.Read16(ref.defense, n);
-		stream.Read16(ref.spirit, n);
-		stream.Read16(ref.agility, n);
-	}
-	static inline void WriteLcf(const RPG::Actor::Parameters& ref, LcfWriter& stream) {
-		stream.Write16(ref.maxhp);
-		stream.Write16(ref.maxsp);
-		stream.Write16(ref.attack);
-		stream.Write16(ref.defense);
-		stream.Write16(ref.spirit);
-		stream.Write16(ref.agility);
-	}
-	static inline int LcfSize(const RPG::Actor::Parameters& ref, LcfWriter& stream) {
-		return ref.maxhp.size() * 2 * 6;
-	}
-	static inline void WriteXml(const RPG::Actor::Parameters& ref, XmlWriter& stream) {
-		stream.BeginElement("Parameters");
-		stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
-		stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
-		stream.WriteNode<std::vector<int16_t> >("attack", ref.attack);
-		stream.WriteNode<std::vector<int16_t> >("defense", ref.defense);
-		stream.WriteNode<std::vector<int16_t> >("spirit", ref.spirit);
-		stream.WriteNode<std::vector<int16_t> >("agility", ref.agility);
-		stream.EndElement("Parameters");
-	}
-};
-
-template <>
-struct TypeReader<RPG::Actor::Equipment> {
-	static inline void ReadLcf(RPG::Actor::Equipment& ref, LcfReader& stream, uint32_t length) {
-		ref.weapon_id = stream.Read16();
-		ref.shield_id = stream.Read16();
-		ref.armor_id = stream.Read16();
-		ref.helmet_id = stream.Read16();
-		ref.accessory_id = stream.Read16();
-	}
-	static inline void WriteLcf(const RPG::Actor::Equipment& ref, LcfWriter& stream) {
-		stream.Write16(ref.weapon_id);
-		stream.Write16(ref.shield_id);
-		stream.Write16(ref.armor_id);
-		stream.Write16(ref.helmet_id);
-		stream.Write16(ref.accessory_id);
-	}
-	static inline int LcfSize(const RPG::Actor::Equipment& ref, LcfWriter& stream) {
-		return 2 * 5;
-	}
-	static inline void WriteXml(const RPG::Actor::Equipment& ref, XmlWriter& stream) {
-		stream.BeginElement("Equipment");
-		stream.WriteNode<int16_t>("weapon_id", ref.weapon_id);
-		stream.WriteNode<int16_t>("shield_id", ref.shield_id);
-		stream.WriteNode<int16_t>("armor_id", ref.armor_id);
-		stream.WriteNode<int16_t>("helmet_id", ref.helmet_id);
-		stream.WriteNode<int16_t>("accessory_id", ref.accessory_id);
-		stream.EndElement("Equipment");
-	}
-};
-
 template <>
 IDReader<RPG::Actor>* Struct<RPG::Actor>::ID_reader = new IDReaderT<RPG::Actor, WithID>();
 
@@ -113,11 +48,11 @@ const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {
 	new TypedField<RPG::Actor, bool>							(&RPG::Actor::fix_equipment,		LDB_Reader::ChunkActor::fix_equipment,			"fix_equipment"			),
 	new TypedField<RPG::Actor, bool>							(&RPG::Actor::auto_battle,			LDB_Reader::ChunkActor::auto_battle,			"auto_battle"			),
 	new TypedField<RPG::Actor, bool>							(&RPG::Actor::super_guard,			LDB_Reader::ChunkActor::super_guard,			"super_guard"			),
-	new TypedField<RPG::Actor, RPG::Actor::Parameters>			(&RPG::Actor::parameters,			LDB_Reader::ChunkActor::parameters,				"parameters"			),
+	new TypedField<RPG::Actor, RPG::Parameters>					(&RPG::Actor::parameters,			LDB_Reader::ChunkActor::parameters,				"parameters"			),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_base,				LDB_Reader::ChunkActor::exp_base,				"exp_base"				),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_inflation,		LDB_Reader::ChunkActor::exp_inflation,			"exp_inflation"			),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::exp_correction,		LDB_Reader::ChunkActor::exp_correction,			"exp_correction"		),
-	new TypedField<RPG::Actor, RPG::Actor::Equipment>			(&RPG::Actor::initial_equipment,	LDB_Reader::ChunkActor::initial_equipment,		"initial_equipment"		),
+	new TypedField<RPG::Actor, RPG::Equipment>					(&RPG::Actor::initial_equipment,	LDB_Reader::ChunkActor::initial_equipment,		"initial_equipment"		),
 	new TypedField<RPG::Actor, int>								(&RPG::Actor::unarmed_animation,	LDB_Reader::ChunkActor::unarmed_animation,		"unarmed_animation"		),
 	new TypedField<RPG::Actor, std::vector<RPG::Learning> >		(&RPG::Actor::skills,				LDB_Reader::ChunkActor::skills,					"skills"				),
 	new SizeField<RPG::Actor, uint8_t>							(&RPG::Actor::state_ranks,			LDB_Reader::ChunkActor::state_ranks_size								),

@@ -25,11 +25,16 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <cstring>
+#include <cstdlib>
 #include "reader_lcf.h"
 #include "writer_lcf.h"
+#include "reader_xml.h"
 #include "writer_xml.h"
-#include "event_reader.h"
-#include "move_reader.h"
+#include "rpg_equipment.h"
+#include "rpg_parameters.h"
+#include "rpg_eventcommand.h"
+#include "rpg_movecommand.h"
 
 ////////////////////////////////////////////////////////////
 // Typed data readers
@@ -56,38 +61,72 @@ struct TypeReader {
 	static void WriteXml(const T& ref, XmlWriter& stream) {
 		Struct<T>::WriteXml(ref, stream);
 	}
+	static void BeginXml(T& ref, XmlReader& stream) {
+		Struct<T>::BeginXml(ref, stream);
+	}
+	static void ParseXml(T& ref, const std::string& data) {
+		// no-op
+	}
+};
+
+template <>
+struct TypeReader<RPG::Equipment> {
+	static void ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::Equipment& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::Equipment& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::Equipment& ref, XmlWriter& stream);
+	static void BeginXml(RPG::Equipment& ref, XmlReader& stream);
+	static void ParseXml(RPG::Equipment& ref, const std::string& data);
+};
+
+template <>
+struct TypeReader<RPG::Parameters> {
+	static void ReadLcf(RPG::Parameters& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::Parameters& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::Parameters& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::Parameters& ref, XmlWriter& stream);
+	static void BeginXml(RPG::Parameters& ref, XmlReader& stream);
+	static void ParseXml(RPG::Parameters& ref, const std::string& data);
+};
+
+template <>
+struct TypeReader<RPG::EventCommand> {
+	static void ReadLcf(RPG::EventCommand& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::EventCommand& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::EventCommand& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::EventCommand& ref, XmlWriter& stream);
+	static void BeginXml(RPG::EventCommand& ref, XmlReader& stream);
+	static void ParseXml(RPG::EventCommand& ref, const std::string& data);
 };
 
 template <>
 struct TypeReader<std::vector<RPG::EventCommand> > {
-	static void ReadLcf(std::vector<RPG::EventCommand>& ref, LcfReader& stream, uint32_t length) {
-		Event_Reader::ReadEventCommands(ref, stream, length);
-	}
-	static void WriteLcf(const std::vector<RPG::EventCommand>& ref, LcfWriter& stream) {
-		Event_Reader::WriteEventCommands(ref, stream);
-	}
-	static int LcfSize(const std::vector<RPG::EventCommand>& ref, LcfWriter& stream) {
-		return Event_Reader::EventCommandsSize(ref, stream);
-	}
-	static void WriteXml(const std::vector<RPG::EventCommand>& ref, XmlWriter& stream) {
-		Event_Reader::WriteEventCommands(ref, stream);
-	}
+	static void ReadLcf(std::vector<RPG::EventCommand>& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const std::vector<RPG::EventCommand>& ref, LcfWriter& stream);
+	static int LcfSize(const std::vector<RPG::EventCommand>& ref, LcfWriter& stream);
+	static void WriteXml(const std::vector<RPG::EventCommand>& ref, XmlWriter& stream);
+	static void BeginXml(std::vector<RPG::EventCommand>& ref, XmlReader& stream);
+	static void ParseXml(std::vector<RPG::EventCommand>& ref, const std::string& data);
+};
+
+template <>
+struct TypeReader<RPG::MoveCommand> {
+	static void ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::MoveCommand& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::MoveCommand& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::MoveCommand& ref, XmlWriter& stream);
+	static void BeginXml(RPG::MoveCommand& ref, XmlReader& stream);
+	static void ParseXml(RPG::MoveCommand& ref, const std::string& data);
 };
 
 template <>
 struct TypeReader<std::vector<RPG::MoveCommand> > {
-	static inline void ReadLcf(std::vector<RPG::MoveCommand>& ref, LcfReader& stream, uint32_t length) {
-		Move_Reader::ReadMoveCommands(ref, stream, length);
-	}
-	static void WriteLcf(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream) {
-		Move_Reader::WriteMoveCommands(ref, stream);
-	}
-	static int LcfSize(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream) {
-		return Move_Reader::MoveCommandsSize(ref, stream);
-	}
-	static void WriteXml(const std::vector<RPG::MoveCommand>& ref, XmlWriter& stream) {
-		Move_Reader::WriteMoveCommands(ref, stream);
-	}
+	static void ReadLcf(std::vector<RPG::MoveCommand>& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream);
+	static int LcfSize(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream);
+	static void WriteXml(const std::vector<RPG::MoveCommand>& ref, XmlWriter& stream);
+	static void BeginXml(std::vector<RPG::MoveCommand>& ref, XmlReader& stream);
+	static void ParseXml(std::vector<RPG::MoveCommand>& ref, const std::string& data);
 };
 
 template <class T>
@@ -103,6 +142,12 @@ struct TypeReader<std::vector<T> > {
 	}
 	static void WriteXml(const std::vector<T>& ref, XmlWriter& stream) {
 		Struct<T>::WriteXml(ref, stream);
+	}
+	static void BeginXml(std::vector<T>& ref, XmlReader& stream) {
+		Struct<T>::BeginXml(ref, stream);
+	}
+	static void ParseXml(std::vector<T>& ref, const std::string& data) {
+		// no-op
 	}
 };
 
@@ -121,6 +166,12 @@ struct TypeReader<uint8_t> {
 	static inline void WriteXml(const uint8_t& ref, XmlWriter& stream) {
 		stream.WriteInt((int) ref);
 	}
+	static void BeginXml(uint8_t& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(uint8_t& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
 };
 
 template <>
@@ -135,8 +186,14 @@ struct TypeReader<int16_t> {
 	static int LcfSize(const int16_t& ref, LcfWriter& stream) {
 		return 2;
 	}
-	static inline void WriteXml(const uint16_t& ref, XmlWriter& stream) {
+	static inline void WriteXml(const int16_t& ref, XmlWriter& stream) {
 		stream.WriteInt((int) ref);
+	}
+	static void BeginXml(int16_t& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(int16_t& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
 	}
 };
 
@@ -155,6 +212,12 @@ struct TypeReader<int> {
 	static inline void WriteXml(const int& ref, XmlWriter& stream) {
 		stream.WriteInt(ref);
 	}
+	static void BeginXml(int& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(int& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
 };
 
 template <>
@@ -171,6 +234,12 @@ struct TypeReader<bool> {
 	}
 	static inline void WriteXml(const bool& ref, XmlWriter& stream) {
 		stream.Write<bool>(ref);
+	}
+	static void BeginXml(bool& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(bool& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
 	}
 };
 
@@ -189,6 +258,12 @@ struct TypeReader<double> {
 	static inline void WriteXml(const double& ref, XmlWriter& stream) {
 		stream.Write<double>(ref);
 	}
+	static void BeginXml(double& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(double& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
 };
 
 template <>
@@ -204,6 +279,12 @@ struct TypeReader<std::string> {
 	}
 	static inline void WriteXml(const std::string& ref, XmlWriter& stream) {
 		stream.Write<std::string>(ref);
+	}
+	static void BeginXml(std::string& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(std::string& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
 	}
 };
 
@@ -221,6 +302,12 @@ struct TypeReader<std::vector<uint8_t> > {
 	static inline void WriteXml(const std::vector<uint8_t>& ref, XmlWriter& stream) {
 		stream.WriteVector<uint8_t>(ref);
 	}
+	static void BeginXml(std::vector<uint8_t>& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(std::vector<uint8_t>& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
 };
 
 template <>
@@ -236,6 +323,12 @@ struct TypeReader<std::vector<int16_t> > {
 	}
 	static inline void WriteXml(const std::vector<int16_t>& ref, XmlWriter& stream) {
 		stream.WriteVector<int16_t>(ref);
+	}
+	static void BeginXml(std::vector<int16_t>& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(std::vector<int16_t>& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
 	}
 };
 
@@ -253,6 +346,12 @@ struct TypeReader<std::vector<uint32_t> > {
 	static inline void WriteXml(const std::vector<uint32_t>& ref, XmlWriter& stream) {
 		stream.WriteVector<uint32_t>(ref);
 	}
+	static void BeginXml(std::vector<uint32_t>& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(std::vector<uint32_t>& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
 };
 
 template <>
@@ -268,6 +367,12 @@ struct TypeReader<std::vector<bool> > {
 	}
 	static inline void WriteXml(const std::vector<bool>& ref, XmlWriter& stream) {
 		stream.WriteVector<bool>(ref);
+	}
+	static void BeginXml(std::vector<bool>& ref, XmlReader& stream) {
+		// no-op
+	}
+	static void ParseXml(std::vector<bool>& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
 	}
 };
 
@@ -289,6 +394,12 @@ struct FieldReader {
 	static void WriteXml(const S& obj, const T S::*ref, XmlWriter& stream) {
 		TypeReader<T>::WriteXml(obj.*ref, stream);
 	}
+	static void BeginXml(S& obj, T S::*ref, XmlReader& stream) {
+		TypeReader<T>::BeginXml(obj.*ref, stream);
+	}
+	static void ParseXml(S& obj, T S::*ref, const std::string& data) {
+		TypeReader<T>::ParseXml(obj.*ref, data);
+	}
 };
 
 ////////////////////////////////////////////////////////////
@@ -300,13 +411,15 @@ struct Field {
 	typedef S struct_type;
 
 	int id;
-	const char const* const name;
+	const char* const name;
 
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, LcfWriter& stream) const = 0;
 	virtual int LcfSize(const S& obj, LcfWriter& stream) const = 0;
 	virtual bool IsDefault(const S& obj, const S& ref) const { return false; }
 	virtual void WriteXml(const S& obj, XmlWriter& stream) const = 0;
+	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
+	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
 	Field(int id, const char* name) :
 		id(id), name(name) {}
@@ -398,6 +511,12 @@ struct TypedField : public Field<S> {
 		FieldReader<S, T>::WriteXml(obj, ref, stream);
 		stream.EndElement(this->name);
 	}
+	void BeginXml(S& obj, XmlReader& stream) const {
+		FieldReader<S, T>::BeginXml(obj, ref, stream);
+	}
+	void ParseXml(S& obj, const std::string& data) const {
+		FieldReader<S, T>::ParseXml(obj, ref, data);
+	}
 	bool IsDefault(const S& a, const S& b) const {
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
 	}
@@ -429,6 +548,12 @@ struct SizeField : public Field<S> {
 	void WriteXml(const S& obj, XmlWriter& stream) const {
 		// no-op
 	}
+	void BeginXml(S& obj, XmlReader& stream) const {
+		// no-op
+	}
+	void ParseXml(S& obj, const std::string& data) const {
+		// no-op
+	}
 
 	SizeField(const std::vector<T> S::*ref, int id) :
 		Field<S>(id, ""), ref(ref) {}
@@ -453,6 +578,7 @@ struct IDReader {
 	virtual void WriteID(const S& obj, LcfWriter& stream) const = 0;
 	virtual int IDSize(const S& obj) const = 0;
 	virtual void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const = 0;
+	virtual void ReadIDXml(S& obj, const char** atts) const = 0;
 };
 
 template <class S, StructIDType T>
@@ -473,6 +599,12 @@ struct IDReaderT<S, WithID> : public IDReader<S> {
 	void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const {
 		stream.BeginElement(name, obj.ID);
 	}
+	void ReadIDXml(S& obj, const char** atts) const {
+		for (int i = 0; atts[i] != NULL && atts[i + 1] != NULL; i += 2) {
+			if (strcmp(atts[i], "ID") == 0)
+				obj.ID = atoi(atts[i + 1]);
+		}
+	}
 };
 
 template <class S>
@@ -483,40 +615,100 @@ struct IDReaderT<S, NoID> : public IDReader<S> {
 	void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const {
 		stream.BeginElement(name);
 	}
+	void ReadIDXml(S& obj, const char** atts) const {}
 };
 
 ////////////////////////////////////////////////////////////
 // Struct class template
 ////////////////////////////////////////////////////////////
 
+struct StringComparator {
+	bool operator() (const char* const& lhs, const char* const& rhs) const {
+		return strcmp(lhs, rhs) < 0;
+	}
+};
+
 template <class S>
 class Struct {
+private:
 	typedef std::map<int, const Field<S>* > field_map_type;
+	typedef std::map<const char* const, const Field<S>*, StringComparator> tag_map_type;
 	static const Field<S>* fields[];
 	static field_map_type field_map;
+	static tag_map_type tag_map;
 	static IDReader<S>* ID_reader;
-	static char const* const name;
+	static const char* const name;
 
 	static void MakeFieldMap();
+	static void MakeTagMap();
+
+	template <class T> friend class StructXmlHandler;
+	template <class T> friend class StructVectorXmlHandler;
+	template <class T> friend class StructFieldXmlHandler;
 
 public:
 	static void ReadLcf(S& obj, LcfReader& stream);
 	static void WriteLcf(const S& obj, LcfWriter& stream);
 	static int LcfSize(const S& obj, LcfWriter& stream);
 	static void WriteXml(const S& obj, XmlWriter& stream);
+	static void BeginXml(S& obj, XmlReader& stream);
 
 	static void ReadLcf(std::vector<S>& obj, LcfReader& stream);
 	static void WriteLcf(const std::vector<S>& obj, LcfWriter& stream);
 	static int LcfSize(const std::vector<S>& obj, LcfWriter& stream);
 	static void WriteXml(const std::vector<S>& obj, XmlWriter& stream);
+	static void BeginXml(std::vector<S>& obj, XmlReader& stream);
 };
 
 template <class S>
 std::map<int, const Field<S>* > Struct<S>::field_map;
 
+template <class S>
+std::map<const char* const, const Field<S>*, StringComparator> Struct<S>::tag_map;
+
 ////////////////////////////////////////////////////////////
-// Vector reader
+// Wrapper XML handler
 ////////////////////////////////////////////////////////////
+
+class WrapperXmlHandler : public XmlHandler {
+public:
+	WrapperXmlHandler(const char* const name, XmlHandler* handler) :
+		name(name), handler(handler) {}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		if (strcmp(name, this->name) == 0)
+			stream.SetHandler(handler);
+		else {
+			// error();
+		}
+	}
+
+private:
+	const char* const name;
+	XmlHandler* handler;	
+};
+
+////////////////////////////////////////////////////////////
+// Root node XML handler
+////////////////////////////////////////////////////////////
+
+template <class S>
+class RootXmlHandler : public XmlHandler {
+public:
+	RootXmlHandler(S& ref, const char* const name) : ref(ref), name(name) {}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		if (strcmp(name, this->name) == 0)
+			TypeReader<S>::BeginXml(ref, stream);
+		else {
+			// error();
+		}
+	}
+
+private:
+	S& ref;
+	const char* const name;
+};
 
 #endif
 

@@ -76,3 +76,19 @@ void LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	writer.EndElement("LSD");
 }
 
+////////////////////////////////////////////////////////////
+/// Load Save as XML
+////////////////////////////////////////////////////////////
+std::auto_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
+	XmlReader reader(filename);
+	if (!reader.IsOk()) {
+		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
+		return std::auto_ptr<RPG::Save>(NULL);
+	}
+
+	RPG::Save* save = new RPG::Save();
+	reader.SetHandler(new RootXmlHandler<RPG::Save>(*save, "LSD"));
+	reader.Parse();
+	return std::auto_ptr<RPG::Save>(save);
+}
+

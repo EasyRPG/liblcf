@@ -55,6 +55,36 @@ struct TypeReader<RPG::Terrain::Flags> {
 		stream.WriteNode<bool>("lateral_enemies", ref.lateral_enemies);
 		stream.EndElement("Terrain_Flags");
 	}
+
+	class FlagsXmlHandler : public XmlHandler {
+	private:
+		RPG::Terrain::Flags& ref;
+		bool* field;
+	public:
+		FlagsXmlHandler(RPG::Terrain::Flags& ref) : ref(ref), field(NULL) {}
+		void StartElement(XmlReader& stream, const char* name, const char** atts) {
+			if (strcmp(name, "back_party") == 0)
+				field = &ref.back_party;
+			else if (strcmp(name, "back_enemies") == 0)
+				field = &ref.back_enemies;
+			else if (strcmp(name, "lateral_party") == 0)
+				field = &ref.lateral_party;
+			else if (strcmp(name, "lateral_enemies") == 0)
+				field = &ref.lateral_enemies;
+			else {
+				// error
+			}
+		}
+		void CharacterData(XmlReader& stream, const char* s, int len) {
+			XmlReader::Read<bool>(*field, std::string(s, len));
+		}
+	};
+
+	static inline void BeginXml(RPG::Terrain::Flags& ref, XmlReader& stream) {
+		stream.SetHandler(new WrapperXmlHandler("Terrain_Flags", new FlagsXmlHandler(ref)));
+	}
+	static void ParseXml(RPG::Terrain::Flags& ref, const std::string& data) {
+	}
 };
 
 template <>
