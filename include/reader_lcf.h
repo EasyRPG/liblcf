@@ -15,8 +15,8 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _READER_H_
-#define _READER_H_
+#ifndef EASYRPG_READER_LCF_H
+#define EASYRPG_READER_LCF_H
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -27,15 +27,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cassert>
-#ifndef _MSC_VER
-	#include <stdint.h>
-#else
-	typedef	unsigned char	uint8_t;
-	typedef	signed short	int16_t;
-	typedef unsigned short	uint16_t;
-	typedef	signed int		int32_t;
-	typedef unsigned int	uint32_t;
-#endif
+#include "reader_types.h"
 #include "reader_options.h"
 #include "reader_util.h"
 
@@ -118,77 +110,33 @@ public:
 	void Read(void *ptr, size_t size, size_t nmemb);
 
 	////////////////////////////////////////////////////////
-	/// Reads a compressed integer and checks if it's value
-	/// is > 0
-	/// @return If the integer is > 0
+	/// Reads a primitive type
+	/// @param ref : reference to store result
 	////////////////////////////////////////////////////////
-	bool ReadBool();
+	template <class T>
+	void Read(T& ref);
 
 	////////////////////////////////////////////////////////
-	/// Read one byte from the stream.
-	/// @return The read byte
+	/// Reads a vector of primitive type
+	/// @param buffer : Vector to fill
+	/// @param size : How many bytes to read
 	////////////////////////////////////////////////////////
-	uint8_t Read8();
-
-	////////////////////////////////////////////////////////
-	/// Reads two bytes from the stream.
-	/// @return The 16-bit integer
-	////////////////////////////////////////////////////////
-	int16_t Read16();
-
-	////////////////////////////////////////////////////////
-	/// Reads four bytes from the stream.
-	/// @return The 32-bit integer
-	////////////////////////////////////////////////////////
-	int32_t Read32();
+	template <class T>
+	void Read(std::vector<T> &buffer, size_t size);
 
 	////////////////////////////////////////////////////////
 	/// Reads a compressed integer from the stream.
 	/// @return The decompressed integer
 	////////////////////////////////////////////////////////
-	int32_t ReadInt();
-
-	////////////////////////////////////////////////////////
-	/// Reads a "double" from the stream
-	/// @return The double
-	////////////////////////////////////////////////////////
-	double ReadDouble();
-
-	////////////////////////////////////////////////////////
-	/// Reads bytes and converts them to bool (value > 0).
-	/// @param buffer : Vector to fill
-	/// @param size : How many bytes to read
-	////////////////////////////////////////////////////////
-	void ReadBool(std::vector<bool> &buffer, size_t size);
-
-	////////////////////////////////////////////////////////
-	/// Reads single bytes.
-	/// @param buffer : Vector to fill
-	/// @param size : How many bytes to read
-	////////////////////////////////////////////////////////
-	void Read8(std::vector<uint8_t> &buffer, size_t size);
-
-	////////////////////////////////////////////////////////
-	/// Reads 16bit-values into a vector.
-	/// @param buffer : Vector to fill
-	/// @param size : How many 16bit-values to read
-	////////////////////////////////////////////////////////
-	void Read16(std::vector<int16_t> &buffer, size_t size);
-
-	////////////////////////////////////////////////////////
-	/// Reads Normal 32bit-integers into a vector.
-	/// @param buffer : Vector to fill
-	/// @param size : How many 32bit-values to read
-	////////////////////////////////////////////////////////
-	void Read32(std::vector<uint32_t> &buffer, size_t size);
+	int ReadInt();
 
 	////////////////////////////////////////////////////////
 	/// Reads a string.
 	/// @param size : String length
-	/// @todo The returned string should be converted to unicode.
-	/// @return The read string
+	/// @param ref : reference to store result
+	/// note: The string is converted to UTF-8.
 	////////////////////////////////////////////////////////
-	std::string ReadString(size_t size);
+	void ReadString(std::string& ref, size_t size);
 
 	////////////////////////////////////////////////////////
 	/// Checks if the file is readable and if no error
@@ -276,7 +224,7 @@ private:
 	/// Convert a 16bit integer from little to big endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
-	static void SwapByteOrder(uint16_t &us);
+	static void SwapByteOrder(int16_t &us);
 
 	////////////////////////////////////////////////////////
 	/// Utility function for Big Endian Systems.

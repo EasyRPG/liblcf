@@ -58,45 +58,53 @@ void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::WriteBool(bool val) {
-	Write8(val ? 1 : 0);
-}
-
-////////////////////////////////////////////////////////////
-void LcfWriter::Write8(uint8_t val) {
+template <>
+void LcfWriter::Write<uint8_t>(uint8_t val) {
 	Write(&val, 1, 1);
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::Write16(int16_t val) {
+template <>
+void LcfWriter::Write<int16_t>(int16_t val) {
 #ifdef READER_BIG_ENDIAN
-	uint16_t val2 = (uint16_t)val;
-	SwapByteOrder(val2);
-	val = val2;
+	SwapByteOrder(val);
 #endif
 	Write(&val, 2, 1);
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::Write32(int32_t val) {
+template <>
+void LcfWriter::Write<uint32_t>(uint32_t val) {
 #ifdef READER_BIG_ENDIAN
-	uint32_t val2 = (uint32_t)val;
-	SwapByteOrder(val2);
-	val = val2;
+	SwapByteOrder(val);
 #endif
 	Write(&val, 4, 1);
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::WriteInt(int32_t val) {
+void LcfWriter::WriteInt(int val) {
 	uint32_t value = (uint32_t) val;
 	for (int i = 28; i >= 0; i -= 7)
 		if (value >= (1U << i) || i == 0)
-			Write8((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
+			Write<uint8_t>((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::WriteDouble(double val) {
+template <>
+void LcfWriter::Write<int>(int val) {
+	WriteInt(val);
+}
+
+////////////////////////////////////////////////////////////
+template <>
+void LcfWriter::Write<bool>(bool val) {
+	uint8_t x = val ? 1 : 0;
+	Write(x);
+}
+
+////////////////////////////////////////////////////////////
+template <>
+void LcfWriter::Write<double>(double val) {
 #ifdef READER_BIG_ENDIAN
 #warning "Need 64-bit Double byte swap"
 #endif
@@ -104,21 +112,24 @@ void LcfWriter::WriteDouble(double val) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::WriteBool(const std::vector<bool>& buffer) {
+template <>
+void LcfWriter::Write<bool>(const std::vector<bool>& buffer) {
 	std::vector<bool>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++) {
 		uint8_t val = *it ? 1 : 0;
-		Write8(val);
+		Write(val);
 	}
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::Write8(const std::vector<uint8_t>& buffer) {
+template <>
+void LcfWriter::Write<uint8_t>(const std::vector<uint8_t>& buffer) {
 	Write(&buffer.front(), 1, buffer.size());
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::Write16(const std::vector<int16_t>& buffer) {
+template <>
+void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
 #ifdef READER_BIG_ENDIAN
 	std::vector<int16_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
@@ -129,7 +140,8 @@ void LcfWriter::Write16(const std::vector<int16_t>& buffer) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::Write32(const std::vector<uint32_t>& buffer) {
+template <>
+void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
 #ifdef READER_BIG_ENDIAN
 	std::vector<uint32_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
@@ -140,7 +152,7 @@ void LcfWriter::Write32(const std::vector<uint32_t>& buffer) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfWriter::WriteString(const std::string& _str) {
+void LcfWriter::Write(const std::string& _str) {
 	std::string str = Decode(_str);
 	Write(&*str.begin(), 1, str.size());
 }
@@ -161,10 +173,12 @@ std::string LcfWriter::Decode(const std::string& str_to_encode) {
 
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
-void LcfWriter::SwapByteOrder(uint16_t& us)
+void LcfWriter::SwapByteOrder(int16_t& u)
 {
+	uint16_t us = (uint16_t) s;
 	us =	(us >> 8) |
 			(us << 8);
+	s = (int16_t) us;
 }
 
 

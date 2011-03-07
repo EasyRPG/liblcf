@@ -26,86 +26,25 @@
 ////////////////////////////////////////////////////////////
 /// Read Event Page Condition
 ////////////////////////////////////////////////////////////
+typedef RPG::EventPageCondition::Flags flags_type;
+
 template <>
-struct TypeReader<RPG::EventPageCondition::Flags> {
-	static inline void ReadLcf(RPG::EventPageCondition::Flags& ref, LcfReader& stream, uint32_t length) {
-		assert(length == 1);
-		uint8_t bitflag = stream.Read8();
-		ref.switch_a	= (bitflag & 0x01) != 0;
-		ref.switch_b	= (bitflag & 0x02) != 0;
-		ref.variable	= (bitflag & 0x04) != 0;
-		ref.item		= (bitflag & 0x08) != 0;
-		ref.actor		= (bitflag & 0x10) != 0;
-		ref.timer		= (bitflag & 0x20) != 0;
-		ref.timer2		= (bitflag & 0x40) != 0;
-	}
-	static inline void WriteLcf(const RPG::EventPageCondition::Flags& ref, LcfWriter& stream) {
-		uint8_t bitflag = 0;
-		if (ref.switch_a	) bitflag |= 0x01;
-		if (ref.switch_b	) bitflag |= 0x02;
-		if (ref.variable	) bitflag |= 0x04;
-		if (ref.item		) bitflag |= 0x08;
-		if (ref.actor		) bitflag |= 0x10;
-		if (ref.timer		) bitflag |= 0x20;
-		if (ref.timer2		) bitflag |= 0x40;
-		stream.Write8(bitflag);
-	}
-	static inline int LcfSize(const RPG::EventPageCondition::Flags& ref, LcfWriter& stream) {
-		return 1;
-	}
-	static inline void WriteXml(const RPG::EventPageCondition::Flags& ref, XmlWriter& stream) {
-		stream.BeginElement("EventPageCondition_Flags");
-		stream.WriteNode<bool>("switch_a", ref.switch_a);
-		stream.WriteNode<bool>("switch_b", ref.switch_b);
-		stream.WriteNode<bool>("variable", ref.variable);
-		stream.WriteNode<bool>("item", ref.item);
-		stream.WriteNode<bool>("actor", ref.actor);
-		stream.WriteNode<bool>("timer", ref.timer);
-		stream.WriteNode<bool>("timer2", ref.timer2);
-		stream.EndElement("EventPageCondition_Flags");
-	}
+char const* const Flags<flags_type>::name("EventPageCondition_Flags");
 
-	class FlagsXmlHandler : public XmlHandler {
-	private:
-		RPG::EventPageCondition::Flags& ref;
-		bool* field;
-	public:
-		FlagsXmlHandler(RPG::EventPageCondition::Flags& ref) : ref(ref), field(NULL) {}
-		void StartElement(XmlReader& stream, const char* name, const char** atts) {
-			if (strcmp(name, "switch_a") == 0)
-				field = &ref.switch_a;
-			else if (strcmp(name, "switch_b") == 0)
-				field = &ref.switch_b;
-			else if (strcmp(name, "variable") == 0)
-				field = &ref.variable;
-			else if (strcmp(name, "item") == 0)
-				field = &ref.item;
-			else if (strcmp(name, "actor") == 0)
-				field = &ref.actor;
-			else if (strcmp(name, "timer") == 0)
-				field = &ref.timer;
-			else if (strcmp(name, "timer2") == 0)
-				field = &ref.timer2;
-			else {
-				stream.Error("Unrecognized field '%s'", name);
-				field = NULL;
-			}
-		}
-		void EndElement(XmlReader& stream, const char* name) {
-			field = NULL;
-		}
-		void CharacterData(XmlReader& stream, const std::string& data) {
-			if (field != NULL)
-				XmlReader::Read<bool>(*field, data);
-		}
-	};
-
-	static inline void BeginXml(RPG::EventPageCondition::Flags& ref, XmlReader& stream) {
-		stream.SetHandler(new WrapperXmlHandler("EventPageCondition_Flags", new FlagsXmlHandler(ref)));
-	}
-	static void ParseXml(RPG::EventPageCondition::Flags& ref, const std::string& data) {
-	}
+template <>
+const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
+	new Flags<flags_type>::Flag(&flags_type::switch_a,	"switch_a"	),
+	new Flags<flags_type>::Flag(&flags_type::switch_b,	"switch_b"	),
+	new Flags<flags_type>::Flag(&flags_type::variable,	"variable"	),
+	new Flags<flags_type>::Flag(&flags_type::item,		"item"		),
+	new Flags<flags_type>::Flag(&flags_type::actor,		"actor"		),
+	new Flags<flags_type>::Flag(&flags_type::timer,		"timer"		),
+	new Flags<flags_type>::Flag(&flags_type::timer2,	"timer2"	),
+	NULL
 };
+
+template <>
+const uint32_t Flags<flags_type>::max_size = 1;
 
 template <>
 IDReader<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::ID_reader = new IDReaderT<RPG::EventPageCondition, NoID>();
@@ -124,6 +63,6 @@ const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] 
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer_sec,			LMU_Reader::ChunkEventPageCondition::timer_sec,			"timer_sec"			),
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::timer2_sec,			LMU_Reader::ChunkEventPageCondition::timer2_sec,		"timer2_sec"		),
 	new TypedField<RPG::EventPageCondition, int>	(&RPG::EventPageCondition::compare_operator,	LMU_Reader::ChunkEventPageCondition::compare_operator,	"compare_operator"	),
-	new TypedField<RPG::EventPageCondition, RPG::EventPageCondition::Flags>(&RPG::EventPageCondition::flags,	LMU_Reader::ChunkEventPageCondition::flags,	"flags"),
+	new TypedField<RPG::EventPageCondition, flags_type>(&RPG::EventPageCondition::flags,	LMU_Reader::ChunkEventPageCondition::flags,	"flags"),
 	NULL
 };

@@ -34,7 +34,8 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
 	}
-	std::string header = reader.ReadString(reader.ReadInt());
+	std::string header;
+	reader.ReadString(header, reader.ReadInt());
 	if (header != "LcfSaveData") {
 		LcfReader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
@@ -56,7 +57,7 @@ void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	}
 	const std::string header("LcfSaveData");
 	writer.WriteInt(header.size());
-	writer.WriteString(header);
+	writer.Write(header);
 
 	Struct<RPG::Save>::WriteLcf(save, writer);
 }

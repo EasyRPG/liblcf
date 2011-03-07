@@ -22,30 +22,39 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
+template <>
+struct RawStruct<RPG::Equipment> {
+	static void ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::Equipment& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::Equipment& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::Equipment& ref, XmlWriter& stream);
+	static void BeginXml(RPG::Equipment& ref, XmlReader& stream);
+};
+
 ////////////////////////////////////////////////////////////
 /// Read Equipment
 ////////////////////////////////////////////////////////////
-void TypeReader<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
-	ref.weapon_id = stream.Read16();
-	ref.shield_id = stream.Read16();
-	ref.armor_id = stream.Read16();
-	ref.helmet_id = stream.Read16();
-	ref.accessory_id = stream.Read16();
+void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
+	stream.Read(ref.weapon_id);
+	stream.Read(ref.shield_id);
+	stream.Read(ref.armor_id);
+	stream.Read(ref.helmet_id);
+	stream.Read(ref.accessory_id);
 }
 
-void TypeReader<RPG::Equipment>::WriteLcf(const RPG::Equipment& ref, LcfWriter& stream) {
-	stream.Write16(ref.weapon_id);
-	stream.Write16(ref.shield_id);
-	stream.Write16(ref.armor_id);
-	stream.Write16(ref.helmet_id);
-	stream.Write16(ref.accessory_id);
+void RawStruct<RPG::Equipment>::WriteLcf(const RPG::Equipment& ref, LcfWriter& stream) {
+	stream.Write(ref.weapon_id);
+	stream.Write(ref.shield_id);
+	stream.Write(ref.armor_id);
+	stream.Write(ref.helmet_id);
+	stream.Write(ref.accessory_id);
 }
 
-int TypeReader<RPG::Equipment>::LcfSize(const RPG::Equipment& ref, LcfWriter& stream) {
+int RawStruct<RPG::Equipment>::LcfSize(const RPG::Equipment& ref, LcfWriter& stream) {
 	return 2 * 5;
 }
 
-void TypeReader<RPG::Equipment>::WriteXml(const RPG::Equipment& ref, XmlWriter& stream) {
+void RawStruct<RPG::Equipment>::WriteXml(const RPG::Equipment& ref, XmlWriter& stream) {
 	stream.BeginElement("Equipment");
 	stream.WriteNode<int16_t>("weapon_id", ref.weapon_id);
 	stream.WriteNode<int16_t>("shield_id", ref.shield_id);
@@ -58,7 +67,7 @@ void TypeReader<RPG::Equipment>::WriteXml(const RPG::Equipment& ref, XmlWriter& 
 class EquipmentXmlHandler : public XmlHandler {
 private:
 	RPG::Equipment& ref;
-	int* field;
+	int16_t* field;
 public:
 	EquipmentXmlHandler(RPG::Equipment& ref) : ref(ref), field(NULL) {}
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
@@ -82,13 +91,10 @@ public:
 	}
 	void CharacterData(XmlReader& stream, const std::string& data) {
 		if (field != NULL)
-			XmlReader::Read<int>(*field, data);
+			XmlReader::Read(*field, data);
 	}
 };
 
-void TypeReader<RPG::Equipment>::BeginXml(RPG::Equipment& ref, XmlReader& stream) {
+void RawStruct<RPG::Equipment>::BeginXml(RPG::Equipment& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Equipment", new EquipmentXmlHandler(ref)));
-}
-
-void TypeReader<RPG::Equipment>::ParseXml(RPG::Equipment& ref, const std::string& data) {
 }

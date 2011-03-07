@@ -33,7 +33,8 @@ bool LDB_Reader::Load(const std::string& filename) {
 		LcfReader::SetError("Couldn't find %s database file.\n", filename.c_str());
 		return false;
 	}
-	std::string header = reader.ReadString(reader.ReadInt());
+	std::string header;
+	reader.ReadString(header, reader.ReadInt());
 	if (header != "LcfDataBase") {
 		LcfReader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
 		return false;
@@ -53,7 +54,7 @@ bool LDB_Reader::Save(const std::string& filename) {
 	}
 	const std::string header("LcfDataBase");
 	writer.WriteInt(header.size());
-	writer.WriteString(header);
+	writer.Write(header);
 	TypeReader<RPG::Database>::WriteLcf(Data::data, writer);
 	return true;
 }

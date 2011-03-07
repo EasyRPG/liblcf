@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
+#include "reader_types.h"
 #include "rpg_learning.h"
 #include "rpg_parameters.h"
 

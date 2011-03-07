@@ -64,44 +64,38 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 }
 
 ////////////////////////////////////////////////////////////
-bool LcfReader::ReadBool() {
-	return (ReadInt() > 0);
+template <>
+void LcfReader::Read<bool>(bool& ref) {
+	ref = ReadInt() > 0;
 }
 
 ////////////////////////////////////////////////////////////
-uint8_t LcfReader::Read8() {
-	uint8_t val = 0;
-	Read(&val, 1, 1);
-	return val;
+template <>
+void LcfReader::Read<uint8_t>(uint8_t& ref) {
+	Read(&ref, 1, 1);
 }
 
 ////////////////////////////////////////////////////////////
-int16_t LcfReader::Read16() {
-	int16_t val = 0;
-	Read(&val, 2, 1);
+template <>
+void LcfReader::Read<int16_t>(int16_t& ref) {
+	Read(&ref, 2, 1);
 #ifdef READER_BIG_ENDIAN
-	uint16_t val2 = (uint16_t)val;
 	SwapByteOrder(val2);
-	val = val2;
 #endif
-	return val;
 }
 
 ////////////////////////////////////////////////////////////
-int32_t LcfReader::Read32() {
-	int32_t val = 0;
-	Read(&val, 4, 1);
+template <>
+void LcfReader::Read<uint32_t>(uint32_t& ref) {
+	Read(&ref, 4, 1);
 #ifdef READER_BIG_ENDIAN
-	uint32_t val2 = (uint32_t)val;
-	SwapByteOrder(val2);
-	val = val2;
+	SwapByteOrder(ref);
 #endif
-	return val;
 }
 
 ////////////////////////////////////////////////////////////
-int32_t LcfReader::ReadInt() {
-	int32_t value = 0;
+int LcfReader::ReadInt() {
+	int value = 0;
 	unsigned char temp = 0;
 
 	do {
@@ -110,22 +104,28 @@ int32_t LcfReader::ReadInt() {
 			return 0;
 		value |= temp & 0x7F; // Check if it's a BER integer
 	} while (temp & 0x80);
-
 	return value;
 }
 
 ////////////////////////////////////////////////////////////
-double LcfReader::ReadDouble() {
+template <>
+void LcfReader::Read<int>(int& ref) {
+	ref = ReadInt();
+}
+
+////////////////////////////////////////////////////////////
+template <>
+void LcfReader::Read<double>(double& ref) {
 	double val = 0;
 	Read(&val, 8, 1);
 #ifdef READER_BIG_ENDIAN
 #warning "Need 64-bit Double byte swap"
 #endif
-	return val;
 }
 
 ////////////////////////////////////////////////////////////
-void LcfReader::ReadBool(std::vector<bool> &buffer, size_t size) {
+template <>
+void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
 	uint8_t val = 0;
 	buffer.clear();
 
@@ -136,7 +136,8 @@ void LcfReader::ReadBool(std::vector<bool> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfReader::Read8(std::vector<uint8_t> &buffer, size_t size) {
+template <>
+void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
 	uint8_t val;
 	buffer.clear();
 
@@ -147,7 +148,8 @@ void LcfReader::Read8(std::vector<uint8_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfReader::Read16(std::vector<int16_t> &buffer, size_t size) {
+template <>
+void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 	int16_t val;
 	buffer.clear();
 	size_t items = size / 2;
@@ -167,7 +169,8 @@ void LcfReader::Read16(std::vector<int16_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-void LcfReader::Read32(std::vector<uint32_t> &buffer, size_t size) {
+template <>
+void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	uint32_t val;
 	buffer.clear();
 	size_t items = size / 4;
@@ -181,17 +184,12 @@ void LcfReader::Read32(std::vector<uint32_t> &buffer, size_t size) {
 }
 
 ////////////////////////////////////////////////////////////
-std::string LcfReader::ReadString(size_t size) {
+void LcfReader::ReadString(std::string& ref, size_t size) {
 	char* chars = new char[size + 1];
 	chars[size] = '\0';
 	Read(chars, 1, size);
-
-	std::string str;
-	str = Encode(std::string(chars));
-
+	ref = Encode(std::string(chars));
 	delete[] chars;
-
-	return str;
 }
 
 ////////////////////////////////////////////////////////////
@@ -255,7 +253,9 @@ bool LcfReader::Ungetch(uint8_t ch) {
 	}
 	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n", chunk_info.ID, chunk_info.length, filename.c_str(), Tell(), srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
-		fprintf(stderr, "%02X ", LcfReader::Read8());
+		uint32_t byte;
+		LcfReader::Read(byte);
+		fprintf(stderr, "%02X ", byte);
 		if ((i+1) % 16 == 0) {
 			fprintf(stderr, "\n");
 		}
@@ -306,10 +306,12 @@ int LcfReader::IntSize(unsigned int x) {
 
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
-void LcfReader::SwapByteOrder(uint16_t& us)
+void LcfReader::SwapByteOrder(int16_t& s)
 {
+	us = (uint16_t) s;
 	us =	(us >> 8) |
 			(us << 8);
+	s = (int16_t) us;
 }
 
 

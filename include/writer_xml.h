@@ -15,23 +15,15 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _EASYRPG_WRITER_XML_H_
-#define _EASYRPG_WRITER_XML_H_
+#ifndef EASYRPG_WRITER_XML_H
+#define EASYRPG_WRITER_XML_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#ifndef _MSC_VER
-	#include <stdint.h>
-#else
-	typedef	unsigned char	uint8_t;
-	typedef	signed short	int16_t;
-	typedef unsigned short	uint16_t;
-	typedef	signed int		int32_t;
-	typedef unsigned int	uint32_t;
-#endif
+#include "reader_types.h"
 
 ////////////////////////////////////////////////////////////
 /// XmlWriter class.
@@ -46,9 +38,10 @@ public:
 	void Close();
 
 	void WriteInt(int val);
-	template <class T>	void Write(const T& val);
-	template <class T>	void WriteVector(const std::vector<T>& val);
-	template <class T>	void WriteNode(const std::string& name, const T& val);
+	template <class T>
+	void Write(const T& val);
+	template <class T>
+	void WriteNode(const std::string& name, const T& val);
 	void BeginElement(const std::string& name);
 	void BeginElement(const std::string& name, int ID);
 	void EndElement(const std::string& name);
@@ -62,6 +55,8 @@ protected:
 	bool at_bol;
 
 	void Indent();
+	template <class T>
+	void WriteVector(const std::vector<T>& val);
 };
 
 #endif

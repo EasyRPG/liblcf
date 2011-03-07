@@ -15,17 +15,18 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
-#include "rpg_rect.h"
+#ifndef EASYRPG_READER_TYPES_H
+#define EASYRPG_READER_TYPES_H
 
-////////////////////////////////////////////////////////////
-/// Constructor
-////////////////////////////////////////////////////////////
-RPG::Rect::Rect() {
-	l = 0;
-	t = 0;
-	r = 0;
-	b = 0;
-}
+#ifndef _MSC_VER
+	#include <stdint.h>
+#else
+	typedef	unsigned char	uint8_t;
+	typedef	signed short	int16_t;
+	typedef unsigned short	uint16_t;
+	typedef	signed int		int32_t;
+	typedef unsigned int	uint32_t;
+#endif
+
+#endif
+

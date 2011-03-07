@@ -22,33 +22,42 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
+template <>
+struct RawStruct<RPG::Parameters> {
+	static void ReadLcf(RPG::Parameters& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::Parameters& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::Parameters& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::Parameters& ref, XmlWriter& stream);
+	static void BeginXml(RPG::Parameters& ref, XmlReader& stream);
+};
+
 ////////////////////////////////////////////////////////////
 /// Read Parameters
 ////////////////////////////////////////////////////////////
-void TypeReader<RPG::Parameters>::ReadLcf(RPG::Parameters& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::Parameters>::ReadLcf(RPG::Parameters& ref, LcfReader& stream, uint32_t length) {
 	int n = length / 6;
-	stream.Read16(ref.maxhp, n);
-	stream.Read16(ref.maxsp, n);
-	stream.Read16(ref.attack, n);
-	stream.Read16(ref.defense, n);
-	stream.Read16(ref.spirit, n);
-	stream.Read16(ref.agility, n);
+	stream.Read(ref.maxhp, n);
+	stream.Read(ref.maxsp, n);
+	stream.Read(ref.attack, n);
+	stream.Read(ref.defense, n);
+	stream.Read(ref.spirit, n);
+	stream.Read(ref.agility, n);
 }
 
-void TypeReader<RPG::Parameters>::WriteLcf(const RPG::Parameters& ref, LcfWriter& stream) {
-	stream.Write16(ref.maxhp);
-	stream.Write16(ref.maxsp);
-	stream.Write16(ref.attack);
-	stream.Write16(ref.defense);
-	stream.Write16(ref.spirit);
-	stream.Write16(ref.agility);
+void RawStruct<RPG::Parameters>::WriteLcf(const RPG::Parameters& ref, LcfWriter& stream) {
+	stream.Write(ref.maxhp);
+	stream.Write(ref.maxsp);
+	stream.Write(ref.attack);
+	stream.Write(ref.defense);
+	stream.Write(ref.spirit);
+	stream.Write(ref.agility);
 }
 
-int TypeReader<RPG::Parameters>::LcfSize(const RPG::Parameters& ref, LcfWriter& stream) {
+int RawStruct<RPG::Parameters>::LcfSize(const RPG::Parameters& ref, LcfWriter& stream) {
 	return ref.maxhp.size() * 2 * 6;
 }
 
-void TypeReader<RPG::Parameters>::WriteXml(const RPG::Parameters& ref, XmlWriter& stream) {
+void RawStruct<RPG::Parameters>::WriteXml(const RPG::Parameters& ref, XmlWriter& stream) {
 	stream.BeginElement("Parameters");
 	stream.WriteNode<std::vector<int16_t> >("maxhp", ref.maxhp);
 	stream.WriteNode<std::vector<int16_t> >("maxsp", ref.maxsp);
@@ -92,9 +101,6 @@ public:
 	}
 };
 
-void TypeReader<RPG::Parameters>::BeginXml(RPG::Parameters& ref, XmlReader& stream) {
+void RawStruct<RPG::Parameters>::BeginXml(RPG::Parameters& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Parameters", new ParametersXmlHandler(ref)));
-}
-
-void TypeReader<RPG::Parameters>::ParseXml(RPG::Parameters& ref, const std::string& data) {
 }

@@ -26,71 +26,22 @@
 ////////////////////////////////////////////////////////////
 /// Read Terrain
 ////////////////////////////////////////////////////////////
+typedef RPG::Terrain::Flags flags_type;
+
 template <>
-struct TypeReader<RPG::Terrain::Flags> {
-	static inline void ReadLcf(RPG::Terrain::Flags& ref, LcfReader& stream, uint32_t length) {
-		assert(length == 1);
-		uint8_t bitflag = stream.Read8();
-		ref.back_party		= (bitflag & 0x01) != 0;
-		ref.back_enemies	= (bitflag & 0x02) != 0;
-		ref.lateral_party	= (bitflag & 0x04) != 0;
-		ref.lateral_enemies	= (bitflag & 0x08) != 0;
-	}
-	static inline void WriteLcf(const RPG::Terrain::Flags& ref, LcfWriter& stream) {
-		uint8_t bitflag = 0;
-		if (ref.back_party)		 bitflag |= 0x01;
-		if (ref.back_enemies)	 bitflag |= 0x02;
-		if (ref.lateral_party)	 bitflag |= 0x04;
-		if (ref.lateral_enemies) bitflag |= 0x08;
-		stream.Write8(bitflag);
-	}
-	static inline int LcfSize(const RPG::Terrain::Flags& ref, LcfWriter& stream) {
-		return 1;
-	}
-	static inline void WriteXml(const RPG::Terrain::Flags& ref, XmlWriter& stream) {
-		stream.BeginElement("Terrain_Flags");
-		stream.WriteNode<bool>("back_party", ref.back_party);
-		stream.WriteNode<bool>("back_enemies", ref.back_enemies);
-		stream.WriteNode<bool>("lateral_party", ref.lateral_party);
-		stream.WriteNode<bool>("lateral_enemies", ref.lateral_enemies);
-		stream.EndElement("Terrain_Flags");
-	}
+char const* const Flags<RPG::Terrain::Flags>::name("Terrain_Flags");
 
-	class FlagsXmlHandler : public XmlHandler {
-	private:
-		RPG::Terrain::Flags& ref;
-		bool* field;
-	public:
-		FlagsXmlHandler(RPG::Terrain::Flags& ref) : ref(ref), field(NULL) {}
-		void StartElement(XmlReader& stream, const char* name, const char** atts) {
-			if (strcmp(name, "back_party") == 0)
-				field = &ref.back_party;
-			else if (strcmp(name, "back_enemies") == 0)
-				field = &ref.back_enemies;
-			else if (strcmp(name, "lateral_party") == 0)
-				field = &ref.lateral_party;
-			else if (strcmp(name, "lateral_enemies") == 0)
-				field = &ref.lateral_enemies;
-			else {
-				stream.Error("Unrecognized field '%s'", name);
-				field = NULL;
-			}
-		}
-		void EndElement(XmlReader& stream, const char* name) {
-			field = NULL;
-		}
-		void CharacterData(XmlReader& stream, const std::string& data) {
-			if (field != NULL)
-				XmlReader::Read<bool>(*field, data);
-		}
-	};
-
-	static inline void BeginXml(RPG::Terrain::Flags& ref, XmlReader& stream) {
-		stream.SetHandler(new WrapperXmlHandler("Terrain_Flags", new FlagsXmlHandler(ref)));
-	}
-	static void ParseXml(RPG::Terrain::Flags& ref, const std::string& data) {
-	}
+template <>
+const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_party,		"back_party"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_enemies,		"back_enemies"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_party,	"lateral_party"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_enemies,	"lateral_enemies"	),
+	NULL
 };
+
+template <>
+const uint32_t Flags<flags_type>::max_size = 1;
 
 template <>
 IDReader<RPG::Terrain>* Struct<RPG::Terrain>::ID_reader = new IDReaderT<RPG::Terrain, WithID>();

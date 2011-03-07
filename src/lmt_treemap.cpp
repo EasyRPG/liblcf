@@ -22,10 +22,19 @@
 #include "lmt_chunks.h"
 #include "reader_struct.h"
 
+template <>
+struct RawStruct<RPG::TreeMap> {
+	static void ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::TreeMap& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::TreeMap& ref, XmlWriter& stream);
+	static void BeginXml(RPG::TreeMap& ref, XmlReader& stream);
+};
+
 ////////////////////////////////////////////////////////////
 /// Map Tree
 ////////////////////////////////////////////////////////////
-void TypeReader<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length) {
 	ref.maps.resize(stream.ReadInt() + 1);
 	for (unsigned int i = 1; i < ref.maps.size(); i++)
 		Struct<RPG::MapInfo>::ReadLcf(ref.maps[i], stream);
@@ -35,7 +44,7 @@ void TypeReader<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uin
 	Struct<RPG::Start>::ReadLcf(ref.start, stream);
 }
 
-void TypeReader<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream) {
+void RawStruct<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream) {
 	stream.WriteInt(ref.maps.size() - 1);
 	for (unsigned int i = 1; i < ref.maps.size(); i++)
 		Struct<RPG::MapInfo>::WriteLcf(ref.maps[i], stream);
@@ -47,12 +56,12 @@ void TypeReader<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& stre
 	Struct<RPG::Start>::WriteLcf(ref.start, stream);
 }
 
-int TypeReader<RPG::TreeMap>::LcfSize(const RPG::TreeMap& ref, LcfWriter& stream) {
+int RawStruct<RPG::TreeMap>::LcfSize(const RPG::TreeMap& ref, LcfWriter& stream) {
 	// doesn't matter; this structure never occurs within a chunk
 	return 0;
 }
 
-void TypeReader<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& stream) {
+void RawStruct<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& stream) {
 	stream.BeginElement("TreeMap");
 
 	stream.BeginElement("maps");
@@ -85,13 +94,13 @@ public:
 		active_node = false;
 		tree_order = false;
 		if (strcmp(name, "maps") == 0)
-			TypeReader<std::vector<RPG::MapInfo> >::BeginXml(ref.maps, stream);
+			Struct<RPG::MapInfo>::BeginXml(ref.maps, stream);
 		else if (strcmp(name, "tree_order") == 0)
 			tree_order = true;
 		else if (strcmp(name, "active_node") == 0)
 			active_node = true;
 		else if (strcmp(name, "start") == 0)
-			TypeReader<RPG::Start>::BeginXml(ref.start, stream);
+			Struct<RPG::Start>::BeginXml(ref.start, stream);
 		else {
 			stream.Error("Unrecognized field '%s'", name);
 		}
@@ -108,9 +117,6 @@ public:
 	}
 };
 
-void TypeReader<RPG::TreeMap>::BeginXml(RPG::TreeMap& ref, XmlReader& stream) {
+void RawStruct<RPG::TreeMap>::BeginXml(RPG::TreeMap& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("TreeMap", new TreeMapXmlHandler(ref)));
-}
-
-void TypeReader<RPG::TreeMap>::ParseXml(RPG::TreeMap& ref, const std::string& data) {
 }

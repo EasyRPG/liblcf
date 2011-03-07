@@ -33,7 +33,8 @@ bool LMT_Reader::Load(const std::string& filename) {
 		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;
 	}
-	std::string header = reader.ReadString(reader.ReadInt());
+	std::string header;
+	reader.ReadString(header, reader.ReadInt());
 	if (header != "LcfMapTree") {
 		LcfReader::SetError("%s is not a valid RPG2000 map tree.\n", filename.c_str());
 		return false;
@@ -53,7 +54,7 @@ bool LMT_Reader::Save(const std::string& filename) {
 	}
 	const std::string header("LcfMapTree");
 	writer.WriteInt(header.size());
-	writer.WriteString(header);
+	writer.Write(header);
 	TypeReader<RPG::TreeMap>::WriteLcf(Data::treemap, writer);
 	return true;
 }

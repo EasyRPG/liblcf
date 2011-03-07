@@ -15,8 +15,8 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _EASYRPG_WRITER_H_
-#define _EASYRPG_WRITER_H_
+#ifndef EASYRPG_WRITER_LCF_H
+#define EASYRPG_WRITER_LCF_H
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -27,15 +27,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cassert>
-#ifndef _MSC_VER
-	#include <stdint.h>
-#else
-	typedef	unsigned char	uint8_t;
-	typedef	signed short	int16_t;
-	typedef unsigned short	uint16_t;
-	typedef	signed int		int32_t;
-	typedef unsigned int	uint32_t;
-#endif
+#include "reader_types.h"
 #include "reader_options.h"
 #include "reader_util.h"
 
@@ -75,71 +67,31 @@ public:
 	void Write(const void *ptr, size_t size, size_t nmemb);
 
 	////////////////////////////////////////////////////////
-	/// Write a boolean to the stream.
+	/// Write a primitive value to the stream.
 	/// @param val : the value
 	////////////////////////////////////////////////////////
-	void WriteBool(bool val);
+	template <class T>
+	void Write(T val);
 
 	////////////////////////////////////////////////////////
-	/// Write one byte to the stream.
-	/// @param val : the 8-bit integer
+	/// Writes a string to the stream.
+	/// @param str : The string
+	/// note: the string is converted to the native encoding
 	////////////////////////////////////////////////////////
-	void Write8(uint8_t val);
-
-	////////////////////////////////////////////////////////
-	/// Writes two bytes to the stream.
-	/// @param val : The 16-bit integer
-	////////////////////////////////////////////////////////
-	void Write16(int16_t val);
-
-	////////////////////////////////////////////////////////
-	/// Writes four bytes to the stream.
-	/// @param val : The 32-bit integer
-	////////////////////////////////////////////////////////
-	void Write32(int32_t val);
+	void Write(const std::string& str);
 
 	////////////////////////////////////////////////////////
 	/// Writes a compressed integer to the stream.
 	/// @param val : The integer
 	////////////////////////////////////////////////////////
-	void WriteInt(int32_t val);
+	void WriteInt(int val);
 
 	////////////////////////////////////////////////////////
-	/// Writes a "double" to the stream
-	/// @param val : The double
-	////////////////////////////////////////////////////////
-	void WriteDouble(double val);
-
-	////////////////////////////////////////////////////////
-	/// Writes booleans.
+	/// Write a vector of primitive values to the stream.
 	/// @param buffer : Vector to write
 	////////////////////////////////////////////////////////
-	void WriteBool(const std::vector<bool>& buffer);
-
-	////////////////////////////////////////////////////////
-	/// Writes single bytes.
-	/// @param buffer : Vector to write
-	////////////////////////////////////////////////////////
-	void Write8(const std::vector<uint8_t>& buffer);
-
-	////////////////////////////////////////////////////////
-	/// Writes 16-bit integers.
-	/// @param buffer : Vector to write
-	////////////////////////////////////////////////////////
-	void Write16(const std::vector<int16_t>& buffer);
-
-	////////////////////////////////////////////////////////
-	/// Writes 32-bit integers (not compressed)
-	/// @param buffer : Vector to write
-	////////////////////////////////////////////////////////
-	void Write32(const std::vector<uint32_t>& buffer);
-
-	////////////////////////////////////////////////////////
-	/// Writes a string.
-	/// @param str : String
-	/// Note: The string is converted from UTF-8
-	////////////////////////////////////////////////////////
-	void WriteString(const std::string& str);
+	template <class T>
+	void Write(const std::vector<T>& buffer);
 
 	////////////////////////////////////////////////////////
 	/// Checks if the file is writable and if no error

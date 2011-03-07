@@ -23,6 +23,7 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
+#include "reader_types.h"
 #include "rpg_sound.h"
 #include "rpg_music.h"
 #include "rpg_testbattler.h"

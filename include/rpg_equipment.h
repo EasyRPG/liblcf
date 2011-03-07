@@ -15,8 +15,10 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _RPG_EQUIPMENT_H_
-#define _RPG_EQUIPMENT_H_
+#ifndef RPG_EQUIPMENT_H
+#define RPG_EQUIPMENT_H
+
+#include "reader_types.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Equipment class
@@ -26,11 +28,11 @@ namespace RPG {
 	public:
 		Equipment();
 		
-		int weapon_id;
-		int shield_id;
-		int armor_id;
-		int helmet_id;
-		int accessory_id;
+		int16_t weapon_id;
+		int16_t shield_id;
+		int16_t armor_id;
+		int16_t helmet_id;
+		int16_t accessory_id;
 	};
 }
 
