@@ -129,8 +129,6 @@ public:
 	MoveCommandXmlHandler(RPG::MoveCommand& ref) :
 		ref(ref), field(NULL), parameter_string(false) {}
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		field = NULL;
-		parameter_string = false;
 		if (strcmp(name, "command_id") == 0)
 			field = &ref.command_id;
 		else if (strcmp(name, "parameter_a") == 0)
@@ -142,14 +140,20 @@ public:
 		else if (strcmp(name, "parameter_string") == 0)
 			parameter_string = true;
 		else {
-			// error
+			stream.Error("Unrecognized field '%s'", name);
+			field = NULL;
+			parameter_string = false;
 		}
 	}
-	void CharacterData(XmlReader& stream, const char* s, int len) {
-		if (parameter_string)
-			XmlReader::Read<std::string>(ref.parameter_string, std::string(s, len));
-		else
-			XmlReader::Read<int>(*field, std::string(s, len));
+	void EndElement(XmlReader& stream, const char* name) {
+		field = NULL;
+		parameter_string = false;
+	}
+	void CharacterData(XmlReader& stream, const std::string& data) {
+		if (field != NULL)
+			XmlReader::Read<int>(*field, data);
+		else if (parameter_string)
+			XmlReader::Read<std::string>(ref.parameter_string, data);
 	}
 };
 
@@ -198,7 +202,8 @@ public:
 	MoveCommandVectorXmlHandler(std::vector<RPG::MoveCommand>& ref) : ref(ref) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		// if (strcmp(name, "MoveCommand") != 0) error();
+		if (strcmp(name, "MoveCommand") != 0)
+			stream.Error("Expecting %s but got %s", "MoveCommand", name);
 		ref.resize(ref.size() + 1);
 		RPG::MoveCommand& obj = ref.back();
 		stream.SetHandler(new MoveCommandXmlHandler(obj));

@@ -35,6 +35,8 @@
 #include "rpg_parameters.h"
 #include "rpg_eventcommand.h"
 #include "rpg_movecommand.h"
+#include "rpg_treemap.h"
+#include "rpg_rect.h"
 
 ////////////////////////////////////////////////////////////
 // Typed data readers
@@ -129,6 +131,26 @@ struct TypeReader<std::vector<RPG::MoveCommand> > {
 	static void ParseXml(std::vector<RPG::MoveCommand>& ref, const std::string& data);
 };
 
+template <>
+struct TypeReader<RPG::TreeMap> {
+	static void ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::TreeMap& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::TreeMap& ref, XmlWriter& stream);
+	static void BeginXml(RPG::TreeMap& ref, XmlReader& stream);
+	static void ParseXml(RPG::TreeMap& ref, const std::string& data);
+};
+
+template <>
+struct TypeReader<RPG::Rect> {
+	static void ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const RPG::Rect& ref, LcfWriter& stream);
+	static int LcfSize(const RPG::Rect& ref, LcfWriter& stream);
+	static void WriteXml(const RPG::Rect& ref, XmlWriter& stream);
+	static void BeginXml(RPG::Rect& ref, XmlReader& stream);
+	static void ParseXml(RPG::Rect& ref, const std::string& data);
+};
+
 template <class T>
 struct TypeReader<std::vector<T> > {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
@@ -170,7 +192,7 @@ struct TypeReader<uint8_t> {
 		// no-op
 	}
 	static void ParseXml(uint8_t& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<uint8_t>(ref, data);
 	}
 };
 
@@ -193,7 +215,7 @@ struct TypeReader<int16_t> {
 		// no-op
 	}
 	static void ParseXml(int16_t& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<int16_t>(ref, data);
 	}
 };
 
@@ -216,7 +238,7 @@ struct TypeReader<int> {
 		// no-op
 	}
 	static void ParseXml(int& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<int>(ref, data);
 	}
 };
 
@@ -239,7 +261,7 @@ struct TypeReader<bool> {
 		// no-op
 	}
 	static void ParseXml(bool& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<bool>(ref, data);
 	}
 };
 
@@ -262,7 +284,7 @@ struct TypeReader<double> {
 		// no-op
 	}
 	static void ParseXml(double& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<double>(ref, data);
 	}
 };
 
@@ -284,7 +306,7 @@ struct TypeReader<std::string> {
 		// no-op
 	}
 	static void ParseXml(std::string& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<std::string>(ref, data);
 	}
 };
 
@@ -306,7 +328,7 @@ struct TypeReader<std::vector<uint8_t> > {
 		// no-op
 	}
 	static void ParseXml(std::vector<uint8_t>& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<std::vector<uint8_t> >(ref, data);
 	}
 };
 
@@ -328,7 +350,7 @@ struct TypeReader<std::vector<int16_t> > {
 		// no-op
 	}
 	static void ParseXml(std::vector<int16_t>& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<std::vector<int16_t> >(ref, data);
 	}
 };
 
@@ -350,7 +372,7 @@ struct TypeReader<std::vector<uint32_t> > {
 		// no-op
 	}
 	static void ParseXml(std::vector<uint32_t>& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<std::vector<uint32_t> >(ref, data);
 	}
 };
 
@@ -372,7 +394,7 @@ struct TypeReader<std::vector<bool> > {
 		// no-op
 	}
 	static void ParseXml(std::vector<bool>& ref, const std::string& data) {
-		XmlReader::Read(ref, data);
+		XmlReader::Read<std::vector<bool> >(ref, data);
 	}
 };
 
@@ -601,7 +623,7 @@ struct IDReaderT<S, WithID> : public IDReader<S> {
 	}
 	void ReadIDXml(S& obj, const char** atts) const {
 		for (int i = 0; atts[i] != NULL && atts[i + 1] != NULL; i += 2) {
-			if (strcmp(atts[i], "ID") == 0)
+			if (strcmp(atts[i], "id") == 0)
 				obj.ID = atoi(atts[i + 1]);
 		}
 	}
@@ -676,11 +698,9 @@ public:
 		name(name), handler(handler) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		if (strcmp(name, this->name) == 0)
-			stream.SetHandler(handler);
-		else {
-			// error();
-		}
+		if (strcmp(name, this->name) != 0)
+			stream.Error("Expecting %s but got %s", this->name, name);
+		stream.SetHandler(handler);
 	}
 
 private:
@@ -698,11 +718,9 @@ public:
 	RootXmlHandler(S& ref, const char* const name) : ref(ref), name(name) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		if (strcmp(name, this->name) == 0)
-			TypeReader<S>::BeginXml(ref, stream);
-		else {
-			// error();
-		}
+		if (strcmp(name, this->name) != 0)
+			stream.Error("Expecting %s but got %s", this->name, name);
+		TypeReader<S>::BeginXml(ref, stream);
 	}
 
 private:

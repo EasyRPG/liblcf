@@ -87,11 +87,16 @@ struct TypeReader<RPG::EventPageCondition::Flags> {
 			else if (strcmp(name, "timer2") == 0)
 				field = &ref.timer2;
 			else {
-				// error
+				stream.Error("Unrecognized field '%s'", name);
+				field = NULL;
 			}
 		}
-		void CharacterData(XmlReader& stream, const char* s, int len) {
-			XmlReader::Read<bool>(*field, std::string(s, len));
+		void EndElement(XmlReader& stream, const char* name) {
+			field = NULL;
+		}
+		void CharacterData(XmlReader& stream, const std::string& data) {
+			if (field != NULL)
+				XmlReader::Read<bool>(*field, data);
 		}
 	};
 

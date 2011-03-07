@@ -73,38 +73,49 @@ void TypeReader<RPG::EventCommand>::WriteXml(const RPG::EventCommand& event_comm
 class EventCommandXmlHandler : public XmlHandler {
 private:
 	RPG::EventCommand& ref;
-	bool code;
-	bool indent;
-	bool string;
-	bool parameters;
+	enum {
+		None,
+		Code,
+		Indent,
+		String,
+		Parameters
+	} field;
 public:
-	EventCommandXmlHandler(RPG::EventCommand& ref) : ref(ref) {}
+	EventCommandXmlHandler(RPG::EventCommand& ref) : ref(ref), field(None) {}
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		code = false;
-		indent = false;
-		string = false;
-		parameters = false;
 		if (strcmp(name, "code") == 0)
-			code = true;
+			field = Code;
 		else if (strcmp(name, "indent") == 0)
-			indent = true;
+			field = Indent;
 		else if (strcmp(name, "string") == 0)
-			string = true;
+			field = String;
 		else if (strcmp(name, "parameters") == 0)
-			parameters = true;
+			field = Parameters;
 		else {
-			// error
+			stream.Error("Unrecognized field '%s'", name);
+			field = None;
 		}
 	}
-	void CharacterData(XmlReader& stream, const char* s, int len) {
-		if (code)
-			XmlReader::Read<int>(ref.code, std::string(s, len));
-		else if (indent)
-			XmlReader::Read<int>(ref.indent, std::string(s, len));
-		else if (string)
-			XmlReader::Read<std::string>(ref.string, std::string(s, len));
-		else if (parameters)
-			XmlReader::Read<std::vector<int> >(ref.parameters, std::string(s, len));
+	void EndElement(XmlReader& stream, const char* name) {
+		field = None;
+	}
+	void CharacterData(XmlReader& stream, const std::string& data) {
+		switch (field) {
+			case None:
+				break;
+			case Code:
+				XmlReader::Read<int>(ref.code, data);
+				break;
+			case Indent:
+				XmlReader::Read<int>(ref.indent, data);
+				break;
+			case String:
+				XmlReader::Read<std::string>(ref.string, data);
+				break;
+			case Parameters:
+				XmlReader::Read<std::vector<int> >(ref.parameters, data);
+				break;
+		}
 	}
 };
 
@@ -166,7 +177,8 @@ public:
 	EventCommandVectorXmlHandler(std::vector<RPG::EventCommand>& ref) : ref(ref) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		// if (strcmp(name, "EventCommand") != 0) error();
+		if (strcmp(name, "EventCommand") != 0)
+			stream.Error("Expecting %s but got %s", "EventCommand", name);
 		ref.resize(ref.size() + 1);
 		RPG::EventCommand& obj = ref.back();
 		stream.SetHandler(new EventCommandXmlHandler(obj));

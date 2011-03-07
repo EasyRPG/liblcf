@@ -19,6 +19,8 @@
 /// Headers
 ////////////////////////////////////////////////////////////
 #include <sstream>
+#include <cstdarg>
+#include <cstdio>
 #include "reader_lcf.h"
 #include "reader_xml.h"
 
@@ -83,11 +85,20 @@ bool XmlReader::IsOk() const {
 }
 
 ////////////////////////////////////////////////////////////
+void XmlReader::Error(const char* fmt, ...) {
+	va_list ap;
+	va_start(ap, fmt);
+	vfprintf(stderr, fmt, ap);
+	fputc('\n', stderr);
+	va_end(ap);
+}
+
+////////////////////////////////////////////////////////////
 void XmlReader::Parse() {
 #ifdef XML_READER
 	static const int bufsize = 4096;
-	void* buffer = XML_GetBuffer(parser, bufsize);
 	while (IsOk() && !feof(stream)) {
+		void* buffer = XML_GetBuffer(parser, bufsize);
 		int len = fread(buffer, 1, bufsize, stream);
 		int result = XML_ParseBuffer(parser, len, len <= 0);
 	}
@@ -109,15 +120,15 @@ void XmlReader::SetHandler(XmlHandler* handler) {
 void XmlReader::StartElement(const char* name, const char** atts) {
 	XmlHandler* handler = handlers.back();
 	handlers.push_back(handler);
-	handler->StartElement(*this, name, atts);
+	handlers.back()->StartElement(*this, name, atts);
+	buffer.clear();
 }
 
 ////////////////////////////////////////////////////////
 /// Character Data
 ////////////////////////////////////////////////////////
 void XmlReader::CharacterData(const char* s, int len) {
-	XmlHandler* handler = handlers.back();
-	handler->CharacterData(*this, s, len);
+	buffer.append(s, len);
 }
 
 ////////////////////////////////////////////////////////
@@ -125,9 +136,11 @@ void XmlReader::CharacterData(const char* s, int len) {
 ////////////////////////////////////////////////////////
 void XmlReader::EndElement(const char* name) {
 	XmlHandler* handler = handlers.back();
+	handler->CharacterData(*this, buffer);
 	handlers.pop_back();
 	if (handler != handlers.back())
 		delete handler;
+	handlers.back()->EndElement(*this, name);
 }
 
 ////////////////////////////////////////////////////////////
@@ -150,7 +163,9 @@ void XmlReader::Read<int>(int& val, const std::string& data) {
 template <>
 void XmlReader::Read<uint8_t>(uint8_t& val, const std::string& data) {
 	std::istringstream s(data);
-	s >> val;
+	int x;
+	s >> x;
+	val = x;
 }
 
 template <>
@@ -178,12 +193,16 @@ void XmlReader::Read<std::string>(std::string& val, const std::string& data) {
 
 template <class T>
 void XmlReader::ReadVector(std::vector<T>& val, const std::string& data) {
+	val.clear();
 	std::istringstream s(data);
 	for (;;) {
-		T x;
-		s >> x;
-		if (!s.fail())
+		std::string str;
+		s >> str;
+		if (!s.fail()) {
+			T x;
+			XmlReader::Read<T>(x, str);
 			val.push_back(x);
+		}
 		if (!s.good())
 			break;
 	}

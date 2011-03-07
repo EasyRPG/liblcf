@@ -104,9 +104,13 @@ public:
 		field->BeginXml(ref, stream);
 	}
 
-	void CharacterData(XmlReader& stream, const char* s, int len) {
-		if (field)
-			field->ParseXml(ref, std::string(s, len));
+	void EndElement(XmlReader& stream, const char* name) {
+		field = NULL;
+	}
+
+	void CharacterData(XmlReader& stream, const std::string& data) {
+		if (field != NULL)
+			field->ParseXml(ref, data);
 	}
 private:
 	S& ref;
@@ -119,7 +123,8 @@ public:
 	StructFieldXmlHandler(S& ref) : ref(ref) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		// if (strcmp(name, Struct<S>::name) != 0) error();
+		if (strcmp(name, Struct<S>::name) != 0)
+			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
 		Struct<S>::ID_reader->ReadIDXml(ref, atts);
 		stream.SetHandler(new StructXmlHandler<S>(ref));
 	}
@@ -173,7 +178,8 @@ public:
 	StructVectorXmlHandler(std::vector<S>& ref) : ref(ref) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
-		// if (strcmp(name, Struct<S>::name) != 0) error();
+		if (strcmp(name, Struct<S>::name) != 0)
+			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
 		ref.resize(ref.size() + 1);
 		S& obj = ref.back();
 		Struct<S>::ID_reader->ReadIDXml(obj, atts);

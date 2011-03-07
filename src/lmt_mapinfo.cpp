@@ -23,78 +23,6 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read MapInfo Rect
-////////////////////////////////////////////////////////////
-template <>
-struct TypeReader<RPG::MapInfo::Rect> {
-	static inline void ReadLcf(RPG::MapInfo::Rect& ref, LcfReader& stream, uint32_t length) {
-		assert(length == 16);
-		ref.x = stream.Read32();
-		ref.y = stream.Read32();
-		ref.w = stream.Read32() - ref.x;
-		ref.h = stream.Read32() - ref.y;
-	}
-	static inline void WriteLcf(const RPG::MapInfo::Rect& ref, LcfWriter& stream) {
-		stream.Write32(ref.x);
-		stream.Write32(ref.y);
-		stream.Write32(ref.w + ref.x);
-		stream.Write32(ref.h + ref.y);
-	}
-	static inline int LcfSize(const RPG::MapInfo::Rect& ref, LcfWriter& stream) {
-		return 4 * 4;
-	}
-	static inline void WriteXml(const RPG::MapInfo::Rect& ref, XmlWriter& stream) {
-		stream.BeginElement("Rect");
-		stream.WriteNode<int>("x", ref.x);
-		stream.WriteNode<int>("y", ref.y);
-		stream.WriteNode<int>("w", ref.w);
-		stream.WriteNode<int>("h", ref.h);
-		stream.EndElement("Rect");
-	}
-
-	class RectXmlHandler : public XmlHandler {
-	private:
-		RPG::MapInfo::Rect& ref;
-		int* field;
-	public:
-		RectXmlHandler(RPG::MapInfo::Rect& ref) : ref(ref), field(NULL) {}
-		void StartElement(XmlReader& stream, const char* name, const char** atts) {
-			if (strcmp(name, "x") == 0)
-				field = &ref.x;
-			else if (strcmp(name, "y") == 0)
-				field = &ref.y;
-			else if (strcmp(name, "w") == 0)
-				field = &ref.w;
-			else if (strcmp(name, "h") == 0)
-				field = &ref.h;
-			else {
-				// error
-			}
-		}
-		void CharacterData(XmlReader& stream, const char* s, int len) {
-			XmlReader::Read<int>(*field, std::string(s, len));
-		}
-	};
-
-	class RectFieldXmlHandler : public XmlHandler {
-	private:
-		RPG::MapInfo::Rect& ref;
-	public:
-		RectFieldXmlHandler(RPG::MapInfo::Rect& ref) : ref(ref) {}
-		void StartElement(XmlReader& stream, const char* name, const char** atts) {
-			// if (strcmp(name, "Rect") != 0) error();
-			stream.SetHandler(new RectXmlHandler(ref));
-		}
-	};
-
-	static inline void BeginXml(RPG::MapInfo::Rect& ref, XmlReader& stream) {
-		stream.SetHandler(new RectFieldXmlHandler(ref));
-	}
-	static void ParseXml(RPG::MapInfo::Rect& ref, const std::string& data) {
-	}
-};
-
-////////////////////////////////////////////////////////////
 /// Read MapInfo
 ////////////////////////////////////////////////////////////
 template <>
@@ -116,7 +44,7 @@ const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::escape,				LMT_Reader::ChunkMapInfo::escape,			"escape"			),
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::save,				LMT_Reader::ChunkMapInfo::save,				"save"				),
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::encounter_steps,	LMT_Reader::ChunkMapInfo::encounter_steps,	"encounter_steps"	),
-	new TypedField<RPG::MapInfo, RPG::MapInfo::Rect>	(&RPG::MapInfo::area,				LMT_Reader::ChunkMapInfo::area_rect,		"area_rect"			),
+	new TypedField<RPG::MapInfo, RPG::Rect>				(&RPG::MapInfo::area,				LMT_Reader::ChunkMapInfo::area_rect,		"area_rect"			),
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::indentation,		LMT_Reader::ChunkMapInfo::indentation,		"indentation"		),
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::scrollbar_x,		LMT_Reader::ChunkMapInfo::scrollbar_x,		"scrollbar_x"		),
 	new TypedField<RPG::MapInfo, int>					(&RPG::MapInfo::scrollbar_y,		LMT_Reader::ChunkMapInfo::scrollbar_y,		"scrollbar_y"		),

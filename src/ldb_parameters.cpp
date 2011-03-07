@@ -79,10 +79,16 @@ public:
 		else if (strcmp(name, "agility") == 0)
 			field = &ref.agility;
 		else {
+			stream.Error("Unrecognized field '%s'", name);
+			field = NULL;
 		}
 	}
-	void CharacterData(XmlReader& stream, const char* s, int len) {
-		XmlReader::Read<std::vector<int16_t> >(*field, std::string(s, len));
+	void EndElement(XmlReader& stream, const char* name) {
+		field = NULL;
+	}
+	void CharacterData(XmlReader& stream, const std::string& data) {
+		if (field != NULL)
+			XmlReader::Read<std::vector<int16_t> >(*field, data);
 	}
 };
 

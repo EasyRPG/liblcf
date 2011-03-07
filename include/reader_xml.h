@@ -80,6 +80,11 @@ public:
 	bool IsOk() const;
 
 	////////////////////////////////////////////////////////
+	/// Report a parsing error
+	////////////////////////////////////////////////////////
+	void Error(const char* fmt, ...);
+
+	////////////////////////////////////////////////////////
 	/// Parses the XML file.
 	////////////////////////////////////////////////////////
 	void Parse();
@@ -117,6 +122,8 @@ protected:
 	int nesting;
 	/// Handler stack
 	std::vector<XmlHandler*> handlers;
+	/// Text buffer
+	std::string buffer;
 };
 
 ////////////////////////////////////////////////////////////
@@ -125,7 +132,8 @@ protected:
 class XmlHandler {
 public:
 	virtual void StartElement(XmlReader& reader, const char* name, const char** atts) {}
-	virtual void CharacterData(XmlReader& reader, const char* s, int len) {}
+	virtual void CharacterData(XmlReader& reader, const std::string& data) {}
+	virtual void EndElement(XmlReader& reader, const char* name) {}
 };
 
 #endif
