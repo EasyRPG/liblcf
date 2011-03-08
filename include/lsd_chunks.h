@@ -38,8 +38,7 @@ namespace LSD_Reader {
 			map_info			= 0x6F, // RPG::SaveMapInfo
 			unknown_70			= 0x70, // ? chunks?
 			events				= 0x71, // RPG::SaveEvents
-			common_events		= 0x72, // array of RPG::SaveCommonEvent
-			END					= 0x00	// End of chunk
+			common_events		= 0x72  // array of RPG::SaveCommonEvent
 		};
 	};
 	struct ChunkTitle {
@@ -55,8 +54,7 @@ namespace LSD_Reader {
 			face3_name		= 0x19, // char[]: face filename
 			face3_id		= 0x1A, // int: face id
 			face4_name		= 0x1B, // char[]: face filename
-			face4_id		= 0x1C, // int: face id
-			END				= 0x00	// End of chunk
+			face4_id		= 0x1C  // int: face id
 		};
 	};
 	struct ChunkSystem {
@@ -114,8 +112,7 @@ namespace LSD_Reader {
 			menu_allowed			= 0x7C, // 
 			background				= 0x7D, // string
 			save_count				= 0x83, // 
-			save_slot				= 0x84, //
-			END						= 0x00	// End of chunk
+			save_slot				= 0x84  //
 		};
 	};
 	struct ChunkScreen {
@@ -147,8 +144,7 @@ namespace LSD_Reader {
 			battleanim_unk_2d	= 0x2D, // int  - battle animation ??
 			battleanim_global	= 0x2F, // int  - battle animation global scope
 			weather				= 0x30, // int
-			weather_strength	= 0x31, // int
-			END					= 0x00	// End of chunk
+			weather_strength	= 0x31  // int
 		};
 	};
 	struct ChunkPicture {
@@ -181,8 +177,7 @@ namespace LSD_Reader {
 			effect2_speed		= 0x2E, // int
 			time_left			= 0x33, // int
 			current_rotation	= 0x34, // double
-			current_waver		= 0x35, // int
-			END					= 0x00	// End of chunk
+			current_waver		= 0x35  // int
 		};
 	};
 	struct ChunkPartyLocation {
@@ -223,8 +218,7 @@ namespace LSD_Reader {
 			unknown_79			= 0x79, // ?
 			unknown_7c			= 0x7C, // ?
 			unknown_83			= 0x83, // ?
-			unknown_84			= 0x84, // ?
-			END					= 0x00	// End of chunk
+			unknown_84			= 0x84  // ?
 		};
 	};
 	struct ChunkVehicleLocation {
@@ -246,8 +240,7 @@ namespace LSD_Reader {
 			unknown_4b		= 0x4B, // ?
 			unknown_65		= 0x65, // ? 
 			sprite2_name	= 0x6F, // string
-			sprite2_id		= 0x70, // int
-			END				= 0x00	// End of chunk
+			sprite2_id		= 0x70  // int
 		};
 	};
 	struct ChunkActor {
@@ -282,8 +275,7 @@ namespace LSD_Reader {
 			lock_equipment	= 0x5D, // bool
 			auto_battle		= 0x5E, // bool
 			mighty_guard	= 0x5F, // bool
-			unknown_60		= 0x60, // ?
-			END				= 0x00	// End of chunk
+			unknown_60		= 0x60  // ?
 		};
 	};
 
@@ -309,8 +301,7 @@ namespace LSD_Reader {
 			escapes			= 0x22, // ?
 			victories		= 0x23, // ?
 			unknown_29		= 0x29, // ?
-			steps			= 0x2A, // ?
-			END				= 0x00	// End of chunk
+			steps			= 0x2A  // ?
 		};
 	};
 	struct ChunkMapInfo {
@@ -328,8 +319,7 @@ namespace LSD_Reader {
 			parallax_horz_auto	= 0x23, // bool
 			parallax_horz_speed	= 0x24, // int
 			parallax_vert_auto	= 0x25, // bool
-			parallax_vert_speed	= 0x26, // int
-			END					= 0x00	// End of chunk
+			parallax_vert_speed	= 0x26  // int
 		};
 	};
 	struct ChunkMapEvent {
@@ -371,8 +361,7 @@ namespace LSD_Reader {
 			flash_time_left		= 0x55, // int
 			unknown_66			= 0x66, // ?
 			unknown_67			= 0x67, // ?
-			event_data			= 0x6C, // chunks
-			END					= 0x00	// End of chunk
+			event_data			= 0x6C  // chunks
 		};
 	};
 	struct ChunkEventData {
@@ -381,8 +370,7 @@ namespace LSD_Reader {
 			unknown_16		= 0x16, // 
 			unknown_17		= 0x17, // 
 			time_left		= 0x1F, // int
-			unknown_20		= 0x20, // 
-			END				= 0x00	// End of chunk
+			unknown_20		= 0x20  // 
 		};
 	};
 	struct ChunkEventCommands {
@@ -393,14 +381,12 @@ namespace LSD_Reader {
 			unknown_0c		= 0x0C,	// int
 			unknown_0d		= 0x0D,	// int
 			unknown_15		= 0x15,	// byte
-			unknown_16		= 0x16,	// byte
-			END				= 0x00	// End of chunk
+			unknown_16		= 0x16	// byte
 		};
 	};
 	struct ChunkCommonEvent {
 		enum Index {
-			event_data		= 0x01,	// chunks
-			END				= 0x00	// End of chunk
+			event_data		= 0x01	// chunks
 		};
 	};
 	struct ChunkEvents {
@@ -413,8 +399,7 @@ namespace LSD_Reader {
 			unknown_1c		= 0x1C, // int/bool
 			unknown_20		= 0x20, // int/bool
 			unknown_24		= 0x24, // int/bool
-			unknown_25		= 0x25, // int/bool
-			END				= 0x00	// End of chunk
+			unknown_25		= 0x25  // int/bool
 		};
 	};
 	struct ChunkTarget {

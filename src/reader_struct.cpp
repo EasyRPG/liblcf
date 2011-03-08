@@ -74,8 +74,14 @@ template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 	ID_reader->WriteID(obj, stream);
 	S ref = S();
+	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		if (field->id < last)
+			std::cerr << "field order mismatch: " << field->id
+					  << " after " << last
+					  << " in struct " << name
+					  << std::endl;
 		if (field->IsDefault(obj, ref))
 			continue;
 		stream.WriteInt(field->id);

@@ -39,12 +39,12 @@ const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_level,	LSD_Reader::ChunkTitle::hero_level,		"hero_level"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_hp,		LSD_Reader::ChunkTitle::hero_hp,		"hero_hp"		),
 	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face1_name,	LSD_Reader::ChunkTitle::face1_name,		"face1_name"	),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face2_name,	LSD_Reader::ChunkTitle::face2_name,		"face2_name"	),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face3_name,	LSD_Reader::ChunkTitle::face3_name,		"face3_name"	),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face4_name,	LSD_Reader::ChunkTitle::face4_name,		"face4_name"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face1_id,		LSD_Reader::ChunkTitle::face1_id,		"face1_id"		),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face2_name,	LSD_Reader::ChunkTitle::face2_name,		"face2_name"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face2_id,		LSD_Reader::ChunkTitle::face2_id,		"face2_id"		),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face3_name,	LSD_Reader::ChunkTitle::face3_name,		"face3_name"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face3_id,		LSD_Reader::ChunkTitle::face3_id,		"face3_id"		),
+	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face4_name,	LSD_Reader::ChunkTitle::face4_name,		"face4_name"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face4_id,		LSD_Reader::ChunkTitle::face4_id,		"face4_id"		),
 	NULL
 };

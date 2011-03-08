@@ -34,12 +34,12 @@ char const* const Struct<RPG::BattleCommands>::name("BattleCommands");
 
 template <>
 const Field<RPG::BattleCommands>* Struct<RPG::BattleCommands>::fields[] = {
-	new TypedField<RPG::BattleCommands, std::vector<RPG::BattleCommand> >	(&RPG::BattleCommands::commands,		LDB_Reader::ChunkBattleCommands::commands,			"commands"		),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::placement,		LDB_Reader::ChunkBattleCommands::placement,			"placement"		),
+	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler1,	LDB_Reader::ChunkBattleCommands::death_handler1,	"death_handler1"),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::row,				LDB_Reader::ChunkBattleCommands::row,				"row"			),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::battle_type,		LDB_Reader::ChunkBattleCommands::battle_type,		"battle_type"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler1,	LDB_Reader::ChunkBattleCommands::death_handler1,	"death_handler1"),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::unknown1,		LDB_Reader::ChunkBattleCommands::unknown1,			"unknown1"		),
+	new TypedField<RPG::BattleCommands, std::vector<RPG::BattleCommand> >	(&RPG::BattleCommands::commands,		LDB_Reader::ChunkBattleCommands::commands,			"commands"		),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler2,	LDB_Reader::ChunkBattleCommands::death_handler2,	"death_handler2"),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_event,		LDB_Reader::ChunkBattleCommands::death_event,		"death_event"	),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::window_size,		LDB_Reader::ChunkBattleCommands::window_size,		"window_size"	),

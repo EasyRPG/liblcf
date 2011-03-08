@@ -27,6 +27,7 @@ namespace RPG {
 		Encounter();
 		
 		int ID;
+		int troop_id;
 	};
 }
 

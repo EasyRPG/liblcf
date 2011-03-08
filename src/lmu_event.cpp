@@ -34,9 +34,9 @@ char const* const Struct<RPG::Event>::name("Event");
 
 template <>
 const Field<RPG::Event>* Struct<RPG::Event>::fields[] = {
-	new TypedField<RPG::Event, std::string>	(&RPG::Event::name,	LMU_Reader::ChunkEvent::name,	"name"	),
-	new TypedField<RPG::Event, int>			(&RPG::Event::x,	LMU_Reader::ChunkEvent::x,		"x"		),
-	new TypedField<RPG::Event, int>			(&RPG::Event::y,	LMU_Reader::ChunkEvent::y,		"y"		),
-	new TypedField<RPG::Event, std::vector<RPG::EventPage> >(&RPG::Event::pages, LMU_Reader::ChunkEvent::pages, "pages"	),
+	new TypedField<RPG::Event, std::string>					(&RPG::Event::name,		LMU_Reader::ChunkEvent::name,	"name"	),
+	new TypedField<RPG::Event, int>							(&RPG::Event::x,		LMU_Reader::ChunkEvent::x,		"x"		),
+	new TypedField<RPG::Event, int>							(&RPG::Event::y,		LMU_Reader::ChunkEvent::y,		"y"		),
+	new TypedField<RPG::Event, std::vector<RPG::EventPage> >(&RPG::Event::pages,	LMU_Reader::ChunkEvent::pages,	"pages"	),
 	NULL
 };

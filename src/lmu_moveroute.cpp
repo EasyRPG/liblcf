@@ -34,10 +34,10 @@ char const* const Struct<RPG::MoveRoute>::name("MoveRoute");
 
 template <>
 const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
-	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::repeat,			LMU_Reader::ChunkMoveRoute::repeat,				"repeat"		),
-	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::skippable,		LMU_Reader::ChunkMoveRoute::skippable,			"skippable"		),
 	new SizeField<RPG::MoveRoute, RPG::MoveCommand>					(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands_size					),
 	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >	(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands,		"move_commands"	),
+	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::repeat,			LMU_Reader::ChunkMoveRoute::repeat,				"repeat"		),
+	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::skippable,		LMU_Reader::ChunkMoveRoute::skippable,			"skippable"		),
 	NULL
 };
 

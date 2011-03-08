@@ -39,15 +39,13 @@ namespace LDB_Reader {
 			Switches			= 0x17, // RPG::Switchs
 			Variables			= 0x18, // RPG::Variables
 			CommonEvent			= 0x19, // RPG::CommonEvent
-			BattleCommand		= 0x1D, // RPG::BattleCommand - RPG2003
-			Class				= 0x1E, // RPG::Class - RPG2003
-			BattlerAnimation	= 0x20, // RPG::BattlerAnimation - RPG2003
-
 			CommonEventD1		= 0x1A, // Duplicated? - Not used - RPG2003
 			CommonEventD2		= 0x1B, // Duplicated? - Not used - RPG2003
 			CommonEventD3		= 0x1C, // Duplicated? - Not used - RPG2003
 			ClassD1				= 0x1F, // Duplicated? - Not used - RPG2003
-			
+			BattleCommand		= 0x1D, // RPG::BattleCommand - RPG2003
+			Class				= 0x1E, // RPG::Class - RPG2003
+			BattlerAnimation	= 0x20, // RPG::BattlerAnimation - RPG2003
 			END					= 0x00	// End of chunk
 		};
 	};
@@ -402,7 +400,7 @@ namespace LDB_Reader {
 			timings			= 0x06, // Array - RPG::AnimationTiming
 			scope			= 0x09, // Integer
 			position		= 0x0A, // Integer
-			frames				= 0x0C	// Array - RPG::AnimationFrames
+			frames			= 0x0C	// Array - RPG::AnimationFrames
 		};
 	};
 	struct ChunkAnimationTiming {

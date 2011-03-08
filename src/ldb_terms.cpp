@@ -157,8 +157,8 @@ const Field<RPG::Terms>* Struct<RPG::Terms>::fields[] = {
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::accessory,			LDB_Reader::ChunkTerms::accessory,				"accessory"				),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::save_game_message,	LDB_Reader::ChunkTerms::save_game_message,		"save_game_message"		),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::load_game_message,	LDB_Reader::ChunkTerms::load_game_message,		"load_game_message"		),
-	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exit_game_message,	LDB_Reader::ChunkTerms::exit_game_message,		"exit_game_message"		),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::file,					LDB_Reader::ChunkTerms::file,					"file"					),
+	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exit_game_message,	LDB_Reader::ChunkTerms::exit_game_message,		"exit_game_message"		),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::yes,					LDB_Reader::ChunkTerms::yes,					"yes"					),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::no,					LDB_Reader::ChunkTerms::no,						"no"					),
 	NULL

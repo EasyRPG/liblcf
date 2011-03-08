@@ -58,7 +58,7 @@ void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, Lcf
 void RawStruct<RPG::EventCommand>::WriteLcf(const RPG::EventCommand& event_command, LcfWriter& stream) {
 	stream.Write(event_command.code);
 	stream.Write(event_command.indent);
-	stream.Write(event_command.string.size());
+	stream.WriteInt(event_command.string.size());
 	stream.Write(event_command.string);
 	int count = event_command.parameters.size();
 	stream.Write(count);

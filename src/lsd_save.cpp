@@ -47,7 +47,7 @@ const Field<RPG::Save>* Struct<RPG::Save>::fields[] = {
 	new TypedField<RPG::Save, std::vector<RPG::SaveTarget> >		(&RPG::Save::targets,			LSD_Reader::ChunkSave::targets,				"targets"			),
 	new TypedField<RPG::Save, RPG::SaveMapInfo>						(&RPG::Save::map_info,			LSD_Reader::ChunkSave::map_info,			"map_info"			),
 	new TypedField<RPG::Save, int>									(&RPG::Save::unknown_70,		LSD_Reader::ChunkSave::unknown_70,			"unknown_70"		),
-	new TypedField<RPG::Save, std::vector<RPG::SaveCommonEvent> >	(&RPG::Save::common_events,		LSD_Reader::ChunkSave::common_events,		"common_events"		),
 	new TypedField<RPG::Save, RPG::SaveEvents>						(&RPG::Save::events,			LSD_Reader::ChunkSave::events,				"events"			),
+	new TypedField<RPG::Save, std::vector<RPG::SaveCommonEvent> >	(&RPG::Save::common_events,		LSD_Reader::ChunkSave::common_events,		"common_events"		),
 	NULL
 };

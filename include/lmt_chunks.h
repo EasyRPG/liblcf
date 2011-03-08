@@ -62,12 +62,12 @@ namespace LMT_Reader {
 			save			= 0x21, // Flag // 0=inherit; 1=allow; 2=disallow
 			encounters		= 0x29, // Array - RPG::Encounter
 			encounter_steps = 0x2C, // Integer // 0 inherits from parent (?) FIXME
-			area_rect		= 0x33	// Uint32 x 4 (X,Y,W,H) // normal map (non-area) is 0,0,0,0
+			area_rect		= 0x33	// Uint32 x 4 (L,T,R,B) // normal map (non-area) is 0,0,0,0
 		};
 	};
 	struct ChunkEncounter {
 		enum Index {
-			ID = 0x01 // Integer
+			troop_id = 0x01 // Integer
 		};
 	};
 }

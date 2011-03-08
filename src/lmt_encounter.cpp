@@ -34,7 +34,7 @@ char const* const Struct<RPG::Encounter>::name("Encounter");
 
 template <>
 const Field<RPG::Encounter>* Struct<RPG::Encounter>::fields[] = {
-	new TypedField<RPG::Encounter, int>(&RPG::Encounter::ID, LMT_Reader::ChunkEncounter::ID, "ID"),
+	new TypedField<RPG::Encounter, int>(&RPG::Encounter::troop_id, LMT_Reader::ChunkEncounter::troop_id, "troop_id"),
 	NULL
 };
 

@@ -306,7 +306,7 @@ struct Field {
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, LcfWriter& stream) const = 0;
 	virtual int LcfSize(const S& obj, LcfWriter& stream) const = 0;
-	virtual bool IsDefault(const S& obj, const S& ref) const { return false; }
+	virtual bool IsDefault(const S& obj, const S& ref) const = 0;
 	virtual void WriteXml(const S& obj, XmlWriter& stream) const = 0;
 	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
@@ -443,6 +443,9 @@ struct SizeField : public Field<S> {
 	}
 	void ParseXml(S& obj, const std::string& data) const {
 		// no-op
+	}
+	bool IsDefault(const S& a, const S& b) const {
+		return (a.*ref).empty() && (b.*ref).empty();
 	}
 
 	SizeField(const std::vector<T> S::*ref, int id) :

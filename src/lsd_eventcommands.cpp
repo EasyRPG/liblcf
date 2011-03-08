@@ -34,12 +34,12 @@ char const* const Struct<RPG::SaveEventCommands>::name("SaveEventCommands");
 
 template <>
 const Field<RPG::SaveEventCommands>* Struct<RPG::SaveEventCommands>::fields[] = {
-	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::current_command,	LSD_Reader::ChunkEventCommands::current_command,	"current_command"	),
-	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::unknown_0c,		LSD_Reader::ChunkEventCommands::unknown_0c,			"unknown_0c"		),
-	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::unknown_0d,		LSD_Reader::ChunkEventCommands::unknown_0d,			"unknown_0d"		),
-	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::unknown_15,		LSD_Reader::ChunkEventCommands::unknown_15,			"unknown_15"		),
-	new TypedField<RPG::SaveEventCommands, int>		(&RPG::SaveEventCommands::commands_size,	LSD_Reader::ChunkEventCommands::commands_size,		"commands_size"		),
-	new TypedField<RPG::SaveEventCommands, std::vector<RPG::EventCommand> >	(&RPG::SaveEventCommands::commands,			LSD_Reader::ChunkEventCommands::commands,	"commands"		),
-	new TypedField<RPG::SaveEventCommands, std::vector<uint8_t> >			(&RPG::SaveEventCommands::unknown_16,		LSD_Reader::ChunkEventCommands::unknown_16,	"unknown_16"	),
+	new TypedField<RPG::SaveEventCommands, int>								(&RPG::SaveEventCommands::commands_size,	LSD_Reader::ChunkEventCommands::commands_size,		"commands_size"		),
+	new TypedField<RPG::SaveEventCommands, std::vector<RPG::EventCommand> >	(&RPG::SaveEventCommands::commands,			LSD_Reader::ChunkEventCommands::commands,			"commands"			),
+	new TypedField<RPG::SaveEventCommands, int>								(&RPG::SaveEventCommands::current_command,	LSD_Reader::ChunkEventCommands::current_command,	"current_command"	),
+	new TypedField<RPG::SaveEventCommands, int>								(&RPG::SaveEventCommands::unknown_0c,		LSD_Reader::ChunkEventCommands::unknown_0c,			"unknown_0c"		),
+	new TypedField<RPG::SaveEventCommands, int>								(&RPG::SaveEventCommands::unknown_0d,		LSD_Reader::ChunkEventCommands::unknown_0d,			"unknown_0d"		),
+	new TypedField<RPG::SaveEventCommands, int>								(&RPG::SaveEventCommands::unknown_15,		LSD_Reader::ChunkEventCommands::unknown_15,			"unknown_15"		),
+	new TypedField<RPG::SaveEventCommands, std::vector<uint8_t> >			(&RPG::SaveEventCommands::unknown_16,		LSD_Reader::ChunkEventCommands::unknown_16,			"unknown_16"		),
 	NULL
 };

@@ -70,13 +70,13 @@ void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 
 template <class S>
 int Flags<S>::LcfSize(const S& obj, LcfWriter& stream) {
-	int result;
+	int result = 0;
 	for (int i = 0; flags[i] != NULL; i++) {
 		bool S::*ref = flags[i]->ref;
 		if (obj.*ref)
-			result = (i + 7) / 8;
+			result = i / 8;
 	}
-	return result;
+	return result + 1;
 }
 
 template <class S>
