@@ -162,7 +162,7 @@ namespace LDB_Reader {
 			recover_hp_rate		= 0x21, // Integer
 			recover_sp			= 0x22, // Integer
 			recover_sp_rate		= 0x23, // Integer
-			ocassion_field1		= 0x25, // Flag
+			occasion_field1		= 0x25, // Flag
 			ko_only				= 0x26, // Flag
 			max_hp_points		= 0x29, // Integer
 			max_sp_points		= 0x2A, // Integer
@@ -173,8 +173,8 @@ namespace LDB_Reader {
 			using_message		= 0x33, // Integer
 			skill_id			= 0x35, // Integer - RPG2003
 			switch_id			= 0x37, // Integer
-			ocassion_field2		= 0x39, // Flag
-			ocassion_battle		= 0x3A, // Flag
+			occasion_field2		= 0x39, // Flag
+			occasion_battle		= 0x3A, // Flag
 			actor_set_size		= 0x3D, // Integer
 			actor_set			= 0x3E, // Array - Flag
 			state_set_size		= 0x3F, // Integer

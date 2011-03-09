@@ -57,10 +57,10 @@ namespace RPG {
 		int uses; // Consumables only
 
 		// Equipable		
-		int atk_points;
-		int def_points;
-		int spi_points;
-		int agi_points;
+		int atk_points1;
+		int def_points1;
+		int spi_points1;
+		int agi_points1;
 		std::vector<bool> attribute_set;
 		std::vector<bool> state_set;
 		bool state_effect; // RPG2003
@@ -94,20 +94,25 @@ namespace RPG {
 		int recover_hp_rate;
 		int recover_sp;
 		int recover_sp_rate;
-		bool ocassion_field; // Also used by Switch
+		bool occasion_field1;
 		bool ko_only;
 		
 		// Book - Unique
 		int skill_id;
 		int using_message;
 		
-		// Material (See also Equipable *_points)
+		// Material
 		int max_hp_points;
 		int max_sp_points;
+		int atk_points2;
+		int def_points2;
+		int spi_points2;
+		int agi_points2;
 		
 		// Switch
 		int switch_id;
-		bool ocassion_battle;
+		bool occasion_field2;
+		bool occasion_battle;
 
 		std::vector<RPG::ItemAnimation> animation_data;
 	};

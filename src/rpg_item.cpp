@@ -30,10 +30,10 @@ RPG::Item::Item() {
 	type = 0;
 	price = 0;
 	uses = 1;
-	atk_points = 0;
-	def_points = 0;
-	spi_points = 0;
-	agi_points = 0;
+	atk_points1 = 0;
+	def_points1 = 0;
+	spi_points1 = 0;
+	agi_points1 = 0;
 	state_chance = 0;
 	state_effect = false;
 	cursed = false;
@@ -59,12 +59,17 @@ RPG::Item::Item() {
 	recover_hp_rate = 0;
 	recover_sp = 0;
 	recover_sp_rate = 0;
-	ocassion_field = false;
+	occasion_field1 = false;
 	ko_only = false;
 	skill_id = 1;
 	using_message = 0;
 	max_hp_points = 0;
 	max_sp_points = 0;
+	atk_points2 = 0;
+	def_points2 = 0;
+	spi_points2 = 0;
+	agi_points2 = 0;
 	switch_id = 1;
-	ocassion_battle = false;
+	occasion_field2 = true;
+	occasion_battle = false;
 }
