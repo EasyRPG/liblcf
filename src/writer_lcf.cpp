@@ -97,6 +97,12 @@ void LcfWriter::Write<int>(int val) {
 
 ////////////////////////////////////////////////////////////
 template <>
+void LcfWriter::Write<size_t>(size_t val) {
+	WriteInt(val);
+}
+
+////////////////////////////////////////////////////////////
+template <>
 void LcfWriter::Write<bool>(bool val) {
 	uint8_t x = val ? 1 : 0;
 	Write(x);
