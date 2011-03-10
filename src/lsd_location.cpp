@@ -69,7 +69,7 @@ const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = 
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::pan_finish_x,			LSD_Reader::ChunkPartyLocation::pan_finish_x,		"pan_finish_x"			),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::pan_finish_y,			LSD_Reader::ChunkPartyLocation::pan_finish_y,		"pan_finish_y"			),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_79,			LSD_Reader::ChunkPartyLocation::unknown_79,			"unknown_79"			),
-	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_7c,			LSD_Reader::ChunkPartyLocation::unknown_7c,			"unknown_7c"			),
+	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::encounter_steps,		LSD_Reader::ChunkPartyLocation::encounter_steps,	"encounter_steps"		),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_83,			LSD_Reader::ChunkPartyLocation::unknown_83,			"unknown_83"			),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_84,			LSD_Reader::ChunkPartyLocation::unknown_84,			"unknown_84"			),
 	NULL

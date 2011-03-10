@@ -216,7 +216,7 @@ namespace LSD_Reader {
 			pan_finish_x		= 0x72, // ?
 			pan_finish_y		= 0x73, // ?
 			unknown_79			= 0x79, // ?
-			unknown_7c			= 0x7C, // ?
+			encounter_steps		= 0x7C, // int: sum of terrain.encounter_rate for each step
 			unknown_83			= 0x83, // ?
 			unknown_84			= 0x84  // ?
 		};

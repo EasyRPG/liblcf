@@ -190,7 +190,7 @@ namespace RPG {
 		int pan_finish_x;
 		int pan_finish_y;
 		int unknown_79;
-		int unknown_7c;
+		int encounter_steps;
 		int unknown_83;
 		int unknown_84;
 	};
