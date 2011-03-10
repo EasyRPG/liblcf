@@ -74,12 +74,12 @@ void RawStruct<RPG::MoveCommand>::WriteLcf(const RPG::MoveCommand& ref, LcfWrite
 			stream.Write(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::change_graphic:
-			stream.Write(int(ref.parameter_string.size()));
+			stream.WriteInt(ref.parameter_string.size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::play_sound_effect:
-			stream.Write(int(ref.parameter_string.size()));
+			stream.WriteInt(ref.parameter_string.size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			stream.Write(ref.parameter_b);
