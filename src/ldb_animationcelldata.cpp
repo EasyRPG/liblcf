@@ -30,18 +30,20 @@ EASYRPG_STRUCT_ID_READER(AnimationCellData, WithID)
 
 EASYRPG_STRUCT_NAME(AnimationCellData)
 
- template<>
-const Field<RPG::AnimationCellData>* Struct<RPG::AnimationCellData>::fields[] = {
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::priority,		LDB_Reader::ChunkAnimationCellData::priority,		"priority"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::cell_id,		LDB_Reader::ChunkAnimationCellData::cell_id,		"cell_id"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::x,			LDB_Reader::ChunkAnimationCellData::x,				"x"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::y,			LDB_Reader::ChunkAnimationCellData::y,				"y"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::zoom,			LDB_Reader::ChunkAnimationCellData::zoom,			"zoom"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_red,		LDB_Reader::ChunkAnimationCellData::tone_red,		"tone_red"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_green,	LDB_Reader::ChunkAnimationCellData::tone_green,		"tone_green"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_blue,	LDB_Reader::ChunkAnimationCellData::tone_blue,		"tone_blue"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_gray,	LDB_Reader::ChunkAnimationCellData::tone_gray,		"tone_gray"),
-	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::transparency,	LDB_Reader::ChunkAnimationCellData::transparency,	"transparency"),
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT AnimationCellData
+
+EASYRPG_STRUCT_FIELDS_BEGIN(AnimationCellData)
+	EASYRPG_STRUCT_TYPED_FIELD(int, priority),
+	EASYRPG_STRUCT_TYPED_FIELD(int, cell_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, zoom),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tone_red),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tone_green),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tone_blue),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tone_gray),
+	EASYRPG_STRUCT_TYPED_FIELD(int, transparency),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

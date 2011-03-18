@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(MoveRoute)
 #define EASYRPG_CURRENT_STRUCT MoveRoute
 
 EASYRPG_STRUCT_FIELDS_BEGIN(MoveRoute)
-	new SizeField<RPG::MoveRoute, RPG::MoveCommand>					(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands_size					),
-	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >	(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands,		"move_commands"	),
-	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::repeat,			LMU_Reader::ChunkMoveRoute::repeat,				"repeat"		),
-	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::skippable,		LMU_Reader::ChunkMoveRoute::skippable,			"skippable"		),
+	EASYRPG_STRUCT_SIZE_FIELD(RPG::MoveCommand, move_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::MoveCommand> , move_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, repeat),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, skippable),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

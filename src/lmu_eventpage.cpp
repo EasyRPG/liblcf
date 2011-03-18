@@ -33,22 +33,22 @@ EASYRPG_STRUCT_NAME(EventPage)
 #define EASYRPG_CURRENT_STRUCT EventPage
 
 EASYRPG_STRUCT_FIELDS_BEGIN(EventPage)
-	new TypedField<RPG::EventPage, RPG::EventPageCondition>			(&RPG::EventPage::condition,			LMU_Reader::ChunkEventPage::condition,				"condition"				),
-	new TypedField<RPG::EventPage, std::string>						(&RPG::EventPage::character_name,		LMU_Reader::ChunkEventPage::character_name,			"character_name"		),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_index,		LMU_Reader::ChunkEventPage::character_index,		"character_index"		),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_direction,	LMU_Reader::ChunkEventPage::character_direction,	"character_direction"	),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_pattern,	LMU_Reader::ChunkEventPage::character_pattern,		"character_pattern"		),
-	new TypedField<RPG::EventPage, bool>							(&RPG::EventPage::translucent,			LMU_Reader::ChunkEventPage::translucent,			"translucent"			),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_type,			LMU_Reader::ChunkEventPage::move_type,				"move_type"				),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_frequency,		LMU_Reader::ChunkEventPage::move_frequency,			"move_frequency"		),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::trigger,				LMU_Reader::ChunkEventPage::trigger,				"trigger"				),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::priority_type,		LMU_Reader::ChunkEventPage::priority_type,			"priority_type"			),
-	new TypedField<RPG::EventPage, bool>							(&RPG::EventPage::overlap,				LMU_Reader::ChunkEventPage::overlap,				"overlap"				),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::animation_type,		LMU_Reader::ChunkEventPage::animation_type,			"animation_type"		),
-	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::move_speed,			LMU_Reader::ChunkEventPage::move_speed,				"move_speed"			),
-	new TypedField<RPG::EventPage, RPG::MoveRoute>					(&RPG::EventPage::move_route,			LMU_Reader::ChunkEventPage::move_route,				"move_route"			),
-	new SizeField<RPG::EventPage, RPG::EventCommand>				(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands_size								),
-	new TypedField<RPG::EventPage, std::vector<RPG::EventCommand> >	(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands,			"event_commands"		),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::EventPageCondition, condition),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, character_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, character_index),
+	EASYRPG_STRUCT_TYPED_FIELD(int, character_direction),
+	EASYRPG_STRUCT_TYPED_FIELD(int, character_pattern),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, translucent),
+	EASYRPG_STRUCT_TYPED_FIELD(int, move_type),
+	EASYRPG_STRUCT_TYPED_FIELD(int, move_frequency),
+	EASYRPG_STRUCT_TYPED_FIELD(int, trigger),
+	EASYRPG_STRUCT_TYPED_FIELD(int, priority_type),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, overlap),
+	EASYRPG_STRUCT_TYPED_FIELD(int, animation_type),
+	EASYRPG_STRUCT_TYPED_FIELD(int, move_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
+	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

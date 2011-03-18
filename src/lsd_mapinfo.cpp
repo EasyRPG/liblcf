@@ -34,20 +34,20 @@ EASYRPG_STRUCT_NAME(SaveMapInfo)
 #define EASYRPG_CURRENT_STRUCT SaveMapInfo
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveMapInfo)
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_x,					LSD_Reader::ChunkMapInfo::pan_x,				"pan_x"					),
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_y,					LSD_Reader::ChunkMapInfo::pan_y,				"pan_y"					),
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::encounter_rate,			LSD_Reader::ChunkMapInfo::encounter_rate,		"encounter_rate"		),
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::chipset_id,				LSD_Reader::ChunkMapInfo::chipset_id,			"chipset_id"			),
-	new TypedField<RPG::SaveMapInfo, std::vector<RPG::SaveMapEvent> >	(&RPG::SaveMapInfo::events,					LSD_Reader::ChunkMapInfo::events,				"events"				),
-	new TypedField<RPG::SaveMapInfo, std::vector<uint8_t> >				(&RPG::SaveMapInfo::lower_tiles,			LSD_Reader::ChunkMapInfo::lower_tiles,			"lower_tiles"			),
-	new TypedField<RPG::SaveMapInfo, std::vector<uint8_t> >				(&RPG::SaveMapInfo::upper_tiles,			LSD_Reader::ChunkMapInfo::upper_tiles,			"upper_tiles"			),
-	new TypedField<RPG::SaveMapInfo, std::string>						(&RPG::SaveMapInfo::parallax_name,			LSD_Reader::ChunkMapInfo::parallax_name,		"parallax_name"			),
-	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_horz,			LSD_Reader::ChunkMapInfo::parallax_horz,		"parallax_horz"			),
-	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_vert,			LSD_Reader::ChunkMapInfo::parallax_vert,		"parallax_vert"			),
-	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_horz_auto,		LSD_Reader::ChunkMapInfo::parallax_horz_auto,	"parallax_horz_auto"	),
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_horz_speed,	LSD_Reader::ChunkMapInfo::parallax_horz_speed,	"parallax_horz_speed"	),
-	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_vert_auto,		LSD_Reader::ChunkMapInfo::parallax_vert_auto,	"parallax_vert_auto"	),
-	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_vert_speed,	LSD_Reader::ChunkMapInfo::parallax_vert_speed,	"parallax_vert_speed"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, pan_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, pan_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(int, chipset_id),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent> , events),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , lower_tiles),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , upper_tiles),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, parallax_name),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_horz),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_vert),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_horz_auto),
+	EASYRPG_STRUCT_TYPED_FIELD(int, parallax_horz_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_vert_auto),
+	EASYRPG_STRUCT_TYPED_FIELD(int, parallax_vert_speed),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

@@ -34,11 +34,11 @@ EASYRPG_STRUCT_NAME(SaveTarget)
 #define EASYRPG_CURRENT_STRUCT SaveTarget
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveTarget)
-	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_id,		LSD_Reader::ChunkTarget::map_id,	"map_id"	),
-	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_x,		LSD_Reader::ChunkTarget::map_x,		"map_x"		),
-	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::map_y,		LSD_Reader::ChunkTarget::map_y,		"map_y"		),
-	new TypedField<RPG::SaveTarget, bool>	(&RPG::SaveTarget::switch_on,	LSD_Reader::ChunkTarget::switch_on,	"switch_on"	),
-	new TypedField<RPG::SaveTarget, int>	(&RPG::SaveTarget::switch_id,	LSD_Reader::ChunkTarget::switch_id,	"switch_id"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, map_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, map_y),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, switch_on),
+	EASYRPG_STRUCT_TYPED_FIELD(int, switch_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

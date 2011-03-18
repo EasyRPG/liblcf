@@ -22,30 +22,30 @@
 /// LDB Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LDB_Reader {
-	struct ChunkData {
+	struct ChunkDatabase {
 		enum Index {
-			Actor				= 0x0B, // RPG::Actor
-			Skill				= 0x0C, // RPG::Skill
-			Item				= 0x0D, // RPG::Item
-			Enemy				= 0x0E, // RPG::Enemy
-			Troop				= 0x0F, // RPG::Troop
-			Terrain				= 0x10, // RPG::Terrain
-			Attribute			= 0x11, // RPG::Attribute
-			State				= 0x12, // RPG::State
-			Animation			= 0x13, // RPG::Animation
-			Chipset				= 0x14, // RPG::Chipset
-			Terms				= 0x15, // RPG::Terms
-			System				= 0x16, // RPG::System
-			Switches			= 0x17, // RPG::Switchs
-			Variables			= 0x18, // RPG::Variables
-			CommonEvent			= 0x19, // RPG::CommonEvent
-			CommonEventD1		= 0x1A, // Duplicated? - Not used - RPG2003
-			CommonEventD2		= 0x1B, // Duplicated? - Not used - RPG2003
-			CommonEventD3		= 0x1C, // Duplicated? - Not used - RPG2003
-			ClassD1				= 0x1F, // Duplicated? - Not used - RPG2003
-			BattleCommand		= 0x1D, // RPG::BattleCommand - RPG2003
-			Class				= 0x1E, // RPG::Class - RPG2003
-			BattlerAnimation	= 0x20, // RPG::BattlerAnimation - RPG2003
+			actors				= 0x0B, // RPG::Actor
+			skills				= 0x0C, // RPG::Skill
+			items				= 0x0D, // RPG::Item
+			enemies				= 0x0E, // RPG::Enemy
+			troops				= 0x0F, // RPG::Troop
+			terrains			= 0x10, // RPG::Terrain
+			attributes			= 0x11, // RPG::Attribute
+			states				= 0x12, // RPG::State
+			animations			= 0x13, // RPG::Animation
+			chipsets			= 0x14, // RPG::Chipset
+			terms				= 0x15, // RPG::Terms
+			system				= 0x16, // RPG::System
+			switches			= 0x17, // RPG::Switchs
+			variables			= 0x18, // RPG::Variables
+			commonevents		= 0x19, // RPG::CommonEvent
+			commoneventD1		= 0x1A, // Duplicated? - Not used - RPG2003
+			commoneventD2		= 0x1B, // Duplicated? - Not used - RPG2003
+			commoneventD3		= 0x1C, // Duplicated? - Not used - RPG2003
+			classD1				= 0x1F, // Duplicated? - Not used - RPG2003
+			battlecommands		= 0x1D, // RPG::BattleCommand - RPG2003
+			classes				= 0x1E, // RPG::Class - RPG2003
+			battleranimations	= 0x20, // RPG::BattlerAnimation - RPG2003
 			END					= 0x00	// End of chunk
 		};
 	};
@@ -94,41 +94,41 @@ namespace LDB_Reader {
 	};
 	struct ChunkSkill {
 		enum Index {
-			name				= 0x01, // String
-			description			= 0x02, // String
-			using_message1		= 0x03, // String - RPG2000
-			using_message2		= 0x04, // String - RPG2000
-			failure_message		= 0x07, // Integer - RPG2000
-			type				= 0x08, // Integer
-			sp_type				= 0x09, // Integer - RPG2003
-			sp_percent			= 0x0A, // Integer - RPG2003
-			sp_cost				= 0x0B, // Integer
-			scope				= 0x0C, // Integer
-			switch_id			= 0x0D, // Integer
-			animation_id		= 0x0E, // Integer
-			sound_effect		= 0x10, // RPG::Sound
-			occasion_field		= 0x12, // Flag
-			occasion_battle		= 0x13, // Flag
-			state_effect		= 0x14, // Flag - RPG2003
-			pdef_f				= 0x15, // Integer
-			mdef_f				= 0x16, // Integer
-			variance			= 0x17, // Integer
-			power				= 0x18, // Integer
-			hit					= 0x19, // Integer
-			affect_hp			= 0x1F, // Flag
-			affect_sp			= 0x20, // Flag
-			affect_attack		= 0x21, // Flag
-			affect_defense		= 0x22, // Flag
-			affect_spirit		= 0x23, // Flag
-			affect_agility		= 0x24, // Flag
-			absorb_damage		= 0x25, // Flag
-			ignore_defense		= 0x26, // Flag
-			state_size			= 0x29, // Integer
-			state_effects		= 0x2A, // Array - Flag
-			attribute_size		= 0x2B, // Integer
-			attribute_effects	= 0x2C, // Array - Flag
-			affect_attr_defence	= 0x2D, // Flag
-			battler_animation	= 0x31, // Integer - RPG2003
+			name					= 0x01, // String
+			description				= 0x02, // String
+			using_message1			= 0x03, // String - RPG2000
+			using_message2			= 0x04, // String - RPG2000
+			failure_message			= 0x07, // Integer - RPG2000
+			type					= 0x08, // Integer
+			sp_type					= 0x09, // Integer - RPG2003
+			sp_percent				= 0x0A, // Integer - RPG2003
+			sp_cost					= 0x0B, // Integer
+			scope					= 0x0C, // Integer
+			switch_id				= 0x0D, // Integer
+			animation_id			= 0x0E, // Integer
+			sound_effect			= 0x10, // RPG::Sound
+			occasion_field			= 0x12, // Flag
+			occasion_battle			= 0x13, // Flag
+			state_effect			= 0x14, // Flag - RPG2003
+			pdef_f					= 0x15, // Integer
+			mdef_f					= 0x16, // Integer
+			variance				= 0x17, // Integer
+			power					= 0x18, // Integer
+			hit						= 0x19, // Integer
+			affect_hp				= 0x1F, // Flag
+			affect_sp				= 0x20, // Flag
+			affect_attack			= 0x21, // Flag
+			affect_defense			= 0x22, // Flag
+			affect_spirit			= 0x23, // Flag
+			affect_agility			= 0x24, // Flag
+			absorb_damage			= 0x25, // Flag
+			ignore_defense			= 0x26, // Flag
+			state_effects_size		= 0x29, // Integer
+			state_effects			= 0x2A, // Array - Flag
+			attribute_effects_size	= 0x2B, // Integer
+			attribute_effects		= 0x2C, // Array - Flag
+			affect_attr_defence		= 0x2D, // Flag
+			battler_animation		= 0x31, // Integer - RPG2003
 			battler_animation_data	= 0x32	// ? - RPG2003
 		};
 	};

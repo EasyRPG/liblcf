@@ -34,21 +34,21 @@ EASYRPG_STRUCT_NAME(Save)
 #define EASYRPG_CURRENT_STRUCT Save
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Save)
-	new TypedField<RPG::Save, RPG::SaveTitle>						(&RPG::Save::title,				LSD_Reader::ChunkSave::title,				"title"				),
-	new TypedField<RPG::Save, RPG::SaveSystem>						(&RPG::Save::system,			LSD_Reader::ChunkSave::system,				"system"			),
-	new TypedField<RPG::Save, RPG::SaveScreen>						(&RPG::Save::screen,			LSD_Reader::ChunkSave::screen,				"screen"			),
-	new TypedField<RPG::Save, std::vector<RPG::SavePicture> >		(&RPG::Save::pictures,			LSD_Reader::ChunkSave::pictures,			"pictures"			),
-	new TypedField<RPG::Save, RPG::SavePartyLocation>				(&RPG::Save::party_location,	LSD_Reader::ChunkSave::party_location,		"party_location"	),
-	new TypedField<RPG::Save, RPG::SaveVehicleLocation>				(&RPG::Save::boat_location,		LSD_Reader::ChunkSave::boat_location,		"boat_location"		),
-	new TypedField<RPG::Save, RPG::SaveVehicleLocation>				(&RPG::Save::ship_location,		LSD_Reader::ChunkSave::ship_location,		"ship_location"		),
-	new TypedField<RPG::Save, RPG::SaveVehicleLocation>				(&RPG::Save::airship_location,	LSD_Reader::ChunkSave::airship_location,	"airship_location"	),
-	new TypedField<RPG::Save, std::vector<RPG::SaveActor> >			(&RPG::Save::party,				LSD_Reader::ChunkSave::party,				"party"				),
-	new TypedField<RPG::Save, RPG::SaveInventory>					(&RPG::Save::inventory,			LSD_Reader::ChunkSave::inventory,			"inventory"			),
-	new TypedField<RPG::Save, std::vector<RPG::SaveTarget> >		(&RPG::Save::targets,			LSD_Reader::ChunkSave::targets,				"targets"			),
-	new TypedField<RPG::Save, RPG::SaveMapInfo>						(&RPG::Save::map_info,			LSD_Reader::ChunkSave::map_info,			"map_info"			),
-	new TypedField<RPG::Save, int>									(&RPG::Save::unknown_70,		LSD_Reader::ChunkSave::unknown_70,			"unknown_70"		),
-	new TypedField<RPG::Save, RPG::SaveEvents>						(&RPG::Save::events,			LSD_Reader::ChunkSave::events,				"events"			),
-	new TypedField<RPG::Save, std::vector<RPG::SaveCommonEvent> >	(&RPG::Save::common_events,		LSD_Reader::ChunkSave::common_events,		"common_events"		),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveTitle, title),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveSystem, system),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveScreen, screen),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SavePicture> , pictures),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SavePartyLocation, party_location),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, boat_location),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, ship_location),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, airship_location),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveActor> , party),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveInventory, inventory),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveTarget> , targets),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveMapInfo, map_info),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_70),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveEvents, events),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveCommonEvent> , common_events),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

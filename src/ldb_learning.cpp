@@ -34,8 +34,8 @@ EASYRPG_STRUCT_NAME(Learning)
 #define EASYRPG_CURRENT_STRUCT Learning
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Learning)
-	new TypedField<RPG::Learning, int> (&RPG::Learning::level,		LDB_Reader::ChunkLearning::level,		"level"),
-	new TypedField<RPG::Learning, int> (&RPG::Learning::skill_id,	LDB_Reader::ChunkLearning::skill_id,	"skill_id"),
+	EASYRPG_STRUCT_TYPED_FIELD(int, level),
+	EASYRPG_STRUCT_TYPED_FIELD(int, skill_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

@@ -34,21 +34,21 @@ EASYRPG_STRUCT_NAME(BattleCommands)
 #define EASYRPG_CURRENT_STRUCT BattleCommands
 
 EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommands)
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::placement,		LDB_Reader::ChunkBattleCommands::placement,			"placement"		),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler1,	LDB_Reader::ChunkBattleCommands::death_handler1,	"death_handler1"),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::row,				LDB_Reader::ChunkBattleCommands::row,				"row"			),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::battle_type,		LDB_Reader::ChunkBattleCommands::battle_type,		"battle_type"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::unknown1,		LDB_Reader::ChunkBattleCommands::unknown1,			"unknown1"		),
-	new TypedField<RPG::BattleCommands, std::vector<RPG::BattleCommand> >	(&RPG::BattleCommands::commands,		LDB_Reader::ChunkBattleCommands::commands,			"commands"		),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler2,	LDB_Reader::ChunkBattleCommands::death_handler2,	"death_handler2"),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_event,		LDB_Reader::ChunkBattleCommands::death_event,		"death_event"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::window_size,		LDB_Reader::ChunkBattleCommands::window_size,		"window_size"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::transparency,	LDB_Reader::ChunkBattleCommands::transparency,		"transparency"	),
-	new TypedField<RPG::BattleCommands, bool>								(&RPG::BattleCommands::teleport,		LDB_Reader::ChunkBattleCommands::teleport,			"teleport"		),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_id,		LDB_Reader::ChunkBattleCommands::teleport_id,		"teleport_id"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_x,		LDB_Reader::ChunkBattleCommands::teleport_x,		"teleport_x"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_y,		LDB_Reader::ChunkBattleCommands::teleport_y,		"teleport_y"	),
-	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_face,	LDB_Reader::ChunkBattleCommands::teleport_face,		"teleport_face"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, placement),
+	EASYRPG_STRUCT_TYPED_FIELD(int, death_handler1),
+	EASYRPG_STRUCT_TYPED_FIELD(int, row),
+	EASYRPG_STRUCT_TYPED_FIELD(int, battle_type),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown1),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattleCommand> , commands),
+	EASYRPG_STRUCT_TYPED_FIELD(int, death_handler2),
+	EASYRPG_STRUCT_TYPED_FIELD(int, death_event),
+	EASYRPG_STRUCT_TYPED_FIELD(int, window_size),
+	EASYRPG_STRUCT_TYPED_FIELD(int, transparency),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, teleport),
+	EASYRPG_STRUCT_TYPED_FIELD(int, teleport_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, teleport_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, teleport_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, teleport_face),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

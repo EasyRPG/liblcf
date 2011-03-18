@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(Sound)
 #define EASYRPG_CURRENT_STRUCT Sound
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Sound)
-	new TypedField<RPG::Sound, std::string>	(&RPG::Sound::name,		LDB_Reader::ChunkSound::name,		"name"		),
-	new TypedField<RPG::Sound, int>			(&RPG::Sound::volume,	LDB_Reader::ChunkSound::volume,		"volume"	),
-	new TypedField<RPG::Sound, int>			(&RPG::Sound::tempo,	LDB_Reader::ChunkSound::tempo,		"tempo"		),
-	new TypedField<RPG::Sound, int>			(&RPG::Sound::balance,	LDB_Reader::ChunkSound::balance,	"balance"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, volume),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tempo),
+	EASYRPG_STRUCT_TYPED_FIELD(int, balance),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

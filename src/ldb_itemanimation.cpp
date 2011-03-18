@@ -34,15 +34,15 @@ EASYRPG_STRUCT_NAME(ItemAnimation)
 #define EASYRPG_CURRENT_STRUCT ItemAnimation
 
 EASYRPG_STRUCT_FIELDS_BEGIN(ItemAnimation)
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::type,			LDB_Reader::ChunkItemAnimation::type,			"type"			),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::weapon_anim,	LDB_Reader::ChunkItemAnimation::weapon_anim,	"weapon_anim"	),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::movement,		LDB_Reader::ChunkItemAnimation::movement,		"movement"		),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::after_image,	LDB_Reader::ChunkItemAnimation::after_image,	"after_image"	),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::attacks,		LDB_Reader::ChunkItemAnimation::attacks,		"attacks"		),
-	new TypedField<RPG::ItemAnimation, bool>(&RPG::ItemAnimation::ranged,		LDB_Reader::ChunkItemAnimation::ranged,			"ranged"		),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_anim,	LDB_Reader::ChunkItemAnimation::ranged_anim,	"ranged_anim"	),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_speed,	LDB_Reader::ChunkItemAnimation::ranged_speed,	"ranged_speed"	),
-	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::battle_anim,	LDB_Reader::ChunkItemAnimation::battle_anim,	"battle_anim"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, type),
+	EASYRPG_STRUCT_TYPED_FIELD(int, weapon_anim),
+	EASYRPG_STRUCT_TYPED_FIELD(int, movement),
+	EASYRPG_STRUCT_TYPED_FIELD(int, after_image),
+	EASYRPG_STRUCT_TYPED_FIELD(int, attacks),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, ranged),
+	EASYRPG_STRUCT_TYPED_FIELD(int, ranged_anim),
+	EASYRPG_STRUCT_TYPED_FIELD(int, ranged_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(int, battle_anim),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

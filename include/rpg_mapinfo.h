@@ -48,7 +48,7 @@ namespace RPG {
 		int save;
 		std::vector<Encounter> encounters;
 		int encounter_steps;
-		Rect area;
+		Rect area_rect;
 		int indentation;
 		int scrollbar_x;
 		int scrollbar_y;

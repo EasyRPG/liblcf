@@ -34,12 +34,12 @@ EASYRPG_STRUCT_NAME(Animation)
 #define EASYRPG_CURRENT_STRUCT Animation
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Animation)
-	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::name,				LDB_Reader::ChunkAnimation::name,			"name"			),
-	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::animation_name,	LDB_Reader::ChunkAnimation::animation_name,	"animation_name"),
-	new TypedField<RPG::Animation,	std::vector<RPG::AnimationTiming> >	(&RPG::Animation::timings,			LDB_Reader::ChunkAnimation::timings,		"timings"		),
-	new TypedField<RPG::Animation,	int>								(&RPG::Animation::scope,			LDB_Reader::ChunkAnimation::scope,			"scope"			),
-	new TypedField<RPG::Animation,	int>								(&RPG::Animation::position,			LDB_Reader::ChunkAnimation::position,		"position"		),
-	new TypedField<RPG::Animation,	std::vector<RPG::AnimationFrame> >	(&RPG::Animation::frames,			LDB_Reader::ChunkAnimation::frames,			"frames"		),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, animation_name),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming> , timings),
+	EASYRPG_STRUCT_TYPED_FIELD(int, scope),
+	EASYRPG_STRUCT_TYPED_FIELD(int, position),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame> , frames),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

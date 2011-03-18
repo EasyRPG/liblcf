@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(TroopMember)
 #define EASYRPG_CURRENT_STRUCT TroopMember
 
 EASYRPG_STRUCT_FIELDS_BEGIN(TroopMember)
-	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::enemy_id,	LDB_Reader::ChunkTroopMember::enemy_id,		"enemy_id"	),
-	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::x,			LDB_Reader::ChunkTroopMember::x,			"x"			),
-	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::y,			LDB_Reader::ChunkTroopMember::y,			"y"			),
-	new TypedField<RPG::TroopMember, bool>	(&RPG::TroopMember::invisible,	LDB_Reader::ChunkTroopMember::invisible,	"invisible"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, enemy_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, y),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, invisible),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

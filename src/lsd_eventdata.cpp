@@ -34,11 +34,11 @@ EASYRPG_STRUCT_NAME(SaveEventData)
 #define EASYRPG_CURRENT_STRUCT SaveEventData
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveEventData)
-	new TypedField<RPG::SaveEventData, std::vector<RPG::SaveEventCommands> >	(&RPG::SaveEventData::commands,		LSD_Reader::ChunkEventData::commands,	"commands"		),
-	new TypedField<RPG::SaveEventData, int>										(&RPG::SaveEventData::unknown_16,	LSD_Reader::ChunkEventData::unknown_16,	"unknown_16"	),
-	new TypedField<RPG::SaveEventData, int>										(&RPG::SaveEventData::unknown_17,	LSD_Reader::ChunkEventData::unknown_17,	"unknown_17"	),
-	new TypedField<RPG::SaveEventData, int>										(&RPG::SaveEventData::time_left,	LSD_Reader::ChunkEventData::time_left,	"time_left"		),
-	new TypedField<RPG::SaveEventData, int>										(&RPG::SaveEventData::unknown_20,	LSD_Reader::ChunkEventData::unknown_20,	"unknown_20"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands> , commands),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),
+	EASYRPG_STRUCT_TYPED_FIELD(int, time_left),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_20),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

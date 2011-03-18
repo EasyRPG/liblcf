@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(Event)
 #define EASYRPG_CURRENT_STRUCT Event
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Event)
-	new TypedField<RPG::Event, std::string>					(&RPG::Event::name,		LMU_Reader::ChunkEvent::name,	"name"	),
-	new TypedField<RPG::Event, int>							(&RPG::Event::x,		LMU_Reader::ChunkEvent::x,		"x"		),
-	new TypedField<RPG::Event, int>							(&RPG::Event::y,		LMU_Reader::ChunkEvent::y,		"y"		),
-	new TypedField<RPG::Event, std::vector<RPG::EventPage> >(&RPG::Event::pages,	LMU_Reader::ChunkEvent::pages,	"pages"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, y),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventPage> , pages),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

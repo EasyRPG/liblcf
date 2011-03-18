@@ -43,10 +43,8 @@ const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
 	new Flags<flags_type>::Flag(&flags_type::turn_enemy,	"turn_enemy"	),
 	new Flags<flags_type>::Flag(&flags_type::turn_actor,	"turn_actor"	),
 	new Flags<flags_type>::Flag(&flags_type::command_actor,	"command_actor"	),
-EASYRPG_STRUCT_FIELDS_END()
-
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+	NULL
+};
 
 template <>
 const uint32_t Flags<flags_type>::max_size = 2;
@@ -59,29 +57,29 @@ EASYRPG_STRUCT_NAME(TroopPageCondition)
 #define EASYRPG_CURRENT_STRUCT TroopPageCondition
 
 EASYRPG_STRUCT_FIELDS_BEGIN(TroopPageCondition)
-	new TypedField<RPG::TroopPageCondition, flags_type>	(&RPG::TroopPageCondition::flags,				LDB_Reader::ChunkTroopPageCondition::flags,				"flags"				),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::switch_a_id,			LDB_Reader::ChunkTroopPageCondition::switch_a_id,		"switch_a_id"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::switch_b_id,			LDB_Reader::ChunkTroopPageCondition::switch_b_id,		"switch_b_id"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::variable_id,			LDB_Reader::ChunkTroopPageCondition::variable_id,		"variable_id"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::variable_value,		LDB_Reader::ChunkTroopPageCondition::variable_value,	"variable_value"	),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_a,				LDB_Reader::ChunkTroopPageCondition::turn_a,			"turn_a"			),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_b,				LDB_Reader::ChunkTroopPageCondition::turn_b,			"turn_b"			),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::fatigue_min,			LDB_Reader::ChunkTroopPageCondition::fatigue_min,		"fatigue_min"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::fatigue_max,			LDB_Reader::ChunkTroopPageCondition::fatigue_max,		"fatigue_max"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::enemy_id,			LDB_Reader::ChunkTroopPageCondition::enemy_id,			"enemy_id"			),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::enemy_hp_min,		LDB_Reader::ChunkTroopPageCondition::enemy_hp_min,		"enemy_hp_min"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::enemy_hp_max,		LDB_Reader::ChunkTroopPageCondition::enemy_hp_max,		"enemy_hp_max"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::actor_id,			LDB_Reader::ChunkTroopPageCondition::actor_id,			"actor_id"			),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::actor_hp_min,		LDB_Reader::ChunkTroopPageCondition::actor_hp_min,		"actor_hp_min"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::actor_hp_max,		LDB_Reader::ChunkTroopPageCondition::actor_hp_max,		"actor_hp_max"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_enemy_id,		LDB_Reader::ChunkTroopPageCondition::turn_enemy_id,		"turn_enemy_id"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_enemy_a,		LDB_Reader::ChunkTroopPageCondition::turn_enemy_a,		"turn_enemy_a"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_enemy_b,		LDB_Reader::ChunkTroopPageCondition::turn_enemy_b,		"turn_enemy_b"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_actor_id,		LDB_Reader::ChunkTroopPageCondition::turn_actor_id,		"turn_actor_id"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_actor_a,		LDB_Reader::ChunkTroopPageCondition::turn_actor_a,		"turn_actor_a"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::turn_actor_b,		LDB_Reader::ChunkTroopPageCondition::turn_actor_b,		"turn_actor_b"		),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::command_actor_id,	LDB_Reader::ChunkTroopPageCondition::command_actor_id,	"command_actor_id"	),
-	new TypedField<RPG::TroopPageCondition, int>		(&RPG::TroopPageCondition::command_id,			LDB_Reader::ChunkTroopPageCondition::command_id,		"command_id"		),
+	EASYRPG_STRUCT_TYPED_FIELD(flags_type, flags),
+	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, variable_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, variable_value),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_a),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, fatigue_min),
+	EASYRPG_STRUCT_TYPED_FIELD(int, fatigue_max),
+	EASYRPG_STRUCT_TYPED_FIELD(int, enemy_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, enemy_hp_min),
+	EASYRPG_STRUCT_TYPED_FIELD(int, enemy_hp_max),
+	EASYRPG_STRUCT_TYPED_FIELD(int, actor_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, actor_hp_min),
+	EASYRPG_STRUCT_TYPED_FIELD(int, actor_hp_max),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_enemy_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_enemy_a),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_enemy_b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_actor_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_actor_a),
+	EASYRPG_STRUCT_TYPED_FIELD(int, turn_actor_b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, command_actor_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, command_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

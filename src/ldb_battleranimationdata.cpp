@@ -34,9 +34,9 @@ EASYRPG_STRUCT_NAME(BattlerAnimationData)
 #define EASYRPG_CURRENT_STRUCT BattlerAnimationData
 
 EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimationData)
-	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::move,			LDB_Reader::ChunkBattlerAnimationData::move,		"move"			),
-	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::after_image,	LDB_Reader::ChunkBattlerAnimationData::after_image,	"after_image"	),
-	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::pose,			LDB_Reader::ChunkBattlerAnimationData::pose,		"pose"			),
+	EASYRPG_STRUCT_TYPED_FIELD(int, move),
+	EASYRPG_STRUCT_TYPED_FIELD(int, after_image),
+	EASYRPG_STRUCT_TYPED_FIELD(int, pose),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

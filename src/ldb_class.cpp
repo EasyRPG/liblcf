@@ -33,22 +33,22 @@ EASYRPG_STRUCT_NAME(Class)
 #define EASYRPG_CURRENT_STRUCT Class
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Class)
-	new TypedField<RPG::Class, std::string>					(&RPG::Class::name,					LDB_Reader::ChunkClass::name,				"name"				),
-	new TypedField<RPG::Class, bool>						(&RPG::Class::two_swords_style,		LDB_Reader::ChunkClass::two_swords_style,	"two_swords_style"	),
-	new TypedField<RPG::Class, bool>						(&RPG::Class::fix_equipment,		LDB_Reader::ChunkClass::fix_equipment,		"fix_equipment"		),
-	new TypedField<RPG::Class, bool>						(&RPG::Class::auto_battle,			LDB_Reader::ChunkClass::auto_battle,		"auto_battle"		),
-	new TypedField<RPG::Class, bool>						(&RPG::Class::super_guard,			LDB_Reader::ChunkClass::super_guard,		"super_guard"		),
-	new TypedField<RPG::Class, RPG::Parameters>				(&RPG::Class::parameters,			LDB_Reader::ChunkClass::parameters,			"parameters"		),
-	new TypedField<RPG::Class, int>							(&RPG::Class::exp_base,				LDB_Reader::ChunkClass::exp_base,			"exp_base"			),
-	new TypedField<RPG::Class, int>							(&RPG::Class::exp_inflation,		LDB_Reader::ChunkClass::exp_inflation,		"exp_inflation"		),
-	new TypedField<RPG::Class, int>							(&RPG::Class::exp_correction,		LDB_Reader::ChunkClass::exp_correction,		"exp_correction"	),
-	new TypedField<RPG::Class, int>							(&RPG::Class::unarmed_animation,	LDB_Reader::ChunkClass::unarmed_animation,	"unarmed_animation"	),
-	new TypedField<RPG::Class, std::vector<RPG::Learning> > (&RPG::Class::skills,				LDB_Reader::ChunkClass::skills,				"skills"			),
-	new SizeField<RPG::Class, uint8_t>						(&RPG::Class::state_ranks,			LDB_Reader::ChunkClass::state_ranks_size						),
-	new TypedField<RPG::Class, std::vector<uint8_t> > 		(&RPG::Class::state_ranks,			LDB_Reader::ChunkClass::state_ranks,		"state_ranks"		),
-	new SizeField<RPG::Class, uint8_t>						(&RPG::Class::attribute_ranks,		LDB_Reader::ChunkClass::attribute_ranks_size					),
-	new TypedField<RPG::Class, std::vector<uint8_t> > 		(&RPG::Class::attribute_ranks,		LDB_Reader::ChunkClass::attribute_ranks,	"attribute_ranks"	),
-	new TypedField<RPG::Class, std::vector<uint32_t> >		(&RPG::Class::battle_commands,		LDB_Reader::ChunkClass::battle_commands,	"battle_commands"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, two_swords_style),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, fix_equipment),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, auto_battle),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, super_guard),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::Parameters, parameters),
+	EASYRPG_STRUCT_TYPED_FIELD(int, exp_base),
+	EASYRPG_STRUCT_TYPED_FIELD(int, exp_inflation),
+	EASYRPG_STRUCT_TYPED_FIELD(int, exp_correction),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unarmed_animation),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Learning> , skills),
+	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, state_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , state_ranks),
+	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , attribute_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , battle_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

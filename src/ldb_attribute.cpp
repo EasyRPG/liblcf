@@ -34,13 +34,13 @@ EASYRPG_STRUCT_NAME(Attribute)
 #define EASYRPG_CURRENT_STRUCT Attribute
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Attribute)
-	new TypedField<RPG::Attribute, std::string>	(&RPG::Attribute::name,		LDB_Reader::ChunkAttribute::name,	"name"		),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::type,		LDB_Reader::ChunkAttribute::type,	"type"		),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::a_rate,	LDB_Reader::ChunkAttribute::a_rate,	"a_rate"	),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::b_rate,	LDB_Reader::ChunkAttribute::b_rate,	"b_rate"	),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::c_rate,	LDB_Reader::ChunkAttribute::c_rate,	"c_rate"	),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::d_rate,	LDB_Reader::ChunkAttribute::d_rate,	"d_rate"	),
-	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::e_rate,	LDB_Reader::ChunkAttribute::e_rate,	"e_rate"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, type),
+	EASYRPG_STRUCT_TYPED_FIELD(int, a_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(int, b_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(int, c_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(int, d_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(int, e_rate),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

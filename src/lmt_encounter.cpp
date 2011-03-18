@@ -34,7 +34,7 @@ EASYRPG_STRUCT_NAME(Encounter)
 #define EASYRPG_CURRENT_STRUCT Encounter
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Encounter)
-	new TypedField<RPG::Encounter, int>(&RPG::Encounter::troop_id, LMT_Reader::ChunkEncounter::troop_id, "troop_id"),
+	EASYRPG_STRUCT_TYPED_FIELD(int, troop_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

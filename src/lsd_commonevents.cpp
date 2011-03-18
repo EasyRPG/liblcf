@@ -34,7 +34,7 @@ EASYRPG_STRUCT_NAME(SaveCommonEvent)
 #define EASYRPG_CURRENT_STRUCT SaveCommonEvent
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveCommonEvent)
-	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventData>	(&RPG::SaveCommonEvent::event_data,	LSD_Reader::ChunkCommonEvent::event_data,	"event_data"	),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

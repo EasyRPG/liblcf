@@ -34,14 +34,14 @@ EASYRPG_STRUCT_NAME(AnimationTiming)
 #define EASYRPG_CURRENT_STRUCT AnimationTiming
 
 EASYRPG_STRUCT_FIELDS_BEGIN(AnimationTiming)
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::frame,			LDB_Reader::ChunkAnimationTiming::frame,		"frame"			),
-	new TypedField<RPG::AnimationTiming, RPG::Sound>(&RPG::AnimationTiming::se,				LDB_Reader::ChunkAnimationTiming::se,			"se"			),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_scope,	LDB_Reader::ChunkAnimationTiming::flash_scope,	"flash_scope"	),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_red,		LDB_Reader::ChunkAnimationTiming::flash_red,	"flash_red"		),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_green,	LDB_Reader::ChunkAnimationTiming::flash_green,	"flash_green"	),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_blue,		LDB_Reader::ChunkAnimationTiming::flash_blue,	"flash_blue"	),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::flash_power,	LDB_Reader::ChunkAnimationTiming::flash_power,	"flash_power"	),
-	new TypedField<RPG::AnimationTiming, int>		(&RPG::AnimationTiming::screen_shake,	LDB_Reader::ChunkAnimationTiming::screen_shake,	"screen_shake"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, frame),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, se),
+	EASYRPG_STRUCT_TYPED_FIELD(int, flash_scope),
+	EASYRPG_STRUCT_TYPED_FIELD(int, flash_red),
+	EASYRPG_STRUCT_TYPED_FIELD(int, flash_green),
+	EASYRPG_STRUCT_TYPED_FIELD(int, flash_blue),
+	EASYRPG_STRUCT_TYPED_FIELD(int, flash_power),
+	EASYRPG_STRUCT_TYPED_FIELD(int, screen_shake),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

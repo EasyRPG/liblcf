@@ -34,15 +34,15 @@ EASYRPG_STRUCT_NAME(SaveEvents)
 #define EASYRPG_CURRENT_STRUCT SaveEvents
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveEvents)
-	new TypedField<RPG::SaveEvents, std::vector<RPG::SaveEventCommands> >	(&RPG::SaveEvents::events,		LSD_Reader::ChunkEvents::events,		"events"		),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::events_size,	LSD_Reader::ChunkEvents::events_size,	"events_size"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_16,	LSD_Reader::ChunkEvents::unknown_16,	"unknown_16"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_17,	LSD_Reader::ChunkEvents::unknown_17,	"unknown_17"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_18,	LSD_Reader::ChunkEvents::unknown_18,	"unknown_18"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_1c,	LSD_Reader::ChunkEvents::unknown_1c,	"unknown_1c"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_20,	LSD_Reader::ChunkEvents::unknown_20,	"unknown_20"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_24,	LSD_Reader::ChunkEvents::unknown_24,	"unknown_24"	),
-	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_25,	LSD_Reader::ChunkEvents::unknown_25,	"unknown_25"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands> , events),
+	EASYRPG_STRUCT_TYPED_FIELD(int, events_size),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_18),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1c),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_20),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_24),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_25),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

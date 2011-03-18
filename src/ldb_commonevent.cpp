@@ -33,12 +33,12 @@ EASYRPG_STRUCT_NAME(CommonEvent)
 #define EASYRPG_CURRENT_STRUCT CommonEvent
 
 EASYRPG_STRUCT_FIELDS_BEGIN(CommonEvent)
-	new TypedField<RPG::CommonEvent, std::string>						(&RPG::CommonEvent::name,			LDB_Reader::ChunkCommonEvent::name,					"name"			),
-	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::trigger,		LDB_Reader::ChunkCommonEvent::trigger,				"trigger"		),
-	new TypedField<RPG::CommonEvent, bool>								(&RPG::CommonEvent::switch_flag,	LDB_Reader::ChunkCommonEvent::switch_flag,			"switch_flag"	),
-	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::switch_id,		LDB_Reader::ChunkCommonEvent::switch_id,			"switch_id"		),
-	new SizeField<RPG::CommonEvent, RPG::EventCommand>					(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands_size					),
-	new TypedField<RPG::CommonEvent, std::vector<RPG::EventCommand> >	(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands,		"event_commands"),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, trigger),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, switch_flag),
+	EASYRPG_STRUCT_TYPED_FIELD(int, switch_id),
+	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

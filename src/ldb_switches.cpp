@@ -34,7 +34,7 @@ EASYRPG_STRUCT_NAME(Switch)
 #define EASYRPG_CURRENT_STRUCT Switch
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Switch)
-	new TypedField<RPG::Switch, std::string>(&RPG::Switch::name, LDB_Reader::ChunkSwitch::name, "name"),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

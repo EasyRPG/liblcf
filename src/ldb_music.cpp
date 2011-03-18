@@ -34,11 +34,11 @@ EASYRPG_STRUCT_NAME(Music)
 #define EASYRPG_CURRENT_STRUCT Music
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Music)
-	new TypedField<RPG::Music, std::string>	(&RPG::Music::name,		LDB_Reader::ChunkMusic::name,		"name"		),
-	new TypedField<RPG::Music, int>			(&RPG::Music::fadein,	LDB_Reader::ChunkMusic::fadein,		"fadein"	),
-	new TypedField<RPG::Music, int>			(&RPG::Music::volume,	LDB_Reader::ChunkMusic::volume,		"volume"	),
-	new TypedField<RPG::Music, int>			(&RPG::Music::tempo,	LDB_Reader::ChunkMusic::tempo,		"tempo"		),
-	new TypedField<RPG::Music, int>			(&RPG::Music::balance,	LDB_Reader::ChunkMusic::balance,	"balance"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, fadein),
+	EASYRPG_STRUCT_TYPED_FIELD(int, volume),
+	EASYRPG_STRUCT_TYPED_FIELD(int, tempo),
+	EASYRPG_STRUCT_TYPED_FIELD(int, balance),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

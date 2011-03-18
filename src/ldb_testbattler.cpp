@@ -34,13 +34,13 @@ EASYRPG_STRUCT_NAME(TestBattler)
 #define EASYRPG_CURRENT_STRUCT TestBattler
 
 EASYRPG_STRUCT_FIELDS_BEGIN(TestBattler)
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::actor_id,		LDB_Reader::ChunkTestBattler::actor_id,		"actor_id"		),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::level,			LDB_Reader::ChunkTestBattler::level,		"level"			),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::weapon_id,		LDB_Reader::ChunkTestBattler::weapon_id,	"weapon_id"		),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::shield_id,		LDB_Reader::ChunkTestBattler::shield_id,	"shield_id"		),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::armor_id,		LDB_Reader::ChunkTestBattler::armor_id,		"armor_id"		),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::helmet_id,		LDB_Reader::ChunkTestBattler::helmet_id,	"helmet_id"		),
-	new TypedField<RPG::TestBattler, int>	(&RPG::TestBattler::accessory_id,	LDB_Reader::ChunkTestBattler::accessory_id,	"accessory_id"	),
+	EASYRPG_STRUCT_TYPED_FIELD(int, actor_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, level),
+	EASYRPG_STRUCT_TYPED_FIELD(int, weapon_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, shield_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, armor_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, helmet_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, accessory_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

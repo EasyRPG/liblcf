@@ -37,10 +37,8 @@ const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
 	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_enemies,		"back_enemies"		),
 	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_party,	"lateral_party"		),
 	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_enemies,	"lateral_enemies"	),
-EASYRPG_STRUCT_FIELDS_END()
-
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+	NULL
+};
 
 template <>
 const uint32_t Flags<flags_type>::max_size = 1;
@@ -53,38 +51,38 @@ EASYRPG_STRUCT_NAME(Terrain)
 #define EASYRPG_CURRENT_STRUCT Terrain
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Terrain)
-	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::name,							LDB_Reader::ChunkTerrain::name,							"name"							),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::damage,							LDB_Reader::ChunkTerrain::damage,						"damage"						),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::encounter_rate,					LDB_Reader::ChunkTerrain::encounter_rate,				"encounter_rate"				),
-	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_name,				LDB_Reader::ChunkTerrain::background_name,				"background_name"				),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::boat_pass,						LDB_Reader::ChunkTerrain::boat_pass,					"boat_pass"						),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::ship_pass,						LDB_Reader::ChunkTerrain::ship_pass,					"ship_pass"						),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::airship_pass,					LDB_Reader::ChunkTerrain::airship_pass,					"airship_pass"					),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::airship_land,					LDB_Reader::ChunkTerrain::airship_land,					"airship_land"					),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::bush_depth,						LDB_Reader::ChunkTerrain::bush_depth,					"bush_depth"					),
-	new TypedField<RPG::Terrain, RPG::Sound>			(&RPG::Terrain::footstep,						LDB_Reader::ChunkTerrain::footstep,						"footstep"						),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::on_damage_se,					LDB_Reader::ChunkTerrain::on_damage_se,					"on_damage_se"					),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_type,				LDB_Reader::ChunkTerrain::background_type,				"background_type"				),
-	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_a_name,				LDB_Reader::ChunkTerrain::background_a_name,			"background_a_name"				),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_a_scrollh,			LDB_Reader::ChunkTerrain::background_a_scrollh,			"background_a_scrollh"			),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_a_scrollv,			LDB_Reader::ChunkTerrain::background_a_scrollv,			"background_a_scrollv"			),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_a_scrollh_speed,		LDB_Reader::ChunkTerrain::background_a_scrollh_speed,	"background_a_scrollh_speed"	),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_a_scrollv_speed,		LDB_Reader::ChunkTerrain::background_a_scrollv_speed,	"background_a_scrollv_speed"	),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b,					LDB_Reader::ChunkTerrain::background_b,					"background_b"					),
-	new TypedField<RPG::Terrain, std::string>			(&RPG::Terrain::background_b_name,				LDB_Reader::ChunkTerrain::background_b_name,			"background_b_name"				),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b_scrollh,			LDB_Reader::ChunkTerrain::background_b_scrollh,			"background_b_scrollh"			),
-	new TypedField<RPG::Terrain, bool>					(&RPG::Terrain::background_b_scrollv,			LDB_Reader::ChunkTerrain::background_b_scrollv,			"background_b_scrollv"			),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_b_scrollh_speed,		LDB_Reader::ChunkTerrain::background_b_scrollh_speed,	"background_b_scrollh_speed"	),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::background_b_scrollv_speed,		LDB_Reader::ChunkTerrain::background_b_scrollv_speed,	"background_b_scrollv_speed"	),
-	new TypedField<RPG::Terrain, RPG::Terrain::Flags>	(&RPG::Terrain::special_flags,					LDB_Reader::ChunkTerrain::special_flags,				"special_flags"					),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_back_party,				LDB_Reader::ChunkTerrain::special_back_party,			"special_back_party"			),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_back_enemies,			LDB_Reader::ChunkTerrain::special_back_enemies,			"special_back_enemies"			),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_lateral_party,			LDB_Reader::ChunkTerrain::special_lateral_party,		"special_lateral_party"			),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::special_lateral_enemies,		LDB_Reader::ChunkTerrain::special_lateral_enemies,		"special_lateral_enemies"		),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_location,					LDB_Reader::ChunkTerrain::grid_location,				"grid_location"					),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_a,							LDB_Reader::ChunkTerrain::grid_a,						"grid_a"						),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_b,							LDB_Reader::ChunkTerrain::grid_b,						"grid_b"						),
-	new TypedField<RPG::Terrain, int>					(&RPG::Terrain::grid_c,							LDB_Reader::ChunkTerrain::grid_c,						"grid_c"						),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, damage),
+	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_name),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, boat_pass),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, ship_pass),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, airship_pass),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, airship_land),
+	EASYRPG_STRUCT_TYPED_FIELD(int, bush_depth),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, footstep),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, on_damage_se),
+	EASYRPG_STRUCT_TYPED_FIELD(int, background_type),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_a_name),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, background_a_scrollh),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, background_a_scrollv),
+	EASYRPG_STRUCT_TYPED_FIELD(int, background_a_scrollh_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(int, background_a_scrollv_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_b_name),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b_scrollh),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b_scrollv),
+	EASYRPG_STRUCT_TYPED_FIELD(int, background_b_scrollh_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(int, background_b_scrollv_speed),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::Terrain::Flags, special_flags),
+	EASYRPG_STRUCT_TYPED_FIELD(int, special_back_party),
+	EASYRPG_STRUCT_TYPED_FIELD(int, special_back_enemies),
+	EASYRPG_STRUCT_TYPED_FIELD(int, special_lateral_party),
+	EASYRPG_STRUCT_TYPED_FIELD(int, special_lateral_enemies),
+	EASYRPG_STRUCT_TYPED_FIELD(int, grid_location),
+	EASYRPG_STRUCT_TYPED_FIELD(int, grid_a),
+	EASYRPG_STRUCT_TYPED_FIELD(int, grid_b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, grid_c),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

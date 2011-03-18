@@ -34,11 +34,11 @@ EASYRPG_STRUCT_NAME(Troop)
 #define EASYRPG_CURRENT_STRUCT Troop
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Troop)
-	new TypedField<RPG::Troop, std::string>						(&RPG::Troop::name,			LDB_Reader::ChunkTroop::name,				"name"			),
-	new TypedField<RPG::Troop, std::vector<RPG::TroopMember> >	(&RPG::Troop::members,		LDB_Reader::ChunkTroop::members,			"members"		),
-	new SizeField<RPG::Troop, bool>								(&RPG::Troop::terrain_set,	LDB_Reader::ChunkTroop::terrain_set_size					),
-	new TypedField<RPG::Troop, std::vector<bool> >				(&RPG::Troop::terrain_set,	LDB_Reader::ChunkTroop::terrain_set,		"terrain_set"	),
-	new TypedField<RPG::Troop, std::vector<RPG::TroopPage> >	(&RPG::Troop::pages,		LDB_Reader::ChunkTroop::pages,				"pages"			),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember> , members),
+	EASYRPG_STRUCT_SIZE_FIELD(bool, terrain_set),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool> , terrain_set),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage> , pages),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

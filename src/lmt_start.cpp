@@ -34,18 +34,18 @@ EASYRPG_STRUCT_NAME(Start)
 #define EASYRPG_CURRENT_STRUCT Start
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Start)
-	new TypedField<RPG::Start, int>	(&RPG::Start::party_map_id,		LMT_Reader::ChunkStart::party_map_id,	"party_map_id"		),
-	new TypedField<RPG::Start, int>	(&RPG::Start::party_x,			LMT_Reader::ChunkStart::party_x,		"party_x"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::party_y,			LMT_Reader::ChunkStart::party_y,		"party_y"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::boat_map_id,		LMT_Reader::ChunkStart::boat_map_id,	"boat_map_id"		),
-	new TypedField<RPG::Start, int>	(&RPG::Start::boat_x,			LMT_Reader::ChunkStart::boat_x,			"boat_x"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::boat_y,			LMT_Reader::ChunkStart::boat_y,			"boat_y"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::ship_map_id,		LMT_Reader::ChunkStart::ship_map_id,	"ship_map_id"		),
-	new TypedField<RPG::Start, int>	(&RPG::Start::ship_x,			LMT_Reader::ChunkStart::ship_x,			"ship_x"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::ship_y,			LMT_Reader::ChunkStart::ship_y,			"ship_y"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::airship_map_id,	LMT_Reader::ChunkStart::airship_map_id,	"airship_map_id"	),
-	new TypedField<RPG::Start, int>	(&RPG::Start::airship_x,		LMT_Reader::ChunkStart::airship_x,		"airship_x"			),
-	new TypedField<RPG::Start, int>	(&RPG::Start::airship_y,		LMT_Reader::ChunkStart::airship_y,		"airship_y"			),
+	EASYRPG_STRUCT_TYPED_FIELD(int, party_map_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, party_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, party_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, boat_map_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, boat_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, boat_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, ship_map_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, ship_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, ship_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, airship_map_id),
+	EASYRPG_STRUCT_TYPED_FIELD(int, airship_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, airship_y),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

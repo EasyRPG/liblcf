@@ -34,8 +34,8 @@ EASYRPG_STRUCT_NAME(BattleCommand)
 #define EASYRPG_CURRENT_STRUCT BattleCommand
 
 EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommand)
-	new TypedField<RPG::BattleCommand, std::string>	(&RPG::BattleCommand::name,	LDB_Reader::ChunkBattleCommand::name,	"name"),
-	new TypedField<RPG::BattleCommand, int>			(&RPG::BattleCommand::type,	LDB_Reader::ChunkBattleCommand::type,	"type"),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, type),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

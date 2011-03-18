@@ -34,18 +34,18 @@ EASYRPG_STRUCT_NAME(SaveTitle)
 #define EASYRPG_CURRENT_STRUCT SaveTitle
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveTitle)
-	new TypedField<RPG::SaveTitle, std::vector<uint8_t> >	(&RPG::SaveTitle::timestamp,	LSD_Reader::ChunkTitle::timestamp,		"timestamp"		),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::hero_name,	LSD_Reader::ChunkTitle::hero_name,		"hero_name"		),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_level,	LSD_Reader::ChunkTitle::hero_level,		"hero_level"	),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_hp,		LSD_Reader::ChunkTitle::hero_hp,		"hero_hp"		),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face1_name,	LSD_Reader::ChunkTitle::face1_name,		"face1_name"	),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face1_id,		LSD_Reader::ChunkTitle::face1_id,		"face1_id"		),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face2_name,	LSD_Reader::ChunkTitle::face2_name,		"face2_name"	),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face2_id,		LSD_Reader::ChunkTitle::face2_id,		"face2_id"		),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face3_name,	LSD_Reader::ChunkTitle::face3_name,		"face3_name"	),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face3_id,		LSD_Reader::ChunkTitle::face3_id,		"face3_id"		),
-	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face4_name,	LSD_Reader::ChunkTitle::face4_name,		"face4_name"	),
-	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face4_id,		LSD_Reader::ChunkTitle::face4_id,		"face4_id"		),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , timestamp),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, hero_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, hero_level),
+	EASYRPG_STRUCT_TYPED_FIELD(int, hero_hp),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, face1_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, face1_id),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, face2_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, face2_id),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, face3_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, face3_id),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, face4_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, face4_id),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(BattlerAnimation)
 #define EASYRPG_CURRENT_STRUCT BattlerAnimation
 
 EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimation)
-	new TypedField<RPG::BattlerAnimation, std::string>									(&RPG::BattlerAnimation::name,			LDB_Reader::ChunkBattlerAnimation::name,		"name"			),
-	new TypedField<RPG::BattlerAnimation, int>											(&RPG::BattlerAnimation::speed,			LDB_Reader::ChunkBattlerAnimation::speed,		"speed"			),
-	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::base_data,		LDB_Reader::ChunkBattlerAnimation::base_data,	"base_data"		),
-	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::weapon_data,	LDB_Reader::ChunkBattlerAnimation::weapon_data,	"weapon_data"	),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, speed),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension> , base_data),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension> , weapon_data),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

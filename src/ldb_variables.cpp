@@ -34,7 +34,7 @@ EASYRPG_STRUCT_NAME(Variable)
 #define EASYRPG_CURRENT_STRUCT Variable
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Variable)
-	new TypedField<RPG::Variable, std::string>(&RPG::Variable::name, LDB_Reader::ChunkVariable::name, "name"),
+	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

@@ -33,9 +33,9 @@ EASYRPG_STRUCT_NAME(TroopPage)
 #define EASYRPG_CURRENT_STRUCT TroopPage
 
 EASYRPG_STRUCT_FIELDS_BEGIN(TroopPage)
-	new TypedField<RPG::TroopPage, RPG::TroopPageCondition>			(&RPG::TroopPage::condition,			LDB_Reader::ChunkTroopPage::condition,				"condition"			),
-	new SizeField<RPG::TroopPage, RPG::EventCommand>				(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands_size							),
-	new TypedField<RPG::TroopPage, std::vector<RPG::EventCommand> >	(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands,			"event_commands"	),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::TroopPageCondition, condition),
+	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT
