@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Map, NoID)
 
 EASYRPG_STRUCT_NAME(Map)
 
-template <>
-const Field<RPG::Map>* Struct<RPG::Map>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMU_Reader
+#define EASYRPG_CURRENT_STRUCT Map
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Map)
 	new TypedField<RPG::Map, int>						(&RPG::Map::chipset_id,				LMU_Reader::ChunkMap::chipset_id,			"chipset_id"			),
 	new TypedField<RPG::Map, int>						(&RPG::Map::width,					LMU_Reader::ChunkMap::width,				"width"					),
 	new TypedField<RPG::Map, int>						(&RPG::Map::height,					LMU_Reader::ChunkMap::height,				"height"				),
@@ -63,5 +65,7 @@ const Field<RPG::Map>* Struct<RPG::Map>::fields[] = {
 	new TypedField<RPG::Map, std::vector<int16_t> >		(&RPG::Map::upper_layer,			LMU_Reader::ChunkMap::upper_layer,			"upper_layer"			),
 	new TypedField<RPG::Map, std::vector<RPG::Event> >	(&RPG::Map::events,					LMU_Reader::ChunkMap::events,				"events"				),
 	new TypedField<RPG::Map, int>						(&RPG::Map::save_times,				LMU_Reader::ChunkMap::save_times,			"save_times"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Skill, WithID)
 
 EASYRPG_STRUCT_NAME(Skill)
 
-template <>
-const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Skill
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Skill)
 	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::name,					LDB_Reader::ChunkSkill::name,					"name"					),
 	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::description,			LDB_Reader::ChunkSkill::description,			"description"			),
 	new TypedField<RPG::Skill, std::string>			(&RPG::Skill::using_message1,		LDB_Reader::ChunkSkill::using_message1,			"using_message1"		),
@@ -68,5 +70,7 @@ const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {
 	new TypedField<RPG::Skill, bool>				(&RPG::Skill::affect_attr_defence,	LDB_Reader::ChunkSkill::affect_attr_defence,	"affect_attr_defence"	),
 	new TypedField<RPG::Skill, int>					(&RPG::Skill::battler_animation,	LDB_Reader::ChunkSkill::battler_animation,		"battler_animation"		),
 	new TypedField<RPG::Skill, std::vector<RPG::BattlerAnimationData> >	(&RPG::Skill::battler_animation_data,	LDB_Reader::ChunkSkill::battler_animation_data,	"battler_animation_data"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

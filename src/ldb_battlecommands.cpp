@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(BattleCommands, NoID)
 
 EASYRPG_STRUCT_NAME(BattleCommands)
 
-template <>
-const Field<RPG::BattleCommands>* Struct<RPG::BattleCommands>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT BattleCommands
+
+EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommands)
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::placement,		LDB_Reader::ChunkBattleCommands::placement,			"placement"		),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::death_handler1,	LDB_Reader::ChunkBattleCommands::death_handler1,	"death_handler1"),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::row,				LDB_Reader::ChunkBattleCommands::row,				"row"			),
@@ -47,5 +49,7 @@ const Field<RPG::BattleCommands>* Struct<RPG::BattleCommands>::fields[] = {
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_x,		LDB_Reader::ChunkBattleCommands::teleport_x,		"teleport_x"	),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_y,		LDB_Reader::ChunkBattleCommands::teleport_y,		"teleport_y"	),
 	new TypedField<RPG::BattleCommands, int>								(&RPG::BattleCommands::teleport_face,	LDB_Reader::ChunkBattleCommands::teleport_face,		"teleport_face"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

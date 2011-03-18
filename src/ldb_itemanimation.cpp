@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(ItemAnimation, WithID)
 
 EASYRPG_STRUCT_NAME(ItemAnimation)
 
-template <>
-const Field<RPG::ItemAnimation>* Struct<RPG::ItemAnimation>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT ItemAnimation
+
+EASYRPG_STRUCT_FIELDS_BEGIN(ItemAnimation)
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::type,			LDB_Reader::ChunkItemAnimation::type,			"type"			),
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::weapon_anim,	LDB_Reader::ChunkItemAnimation::weapon_anim,	"weapon_anim"	),
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::movement,		LDB_Reader::ChunkItemAnimation::movement,		"movement"		),
@@ -41,5 +43,7 @@ const Field<RPG::ItemAnimation>* Struct<RPG::ItemAnimation>::fields[] = {
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_anim,	LDB_Reader::ChunkItemAnimation::ranged_anim,	"ranged_anim"	),
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::ranged_speed,	LDB_Reader::ChunkItemAnimation::ranged_speed,	"ranged_speed"	),
 	new TypedField<RPG::ItemAnimation, int>	(&RPG::ItemAnimation::battle_anim,	LDB_Reader::ChunkItemAnimation::battle_anim,	"battle_anim"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

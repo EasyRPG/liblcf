@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Start, NoID)
 
 EASYRPG_STRUCT_NAME(Start)
 
-template <>
-const Field<RPG::Start>* Struct<RPG::Start>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMT_Reader
+#define EASYRPG_CURRENT_STRUCT Start
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Start)
 	new TypedField<RPG::Start, int>	(&RPG::Start::party_map_id,		LMT_Reader::ChunkStart::party_map_id,	"party_map_id"		),
 	new TypedField<RPG::Start, int>	(&RPG::Start::party_x,			LMT_Reader::ChunkStart::party_x,		"party_x"			),
 	new TypedField<RPG::Start, int>	(&RPG::Start::party_y,			LMT_Reader::ChunkStart::party_y,		"party_y"			),
@@ -44,5 +46,7 @@ const Field<RPG::Start>* Struct<RPG::Start>::fields[] = {
 	new TypedField<RPG::Start, int>	(&RPG::Start::airship_map_id,	LMT_Reader::ChunkStart::airship_map_id,	"airship_map_id"	),
 	new TypedField<RPG::Start, int>	(&RPG::Start::airship_x,		LMT_Reader::ChunkStart::airship_x,		"airship_x"			),
 	new TypedField<RPG::Start, int>	(&RPG::Start::airship_y,		LMT_Reader::ChunkStart::airship_y,		"airship_y"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

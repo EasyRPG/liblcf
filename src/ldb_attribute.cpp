@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Attribute, WithID)
 
 EASYRPG_STRUCT_NAME(Attribute)
 
-template <>
-const Field<RPG::Attribute>* Struct<RPG::Attribute>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Attribute
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Attribute)
 	new TypedField<RPG::Attribute, std::string>	(&RPG::Attribute::name,		LDB_Reader::ChunkAttribute::name,	"name"		),
 	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::type,		LDB_Reader::ChunkAttribute::type,	"type"		),
 	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::a_rate,	LDB_Reader::ChunkAttribute::a_rate,	"a_rate"	),
@@ -39,5 +41,7 @@ const Field<RPG::Attribute>* Struct<RPG::Attribute>::fields[] = {
 	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::c_rate,	LDB_Reader::ChunkAttribute::c_rate,	"c_rate"	),
 	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::d_rate,	LDB_Reader::ChunkAttribute::d_rate,	"d_rate"	),
 	new TypedField<RPG::Attribute, int>			(&RPG::Attribute::e_rate,	LDB_Reader::ChunkAttribute::e_rate,	"e_rate"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

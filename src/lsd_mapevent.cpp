@@ -31,8 +31,10 @@ EASYRPG_STRUCT_ID_READER(SaveMapEvent, WithID)
 
 EASYRPG_STRUCT_NAME(SaveMapEvent)
 
-template <>
-const Field<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveMapEvent
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveMapEvent)
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_01,			LSD_Reader::ChunkMapEvent::unknown_01,			"unknown_01"			),
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::map_id,				LSD_Reader::ChunkMapEvent::map_id,				"map_id"				),
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::position_x,			LSD_Reader::ChunkMapEvent::position_x,			"position_x"			),
@@ -71,5 +73,7 @@ const Field<RPG::SaveMapEvent>* Struct<RPG::SaveMapEvent>::fields[] = {
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_66,			LSD_Reader::ChunkMapEvent::unknown_66,			"unknown_66"			),
 	new TypedField<RPG::SaveMapEvent, int>					(&RPG::SaveMapEvent::unknown_67,			LSD_Reader::ChunkMapEvent::unknown_67,			"unknown_67"			),
 	new TypedField<RPG::SaveMapEvent, RPG::SaveEventData>	(&RPG::SaveMapEvent::event_data,			LSD_Reader::ChunkMapEvent::event_data,			"event_data"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

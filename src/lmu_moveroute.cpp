@@ -30,12 +30,16 @@ EASYRPG_STRUCT_ID_READER(MoveRoute, NoID)
 
 EASYRPG_STRUCT_NAME(MoveRoute)
 
-template <>
-const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMU_Reader
+#define EASYRPG_CURRENT_STRUCT MoveRoute
+
+EASYRPG_STRUCT_FIELDS_BEGIN(MoveRoute)
 	new SizeField<RPG::MoveRoute, RPG::MoveCommand>					(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands_size					),
 	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand> >	(&RPG::MoveRoute::move_commands,	LMU_Reader::ChunkMoveRoute::move_commands,		"move_commands"	),
 	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::repeat,			LMU_Reader::ChunkMoveRoute::repeat,				"repeat"		),
 	new TypedField<RPG::MoveRoute, bool>							(&RPG::MoveRoute::skippable,		LMU_Reader::ChunkMoveRoute::skippable,			"skippable"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

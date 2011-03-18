@@ -42,5 +42,7 @@ const Field<RPG::AnimationCellData>* Struct<RPG::AnimationCellData>::fields[] = 
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_blue,	LDB_Reader::ChunkAnimationCellData::tone_blue,		"tone_blue"),
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::tone_gray,	LDB_Reader::ChunkAnimationCellData::tone_gray,		"tone_gray"),
 	new TypedField<RPG::AnimationCellData, int>	(&RPG::AnimationCellData::transparency,	LDB_Reader::ChunkAnimationCellData::transparency,	"transparency"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

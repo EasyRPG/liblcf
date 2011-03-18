@@ -30,8 +30,12 @@ EASYRPG_STRUCT_ID_READER(AnimationFrame, WithID)
 
 EASYRPG_STRUCT_NAME(AnimationFrame)
 
-template <>
-const Field<RPG::AnimationFrame>* Struct<RPG::AnimationFrame>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT AnimationFrame
+
+EASYRPG_STRUCT_FIELDS_BEGIN(AnimationFrame)
 	new TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData> > (&RPG::AnimationFrame::cells, LDB_Reader::ChunkAnimationFrame::cells, "cells"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

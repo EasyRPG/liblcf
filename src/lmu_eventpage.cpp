@@ -29,8 +29,10 @@ EASYRPG_STRUCT_ID_READER(EventPage, WithID)
 
 EASYRPG_STRUCT_NAME(EventPage)
 
-template <>
-const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMU_Reader
+#define EASYRPG_CURRENT_STRUCT EventPage
+
+EASYRPG_STRUCT_FIELDS_BEGIN(EventPage)
 	new TypedField<RPG::EventPage, RPG::EventPageCondition>			(&RPG::EventPage::condition,			LMU_Reader::ChunkEventPage::condition,				"condition"				),
 	new TypedField<RPG::EventPage, std::string>						(&RPG::EventPage::character_name,		LMU_Reader::ChunkEventPage::character_name,			"character_name"		),
 	new TypedField<RPG::EventPage, int>								(&RPG::EventPage::character_index,		LMU_Reader::ChunkEventPage::character_index,		"character_index"		),
@@ -47,5 +49,7 @@ const Field<RPG::EventPage>* Struct<RPG::EventPage>::fields[] = {
 	new TypedField<RPG::EventPage, RPG::MoveRoute>					(&RPG::EventPage::move_route,			LMU_Reader::ChunkEventPage::move_route,				"move_route"			),
 	new SizeField<RPG::EventPage, RPG::EventCommand>				(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands_size								),
 	new TypedField<RPG::EventPage, std::vector<RPG::EventCommand> >	(&RPG::EventPage::event_commands,		LMU_Reader::ChunkEventPage::event_commands,			"event_commands"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

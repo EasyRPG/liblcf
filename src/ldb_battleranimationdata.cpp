@@ -30,10 +30,14 @@ EASYRPG_STRUCT_ID_READER(BattlerAnimationData, WithID)
 
 EASYRPG_STRUCT_NAME(BattlerAnimationData)
 
-template <>
-const Field<RPG::BattlerAnimationData>* Struct<RPG::BattlerAnimationData>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT BattlerAnimationData
+
+EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimationData)
 	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::move,			LDB_Reader::ChunkBattlerAnimationData::move,		"move"			),
 	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::after_image,	LDB_Reader::ChunkBattlerAnimationData::after_image,	"after_image"	),
 	new TypedField<RPG::BattlerAnimationData, int>	(&RPG::BattlerAnimationData::pose,			LDB_Reader::ChunkBattlerAnimationData::pose,		"pose"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

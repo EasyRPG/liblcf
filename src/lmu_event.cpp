@@ -30,11 +30,15 @@ EASYRPG_STRUCT_ID_READER(Event, WithID)
 
 EASYRPG_STRUCT_NAME(Event)
 
-template <>
-const Field<RPG::Event>* Struct<RPG::Event>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMU_Reader
+#define EASYRPG_CURRENT_STRUCT Event
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Event)
 	new TypedField<RPG::Event, std::string>					(&RPG::Event::name,		LMU_Reader::ChunkEvent::name,	"name"	),
 	new TypedField<RPG::Event, int>							(&RPG::Event::x,		LMU_Reader::ChunkEvent::x,		"x"		),
 	new TypedField<RPG::Event, int>							(&RPG::Event::y,		LMU_Reader::ChunkEvent::y,		"y"		),
 	new TypedField<RPG::Event, std::vector<RPG::EventPage> >(&RPG::Event::pages,	LMU_Reader::ChunkEvent::pages,	"pages"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

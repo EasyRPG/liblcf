@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveEvents, NoID)
 
 EASYRPG_STRUCT_NAME(SaveEvents)
 
-template <>
-const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveEvents
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveEvents)
 	new TypedField<RPG::SaveEvents, std::vector<RPG::SaveEventCommands> >	(&RPG::SaveEvents::events,		LSD_Reader::ChunkEvents::events,		"events"		),
 	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::events_size,	LSD_Reader::ChunkEvents::events_size,	"events_size"	),
 	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_16,	LSD_Reader::ChunkEvents::unknown_16,	"unknown_16"	),
@@ -41,5 +43,7 @@ const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {
 	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_20,	LSD_Reader::ChunkEvents::unknown_20,	"unknown_20"	),
 	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_24,	LSD_Reader::ChunkEvents::unknown_24,	"unknown_24"	),
 	new TypedField<RPG::SaveEvents, int>									(&RPG::SaveEvents::unknown_25,	LSD_Reader::ChunkEvents::unknown_25,	"unknown_25"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

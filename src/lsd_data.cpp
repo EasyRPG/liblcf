@@ -31,8 +31,10 @@ EASYRPG_STRUCT_ID_READER(SaveSystem, NoID)
 
 EASYRPG_STRUCT_NAME(SaveSystem)
 
-template <>
-const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveSystem
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveSystem)
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::screen,					LSD_Reader::ChunkSystem::screen,					"screen"				),
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::frame_count,				LSD_Reader::ChunkSystem::frame_count,				"frame_count"			),
 	new TypedField<RPG::SaveSystem, std::string>			(&RPG::SaveSystem::graphics_name,			LSD_Reader::ChunkSystem::graphics_name,				"graphics_name"			),
@@ -87,5 +89,7 @@ const Field<RPG::SaveSystem>* Struct<RPG::SaveSystem>::fields[] = {
 	new TypedField<RPG::SaveSystem, std::string>			(&RPG::SaveSystem::background,				LSD_Reader::ChunkSystem::background,				"background"			),
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::save_count,				LSD_Reader::ChunkSystem::save_count,				"save_count"			),
 	new TypedField<RPG::SaveSystem, int>					(&RPG::SaveSystem::save_slot,				LSD_Reader::ChunkSystem::save_slot,					"save_slot"				),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

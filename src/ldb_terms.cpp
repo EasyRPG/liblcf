@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Terms, NoID)
 
 EASYRPG_STRUCT_NAME(Terms)
 
-template <>
-const Field<RPG::Terms>* Struct<RPG::Terms>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Terms
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Terms)
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::encounter,			LDB_Reader::ChunkTerms::encounter,				"encounter"				),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::special_combat,		LDB_Reader::ChunkTerms::special_combat,			"special_combat"		),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::escape_success,		LDB_Reader::ChunkTerms::escape_success,			"escape_success"		),
@@ -159,5 +161,7 @@ const Field<RPG::Terms>* Struct<RPG::Terms>::fields[] = {
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::exit_game_message,	LDB_Reader::ChunkTerms::exit_game_message,		"exit_game_message"		),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::yes,					LDB_Reader::ChunkTerms::yes,					"yes"					),
 	new TypedField<RPG::Terms, std::string>	(&RPG::Terms::no,					LDB_Reader::ChunkTerms::no,						"no"					),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

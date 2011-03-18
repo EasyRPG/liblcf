@@ -29,11 +29,15 @@ EASYRPG_STRUCT_ID_READER(TroopPage, WithID)
 
 EASYRPG_STRUCT_NAME(TroopPage)
 
-template <>
-const Field<RPG::TroopPage>* Struct<RPG::TroopPage>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT TroopPage
+
+EASYRPG_STRUCT_FIELDS_BEGIN(TroopPage)
 	new TypedField<RPG::TroopPage, RPG::TroopPageCondition>			(&RPG::TroopPage::condition,			LDB_Reader::ChunkTroopPage::condition,				"condition"			),
 	new SizeField<RPG::TroopPage, RPG::EventCommand>				(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands_size							),
 	new TypedField<RPG::TroopPage, std::vector<RPG::EventCommand> >	(&RPG::TroopPage::event_commands,		LDB_Reader::ChunkTroopPage::event_commands,			"event_commands"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

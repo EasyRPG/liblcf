@@ -30,9 +30,13 @@ EASYRPG_STRUCT_ID_READER(Variable, WithID)
 
 EASYRPG_STRUCT_NAME(Variable)
 
-template <>
-const Field<RPG::Variable>* Struct<RPG::Variable>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Variable
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Variable)
 	new TypedField<RPG::Variable, std::string>(&RPG::Variable::name, LDB_Reader::ChunkVariable::name, "name"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

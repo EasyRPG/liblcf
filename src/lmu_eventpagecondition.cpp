@@ -40,8 +40,10 @@ const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
 	new Flags<flags_type>::Flag(&flags_type::actor,		"actor"		),
 	new Flags<flags_type>::Flag(&flags_type::timer,		"timer"		),
 	new Flags<flags_type>::Flag(&flags_type::timer2,	"timer2"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 
 template <>
 const uint32_t Flags<flags_type>::max_size = 1;
@@ -50,8 +52,10 @@ EASYRPG_STRUCT_ID_READER(EventPageCondition, NoID)
 
 EASYRPG_STRUCT_NAME(EventPageCondition)
 
-template <>
-const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMU_Reader
+#define EASYRPG_CURRENT_STRUCT EventPageCondition
+
+EASYRPG_STRUCT_FIELDS_BEGIN(EventPageCondition)
 	new TypedField<RPG::EventPageCondition, flags_type>	(&RPG::EventPageCondition::flags,				LMU_Reader::ChunkEventPageCondition::flags,				"flags"),
 	new TypedField<RPG::EventPageCondition, int>		(&RPG::EventPageCondition::switch_a_id,			LMU_Reader::ChunkEventPageCondition::switch_a_id,		"switch_a_id"		),
 	new TypedField<RPG::EventPageCondition, int>		(&RPG::EventPageCondition::switch_b_id,			LMU_Reader::ChunkEventPageCondition::switch_b_id,		"switch_b_id"		),
@@ -62,5 +66,7 @@ const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] 
 	new TypedField<RPG::EventPageCondition, int>		(&RPG::EventPageCondition::timer_sec,			LMU_Reader::ChunkEventPageCondition::timer_sec,			"timer_sec"			),
 	new TypedField<RPG::EventPageCondition, int>		(&RPG::EventPageCondition::timer2_sec,			LMU_Reader::ChunkEventPageCondition::timer2_sec,		"timer2_sec"		),
 	new TypedField<RPG::EventPageCondition, int>		(&RPG::EventPageCondition::compare_operator,	LMU_Reader::ChunkEventPageCondition::compare_operator,	"compare_operator"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

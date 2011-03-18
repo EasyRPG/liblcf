@@ -30,9 +30,13 @@ EASYRPG_STRUCT_ID_READER(Switch, WithID)
 
 EASYRPG_STRUCT_NAME(Switch)
 
-template <>
-const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Switch
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Switch)
 	new TypedField<RPG::Switch, std::string>(&RPG::Switch::name, LDB_Reader::ChunkSwitch::name, "name"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SavePicture, WithID)
 
 EASYRPG_STRUCT_NAME(SavePicture)
 
-template <>
-const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SavePicture
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SavePicture)
 	new TypedField<RPG::SavePicture, std::string>	(&RPG::SavePicture::name,					LSD_Reader::ChunkPicture::name,					"name"				),
 	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::start_x,				LSD_Reader::ChunkPicture::start_x,				"start_x"			),
 	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::start_y,				LSD_Reader::ChunkPicture::start_y,				"start_y"			),
@@ -61,5 +63,7 @@ const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {
 	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::time_left,				LSD_Reader::ChunkPicture::time_left,			"time_left"			),
 	new TypedField<RPG::SavePicture, double>		(&RPG::SavePicture::current_rotation,		LSD_Reader::ChunkPicture::current_rotation,		"current_rotation"	),
 	new TypedField<RPG::SavePicture, int>			(&RPG::SavePicture::current_waver,			LSD_Reader::ChunkPicture::current_waver,		"current_waver"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

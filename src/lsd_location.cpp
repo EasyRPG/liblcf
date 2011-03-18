@@ -31,8 +31,10 @@ EASYRPG_STRUCT_ID_READER(SavePartyLocation, NoID)
 
 EASYRPG_STRUCT_NAME(SavePartyLocation)
 
-template <>
-const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SavePartyLocation
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SavePartyLocation)
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::map_id,				LSD_Reader::ChunkPartyLocation::map_id,				"map_id"				),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::position_x,			LSD_Reader::ChunkPartyLocation::position_x,			"position_x"			),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::position_y,			LSD_Reader::ChunkPartyLocation::position_y,			"position_y"			),
@@ -70,5 +72,7 @@ const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = 
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::encounter_steps,		LSD_Reader::ChunkPartyLocation::encounter_steps,	"encounter_steps"		),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_83,			LSD_Reader::ChunkPartyLocation::unknown_83,			"unknown_83"			),
 	new TypedField<RPG::SavePartyLocation, int>				(&RPG::SavePartyLocation::unknown_84,			LSD_Reader::ChunkPartyLocation::unknown_84,			"unknown_84"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

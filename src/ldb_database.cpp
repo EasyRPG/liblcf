@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Database, NoID)
 
 EASYRPG_STRUCT_NAME(Database)
 
-template <>
-const Field<RPG::Database>* Struct<RPG::Database>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Database
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Database)
 	new TypedField<RPG::Database, std::vector<RPG::Actor> >				(&RPG::Database::actors,			LDB_Reader::ChunkData::Actor,				"actors"			),
 	new TypedField<RPG::Database, std::vector<RPG::Skill> >				(&RPG::Database::skills,			LDB_Reader::ChunkData::Skill,				"skills"			),
 	new TypedField<RPG::Database, std::vector<RPG::Item> >				(&RPG::Database::items,				LDB_Reader::ChunkData::Item,				"items"				),
@@ -50,6 +52,8 @@ const Field<RPG::Database>* Struct<RPG::Database>::fields[] = {
 	new TypedField<RPG::Database, RPG::BattleCommands>					(&RPG::Database::battlecommands,	LDB_Reader::ChunkData::BattleCommand,		"battlecommands"	),
 	new TypedField<RPG::Database, std::vector<RPG::Class> >				(&RPG::Database::classes,			LDB_Reader::ChunkData::Class,				"classes"			),
 	new TypedField<RPG::Database, std::vector<RPG::BattlerAnimation> >	(&RPG::Database::battleranimations,	LDB_Reader::ChunkData::BattlerAnimation,	"battleranimations"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

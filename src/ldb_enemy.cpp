@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Enemy, WithID)
 
 EASYRPG_STRUCT_NAME(Enemy)
 
-template <>
-const Field<RPG::Enemy>* Struct<RPG::Enemy>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Enemy
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Enemy)
 	new TypedField<RPG::Enemy, std::string>						(&RPG::Enemy::name,					LDB_Reader::ChunkEnemy::name,					"name"					),
 	new TypedField<RPG::Enemy, std::string>						(&RPG::Enemy::battler_name,			LDB_Reader::ChunkEnemy::battler_name,			"battler_name"			),
 	new TypedField<RPG::Enemy, int>								(&RPG::Enemy::battler_hue,			LDB_Reader::ChunkEnemy::battler_hue,			"battler_hue"			),

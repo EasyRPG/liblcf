@@ -30,11 +30,15 @@ EASYRPG_STRUCT_ID_READER(BattlerAnimation, WithID)
 
 EASYRPG_STRUCT_NAME(BattlerAnimation)
 
-template <>
-const Field<RPG::BattlerAnimation>* Struct<RPG::BattlerAnimation>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT BattlerAnimation
+
+EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimation)
 	new TypedField<RPG::BattlerAnimation, std::string>									(&RPG::BattlerAnimation::name,			LDB_Reader::ChunkBattlerAnimation::name,		"name"			),
 	new TypedField<RPG::BattlerAnimation, int>											(&RPG::BattlerAnimation::speed,			LDB_Reader::ChunkBattlerAnimation::speed,		"speed"			),
 	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::base_data,		LDB_Reader::ChunkBattlerAnimation::base_data,	"base_data"		),
 	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension> >	(&RPG::BattlerAnimation::weapon_data,	LDB_Reader::ChunkBattlerAnimation::weapon_data,	"weapon_data"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

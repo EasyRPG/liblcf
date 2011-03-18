@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Item, WithID)
 
 EASYRPG_STRUCT_NAME(Item)
 
-template <>
-const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Item
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Item)
 	new TypedField<RPG::Item, std::string>						(&RPG::Item::name,				LDB_Reader::ChunkItem::name,				"name"				),
 	new TypedField<RPG::Item, std::string>						(&RPG::Item::description,		LDB_Reader::ChunkItem::description,			"description"		),
 	new TypedField<RPG::Item, int>								(&RPG::Item::type,				LDB_Reader::ChunkItem::type,				"type"				),
@@ -88,5 +90,7 @@ const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {
 	new TypedField<RPG::Item, std::vector<bool> >				(&RPG::Item::class_set,			LDB_Reader::ChunkItem::class_set,			"class_set"			),
 	new TypedField<RPG::Item, int>								(&RPG::Item::ranged_trajectory,	LDB_Reader::ChunkItem::ranged_trajectory,	"ranged_trajectory"	),
 	new TypedField<RPG::Item, int>								(&RPG::Item::ranged_target,		LDB_Reader::ChunkItem::ranged_target,		"ranged_target"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

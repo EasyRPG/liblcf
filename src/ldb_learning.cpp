@@ -30,10 +30,14 @@ EASYRPG_STRUCT_ID_READER(Learning, WithID)
 
 EASYRPG_STRUCT_NAME(Learning)
 
-template <>
-const Field<RPG::Learning>* Struct<RPG::Learning>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Learning
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Learning)
 	new TypedField<RPG::Learning, int> (&RPG::Learning::level,		LDB_Reader::ChunkLearning::level,		"level"),
 	new TypedField<RPG::Learning, int> (&RPG::Learning::skill_id,	LDB_Reader::ChunkLearning::skill_id,	"skill_id"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

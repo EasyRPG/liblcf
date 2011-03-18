@@ -30,11 +30,15 @@ EASYRPG_STRUCT_ID_READER(Sound, NoID)
 
 EASYRPG_STRUCT_NAME(Sound)
 
-template <>
-const Field<RPG::Sound>* Struct<RPG::Sound>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Sound
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Sound)
 	new TypedField<RPG::Sound, std::string>	(&RPG::Sound::name,		LDB_Reader::ChunkSound::name,		"name"		),
 	new TypedField<RPG::Sound, int>			(&RPG::Sound::volume,	LDB_Reader::ChunkSound::volume,		"volume"	),
 	new TypedField<RPG::Sound, int>			(&RPG::Sound::tempo,	LDB_Reader::ChunkSound::tempo,		"tempo"		),
 	new TypedField<RPG::Sound, int>			(&RPG::Sound::balance,	LDB_Reader::ChunkSound::balance,	"balance"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(System, NoID)
 
 EASYRPG_STRUCT_NAME(System)
 
-template <>
-const Field<RPG::System>* Struct<RPG::System>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT System
+
+EASYRPG_STRUCT_FIELDS_BEGIN(System)
 	new TypedField<RPG::System, int>							(&RPG::System::ldb_id,					LDB_Reader::ChunkSystem::ldb_id,					"ldb_id"				),
 	new TypedField<RPG::System, std::string>					(&RPG::System::boat_name,				LDB_Reader::ChunkSystem::boat_name,					"boat_name"				),
 	new TypedField<RPG::System, std::string>					(&RPG::System::ship_name,				LDB_Reader::ChunkSystem::ship_name,					"ship_name"				),
@@ -86,5 +88,7 @@ const Field<RPG::System>* Struct<RPG::System>::fields[] = {
 	new TypedField<RPG::System, bool>							(&RPG::System::show_frame,				LDB_Reader::ChunkSystem::show_frame,				"show_frame"			),
 	new TypedField<RPG::System, std::string>					(&RPG::System::frame_name,				LDB_Reader::ChunkSystem::frame_name,				"frame_name"			),
 	new TypedField<RPG::System, bool>							(&RPG::System::invert_animations,		LDB_Reader::ChunkSystem::invert_animations,			"invert_animations"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

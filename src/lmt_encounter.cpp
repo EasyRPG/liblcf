@@ -30,9 +30,13 @@ EASYRPG_STRUCT_ID_READER(Encounter, WithID)
 
 EASYRPG_STRUCT_NAME(Encounter)
 
-template <>
-const Field<RPG::Encounter>* Struct<RPG::Encounter>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMT_Reader
+#define EASYRPG_CURRENT_STRUCT Encounter
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Encounter)
 	new TypedField<RPG::Encounter, int>(&RPG::Encounter::troop_id, LMT_Reader::ChunkEncounter::troop_id, "troop_id"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
 

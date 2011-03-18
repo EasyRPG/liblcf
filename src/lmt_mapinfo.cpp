@@ -29,8 +29,10 @@ EASYRPG_STRUCT_ID_READER(MapInfo, WithID)
 
 EASYRPG_STRUCT_NAME(MapInfo)
 
-template <>
-const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LMT_Reader
+#define EASYRPG_CURRENT_STRUCT MapInfo
+
+EASYRPG_STRUCT_FIELDS_BEGIN(MapInfo)
 	new TypedField<RPG::MapInfo, std::string>					(&RPG::MapInfo::name,				LMT_Reader::ChunkMapInfo::name,				"name"				),
 	new TypedField<RPG::MapInfo, int>							(&RPG::MapInfo::parent_map,			LMT_Reader::ChunkMapInfo::parent_map,		"parent_map"		),
 	new TypedField<RPG::MapInfo, int>							(&RPG::MapInfo::indentation,		LMT_Reader::ChunkMapInfo::indentation,		"indentation"		),
@@ -48,5 +50,7 @@ const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {
 	new TypedField<RPG::MapInfo, std::vector<RPG::Encounter> >	(&RPG::MapInfo::encounters,			LMT_Reader::ChunkMapInfo::encounters,		"encounters"		),
 	new TypedField<RPG::MapInfo, int>							(&RPG::MapInfo::encounter_steps,	LMT_Reader::ChunkMapInfo::encounter_steps,	"encounter_steps"	),
 	new TypedField<RPG::MapInfo, RPG::Rect>						(&RPG::MapInfo::area,				LMT_Reader::ChunkMapInfo::area_rect,		"area_rect"			),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(EnemyAction, WithID)
 
 EASYRPG_STRUCT_NAME(EnemyAction)
 
-template <>
-const Field<RPG::EnemyAction>* Struct<RPG::EnemyAction>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT EnemyAction
+
+EASYRPG_STRUCT_FIELDS_BEGIN(EnemyAction)
 	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::kind,				LDB_Reader::ChunkEnemyAction::kind,					"kind"				),
 	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::basic,				LDB_Reader::ChunkEnemyAction::basic,				"basic"				),
 	new TypedField<RPG::EnemyAction, int>	(&RPG::EnemyAction::skill_id,			LDB_Reader::ChunkEnemyAction::skill_id,				"skill_id"			),

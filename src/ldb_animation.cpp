@@ -30,13 +30,17 @@ EASYRPG_STRUCT_ID_READER(Animation, WithID)
 
 EASYRPG_STRUCT_NAME(Animation)
 
-template <>
-const Field<RPG::Animation>* Struct<RPG::Animation>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Animation
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Animation)
 	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::name,				LDB_Reader::ChunkAnimation::name,			"name"			),
 	new TypedField<RPG::Animation,	std::string>						(&RPG::Animation::animation_name,	LDB_Reader::ChunkAnimation::animation_name,	"animation_name"),
 	new TypedField<RPG::Animation,	std::vector<RPG::AnimationTiming> >	(&RPG::Animation::timings,			LDB_Reader::ChunkAnimation::timings,		"timings"		),
 	new TypedField<RPG::Animation,	int>								(&RPG::Animation::scope,			LDB_Reader::ChunkAnimation::scope,			"scope"			),
 	new TypedField<RPG::Animation,	int>								(&RPG::Animation::position,			LDB_Reader::ChunkAnimation::position,		"position"		),
 	new TypedField<RPG::Animation,	std::vector<RPG::AnimationFrame> >	(&RPG::Animation::frames,			LDB_Reader::ChunkAnimation::frames,			"frames"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

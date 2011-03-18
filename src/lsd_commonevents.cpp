@@ -30,8 +30,12 @@ EASYRPG_STRUCT_ID_READER(SaveCommonEvent, WithID)
 
 EASYRPG_STRUCT_NAME(SaveCommonEvent)
 
-template <>
-const Field<RPG::SaveCommonEvent>* Struct<RPG::SaveCommonEvent>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveCommonEvent
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveCommonEvent)
 	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventData>	(&RPG::SaveCommonEvent::event_data,	LSD_Reader::ChunkCommonEvent::event_data,	"event_data"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

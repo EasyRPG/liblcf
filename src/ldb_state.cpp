@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(State, WithID)
 
 EASYRPG_STRUCT_NAME(State)
 
-template <>
-const Field<RPG::State>* Struct<RPG::State>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT State
+
+EASYRPG_STRUCT_FIELDS_BEGIN(State)
 	new TypedField<RPG::State, std::string>	(&RPG::State::name,					LDB_Reader::ChunkState::name,					"name"					),
 	new TypedField<RPG::State, int>			(&RPG::State::type,					LDB_Reader::ChunkState::type,					"type"					),
 	new TypedField<RPG::State, int>			(&RPG::State::color,				LDB_Reader::ChunkState::color,					"color"					),
@@ -74,5 +76,7 @@ const Field<RPG::State>* Struct<RPG::State>::fields[] = {
 	new TypedField<RPG::State, int>			(&RPG::State::sp_change_val,		LDB_Reader::ChunkState::sp_change_val,			"sp_change_val"			),
 	new TypedField<RPG::State, int>			(&RPG::State::sp_change_map_val,	LDB_Reader::ChunkState::sp_change_map_val,		"sp_change_map_val"		),
 	new TypedField<RPG::State, int>			(&RPG::State::sp_change_map_steps,	LDB_Reader::ChunkState::sp_change_map_steps,	"sp_change_map_steps"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

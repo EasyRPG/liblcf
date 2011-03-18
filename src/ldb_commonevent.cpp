@@ -29,13 +29,17 @@ EASYRPG_STRUCT_ID_READER(CommonEvent, WithID)
 
 EASYRPG_STRUCT_NAME(CommonEvent)
 
-template <>
-const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT CommonEvent
+
+EASYRPG_STRUCT_FIELDS_BEGIN(CommonEvent)
 	new TypedField<RPG::CommonEvent, std::string>						(&RPG::CommonEvent::name,			LDB_Reader::ChunkCommonEvent::name,					"name"			),
 	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::trigger,		LDB_Reader::ChunkCommonEvent::trigger,				"trigger"		),
 	new TypedField<RPG::CommonEvent, bool>								(&RPG::CommonEvent::switch_flag,	LDB_Reader::ChunkCommonEvent::switch_flag,			"switch_flag"	),
 	new TypedField<RPG::CommonEvent, int>								(&RPG::CommonEvent::switch_id,		LDB_Reader::ChunkCommonEvent::switch_id,			"switch_id"		),
 	new SizeField<RPG::CommonEvent, RPG::EventCommand>					(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands_size					),
 	new TypedField<RPG::CommonEvent, std::vector<RPG::EventCommand> >	(&RPG::CommonEvent::event_commands,	LDB_Reader::ChunkCommonEvent::event_commands,		"event_commands"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

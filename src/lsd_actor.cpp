@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveActor, WithID)
 
 EASYRPG_STRUCT_NAME(SaveActor)
 
-template <>
-const Field<RPG::SaveActor>* Struct<RPG::SaveActor>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveActor
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveActor)
 	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::name,				LSD_Reader::ChunkActor::name,				"name"				),
 	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::title,			LSD_Reader::ChunkActor::title,				"title"				),
 	new TypedField<RPG::SaveActor, std::string>				(&RPG::SaveActor::sprite_name,		LSD_Reader::ChunkActor::sprite_name,		"sprite_name"		),
@@ -63,5 +65,7 @@ const Field<RPG::SaveActor>* Struct<RPG::SaveActor>::fields[] = {
 	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::auto_battle,		LSD_Reader::ChunkActor::auto_battle,		"auto_battle"		),
 	new TypedField<RPG::SaveActor, bool>					(&RPG::SaveActor::mighty_guard,		LSD_Reader::ChunkActor::mighty_guard,		"mighty_guard"		),
 	new TypedField<RPG::SaveActor, int>						(&RPG::SaveActor::unknown_60,		LSD_Reader::ChunkActor::unknown_60,			"unknown_60"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

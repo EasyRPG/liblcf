@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveMapInfo, NoID)
 
 EASYRPG_STRUCT_NAME(SaveMapInfo)
 
-template <>
-const Field<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveMapInfo
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveMapInfo)
 	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_x,					LSD_Reader::ChunkMapInfo::pan_x,				"pan_x"					),
 	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::pan_y,					LSD_Reader::ChunkMapInfo::pan_y,				"pan_y"					),
 	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::encounter_rate,			LSD_Reader::ChunkMapInfo::encounter_rate,		"encounter_rate"		),
@@ -46,5 +48,7 @@ const Field<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::fields[] = {
 	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_horz_speed,	LSD_Reader::ChunkMapInfo::parallax_horz_speed,	"parallax_horz_speed"	),
 	new TypedField<RPG::SaveMapInfo, bool>								(&RPG::SaveMapInfo::parallax_vert_auto,		LSD_Reader::ChunkMapInfo::parallax_vert_auto,	"parallax_vert_auto"	),
 	new TypedField<RPG::SaveMapInfo, int>								(&RPG::SaveMapInfo::parallax_vert_speed,	LSD_Reader::ChunkMapInfo::parallax_vert_speed,	"parallax_vert_speed"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveInventory, NoID)
 
 EASYRPG_STRUCT_NAME(SaveInventory)
 
-template <>
-const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveInventory
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveInventory)
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::party_size,		LSD_Reader::ChunkInventory::party_size,		"party_size"		),
 	new TypedField<RPG::SaveInventory, std::vector<int16_t> >	(&RPG::SaveInventory::party,			LSD_Reader::ChunkInventory::party,			"party"				),
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::items_size,		LSD_Reader::ChunkInventory::items_size,		"items_size"		),
@@ -53,5 +55,7 @@ const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::victories,		LSD_Reader::ChunkInventory::victories,		"victories"			),
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::unknown_29,		LSD_Reader::ChunkInventory::unknown_29,		"unknown_29"		),
 	new TypedField<RPG::SaveInventory, int>						(&RPG::SaveInventory::steps,			LSD_Reader::ChunkInventory::steps,			"steps"				),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

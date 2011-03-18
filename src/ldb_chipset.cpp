@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(Chipset, WithID)
 
 EASYRPG_STRUCT_NAME(Chipset)
 
-template <>
-const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Chipset
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Chipset)
 	new TypedField<RPG::Chipset, std::string>			(&RPG::Chipset::name,					LDB_Reader::ChunkChipset::name,					"name"					),
 	new TypedField<RPG::Chipset, std::string>			(&RPG::Chipset::chipset_name,			LDB_Reader::ChunkChipset::chipset_name,			"chipset_name"			),
 	new TypedField<RPG::Chipset, std::vector<int16_t> >	(&RPG::Chipset::terrain_data,			LDB_Reader::ChunkChipset::terrain_data,			"terrain_data"			),
@@ -39,5 +41,7 @@ const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {
 	new TypedField<RPG::Chipset, std::vector<uint8_t> >	(&RPG::Chipset::passable_data_upper,	LDB_Reader::ChunkChipset::passable_data_upper,	"passable_data_upper"	),
 	new TypedField<RPG::Chipset, int>					(&RPG::Chipset::animation_type,			LDB_Reader::ChunkChipset::animation_type,		"animation_type"		),
 	new TypedField<RPG::Chipset, int>					(&RPG::Chipset::animation_speed,		LDB_Reader::ChunkChipset::animation_speed,		"animation_speed"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

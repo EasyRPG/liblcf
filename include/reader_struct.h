@@ -719,17 +719,17 @@ private:
 	template <> \
 	char const* const Struct<RPG::T>::name(BOOST_PP_STRINGIZE(T)); \
 
-#define EASYRPG_STRUCT_FIELD_BEGIN(T) \
+#define EASYRPG_STRUCT_FIELDS_BEGIN(T) \
 	template <> \
 	Field<RPG::T> const* Struct<RPG::T>::fields[] = { \
 
-#define EASYRPG_STRUCT_FIELD_END() \
+#define EASYRPG_STRUCT_FIELDS_END() \
 	NULL }; \
 
 /*
  needs define of
- - EASYRPG_CURRENT_STRUCT
  - EASYRPG_CHUNK_SUFFIX
+ - EASYRPG_CURRENT_STRUCT
 */
 #define EASYRPG_STRUCT_TYPED_FIELD(T, REF) \
 	new TypedField<RPG::EASYRPG_CURRENT_STRUCT, T>( \

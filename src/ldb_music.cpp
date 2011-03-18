@@ -30,12 +30,16 @@ EASYRPG_STRUCT_ID_READER(Music, NoID)
 
 EASYRPG_STRUCT_NAME(Music)
 
-template <>
-const Field<RPG::Music>* Struct<RPG::Music>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Music
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Music)
 	new TypedField<RPG::Music, std::string>	(&RPG::Music::name,		LDB_Reader::ChunkMusic::name,		"name"		),
 	new TypedField<RPG::Music, int>			(&RPG::Music::fadein,	LDB_Reader::ChunkMusic::fadein,		"fadein"	),
 	new TypedField<RPG::Music, int>			(&RPG::Music::volume,	LDB_Reader::ChunkMusic::volume,		"volume"	),
 	new TypedField<RPG::Music, int>			(&RPG::Music::tempo,	LDB_Reader::ChunkMusic::tempo,		"tempo"		),
 	new TypedField<RPG::Music, int>			(&RPG::Music::balance,	LDB_Reader::ChunkMusic::balance,	"balance"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

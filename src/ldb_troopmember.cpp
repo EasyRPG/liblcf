@@ -30,11 +30,15 @@ EASYRPG_STRUCT_ID_READER(TroopMember, WithID)
 
 EASYRPG_STRUCT_NAME(TroopMember)
 
-template <>
-const Field<RPG::TroopMember>* Struct<RPG::TroopMember>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT TroopMember
+
+EASYRPG_STRUCT_FIELDS_BEGIN(TroopMember)
 	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::enemy_id,	LDB_Reader::ChunkTroopMember::enemy_id,		"enemy_id"	),
 	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::x,			LDB_Reader::ChunkTroopMember::x,			"x"			),
 	new TypedField<RPG::TroopMember, int>	(&RPG::TroopMember::y,			LDB_Reader::ChunkTroopMember::y,			"y"			),
 	new TypedField<RPG::TroopMember, bool>	(&RPG::TroopMember::invisible,	LDB_Reader::ChunkTroopMember::invisible,	"invisible"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

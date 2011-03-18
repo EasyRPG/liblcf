@@ -30,9 +30,13 @@ EASYRPG_STRUCT_ID_READER(BattleCommand, WithID)
 
 EASYRPG_STRUCT_NAME(BattleCommand)
 
-template <>
-const Field<RPG::BattleCommand>* Struct<RPG::BattleCommand>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT BattleCommand
+
+EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommand)
 	new TypedField<RPG::BattleCommand, std::string>	(&RPG::BattleCommand::name,	LDB_Reader::ChunkBattleCommand::name,	"name"),
 	new TypedField<RPG::BattleCommand, int>			(&RPG::BattleCommand::type,	LDB_Reader::ChunkBattleCommand::type,	"type"),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

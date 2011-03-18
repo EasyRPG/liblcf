@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveScreen, NoID)
 
 EASYRPG_STRUCT_NAME(SaveScreen)
 
-template <>
-const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveScreen
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveScreen)
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_red,			LSD_Reader::ChunkScreen::tint_finish_red,		"tint_finish_red"		),
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_green,		LSD_Reader::ChunkScreen::tint_finish_green,		"tint_finish_green"		),
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::tint_finish_blue,		LSD_Reader::ChunkScreen::tint_finish_blue,		"tint_finish_blue"		),
@@ -60,5 +62,7 @@ const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {
 	new TypedField<RPG::SaveScreen, bool>	(&RPG::SaveScreen::battleanim_global,		LSD_Reader::ChunkScreen::battleanim_global,		"battleanim_global"		),
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::weather,					LSD_Reader::ChunkScreen::weather,				"weather"				),
 	new TypedField<RPG::SaveScreen, int>	(&RPG::SaveScreen::weather_strength,		LSD_Reader::ChunkScreen::weather_strength,		"weather_strength"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

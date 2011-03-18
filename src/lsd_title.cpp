@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveTitle, NoID)
 
 EASYRPG_STRUCT_NAME(SaveTitle)
 
-template <>
-const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveTitle
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveTitle)
 	new TypedField<RPG::SaveTitle, std::vector<uint8_t> >	(&RPG::SaveTitle::timestamp,	LSD_Reader::ChunkTitle::timestamp,		"timestamp"		),
 	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::hero_name,	LSD_Reader::ChunkTitle::hero_name,		"hero_name"		),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::hero_level,	LSD_Reader::ChunkTitle::hero_level,		"hero_level"	),
@@ -44,5 +46,7 @@ const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face3_id,		LSD_Reader::ChunkTitle::face3_id,		"face3_id"		),
 	new TypedField<RPG::SaveTitle, std::string>				(&RPG::SaveTitle::face4_name,	LSD_Reader::ChunkTitle::face4_name,		"face4_name"	),
 	new TypedField<RPG::SaveTitle, int>						(&RPG::SaveTitle::face4_id,		LSD_Reader::ChunkTitle::face4_id,		"face4_id"		),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

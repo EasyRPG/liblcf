@@ -29,8 +29,10 @@ EASYRPG_STRUCT_ID_READER(Class, WithID)
 
 EASYRPG_STRUCT_NAME(Class)
 
-template <>
-const Field<RPG::Class>* Struct<RPG::Class>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LDB_Reader
+#define EASYRPG_CURRENT_STRUCT Class
+
+EASYRPG_STRUCT_FIELDS_BEGIN(Class)
 	new TypedField<RPG::Class, std::string>					(&RPG::Class::name,					LDB_Reader::ChunkClass::name,				"name"				),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::two_swords_style,		LDB_Reader::ChunkClass::two_swords_style,	"two_swords_style"	),
 	new TypedField<RPG::Class, bool>						(&RPG::Class::fix_equipment,		LDB_Reader::ChunkClass::fix_equipment,		"fix_equipment"		),
@@ -47,5 +49,7 @@ const Field<RPG::Class>* Struct<RPG::Class>::fields[] = {
 	new SizeField<RPG::Class, uint8_t>						(&RPG::Class::attribute_ranks,		LDB_Reader::ChunkClass::attribute_ranks_size					),
 	new TypedField<RPG::Class, std::vector<uint8_t> > 		(&RPG::Class::attribute_ranks,		LDB_Reader::ChunkClass::attribute_ranks,	"attribute_ranks"	),
 	new TypedField<RPG::Class, std::vector<uint32_t> >		(&RPG::Class::battle_commands,		LDB_Reader::ChunkClass::battle_commands,	"battle_commands"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX

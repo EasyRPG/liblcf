@@ -30,8 +30,10 @@ EASYRPG_STRUCT_ID_READER(SaveVehicleLocation, NoID)
 
 EASYRPG_STRUCT_NAME(SaveVehicleLocation)
 
-template <>
-const Field<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::fields[] = {
+#define EASYRPG_CHUNK_SUFFIX LSD_Reader
+#define EASYRPG_CURRENT_STRUCT SaveVehicleLocation
+
+EASYRPG_STRUCT_FIELDS_BEGIN(SaveVehicleLocation)
 	new TypedField<RPG::SaveVehicleLocation, int>				(&RPG::SaveVehicleLocation::map_id,			LSD_Reader::ChunkVehicleLocation::map_id,			"map_id"		),
 	new TypedField<RPG::SaveVehicleLocation, int>				(&RPG::SaveVehicleLocation::position_x,		LSD_Reader::ChunkVehicleLocation::position_x,		"position_x"	),
 	new TypedField<RPG::SaveVehicleLocation, int>				(&RPG::SaveVehicleLocation::position_y,		LSD_Reader::ChunkVehicleLocation::position_y,		"position_y"	),
@@ -50,5 +52,7 @@ const Field<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::fields[
 	new TypedField<RPG::SaveVehicleLocation, int>				(&RPG::SaveVehicleLocation::unknown_65,		LSD_Reader::ChunkVehicleLocation::unknown_65,		"unknown_65"	),
 	new TypedField<RPG::SaveVehicleLocation, std::string>		(&RPG::SaveVehicleLocation::sprite2_name,	LSD_Reader::ChunkVehicleLocation::sprite2_name,		"sprite2_name"	),
 	new TypedField<RPG::SaveVehicleLocation, int>				(&RPG::SaveVehicleLocation::sprite2_id,		LSD_Reader::ChunkVehicleLocation::sprite2_id,		"sprite2_id"	),
-	NULL
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
