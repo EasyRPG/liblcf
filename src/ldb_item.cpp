@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Item
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Item>* Struct<RPG::Item>::ID_reader = new IDReaderT<RPG::Item, WithID>();
+EASYRPG_STRUCT_ID_READER(Item, WithID)
 
-template <>
-char const* const Struct<RPG::Item>::name("Item");
+EASYRPG_STRUCT_NAME(Item)
 
 template <>
 const Field<RPG::Item>* Struct<RPG::Item>::fields[] = {

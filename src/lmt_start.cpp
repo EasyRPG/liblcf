@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Tree Map
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Start>* Struct<RPG::Start>::ID_reader = new IDReaderT<RPG::Start, NoID>();
+EASYRPG_STRUCT_ID_READER(Start, NoID)
 
-template <>
-char const* const Struct<RPG::Start>::name("Start");
+EASYRPG_STRUCT_NAME(Start)
 
 template <>
 const Field<RPG::Start>* Struct<RPG::Start>::fields[] = {

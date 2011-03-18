@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Title
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveTitle>* Struct<RPG::SaveTitle>::ID_reader = new IDReaderT<RPG::SaveTitle, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveTitle, NoID)
 
-template <>
-char const* const Struct<RPG::SaveTitle>::name("SaveTitle");
+EASYRPG_STRUCT_NAME(SaveTitle)
 
 template <>
 const Field<RPG::SaveTitle>* Struct<RPG::SaveTitle>::fields[] = {

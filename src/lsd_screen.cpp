@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Saved Screen Appearance
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveScreen>* Struct<RPG::SaveScreen>::ID_reader = new IDReaderT<RPG::SaveScreen, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveScreen, NoID)
 
-template <>
-char const* const Struct<RPG::SaveScreen>::name("SaveScreen");
+EASYRPG_STRUCT_NAME(SaveScreen)
 
 template <>
 const Field<RPG::SaveScreen>* Struct<RPG::SaveScreen>::fields[] = {

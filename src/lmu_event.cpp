@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Event
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Event>* Struct<RPG::Event>::ID_reader = new IDReaderT<RPG::Event, WithID>();
+EASYRPG_STRUCT_ID_READER(Event, WithID)
 
-template <>
-char const* const Struct<RPG::Event>::name("Event");
+EASYRPG_STRUCT_NAME(Event)
 
 template <>
 const Field<RPG::Event>* Struct<RPG::Event>::fields[] = {

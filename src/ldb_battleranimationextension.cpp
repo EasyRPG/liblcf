@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimationExtension
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::ID_reader = new IDReaderT<RPG::BattlerAnimationExtension, WithID>();
+EASYRPG_STRUCT_ID_READER(BattlerAnimationExtension, WithID)
 
-template <>
-char const* const Struct<RPG::BattlerAnimationExtension>::name("BattlerAnimationExtension");
+EASYRPG_STRUCT_NAME(BattlerAnimationExtension)
 
 template <>
 const Field<RPG::BattlerAnimationExtension>* Struct<RPG::BattlerAnimationExtension>::fields[] = {

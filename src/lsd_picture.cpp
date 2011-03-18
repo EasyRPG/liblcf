@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Cover
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SavePicture>* Struct<RPG::SavePicture>::ID_reader = new IDReaderT<RPG::SavePicture, WithID>();
+EASYRPG_STRUCT_ID_READER(SavePicture, WithID)
 
-template <>
-char const* const Struct<RPG::SavePicture>::name("SavePicture");
+EASYRPG_STRUCT_NAME(SavePicture)
 
 template <>
 const Field<RPG::SavePicture>* Struct<RPG::SavePicture>::fields[] = {

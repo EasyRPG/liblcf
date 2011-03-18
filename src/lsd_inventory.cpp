@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Inventory
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveInventory>* Struct<RPG::SaveInventory>::ID_reader = new IDReaderT<RPG::SaveInventory, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveInventory, NoID)
 
-template <>
-char const* const Struct<RPG::SaveInventory>::name("SaveInventory");
+EASYRPG_STRUCT_NAME(SaveInventory)
 
 template <>
 const Field<RPG::SaveInventory>* Struct<RPG::SaveInventory>::fields[] = {

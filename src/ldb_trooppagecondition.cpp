@@ -49,11 +49,9 @@ const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
 template <>
 const uint32_t Flags<flags_type>::max_size = 2;
 
-template <>
-IDReader<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::ID_reader = new IDReaderT<RPG::TroopPageCondition, NoID>();
+EASYRPG_STRUCT_ID_READER(TroopPageCondition, NoID)
 
-template <>
-char const* const Struct<RPG::TroopPageCondition>::name("TroopPageCondition");
+EASYRPG_STRUCT_NAME(TroopPageCondition)
 
 template <>
 const Field<RPG::TroopPageCondition>* Struct<RPG::TroopPageCondition>::fields[] = {

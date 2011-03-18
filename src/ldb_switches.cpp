@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Switch
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Switch>* Struct<RPG::Switch>::ID_reader = new IDReaderT<RPG::Switch, WithID>();
+EASYRPG_STRUCT_ID_READER(Switch, WithID)
 
-template <>
-char const* const Struct<RPG::Switch>::name("Switch");
+EASYRPG_STRUCT_NAME(Switch)
 
 template <>
 const Field<RPG::Switch>* Struct<RPG::Switch>::fields[] = {

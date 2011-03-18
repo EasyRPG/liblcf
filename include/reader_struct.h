@@ -25,8 +25,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 #include <cstring>
 #include <cstdlib>
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/stringize.hpp>
 #include "reader_lcf.h"
 #include "writer_lcf.h"
 #include "reader_xml.h"
@@ -529,7 +532,7 @@ private:
 	static const Field<S>* fields[];
 	static field_map_type field_map;
 	static tag_map_type tag_map;
-	static IDReader<S>* ID_reader;
+	static std::auto_ptr<IDReader<S> > ID_reader;
 	static const char* const name;
 
 	static void MakeFieldMap();
@@ -708,5 +711,37 @@ private:
 	const char* const name;
 };
 
-#endif
+#define EASYRPG_STRUCT_ID_READER(T, ID) \
+	template <> \
+	std::auto_ptr<IDReader<RPG::T> > Struct<RPG::T>::ID_reader(new IDReaderT<RPG::T, ID>); \
 
+#define EASYRPG_STRUCT_NAME(T) \
+	template <> \
+	char const* const Struct<RPG::T>::name(BOOST_PP_STRINGIZE(T)); \
+
+#define EASYRPG_STRUCT_FIELD_BEGIN(T) \
+	template <> \
+	Field<RPG::T> const* Struct<RPG::T>::fields[] = { \
+
+#define EASYRPG_STRUCT_FIELD_END() \
+	NULL }; \
+
+/*
+ needs define of
+ - EASYRPG_CURRENT_STRUCT
+ - EASYRPG_CHUNK_SUFFIX
+*/
+#define EASYRPG_STRUCT_TYPED_FIELD(T, REF) \
+	new TypedField<RPG::EASYRPG_CURRENT_STRUCT, T>( \
+		  &RPG::EASYRPG_CURRENT_STRUCT::REF \
+		, EASYRPG_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, EASYRPG_CURRENT_STRUCT)::REF \
+		, BOOST_PP_STRINGIZE(REF) \
+	) \
+
+#define EASYRPG_STRUCT_SIZE_FIELD(T, REF) \
+	new SizeField<RPG::EASYRPG_CURRENT_STRUCT, T>( \
+		  &RPG::EASYRPG_CURRENT_STRUCT::REF \
+		, EASYRPG_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, EASYRPG_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+	) \
+
+#endif

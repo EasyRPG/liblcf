@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Learning
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Learning>* Struct<RPG::Learning>::ID_reader = new IDReaderT<RPG::Learning, WithID>();
+EASYRPG_STRUCT_ID_READER(Learning, WithID)
 
-template <>
-char const* const Struct<RPG::Learning>::name("Learning");
+EASYRPG_STRUCT_NAME(Learning)
 
 template <>
 const Field<RPG::Learning>* Struct<RPG::Learning>::fields[] = {

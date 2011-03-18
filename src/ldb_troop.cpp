@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Troop
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Troop>* Struct<RPG::Troop>::ID_reader = new IDReaderT<RPG::Troop, WithID>();
+EASYRPG_STRUCT_ID_READER(Troop, WithID)
 
-template <>
-char const* const Struct<RPG::Troop>::name("Troop");
+EASYRPG_STRUCT_NAME(Troop)
 
 template <>
 const Field<RPG::Troop>* Struct<RPG::Troop>::fields[] = {

@@ -25,11 +25,9 @@
 ////////////////////////////////////////////////////////////
 /// Read CommonEvent
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::CommonEvent>* Struct<RPG::CommonEvent>::ID_reader = new IDReaderT<RPG::CommonEvent, WithID>();
+EASYRPG_STRUCT_ID_READER(CommonEvent, WithID)
 
-template <>
-char const* const Struct<RPG::CommonEvent>::name("CommonEvent");
+EASYRPG_STRUCT_NAME(CommonEvent)
 
 template <>
 const Field<RPG::CommonEvent>* Struct<RPG::CommonEvent>::fields[] = {

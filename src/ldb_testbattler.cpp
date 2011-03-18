@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read TestBattler
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::TestBattler>* Struct<RPG::TestBattler>::ID_reader = new IDReaderT<RPG::TestBattler, WithID>();
+EASYRPG_STRUCT_ID_READER(TestBattler, WithID)
 
-template <>
-char const* const Struct<RPG::TestBattler>::name("TestBattler");
+EASYRPG_STRUCT_NAME(TestBattler)
 
 template <>
 const Field<RPG::TestBattler>* Struct<RPG::TestBattler>::fields[] = {

@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Variable
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Variable>* Struct<RPG::Variable>::ID_reader = new IDReaderT<RPG::Variable, WithID>();
+EASYRPG_STRUCT_ID_READER(Variable, WithID)
 
-template <>
-char const* const Struct<RPG::Variable>::name("Variable");
+EASYRPG_STRUCT_NAME(Variable)
 
 template <>
 const Field<RPG::Variable>* Struct<RPG::Variable>::fields[] = {

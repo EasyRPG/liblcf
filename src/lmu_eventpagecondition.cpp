@@ -46,11 +46,9 @@ const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
 template <>
 const uint32_t Flags<flags_type>::max_size = 1;
 
-template <>
-IDReader<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::ID_reader = new IDReaderT<RPG::EventPageCondition, NoID>();
+EASYRPG_STRUCT_ID_READER(EventPageCondition, NoID)
 
-template <>
-char const* const Struct<RPG::EventPageCondition>::name("EventPageCondition");
+EASYRPG_STRUCT_NAME(EventPageCondition)
 
 template <>
 const Field<RPG::EventPageCondition>* Struct<RPG::EventPageCondition>::fields[] = {

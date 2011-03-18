@@ -25,11 +25,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Actor
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Actor>* Struct<RPG::Actor>::ID_reader = new IDReaderT<RPG::Actor, WithID>();
+EASYRPG_STRUCT_ID_READER(Actor, WithID)
 
-template <>
-char const* const Struct<RPG::Actor>::name("Actor");
+EASYRPG_STRUCT_NAME(Actor)
 
 template <>
 const Field<RPG::Actor>* Struct<RPG::Actor>::fields[] = {

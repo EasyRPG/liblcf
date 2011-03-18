@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Saved Events
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveEvents>* Struct<RPG::SaveEvents>::ID_reader = new IDReaderT<RPG::SaveEvents, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveEvents, NoID)
 
-template <>
-char const* const Struct<RPG::SaveEvents>::name("SaveEvents");
+EASYRPG_STRUCT_NAME(SaveEvents)
 
 template <>
 const Field<RPG::SaveEvents>* Struct<RPG::SaveEvents>::fields[] = {

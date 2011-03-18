@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Database
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Database>* Struct<RPG::Database>::ID_reader = new IDReaderT<RPG::Database, NoID>();
+EASYRPG_STRUCT_ID_READER(Database, NoID)
 
-template <>
-char const* const Struct<RPG::Database>::name("Database");
+EASYRPG_STRUCT_NAME(Database)
 
 template <>
 const Field<RPG::Database>* Struct<RPG::Database>::fields[] = {

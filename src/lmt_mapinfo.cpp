@@ -25,11 +25,9 @@
 ////////////////////////////////////////////////////////////
 /// Read MapInfo
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::MapInfo>* Struct<RPG::MapInfo>::ID_reader = new IDReaderT<RPG::MapInfo, WithID>();
+EASYRPG_STRUCT_ID_READER(MapInfo, WithID)
 
-template <>
-char const* const Struct<RPG::MapInfo>::name("MapInfo");
+EASYRPG_STRUCT_NAME(MapInfo)
 
 template <>
 const Field<RPG::MapInfo>* Struct<RPG::MapInfo>::fields[] = {

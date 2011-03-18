@@ -43,11 +43,9 @@ const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
 template <>
 const uint32_t Flags<flags_type>::max_size = 1;
 
-template <>
-IDReader<RPG::Terrain>* Struct<RPG::Terrain>::ID_reader = new IDReaderT<RPG::Terrain, WithID>();
+EASYRPG_STRUCT_ID_READER(Terrain, WithID)
 
-template <>
-char const* const Struct<RPG::Terrain>::name("Terrain");
+EASYRPG_STRUCT_NAME(Terrain)
 
 template <>
 const Field<RPG::Terrain>* Struct<RPG::Terrain>::fields[] = {

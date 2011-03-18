@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Skill
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Skill>* Struct<RPG::Skill>::ID_reader = new IDReaderT<RPG::Skill, WithID>();
+EASYRPG_STRUCT_ID_READER(Skill, WithID)
 
-template <>
-char const* const Struct<RPG::Skill>::name("Skill");
+EASYRPG_STRUCT_NAME(Skill)
 
 template <>
 const Field<RPG::Skill>* Struct<RPG::Skill>::fields[] = {

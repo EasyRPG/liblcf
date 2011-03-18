@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Map Info
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::ID_reader = new IDReaderT<RPG::SaveMapInfo, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveMapInfo, NoID)
 
-template <>
-char const* const Struct<RPG::SaveMapInfo>::name("SaveMapInfo");
+EASYRPG_STRUCT_NAME(SaveMapInfo)
 
 template <>
 const Field<RPG::SaveMapInfo>* Struct<RPG::SaveMapInfo>::fields[] = {

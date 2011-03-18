@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Vehicle Location
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::ID_reader = new IDReaderT<RPG::SaveVehicleLocation, NoID>();
+EASYRPG_STRUCT_ID_READER(SaveVehicleLocation, NoID)
 
-template <>
-char const* const Struct<RPG::SaveVehicleLocation>::name("SaveVehicleLocation");
+EASYRPG_STRUCT_NAME(SaveVehicleLocation)
 
 template <>
 const Field<RPG::SaveVehicleLocation>* Struct<RPG::SaveVehicleLocation>::fields[] = {

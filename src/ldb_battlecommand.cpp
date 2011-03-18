@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read BattleCommand
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::BattleCommand>* Struct<RPG::BattleCommand>::ID_reader = new IDReaderT<RPG::BattleCommand, WithID>();
+EASYRPG_STRUCT_ID_READER(BattleCommand, WithID)
 
-template <>
-char const* const Struct<RPG::BattleCommand>::name("BattleCommand");
+EASYRPG_STRUCT_NAME(BattleCommand)
 
 template <>
 const Field<RPG::BattleCommand>* Struct<RPG::BattleCommand>::fields[] = {

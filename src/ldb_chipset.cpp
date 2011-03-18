@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Chipset
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Chipset>* Struct<RPG::Chipset>::ID_reader = new IDReaderT<RPG::Chipset, WithID>();
+EASYRPG_STRUCT_ID_READER(Chipset, WithID)
 
-template <>
-char const* const Struct<RPG::Chipset>::name("Chipset");
+EASYRPG_STRUCT_NAME(Chipset)
 
 template <>
 const Field<RPG::Chipset>* Struct<RPG::Chipset>::fields[] = {

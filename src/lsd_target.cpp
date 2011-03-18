@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Saved Target
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SaveTarget>* Struct<RPG::SaveTarget>::ID_reader = new IDReaderT<RPG::SaveTarget, WithID>();
+EASYRPG_STRUCT_ID_READER(SaveTarget, WithID)
 
-template <>
-char const* const Struct<RPG::SaveTarget>::name("SaveTarget");
+EASYRPG_STRUCT_NAME(SaveTarget)
 
 template <>
 const Field<RPG::SaveTarget>* Struct<RPG::SaveTarget>::fields[] = {

@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Music
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Music>* Struct<RPG::Music>::ID_reader = new IDReaderT<RPG::Music, NoID>();
+EASYRPG_STRUCT_ID_READER(Music, NoID)
 
-template <>
-char const* const Struct<RPG::Music>::name("Music");
+EASYRPG_STRUCT_NAME(Music)
 
 template <>
 const Field<RPG::Music>* Struct<RPG::Music>::fields[] = {

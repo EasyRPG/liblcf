@@ -27,11 +27,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Save Party Location
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::ID_reader = new IDReaderT<RPG::SavePartyLocation, NoID>();
+EASYRPG_STRUCT_ID_READER(SavePartyLocation, NoID)
 
-template <>
-char const* const Struct<RPG::SavePartyLocation>::name("SavePartyLocation");
+EASYRPG_STRUCT_NAME(SavePartyLocation)
 
 template <>
 const Field<RPG::SavePartyLocation>* Struct<RPG::SavePartyLocation>::fields[] = {

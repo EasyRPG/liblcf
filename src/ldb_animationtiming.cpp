@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read AnimationTiming
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::ID_reader = new IDReaderT<RPG::AnimationTiming, WithID>();
+EASYRPG_STRUCT_ID_READER(AnimationTiming, WithID)
 
-template <>
-char const* const Struct<RPG::AnimationTiming>::name("AnimationTiming");
+EASYRPG_STRUCT_NAME(AnimationTiming)
 
 template <>
 const Field<RPG::AnimationTiming>* Struct<RPG::AnimationTiming>::fields[] = {

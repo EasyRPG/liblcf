@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read State
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::State>* Struct<RPG::State>::ID_reader = new IDReaderT<RPG::State, WithID>();
+EASYRPG_STRUCT_ID_READER(State, WithID)
 
-template <>
-char const* const Struct<RPG::State>::name("State");
+EASYRPG_STRUCT_NAME(State)
 
 template <>
 const Field<RPG::State>* Struct<RPG::State>::fields[] = {

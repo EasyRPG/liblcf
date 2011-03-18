@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Attribute
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::Attribute>* Struct<RPG::Attribute>::ID_reader = new IDReaderT<RPG::Attribute, WithID>();
+EASYRPG_STRUCT_ID_READER(Attribute, WithID)
 
-template <>
-char const* const Struct<RPG::Attribute>::name("Attribute");
+EASYRPG_STRUCT_NAME(Attribute)
 
 template <>
 const Field<RPG::Attribute>* Struct<RPG::Attribute>::fields[] = {

@@ -26,11 +26,9 @@
 ////////////////////////////////////////////////////////////
 /// Read Move Route
 ////////////////////////////////////////////////////////////
-template <>
-IDReader<RPG::MoveRoute>* Struct<RPG::MoveRoute>::ID_reader = new IDReaderT<RPG::MoveRoute, NoID>();
+EASYRPG_STRUCT_ID_READER(MoveRoute, NoID)
 
-template <>
-char const* const Struct<RPG::MoveRoute>::name("MoveRoute");
+EASYRPG_STRUCT_NAME(MoveRoute)
 
 template <>
 const Field<RPG::MoveRoute>* Struct<RPG::MoveRoute>::fields[] = {
