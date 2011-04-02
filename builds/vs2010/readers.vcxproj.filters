@@ -21,9 +21,6 @@
     <Filter Include="Source Files\LMU">
       <UniqueIdentifier>{9d62bde7-1f5a-4ad1-8365-e4d398bf1acb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Events">
-      <UniqueIdentifier>{69f8371f-c096-4c52-95aa-3b817b62fe4d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\RPG">
       <UniqueIdentifier>{0dde9b4a-c124-498a-b7a4-0c21c2eafe59}</UniqueIdentifier>
     </Filter>
@@ -35,9 +32,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\event_reader.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\ini.cpp">
       <Filter>Source Files\INI</Filter>
     </ClCompile>
@@ -160,9 +154,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\lmu_reader.cpp">
       <Filter>Source Files\LMU</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reader.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\data.cpp">
       <Filter>Source Files</Filter>
@@ -359,9 +350,6 @@
     <ClCompile Include="..\..\src\lsd_save.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\move_reader.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\ldb_battlecommands.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
@@ -370,6 +358,51 @@
     </ClCompile>
     <ClCompile Include="..\..\src\rpg_switch.cpp">
       <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader_flags.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader_lcf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader_struct.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader_xml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_equipment.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_eventcommand.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_parameters.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmt_rect.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_movecommand.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_equipment.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_parameters.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_rect.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_start.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\writer_lcf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\writer_xml.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +431,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\lmu_reader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\rpg_actor.h">
@@ -540,6 +570,48 @@
     </ClInclude>
     <ClInclude Include="..\..\include\reader_util.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\reader_lcf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\reader_struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\reader_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\reader_xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\command_codes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\writer_lcf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\writer_xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_database.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_equipment.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_parameters.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_rect.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_start.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_switch.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_variable.h">
+      <Filter>Header Files\RPG</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

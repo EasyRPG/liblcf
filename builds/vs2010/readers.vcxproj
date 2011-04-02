@@ -158,7 +158,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;;$(EASYDEV_MSVC)\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -234,7 +234,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;;$(EASYDEV_MSVC)\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <DebugInformationFormat>
@@ -322,7 +322,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\data.cpp" />
-    <ClCompile Include="..\..\src\event_reader.cpp" />
     <ClCompile Include="..\..\src\ini.cpp" />
     <ClCompile Include="..\..\src\inireader.cpp" />
     <ClCompile Include="..\..\src\ldb_actor.cpp" />
@@ -342,10 +341,13 @@
     <ClCompile Include="..\..\src\ldb_database.cpp" />
     <ClCompile Include="..\..\src\ldb_enemy.cpp" />
     <ClCompile Include="..\..\src\ldb_enemyaction.cpp" />
+    <ClCompile Include="..\..\src\ldb_equipment.cpp" />
+    <ClCompile Include="..\..\src\ldb_eventcommand.cpp" />
     <ClCompile Include="..\..\src\ldb_item.cpp" />
     <ClCompile Include="..\..\src\ldb_itemanimation.cpp" />
     <ClCompile Include="..\..\src\ldb_learning.cpp" />
     <ClCompile Include="..\..\src\ldb_music.cpp" />
+    <ClCompile Include="..\..\src\ldb_parameters.cpp" />
     <ClCompile Include="..\..\src\ldb_reader.cpp" />
     <ClCompile Include="..\..\src\ldb_skill.cpp" />
     <ClCompile Include="..\..\src\ldb_sound.cpp" />
@@ -363,11 +365,13 @@
     <ClCompile Include="..\..\src\lmt_encounter.cpp" />
     <ClCompile Include="..\..\src\lmt_mapinfo.cpp" />
     <ClCompile Include="..\..\src\lmt_reader.cpp" />
+    <ClCompile Include="..\..\src\lmt_rect.cpp" />
     <ClCompile Include="..\..\src\lmt_treemap.cpp" />
     <ClCompile Include="..\..\src\lmu_event.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpage.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp" />
     <ClCompile Include="..\..\src\lmu_map.cpp" />
+    <ClCompile Include="..\..\src\lmu_movecommand.cpp" />
     <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
     <ClCompile Include="..\..\src\lsd_reader.cpp" />
@@ -387,9 +391,11 @@
     <ClCompile Include="..\..\src\lsd_target.cpp" />
     <ClCompile Include="..\..\src\lsd_title.cpp" />
     <ClCompile Include="..\..\src\lsd_vehicle.cpp" />
-    <ClCompile Include="..\..\src\move_reader.cpp" />
-    <ClCompile Include="..\..\src\reader.cpp" />
+    <ClCompile Include="..\..\src\reader_flags.cpp" />
+    <ClCompile Include="..\..\src\reader_lcf.cpp" />
+    <ClCompile Include="..\..\src\reader_struct.cpp" />
     <ClCompile Include="..\..\src\reader_util.cpp" />
+    <ClCompile Include="..\..\src\reader_xml.cpp" />
     <ClCompile Include="..\..\src\rpg_actor.cpp" />
     <ClCompile Include="..\..\src\rpg_animation.cpp" />
     <ClCompile Include="..\..\src\rpg_animationcelldata.cpp" />
@@ -406,6 +412,7 @@
     <ClCompile Include="..\..\src\rpg_encounter.cpp" />
     <ClCompile Include="..\..\src\rpg_enemy.cpp" />
     <ClCompile Include="..\..\src\rpg_enemyaction.cpp" />
+    <ClCompile Include="..\..\src\rpg_equipment.cpp" />
     <ClCompile Include="..\..\src\rpg_event.cpp" />
     <ClCompile Include="..\..\src\rpg_eventcommand.cpp" />
     <ClCompile Include="..\..\src\rpg_eventpage.cpp" />
@@ -418,9 +425,12 @@
     <ClCompile Include="..\..\src\rpg_movecommand.cpp" />
     <ClCompile Include="..\..\src\rpg_moveroute.cpp" />
     <ClCompile Include="..\..\src\rpg_music.cpp" />
+    <ClCompile Include="..\..\src\rpg_parameters.cpp" />
+    <ClCompile Include="..\..\src\rpg_rect.cpp" />
     <ClCompile Include="..\..\src\rpg_save.cpp" />
     <ClCompile Include="..\..\src\rpg_skill.cpp" />
     <ClCompile Include="..\..\src\rpg_sound.cpp" />
+    <ClCompile Include="..\..\src\rpg_start.cpp" />
     <ClCompile Include="..\..\src\rpg_state.cpp" />
     <ClCompile Include="..\..\src\rpg_switch.cpp" />
     <ClCompile Include="..\..\src\rpg_system.cpp" />
@@ -433,8 +443,11 @@
     <ClCompile Include="..\..\src\rpg_trooppage.cpp" />
     <ClCompile Include="..\..\src\rpg_trooppagecondition.cpp" />
     <ClCompile Include="..\..\src\rpg_variable.cpp" />
+    <ClCompile Include="..\..\src\writer_lcf.cpp" />
+    <ClCompile Include="..\..\src\writer_xml.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\command_codes.h" />
     <ClInclude Include="..\..\include\data.h" />
     <ClInclude Include="..\..\include\event_reader.h" />
     <ClInclude Include="..\..\include\ini.h" />
@@ -447,9 +460,12 @@
     <ClInclude Include="..\..\include\lmu_reader.h" />
     <ClInclude Include="..\..\include\lsd_chunks.h" />
     <ClInclude Include="..\..\include\lsd_reader.h" />
-    <ClInclude Include="..\..\include\reader.h" />
+    <ClInclude Include="..\..\include\reader_lcf.h" />
     <ClInclude Include="..\..\include\reader_options.h" />
+    <ClInclude Include="..\..\include\reader_struct.h" />
+    <ClInclude Include="..\..\include\reader_types.h" />
     <ClInclude Include="..\..\include\reader_util.h" />
+    <ClInclude Include="..\..\include\reader_xml.h" />
     <ClInclude Include="..\..\include\rpg_actor.h" />
     <ClInclude Include="..\..\include\rpg_animation.h" />
     <ClInclude Include="..\..\include\rpg_animationcelldata.h" />
@@ -463,9 +479,11 @@
     <ClInclude Include="..\..\include\rpg_chipset.h" />
     <ClInclude Include="..\..\include\rpg_class.h" />
     <ClInclude Include="..\..\include\rpg_commonevent.h" />
+    <ClInclude Include="..\..\include\rpg_database.h" />
     <ClInclude Include="..\..\include\rpg_encounter.h" />
     <ClInclude Include="..\..\include\rpg_enemy.h" />
     <ClInclude Include="..\..\include\rpg_enemyaction.h" />
+    <ClInclude Include="..\..\include\rpg_equipment.h" />
     <ClInclude Include="..\..\include\rpg_event.h" />
     <ClInclude Include="..\..\include\rpg_eventcommand.h" />
     <ClInclude Include="..\..\include\rpg_eventpage.h" />
@@ -478,10 +496,14 @@
     <ClInclude Include="..\..\include\rpg_movecommand.h" />
     <ClInclude Include="..\..\include\rpg_moveroute.h" />
     <ClInclude Include="..\..\include\rpg_music.h" />
+    <ClInclude Include="..\..\include\rpg_parameters.h" />
+    <ClInclude Include="..\..\include\rpg_rect.h" />
     <ClInclude Include="..\..\include\rpg_save.h" />
     <ClInclude Include="..\..\include\rpg_skill.h" />
     <ClInclude Include="..\..\include\rpg_sound.h" />
+    <ClInclude Include="..\..\include\rpg_start.h" />
     <ClInclude Include="..\..\include\rpg_state.h" />
+    <ClInclude Include="..\..\include\rpg_switch.h" />
     <ClInclude Include="..\..\include\rpg_system.h" />
     <ClInclude Include="..\..\include\rpg_terms.h" />
     <ClInclude Include="..\..\include\rpg_terrain.h" />
@@ -491,6 +513,9 @@
     <ClInclude Include="..\..\include\rpg_troopmember.h" />
     <ClInclude Include="..\..\include\rpg_trooppage.h" />
     <ClInclude Include="..\..\include\rpg_trooppagecondition.h" />
+    <ClInclude Include="..\..\include\rpg_variable.h" />
+    <ClInclude Include="..\..\include\writer_lcf.h" />
+    <ClInclude Include="..\..\include\writer_xml.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
