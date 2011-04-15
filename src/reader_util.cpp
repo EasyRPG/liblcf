@@ -114,12 +114,16 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
-	char *src = (char *) str_to_encode.c_str();
+	char *src = const_cast<char *>(str_to_encode.c_str());
 	size_t src_left = str_to_encode.size();
 	size_t dst_size = str_to_encode.size() * 5 + 10;
 	char *dst = new char[dst_size];
 	size_t dst_left = dst_size;
+#ifdef PSP
+	char const *p = src;
+#else
 	char *p = src;
+#endif
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
