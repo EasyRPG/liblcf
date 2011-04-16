@@ -309,6 +309,28 @@ RPG::SaveInventory::SaveInventory() {
 void RPG::SaveInventory::Setup() {
 	party = Data::system.party;
 	party_size = party.size();
+
+/*
+void Game_Party::SetupBattleTestMembers() {
+	actors.clear();
+
+	for (size_t i = 0; i < Data::system.battletest_data.size(); ++i) {
+		Game_Actor* actor = Game_Actors::GetActor(Data::system.battletest_data[i].ID);
+
+		if (actor == NULL) {
+			Output::Warning("Invalid actor (Id: %d) in battle test party at index %d.", Data::system.battletest_data[i].ID, i);
+		} else {
+			actor->SetLevel(Data::system.battletest_data[i].level);
+			actor->SetEquipment(0, Data::system.battletest_data[i].weapon_id);
+			actor->SetEquipment(1, Data::system.battletest_data[i].shield_id);
+			actor->SetEquipment(2, Data::system.battletest_data[i].armor_id);
+			actor->SetEquipment(3, Data::system.battletest_data[i].helmet_id);
+			actor->SetEquipment(4, Data::system.battletest_data[i].accessory_id);
+			actors.push_back(actor);
+		}
+	}
+}
+*/
 }
 
 RPG::SaveMapEvent::SaveMapEvent() {
@@ -475,9 +497,9 @@ RPG::Save::Save() {
 void RPG::Save::Setup() {
 	system.Setup();
 	pictures.resize(50);
-	party.resize(Data::actors.size());
-	for (int i = 1; i <= (int) party.size(); i++)
-		party[i - 1].Setup(i);
+	actors.resize(Data::actors.size());
+	for (int i = 1; i <= (int) actors.size(); i++)
+		actors[i - 1].Setup(i);
 	map_info.Setup();
 }
 

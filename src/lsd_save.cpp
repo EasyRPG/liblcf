@@ -42,7 +42,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Save)
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, boat_location),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, ship_location),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveVehicleLocation, airship_location),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveActor> , party),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveActor> , actors),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveInventory, inventory),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveTarget> , targets),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveMapInfo, map_info),

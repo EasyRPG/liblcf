@@ -366,6 +366,7 @@
     <ClCompile Include="..\..\src\lmt_mapinfo.cpp" />
     <ClCompile Include="..\..\src\lmt_reader.cpp" />
     <ClCompile Include="..\..\src\lmt_rect.cpp" />
+    <ClCompile Include="..\..\src\lmt_start.cpp" />
     <ClCompile Include="..\..\src\lmt_treemap.cpp" />
     <ClCompile Include="..\..\src\lmu_event.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpage.cpp" />

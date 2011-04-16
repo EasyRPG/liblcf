@@ -462,7 +462,7 @@ namespace RPG {
 		SaveVehicleLocation boat_location;
 		SaveVehicleLocation ship_location;
 		SaveVehicleLocation airship_location;
-		std::vector<SaveActor> party;
+		std::vector<SaveActor> actors;
 		SaveInventory inventory;
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;

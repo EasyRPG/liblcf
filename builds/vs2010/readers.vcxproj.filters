@@ -404,6 +404,9 @@
     <ClCompile Include="..\..\src\writer_xml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\lmt_start.cpp">
+      <Filter>Source Files\LMT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\event_reader.h">

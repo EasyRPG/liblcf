@@ -32,7 +32,7 @@ namespace LSD_Reader {
 			boat_location		= 0x69, // RPG::SaveVehicleLocation
 			ship_location		= 0x6A, // RPG::SaveVehicleLocation
 			airship_location	= 0x6B, // RPG::SaveVehicleLocation
-			party				= 0x6C, // array of RPG::SaveActor
+			actors				= 0x6C, // array of RPG::SaveActor
 			inventory			= 0x6D, // RPG::SaveInventory
 			targets				= 0x6E, // array of RPG::SaveTarget
 			map_info			= 0x6F, // RPG::SaveMapInfo
