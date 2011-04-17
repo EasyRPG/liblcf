@@ -42,7 +42,7 @@ namespace RPG {
 	public:
 		SaveTitle();
 
-		std::vector<uint8_t>  timestamp;
+		double timestamp;
 		std::string hero_name;
 		int hero_level;
 		int hero_hp;

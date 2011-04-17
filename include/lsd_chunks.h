@@ -43,7 +43,7 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveTitle {
 		enum Index {
-			timestamp		= 0x01, // ?
+			timestamp		= 0x01, // double(?)
 			hero_name		= 0x0B, // char[]: hero name
 			hero_level		= 0x0C, // int: hero level
 			hero_hp			= 0x0D, // int: hero HP
