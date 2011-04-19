@@ -50,9 +50,12 @@
       <File Name="../../src/rpg_troopmember.cpp"/>
       <File Name="../../src/rpg_trooppage.cpp"/>
       <File Name="../../src/rpg_trooppagecondition.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="Events">
-      <File Name="../../src/event_reader.cpp"/>
+      <File Name="../../src/rpg_equipment.cpp"/>
+      <File Name="../../src/rpg_parameters.cpp"/>
+      <File Name="../../src/rpg_rect.cpp"/>
+      <File Name="../../src/rpg_start.cpp"/>
+      <File Name="../../src/rpg_switch.cpp"/>
+      <File Name="../../src/rpg_variable.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="LDB">
       <File Name="../../src/ldb_actor.cpp"/>
@@ -88,11 +91,19 @@
       <File Name="../../src/ldb_trooppage.cpp"/>
       <File Name="../../src/ldb_trooppagecondition.cpp"/>
       <File Name="../../src/ldb_variables.cpp"/>
+      <File Name="../../src/ldb_database.cpp"/>
+      <File Name="../../src/ldb_battlecommands.cpp"/>
+      <File Name="../../src/ldb_equipment.cpp"/>
+      <File Name="../../src/ldb_eventcommand.cpp"/>
+      <File Name="../../src/ldb_parameters.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="LMT">
       <File Name="../../src/lmt_encounter.cpp"/>
       <File Name="../../src/lmt_mapinfo.cpp"/>
       <File Name="../../src/lmt_reader.cpp"/>
+      <File Name="../../src/lmt_rect.cpp"/>
+      <File Name="../../src/lmt_start.cpp"/>
+      <File Name="../../src/lmt_treemap.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="INI">
       <File Name="../../src/inireader.cpp"/>
@@ -105,6 +116,7 @@
       <File Name="../../src/lmu_movecommand.cpp"/>
       <File Name="../../src/lmu_moveroute.cpp"/>
       <File Name="../../src/lmu_reader.cpp"/>
+      <File Name="../../src/lmu_map.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="LSD">
       <File Name="../../src/lsd_reader.cpp"/>
@@ -122,10 +134,17 @@
       <File Name="../../src/lsd_screen.cpp"/>
       <File Name="../../src/lsd_title.cpp"/>
       <File Name="../../src/lsd_vehicle.cpp"/>
+      <File Name="../../src/lsd_save.cpp"/>
+      <File Name="../../src/lsd_target.cpp"/>
     </VirtualDirectory>
     <File Name="../../src/data.cpp"/>
-    <File Name="../../src/reader.cpp"/>
-    <File Name="../../src/reader_util.cpp"/>	
+    <File Name="../../src/reader_util.cpp"/>
+    <File Name="../../src/reader_flags.cpp"/>
+    <File Name="../../src/reader_lcf.cpp"/>
+    <File Name="../../src/reader_struct.cpp"/>
+    <File Name="../../src/reader_xml.cpp"/>
+    <File Name="../../src/writer_lcf.cpp"/>
+    <File Name="../../src/writer_xml.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="include">
     <VirtualDirectory Name="RPG">
@@ -170,6 +189,13 @@
       <File Name="../../include/rpg_troopmember.h"/>
       <File Name="../../include/rpg_trooppage.h"/>
       <File Name="../../include/rpg_trooppagecondition.h"/>
+      <File Name="../../include/rpg_database.h"/>
+      <File Name="../../include/rpg_equipment.h"/>
+      <File Name="../../include/rpg_parameters.h"/>
+      <File Name="../../include/rpg_rect.h"/>
+      <File Name="../../include/rpg_start.h"/>
+      <File Name="../../include/rpg_switch.h"/>
+      <File Name="../../include/rpg_variable.h"/>
     </VirtualDirectory>
     <File Name="../../include/data.h"/>
     <File Name="../../include/event_reader.h"/>
@@ -185,7 +211,14 @@
     <File Name="../../include/lsd_reader.h"/>
     <File Name="../../include/reader.h"/>
     <File Name="../../include/reader_options.h"/>
-    <File Name="../../include/reader_util.h"/>	
+    <File Name="../../include/reader_util.h"/>
+    <File Name="../../include/command_codes.h"/>
+    <File Name="../../include/reader_lcf.h"/>
+    <File Name="../../include/reader_struct.h"/>
+    <File Name="../../include/reader_types.h"/>
+    <File Name="../../include/reader_xml.h"/>
+    <File Name="../../include/writer_lcf.h"/>
+    <File Name="../../include/writer_xml.h"/>
   </VirtualDirectory>
   <Settings Type="Static Library">
     <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Static Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
