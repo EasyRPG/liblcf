@@ -59,6 +59,8 @@ void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
+	const_cast<RPG::Save&>(save).title.timestamp = RPG::GenerateTimeStamp();
+
 	Struct<RPG::Save>::WriteLcf(save, writer);
 }
 

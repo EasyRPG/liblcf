@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <cmath>
 #include "data.h"
 #include "rpg_save.h"
 
@@ -32,6 +33,22 @@ RPG::SaveTitle::SaveTitle() {
 	face2_id = 0;
 	face3_id = 0;
 	face4_id = 0;
+}
+
+namespace {
+double const DIFF_DAYS = std::floor(365.2422 * 70) + 3;
+double const SECOND_PER_HOUR = 60 * 60 * 24;
+}
+
+double RPG::ToMicrosoftAccessTime(std::time_t const t) {
+	return(t / SECOND_PER_HOUR + DIFF_DAYS);
+}
+std::time_t RPG::ToUnixTime(double const ms) {
+	return(time_t(ms * SECOND_PER_HOUR - DIFF_DAYS * SECOND_PER_HOUR));
+}
+
+double RPG::GenerateTimeStamp(time_t const t) {
+	return ToMicrosoftAccessTime(t);
 }
 
 void RPG::SaveSystem::Setup() {

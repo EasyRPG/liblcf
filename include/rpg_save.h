@@ -21,6 +21,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <ctime>
 #include <string>
 #include <vector>
 #include "reader_types.h"
@@ -38,6 +39,10 @@
 /// RPG::Map class
 ////////////////////////////////////////////////////////////
 namespace RPG {
+	double ToMicrosoftAccessTime(std::time_t const t);
+	std::time_t ToUnixTime(double const ms);
+	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+
 	class SaveTitle {
 	public:
 		SaveTitle();
