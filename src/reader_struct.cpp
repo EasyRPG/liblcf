@@ -26,6 +26,7 @@
 #include "lmu_reader.h"
 #include "lsd_reader.h"
 #include "reader_struct.h"
+#include "rpg_save.h"
 
 /// Read/Write Struct
 
@@ -84,13 +85,40 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		if (field->IsDefault(obj, ref))
+		//printf("\n%s", field->name);
+		if (field->IsDefault(obj, ref)) {
+			//printf(" -> default");
 			continue;
+		}
 		stream.WriteInt(field->id);
 		stream.WriteInt(field->LcfSize(obj, stream));
 		field->WriteLcf(obj, stream);
 	}
 	stream.WriteInt(0);
+}
+
+template <>
+void Struct<RPG::Save>::WriteLcf(const RPG::Save& obj, LcfWriter& stream) {
+	ID_reader->WriteID(obj, stream);
+	RPG::Save ref = RPG::Save();
+	int last = -1;
+	for (int i = 0; fields[i] != NULL; i++) {
+		const Field<RPG::Save>* field = fields[i];
+		if (field->id < last)
+			std::cerr << "field order mismatch: " << field->id
+					  << " after " << last
+					  << " in struct " << name
+					  << std::endl;
+		printf("\n%s", field->name);
+		if (field->IsDefault(obj, ref)) {
+			printf(" -> default");
+			continue;
+		}
+		stream.WriteInt(field->id);
+		stream.WriteInt(field->LcfSize(obj, stream));
+		field->WriteLcf(obj, stream);
+	}
+	// stream.WriteInt(0); // This last byte broke savegames
 }
 
 template <class S>
@@ -99,6 +127,7 @@ int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		//printf("%s\n", field->name);
 		if (field->IsDefault(obj, ref))
 			continue;
 		result += LcfReader::IntSize(field->id);
@@ -166,7 +195,6 @@ void Struct<S>::BeginXml(S& obj, XmlReader& stream) {
 }
 
 /// Read/Write std::vector<Struct>
-
 template <class S>
 void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
