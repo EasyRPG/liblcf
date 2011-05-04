@@ -52,15 +52,18 @@ FUNCTION(CXX_TEST target libs)
 	)
 	ADD_DEPENDENCIES(test_${target} ${PROJECT_NAME})
 
-	SET(TEST_TARGET "${TEST_TARGET};test_${target}" PARENT_SCOPE)
+	SET(CXX_TEST_EXECUTABLES "${CXX_TEST_EXECUTABLES};test_${target}" PARENT_SCOPE)
 ENDFUNCTION()
 
 IF(${APPLE})
 	LINK_DIRECTORIES(/opt/local/lib)
 ENDIF()
 
-CXX_TEST(time_stamp "gtest_main")
+SET(CXX_TEST_SOURCES "time_stamp;")
+FOREACH(i ${CXX_TEST_SOURCES})
+	CXX_TEST(${i} "gtest_main")
+ENDFOREACH()
 
 # borrowed from
 # http://stackoverflow.com/questions/733475/cmake-ctest-make-test-doesnt-build-tests
-ADD_CUSTOM_TARGET(check_reader COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS ${TEST_TARGET})
+ADD_CUSTOM_TARGET(check_reader COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS ${CXX_TEST_EXECUTABLES})
