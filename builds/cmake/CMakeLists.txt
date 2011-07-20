@@ -9,52 +9,56 @@ LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
 AUX_SOURCE_DIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/../../src SRCS)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../include)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../cmake_module)
+
 # Doxygen
 FIND_PACKAGE(Doxygen REQUIRED)
 ADD_CUSTOM_TARGET(reader_doc
-	${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
-	DEPENDS ${SRCS}
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
-	COMMENT "Generating API documentation with Doxygen" VERBATIM
-)
+  ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
+  DEPENDS ${SRCS}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
+  COMMENT "Generating API documentation with Doxygen" VERBATIM)
 
 # endianess checking
 INCLUDE(TestBigEndian)
 TEST_BIG_ENDIAN(IS_BIG_ENDIAN)
 IF(IS_BIG_ENDIAN)
-	ADD_DEFINITIONS(-D READER_BIG_ENDIAN=1)
+  ADD_DEFINITIONS(-D READER_BIG_ENDIAN=1)
 ENDIF()
 
 ADD_LIBRARY(${PROJECT_NAME} STATIC ${SRCS})
-IF(APPLE)
-	INCLUDE_DIRECTORIES(/opt/local/include)
-	LINK_DIRECTORIES(/opt/local/lib)
-	TARGET_LINK_LIBRARIES(${PROJECT_NAME} iconv)
-ENDIF()
+
+# expat
+find_package(Expat REQUIRED)
+include_directories(${EXPAT_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
+
+# iconv
+find_package(Iconv REQUIRED)
+include_directories(${ICONV_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
 
 # test
 ENABLE_TESTING()
 
-INCLUDE(FindThreads REQUIRED)
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../src)
+find_package(GTest REQUIRED)
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../src
+  ${GTEST_INCLUDE_DIRS})
 
 FUNCTION(CXX_TEST target libs)
-	ADD_EXECUTABLE(test_${target} ${CMAKE_CURRENT_SOURCE_DIR}/../../test/${target}.cpp)
-	TARGET_LINK_LIBRARIES(test_${target}
-		${PROJECT_NAME}
-		${libs}
-		"gtest"
-	)
-	TARGET_LINK_LIBRARIES(test_${target} ${CMAKE_THREAD_LIBS_INIT})
-	ADD_TEST(
-		NAME test_${target}
-		WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
-		COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_${target}
-	)
-	ADD_DEPENDENCIES(test_${target} ${PROJECT_NAME})
+  ADD_EXECUTABLE(test_${target} ${CMAKE_CURRENT_SOURCE_DIR}/../../test/${target}.cpp)
+  TARGET_LINK_LIBRARIES(test_${target}
+    ${PROJECT_NAME}
+    ${libs}
+    ${GTEST_LIBRARIES})
+  ADD_TEST(
+    NAME test_${target}
+    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
+    COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_${target})
+  ADD_DEPENDENCIES(test_${target} ${PROJECT_NAME})
 ENDFUNCTION()
 
-SET(CXX_TEST_SOURCES "time_stamp;")
-FOREACH(i ${CXX_TEST_SOURCES})
-	CXX_TEST(${i} "gtest_main")
+FOREACH(i time_stamp)
+  CXX_TEST(${i} ${GTEST_MAIN_LIBRARIES})
 ENDFOREACH()
