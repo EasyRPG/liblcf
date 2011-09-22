@@ -18,17 +18,13 @@
 #ifndef EASYRPG_READER_XML_H
 #define EASYRPG_READER_XML_H
 
-#define XML_READER 1
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
 #include <cstdio>
-#ifdef XML_READER
 #include <expat.h>
-#endif
 #include "reader_types.h"
 #include "reader_options.h"
 #include "reader_util.h"
@@ -106,9 +102,11 @@ protected:
 	std::string filename;
 	/// File-stream managed by this Reader
 	FILE* stream;
-#ifdef XML_READER
 	/// Expat XML parser object
+#if defined(READER_SUPPORT_XML)
 	XML_Parser parser;
+#else
+	void* parser;
 #endif
 	/// Nesting depth
 	int nesting;

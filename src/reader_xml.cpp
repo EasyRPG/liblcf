@@ -57,22 +57,25 @@ XmlReader::~XmlReader() {
 
 ////////////////////////////////////////////////////////////
 void XmlReader::Open() {
+#if defined(READER_SUPPORT_XML)
 	stream = fopen(filename.c_str(), "r");
 	parser = XML_ParserCreate("UTF-8");
-#ifdef XML_READER
+
 	XML_SetUserData(parser, (void*) this);
 	XML_SetElementHandler(parser, StartElementHandler, EndElementHandler);
 	XML_SetCharacterDataHandler(parser, CharacterDataHandler);
-#endif
+
 	handlers.push_back(NULL);
+#endif
 }
 
 ////////////////////////////////////////////////////////////
 void XmlReader::Close() {
+#if defined(READER_SUPPORT_XML)
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
-#ifdef XML_READER
+
 	if (parser != NULL)
 		XML_ParserFree(parser);
 	parser = NULL;
@@ -95,15 +98,13 @@ void XmlReader::Error(const char* fmt, ...) {
 
 ////////////////////////////////////////////////////////////
 void XmlReader::Parse() {
-#ifdef XML_READER
+#if defined(READER_SUPPORT_XML)
 	static const int bufsize = 4096;
 	while (IsOk() && !feof(stream)) {
 		void* buffer = XML_GetBuffer(parser, bufsize);
 		int len = fread(buffer, 1, bufsize, stream);
 		int result = XML_ParseBuffer(parser, len, len <= 0);
 	}
-#else
-	LcfReader::SetError("XML reading not implemented.\n");
 #endif
 }
 

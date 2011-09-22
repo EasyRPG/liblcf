@@ -45,6 +45,13 @@
 #define DATABASE_NAME "RPG_RT.ldb"
 #define TREEMAP_NAME "RPG_RT.lmt"
 
+////////////////////////////////////////////////////////////
+// READER_SUPPORT_XML
+//		Enables support for XML file reading and writing.
+//		This option adds libexpat as a dependency.
+////////////////////////////////////////////////////////////
+#define READER_SUPPORT_XML 1
+
 #if defined(GEKKO)
 	#define READER_BIG_ENDIAN
 #endif
