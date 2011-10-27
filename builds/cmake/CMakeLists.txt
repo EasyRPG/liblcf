@@ -41,6 +41,7 @@ target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
 # test
 ENABLE_TESTING()
 
+find_package(Threads)
 find_package(GTest REQUIRED)
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../../src
@@ -49,9 +50,8 @@ include_directories(
 FUNCTION(CXX_TEST target libs)
   ADD_EXECUTABLE(test_${target} ${CMAKE_CURRENT_SOURCE_DIR}/../../test/${target}.cpp)
   TARGET_LINK_LIBRARIES(test_${target}
-    ${PROJECT_NAME}
-    ${libs}
-    ${GTEST_LIBRARIES})
+    ${PROJECT_NAME} ${libs}
+    ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
   ADD_TEST(
     NAME test_${target}
     WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
