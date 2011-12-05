@@ -253,7 +253,7 @@ bool LcfReader::Ungetch(uint8_t ch) {
 	}
 	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n", chunk_info.ID, chunk_info.length, filename.c_str(), Tell(), srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
-		uint32_t byte;
+		uint8_t byte;
 		LcfReader::Read(byte);
 		fprintf(stderr, "%02X ", byte);
 		if ((i+1) % 16 == 0) {
