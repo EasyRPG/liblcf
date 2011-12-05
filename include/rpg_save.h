@@ -210,12 +210,16 @@ namespace RPG {
 		int facing1;
 		int facing2;
 		int unknown_17;
+		int unknown_20;
 		int unknown_21;
 		int unknown_23;
 		int unknown_25;
 		MoveRoute move_route;
+		int unknown_2a;
+		int unknown_2b;
 		int unknown_34;
 		int unknown_35;
+		int unknown_36;
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;

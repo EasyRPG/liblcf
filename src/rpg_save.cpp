@@ -218,11 +218,15 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	facing1 = -1;
 	facing2 = -1;
 	unknown_17 = -1;
+	unknown_20 = -1;
 	unknown_21 = -1;
 	unknown_23 = -1;
 	unknown_25 = -1;
+	unknown_2a = -1;
+	unknown_2b = -1;
 	unknown_34 = -1;
 	unknown_35 = -1;
+	unknown_36 = -1;
 	sprite_name = "";
 	sprite_id = -1;
 	unknown_4b = -1;

@@ -229,12 +229,16 @@ namespace LSD_Reader {
 			facing1			= 0x15, // ?
 			facing2			= 0x16, // ?
 			unknown_17		= 0x17, // ?
+			unknown_20		= 0x20, // ?
 			unknown_21		= 0x21, // ?
 			unknown_23		= 0x23, // ?
 			unknown_25		= 0x25, // ?
 			move_route		= 0x29, // chunks: RPG::MoveRoute
+			unknown_2a		= 0x2a, // ?
+			unknown_2b		= 0x2b, // ?
 			unknown_34		= 0x34, // ?
 			unknown_35		= 0x35, // ?
+			unknown_36		= 0x36, // ?
 			sprite_name		= 0x49, // ?
 			sprite_id		= 0x4A, // ?
 			unknown_4b		= 0x4B, // ?
