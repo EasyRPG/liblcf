@@ -25,29 +25,6 @@
 ////////////////////////////////////////////////////////////
 /// Read TroopPageCondition
 ////////////////////////////////////////////////////////////
-typedef RPG::TroopPageCondition::Flags flags_type;
-
-template <>
-char const* const Flags<flags_type>::name("TroopPageCondition_Flags");
-
-template <>
-const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::switch_a,		"switch_a"		),
-	new Flags<flags_type>::Flag(&flags_type::switch_b,		"switch_b"		),
-	new Flags<flags_type>::Flag(&flags_type::variable,		"variable"		),
-	new Flags<flags_type>::Flag(&flags_type::turn,			"turn"			),
-	new Flags<flags_type>::Flag(&flags_type::fatigue,		"fatigue"		),
-	new Flags<flags_type>::Flag(&flags_type::enemy_hp,		"enemy_hp"		),
-	new Flags<flags_type>::Flag(&flags_type::actor_hp,		"actor_hp"		),
-	new Flags<flags_type>::Flag(&flags_type::turn_enemy,	"turn_enemy"	),
-	new Flags<flags_type>::Flag(&flags_type::turn_actor,	"turn_actor"	),
-	new Flags<flags_type>::Flag(&flags_type::command_actor,	"command_actor"	),
-	NULL
-};
-
-template <>
-const uint32_t Flags<flags_type>::max_size = 2;
-
 EASYRPG_STRUCT_ID_READER(TroopPageCondition, NoID)
 
 EASYRPG_STRUCT_NAME(TroopPageCondition)
@@ -56,7 +33,7 @@ EASYRPG_STRUCT_NAME(TroopPageCondition)
 #define EASYRPG_CURRENT_STRUCT TroopPageCondition
 
 EASYRPG_STRUCT_FIELDS_BEGIN(TroopPageCondition)
-	EASYRPG_STRUCT_TYPED_FIELD(flags_type, flags),
+	EASYRPG_STRUCT_TYPED_FIELD(RPG::TroopPageCondition::Flags, flags),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, variable_id),

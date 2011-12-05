@@ -25,23 +25,6 @@
 ////////////////////////////////////////////////////////////
 /// Read Terrain
 ////////////////////////////////////////////////////////////
-typedef RPG::Terrain::Flags flags_type;
-
-template <>
-char const* const Flags<RPG::Terrain::Flags>::name("Terrain_Flags");
-
-template <>
-const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_party,		"back_party"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_enemies,		"back_enemies"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_party,	"lateral_party"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_enemies,	"lateral_enemies"	),
-	NULL
-};
-
-template <>
-const uint32_t Flags<flags_type>::max_size = 1;
-
 EASYRPG_STRUCT_ID_READER(Terrain, WithID)
 
 EASYRPG_STRUCT_NAME(Terrain)

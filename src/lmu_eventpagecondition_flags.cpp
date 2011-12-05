@@ -25,25 +25,23 @@
 ////////////////////////////////////////////////////////////
 /// Read Event Page Condition
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(EventPageCondition, NoID)
+typedef RPG::EventPageCondition::Flags flags_type;
 
-EASYRPG_STRUCT_NAME(EventPageCondition)
+template <>
+char const* const Flags<flags_type>::name("EventPageCondition_Flags");
 
-#define EASYRPG_CHUNK_SUFFIX LMU_Reader
-#define EASYRPG_CURRENT_STRUCT EventPageCondition
+template <>
+const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
+	new Flags<flags_type>::Flag(&flags_type::switch_a,	"switch_a"	),
+	new Flags<flags_type>::Flag(&flags_type::switch_b,	"switch_b"	),
+	new Flags<flags_type>::Flag(&flags_type::variable,	"variable"	),
+	new Flags<flags_type>::Flag(&flags_type::item,		"item"		),
+	new Flags<flags_type>::Flag(&flags_type::actor,		"actor"		),
+	new Flags<flags_type>::Flag(&flags_type::timer,		"timer"		),
+	new Flags<flags_type>::Flag(&flags_type::timer2,	"timer2"	),
+	NULL
+};
 
-EASYRPG_STRUCT_FIELDS_BEGIN(EventPageCondition)
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags),
-	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, variable_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, variable_value),
-	EASYRPG_STRUCT_TYPED_FIELD(int, item_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, actor_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, timer_sec),
-	EASYRPG_STRUCT_TYPED_FIELD(int, timer2_sec),
-	EASYRPG_STRUCT_TYPED_FIELD(int, compare_operator),
-EASYRPG_STRUCT_FIELDS_END()
+template <>
+const uint32_t Flags<flags_type>::max_size = 1;
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX

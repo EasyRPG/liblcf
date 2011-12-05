@@ -18,32 +18,27 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "lmu_reader.h"
-#include "lmu_chunks.h"
+#include "ldb_reader.h"
+#include "ldb_chunks.h"
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Event Page Condition
+/// Read Terrain
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(EventPageCondition, NoID)
+typedef RPG::Terrain::Flags flags_type;
 
-EASYRPG_STRUCT_NAME(EventPageCondition)
+template <>
+char const* const Flags<RPG::Terrain::Flags>::name("Terrain_Flags");
 
-#define EASYRPG_CHUNK_SUFFIX LMU_Reader
-#define EASYRPG_CURRENT_STRUCT EventPageCondition
+template <>
+const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_party,		"back_party"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_enemies,		"back_enemies"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_party,	"lateral_party"		),
+	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_enemies,	"lateral_enemies"	),
+	NULL
+};
 
-EASYRPG_STRUCT_FIELDS_BEGIN(EventPageCondition)
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags),
-	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, variable_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, variable_value),
-	EASYRPG_STRUCT_TYPED_FIELD(int, item_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, actor_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, timer_sec),
-	EASYRPG_STRUCT_TYPED_FIELD(int, timer2_sec),
-	EASYRPG_STRUCT_TYPED_FIELD(int, compare_operator),
-EASYRPG_STRUCT_FIELDS_END()
+template <>
+const uint32_t Flags<flags_type>::max_size = 1;
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
