@@ -15,30 +15,46 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEMAPINFO_H_
+#define _RPG_SAVEMAPINFO_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "reader_types.h"
+#include "rpg_map.h"
+#include "rpg_mapinfo.h"
+#include "rpg_savemapevent.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveMapInfo class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveMapInfo {
+	public:
+		SaveMapInfo();
+		void Setup();
+		void Setup(const RPG::Map& map);
+		void Setup(const RPG::MapInfo& map_info);
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int pan_x;
+		int pan_y;
+		int encounter_rate;
+		int chipset_id;
+		std::vector<SaveMapEvent> events;
+		std::vector<uint8_t> lower_tiles;
+		std::vector<uint8_t> upper_tiles;
+		std::string parallax_name;
+		bool parallax_horz;
+		bool parallax_vert;
+		bool parallax_horz_auto;
+		int parallax_horz_speed;
+		bool parallax_vert_auto;
+		int parallax_vert_speed;
+	};
 }
 
 #endif
+

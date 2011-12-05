@@ -15,30 +15,51 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_savemapinfo.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// Constructor
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
-
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+RPG::SaveMapInfo::SaveMapInfo() {
+	pan_x = 0;
+	pan_y = 0;
+	encounter_rate = -1;
+	chipset_id = -1;
+	parallax_name = "";
+	parallax_horz = false;
+	parallax_vert = false;
+	parallax_horz_auto = false;
+	parallax_horz_speed = 0;
+	parallax_vert_auto = false;
+	parallax_vert_speed = 0;
 }
 
-#endif
+void RPG::SaveMapInfo::Setup() {
+	pan_x = 0;
+	pan_y = 0;
+	lower_tiles.resize(144);
+	upper_tiles.resize(144);
+	for (int i = 0; i < 144; i++) {
+		lower_tiles[i] = i;
+		upper_tiles[i] = i;
+	}
+}
+
+void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
+	chipset_id = map.chipset_id;
+	parallax_name = map.parallax_name;
+	parallax_horz = map.parallax_loop_x;
+	parallax_vert = map.parallax_loop_y;
+	parallax_horz_auto = map.parallax_auto_loop_x;
+	parallax_vert_auto = map.parallax_auto_loop_y;
+	parallax_horz_speed = map.parallax_sx;
+	parallax_vert_speed = map.parallax_sy;
+}
+
+void RPG::SaveMapInfo::Setup(const RPG::MapInfo& map_info) {
+	encounter_rate = map_info.encounter_steps;
+}
+

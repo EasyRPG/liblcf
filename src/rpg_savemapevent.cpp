@@ -15,30 +15,57 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_savemapevent.h"
+#include "rpg_event.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// Constructor
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
-
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+RPG::SaveMapEvent::SaveMapEvent() {
+	ID = -1;
+	unknown_01 = -1;
+	map_id = -1;
+	position_x = -1;
+	position_y = -1;
+	facing1 = -1;
+	facing2 = -1;
+	anim_frame = 1;
+	unknown_18 = -1;
+	unknown_1f = -1;
+	unknown_20 = -1;
+	layer = -1;
+	unknown_22 = -1;
+	unknown_23 = -1;
+	unknown_24 = -1;
+	unknown_25 = -1;
+	unknown_2a = -1;
+	unknown_2b = -1;
+	unknown_2f = -1;
+	anim_paused = 0;
+	unknown_33 = -1;
+	unknown_34 = -1;
+	unknown_35 = -1;
+	unknown_36 = -1;
+	unknown_3e = -1;
+	unknown_3f = -1;
+	unknown_47 = -1;
+	sprite_name = "";
+	sprite_id = -1;
+	unknown_4b = -1;
+	flash_red = -1;
+	flash_green = -1;
+	flash_blue = -1;
+	flash_current_level = 0.0;
+	flash_time_left = 0;
+	unknown_66 = -1;
+	unknown_67 = -1;
 }
 
-#endif
+void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
+	ID = event.ID;
+	position_x = event.x;
+	position_y = event.y;
+}

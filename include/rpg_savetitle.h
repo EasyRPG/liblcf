@@ -15,30 +15,36 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVETITLE_H_
+#define _RPG_SAVETITLE_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveTitle class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveTitle {
+	public:
+		SaveTitle();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		double timestamp;
+		std::string hero_name;
+		int hero_level;
+		int hero_hp;
+		std::string face1_name;
+		std::string face2_name;
+		std::string face3_name;
+		std::string face4_name;
+		int face1_id;
+		int face2_id;
+		int face3_id;
+		int face4_id;
+	};
 }
 
 #endif
+

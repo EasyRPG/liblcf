@@ -18,12 +18,32 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <cmath>
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "ldb_reader.h"
 #include "rpg_save.h"
 #include "reader_util.h"
 #include "reader_struct.h"
+
+////////////////////////////////////////////////////////////
+/// Timestamp
+////////////////////////////////////////////////////////////
+namespace {
+double const DIFF_DAYS = std::floor(365.2422 * 70) + 3;
+double const SECOND_PER_HOUR = 60 * 60 * 24;
+}
+
+double LSD_Reader::ToMicrosoftAccessTime(std::time_t const t) {
+	return(t / SECOND_PER_HOUR + DIFF_DAYS);
+}
+std::time_t LSD_Reader::ToUnixTime(double const ms) {
+	return(time_t(ms * SECOND_PER_HOUR - DIFF_DAYS * SECOND_PER_HOUR));
+}
+
+double LSD_Reader::GenerateTimeStamp(time_t const t) {
+	return ToMicrosoftAccessTime(t);
+}
 
 ////////////////////////////////////////////////////////////
 /// Load Save
@@ -59,7 +79,7 @@ void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
-	const_cast<RPG::Save&>(save).title.timestamp = RPG::GenerateTimeStamp();
+	const_cast<RPG::Save&>(save).title.timestamp = GenerateTimeStamp();
 
 	Struct<RPG::Save>::WriteLcf(save, writer);
 }

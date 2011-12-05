@@ -15,30 +15,30 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEEVENTDATA_H_
+#define _RPG_SAVEEVENTDATA_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
 #include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_saveeventcommands.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveEventData class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveEventData {
+	public:
+		SaveEventData();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		std::vector<SaveEventCommands> commands;
+		int time_left;
+		int unknown_16;
+		int unknown_17;
+		int unknown_20;
+	};
 }
 
 #endif
+

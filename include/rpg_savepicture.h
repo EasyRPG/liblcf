@@ -15,30 +15,54 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEPICTURE_H_
+#define _RPG_SAVEPICTURE_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SavePicture class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SavePicture {
+	public:
+		SavePicture();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int ID;
+		std::string name;
+		double start_x;
+		double start_y;
+		double current_x;
+		double current_y;
+		bool picture_scrolls;
+		double current_magnify;
+		double current_top_trans;
+		bool transparency;
+		double current_red;
+		double current_green;
+		double current_blue;
+		double current_sat;
+		int effect_mode;
+		double effect_speed;
+		double current_bot_trans;
+		double finish_x;
+		double finish_y;
+		int finish_magnify;
+		int finish_top_trans;
+		int finish_bot_trans;
+		int finish_red;
+		int finish_green;
+		int finish_blue;
+		int finish_sat;
+		int effect2_speed;
+		int time_left;
+		double current_rotation;
+		int current_waver;
+	};
 }
 
 #endif
+

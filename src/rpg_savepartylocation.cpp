@@ -15,30 +15,49 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_savepartylocation.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// Constructor
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
-
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+RPG::SavePartyLocation::SavePartyLocation() {
+	map_id = -1;
+	position_x = -1;
+	position_y = -1;
+	facing1 = -1;
+	facing2 = -1;
+	unknown_17 = -1;
+	unknown_20 = -1;
+	unknown_21 = -1;
+	unknown_23 = -1;
+	unknown_25 = -1;
+	unknown_2a = -1;
+	unknown_2b = -1;
+	unknown_2c = -1;
+	sprite_transparent = false;
+	unknown_2f = -1;
+	unknown_33 = -1;
+	unknown_34 = -1;
+	unknown_35 = -1;
+	unknown_36 = -1;
+	unknown_3e = -1;
+	unknown_3f = -1;
+	sprite_name = "";
+	sprite_id = -1;
+	unknown_4b = -1;
+	unknown_51 = -1;
+	unknown_52 = -1;
+	unknown_53 = -1;
+	pan_state = -1;
+	pan_current_x = -1;
+	pan_current_y = -1;
+	pan_finish_x = -1;
+	pan_finish_y = -1;
+	unknown_79 = -1;
+	encounter_steps = -1;
+	unknown_83 = -1;
+	unknown_84 = -1;
 }
-
-#endif

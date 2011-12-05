@@ -15,30 +15,47 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEVEHICLELOCATION_H_
+#define _RPG_SAVEVEHICLELOCATION_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_moveroute.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveVehicleLocation class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveVehicleLocation {
+	public:
+		SaveVehicleLocation();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int map_id;
+		int position_x;
+		int position_y;
+		int facing1;
+		int facing2;
+		int unknown_17;
+		int unknown_20;
+		int unknown_21;
+		int unknown_23;
+		int unknown_25;
+		MoveRoute move_route;
+		int unknown_2a;
+		int unknown_2b;
+		int unknown_34;
+		int unknown_35;
+		int unknown_36;
+		std::string sprite_name;
+		int sprite_id;
+		int unknown_4b;
+		int unknown_65;
+		std::string sprite2_name;
+		int sprite2_id;
+	};
 }
 
 #endif
+

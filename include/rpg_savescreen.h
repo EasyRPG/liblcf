@@ -15,30 +15,51 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVESCREEN_H_
+#define _RPG_SAVESCREEN_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveScreen class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveScreen {
+	public:
+		SaveScreen();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int tint_finish_red;
+		int tint_finish_green;
+		int tint_finish_blue;
+		int tint_finish_sat;
+		double tint_current_red;
+		double tint_current_green;
+		double tint_current_blue;
+		double tint_current_sat;
+		int tint_time_left;
+		bool flash_continuous;
+		int flash_red;
+		int flash_green;
+		int flash_blue;
+		double flash_current_level;
+		int flash_time_left;
+		bool shake_continuous;
+		int shake_strength;
+		int shake_speed;
+		int shake_position;
+		int shake_time_left;
+		int pan_x;
+		int pan_y;
+		int battleanim_id;
+		int battleanim_target;
+		int battleanim_unk_2d;
+		bool battleanim_global;
+		int weather;
+		int weather_strength;
+	};
 }
 
 #endif
+

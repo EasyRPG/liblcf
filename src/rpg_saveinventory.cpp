@@ -15,30 +15,36 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "rpg_saveinventory.h"
+#include "data.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// Constructor
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
-
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+RPG::SaveInventory::SaveInventory() {
+	party_size = 0;
+	items_size = 0;
+	gold = 0;
+	timer1_secs = 0;
+	timer1_active = false;
+	timer1_visible = false;
+	timer1_battle = false;
+	timer2_secs = 0;
+	timer2_active = false;
+	timer2_visible = false;
+	timer2_battle = false;
+	battles = 0;
+	defeats = 0;
+	escapes = 0;
+	victories = 0;
+	unknown_29 = -1;
+	steps = 0;
 }
 
-#endif
+void RPG::SaveInventory::Setup() {
+	party = Data::system.party;
+	party_size = party.size();
+}

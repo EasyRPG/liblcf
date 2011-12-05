@@ -15,24 +15,62 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
+#ifndef _RPG_SAVEPARTYLOCATION_H_
+#define _RPG_SAVEPARTYLOCATION_H_
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include "rpg_save.h"
-#include "data.h"
+#include <string>
+#include "rpg_moveroute.h"
 
 ////////////////////////////////////////////////////////////
-/// Constructor
+/// RPG::SavePartyLocation class
 ////////////////////////////////////////////////////////////
-RPG::Save::Save() {
-	unknown_70 = -1;
+namespace RPG {
+	class SavePartyLocation {
+	public:
+		SavePartyLocation();
+
+		int map_id;
+		int position_x;
+		int position_y;
+		int facing1;
+		int facing2;
+		int unknown_17;
+		int unknown_20;
+		int unknown_21;
+		int unknown_23;
+		int unknown_25;
+		MoveRoute move_route;
+		int unknown_2a;
+		int unknown_2b;
+		int unknown_2c;
+		bool sprite_transparent;
+		int unknown_2f;
+		int unknown_33;
+		int unknown_34;
+		int unknown_35;
+		int unknown_36;
+		int unknown_3e;
+		int unknown_3f;
+		std::string sprite_name;
+		int sprite_id;
+		int unknown_4b;
+		int unknown_51;
+		int unknown_52;
+		int unknown_53;
+		int pan_state;
+		int pan_current_x;
+		int pan_current_y;
+		int pan_finish_x;
+		int pan_finish_y;
+		int unknown_79;
+		int encounter_steps;
+		int unknown_83;
+		int unknown_84;
+	};
 }
 
-void RPG::Save::Setup() {
-	system.Setup();
-	pictures.resize(50);
-	actors.resize(Data::actors.size());
-	for (int i = 1; i <= (int) actors.size(); i++)
-		actors[i - 1].Setup(i);
-	map_info.Setup();
-}
+#endif
+

@@ -15,30 +15,59 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEACTOR_H_
+#define _RPG_SAVEACTOR_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "reader_types.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveActor class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveActor {
+	public:
+		SaveActor();
+		void Setup(int actor_id);
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int ID;
+		std::string name;
+		std::string title;
+		std::string sprite_name;
+		int sprite_id;
+		int sprite_flags;
+		std::string face_name;
+		int face_id;
+		int level;
+		int exp;
+		int hp_mod;
+		int sp_mod;
+		int attack_mod;
+		int defense_mod;
+		int spirit_mod;
+		int agility_mod;
+		int skills_size;
+		std::vector<int16_t> skills;
+		std::vector<int16_t> equipped;
+		int current_hp;
+		int current_sp;
+		std::vector<uint32_t> battle_commands;
+		int status_size;
+		std::vector<int16_t> status;
+		bool changed_class;
+		int class_id;
+		int unknown_5b;
+		bool two_weapon;
+		bool lock_equipment;
+		bool auto_battle;
+		bool mighty_guard;
+		int unknown_60;
+	};
 }
 
 #endif
+

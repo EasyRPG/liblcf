@@ -15,30 +15,47 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _LSD_READER_H_
-#define _LSD_READER_H_
+#ifndef _RPG_SAVEINVENTORY_H_
+#define _RPG_SAVEINVENTORY_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
 #include <vector>
-#include <memory>
-#include <ctime>
-#include "rpg_save.h"
+#include "reader_types.h"
 
 ////////////////////////////////////////////////////////////
-/// LDB Reader namespace
+/// RPG::SaveInventory class
 ////////////////////////////////////////////////////////////
-namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+namespace RPG {
+	class SaveInventory {
+	public:
+		SaveInventory();
+		void Setup();
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Save& save);
-	void SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+		int party_size;
+		std::vector<int16_t> party;
+		int items_size;
+		std::vector<int16_t> item_ids;
+		std::vector<uint8_t> item_counts;
+		std::vector<uint8_t> item_usage;
+		int gold;
+		int timer1_secs;
+		bool timer1_active;
+		bool timer1_visible;
+		bool timer1_battle;
+		int timer2_secs;
+		bool timer2_active;
+		bool timer2_visible;
+		bool timer2_battle;
+		int battles;
+		int defeats;
+		int escapes;
+		int victories;
+		int unknown_29;
+		int steps;
+	};
 }
 
 #endif
+
