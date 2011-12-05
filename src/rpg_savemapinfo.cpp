@@ -36,30 +36,3 @@ RPG::SaveMapInfo::SaveMapInfo() {
 	parallax_vert_auto = false;
 	parallax_vert_speed = 0;
 }
-
-void RPG::SaveMapInfo::Setup() {
-	pan_x = 0;
-	pan_y = 0;
-	lower_tiles.resize(144);
-	upper_tiles.resize(144);
-	for (int i = 0; i < 144; i++) {
-		lower_tiles[i] = i;
-		upper_tiles[i] = i;
-	}
-}
-
-void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
-	chipset_id = map.chipset_id;
-	parallax_name = map.parallax_name;
-	parallax_horz = map.parallax_loop_x;
-	parallax_vert = map.parallax_loop_y;
-	parallax_horz_auto = map.parallax_auto_loop_x;
-	parallax_vert_auto = map.parallax_auto_loop_y;
-	parallax_horz_speed = map.parallax_sx;
-	parallax_vert_speed = map.parallax_sy;
-}
-
-void RPG::SaveMapInfo::Setup(const RPG::MapInfo& map_info) {
-	encounter_rate = map_info.encounter_steps;
-}
-

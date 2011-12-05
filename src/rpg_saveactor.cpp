@@ -19,8 +19,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "rpg_saveactor.h"
-#include "rpg_actor.h"
-#include "data.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
@@ -53,46 +51,5 @@ RPG::SaveActor::SaveActor() {
 	lock_equipment = false;
 	auto_battle = false;
 	mighty_guard = false;
-	unknown_60 = -1;
-}
-
-void RPG::SaveActor::Setup(int actor_id) {
-	const RPG::Actor& actor = Data::actors[actor_id - 1];
-	ID = actor.ID;
-	name = actor.name;
-	title = actor.title;
-	sprite_name = actor.character_name;
-	sprite_id = actor.character_index;
-	sprite_flags = actor.transparent ? 3 : 0;
-	face_name = actor.face_name;
-	face_id = actor.face_index;
-	level = actor.initial_level;
-	exp = 0;
-	hp_mod = 0;
-	sp_mod = 0;
-	attack_mod = 0;
-	defense_mod = 0;
-	spirit_mod = 0;
-	agility_mod = 0;
-	skills_size = 0;
-	skills.clear();
-	equipped.clear();
-	equipped.push_back(actor.initial_equipment.weapon_id);
-	equipped.push_back(actor.initial_equipment.shield_id);
-	equipped.push_back(actor.initial_equipment.armor_id);
-	equipped.push_back(actor.initial_equipment.helmet_id);
-	equipped.push_back(actor.initial_equipment.accessory_id);
-	current_hp = 0;
-	current_sp = 0;
-	battle_commands = actor.battle_commands;
-	status_size = 0;
-	status.clear();
-	changed_class = false;
-	class_id = actor.class_id;
-	unknown_5b = -1;
-	two_weapon = actor.two_swords_style;
-	lock_equipment = actor.fix_equipment;
-	auto_battle = actor.auto_battle;
-	mighty_guard = actor.super_guard;
 	unknown_60 = -1;
 }

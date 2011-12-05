@@ -35,6 +35,7 @@ namespace RPG {
 	class Actor {
 	public:
 		Actor();
+		void Init();
 		
 		int ID;
 		std::string name;

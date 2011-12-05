@@ -19,7 +19,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "rpg_savemapevent.h"
-#include "rpg_event.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
@@ -62,10 +61,4 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	flash_time_left = 0;
 	unknown_66 = -1;
 	unknown_67 = -1;
-}
-
-void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
-	ID = event.ID;
-	position_x = event.x;
-	position_y = event.y;
 }

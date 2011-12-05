@@ -19,7 +19,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "rpg_saveinventory.h"
-#include "data.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
@@ -42,9 +41,4 @@ RPG::SaveInventory::SaveInventory() {
 	victories = 0;
 	unknown_29 = -1;
 	steps = 0;
-}
-
-void RPG::SaveInventory::Setup() {
-	party = Data::system.party;
-	party_size = party.size();
 }

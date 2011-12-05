@@ -19,20 +19,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "rpg_save.h"
-#include "data.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::Save::Save() {
 	unknown_70 = -1;
-}
-
-void RPG::Save::Setup() {
-	system.Setup();
-	pictures.resize(50);
-	actors.resize(Data::actors.size());
-	for (int i = 1; i <= (int) actors.size(); i++)
-		actors[i - 1].Setup(i);
-	map_info.Setup();
 }

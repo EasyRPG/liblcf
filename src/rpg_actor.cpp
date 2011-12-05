@@ -19,7 +19,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include "rpg_actor.h"
-#include "reader_options.h"
 
 ////////////////////////////////////////////////////////////
 /// Constructor
@@ -32,11 +31,7 @@ RPG::Actor::Actor() {
 	character_index = 0;
 	transparent = false;
 	initial_level = 1;
-	#if RPGMAKER == RPG2K
 	final_level = 50;
-	#else
-	final_level = 99;
-	#endif
 	critical_hit = true;
 	critical_hit_chance = 30;
 	face_index = 0;
@@ -44,14 +39,8 @@ RPG::Actor::Actor() {
 	fix_equipment = false;
 	auto_battle = false;
 	super_guard = false;
-	parameters.Setup(final_level);
-	#if RPGMAKER == RPG2K
 	exp_base = 30;
-	exp_inflation =30;
-	#else
-	exp_base = 300;
-	exp_inflation = 300;
-	#endif
+	exp_inflation = 30;
 	exp_correction = 0;
 	unarmed_animation = 1;
 	
@@ -64,4 +53,6 @@ RPG::Actor::Actor() {
 	battler_animation = 1;
 	battle_x = 0;
 	battle_y = 0;
+
+	Init();
 }
