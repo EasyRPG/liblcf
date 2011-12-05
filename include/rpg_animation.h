@@ -47,10 +47,10 @@ namespace RPG {
 		int ID;
 		std::string name;
 		std::string animation_name;
-		std::vector<RPG::AnimationTiming> timings;
+		std::vector<AnimationTiming> timings;
 		int scope;
 		int position;
-		std::vector<RPG::AnimationFrame> frames;
+		std::vector<AnimationFrame> frames;
 	};
 }
 

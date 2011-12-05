@@ -15,52 +15,39 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _RPG_SAVE_H_
-#define _RPG_SAVE_H_
+#ifndef _RPG_BATTLECOMMANDS_H_
+#define _RPG_BATTLECOMMANDS_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <vector>
-#include "rpg_saveactor.h"
-#include "rpg_savecommonevent.h"
-#include "rpg_saveevents.h"
-#include "rpg_saveinventory.h"
-#include "rpg_savemapinfo.h"
-#include "rpg_savepartylocation.h"
-#include "rpg_savepicture.h"
-#include "rpg_savescreen.h"
-#include "rpg_savesystem.h"
-#include "rpg_savetarget.h"
-#include "rpg_savetitle.h"
-#include "rpg_savevehiclelocation.h"
+#include "rpg_battlecommand.h"
 
 ////////////////////////////////////////////////////////////
-/// RPG::Save class
+/// RPG::BattleCommands class
 ////////////////////////////////////////////////////////////
 namespace RPG {
-	class Save {
+	class BattleCommands {
 	public:
-		Save();
-		void Setup();
-
-		SaveTitle title;
-		SaveSystem system;
-		SaveScreen screen;
-		std::vector<SavePicture> pictures;
-		SavePartyLocation party_location;
-		SaveVehicleLocation boat_location;
-		SaveVehicleLocation ship_location;
-		SaveVehicleLocation airship_location;
-		std::vector<SaveActor> actors;
-		SaveInventory inventory;
-		std::vector<SaveTarget> targets;
-		SaveMapInfo map_info;
-		int unknown_70;
-		std::vector<SaveCommonEvent> common_events;
-		SaveEvents events;
+		BattleCommands();
+		
+		std::vector<BattleCommand> commands;
+		int placement;
+		int row;
+		int battle_type;
+		int death_handler1;
+		int unknown1;
+		int death_handler2;
+		int death_event;
+		int window_size;
+		int transparency;
+		bool teleport;
+		int teleport_id;
+		int teleport_x;
+		int teleport_y;
+		int teleport_face;
 	};
 }
 
 #endif
-

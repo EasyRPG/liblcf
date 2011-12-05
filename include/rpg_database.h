@@ -15,8 +15,8 @@
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef _RPG_DATA_H_
-#define _RPG_DATA_H_
+#ifndef _RPG_DATABASE_H_
+#define _RPG_DATABASE_H_
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -34,7 +34,7 @@
 #include "rpg_animation.h"
 #include "rpg_chipset.h"
 #include "rpg_commonevent.h"
-#include "rpg_battlecommand.h"
+#include "rpg_battlecommands.h"
 #include "rpg_class.h"
 #include "rpg_battleranimation.h"
 #include "rpg_terms.h"
@@ -43,7 +43,7 @@
 #include "rpg_variable.h"
 
 ////////////////////////////////////////////////////////////
-/// RPG::Data class
+/// RPG::Database class
 ////////////////////////////////////////////////////////////
 namespace RPG {
 	class Database {

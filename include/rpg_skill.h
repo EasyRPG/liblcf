@@ -86,14 +86,14 @@ namespace RPG {
 		int battler_animation; // RPG2003
 
 		// type == Teleport/Escape
-		RPG::Sound sound_effect;
+		Sound sound_effect;
 		
 		// type == Switch
 		int switch_id;
 		bool occasion_field;
 		bool occasion_battle;
 
-		std::vector<RPG::BattlerAnimationData> battler_animation_data; // RPG2003
+		std::vector<BattlerAnimationData> battler_animation_data; // RPG2003
 	};
 }
 

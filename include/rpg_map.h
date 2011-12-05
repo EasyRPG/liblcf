@@ -49,7 +49,7 @@ namespace RPG {
 		int parallax_sy;
 		std::vector<int16_t> lower_layer;
 		std::vector<int16_t> upper_layer;
-		std::vector<RPG::Event> events;
+		std::vector<Event> events;
 		int save_times;
 		bool top_level;
 

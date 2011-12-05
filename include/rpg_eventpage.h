@@ -36,7 +36,7 @@ namespace RPG {
 		EventPage();
 		
 		int ID;
-		RPG::EventPageCondition condition;
+		EventPageCondition condition;
 		std::string character_name;
 		int character_index;
 		int character_direction;
@@ -49,8 +49,8 @@ namespace RPG {
 		bool overlap;
 		int animation_type;
 		int move_speed;
-		RPG::MoveRoute move_route;
-		std::vector<RPG::EventCommand> event_commands;
+		MoveRoute move_route;
+		std::vector<EventCommand> event_commands;
 	};
 }
 

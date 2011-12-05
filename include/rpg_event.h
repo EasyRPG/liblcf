@@ -37,7 +37,7 @@ namespace RPG {
 		std::string name;
 		int x;
 		int y;
-		std::vector<RPG::EventPage> pages;
+		std::vector<EventPage> pages;
 	};
 }
 

@@ -114,7 +114,7 @@ namespace RPG {
 		bool occasion_field2;
 		bool occasion_battle;
 
-		std::vector<RPG::ItemAnimation> animation_data;
+		std::vector<ItemAnimation> animation_data;
 	};
 }
 
