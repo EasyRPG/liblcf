@@ -33,26 +33,25 @@ EASYRPG_STRUCT_NAME(Database)
 #define EASYRPG_CURRENT_STRUCT Database
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Database)
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Actor> , actors),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Skill> , skills),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Item> , items),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Enemy> , enemies),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Troop> , troops),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Terrain> , terrains),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Attribute> , attributes),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::State> , states),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Animation> , animations),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Chipset> , chipsets),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Actor>, actors),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Skill>, skills),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Item>, items),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Enemy>, enemies),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Troop>, troops),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Terrain>, terrains),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Attribute>, attributes),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::State>, states),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Animation>, animations),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Chipset>, chipsets),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::Terms, terms),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::System, system),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Switch> , switches),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Variable> , variables),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::CommonEvent> , commonevents),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Switch>, switches),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Variable>, variables),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::CommonEvent>, commonevents),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::BattleCommands, battlecommands),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Class> , classes),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimation> , battleranimations),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Class>, classes),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimation>, battleranimations),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT
 #undef EASYRPG_CHUNK_SUFFIX
-

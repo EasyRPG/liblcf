@@ -43,12 +43,12 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Class)
 	EASYRPG_STRUCT_TYPED_FIELD(int, exp_inflation),
 	EASYRPG_STRUCT_TYPED_FIELD(int, exp_correction),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unarmed_animation),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Learning> , skills),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Learning>, skills),
 	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, state_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , state_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, state_ranks),
 	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , attribute_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , battle_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, attribute_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, battle_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

@@ -34,10 +34,10 @@ EASYRPG_STRUCT_NAME(Troop)
 
 EASYRPG_STRUCT_FIELDS_BEGIN(Troop)
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember> , members),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members),
 	EASYRPG_STRUCT_SIZE_FIELD(bool, terrain_set),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool> , terrain_set),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage> , pages),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, terrain_set),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage>, pages),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

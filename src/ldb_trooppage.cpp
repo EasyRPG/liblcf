@@ -35,9 +35,8 @@ EASYRPG_STRUCT_NAME(TroopPage)
 EASYRPG_STRUCT_FIELDS_BEGIN(TroopPage)
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::TroopPageCondition, condition),
 	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT
 #undef EASYRPG_CHUNK_SUFFIX
-

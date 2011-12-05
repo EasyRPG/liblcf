@@ -63,12 +63,12 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Skill)
 	EASYRPG_STRUCT_TYPED_FIELD(bool, absorb_damage),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, ignore_defense),
 	EASYRPG_STRUCT_SIZE_FIELD(bool, state_effects),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool> , state_effects),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, state_effects),
 	EASYRPG_STRUCT_SIZE_FIELD(bool, attribute_effects),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool> , attribute_effects),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, attribute_effects),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, affect_attr_defence),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battler_animation),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationData> , battler_animation_data),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationData>, battler_animation_data),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

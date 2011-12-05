@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Event Commands
+/// Read SaveEventCommands
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(SaveEventCommands, WithID)
 
@@ -34,12 +34,12 @@ EASYRPG_STRUCT_NAME(SaveEventCommands)
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveEventCommands)
 	EASYRPG_STRUCT_TYPED_FIELD(int, commands_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, commands),
 	EASYRPG_STRUCT_TYPED_FIELD(int, current_command),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_0c),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_0d),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_15),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , unknown_16),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

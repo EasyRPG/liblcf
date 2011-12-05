@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Actor
+/// Read SaveActor
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(SaveActor, WithID)
 
@@ -49,13 +49,13 @@ EASYRPG_STRUCT_FIELDS_BEGIN(SaveActor)
 	EASYRPG_STRUCT_TYPED_FIELD(int, spirit_mod),
 	EASYRPG_STRUCT_TYPED_FIELD(int, agility_mod),
 	EASYRPG_STRUCT_TYPED_FIELD(int, skills_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , skills),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , equipped),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, skills),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, equipped),
 	EASYRPG_STRUCT_TYPED_FIELD(int, current_hp),
 	EASYRPG_STRUCT_TYPED_FIELD(int, current_sp),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , battle_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, battle_commands),
 	EASYRPG_STRUCT_TYPED_FIELD(int, status_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , status),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, status),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, changed_class),
 	EASYRPG_STRUCT_TYPED_FIELD(int, class_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_5b),

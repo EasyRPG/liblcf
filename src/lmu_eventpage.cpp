@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Event Page
+/// Read EventPage
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(EventPage, WithID)
 
@@ -48,7 +48,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN(EventPage)
 	EASYRPG_STRUCT_TYPED_FIELD(int, move_speed),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
 	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

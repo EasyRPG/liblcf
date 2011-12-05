@@ -35,9 +35,9 @@ EASYRPG_STRUCT_NAME(Chipset)
 EASYRPG_STRUCT_FIELDS_BEGIN(Chipset)
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, chipset_name),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , terrain_data),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , passable_data_lower),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , passable_data_upper),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, terrain_data),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_lower),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_upper),
 	EASYRPG_STRUCT_TYPED_FIELD(int, animation_type),
 	EASYRPG_STRUCT_TYPED_FIELD(int, animation_speed),
 EASYRPG_STRUCT_FIELDS_END()

@@ -38,7 +38,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN(CommonEvent)
 	EASYRPG_STRUCT_TYPED_FIELD(bool, switch_flag),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_id),
 	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand> , event_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

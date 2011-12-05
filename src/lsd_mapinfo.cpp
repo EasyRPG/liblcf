@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Map Info
+/// Read SaveMapInfo
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(SaveMapInfo, NoID)
 
@@ -37,9 +37,9 @@ EASYRPG_STRUCT_FIELDS_BEGIN(SaveMapInfo)
 	EASYRPG_STRUCT_TYPED_FIELD(int, pan_y),
 	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),
 	EASYRPG_STRUCT_TYPED_FIELD(int, chipset_id),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent> , events),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , lower_tiles),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , upper_tiles),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent>, events),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, lower_tiles),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, upper_tiles),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, parallax_name),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_horz),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, parallax_vert),

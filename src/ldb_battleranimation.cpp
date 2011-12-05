@@ -35,8 +35,8 @@ EASYRPG_STRUCT_NAME(BattlerAnimation)
 EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimation)
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, speed),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension> , base_data),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension> , weapon_data),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, base_data),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, weapon_data),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

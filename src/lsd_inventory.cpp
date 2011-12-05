@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save Inventory
+/// Read SaveInventory
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(SaveInventory, NoID)
 
@@ -34,11 +34,11 @@ EASYRPG_STRUCT_NAME(SaveInventory)
 
 EASYRPG_STRUCT_FIELDS_BEGIN(SaveInventory)
 	EASYRPG_STRUCT_TYPED_FIELD(int, party_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , party),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, party),
 	EASYRPG_STRUCT_TYPED_FIELD(int, items_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , item_ids),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , item_counts),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , item_usage),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, item_ids),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, item_counts),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, item_usage),
 	EASYRPG_STRUCT_TYPED_FIELD(int, gold),
 	EASYRPG_STRUCT_TYPED_FIELD(int, timer1_secs),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, timer1_active),

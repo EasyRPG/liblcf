@@ -47,7 +47,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN(MapInfo)
 	EASYRPG_STRUCT_TYPED_FIELD(int, teleport),
 	EASYRPG_STRUCT_TYPED_FIELD(int, escape),
 	EASYRPG_STRUCT_TYPED_FIELD(int, save),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Encounter> , encounters),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Encounter>, encounters),
 	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_steps),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::Rect, area_rect),
 EASYRPG_STRUCT_FIELDS_END()

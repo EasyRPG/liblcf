@@ -58,14 +58,14 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Actor)
 	EASYRPG_STRUCT_TYPED_FIELD(int, battle_x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battle_y),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battler_animation),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Learning> , skills),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Learning>, skills),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, rename_skill),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, skill_name),
 	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, state_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , state_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, state_ranks),
 	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , attribute_ranks),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , battle_commands),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t>, attribute_ranks),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, battle_commands),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

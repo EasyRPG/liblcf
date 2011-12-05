@@ -57,12 +57,12 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Map)
 	EASYRPG_STRUCT_TYPED_FIELD(bool, generator_floor_c),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, generator_extra_b),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, generator_extra_c),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , generator_x),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , generator_y),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , generator_tile_ids),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , lower_layer),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t> , upper_layer),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Event> , events),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, generator_x),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, generator_y),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, generator_tile_ids),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, lower_layer),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, upper_layer),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Event>, events),
 	EASYRPG_STRUCT_TYPED_FIELD(int, save_times),
 EASYRPG_STRUCT_FIELDS_END()
 

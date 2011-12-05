@@ -23,7 +23,7 @@
 #include "reader_struct.h"
 
 ////////////////////////////////////////////////////////////
-/// Read Save System
+/// Read SaveSystem
 ////////////////////////////////////////////////////////////
 EASYRPG_STRUCT_ID_READER(SaveSystem, NoID)
 
@@ -37,9 +37,9 @@ EASYRPG_STRUCT_FIELDS_BEGIN(SaveSystem)
 	EASYRPG_STRUCT_TYPED_FIELD(int, frame_count),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, graphics_name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switches_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool> , switches),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, switches),
 	EASYRPG_STRUCT_TYPED_FIELD(int, variables_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t> , variables),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, variables),
 	EASYRPG_STRUCT_TYPED_FIELD(int, message_transparent),
 	EASYRPG_STRUCT_TYPED_FIELD(int, message_position),
 	EASYRPG_STRUCT_TYPED_FIELD(int, message_placement),

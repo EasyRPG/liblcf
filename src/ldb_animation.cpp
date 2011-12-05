@@ -35,10 +35,10 @@ EASYRPG_STRUCT_NAME(Animation)
 EASYRPG_STRUCT_FIELDS_BEGIN(Animation)
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, animation_name),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming> , timings),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings),
 	EASYRPG_STRUCT_TYPED_FIELD(int, scope),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame> , frames),
+	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame>, frames),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT
