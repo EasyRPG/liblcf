@@ -41,9 +41,6 @@
     <ClCompile Include="..\..\src\ldb_actor.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_variables.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\ldb_animation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ldb_state.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\ldb_switches.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ldb_system.cpp">
@@ -287,48 +281,6 @@
     <ClCompile Include="..\..\src\lsd_reader.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_actor.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_commonevents.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_data.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_eventcommands.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_eventdata.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_events.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_inventory.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_location.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_mapevent.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_mapinfo.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_picture.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_screen.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_title.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_vehicle.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\rpg_save.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
@@ -343,9 +295,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\ldb_database.cpp">
       <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\lsd_target.cpp">
-      <Filter>Source Files\LSD</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lsd_save.cpp">
       <Filter>Source Files\LSD</Filter>
@@ -406,6 +355,117 @@
     </ClCompile>
     <ClCompile Include="..\..\src\lmt_start.cpp">
       <Filter>Source Files\LMT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_switch.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_terrain_flags.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_trooppagecondition_flags.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ldb_variable.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lmu_eventpagecondition_flags.cpp">
+      <Filter>Source Files\LMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_saveactor.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savecommonevent.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_saveeventcommands.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_saveeventdata.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_saveevents.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_saveinventory.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savemapevent.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savemapinfo.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savepartylocation.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savepicture.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savescreen.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savesystem.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savetarget.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savetitle.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\lsd_savevehiclelocation.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_battlecommands.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_saveactor.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savecommonevent.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_saveeventcommands.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_saveeventdata.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_saveevents.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_saveinventory.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savemapevent.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savemapinfo.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savepartylocation.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savepicture.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savescreen.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savesystem.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savetarget.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savetitle.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_savevehiclelocation.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\rpg_setup.cpp">
+      <Filter>Source Files\RPG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -614,6 +674,54 @@
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\rpg_variable.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_battlecommands.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_saveactor.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savecommonevent.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_saveeventcommands.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_saveeventdata.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_saveevents.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_saveinventory.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savemapevent.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savemapinfo.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savepartylocation.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savepicture.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savescreen.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savesystem.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savetarget.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savetitle.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\rpg_savevehiclelocation.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
   </ItemGroup>

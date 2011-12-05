@@ -160,7 +160,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\include;;$(EASYDEV_MSVC)\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4661</DisableSpecificWarnings>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -240,7 +240,7 @@
       <DebugInformationFormat>
       </DebugInformationFormat>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_HAS_EXCEPTIONS=0;XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -352,16 +352,18 @@
     <ClCompile Include="..\..\src\ldb_skill.cpp" />
     <ClCompile Include="..\..\src\ldb_sound.cpp" />
     <ClCompile Include="..\..\src\ldb_state.cpp" />
-    <ClCompile Include="..\..\src\ldb_switches.cpp" />
+    <ClCompile Include="..\..\src\ldb_switch.cpp" />
     <ClCompile Include="..\..\src\ldb_system.cpp" />
     <ClCompile Include="..\..\src\ldb_terms.cpp" />
     <ClCompile Include="..\..\src\ldb_terrain.cpp" />
+    <ClCompile Include="..\..\src\ldb_terrain_flags.cpp" />
     <ClCompile Include="..\..\src\ldb_testbattler.cpp" />
     <ClCompile Include="..\..\src\ldb_troop.cpp" />
     <ClCompile Include="..\..\src\ldb_troopmember.cpp" />
     <ClCompile Include="..\..\src\ldb_trooppage.cpp" />
     <ClCompile Include="..\..\src\ldb_trooppagecondition.cpp" />
-    <ClCompile Include="..\..\src\ldb_variables.cpp" />
+    <ClCompile Include="..\..\src\ldb_trooppagecondition_flags.cpp" />
+    <ClCompile Include="..\..\src\ldb_variable.cpp" />
     <ClCompile Include="..\..\src\lmt_encounter.cpp" />
     <ClCompile Include="..\..\src\lmt_mapinfo.cpp" />
     <ClCompile Include="..\..\src\lmt_reader.cpp" />
@@ -371,27 +373,28 @@
     <ClCompile Include="..\..\src\lmu_event.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpage.cpp" />
     <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp" />
+    <ClCompile Include="..\..\src\lmu_eventpagecondition_flags.cpp" />
     <ClCompile Include="..\..\src\lmu_map.cpp" />
     <ClCompile Include="..\..\src\lmu_movecommand.cpp" />
     <ClCompile Include="..\..\src\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\lmu_reader.cpp" />
     <ClCompile Include="..\..\src\lsd_reader.cpp" />
-    <ClCompile Include="..\..\src\lsd_actor.cpp" />
-    <ClCompile Include="..\..\src\lsd_commonevents.cpp" />
-    <ClCompile Include="..\..\src\lsd_data.cpp" />
-    <ClCompile Include="..\..\src\lsd_eventcommands.cpp" />
-    <ClCompile Include="..\..\src\lsd_eventdata.cpp" />
-    <ClCompile Include="..\..\src\lsd_events.cpp" />
-    <ClCompile Include="..\..\src\lsd_inventory.cpp" />
-    <ClCompile Include="..\..\src\lsd_location.cpp" />
-    <ClCompile Include="..\..\src\lsd_mapevent.cpp" />
-    <ClCompile Include="..\..\src\lsd_mapinfo.cpp" />
-    <ClCompile Include="..\..\src\lsd_picture.cpp" />
     <ClCompile Include="..\..\src\lsd_save.cpp" />
-    <ClCompile Include="..\..\src\lsd_screen.cpp" />
-    <ClCompile Include="..\..\src\lsd_target.cpp" />
-    <ClCompile Include="..\..\src\lsd_title.cpp" />
-    <ClCompile Include="..\..\src\lsd_vehicle.cpp" />
+    <ClCompile Include="..\..\src\lsd_saveactor.cpp" />
+    <ClCompile Include="..\..\src\lsd_savecommonevent.cpp" />
+    <ClCompile Include="..\..\src\lsd_saveeventcommands.cpp" />
+    <ClCompile Include="..\..\src\lsd_saveeventdata.cpp" />
+    <ClCompile Include="..\..\src\lsd_saveevents.cpp" />
+    <ClCompile Include="..\..\src\lsd_saveinventory.cpp" />
+    <ClCompile Include="..\..\src\lsd_savemapevent.cpp" />
+    <ClCompile Include="..\..\src\lsd_savemapinfo.cpp" />
+    <ClCompile Include="..\..\src\lsd_savepartylocation.cpp" />
+    <ClCompile Include="..\..\src\lsd_savepicture.cpp" />
+    <ClCompile Include="..\..\src\lsd_savescreen.cpp" />
+    <ClCompile Include="..\..\src\lsd_savesystem.cpp" />
+    <ClCompile Include="..\..\src\lsd_savetarget.cpp" />
+    <ClCompile Include="..\..\src\lsd_savetitle.cpp" />
+    <ClCompile Include="..\..\src\lsd_savevehiclelocation.cpp" />
     <ClCompile Include="..\..\src\reader_flags.cpp" />
     <ClCompile Include="..\..\src\reader_lcf.cpp" />
     <ClCompile Include="..\..\src\reader_struct.cpp" />
@@ -404,6 +407,7 @@
     <ClCompile Include="..\..\src\rpg_animationtiming.cpp" />
     <ClCompile Include="..\..\src\rpg_attribute.cpp" />
     <ClCompile Include="..\..\src\rpg_battlecommand.cpp" />
+    <ClCompile Include="..\..\src\rpg_battlecommands.cpp" />
     <ClCompile Include="..\..\src\rpg_battleranimation.cpp" />
     <ClCompile Include="..\..\src\rpg_battleranimationdata.cpp" />
     <ClCompile Include="..\..\src\rpg_battleranimationextension.cpp" />
@@ -429,6 +433,22 @@
     <ClCompile Include="..\..\src\rpg_parameters.cpp" />
     <ClCompile Include="..\..\src\rpg_rect.cpp" />
     <ClCompile Include="..\..\src\rpg_save.cpp" />
+    <ClCompile Include="..\..\src\rpg_saveactor.cpp" />
+    <ClCompile Include="..\..\src\rpg_savecommonevent.cpp" />
+    <ClCompile Include="..\..\src\rpg_saveeventcommands.cpp" />
+    <ClCompile Include="..\..\src\rpg_saveeventdata.cpp" />
+    <ClCompile Include="..\..\src\rpg_saveevents.cpp" />
+    <ClCompile Include="..\..\src\rpg_saveinventory.cpp" />
+    <ClCompile Include="..\..\src\rpg_savemapevent.cpp" />
+    <ClCompile Include="..\..\src\rpg_savemapinfo.cpp" />
+    <ClCompile Include="..\..\src\rpg_savepartylocation.cpp" />
+    <ClCompile Include="..\..\src\rpg_savepicture.cpp" />
+    <ClCompile Include="..\..\src\rpg_savescreen.cpp" />
+    <ClCompile Include="..\..\src\rpg_savesystem.cpp" />
+    <ClCompile Include="..\..\src\rpg_savetarget.cpp" />
+    <ClCompile Include="..\..\src\rpg_savetitle.cpp" />
+    <ClCompile Include="..\..\src\rpg_savevehiclelocation.cpp" />
+    <ClCompile Include="..\..\src\rpg_setup.cpp" />
     <ClCompile Include="..\..\src\rpg_skill.cpp" />
     <ClCompile Include="..\..\src\rpg_sound.cpp" />
     <ClCompile Include="..\..\src\rpg_start.cpp" />
@@ -474,6 +494,7 @@
     <ClInclude Include="..\..\include\rpg_animationtiming.h" />
     <ClInclude Include="..\..\include\rpg_attribute.h" />
     <ClInclude Include="..\..\include\rpg_battlecommand.h" />
+    <ClInclude Include="..\..\include\rpg_battlecommands.h" />
     <ClInclude Include="..\..\include\rpg_battleranimation.h" />
     <ClInclude Include="..\..\include\rpg_battleranimationdata.h" />
     <ClInclude Include="..\..\include\rpg_battleranimationextension.h" />
@@ -500,6 +521,21 @@
     <ClInclude Include="..\..\include\rpg_parameters.h" />
     <ClInclude Include="..\..\include\rpg_rect.h" />
     <ClInclude Include="..\..\include\rpg_save.h" />
+    <ClInclude Include="..\..\include\rpg_saveactor.h" />
+    <ClInclude Include="..\..\include\rpg_savecommonevent.h" />
+    <ClInclude Include="..\..\include\rpg_saveeventcommands.h" />
+    <ClInclude Include="..\..\include\rpg_saveeventdata.h" />
+    <ClInclude Include="..\..\include\rpg_saveevents.h" />
+    <ClInclude Include="..\..\include\rpg_saveinventory.h" />
+    <ClInclude Include="..\..\include\rpg_savemapevent.h" />
+    <ClInclude Include="..\..\include\rpg_savemapinfo.h" />
+    <ClInclude Include="..\..\include\rpg_savepartylocation.h" />
+    <ClInclude Include="..\..\include\rpg_savepicture.h" />
+    <ClInclude Include="..\..\include\rpg_savescreen.h" />
+    <ClInclude Include="..\..\include\rpg_savesystem.h" />
+    <ClInclude Include="..\..\include\rpg_savetarget.h" />
+    <ClInclude Include="..\..\include\rpg_savetitle.h" />
+    <ClInclude Include="..\..\include\rpg_savevehiclelocation.h" />
     <ClInclude Include="..\..\include\rpg_skill.h" />
     <ClInclude Include="..\..\include\rpg_sound.h" />
     <ClInclude Include="..\..\include\rpg_start.h" />
