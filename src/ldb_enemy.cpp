@@ -56,4 +56,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN(Enemy)
 	EASYRPG_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint8_t> , attribute_ranks),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EnemyAction> , actions),
-};
+EASYRPG_STRUCT_FIELDS_END()
+
+#undef EASYRPG_CURRENT_STRUCT
+#undef EASYRPG_CHUNK_SUFFIX
