@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveTitle
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveTitle, NoID)
-
-EASYRPG_STRUCT_NAME(SaveTitle)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveTitle
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveTitle)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(double, timestamp),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, hero_name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, hero_level),

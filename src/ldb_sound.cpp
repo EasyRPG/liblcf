@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Sound
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Sound, NoID)
-
-EASYRPG_STRUCT_NAME(Sound)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Sound
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Sound)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, volume),
 	EASYRPG_STRUCT_TYPED_FIELD(int, tempo),

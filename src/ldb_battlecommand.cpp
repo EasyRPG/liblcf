@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read BattleCommand
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(BattleCommand, WithID)
-
-EASYRPG_STRUCT_NAME(BattleCommand)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT BattleCommand
 
-EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommand)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, type),
 EASYRPG_STRUCT_FIELDS_END()

@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Variable
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Variable, WithID)
-
-EASYRPG_STRUCT_NAME(Variable)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Variable
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Variable)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 EASYRPG_STRUCT_FIELDS_END()
 

@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveTarget
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveTarget, WithID)
-
-EASYRPG_STRUCT_NAME(SaveTarget)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveTarget
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveTarget)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_y),

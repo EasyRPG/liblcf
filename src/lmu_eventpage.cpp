@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read EventPage
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(EventPage, WithID)
-
-EASYRPG_STRUCT_NAME(EventPage)
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT EventPage
 
-EASYRPG_STRUCT_FIELDS_BEGIN(EventPage)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::EventPageCondition, condition),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, character_name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, character_index),

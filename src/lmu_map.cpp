@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Map
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Map, NoID)
-
-EASYRPG_STRUCT_NAME(Map)
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT Map
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Map)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, chipset_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, width),
 	EASYRPG_STRUCT_TYPED_FIELD(int, height),

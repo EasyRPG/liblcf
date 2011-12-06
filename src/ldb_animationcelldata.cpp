@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read AnimationCellData
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(AnimationCellData, WithID)
-
-EASYRPG_STRUCT_NAME(AnimationCellData)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT AnimationCellData
 
-EASYRPG_STRUCT_FIELDS_BEGIN(AnimationCellData)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, priority),
 	EASYRPG_STRUCT_TYPED_FIELD(int, cell_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, x),

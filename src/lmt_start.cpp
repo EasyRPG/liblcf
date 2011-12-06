@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Start
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Start, NoID)
-
-EASYRPG_STRUCT_NAME(Start)
 
 #define EASYRPG_CHUNK_SUFFIX LMT_Reader
 #define EASYRPG_CURRENT_STRUCT Start
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Start)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, party_map_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, party_x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, party_y),

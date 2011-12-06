@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Troop
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Troop, WithID)
-
-EASYRPG_STRUCT_NAME(Troop)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Troop
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Troop)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members),
 	EASYRPG_STRUCT_SIZE_FIELD(bool, terrain_set),

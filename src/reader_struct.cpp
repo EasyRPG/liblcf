@@ -52,8 +52,6 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 
 	LcfReader::Chunk chunk_info;
 
-	ID_reader->ReadID(obj, stream);
-
 	while (!stream.Eof()) {
 		chunk_info.ID = stream.ReadInt();
 		if (chunk_info.ID == 0)
@@ -75,7 +73,6 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	ID_reader->WriteID(obj, stream);
 	S ref = S();
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
@@ -99,7 +96,6 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 
 template <>
 void Struct<RPG::Save>::WriteLcf(const RPG::Save& obj, LcfWriter& stream) {
-	ID_reader->WriteID(obj, stream);
 	RPG::Save ref = RPG::Save();
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
@@ -123,7 +119,7 @@ void Struct<RPG::Save>::WriteLcf(const RPG::Save& obj, LcfWriter& stream) {
 
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
-	int result = ID_reader->IDSize(obj);
+	int result = 0;
 	S ref = S();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
@@ -141,7 +137,7 @@ int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteXml(const S& obj, XmlWriter& stream) {
-	ID_reader->WriteXmlTag(obj, name, stream);
+	IDReader::WriteXmlTag(obj, name, stream);
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		field->WriteXml(obj, stream);
@@ -182,7 +178,7 @@ public:
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
 		if (strcmp(name, Struct<S>::name) != 0)
 			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
-		Struct<S>::ID_reader->ReadIDXml(ref, atts);
+		Struct<S>::IDReader::ReadIDXml(ref, atts);
 		stream.SetHandler(new StructXmlHandler<S>(ref));
 	}
 private:
@@ -199,16 +195,20 @@ template <class S>
 void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
 	vec.resize(count);
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++) {
+		IDReader::ReadID(vec[i], stream);
 		TypeReader<S>::ReadLcf(vec[i], stream, 0);
+	}
 }
 
 template <class S>
 void Struct<S>::WriteLcf(const std::vector<S>& vec, LcfWriter& stream) {
 	int count = vec.size();
 	stream.WriteInt(count);
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++) {
+		IDReader::WriteID(vec[i], stream);
 		TypeReader<S>::WriteLcf(vec[i], stream);
+	}
 }
 
 template <class S>
@@ -216,8 +216,10 @@ int Struct<S>::LcfSize(const std::vector<S>& vec, LcfWriter& stream) {
 	int result = 0;
 	int count = vec.size();
 	result += LcfReader::IntSize(count);
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++) {
+		result += IDReader::IDSize(vec[i]);
 		result += TypeReader<S>::LcfSize(vec[i], stream);
+	}
 	return result;
 }
 
@@ -238,7 +240,7 @@ public:
 			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
 		ref.resize(ref.size() + 1);
 		S& obj = ref.back();
-		Struct<S>::ID_reader->ReadIDXml(obj, atts);
+		Struct<S>::IDReader::ReadIDXml(obj, atts);
 		stream.SetHandler(new StructXmlHandler<S>(obj));
 	}
 private:

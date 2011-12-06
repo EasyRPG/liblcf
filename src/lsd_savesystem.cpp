@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveSystem
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveSystem, NoID)
-
-EASYRPG_STRUCT_NAME(SaveSystem)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveSystem
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveSystem)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, screen),
 	EASYRPG_STRUCT_TYPED_FIELD(int, frame_count),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, graphics_name),

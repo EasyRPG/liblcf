@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Encounter
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Encounter, WithID)
-
-EASYRPG_STRUCT_NAME(Encounter)
 
 #define EASYRPG_CHUNK_SUFFIX LMT_Reader
 #define EASYRPG_CURRENT_STRUCT Encounter
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Encounter)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, troop_id),
 EASYRPG_STRUCT_FIELDS_END()
 

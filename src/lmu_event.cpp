@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Event
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Event, WithID)
-
-EASYRPG_STRUCT_NAME(Event)
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT Event
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Event)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, y),

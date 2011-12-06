@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read State
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(State, WithID)
-
-EASYRPG_STRUCT_NAME(State)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT State
 
-EASYRPG_STRUCT_FIELDS_BEGIN(State)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, type),
 	EASYRPG_STRUCT_TYPED_FIELD(int, color),

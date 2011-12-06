@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimationData
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(BattlerAnimationData, WithID)
-
-EASYRPG_STRUCT_NAME(BattlerAnimationData)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT BattlerAnimationData
 
-EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimationData)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, move),
 	EASYRPG_STRUCT_TYPED_FIELD(int, after_image),
 	EASYRPG_STRUCT_TYPED_FIELD(int, pose),

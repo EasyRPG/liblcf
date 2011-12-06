@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read TroopPageCondition
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(TroopPageCondition, NoID)
-
-EASYRPG_STRUCT_NAME(TroopPageCondition)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT TroopPageCondition
 
-EASYRPG_STRUCT_FIELDS_BEGIN(TroopPageCondition)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::TroopPageCondition::Flags, flags),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),

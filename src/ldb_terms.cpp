@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Terms
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Terms, NoID)
-
-EASYRPG_STRUCT_NAME(Terms)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Terms
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Terms)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, encounter),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, special_combat),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, escape_success),

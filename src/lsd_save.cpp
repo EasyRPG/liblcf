@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Save
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Save, NoID)
-
-EASYRPG_STRUCT_NAME(Save)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT Save
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Save)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveTitle, title),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveSystem, system),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveScreen, screen),

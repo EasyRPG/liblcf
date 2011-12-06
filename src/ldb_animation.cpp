@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Animation
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Animation, WithID)
-
-EASYRPG_STRUCT_NAME(Animation)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Animation
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Animation)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, animation_name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings),

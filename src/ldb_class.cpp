@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Class
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Class, WithID)
-
-EASYRPG_STRUCT_NAME(Class)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Class
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Class)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, two_swords_style),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, fix_equipment),

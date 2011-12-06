@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveScreen
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveScreen, NoID)
-
-EASYRPG_STRUCT_NAME(SaveScreen)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveScreen
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveScreen)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, tint_finish_red),
 	EASYRPG_STRUCT_TYPED_FIELD(int, tint_finish_green),
 	EASYRPG_STRUCT_TYPED_FIELD(int, tint_finish_blue),

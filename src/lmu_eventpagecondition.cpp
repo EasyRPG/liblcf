@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read EventPageCondition
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(EventPageCondition, NoID)
-
-EASYRPG_STRUCT_NAME(EventPageCondition)
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT EventPageCondition
 
-EASYRPG_STRUCT_FIELDS_BEGIN(EventPageCondition)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_a_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switch_b_id),

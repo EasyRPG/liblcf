@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read MoveRoute
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(MoveRoute, NoID)
-
-EASYRPG_STRUCT_NAME(MoveRoute)
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT MoveRoute
 
-EASYRPG_STRUCT_FIELDS_BEGIN(MoveRoute)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_SIZE_FIELD(RPG::MoveCommand, move_commands),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::MoveCommand>, move_commands),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, repeat),

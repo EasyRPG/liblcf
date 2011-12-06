@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveInventory
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveInventory, NoID)
-
-EASYRPG_STRUCT_NAME(SaveInventory)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveInventory
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveInventory)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, party_size),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, party),
 	EASYRPG_STRUCT_TYPED_FIELD(int, items_size),

@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Terrain
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Terrain, WithID)
-
-EASYRPG_STRUCT_NAME(Terrain)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Terrain
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Terrain)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, damage),
 	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),

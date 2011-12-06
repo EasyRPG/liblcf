@@ -459,43 +459,43 @@ struct SizeField : public Field<S> {
 // ID handling for Struct class
 ////////////////////////////////////////////////////////////
 
-enum StructIDType {
-	WithID,
-	NoID
+template <class T>
+struct IDChecker {
+	typedef char no;
+	typedef int yes;
+
+	template <typename U, U> struct type_check;
+	template <class C>
+	static yes check(type_check<int C::*, &C::ID> *);
+	template <class C>
+	static no  check(...);
+
+	static const bool value = sizeof(check<T>(0)) == sizeof(yes);
 };
 
 ////////////////////////////////////////////////////////////
 // ID reader for Struct class
 ////////////////////////////////////////////////////////////
 
-template <class S>
-struct IDReader {
-	virtual void ReadID(S& obj, LcfReader& stream) const = 0;
-	virtual void WriteID(const S& obj, LcfWriter& stream) const = 0;
-	virtual int IDSize(const S& obj) const = 0;
-	virtual void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const = 0;
-	virtual void ReadIDXml(S& obj, const char** atts) const = 0;
-};
-
-template <class S, StructIDType T>
-struct IDReaderT : public IDReader<S> {
+template <class S, bool T>
+struct IDReaderT {
 };
 
 template <class S>
-struct IDReaderT<S, WithID> : public IDReader<S> {
-	void ReadID(S& obj, LcfReader& stream) const {
+struct IDReaderT<S, true> {
+	static void ReadID(S& obj, LcfReader& stream) {
 		obj.ID = stream.ReadInt();
 	}
-	void WriteID(const S& obj, LcfWriter& stream) const {
+	static void WriteID(const S& obj, LcfWriter& stream) {
 		stream.WriteInt(obj.ID);
 	}
-	int IDSize(const S& obj) const {
+	static int IDSize(const S& obj) {
 		return LcfReader::IntSize(obj.ID);
 	}
-	void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const {
+	static void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) {
 		stream.BeginElement(name, obj.ID);
 	}
-	void ReadIDXml(S& obj, const char** atts) const {
+	static void ReadIDXml(S& obj, const char** atts) {
 		for (int i = 0; atts[i] != NULL && atts[i + 1] != NULL; i += 2) {
 			if (strcmp(atts[i], "id") == 0)
 				obj.ID = atoi(atts[i + 1]);
@@ -504,14 +504,14 @@ struct IDReaderT<S, WithID> : public IDReader<S> {
 };
 
 template <class S>
-struct IDReaderT<S, NoID> : public IDReader<S> {
-	void ReadID(S& obj, LcfReader& stream) const {}
-	void WriteID(const S& obj, LcfWriter& stream) const {}
-	int IDSize(const S& obj) const { return 0; }
-	void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) const {
+struct IDReaderT<S, false> {
+	static void ReadID(S& obj, LcfReader& stream) {}
+	static void WriteID(const S& obj, LcfWriter& stream) {}
+	static int IDSize(const S& obj) { return 0; }
+	static void WriteXmlTag(const S& obj, const std::string& name, XmlWriter& stream) {
 		stream.BeginElement(name);
 	}
-	void ReadIDXml(S& obj, const char** atts) const {}
+	static void ReadIDXml(S& obj, const char** atts) {}
 };
 
 ////////////////////////////////////////////////////////////
@@ -529,10 +529,10 @@ class Struct {
 private:
 	typedef std::map<int, const Field<S>* > field_map_type;
 	typedef std::map<const char* const, const Field<S>*, StringComparator> tag_map_type;
+	typedef IDReaderT<S, IDChecker<S>::value > IDReader;
 	static const Field<S>* fields[];
 	static field_map_type field_map;
 	static tag_map_type tag_map;
-	static std::auto_ptr<IDReader<S> > ID_reader;
 	static const char* const name;
 
 	static void MakeFieldMap();
@@ -711,26 +711,24 @@ private:
 	const char* const name;
 };
 
-#define EASYRPG_STRUCT_ID_READER(T, ID) \
-	template <> \
-	std::auto_ptr<IDReader<RPG::T> > Struct<RPG::T>::ID_reader(new IDReaderT<RPG::T, ID>); \
-
-#define EASYRPG_STRUCT_NAME(T) \
-	template <> \
-	char const* const Struct<RPG::T>::name(BOOST_PP_STRINGIZE(T)); \
-
-#define EASYRPG_STRUCT_FIELDS_BEGIN(T) \
-	template <> \
-	Field<RPG::T> const* Struct<RPG::T>::fields[] = { \
-
-#define EASYRPG_STRUCT_FIELDS_END() \
-	NULL }; \
+////////////////////////////////////////////////////////////
+// Macros
+////////////////////////////////////////////////////////////
 
 /*
  needs define of
  - EASYRPG_CHUNK_SUFFIX
  - EASYRPG_CURRENT_STRUCT
 */
+#define EASYRPG_STRUCT_FIELDS_BEGIN() \
+	template <> \
+	char const* const Struct<RPG::EASYRPG_CURRENT_STRUCT>::name(BOOST_PP_STRINGIZE(EASYRPG_CURRENT_STRUCT)); \
+	template <> \
+	Field<RPG::EASYRPG_CURRENT_STRUCT> const* Struct<RPG::EASYRPG_CURRENT_STRUCT>::fields[] = { \
+
+#define EASYRPG_STRUCT_FIELDS_END() \
+	NULL }; \
+
 #define EASYRPG_STRUCT_TYPED_FIELD(T, REF) \
 	new TypedField<RPG::EASYRPG_CURRENT_STRUCT, T>( \
 		  &RPG::EASYRPG_CURRENT_STRUCT::REF \

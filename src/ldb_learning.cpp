@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Learning
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Learning, WithID)
-
-EASYRPG_STRUCT_NAME(Learning)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Learning
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Learning)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, level),
 	EASYRPG_STRUCT_TYPED_FIELD(int, skill_id),
 EASYRPG_STRUCT_FIELDS_END()

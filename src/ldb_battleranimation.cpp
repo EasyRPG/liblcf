@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read BattlerAnimation
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(BattlerAnimation, WithID)
-
-EASYRPG_STRUCT_NAME(BattlerAnimation)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT BattlerAnimation
 
-EASYRPG_STRUCT_FIELDS_BEGIN(BattlerAnimation)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, speed),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, base_data),

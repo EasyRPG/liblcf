@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveMapEvent
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveMapEvent, WithID)
-
-EASYRPG_STRUCT_NAME(SaveMapEvent)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveMapEvent
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveMapEvent)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_01),
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position_x),

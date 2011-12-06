@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read CommonEvent
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(CommonEvent, WithID)
-
-EASYRPG_STRUCT_NAME(CommonEvent)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT CommonEvent
 
-EASYRPG_STRUCT_FIELDS_BEGIN(CommonEvent)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, trigger),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, switch_flag),

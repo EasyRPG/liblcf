@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Switch
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Switch, WithID)
-
-EASYRPG_STRUCT_NAME(Switch)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Switch
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Switch)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 EASYRPG_STRUCT_FIELDS_END()
 

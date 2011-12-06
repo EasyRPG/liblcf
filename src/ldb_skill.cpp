@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Skill
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Skill, WithID)
-
-EASYRPG_STRUCT_NAME(Skill)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Skill
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Skill)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, description),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, using_message1),

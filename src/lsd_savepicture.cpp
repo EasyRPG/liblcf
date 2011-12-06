@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SavePicture
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SavePicture, WithID)
-
-EASYRPG_STRUCT_NAME(SavePicture)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SavePicture
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SavePicture)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(double, start_x),
 	EASYRPG_STRUCT_TYPED_FIELD(double, start_y),

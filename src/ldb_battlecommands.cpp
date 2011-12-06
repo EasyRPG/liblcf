@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read BattleCommands
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(BattleCommands, NoID)
-
-EASYRPG_STRUCT_NAME(BattleCommands)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT BattleCommands
 
-EASYRPG_STRUCT_FIELDS_BEGIN(BattleCommands)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, placement),
 	EASYRPG_STRUCT_TYPED_FIELD(int, death_handler1),
 	EASYRPG_STRUCT_TYPED_FIELD(int, row),

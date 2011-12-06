@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read TroopMember
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(TroopMember, WithID)
-
-EASYRPG_STRUCT_NAME(TroopMember)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT TroopMember
 
-EASYRPG_STRUCT_FIELDS_BEGIN(TroopMember)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, enemy_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, y),

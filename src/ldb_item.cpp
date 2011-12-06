@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Item
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Item, WithID)
-
-EASYRPG_STRUCT_NAME(Item)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Item
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Item)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, description),
 	EASYRPG_STRUCT_TYPED_FIELD(int, type),

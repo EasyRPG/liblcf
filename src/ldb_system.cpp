@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read System
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(System, NoID)
-
-EASYRPG_STRUCT_NAME(System)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT System
 
-EASYRPG_STRUCT_FIELDS_BEGIN(System)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, ldb_id),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, boat_name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, ship_name),

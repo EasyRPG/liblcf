@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveCommonEvent
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveCommonEvent, WithID)
-
-EASYRPG_STRUCT_NAME(SaveCommonEvent)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveCommonEvent
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveCommonEvent)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data),
 EASYRPG_STRUCT_FIELDS_END()
 

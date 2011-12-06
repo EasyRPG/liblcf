@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveEventData
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveEventData, NoID)
-
-EASYRPG_STRUCT_NAME(SaveEventData)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveEventData
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveEventData)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, commands),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),

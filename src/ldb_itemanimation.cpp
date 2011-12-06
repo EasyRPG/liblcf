@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read ItemAnimation
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(ItemAnimation, WithID)
-
-EASYRPG_STRUCT_NAME(ItemAnimation)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT ItemAnimation
 
-EASYRPG_STRUCT_FIELDS_BEGIN(ItemAnimation)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, type),
 	EASYRPG_STRUCT_TYPED_FIELD(int, weapon_anim),
 	EASYRPG_STRUCT_TYPED_FIELD(int, movement),

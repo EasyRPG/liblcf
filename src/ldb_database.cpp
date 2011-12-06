@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Database
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Database, NoID)
-
-EASYRPG_STRUCT_NAME(Database)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Database
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Database)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Actor>, actors),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Skill>, skills),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Item>, items),

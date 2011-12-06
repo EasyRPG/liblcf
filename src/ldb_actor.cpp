@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Actor
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Actor, WithID)
-
-EASYRPG_STRUCT_NAME(Actor)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Actor
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Actor)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, title),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, character_name),

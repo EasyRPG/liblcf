@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Chipset
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Chipset, WithID)
-
-EASYRPG_STRUCT_NAME(Chipset)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Chipset
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Chipset)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, chipset_name),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, terrain_data),

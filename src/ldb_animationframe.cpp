@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read AnimationFrame
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(AnimationFrame, WithID)
-
-EASYRPG_STRUCT_NAME(AnimationFrame)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT AnimationFrame
 
-EASYRPG_STRUCT_FIELDS_BEGIN(AnimationFrame)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationCellData>, cells),
 EASYRPG_STRUCT_FIELDS_END()
 

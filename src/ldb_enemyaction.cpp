@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read EnemyAction
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(EnemyAction, WithID)
-
-EASYRPG_STRUCT_NAME(EnemyAction)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT EnemyAction
 
-EASYRPG_STRUCT_FIELDS_BEGIN(EnemyAction)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, kind),
 	EASYRPG_STRUCT_TYPED_FIELD(int, basic),
 	EASYRPG_STRUCT_TYPED_FIELD(int, skill_id),

@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SaveVehicleLocation
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SaveVehicleLocation, NoID)
-
-EASYRPG_STRUCT_NAME(SaveVehicleLocation)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveVehicleLocation
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SaveVehicleLocation)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position_x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position_y),

@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read AnimationTiming
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(AnimationTiming, WithID)
-
-EASYRPG_STRUCT_NAME(AnimationTiming)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT AnimationTiming
 
-EASYRPG_STRUCT_FIELDS_BEGIN(AnimationTiming)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, frame),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, se),
 	EASYRPG_STRUCT_TYPED_FIELD(int, flash_scope),

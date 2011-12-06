@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read TroopPage
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(TroopPage, WithID)
-
-EASYRPG_STRUCT_NAME(TroopPage)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT TroopPage
 
-EASYRPG_STRUCT_FIELDS_BEGIN(TroopPage)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::TroopPageCondition, condition),
 	EASYRPG_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),

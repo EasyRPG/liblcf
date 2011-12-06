@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read SavePartyLocation
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(SavePartyLocation, NoID)
-
-EASYRPG_STRUCT_NAME(SavePartyLocation)
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SavePartyLocation
 
-EASYRPG_STRUCT_FIELDS_BEGIN(SavePartyLocation)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position_x),
 	EASYRPG_STRUCT_TYPED_FIELD(int, position_y),

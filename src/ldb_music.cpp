@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read Music
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(Music, NoID)
-
-EASYRPG_STRUCT_NAME(Music)
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT Music
 
-EASYRPG_STRUCT_FIELDS_BEGIN(Music)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, fadein),
 	EASYRPG_STRUCT_TYPED_FIELD(int, volume),

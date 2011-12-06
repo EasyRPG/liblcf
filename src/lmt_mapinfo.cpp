@@ -25,14 +25,11 @@
 ////////////////////////////////////////////////////////////
 /// Read MapInfo
 ////////////////////////////////////////////////////////////
-EASYRPG_STRUCT_ID_READER(MapInfo, WithID)
-
-EASYRPG_STRUCT_NAME(MapInfo)
 
 #define EASYRPG_CHUNK_SUFFIX LMT_Reader
 #define EASYRPG_CURRENT_STRUCT MapInfo
 
-EASYRPG_STRUCT_FIELDS_BEGIN(MapInfo)
+EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, parent_map),
 	EASYRPG_STRUCT_TYPED_FIELD(int, indentation),
