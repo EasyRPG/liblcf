@@ -34,7 +34,7 @@ namespace RPG {
 	class EventPage {
 	public:
 		EventPage();
-		
+
 		int ID;
 		EventPageCondition condition;
 		std::string character_name;

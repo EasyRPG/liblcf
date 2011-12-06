@@ -33,7 +33,7 @@ namespace RPG {
 	class Troop {
 	public:
 		Troop();
-		
+
 		int ID;
 		std::string name;
 		std::vector<TroopMember> members;

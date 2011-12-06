@@ -38,7 +38,7 @@ namespace RPG {
 		};
 
 		BattlerAnimation();
-		
+
 		int ID;
 		std::string name;
 		int speed;

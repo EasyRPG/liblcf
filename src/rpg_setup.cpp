@@ -146,6 +146,8 @@ void RPG::SaveSystem::Setup() {
 void RPG::Save::Setup() {
 	system.Setup();
 	pictures.resize(50);
+	for (int i = 1; i <= (int) pictures.size(); i++)
+		pictures[i - 1].ID = i;
 	actors.resize(Data::actors.size());
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
@@ -159,4 +161,8 @@ void RPG::Actor::Init() {
 	exp_inflation = 300;
     #endif
 	parameters.Setup(final_level);
+}
+
+void RPG::MapInfo::Init() {
+	music.name = "(OFF)";
 }

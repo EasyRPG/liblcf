@@ -29,7 +29,6 @@ RPG::MapInfo::MapInfo() {
 	parent_map = 0;
 	type = 1;
 	music_type = 0;
-	music.name = "(OFF)";
 	background_type = 0;
 	background_name = "";
 	teleport = 0;
@@ -40,4 +39,6 @@ RPG::MapInfo::MapInfo() {
 	scrollbar_x = 0;
 	scrollbar_y = 0;
 	expanded_node = false;
+
+	Init();
 }

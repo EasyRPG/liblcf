@@ -34,7 +34,8 @@ namespace RPG {
 	class MapInfo {
 	public:
 		MapInfo();
-		
+		void Init();
+
 		int ID;
 		std::string name;
 		int parent_map;

@@ -36,7 +36,7 @@ namespace RPG {
 	public:
 		Actor();
 		void Init();
-		
+
 		int ID;
 		std::string name;
 		std::string title;
@@ -65,7 +65,7 @@ namespace RPG {
 		// RPG Maker 2000
 		bool rename_skill;
 		std::string skill_name;
-		
+
 		// RPG Maker 2003
 		int class_id;
 		int battler_animation;

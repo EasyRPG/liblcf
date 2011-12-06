@@ -40,7 +40,7 @@ namespace RPG {
 		};
 
 		BattleCommand();
-		
+
 		int ID;
 		std::string name;
 		int type;

@@ -29,6 +29,7 @@ namespace RPG {
 	class Start {
 	public:
 		Start();
+
 		int party_map_id;
 		int party_x;
 		int party_y;

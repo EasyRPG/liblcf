@@ -32,7 +32,7 @@ namespace RPG {
 	class Event {
 	public:
 		Event();
-		
+
 		int ID;
 		std::string name;
 		int x;

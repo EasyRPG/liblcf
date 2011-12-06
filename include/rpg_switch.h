@@ -30,6 +30,7 @@ namespace RPG {
 	class Switch {
 	public:
 		Switch();
+
 		int ID;
 		std::string name;
 	};

@@ -25,7 +25,7 @@ namespace RPG {
 	class Encounter {
 	public:
 		Encounter();
-		
+
 		int ID;
 		int troop_id;
 	};

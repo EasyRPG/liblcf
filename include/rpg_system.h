@@ -35,7 +35,7 @@ namespace RPG {
 	class System {
 	public:
 		System();
-		
+
 		int ldb_id;
 		std::string boat_name;
 		std::string ship_name;

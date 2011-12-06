@@ -31,7 +31,7 @@ namespace RPG {
 	class BattleCommands {
 	public:
 		BattleCommands();
-		
+
 		std::vector<BattleCommand> commands;
 		int placement;
 		int row;

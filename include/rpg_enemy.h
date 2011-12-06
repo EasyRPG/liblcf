@@ -33,7 +33,7 @@ namespace RPG {
 	class Enemy {
 	public:
 		Enemy();
-		
+
 		int ID;
 		std::string name;
 		std::string battler_name;

@@ -34,7 +34,7 @@ namespace RPG {
 	class Class {
 	public:
 		Class();
-		
+
 		int ID;
 		std::string name;
 		bool two_swords_style;

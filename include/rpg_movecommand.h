@@ -30,7 +30,7 @@ namespace RPG {
 	class MoveCommand {
 	public:
 		MoveCommand();
-		
+
 		int command_id;
 		std::string parameter_string;
 		int parameter_a;

@@ -36,7 +36,8 @@ namespace RPG {
 			Basic_observe = 3,
 			Basic_charge = 4,
 			Basic_autodestruction = 5,
-			Basic_nothing = 6
+			Basic_escape = 6,
+			Basic_nothing = 7
 		};
 		enum ConditionType {
 			ConditionType_always = 0,

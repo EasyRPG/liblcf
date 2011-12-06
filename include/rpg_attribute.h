@@ -35,7 +35,7 @@ namespace RPG {
 		};
 
 		Attribute();
-		
+
 		int ID;
 		std::string name;
 		int type;

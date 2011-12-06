@@ -37,7 +37,7 @@ namespace RPG {
 		int tone_blue;
 		int tone_gray;
 		int transparency;
-	 };
+	};
 }
 
 #endif

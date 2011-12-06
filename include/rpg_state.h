@@ -51,7 +51,7 @@ namespace RPG {
 		};
 
 		State();
-		
+
 		int ID;
 		std::string name;
 		int type;

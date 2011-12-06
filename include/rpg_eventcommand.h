@@ -31,7 +31,7 @@ namespace RPG {
 	class EventCommand {
 	public:
 		EventCommand();
-		
+
 		int code;
 		int indent;
 		std::string string;

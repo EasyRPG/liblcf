@@ -46,7 +46,7 @@ namespace RPG {
 		};
 
 		Item();
-		
+
 		int ID;
 		std::string name;
 		std::string description;
@@ -56,7 +56,7 @@ namespace RPG {
 		std::vector<bool> class_set; // RPG2003
 		int uses; // Consumables only
 
-		// Equipable		
+		// Equipable
 		int atk_points1;
 		int def_points1;
 		int spi_points1;
@@ -66,7 +66,7 @@ namespace RPG {
 		bool state_effect; // RPG2003
 		int state_chance;
 		bool cursed; // RPG2003
-				
+
 		// Weapon
 		bool two_handed;
 		int sp_cost;
@@ -81,13 +81,13 @@ namespace RPG {
 		bool use_skill; // RPG2003
 		int ranged_trajectory; // RPG2003
 		int ranged_target; // RPG2003
-		
+
 		// Shield Armor Head Other
 		bool prevent_critical;
 		bool raise_evasion;
 		bool half_sp_cost;
 		bool no_terrain_damage;
-		
+
 		// Medicine
 		bool entire_party;
 		int recover_hp;
@@ -96,11 +96,11 @@ namespace RPG {
 		int recover_sp_rate;
 		bool occasion_field1;
 		bool ko_only;
-		
+
 		// Book - Unique
 		int skill_id;
 		int using_message;
-		
+
 		// Material
 		int max_hp_points;
 		int max_sp_points;
@@ -108,7 +108,7 @@ namespace RPG {
 		int def_points2;
 		int spi_points2;
 		int agi_points2;
-		
+
 		// Switch
 		int switch_id;
 		bool occasion_field2;

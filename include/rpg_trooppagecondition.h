@@ -18,14 +18,14 @@
 #ifndef _RPG_TROOPPAGECONDITION_H_
 #define _RPG_TROOPPAGECONDITION_H_
 
-///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 /// RPG::TroopPageCondition class
 ////////////////////////////////////////////////////////////
 namespace RPG {
 	class TroopPageCondition {
 	public:
 		TroopPageCondition();
-		
+
 		int switch_a_id;
 		int switch_b_id;
 		int variable_id;

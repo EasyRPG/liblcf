@@ -37,7 +37,7 @@ RPG::State::State() {
 	e_rate = 0;
 	hold_turn = 0;
 	auto_release_prob = 0;
-	release_by_damage = 0,
+	release_by_damage = 0;
 	affect_type = 0;
 	affect_attack = false;
 	affect_defense = false;

@@ -33,7 +33,7 @@ namespace RPG {
 	class Map {
 	public:
 		Map();
-		
+
 		int ID;
 		int chipset_id;
 		int width;

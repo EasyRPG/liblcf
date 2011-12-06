@@ -31,7 +31,7 @@ namespace RPG {
 	class Terrain {
 	public:
 		Terrain();
-		
+
 		int ID;
 		std::string name;
 		int damage;

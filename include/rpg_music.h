@@ -30,7 +30,7 @@ namespace RPG {
 	class Music {
 	public:
 		Music();
-		
+
 		std::string name;
 		int fadein;
 		int volume;

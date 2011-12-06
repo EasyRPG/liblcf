@@ -25,7 +25,7 @@ namespace RPG {
 	class EventPageCondition {
 	public:
 		EventPageCondition();
-		
+
 		struct Flags {
 			bool switch_a;
 			bool switch_b;

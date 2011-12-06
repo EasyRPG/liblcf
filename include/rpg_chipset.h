@@ -32,7 +32,7 @@ namespace RPG {
 	class Chipset {
 	public:
 		Chipset();
-		
+
 		int ID;
 		std::string name;
 		std::string chipset_name;

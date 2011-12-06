@@ -30,7 +30,7 @@ namespace RPG {
 	class Terms {
 	public:
 		Terms();
-		
+
 		std::string encounter;
 		std::string special_combat;
 		std::string escape_success;

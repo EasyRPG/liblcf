@@ -51,7 +51,7 @@ namespace RPG {
 		};
 
 		Skill();
-		
+
 		int ID;
 		std::string name;
 		int type;
@@ -59,7 +59,7 @@ namespace RPG {
 		int sp_cost;
 		int sp_percent; // RPG2003
 		std::string description;
-		
+
 		// type == Normal
 		int scope;
 		int animation_id;
@@ -87,7 +87,7 @@ namespace RPG {
 
 		// type == Teleport/Escape
 		Sound sound_effect;
-		
+
 		// type == Switch
 		int switch_id;
 		bool occasion_field;

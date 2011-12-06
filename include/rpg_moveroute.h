@@ -31,7 +31,7 @@ namespace RPG {
 	class MoveRoute {
 	public:
 		MoveRoute();
-		
+
 		std::vector<MoveCommand> move_commands;
 		bool repeat;
 		bool skippable;

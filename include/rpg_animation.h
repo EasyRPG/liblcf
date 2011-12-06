@@ -43,7 +43,7 @@ namespace RPG {
 		};
 
 		Animation();
-		
+
 		int ID;
 		std::string name;
 		std::string animation_name;

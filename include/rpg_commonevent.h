@@ -38,7 +38,7 @@ namespace RPG {
 		};
 
 		CommonEvent();
-		
+
 		int ID;
 		std::string name;
 		int trigger;

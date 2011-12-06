@@ -56,7 +56,6 @@ RPG::Terms::Terms() {
 	parameter_increase = "";
 	parameter_decrease = "";
 	actor_hp_absorbed = "";
-	actor_hp_absorbed = "";
 	enemy_hp_absorbed = "";
 	resistance_increase = "";
 	resistance_decrease = "";
@@ -152,5 +151,4 @@ RPG::Terms::Terms() {
 	file = "";
 	yes = "";
 	no = "";
-
 }

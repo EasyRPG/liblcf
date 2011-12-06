@@ -30,6 +30,7 @@ namespace RPG {
 	class Variable {
 	public:
 		Variable();
+
 		int ID;
 		std::string name;
 	};

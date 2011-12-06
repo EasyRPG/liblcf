@@ -32,7 +32,7 @@ namespace RPG {
 	class TreeMap {
 	public:
 		TreeMap();
-		
+
 		std::vector<MapInfo> maps;
 		std::vector<int> tree_order;
 		int active_node;

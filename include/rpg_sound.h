@@ -30,7 +30,7 @@ namespace RPG {
 	class Sound {
 	public:
 		Sound();
-		
+
 		std::string name;
 		int volume;
 		int tempo;
