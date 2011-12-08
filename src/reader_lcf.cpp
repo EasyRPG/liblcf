@@ -61,7 +61,11 @@ size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 
 ////////////////////////////////////////////////////////////
 void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
+#ifdef NDEBUG
+	Read0(ptr, size, nmemb);
+#else
 	assert(Read0(ptr, size, nmemb) == nmemb);
+#endif
 }
 
 ////////////////////////////////////////////////////////////

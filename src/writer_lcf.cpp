@@ -50,7 +50,11 @@ void LcfWriter::Close() {
 
 ////////////////////////////////////////////////////////////
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
+#ifdef NDEBUG
+	fwrite(ptr, size, nmemb, stream);
+#else
 	assert(fwrite(ptr, size, nmemb, stream) == nmemb);
+#endif
 }
 
 ////////////////////////////////////////////////////////////
