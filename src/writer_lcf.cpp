@@ -50,11 +50,7 @@ void LcfWriter::Close() {
 
 ////////////////////////////////////////////////////////////
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
-#ifndef NDEBUG
 	assert(fwrite(ptr, size, nmemb, stream) == nmemb);
-#else
-	fwrite(ptr, size, nmemb, stream);
-#endif
 }
 
 ////////////////////////////////////////////////////////////
@@ -66,18 +62,14 @@ void LcfWriter::Write<uint8_t>(uint8_t val) {
 ////////////////////////////////////////////////////////////
 template <>
 void LcfWriter::Write<int16_t>(int16_t val) {
-#ifdef READER_BIG_ENDIAN
 	SwapByteOrder(val);
-#endif
 	Write(&val, 2, 1);
 }
 
 ////////////////////////////////////////////////////////////
 template <>
 void LcfWriter::Write<uint32_t>(uint32_t val) {
-#ifdef READER_BIG_ENDIAN
 	SwapByteOrder(val);
-#endif
 	Write(&val, 4, 1);
 }
 
@@ -105,9 +97,7 @@ void LcfWriter::Write<bool>(bool val) {
 ////////////////////////////////////////////////////////////
 template <>
 void LcfWriter::Write<double>(double val) {
-#ifdef READER_BIG_ENDIAN
-#warning "Need 64-bit Double byte swap"
-#endif
+	SwapByteOrder(val);
 	Write(&val, 8, 1);
 }
 
@@ -130,25 +120,17 @@ void LcfWriter::Write<uint8_t>(const std::vector<uint8_t>& buffer) {
 ////////////////////////////////////////////////////////////
 template <>
 void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
-#ifdef READER_BIG_ENDIAN
 	std::vector<int16_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
-		Write16(*it);
-#else
-	Write(&buffer.front(), 2, buffer.size());
-#endif
+		Write(*it);
 }
 
 ////////////////////////////////////////////////////////////
 template <>
 void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
-#ifdef READER_BIG_ENDIAN
 	std::vector<uint32_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
-		Write32((uint32_t)*it);
-#else
-	Write(&buffer.front(), 4, buffer.size());
-#endif
+		Write(*it);
 }
 
 ////////////////////////////////////////////////////////////
@@ -173,14 +155,11 @@ std::string LcfWriter::Decode(const std::string& str_to_encode) {
 
 ////////////////////////////////////////////////////////////
 #ifdef READER_BIG_ENDIAN
-void LcfWriter::SwapByteOrder(int16_t& u)
+void LcfWriter::SwapByteOrder(uint16_t& us)
 {
-	uint16_t us = (uint16_t) s;
 	us =	(us >> 8) |
 			(us << 8);
-	s = (int16_t) us;
 }
-
 
 void LcfWriter::SwapByteOrder(uint32_t& ui)
 {
@@ -189,4 +168,23 @@ void LcfWriter::SwapByteOrder(uint32_t& ui)
 			((ui>>8) & 0x0000FF00) |
 			(ui << 24);
 }
+
+void LcfWriter::SwapByteOrder(double& d)
+{
+	uint32_t *p = reinterpret_cast<uint32_t *>(&d);
+	SwapByteOrder(p[0]);
+	SwapByteOrder(p[1]);
+	uint32_t tmp = p[0];
+	p[0] = p[1];
+	p[1] = tmp;
+}
+#else
+void LcfWriter::SwapByteOrder(uint16_t& us) {}
+void LcfWriter::SwapByteOrder(uint32_t& ui) {}
+void LcfWriter::SwapByteOrder(double& d) {}
 #endif
+
+void LcfWriter::SwapByteOrder(int16_t& s)
+{
+	SwapByteOrder((uint16_t&) s);
+}

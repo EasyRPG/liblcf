@@ -106,6 +106,15 @@ public:
 	/// @param ptr : pointer to buffer
 	/// @param size : size of each element
 	/// @param nmemb : number of elements
+	/// @return : number of elements read
+	////////////////////////////////////////////////////////
+	size_t Read0(void *ptr, size_t size, size_t nmemb);
+
+	////////////////////////////////////////////////////////
+	/// Reads raw data from the stream (fread() wrapper)
+	/// @param ptr : pointer to buffer
+	/// @param size : size of each element
+	/// @param nmemb : number of elements
 	////////////////////////////////////////////////////////
 	void Read(void *ptr, size_t size, size_t nmemb);
 
@@ -187,6 +196,8 @@ public:
 	////////////////////////////////////////////////////////
 	/// Skips a Chunk (Seeks chunk_info.length bytes from
 	/// the current stream position).
+	/// In debug builds, dumps the content of the
+	/// skipped chunk to stderr.
 	/// @param chunk_info : Chunk that will be skipped
 	////////////////////////////////////////////////////////
 	void Skip(const struct LcfReader::Chunk& chunk_info);
@@ -218,21 +229,29 @@ private:
 	/// Contains the last set error
 	static std::string error_str;
 
-#ifdef READER_BIG_ENDIAN
 	////////////////////////////////////////////////////////
-	/// Utility function for Big Endian Systems.
-	/// Convert a 16bit integer from little to big endian.
+	/// Convert a 16bit signed integer to/from little-endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
 	static void SwapByteOrder(int16_t &us);
 
 	////////////////////////////////////////////////////////
-	/// Utility function for Big Endian Systems.
-	/// Convert a 32bit integer from little to big endian.
+	/// Convert a 16bit unsigned integer to/from little-endian.
+	/// @param us : Integer to convert
+	////////////////////////////////////////////////////////
+	static void SwapByteOrder(uint16_t &us);
+
+	////////////////////////////////////////////////////////
+	/// Convert a 32bit unsigned integer to/from little-endian.
 	/// @param us : Integer to convert
 	////////////////////////////////////////////////////////
 	static void SwapByteOrder(uint32_t &ui);
-#endif
+
+	////////////////////////////////////////////////////////
+	/// Convert a double to/from little-endian.
+	/// @param us : Double to convert
+	////////////////////////////////////////////////////////
+	static void SwapByteOrder(double &d);
 };
 
 #endif
