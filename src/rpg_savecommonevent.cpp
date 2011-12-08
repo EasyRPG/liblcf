@@ -24,5 +24,5 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveCommonEvent::SaveCommonEvent() {
-	ID = -1;
+	ID = 0;
 }

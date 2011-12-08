@@ -24,7 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SavePicture::SavePicture() {
-	ID = 1;
+	ID = 0;
 	name = "";
 	start_x = 160.0;
 	start_y = 120.0;

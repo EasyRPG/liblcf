@@ -24,7 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveMapEvent::SaveMapEvent() {
-	ID = -1;
+	ID = 0;
 	unknown_01 = -1;
 	map_id = -1;
 	position_x = -1;

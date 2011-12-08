@@ -24,7 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveTarget::SaveTarget() {
-	ID = -1;
+	ID = 0;
 	map_id = -1;
 	map_x = -1;
 	map_y = -1;

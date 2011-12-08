@@ -24,7 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveEventCommands::SaveEventCommands() {
-	ID = -1;
+	ID = 0;
 	commands_size = 0;
 	current_command = -1;
 	unknown_0c = -1;

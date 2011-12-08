@@ -24,7 +24,7 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveActor::SaveActor() {
-	ID = -1;
+	ID = 0;
 	name = "";
 	title = "";
 	sprite_name = "";
