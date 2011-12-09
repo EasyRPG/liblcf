@@ -31,7 +31,7 @@ namespace RPG {
 	public:
 		enum AnimType {
 			AnimType_graphic = 0,
-			AnimType_animation = 0
+			AnimType_animation = 1
 		};
 
 		BattlerAnimationExtension();
