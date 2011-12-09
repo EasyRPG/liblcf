@@ -44,6 +44,27 @@ namespace RPG {
 			Frame_middle = 1,
 			Frame_right = 2
 		};
+		enum MoveType {
+			MoveType_stationary = 0,
+			MoveType_random = 1,
+			MoveType_vertical = 2,
+			MoveType_horizontal = 3,
+			MoveType_toward = 4,
+			MoveType_away = 5,
+			MoveType_custom = 6
+		};
+		enum Trigger {
+			Trigger_action = 0,
+			Trigger_touched = 1,
+			Trigger_collision = 2,
+			Trigger_auto_start = 3,
+			Trigger_parallel = 4
+		};
+		enum Layers {
+			Layers_below = 0,
+			Layers_same = 1,
+			Layers_above = 2
+		};
 		enum AnimType {
 			AnimType_non_continuous = 0,
 			AnimType_continuous = 1,
@@ -59,27 +80,6 @@ namespace RPG {
 			MoveSpeed_normal = 4,
 			MoveSpeed_double = 5,
 			MoveSpeed_fourfold = 6
-		};
-		enum Trigger {
-			Trigger_action = 0,
-			Trigger_touched = 1,
-			Trigger_collision = 2,
-			Trigger_auto_start = 3,
-			Trigger_parallel = 4
-		};
-		enum Layers {
-			Layers_below = 0,
-			Layers_same = 1,
-			Layers_above = 2
-		};
-		enum MoveType {
-			MoveType_stationary = 0,
-			MoveType_random = 1,
-			MoveType_vertical = 2,
-			MoveType_horizontal = 3,
-			MoveType_toward = 4,
-			MoveType_away = 5,
-			MoveType_custom = 6
 		};
 
 		EventPage();

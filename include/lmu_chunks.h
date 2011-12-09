@@ -22,12 +22,56 @@
 /// LMU Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LMU_Reader {
-	struct ChunkData {
+	struct ChunkEventPageCondition {
 		enum Index {
-			END = 0x00 // End of chunk
+			flags				= 0x01, // Bitflag
+			switch_a_id			= 0x02, // Integer
+			switch_b_id			= 0x03, // Integer
+			variable_id			= 0x04, // Integer
+			variable_value		= 0x05, // Integer
+			item_id				= 0x06, // Integer
+			actor_id			= 0x07, // Integer
+			timer_sec			= 0x08, // Integer
+			timer2_sec			= 0x09, // Integer - RPG2003
+			compare_operator	= 0x0A  // Integer - RPG2003
 		};
 	};
-
+	struct ChunkMoveRoute {
+		enum Index {
+			move_commands_size	= 0x0B, // Integer
+			move_commands		= 0x0C, // Array - RPG::MoveCommand
+			repeat				= 0x15, // Flag
+			skippable			= 0x16  // Flag
+		};
+	};
+	struct ChunkEventPage {
+		enum Index {
+			condition			= 0x02, // RPG::EventPageCondition
+			character_name		= 0x15, // String
+			character_index		= 0x16, // Integer
+			character_direction	= 0x17, // Integer
+			character_pattern	= 0x18, // Integer
+			translucent			= 0x19, // Integer
+			move_type			= 0x1F, // Integer
+			move_frequency		= 0x20, // Integer
+			trigger				= 0x21, // Integer
+			priority_type		= 0x22, // Integer
+			overlap				= 0x23, // Flag
+			animation_type		= 0x24, // Integer
+			move_speed			= 0x25, // Integer
+			move_route			= 0x29, // RPG::MoveRoute
+			event_commands_size	= 0x33, // Integer
+			event_commands		= 0x34  // Array - RPG::EventCommand
+		};
+	};
+	struct ChunkEvent {
+		enum Index {
+			name	= 0x01, // String
+			x		= 0x02, // Integer
+			y		= 0x03, // Integer
+			pages	= 0x05  // Array - RPG::EventPage
+		};
+	};
 	struct ChunkMap {
 		enum Index {
 			chipset_id				= 0x01, // Integer
@@ -56,62 +100,11 @@ namespace LMU_Reader {
 			generator_extra_c		= 0x38, // Flag
 			generator_x				= 0x3C, // Uint32 x 9
 			generator_y				= 0x3D, // Uint32 x 9
-			generator_tile_ids		= 0x3E,	// Array - Short
+			generator_tile_ids		= 0x3E, // Array - Short
 			lower_layer				= 0x47, // Array - Short
 			upper_layer				= 0x48, // Array - Short
 			events					= 0x51, // Array - RPG::Event
 			save_times				= 0x5B  // Integer
-		};
-	};
-	struct ChunkEvent {
-		enum Index {
-			name	= 0x01, // String
-			x		= 0x02, // Integer
-			y		= 0x03, // Integer
-			//???	= 0x04, // ???
-			pages	= 0x05	// Array - RPG::EventPage
-		};
-	};
-	struct ChunkEventPage {
-		enum Index {
-			condition			= 0x02, // RPG::EventPageCondition
-			character_name		= 0x15, // String
-			character_index		= 0x16, // Integer
-			character_direction	= 0x17, // Integer
-			character_pattern	= 0x18, // Integer
-			translucent			= 0x19, // Integer
-			move_type			= 0x1F, // Integer
-			move_frequency		= 0x20, // Integer
-			trigger				= 0x21, // Integer
-			priority_type		= 0x22, // Integer
-			overlap				= 0x23, // Flag
-			animation_type		= 0x24, // Integer
-			move_speed			= 0x25, // Integer
-			move_route			= 0x29, // RPG::MoveRoute
-			event_commands_size = 0x33, // Integer
-			event_commands		= 0x34	// Array - RPG::EventCommand
-		};
-	};
-	struct ChunkEventPageCondition {
-		enum Index {
-			flags			= 0x01, // Bitflag
-			switch_a_id		= 0x02, // Integer
-			switch_b_id		= 0x03, // Integer
-			variable_id		= 0x04, // Integer
-			variable_value	= 0x05, // Integer
-			item_id			= 0x06, // Integer
-			actor_id		= 0x07, // Integer
-			timer_sec		= 0x08, // Integer
-			timer2_sec		= 0x09, // Integer - RPG2003
-			compare_operator= 0x0A	// Integer - RPG2003
-		};
-	};
-	struct ChunkMoveRoute {
-		enum Index {
-			move_commands_size	= 0x0B, // Integer
-			move_commands		= 0x0C, // Array - RPG::MoveCommand
-			repeat				= 0x15, // Flag
-			skippable			= 0x16	// Flag
 		};
 	};
 }

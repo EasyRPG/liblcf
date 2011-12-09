@@ -22,39 +22,20 @@
 /// LSD Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LSD_Reader {
-	struct ChunkSave {
-		enum Index {
-			title				= 0x64, // RPG::SaveTitle
-			system				= 0x65, // RPG::SaveSystem
-			screen				= 0x66, // RPG::SaveScreen
-			pictures			= 0x67, // array of RPG::SavePicture
-			party_location		= 0x68, // RPG::SavePartyLocation
-			boat_location		= 0x69, // RPG::SaveVehicleLocation
-			ship_location		= 0x6A, // RPG::SaveVehicleLocation
-			airship_location	= 0x6B, // RPG::SaveVehicleLocation
-			actors				= 0x6C, // array of RPG::SaveActor
-			inventory			= 0x6D, // RPG::SaveInventory
-			targets				= 0x6E, // array of RPG::SaveTarget
-			map_info			= 0x6F, // RPG::SaveMapInfo
-			unknown_70			= 0x70, // ? chunks?
-			events				= 0x71, // RPG::SaveEvents
-			common_events		= 0x72  // array of RPG::SaveCommonEvent
-		};
-	};
 	struct ChunkSaveTitle {
 		enum Index {
-			timestamp		= 0x01, // double(?)
-			hero_name		= 0x0B, // char[]: hero name
-			hero_level		= 0x0C, // int: hero level
-			hero_hp			= 0x0D, // int: hero HP
-			face1_name		= 0x15, // char[]: face filename
-			face1_id		= 0x16, // int: face id
-			face2_name		= 0x17, // char[]: face filename
-			face2_id		= 0x18, // int: face id
-			face3_name		= 0x19, // char[]: face filename
-			face3_id		= 0x1A, // int: face id
-			face4_name		= 0x1B, // char[]: face filename
-			face4_id		= 0x1C  // int: face id
+			timestamp	= 0x01, // double(?)
+			hero_name	= 0x0B, // char[]: hero name
+			hero_level	= 0x0C, // int: hero level
+			hero_hp		= 0x0D, // int: hero HP
+			face1_name	= 0x15, // char[]: face filename
+			face1_id	= 0x16, // int: face id
+			face2_name	= 0x17, // char[]: face filename
+			face2_id	= 0x18, // int: face id
+			face3_name	= 0x19, // char[]: face filename
+			face3_id	= 0x1A, // int: face id
+			face4_name	= 0x1B, // char[]: face filename
+			face4_id	= 0x1C  // int: face id
 		};
 	};
 	struct ChunkSaveSystem {
@@ -67,9 +48,9 @@ namespace LSD_Reader {
 			variables_size			= 0x21, // 
 			variables				= 0x22, // 
 			message_transparent		= 0x29, // 
-			message_position		= 0x2a, // 
-			message_placement		= 0x2b, // 
-			message_continue		= 0x2c, // 
+			message_position		= 0x2A, // 
+			message_placement		= 0x2B, // 
+			message_continue		= 0x2C, // 
 			face_name				= 0x33, // 
 			face_id					= 0x34, // 
 			face_right				= 0x35, // bool
@@ -112,7 +93,7 @@ namespace LSD_Reader {
 			menu_allowed			= 0x7C, // 
 			background				= 0x7D, // string
 			save_count				= 0x83, // 
-			save_slot				= 0x84  //
+			save_slot				= 0x84  // 
 		};
 	};
 	struct ChunkSaveScreen {
@@ -193,11 +174,11 @@ namespace LSD_Reader {
 			unknown_23			= 0x23, // ?
 			unknown_25			= 0x25, // ?
 			move_route			= 0x29, // chunks: RPG::MoveRoute
-			unknown_2a			= 0x2A, // ? 
-			unknown_2b			= 0x2B, // ? 
+			unknown_2a			= 0x2A, // ?
+			unknown_2b			= 0x2B, // ?
 			unknown_2c			= 0x2C, // ?
 			sprite_transparent	= 0x2E, // bool
-			unknown_2f			= 0x2F, // ? 
+			unknown_2f			= 0x2F, // ?
 			unknown_33			= 0x33, // ?
 			unknown_34			= 0x34, // ?
 			unknown_35			= 0x35, // ?
@@ -234,15 +215,15 @@ namespace LSD_Reader {
 			unknown_23		= 0x23, // ?
 			unknown_25		= 0x25, // ?
 			move_route		= 0x29, // chunks: RPG::MoveRoute
-			unknown_2a		= 0x2a, // ?
-			unknown_2b		= 0x2b, // ?
+			unknown_2a		= 0x2A, // ?
+			unknown_2b		= 0x2B, // ?
 			unknown_34		= 0x34, // ?
 			unknown_35		= 0x35, // ?
 			unknown_36		= 0x36, // ?
 			sprite_name		= 0x49, // ?
 			sprite_id		= 0x4A, // ?
 			unknown_4b		= 0x4B, // ?
-			unknown_65		= 0x65, // ? 
+			unknown_65		= 0x65, // ?
 			sprite2_name	= 0x6F, // string
 			sprite2_id		= 0x70  // int
 		};
@@ -282,7 +263,6 @@ namespace LSD_Reader {
 			unknown_60		= 0x60  // ?
 		};
 	};
-
 	struct ChunkSaveInventory {
 		enum Index {
 			party_size		= 0x01, // ?
@@ -308,22 +288,33 @@ namespace LSD_Reader {
 			steps			= 0x2A  // ?
 		};
 	};
-	struct ChunkSaveMapInfo {
+	struct ChunkSaveTarget {
 		enum Index {
-			pan_x				= 0x01, // int
-			pan_y				= 0x02, // int
-			encounter_rate		= 0x03, // int
-			chipset_id			= 0x05, // int
-			events				= 0x0B, // ? array
-			lower_tiles			= 0x15, // ? [00 01 02 ... 8E 8F]
-			upper_tiles			= 0x16, //
-			parallax_name		= 0x20, // string
-			parallax_horz		= 0x21, // bool
-			parallax_vert		= 0x22, // bool
-			parallax_horz_auto	= 0x23, // bool
-			parallax_horz_speed	= 0x24, // int
-			parallax_vert_auto	= 0x25, // bool
-			parallax_vert_speed	= 0x26  // int
+			map_id		= 0x01, // int
+			map_x		= 0x02, // int
+			map_y		= 0x03, // int
+			switch_on	= 0x04, // bool
+			switch_id	= 0x05  // int
+		};
+	};
+	struct ChunkSaveEventCommands {
+		enum Index {
+			commands_size	= 0x01, // int
+			commands		= 0x02, // event command list
+			current_command	= 0x0B, // int
+			unknown_0c		= 0x0C, // int
+			unknown_0d		= 0x0D, // int
+			unknown_15		= 0x15, // byte
+			unknown_16		= 0x16  // byte
+		};
+	};
+	struct ChunkSaveEventData {
+		enum Index {
+			commands	= 0x01, // array
+			unknown_16	= 0x16, // 
+			unknown_17	= 0x17, // 
+			time_left	= 0x1F, // int
+			unknown_20	= 0x20  // 
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -368,51 +359,59 @@ namespace LSD_Reader {
 			event_data			= 0x6C  // chunks
 		};
 	};
-	struct ChunkSaveEventData {
+	struct ChunkSaveMapInfo {
 		enum Index {
-			commands		= 0x01, // array
-			unknown_16		= 0x16, // 
-			unknown_17		= 0x17, // 
-			time_left		= 0x1F, // int
-			unknown_20		= 0x20  // 
-		};
-	};
-	struct ChunkSaveEventCommands {
-		enum Index {
-			commands_size	= 0x01,	// int
-			commands		= 0x02,	// event command list
-			current_command	= 0x0B,	// int
-			unknown_0c		= 0x0C,	// int
-			unknown_0d		= 0x0D,	// int
-			unknown_15		= 0x15,	// byte
-			unknown_16		= 0x16	// byte
-		};
-	};
-	struct ChunkSaveCommonEvent {
-		enum Index {
-			event_data		= 0x01	// chunks
+			pan_x				= 0x01, // int
+			pan_y				= 0x02, // int
+			encounter_rate		= 0x03, // int
+			chipset_id			= 0x05, // int
+			events				= 0x0B, // ? array
+			lower_tiles			= 0x15, // ? [00 01 02 ... 8E 8F]
+			upper_tiles			= 0x16, // 
+			parallax_name		= 0x20, // string
+			parallax_horz		= 0x21, // bool
+			parallax_vert		= 0x22, // bool
+			parallax_horz_auto	= 0x23, // bool
+			parallax_horz_speed	= 0x24, // int
+			parallax_vert_auto	= 0x25, // bool
+			parallax_vert_speed	= 0x26  // int
 		};
 	};
 	struct ChunkSaveEvents {
 		enum Index {
-			events			= 0x01,	// array
-			events_size		= 0x04,	// int
-			unknown_16		= 0x16, // int
-			unknown_17		= 0x17, // int
-			unknown_18		= 0x18, // int
-			unknown_1c		= 0x1C, // int/bool
-			unknown_20		= 0x20, // int/bool
-			unknown_24		= 0x24, // int/bool
-			unknown_25		= 0x25  // int/bool
+			events		= 0x01, // array
+			events_size	= 0x04, // int
+			unknown_16	= 0x16, // int
+			unknown_17	= 0x17, // int
+			unknown_18	= 0x18, // int
+			unknown_1c	= 0x1C, // int/bool
+			unknown_20	= 0x20, // int/bool
+			unknown_24	= 0x24, // int/bool
+			unknown_25	= 0x25  // int/bool
 		};
 	};
-	struct ChunkSaveTarget {
+	struct ChunkSaveCommonEvent {
 		enum Index {
-			map_id			= 0x01, // int
-			map_x			= 0x02, // int
-			map_y			= 0x03, // int
-			switch_on		= 0x04, // bool
-			switch_id		= 0x05  // int
+			event_data	= 0x01  // chunks
+		};
+	};
+	struct ChunkSave {
+		enum Index {
+			title				= 0x64, // RPG::SaveTitle
+			system				= 0x65, // RPG::SaveSystem
+			screen				= 0x66, // RPG::SaveScreen
+			pictures			= 0x67, // array of RPG::SavePicture
+			party_location		= 0x68, // RPG::SavePartyLocation
+			boat_location		= 0x69, // RPG::SaveVehicleLocation
+			ship_location		= 0x6A, // RPG::SaveVehicleLocation
+			airship_location	= 0x6B, // RPG::SaveVehicleLocation
+			actors				= 0x6C, // array of RPG::SaveActor
+			inventory			= 0x6D, // RPG::SaveInventory
+			targets				= 0x6E, // array of RPG::SaveTarget
+			map_info			= 0x6F, // RPG::SaveMapInfo
+			unknown_70			= 0x70, // ? chunks?
+			events				= 0x71, // RPG::SaveEvents
+			common_events		= 0x72  // array of RPG::SaveCommonEvent
 		};
 	};
 }

@@ -22,31 +22,10 @@
 /// LDB Reader namespace
 ////////////////////////////////////////////////////////////
 namespace LDB_Reader {
-	struct ChunkDatabase {
+	struct ChunkLearning {
 		enum Index {
-			actors				= 0x0B, // RPG::Actor
-			skills				= 0x0C, // RPG::Skill
-			items				= 0x0D, // RPG::Item
-			enemies				= 0x0E, // RPG::Enemy
-			troops				= 0x0F, // RPG::Troop
-			terrains			= 0x10, // RPG::Terrain
-			attributes			= 0x11, // RPG::Attribute
-			states				= 0x12, // RPG::State
-			animations			= 0x13, // RPG::Animation
-			chipsets			= 0x14, // RPG::Chipset
-			terms				= 0x15, // RPG::Terms
-			system				= 0x16, // RPG::System
-			switches			= 0x17, // RPG::Switchs
-			variables			= 0x18, // RPG::Variables
-			commonevents		= 0x19, // RPG::CommonEvent
-			commoneventD1		= 0x1A, // Duplicated? - Not used - RPG2003
-			commoneventD2		= 0x1B, // Duplicated? - Not used - RPG2003
-			commoneventD3		= 0x1C, // Duplicated? - Not used - RPG2003
-			classD1				= 0x1F, // Duplicated? - Not used - RPG2003
-			battlecommands		= 0x1D, // RPG::BattleCommand - RPG2003
-			classes				= 0x1E, // RPG::Class - RPG2003
-			battleranimations	= 0x20, // RPG::BattlerAnimation - RPG2003
-			END					= 0x00	// End of chunk
+			level		= 0x01, // Integer
+			skill_id	= 0x02  // Integer
 		};
 	};
 	struct ChunkActor {
@@ -83,13 +62,157 @@ namespace LDB_Reader {
 			state_ranks				= 0x48, // Array - Short
 			attribute_ranks_size	= 0x49, // Integer
 			attribute_ranks			= 0x4A, // Array - Short
-			battle_commands			= 0x50	// Array - RPG::BattleCommand - RPG2003
+			battle_commands			= 0x50  // Array - RPG::BattleCommand - RPG2003
 		};
 	};
-	struct ChunkLearning {
+	struct ChunkSound {
 		enum Index {
-			level		= 0x01, // Integer
-			skill_id	= 0x02	// Integer
+			name	= 0x01, // String
+			volume	= 0x03, // Integer
+			tempo	= 0x04, // Integer
+			balance	= 0x05  // Integer
+		};
+	};
+	struct ChunkAnimationTiming {
+		enum Index {
+			frame			= 0x01, // Integer
+			se				= 0x02, // RPG::Sound
+			flash_scope		= 0x03, // Integer
+			flash_red		= 0x04, // Integer
+			flash_green		= 0x05, // Integer
+			flash_blue		= 0x06, // Integer
+			flash_power		= 0x07, // Integer
+			screen_shake	= 0x08  // Integer - RPG2003 - TODO: Get chunk id
+		};
+	};
+	struct ChunkAnimationCellData {
+		enum Index {
+			priority		= 0x01, // Bool - TODO: Needs confirmation
+			cell_id			= 0x02, // Integer
+			x				= 0x03, // Integer
+			y				= 0x04, // Integer
+			zoom			= 0x05, // Integer
+			tone_red		= 0x06, // Integer
+			tone_green		= 0x07, // Integer
+			tone_blue		= 0x08, // Integer
+			tone_gray		= 0x09, // Integer
+			transparency	= 0x0A  // Integer
+		};
+	};
+	struct ChunkAnimationFrame {
+		enum Index {
+			cells	= 0x01  // Array - RPG::AnimationCellData
+		};
+	};
+	struct ChunkAnimation {
+		enum Index {
+			name			= 0x01, // String
+			animation_name	= 0x02, // String
+			timings			= 0x06, // Array - RPG::AnimationTiming
+			scope			= 0x09, // Integer
+			position		= 0x0A, // Integer
+			frames			= 0x0C  // Array - RPG::AnimationFrames
+		};
+	};
+	struct ChunkAttribute {
+		enum Index {
+			name	= 0x01, // String
+			type	= 0x02, // Integer
+			a_rate	= 0x0B, // Integer
+			b_rate	= 0x0C, // Integer
+			c_rate	= 0x0D, // Integer
+			d_rate	= 0x0E, // Integer
+			e_rate	= 0x0F  // Integer
+		};
+	};
+	struct ChunkBattleCommand {
+		enum Index {
+			name	= 0x01, // String
+			type	= 0x02  // Integer
+		};
+	};
+	struct ChunkBattleCommands {
+		enum Index {
+			placement		= 0x02, // Integer
+			death_handler1	= 0x04, // Integer
+			row				= 0x06, // Integer
+			battle_type		= 0x07, // Integer
+			unknown1		= 0x09, // Integer
+			commands		= 0x0A, // Array - RPG::BattleCommand
+			death_handler2	= 0x0F, // Integer
+			death_event		= 0x10, // Integer
+			window_size		= 0x14, // Integer
+			transparency	= 0x18, // Integer
+			teleport		= 0x19, // Integer
+			teleport_id		= 0x1A, // Integer
+			teleport_x		= 0x1B, // Integer
+			teleport_y		= 0x1C, // Integer
+			teleport_face	= 0x1D  // Integer
+		};
+	};
+	struct ChunkBattlerAnimationExtension {
+		enum Index {
+			name			= 0x01, // String
+			battler_name	= 0x02, // String
+			battler_index	= 0x03, // Integer
+			animation_type	= 0x04, // Integer
+			animation_id	= 0x05  // Integer
+		};
+	};
+	struct ChunkBattlerAnimation {
+		enum Index {
+			name		= 0x01, // String
+			speed		= 0x02, // Integer
+			base_data	= 0x0A, // Array - RPG::BattlerAnimationExtension
+			weapon_data	= 0x0B  // Array - RPG::BattlerAnimationExtension
+		};
+	};
+	struct ChunkBattlerAnimationData {
+		enum Index {
+			move		= 0x05, // Integer
+			after_image	= 0x06, // Integer
+			pose		= 0x0E  // Integer
+		};
+	};
+	struct ChunkChipset {
+		enum Index {
+			name				= 0x01, // String
+			chipset_name		= 0x02, // String
+			terrain_data		= 0x03, // Array - Short x 162
+			passable_data_lower	= 0x04, // Array - Bitflag x 162
+			passable_data_upper	= 0x05, // Array - Bitflag x 144
+			animation_type		= 0x0B, // Integer
+			animation_speed		= 0x0C  // Integer
+		};
+	};
+	struct ChunkClass {
+		enum Index {
+			name					= 0x01, // String
+			two_swords_style		= 0x15, // Flag
+			fix_equipment			= 0x16, // Flag
+			auto_battle				= 0x17, // Flag
+			super_guard				= 0x18, // Flag
+			parameters				= 0x1F, // Array x 6 - Short
+			exp_base				= 0x29, // Integer
+			exp_inflation			= 0x2A, // Integer
+			exp_correction			= 0x2B, // Integer
+			unarmed_animation		= 0x3E, // Integer
+			skills					= 0x3F, // Array - RPG::Learning
+			state_ranks_size		= 0x47, // Integer
+			state_ranks				= 0x48, // Array - Short
+			attribute_ranks_size	= 0x49, // Integer
+			attribute_ranks			= 0x4A, // Array - Short
+			battle_commands			= 0x50  // Array - Uint32
+		};
+	};
+	struct ChunkCommonEvent {
+		enum Index {
+			name				= 0x01, // String
+			trigger				= 0x0B, // Integer
+			switch_flag			= 0x0C, // Flag
+			switch_id			= 0x0D, // Integer
+			event_commands_size	= 0x15, // Integer
+			event_commands		= 0x16  // Array - RPG::EventCommand
 		};
 	};
 	struct ChunkSkill {
@@ -129,7 +252,20 @@ namespace LDB_Reader {
 			attribute_effects		= 0x2C, // Array - Flag
 			affect_attr_defence		= 0x2D, // Flag
 			battler_animation		= 0x31, // Integer - RPG2003
-			battler_animation_data	= 0x32	// ? - RPG2003
+			battler_animation_data	= 0x32  // ? - RPG2003
+		};
+	};
+	struct ChunkItemAnimation {
+		enum Index {
+			type			= 0x03, // 
+			weapon_anim		= 0x04, // 
+			movement		= 0x05, // 
+			after_image		= 0x06, // 
+			attacks			= 0x07, // 
+			ranged			= 0x08, // 
+			ranged_anim		= 0x09, // 
+			ranged_speed	= 0x0C, // 
+			battle_anim		= 0x0D  // 
 		};
 	};
 	struct ChunkItem {
@@ -192,17 +328,21 @@ namespace LDB_Reader {
 			ranged_target		= 0x4C  // Integer
 		};
 	};
-	struct ChunkItemAnimation {
+	struct ChunkEnemyAction {
 		enum Index {
-			type				= 0x03,
-			weapon_anim			= 0x04,
-			movement			= 0x05,
-			after_image			= 0x06,
-			attacks				= 0x07,
-			ranged				= 0x08,
-			ranged_anim			= 0x09,
-			ranged_speed		= 0x0c,
-			battle_anim			= 0x0d
+			kind				= 0x01, // Integer
+			basic				= 0x02, // Integer
+			skill_id			= 0x03, // Integer
+			enemy_id			= 0x04, // Integer
+			condition_type		= 0x05, // Integer
+			condition_param1	= 0x06, // Integer
+			condition_param2	= 0x07, // Integer
+			switch_id			= 0x08, // Integer
+			switch_on			= 0x09, // Flag
+			switch_on_id		= 0x0A, // Integer
+			switch_off			= 0x0B, // Flag
+			switch_off_id		= 0x0C, // Integer
+			rating				= 0x0D  // Integer
 		};
 	};
 	struct ChunkEnemy {
@@ -229,33 +369,7 @@ namespace LDB_Reader {
 			state_ranks				= 0x20, // Array - Short
 			attribute_ranks_size	= 0x21, // Integer
 			attribute_ranks			= 0x22, // Array - Short
-			actions					= 0x2A	// Array - RPG::EnemyAction
-		};
-	};
-	struct ChunkEnemyAction {
-		enum Index {
-			kind				= 0x01, // Integer
-			basic				= 0x02, // Integer
-			skill_id			= 0x03, // Integer
-			enemy_id			= 0x04, // Integer
-			condition_type		= 0x05, // Integer
-			condition_param1	= 0x06, // Integer
-			condition_param2	= 0x07, // Integer
-			switch_id			= 0x08, // Integer
-			switch_on			= 0x09, // Flag
-			switch_on_id		= 0x0A, // Integer
-			switch_off			= 0x0B, // Flag
-			switch_off_id		= 0x0C, // Integer
-			rating				= 0x0D	// Integer
-		};
-	};
-	struct ChunkTroop {
-		enum Index {
-			name				= 0x01, // String
-			members				= 0x02, // Array - RPG::TroopMember
-			terrain_set_size	= 0x04, // Integer
-			terrain_set			= 0x05, // Array - Flag
-			pages				= 0x0B	// Array - RPG::TroopPage
+			actions					= 0x2A  // Array - RPG::EnemyAction
 		};
 	};
 	struct ChunkTroopMember {
@@ -263,17 +377,10 @@ namespace LDB_Reader {
 			enemy_id	= 0x01, // Integer
 			x			= 0x02, // Integer
 			y			= 0x03, // Integer
-			invisible	= 0x04	// Flag
+			invisible	= 0x04  // Flag
 		};
 	};
-	struct ChunkTroopPage {
-		enum Index {
-			condition			= 0x02, // RPG::TroopPageCondition
-			event_commands_size	= 0x0B, // Integer
-			event_commands		= 0x0C	// Array - RPG::EventCommand
-		};
-	};
-	struct ChunkTroopPageCondition { // TODO - Get RPG2003 unknown chunks id
+	struct ChunkTroopPageCondition {
 		enum Index {
 			flags				= 0x01, // Bitflag - x 2 if RPG2003
 			switch_a_id			= 0x02, // Integer
@@ -289,7 +396,7 @@ namespace LDB_Reader {
 			enemy_hp_max		= 0x0C, // Integer
 			actor_id			= 0x0D, // Integer
 			actor_hp_min		= 0x0E, // Integer
-			actor_hp_max		= 0x0F,	// Integer
+			actor_hp_max		= 0x0F, // Integer
 			turn_enemy_id		= 0x10, // Integer - RPG2003
 			turn_enemy_a		= 0x11, // Integer - RPG2003
 			turn_enemy_b		= 0x12, // Integer - RPG2003
@@ -297,10 +404,26 @@ namespace LDB_Reader {
 			turn_actor_a		= 0x14, // Integer - RPG2003
 			turn_actor_b		= 0x15, // Integer - RPG2003
 			command_actor_id	= 0x16, // Integer - RPG2003
-			command_id			= 0x17	// Integer - RPG2003
+			command_id			= 0x17  // Integer - RPG2003
 		};
 	};
-	struct ChunkTerrain { // TODO - Get RPG2003 unknown chunks id
+	struct ChunkTroopPage {
+		enum Index {
+			condition			= 0x02, // RPG::TroopPageCondition
+			event_commands_size	= 0x0B, // Integer
+			event_commands		= 0x0C  // Array - RPG::EventCommand
+		};
+	};
+	struct ChunkTroop {
+		enum Index {
+			name				= 0x01, // String
+			members				= 0x02, // Array - RPG::TroopMember
+			terrain_set_size	= 0x04, // Integer
+			terrain_set			= 0x05, // Array - Flag
+			pages				= 0x0B  // Array - RPG::TroopPage
+		};
+	};
+	struct ChunkTerrain {
 		enum Index {
 			name						= 0x01, // String
 			damage						= 0x02, // Integer
@@ -333,18 +456,7 @@ namespace LDB_Reader {
 			grid_location				= 0x2D, // Integer - RPG2003
 			grid_a						= 0x2E, // Integer - RPG2003
 			grid_b						= 0x2F, // Integer - RPG2003
-			grid_c						= 0x30	// Integer - RPG2003
-		};
-	};
-	struct ChunkAttribute {
-		enum Index {
-			name	= 0x01, // String
-			type	= 0x02, // Integer
-			a_rate	= 0x0B, // Integer
-			b_rate	= 0x0C, // Integer
-			c_rate	= 0x0D, // Integer
-			d_rate	= 0x0E, // Integer
-			e_rate	= 0x0F	// Integer
+			grid_c						= 0x30  // Integer - RPG2003
 		};
 	};
 	struct ChunkState {
@@ -390,59 +502,7 @@ namespace LDB_Reader {
 			sp_change_max			= 0x41, // Integer
 			sp_change_val			= 0x42, // Integer
 			sp_change_map_val		= 0x43, // Integer
-			sp_change_map_steps		= 0x44	// Integer
-		};
-	};
-	struct ChunkAnimation {
-		enum Index {
-			name			= 0x01, // String
-			animation_name	= 0x02, // String
-			timings			= 0x06, // Array - RPG::AnimationTiming
-			scope			= 0x09, // Integer
-			position		= 0x0A, // Integer
-			frames			= 0x0C	// Array - RPG::AnimationFrames
-		};
-	};
-	struct ChunkAnimationTiming {
-		enum Index {
-			frame			= 0x01, // Integer
-			se				= 0x02, // RPG::Sound
-			flash_scope		= 0x03, // Integer
-			flash_red		= 0x04, // Integer
-			flash_green		= 0x05, // Integer
-			flash_blue		= 0x06, // Integer
-			flash_power		= 0x07,	// Integer
-			screen_shake	= 0x08  // Integer - RPG2003 - TODO: Get chunk id
-		};
-	};
-	struct ChunkAnimationFrame {
-		enum Index {
-			cells	= 0x01 // Array - RPG::AnimationCellData
-		};
-	};
-	struct ChunkAnimationCellData {
-		enum Index {
-			priority		= 0x01, // Bool - TODO: Needs confirmation
-			cell_id			= 0x02, // Integer
-			x				= 0x03, // Integer
-			y				= 0x04, // Integer
-			zoom			= 0x05, // Integer
-			tone_red		= 0x06, // Integer
-			tone_green		= 0x07, // Integer
-			tone_blue		= 0x08, // Integer
-			tone_gray		= 0x09, // Integer
-			transparency	= 0x0A	// Integer
-		};
-	};
-	struct ChunkChipset {
-		enum Index {
-			name				= 0x01, // String
-			chipset_name		= 0x02, // String
-			terrain_data		= 0x03, // Array - Short x 162
-			passable_data_lower	= 0x04, // Array - Bitflag x 162
-			passable_data_upper	= 0x05, // Array - Bitflag x 144
-			animation_type		= 0x0B, // Integer
-			animation_speed		= 0x0C	// Integer
+			sp_change_map_steps		= 0x44  // Integer
 		};
 	};
 	struct ChunkTerms {
@@ -573,17 +633,27 @@ namespace LDB_Reader {
 			file				= 0x94, // String
 			exit_game_message	= 0x97, // String
 			yes					= 0x98, // String
-			no					= 0x99	// String
+			no					= 0x99  // String
 		};
 	};
-	struct ChunkCommonEvent {
+	struct ChunkMusic {
 		enum Index {
-			name				= 0x01, // String
-			trigger				= 0x0B, // Integer
-			switch_flag			= 0x0C, // Flag
-			switch_id			= 0x0D, // Integer
-			event_commands_size	= 0x15, // Integer
-			event_commands		= 0x16	// Array - RPG::EventCommand
+			name	= 0x01, // String
+			fadein	= 0x02, // Integer
+			volume	= 0x03, // Integer
+			tempo	= 0x04, // Integer
+			balance	= 0x05  // Integer
+		};
+	};
+	struct ChunkTestBattler {
+		enum Index {
+			actor_id		= 0x01, // Integer
+			level			= 0x02, // Integer
+			weapon_id		= 0x0B, // Integer
+			shield_id		= 0x0C, // Integer
+			armor_id		= 0x0D, // Integer
+			helmet_id		= 0x0E, // Integer
+			accessory_id	= 0x0F  // Integer
 		};
 	};
 	struct ChunkSystem {
@@ -639,117 +709,45 @@ namespace LDB_Reader {
 			battletest_terrain		= 0x5E, // Integer
 			battletest_formation	= 0x5F, // Integer
 			battletest_condition	= 0x60, // Integer
-			//???					= 0x61, // ???
 			show_frame				= 0x63, // Flag - RPG2003
 			frame_name				= 0x64, // String - RPG2003
-			invert_animations		= 0x65	// Flag - RPG2003
-		};
-	};
-	struct ChunkTestBattler {
-		enum Index {
-			actor_id		= 0x01, // Integer
-			level			= 0x02, // Integer
-			weapon_id		= 0x0B, // Integer
-			shield_id		= 0x0C, // Integer
-			armor_id		= 0x0D, // Integer
-			helmet_id		= 0x0E, // Integer
-			accessory_id	= 0x0F	// Integer
-		};
-	};
-	struct ChunkBattleCommand {
-		enum Index {
-			name	= 0x01, // String
-			type	= 0x02	// Integer
-		};
-	};
-	struct ChunkBattleCommands {
-		enum Index {
-			placement		= 0x02,	// Integer
-			death_handler1	= 0x04,	// Integer
-			row				= 0x06,	// Integer
-			battle_type		= 0x07,	// Integer
-			unknown1		= 0x09,	// Integer
-			commands 		= 0x0A, // Array - RPG::BattleCommand
-			death_handler2	= 0x0F,	// Integer
-			death_event  	= 0x10,	// Integer
-			window_size		= 0x14, // Integer
-			transparency	= 0x18,	// Integer
-			teleport		= 0x19,	// Integer
-			teleport_id		= 0x1A,	// Integer
-			teleport_x		= 0x1B,	// Integer
-			teleport_y		= 0x1C,	// Integer
-			teleport_face	= 0x1D	// Integer
-		};
-	};
-	struct ChunkBattlerAnimation {
-		enum Index {
-			name		= 0x01, // String
-			speed		= 0x02, // Integer
-			base_data	= 0x0A, // Array - RPG::BattlerAnimationExtension
-			weapon_data	= 0x0B	// Array - RPG::BattlerAnimationExtension
-		};
-	};
-	struct ChunkBattlerAnimationData {
-		enum Index { // RPG2k3
-			move		= 0x05,	// Integer
-			after_image	= 0x06,	// Integer
-			pose		= 0x0E	// Integer
-		};
-	};
-	struct ChunkBattlerAnimationExtension {
-		enum Index {
-			name			= 0x01, // String
-			battler_name	= 0x02, // String
-			battler_index	= 0x03, // Integer
-			animation_type	= 0x04, // Integer
-			animation_id	= 0x05	// Integer
-		};
-	};
-	struct ChunkClass {
-		enum Index {
-			name					= 0x01, // String
-			two_swords_style		= 0x15, // Flag
-			fix_equipment			= 0x16, // Flag
-			auto_battle				= 0x17, // Flag
-			super_guard				= 0x18, // Flag
-			parameters				= 0x1F, // Array x 6 - Short
-			exp_base				= 0x29, // Integer
-			exp_inflation			= 0x2A, // Integer
-			exp_correction			= 0x2B, // Integer
-			unarmed_animation		= 0x3E, // Integer
-			skills					= 0x3F, // Array - RPG::Learning
-			state_ranks_size		= 0x47, // Integer
-			state_ranks				= 0x48, // Array - Short
-			attribute_ranks_size	= 0x49, // Integer
-			attribute_ranks			= 0x4A, // Array - Short
-			battle_commands			= 0x50	// Array - Uint32
-		};
-	};
-	struct ChunkMusic {
-		enum Index {
-			name	= 0x01, // String
-			fadein	= 0x02, // Integer
-			volume	= 0x03, // Integer
-			tempo	= 0x04, // Integer
-			balance	= 0x05	// Integer
-		};
-	};
-	struct ChunkSound {
-		enum Index {
-			name	= 0x01, // String
-			volume	= 0x03, // Integer
-			tempo	= 0x04, // Integer
-			balance	= 0x05	// Integer
+			invert_animations		= 0x65  // Flag - RPG2003
 		};
 	};
 	struct ChunkSwitch {
 		enum Index {
-			name	= 0x01 // String
+			name	= 0x01  // String
 		};
 	};
 	struct ChunkVariable {
 		enum Index {
-			name	= 0x01 // String
+			name	= 0x01  // String
+		};
+	};
+	struct ChunkDatabase {
+		enum Index {
+			actors				= 0x0B, // RPG::Actor
+			skills				= 0x0C, // RPG::Skill
+			items				= 0x0D, // RPG::Item
+			enemies				= 0x0E, // RPG::Enemy
+			troops				= 0x0F, // RPG::Troop
+			terrains			= 0x10, // RPG::Terrain
+			attributes			= 0x11, // RPG::Attribute
+			states				= 0x12, // RPG::State
+			animations			= 0x13, // RPG::Animation
+			chipsets			= 0x14, // RPG::Chipset
+			terms				= 0x15, // RPG::Terms
+			system				= 0x16, // RPG::System
+			switches			= 0x17, // RPG::Switchs
+			variables			= 0x18, // RPG::Variables
+			commonevents		= 0x19, // RPG::CommonEvent
+			commoneventD1		= 0x1A, // Duplicated? - Not used - RPG2003
+			commoneventD2		= 0x1B, // Duplicated? - Not used - RPG2003
+			commoneventD3		= 0x1C, // Duplicated? - Not used - RPG2003
+			battlecommands		= 0x1D, // RPG::BattleCommand - RPG2003
+			classes				= 0x1E, // RPG::Class - RPG2003
+			classD1				= 0x1F, // Duplicated? - Not used - RPG2003
+			battleranimations	= 0x20  // RPG::BattlerAnimation - RPG2003
 		};
 	};
 }
