@@ -26,16 +26,20 @@
 RPG::Skill::Skill() {
 	ID = 0;
 	name = "";
-	type = 0;
-	sp_type = 0;
-	sp_cost = 0;
-	sp_percent = 1;
 	description = "";
-	scope = 0;
-	animation_id = 0;
 	using_message1 = "";
 	using_message2 = "";
 	failure_message = 0;
+	type = 0;
+	sp_type = 0;
+	sp_percent = 1;
+	sp_cost = 0;
+	scope = 0;
+	switch_id = 1;
+	animation_id = 0;
+	occasion_field = true;
+	occasion_battle = false;
+	state_effect = false;
 	pdef_f = 0;
 	mdef_f = 3;
 	variance = 4;
@@ -49,10 +53,6 @@ RPG::Skill::Skill() {
 	affect_agility = false;
 	absorb_damage = false;
 	ignore_defense = false;
-	state_effect = false;
 	affect_attr_defence = false;
 	battler_animation = 1;
-	switch_id = 1;
-	occasion_field = true;
-	occasion_battle = false;
 }

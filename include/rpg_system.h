@@ -24,8 +24,8 @@
 #include <string>
 #include <vector>
 #include "reader_types.h"
-#include "rpg_sound.h"
 #include "rpg_music.h"
+#include "rpg_sound.h"
 #include "rpg_testbattler.h"
 
 ////////////////////////////////////////////////////////////
@@ -81,10 +81,10 @@ namespace RPG {
 		int selected_hero;
 		std::string battletest_background;
 		std::vector<TestBattler> battletest_data;
+		int saved_times;
 		int battletest_terrain;
 		int battletest_formation;
 		int battletest_condition;
-		int saved_times;
 		bool show_frame;
 		std::string frame_name;
 		bool invert_animations;

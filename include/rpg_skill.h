@@ -54,18 +54,21 @@ namespace RPG {
 
 		int ID;
 		std::string name;
-		int type;
-		int sp_type; // RPG2003
-		int sp_cost;
-		int sp_percent; // RPG2003
 		std::string description;
-
-		// type == Normal
+		std::string using_message1;
+		std::string using_message2;
+		int failure_message;
+		int type;
+		int sp_type;
+		int sp_percent;
+		int sp_cost;
 		int scope;
+		int switch_id;
 		int animation_id;
-		std::string using_message1; // RPG2000
-		std::string using_message2; // RPG2000
-		int failure_message; // RPG2000
+		Sound sound_effect;
+		bool occasion_field;
+		bool occasion_battle;
+		bool state_effect;
 		int pdef_f;
 		int mdef_f;
 		int variance;
@@ -79,21 +82,11 @@ namespace RPG {
 		bool affect_agility;
 		bool absorb_damage;
 		bool ignore_defense;
-		bool state_effect; // RPG2003
 		std::vector<bool> state_effects;
 		std::vector<bool> attribute_effects;
 		bool affect_attr_defence;
-		int battler_animation; // RPG2003
-
-		// type == Teleport/Escape
-		Sound sound_effect;
-
-		// type == Switch
-		int switch_id;
-		bool occasion_field;
-		bool occasion_battle;
-
-		std::vector<BattlerAnimationData> battler_animation_data; // RPG2003
+		int battler_animation;
+		std::vector<BattlerAnimationData> battler_animation_data;
 	};
 }
 

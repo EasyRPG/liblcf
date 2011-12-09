@@ -24,9 +24,9 @@
 #include <string>
 #include <vector>
 #include "reader_types.h"
+#include "rpg_equipment.h"
 #include "rpg_learning.h"
 #include "rpg_parameters.h"
-#include "rpg_equipment.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Actor class
@@ -59,19 +59,16 @@ namespace RPG {
 		int exp_correction;
 		Equipment initial_equipment;
 		int unarmed_animation;
-		std::vector<Learning> skills;
-		std::vector<uint8_t> state_ranks;
-		std::vector<uint8_t> attribute_ranks;
-		// RPG Maker 2000
-		bool rename_skill;
-		std::string skill_name;
-
-		// RPG Maker 2003
 		int class_id;
-		int battler_animation;
-		std::vector<uint32_t> battle_commands;
 		int battle_x;
 		int battle_y;
+		int battler_animation;
+		std::vector<Learning> skills;
+		bool rename_skill;
+		std::string skill_name;
+		std::vector<uint8_t> state_ranks;
+		std::vector<uint8_t> attribute_ranks;
+		std::vector<uint32_t> battle_commands;
 	};
 }
 

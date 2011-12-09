@@ -23,8 +23,8 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "rpg_eventpagecondition.h"
 #include "rpg_eventcommand.h"
+#include "rpg_eventpagecondition.h"
 #include "rpg_moveroute.h"
 
 ////////////////////////////////////////////////////////////

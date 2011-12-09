@@ -37,11 +37,9 @@ RPG::Map::Map() {
 	parallax_sx = 0;
 	parallax_auto_loop_y = false;
 	parallax_sy = 0;
-	save_times = 0;
-	top_level = false;
-
 	generator_flag = false;
 	generator_mode = 0;
+	top_level = false;
 	generator_tiles = 0;
 	generator_width = 4;
 	generator_height = 1;
@@ -51,4 +49,5 @@ RPG::Map::Map() {
 	generator_floor_c = true;
 	generator_extra_b = true;
 	generator_extra_c = true;
+	save_times = 0;
 }

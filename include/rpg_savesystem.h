@@ -35,6 +35,7 @@ namespace RPG {
 	public:
 		SaveSystem();
 		void Setup();
+
 		int screen;
 		int frame_count;
 		std::string graphics_name;

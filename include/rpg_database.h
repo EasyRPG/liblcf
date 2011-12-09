@@ -21,25 +21,24 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <string>
 #include <vector>
 #include "rpg_actor.h"
-#include "rpg_skill.h"
-#include "rpg_item.h"
-#include "rpg_enemy.h"
-#include "rpg_troop.h"
-#include "rpg_terrain.h"
-#include "rpg_attribute.h"
-#include "rpg_state.h"
 #include "rpg_animation.h"
-#include "rpg_chipset.h"
-#include "rpg_commonevent.h"
+#include "rpg_attribute.h"
 #include "rpg_battlecommands.h"
-#include "rpg_class.h"
 #include "rpg_battleranimation.h"
-#include "rpg_terms.h"
-#include "rpg_system.h"
+#include "rpg_chipset.h"
+#include "rpg_class.h"
+#include "rpg_commonevent.h"
+#include "rpg_enemy.h"
+#include "rpg_item.h"
+#include "rpg_skill.h"
+#include "rpg_state.h"
 #include "rpg_switch.h"
+#include "rpg_system.h"
+#include "rpg_terms.h"
+#include "rpg_terrain.h"
+#include "rpg_troop.h"
 #include "rpg_variable.h"
 
 ////////////////////////////////////////////////////////////
@@ -58,14 +57,14 @@ namespace RPG {
 		std::vector<State> states;
 		std::vector<Animation> animations;
 		std::vector<Chipset> chipsets;
-		std::vector<CommonEvent> commonevents;
-		BattleCommands battlecommands;
-		std::vector<Class> classes;
-		std::vector<BattlerAnimation> battleranimations;
 		Terms terms;
 		System system;
 		std::vector<Switch> switches;
 		std::vector<Variable> variables;
+		std::vector<CommonEvent> commonevents;
+		BattleCommands battlecommands;
+		std::vector<Class> classes;
+		std::vector<BattlerAnimation> battleranimations;
 	};
 }
 

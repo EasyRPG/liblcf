@@ -154,8 +154,8 @@ namespace RPG {
 		std::string accessory;
 		std::string save_game_message;
 		std::string load_game_message;
-		std::string exit_game_message;
 		std::string file;
+		std::string exit_game_message;
 		std::string yes;
 		std::string no;
 	};

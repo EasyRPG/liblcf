@@ -25,9 +25,9 @@
 ////////////////////////////////////////////////////////////
 RPG::BattleCommands::BattleCommands() {
 	placement = 0;
+	death_handler1 = 0;
 	row = 0;
 	battle_type = 0;
-	death_handler1 = 0;
 	unknown1 = 0;
 	death_handler2 = 0;
 	death_event = 0;

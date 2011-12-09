@@ -24,8 +24,8 @@
 /// Constructor
 ////////////////////////////////////////////////////////////
 RPG::SaveEventData::SaveEventData() {
-	time_left = -1;
 	unknown_16 = -1;
 	unknown_17 = -1;
+	time_left = -1;
 	unknown_20 = -1;
 }

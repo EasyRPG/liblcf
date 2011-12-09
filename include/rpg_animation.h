@@ -23,8 +23,8 @@
 ////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
-#include "rpg_animationtiming.h"
 #include "rpg_animationframe.h"
+#include "rpg_animationtiming.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::Animation class

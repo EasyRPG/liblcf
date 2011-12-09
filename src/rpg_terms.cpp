@@ -147,8 +147,8 @@ RPG::Terms::Terms() {
 	accessory = "";
 	save_game_message = "";
 	load_game_message = "";
-	exit_game_message = "";
 	file = "";
+	exit_game_message = "";
 	yes = "";
 	no = "";
 }

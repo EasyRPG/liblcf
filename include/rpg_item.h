@@ -52,20 +52,13 @@ namespace RPG {
 		std::string description;
 		int type;
 		int price;
-		std::vector<bool> actor_set;
-		std::vector<bool> class_set; // RPG2003
-		int uses; // Consumables only
+		int uses;
 
 		// Equipable
 		int atk_points1;
 		int def_points1;
 		int spi_points1;
 		int agi_points1;
-		std::vector<bool> attribute_set;
-		std::vector<bool> state_set;
-		bool state_effect; // RPG2003
-		int state_chance;
-		bool cursed; // RPG2003
 
 		// Weapon
 		bool two_handed;
@@ -77,16 +70,13 @@ namespace RPG {
 		bool dual_attack;
 		bool attack_all;
 		bool ignore_evasion;
-		int weapon_animation; // RPG2003
-		bool use_skill; // RPG2003
-		int ranged_trajectory; // RPG2003
-		int ranged_target; // RPG2003
 
 		// Shield Armor Head Other
 		bool prevent_critical;
 		bool raise_evasion;
 		bool half_sp_cost;
 		bool no_terrain_damage;
+		bool cursed;
 
 		// Medicine
 		bool entire_party;
@@ -97,10 +87,6 @@ namespace RPG {
 		bool occasion_field1;
 		bool ko_only;
 
-		// Book - Unique
-		int skill_id;
-		int using_message;
-
 		// Material
 		int max_hp_points;
 		int max_sp_points;
@@ -109,12 +95,25 @@ namespace RPG {
 		int spi_points2;
 		int agi_points2;
 
+		// Book - Unique
+		int using_message;
+		int skill_id;
+
 		// Switch
 		int switch_id;
 		bool occasion_field2;
 		bool occasion_battle;
-
+		std::vector<bool> actor_set;
+		std::vector<bool> state_set;
+		std::vector<bool> attribute_set;
+		int state_chance;
+		bool state_effect;
+		int weapon_animation;
 		std::vector<ItemAnimation> animation_data;
+		bool use_skill;
+		std::vector<bool> class_set;
+		int ranged_trajectory;
+		int ranged_target;
 	};
 }
 

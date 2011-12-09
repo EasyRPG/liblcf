@@ -33,9 +33,9 @@ namespace RPG {
 		SaveEventData();
 
 		std::vector<SaveEventCommands> commands;
-		int time_left;
 		int unknown_16;
 		int unknown_17;
+		int time_left;
 		int unknown_20;
 	};
 }

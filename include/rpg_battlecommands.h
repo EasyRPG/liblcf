@@ -32,12 +32,12 @@ namespace RPG {
 	public:
 		BattleCommands();
 
-		std::vector<BattleCommand> commands;
 		int placement;
+		int death_handler1;
 		int row;
 		int battle_type;
-		int death_handler1;
 		int unknown1;
+		std::vector<BattleCommand> commands;
 		int death_handler2;
 		int death_event;
 		int window_size;

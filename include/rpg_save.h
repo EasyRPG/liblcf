@@ -57,8 +57,8 @@ namespace RPG {
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
 		int unknown_70;
-		std::vector<SaveCommonEvent> common_events;
 		SaveEvents events;
+		std::vector<SaveCommonEvent> common_events;
 	};
 }
 

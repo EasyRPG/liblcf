@@ -22,9 +22,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <string>
+#include "rpg_event.h"
 #include "rpg_moveroute.h"
 #include "rpg_saveeventdata.h"
-#include "rpg_event.h"
 
 ////////////////////////////////////////////////////////////
 /// RPG::SaveMapEvent class

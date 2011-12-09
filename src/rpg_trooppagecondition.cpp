@@ -31,6 +31,9 @@ RPG::TroopPageCondition::TroopPageCondition() {
 	flags.fatigue = false;
 	flags.enemy_hp = false;
 	flags.actor_hp = false;
+	flags.turn_enemy = false;
+	flags.turn_actor = false;
+	flags.command_actor = false;
 	switch_a_id = 1;
 	switch_b_id = 1;
 	variable_id = 1;
@@ -45,10 +48,6 @@ RPG::TroopPageCondition::TroopPageCondition() {
 	actor_id = 1;
 	actor_hp_min = 0;
 	actor_hp_max = 100;
-
-	flags.turn_enemy = false;
-	flags.turn_actor = false;
-	flags.command_actor = false;
 	turn_enemy_id = 0;
 	turn_enemy_a = 0;
 	turn_enemy_b = 0;

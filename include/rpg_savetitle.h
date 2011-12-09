@@ -36,12 +36,12 @@ namespace RPG {
 		int hero_level;
 		int hero_hp;
 		std::string face1_name;
-		std::string face2_name;
-		std::string face3_name;
-		std::string face4_name;
 		int face1_id;
+		std::string face2_name;
 		int face2_id;
+		std::string face3_name;
 		int face3_id;
+		std::string face4_name;
 		int face4_id;
 	};
 }

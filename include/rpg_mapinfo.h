@@ -39,7 +39,11 @@ namespace RPG {
 		int ID;
 		std::string name;
 		int parent_map;
+		int indentation;
 		int type;
+		int scrollbar_x;
+		int scrollbar_y;
+		bool expanded_node;
 		int music_type;
 		Music music;
 		int background_type;
@@ -50,10 +54,6 @@ namespace RPG {
 		std::vector<Encounter> encounters;
 		int encounter_steps;
 		Rect area_rect;
-		int indentation;
-		int scrollbar_x;
-		int scrollbar_y;
-		bool expanded_node;
 	};
 }
 

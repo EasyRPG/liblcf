@@ -43,16 +43,12 @@ RPG::Actor::Actor() {
 	exp_inflation = 30;
 	exp_correction = 0;
 	unarmed_animation = 1;
-	
-	// RPG Maker 2000
-	rename_skill = false;
-	skill_name = "";
-	
-	// RPG Maker 2003
 	class_id = 0;
-	battler_animation = 1;
 	battle_x = 0;
 	battle_y = 0;
+	battler_animation = 1;
+	rename_skill = false;
+	skill_name = "";
 
 	Init();
 }

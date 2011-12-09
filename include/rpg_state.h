@@ -29,9 +29,9 @@
 namespace RPG {
 	class State {
 	public:
-		enum Type {
-			Type_battle = 0,
-			Type_map = 1
+		enum Persistence {
+			Persistence_ends = 0,
+			Persistence_persists = 1
 		};
 		enum Restriction {
 			Restriction_normal = 0,
@@ -40,14 +40,14 @@ namespace RPG {
 			Restriction_attack_ally = 3
 		};
 		enum AffectType {
-			AffectType_nothing = 0,
-			AffectType_doble = 1,
-			AffectType_half = 2
+			AffectType_half = 0,
+			AffectType_double = 1,
+			AffectType_nothing = 2
 		};
 		enum ChangeType {
-			ChangeType_nothing = 0,
-			ChangeType_plus = 1,
-			ChangeType_minus = 2
+			ChangeType_lose = 0,
+			ChangeType_gain = 1,
+			ChangeType_nothing = 2
 		};
 
 		State();

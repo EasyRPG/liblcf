@@ -26,6 +26,18 @@ namespace RPG {
 	public:
 		TroopPageCondition();
 
+		struct Flags {
+			bool switch_a;
+			bool switch_b;
+			bool variable;
+			bool turn;
+			bool fatigue;
+			bool enemy_hp;
+			bool actor_hp;
+			bool turn_enemy;
+			bool turn_actor;
+			bool command_actor;
+		} flags;
 		int switch_a_id;
 		int switch_b_id;
 		int variable_id;
@@ -40,8 +52,6 @@ namespace RPG {
 		int actor_id;
 		int actor_hp_min;
 		int actor_hp_max;
-
-		// RPG2003
 		int turn_enemy_id;
 		int turn_enemy_a;
 		int turn_enemy_b;
@@ -50,20 +60,6 @@ namespace RPG {
 		int turn_actor_b;
 		int command_actor_id;
 		int command_id;
-
-		struct Flags {
-			bool switch_a;
-			bool switch_b;
-			bool variable;
-			bool turn;
-			bool fatigue;
-			bool enemy_hp;
-			bool actor_hp;
-			// RPG2003
-			bool turn_enemy;
-			bool turn_actor;
-			bool command_actor;
-		} flags;
 	};
 }
 
