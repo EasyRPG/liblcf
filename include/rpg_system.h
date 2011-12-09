@@ -34,6 +34,75 @@
 namespace RPG {
 	class System {
 	public:
+		enum FadeOut {
+			FadeOut_default = 0,
+			FadeOut_fade_out = 1,
+			FadeOut_remove_blocks = 2,
+			FadeOut_wipe_downward = 3,
+			FadeOut_wipe_upward = 4,
+			FadeOut_venetian_blinds = 5,
+			FadeOut_vertical_blinds = 6,
+			FadeOut_horizontal_blinds = 7,
+			FadeOut_receding_square = 8,
+			FadeOut_expanding_square = 9,
+			FadeOut_screen_moves_up = 10,
+			FadeOut_screen_moves_down = 11,
+			FadeOut_screen_moves_left = 12,
+			FadeOut_screen_moves_right = 13,
+			FadeOut_vertical_div = 14,
+			FadeOut_horizontal_div = 15,
+			FadeOut_quadrasection = 16,
+			FadeOut_zoom_in = 17,
+			FadeOut_mosaic = 18,
+			FadeOut_waver_screen = 19,
+			FadeOut_instantaneous = 20,
+			FadeOut_none = 21
+		};
+		enum FadeIn {
+			FadeIn_default = 0,
+			FadeIn_fade_in = 1,
+			FadeIn_reconstitute_blocks = 2,
+			FadeIn_unwipe_downward = 3,
+			FadeIn_unwipe_upward = 4,
+			FadeIn_venetian_blinds = 5,
+			FadeIn_vertical_blinds = 6,
+			FadeIn_horizontal_blinds = 7,
+			FadeIn_receding_square = 8,
+			FadeIn_expanding_square = 9,
+			FadeIn_screen_moves_down = 10,
+			FadeIn_screen_moves_up = 11,
+			FadeIn_screen_moves_right = 12,
+			FadeIn_screen_moves_left = 13,
+			FadeIn_vertical_unify = 14,
+			FadeIn_horizontal_unify = 15,
+			FadeIn_unify_quadrants = 16,
+			FadeIn_zoom_out = 17,
+			FadeIn_mosaic = 18,
+			FadeIn_waver_screen = 19,
+			FadeIn_instantaneous = 20,
+			FadeIn_none = 21
+		};
+		enum Stretch {
+			Stretch_stretch = 0,
+			Stretch_tiled = 1
+		};
+		enum Font {
+			Font_gothic = 0,
+			Font_mincho = 1
+		};
+		enum BattleFormation {
+			BattleFormation_terrain = 0,
+			BattleFormation_loose = 1,
+			BattleFormation_tight = 2
+		};
+		enum BattleCondition {
+			BattleCondition_none = 0,
+			BattleCondition_initiative = 1,
+			BattleCondition_back = 2,
+			BattleCondition_surround = 3,
+			BattleCondition_pincers = 4
+		};
+
 		System();
 
 		int ldb_id;

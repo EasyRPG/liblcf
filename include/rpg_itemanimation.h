@@ -24,6 +24,22 @@
 namespace RPG {
 	class ItemAnimation {
 	public:
+		enum Movement {
+			Movement_none = 0,
+			Movement_step = 1,
+			Movement_jump = 2,
+			Movement_move = 3
+		};
+		enum AfterImage {
+			AfterImage_none = 0,
+			AfterImage_add = 1
+		};
+		enum Speed {
+			Speed_fast = 0,
+			Speed_medium = 1,
+			Speed_slow = 2
+		};
+
 		ItemAnimation();
 
 		int ID;

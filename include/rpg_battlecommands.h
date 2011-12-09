@@ -30,6 +30,35 @@
 namespace RPG {
 	class BattleCommands {
 	public:
+		enum Placement {
+			Placement_manual = 0,
+			Placement_automatic = 1
+		};
+		enum RowShown {
+			RowShown_front = 0,
+			RowShown_back = 1
+		};
+		enum BattleType {
+			BattleType_traditional = 0,
+			BattleType_alternative = 1,
+			BattleType_gauge = 2
+		};
+		enum WindowSize {
+			WindowSize_large = 0,
+			WindowSize_small = 1
+		};
+		enum Transparency {
+			Transparency_opaque = 0,
+			Transparency_tranparent = 1
+		};
+		enum Facing {
+			Facing_retain = 0,
+			Facing_up = 1,
+			Facing_right = 2,
+			Facing_down = 3,
+			Facing_left = 4
+		};
+
 		BattleCommands();
 
 		int placement;

@@ -31,6 +31,11 @@
 namespace RPG {
 	class Chipset {
 	public:
+		enum AnimType {
+			AnimType_reciprocating = 0,
+			AnimType_cyclic = 1
+		};
+
 		Chipset();
 
 		int ID;

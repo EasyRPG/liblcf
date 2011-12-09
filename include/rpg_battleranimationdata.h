@@ -24,6 +24,17 @@
 namespace RPG {
 	class BattlerAnimationData {
 	public:
+		enum Movement {
+			Movement_none = 0,
+			Movement_step = 1,
+			Movement_jump = 2,
+			Movement_move = 3
+		};
+		enum AfterImage {
+			AfterImage_none = 0,
+			AfterImage_add = 1
+		};
+
 		BattlerAnimationData();
 
 		int ID;

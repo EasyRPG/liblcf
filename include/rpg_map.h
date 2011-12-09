@@ -32,6 +32,23 @@
 namespace RPG {
 	class Map {
 	public:
+		enum ScrollType {
+			ScrollType_none = 0,
+			ScrollType_vertical = 1,
+			ScrollType_horizontal = 2,
+			ScrollType_both = 3
+		};
+		enum GeneratorMode {
+			GeneratorMode_single_passage = 0,
+			GeneratorMode_linked_rooms = 1,
+			GeneratorMode_maze_passage = 2,
+			GeneratorMode_open_room = 3
+		};
+		enum GeneratorTiles {
+			GeneratorTiles_one = 0,
+			GeneratorTiles_two = 1
+		};
+
 		Map();
 
 		int ID;

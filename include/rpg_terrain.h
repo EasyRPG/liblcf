@@ -30,6 +30,17 @@
 namespace RPG {
 	class Terrain {
 	public:
+		enum BushDepth {
+			BushDepth_normal = 0,
+			BushDepth_third = 1,
+			BushDepth_half = 2,
+			BushDepth_full = 3
+		};
+		enum BGAssociation {
+			BGAssociation_background = 0,
+			BGAssociation_frame = 1
+		};
+
 		Terrain();
 
 		int ID;

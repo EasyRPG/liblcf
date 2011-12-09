@@ -29,6 +29,11 @@
 namespace RPG {
 	class BattlerAnimationExtension {
 	public:
+		enum AnimType {
+			AnimType_graphic = 0,
+			AnimType_animation = 0
+		};
+
 		BattlerAnimationExtension();
 
 		int ID;

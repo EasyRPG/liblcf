@@ -24,6 +24,15 @@
 namespace RPG {
 	class EventPageCondition {
 	public:
+		enum Comparison {
+			Comparison_equal = 0,
+			Comparison_greater_equal = 1,
+			Comparison_less_equal = 2,
+			Comparison_greater = 3,
+			Comparison_less = 4,
+			Comparison_not_equal = 5
+		};
+
 		EventPageCondition();
 
 		struct Flags {

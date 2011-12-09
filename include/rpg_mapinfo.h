@@ -33,6 +33,22 @@
 namespace RPG {
 	class MapInfo {
 	public:
+		enum MusicType {
+			MusicType_parent = 0,
+			MusicType_event = 1,
+			MusicType_specific = 2
+		};
+		enum BGMType {
+			BGMType_parent = 0,
+			BGMType_terrain = 1,
+			BGMType_specific = 2
+		};
+		enum TriState {
+			TriState_parent = 0,
+			TriState_allow = 1,
+			TriState_forbid = 2
+		};
+
 		MapInfo();
 		void Init();
 

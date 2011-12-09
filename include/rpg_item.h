@@ -44,6 +44,16 @@ namespace RPG {
 			Type_special = 9,
 			Type_switch = 10
 		};
+		enum Trajectory {
+			Trajectory_straight = 0,
+			Trajectory_return = 1
+		};
+		enum Target {
+			Target_single = 0,
+			Target_center = 1,
+			Target_simultaneous = 2,
+			Target_sequential = 3
+		};
 
 		Item();
 
