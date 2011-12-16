@@ -118,7 +118,7 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 				break;
 			default:
 				if (c >= 0 && c < 32)
-					fprintf(stream, "&#%02x;", c);
+					fprintf(stream, "&#x%04x;", 0xE000 + c);
 				else
 					fputc(c, stream);
 				break;

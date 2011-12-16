@@ -104,6 +104,8 @@ void XmlReader::Parse() {
 		void* buffer = XML_GetBuffer(parser, bufsize);
 		int len = fread(buffer, 1, bufsize, stream);
 		int result = XML_ParseBuffer(parser, len, len <= 0);
+		if (result == 0)
+			Error("%s", XML_ErrorString(XML_GetErrorCode(parser)));
 	}
 #endif
 }
@@ -189,7 +191,29 @@ void XmlReader::Read<double>(double& val, const std::string& data) {
 
 template <>
 void XmlReader::Read<std::string>(std::string& val, const std::string& data) {
-	val = data;
+	static const std::string prefix("\xee\x80");
+
+	if (data.find(prefix) == std::string::npos) {
+		val = data;
+		return;
+	}
+
+	// XML doesn't allow most C0 control codes, so they're re-mapped
+	// to the private-use area at U+E000. The following code restores
+	// re-mapped codes to their original value.
+
+	val.clear();
+
+	for (size_t pos = 0; ; ) {
+		size_t next = data.find(prefix, pos);
+		if (next > pos)
+			val.append(data, pos, next - pos);
+		if (next == std::string::npos)
+			return;
+		pos = next + 2;
+		val.append(1, data[pos] - '\x80');
+		pos++;
+	}
 }
 
 template <class T>
