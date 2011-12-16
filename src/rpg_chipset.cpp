@@ -27,7 +27,8 @@ RPG::Chipset::Chipset() {
 	ID = 0;
 	name = "";
 	chipset_name = "";
-	terrain_data.resize(162, 1);
 	animation_type = 0;
 	animation_speed = 0;
+
+	Init();
 }

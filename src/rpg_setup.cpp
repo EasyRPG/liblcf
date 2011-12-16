@@ -5,6 +5,7 @@
 #include "rpg_mapinfo.h"
 #include "rpg_system.h"
 #include "rpg_save.h"
+#include "rpg_chipset.h"
 #include "data.h"
 
 void RPG::SaveActor::Setup(int actor_id) {
@@ -166,3 +167,10 @@ void RPG::Actor::Init() {
 void RPG::MapInfo::Init() {
 	music.name = "(OFF)";
 }
+
+void RPG::Chipset::Init() {
+	terrain_data.resize(162, 1);
+	passable_data_lower.resize(162, 15);
+	passable_data_upper.resize(162, 15);
+}
+

@@ -37,6 +37,7 @@ namespace RPG {
 		};
 
 		Chipset();
+		void Init();
 
 		int ID;
 		std::string name;
