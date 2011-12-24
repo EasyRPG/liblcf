@@ -28,14 +28,14 @@
 typedef RPG::Terrain::Flags flags_type;
 
 template <>
-char const* const Flags<RPG::Terrain::Flags>::name("Terrain_Flags");
+char const* const Flags<flags_type>::name("Terrain_Flags");
 
 template <>
-const Flags<flags_type>::Flag* Flags<RPG::Terrain::Flags>::flags[] = {
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_party,		"back_party"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::back_enemies,		"back_enemies"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_party,	"lateral_party"		),
-	new Flags<flags_type>::Flag(&RPG::Terrain::Flags::lateral_enemies,	"lateral_enemies"	),
+const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
+	new Flags<flags_type>::Flag(&flags_type::back_party,		"back_party"		),
+	new Flags<flags_type>::Flag(&flags_type::back_enemies,		"back_enemies"		),
+	new Flags<flags_type>::Flag(&flags_type::lateral_party,		"lateral_party"		),
+	new Flags<flags_type>::Flag(&flags_type::lateral_enemies,	"lateral_enemies"	),
 	NULL
 };
 
