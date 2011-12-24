@@ -6,6 +6,7 @@
 #include "rpg_system.h"
 #include "rpg_save.h"
 #include "rpg_chipset.h"
+#include "rpg_parameters.h"
 #include "data.h"
 
 void RPG::SaveActor::Setup(int actor_id) {
@@ -174,3 +175,19 @@ void RPG::Chipset::Init() {
 	passable_data_upper.resize(162, 15);
 }
 
+void RPG::Parameters::Setup(int final_level) {
+	maxhp.resize(final_level + 1);
+	maxsp.resize(final_level + 1);
+	attack.resize(final_level + 1);
+	defense.resize(final_level + 1);
+	spirit.resize(final_level + 1);
+	agility.resize(final_level + 1);
+	for (int i = 0; i <= final_level; i++) {
+		maxhp[i] = 1;
+		maxsp[i] = 0;
+		attack[i] = 1;
+		defense[i] = 1;
+		spirit[i] = 1;
+		agility[i] = 1;
+	}
+}

@@ -30,7 +30,6 @@
 namespace RPG {
 	class Parameters {
 	public:
-		Parameters();
 		void Setup(int final_level);
 
 		std::vector<int16_t> maxhp;

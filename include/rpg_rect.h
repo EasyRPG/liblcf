@@ -31,9 +31,11 @@ namespace RPG {
 	public:
 		Rect();
 
-		uint32_t l, t, r, b;
+		uint32_t l;
+		uint32_t t;
+		uint32_t r;
+		uint32_t b;
 	};
 }
 
 #endif
-
