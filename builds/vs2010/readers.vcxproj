@@ -430,7 +430,6 @@
     <ClCompile Include="..\..\src\rpg_movecommand.cpp" />
     <ClCompile Include="..\..\src\rpg_moveroute.cpp" />
     <ClCompile Include="..\..\src\rpg_music.cpp" />
-    <ClCompile Include="..\..\src\rpg_parameters.cpp" />
     <ClCompile Include="..\..\src\rpg_rect.cpp" />
     <ClCompile Include="..\..\src\rpg_save.cpp" />
     <ClCompile Include="..\..\src\rpg_saveactor.cpp" />
