@@ -1,0 +1,20 @@
+@file_header
+#ifndef _%(typeupper)s_READER_CHUNKS_H_
+#define _%(typeupper)s_READER_CHUNKS_H_
+
+////////////////////////////////////////////////////////////
+/// %(typeupper)s Reader namespace
+////////////////////////////////////////////////////////////
+namespace %(typeupper)s_Reader {
+@header
+	struct Chunk%(structname)s {
+		enum Index {
+@tmpl
+			%(fname)s%(tabs)s= 0x%(code)02X%(comma)s // %(comment)s
+@footer
+		};
+	};
+@file_footer
+}
+
+#endif
