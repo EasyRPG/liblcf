@@ -338,9 +338,6 @@
     <ClCompile Include="..\..\src\rpg_equipment.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_parameters.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\rpg_rect.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
