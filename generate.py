@@ -445,15 +445,6 @@ def generate_flags(filetype, filename, struct_name):
         f.write(freader.footer % vars)
 
 def generate():
-    global structs, sfields, enums, efields, flags, setup, headers
-
-    structs = get_structs()
-    sfields = get_fields()
-    enums, efields = get_enums()
-    flags = get_flags()
-    setup = get_setup()
-    headers = get_headers(structs, sfields, setup)
-
     for filetype in ['ldb','lmt','lmu','lsd']:
         vars = dict(
             filetype = filetype,
@@ -476,6 +467,34 @@ def generate():
         with open(filepath, 'a') as f:
             f.write(chunk.file_footer)
 
+def list_files_struct(filetype, filename, struct_name, hasid):
+    if struct_name not in sfields:
+        return
+    print '%s_%s.cpp' % (filetype, filename)
+    if needs_ctor(struct_name, hasid):
+        print 'rpg_%s.cpp' % filename
+    print 'rpg_%s.h' % filename
+
+def list_files_rawstruct(filename, struct_name):
+    if needs_ctor(struct_name, False):
+        print 'rpg_%s.cpp' % filename
+    print 'rpg_%s.h' % filename
+
+def list_files_flags(filetype, filename, struct_name):
+    print '%s_%s_flags.cpp' % (filetype, filename)
+
+def list_files():
+    for filetype in ['ldb','lmt','lmu','lsd']:
+        print '%s_chunks.h' % filetype
+
+    for filetype, filename, struct_name, hasid in structs:
+        if hasid is not None:
+            list_files_struct(filetype, filename, struct_name, hasid)
+        else:
+            list_files_rawstruct(filename, struct_name)
+        if struct_name in flags:
+            list_files_flags(filetype, filename, struct_name)
+
 def main(argv):
     if not os.path.exists(srcdir):
         os.mkdir(srcdir)
@@ -483,7 +502,19 @@ def main(argv):
     if not os.path.exists(hdrdir):
         os.mkdir(hdrdir)
 
-    generate()
+    global structs, sfields, enums, efields, flags, setup, headers
+
+    structs = get_structs()
+    sfields = get_fields()
+    enums, efields = get_enums()
+    flags = get_flags()
+    setup = get_setup()
+    headers = get_headers(structs, sfields, setup)
+
+    if argv[1:] == ['-l']:
+        list_files()
+    else:
+        generate()
 
 if __name__ == '__main__':
     main(sys.argv)
