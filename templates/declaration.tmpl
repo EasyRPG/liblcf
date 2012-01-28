@@ -1,0 +1,41 @@
+@header1
+#ifndef _RPG_%(structupper)s_H_
+#define _RPG_%(structupper)s_H_
+@header2
+
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+@header_tmpl
+#include %(header)s
+@header3
+
+////////////////////////////////////////////////////////////
+/// RPG::%(structname)s class
+////////////////////////////////////////////////////////////
+namespace RPG {
+	class %(structname)s {
+	public:
+@enum_header
+		enum %(ename)s {
+@enum_tmpl
+			%(ename)s_%(name)s = %(num)d%(comma)s
+@enum_footer
+		};
+@enum2_header
+		struct %(ename)s {
+			enum Index {
+@enum2_tmpl
+				%(name)s = %(num)d%(comma)s
+@enum2_footer
+			};
+		};
+@ctor
+		%(structname)s();
+@tmpl
+		%(ftype)s %(fname)s;
+@footer
+	};
+}
+
+#endif

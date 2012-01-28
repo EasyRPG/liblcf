@@ -1,0 +1,42 @@
+@struct_header
+class %(sname)s(Struct):
+@flags_header
+    class Flags(FlagStruct):
+        _xmlname = '%(sname)s_Flags'
+        max_size = %(msize)d
+        _fields = [
+@flags_tmpl
+            FlagField('%(name)s')%(comma)s
+@flags_footer
+            ]
+
+@enum_header
+    class %(ename)s(Enum):
+        _xmlname = '%(sname)s_%(ename)s'
+        _values = [
+@enum_tmpl
+            ('%(name)s',%(pad)s%(num)2d)%(comma)s
+@enum_footer
+            ]
+
+@fields_header
+    _fields = [
+@size_tmpl
+	SizeField('%(fname)s', '%(bname)s', 0x%(code)02X)%(comma)s
+@typed_tmpl
+	TypedField('%(fname)s', %(ftype)s, 0x%(code)02X, %(dfl)s)%(comma)s
+@size_tmpl_comment
+	SizeField('%(fname)s', '%(bname)s', 0x%(code)02X, %(comment)r)%(comma)s
+@typed_tmpl_comment
+	TypedField('%(fname)s', %(ftype)s, 0x%(code)02X, %(dfl)s, %(comment)r)%(comma)s
+@struct_footer
+    ]
+
+@rawstruct_header
+class %(sname)s(RawStruct):
+    _fields = [
+@raw_tmpl
+	RawField('%(fname)s', %(ftype)s, %(dfl)s)%(comma)s
+@rawstruct_footer
+    ]
+

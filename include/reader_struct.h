@@ -722,7 +722,7 @@ private:
 */
 #define EASYRPG_STRUCT_FIELDS_BEGIN() \
 	template <> \
-	char const* const Struct<RPG::EASYRPG_CURRENT_STRUCT>::name(BOOST_PP_STRINGIZE(EASYRPG_CURRENT_STRUCT)); \
+	char const* const Struct<RPG::EASYRPG_CURRENT_STRUCT>::name = BOOST_PP_STRINGIZE(EASYRPG_CURRENT_STRUCT); \
 	template <> \
 	Field<RPG::EASYRPG_CURRENT_STRUCT> const* Struct<RPG::EASYRPG_CURRENT_STRUCT>::fields[] = { \
 
