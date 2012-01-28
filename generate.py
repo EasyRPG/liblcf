@@ -6,7 +6,7 @@ import re
 
 csv_dir = 'csv'
 tmpl_dir = 'templates'
-srcdir = 'src'
+srcdir = 'src/generated'
 hdrdir = 'include'
 
 class Template(object):
