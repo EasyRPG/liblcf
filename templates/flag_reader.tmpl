@@ -1,0 +1,27 @@
+@header
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include "%(filetype)s_reader.h"
+#include "%(filetype)s_chunks.h"
+#include "reader_struct.h"
+
+////////////////////////////////////////////////////////////
+/// Read %(structname)s
+////////////////////////////////////////////////////////////
+typedef RPG::%(structname)s::Flags flags_type;
+
+template <>
+char const* const Flags<flags_type>::name("%(structname)s_Flags");
+
+template <>
+const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
+@tmpl
+	new Flags<flags_type>::Flag(&flags_type::%(fname)s,%(pad1)s"%(fname)s"%(pad2)s),
+@footer
+	NULL
+};
+
+template <>
+const uint32_t Flags<flags_type>::max_size = %(maxsize)d;
+

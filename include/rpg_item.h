@@ -1,3 +1,5 @@
+// !!!! GENERATED FILE - DO NOT EDIT !!!!
+
 /////////////////////////////////////////////////////////////////////////////
 // This file is part of EasyRPG.
 //
@@ -63,14 +65,10 @@ namespace RPG {
 		int type;
 		int price;
 		int uses;
-
-		// Equipable
 		int atk_points1;
 		int def_points1;
 		int spi_points1;
 		int agi_points1;
-
-		// Weapon
 		bool two_handed;
 		int sp_cost;
 		int hit;
@@ -80,15 +78,11 @@ namespace RPG {
 		bool dual_attack;
 		bool attack_all;
 		bool ignore_evasion;
-
-		// Shield Armor Head Other
 		bool prevent_critical;
 		bool raise_evasion;
 		bool half_sp_cost;
 		bool no_terrain_damage;
 		bool cursed;
-
-		// Medicine
 		bool entire_party;
 		int recover_hp;
 		int recover_hp_rate;
@@ -96,20 +90,14 @@ namespace RPG {
 		int recover_sp_rate;
 		bool occasion_field1;
 		bool ko_only;
-
-		// Material
 		int max_hp_points;
 		int max_sp_points;
 		int atk_points2;
 		int def_points2;
 		int spi_points2;
 		int agi_points2;
-
-		// Book - Unique
 		int using_message;
 		int skill_id;
-
-		// Switch
 		int switch_id;
 		bool occasion_field2;
 		bool occasion_battle;

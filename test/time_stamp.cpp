@@ -2,12 +2,12 @@
 #include <cmath>
 #include <cassert>
 #include <iostream>
-#include "rpg_save.h"
+#include "lsd_reader.h"
 
 
 TEST(TimeStamp, ToMicrosoftAccessTime) {
-	#define CheckTime(val, year, month, day, hour, minute, second) { \
-			std::time_t const current = RPG::ToUnixTime(val);			 \
+#define CheckTime(val, year, month, day, hour, minute, second) { \
+			std::time_t const current = LSD_Reader::ToUnixTime(val);			 \
 		struct tm const* const t = std::gmtime(&current); \
 		 \
 		ASSERT_EQ(t->tm_year, year - 1900); \
@@ -27,15 +27,15 @@ TEST(TimeStamp, ToMicrosoftAccessTime) {
 	// 36232.9375              1999/03/13 22:30:00 1999/03/13 10:30:00 PM
 	CheckTime(36232.9375, 1999, 3, 13, 22, 30, 0);
 
-	#undef CheckTime
+#undef CheckTime
 }
 
 TEST(TimeStamp, ToUnixTime) {
 	std::time_t const current = std::floor(std::time(NULL) / 1000.0) * 1000.0;
-	ASSERT_EQ(current, RPG::ToUnixTime(RPG::ToMicrosoftAccessTime(current)));
+	ASSERT_EQ(current, LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
 }
 
 TEST(TimeStamp, GenerateTimeStamp) {
-	double const current = RPG::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
-	ASSERT_EQ(current, RPG::ToMicrosoftAccessTime(RPG::ToUnixTime(current)));
+	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
+	ASSERT_EQ(current, LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
 }
