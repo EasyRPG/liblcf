@@ -44,7 +44,7 @@ struct RawStruct<std::vector<RPG::EventCommand> > {
 ////////////////////////////////////////////////////////////
 /// Read Event Command
 ////////////////////////////////////////////////////////////
-void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t /* length */) {
 	stream.Read(event_command.code);
 	if (event_command.code != 0) {
 		stream.Read(event_command.indent);
@@ -100,7 +100,7 @@ private:
 	} field;
 public:
 	EventCommandXmlHandler(RPG::EventCommand& ref) : ref(ref), field(None) {}
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "code") == 0)
 			field = Code;
 		else if (strcmp(name, "indent") == 0)
@@ -114,10 +114,10 @@ public:
 			field = None;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = None;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		switch (field) {
 			case None:
 				break;
@@ -192,7 +192,7 @@ class EventCommandVectorXmlHandler : public XmlHandler {
 public:
 	EventCommandVectorXmlHandler(std::vector<RPG::EventCommand>& ref) : ref(ref) {}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "EventCommand") != 0)
 			stream.Error("Expecting %s but got %s", "EventCommand", name);
 		ref.resize(ref.size() + 1);

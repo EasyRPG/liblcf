@@ -152,16 +152,16 @@ public:
 		Struct<S>::MakeTagMap();
 	}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		field = Struct<S>::tag_map[name];
 		field->BeginXml(ref, stream);
 	}
 
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 	}
 
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
 			field->ParseXml(ref, data);
 	}
