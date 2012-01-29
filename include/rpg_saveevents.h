@@ -1,4 +1,4 @@
-// !!!! GENERATED FILE - DO NOT EDIT !!!!
+/* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /////////////////////////////////////////////////////////////////////////////
 // This file is part of EasyRPG.

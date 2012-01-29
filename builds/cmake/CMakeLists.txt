@@ -26,17 +26,36 @@ IF(IS_BIG_ENDIAN)
 ENDIF()
 
 find_package(PythonInterp)
+set(GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated)
 if(PYTHONINTERP_FOUND)
   set(GENERATE_PY "${CMAKE_CURRENT_SOURCE_DIR}/../../generate.py")
 
-  execute_process(
-    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY}
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
-endif()
-AUX_SOURCE_DIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
+  file(GLOB tmpl "${CMAKE_CURRENT_SOURC_DIR}/../../templates/*.tmpl")
+  file(GLOB csv "${CMAKE_CURRENT_SOURC_DIR}/../../csv/*.csv")
 
-AUX_SOURCE_DIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/../../src/non_generated" NON_GEN_SRCS)
-ADD_LIBRARY(${PROJECT_NAME} STATIC ${NON_GEN_SRCS} ${SRCS})
+  execute_process(
+    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY} -l
+    OUTPUT_VARIABLE outputs
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+  string(REPLACE "\n" ";" outputs ${outputs})
+  foreach(i ${outputs})
+    if(${i} MATCHES "\\.cpp")
+      list(APPEND GEN_SRCS ${GENERATED_OUTPUT_DIR}/${i}) 
+    endif()
+  endforeach()
+
+  add_custom_command(
+    OUTPUT ${GEN_SRCS}
+    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY}
+    MAIN_DEPENDENCT ${GENERATE_PY}
+    DEPENDS ${GENERATE_PY} ${tmpl} ${csv}
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+else()
+  AUX_SOURCE_DIRECTORY(${GENERATED_OUTPUT_DIR} GEN_SRCS)
+endif()
+
+AUX_SOURCE_DIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
+ADD_LIBRARY(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
 # expat
 find_package(Expat REQUIRED)
