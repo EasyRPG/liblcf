@@ -38,112 +38,112 @@
     <ClCompile Include="..\..\src\inireader.cpp">
       <Filter>Source Files\INI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_actor.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_actor.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_animation.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_animation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_animationcelldata.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_animationcelldata.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_animationframe.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_animationframe.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_animationtiming.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_animationtiming.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_attribute.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_attribute.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_battlecommand.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_battlecommand.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_battleranimation.cpp">
+    <ClCompile Include="..\..\src\generated\generated\ldb_battleranimation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_battleranimationextension.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_battleranimationextension.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_chipset.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_chipset.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_class.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_class.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_commonevent.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_commonevent.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_enemy.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_enemy.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_enemyaction.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_enemyaction.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_item.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_item.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_learning.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_learning.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_music.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_music.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\ldb_reader.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_skill.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_skill.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_sound.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_sound.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_state.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_state.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_system.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_system.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_terms.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_terms.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_terrain.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_terrain.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_testbattler.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_testbattler.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_troop.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_troop.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_troopmember.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_troopmember.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_trooppage.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_trooppage.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_trooppagecondition.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_trooppagecondition.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmt_encounter.cpp">
+    <ClCompile Include="..\..\src\generated\lmt_encounter.cpp">
       <Filter>Source Files\LMT</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmt_mapinfo.cpp">
+    <ClCompile Include="..\..\src\generated\lmt_mapinfo.cpp">
       <Filter>Source Files\LMT</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lmt_reader.cpp">
       <Filter>Source Files\LMT</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_event.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_event.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_eventpage.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_eventpage.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_eventpagecondition.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_eventpagecondition.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_moveroute.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_moveroute.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lmu_reader.cpp">
@@ -152,160 +152,160 @@
     <ClCompile Include="..\..\src\data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_actor.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_actor.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_animation.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_animation.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_animationcelldata.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_animationcelldata.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_animationframe.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_animationframe.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_animationtiming.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_animationtiming.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_attribute.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_attribute.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_battlecommand.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_battlecommand.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_battleranimation.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_battleranimation.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_battleranimationextension.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_battleranimationextension.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_chipset.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_chipset.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_class.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_class.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_commonevent.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_commonevent.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_encounter.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_encounter.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_enemy.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_enemy.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_enemyaction.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_enemyaction.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_event.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_event.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_eventcommand.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_eventcommand.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_eventpage.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_eventpage.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_eventpagecondition.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_eventpagecondition.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_item.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_item.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_learning.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_learning.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_map.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_map.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_mapinfo.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_mapinfo.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_movecommand.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_movecommand.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_moveroute.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_moveroute.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_music.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_music.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_skill.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_skill.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_sound.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_sound.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_state.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_state.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_system.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_system.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_terms.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_terms.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_terrain.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_terrain.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_testbattler.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_testbattler.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_treemap.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_treemap.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_troop.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_troop.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_troopmember.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_troopmember.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_trooppage.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_trooppage.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_trooppagecondition.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_trooppagecondition.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_battleranimationdata.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_battleranimationdata.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_battleranimationdata.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_battleranimationdata.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_itemanimation.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_itemanimation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_itemanimation.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_itemanimation.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lsd_reader.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_save.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_save.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_map.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_map.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lmt_treemap.cpp">
       <Filter>Source Files\LMT</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_database.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_database.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_save.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_save.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_battlecommands.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_battlecommands.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_variable.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_variable.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_switch.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_switch.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader_flags.cpp">
@@ -335,13 +335,13 @@
     <ClCompile Include="..\..\src\lmu_movecommand.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_equipment.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_equipment.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_rect.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_rect.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_start.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_start.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\writer_lcf.cpp">
@@ -350,115 +350,115 @@
     <ClCompile Include="..\..\src\writer_xml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmt_start.cpp">
+    <ClCompile Include="..\..\src\generated\lmt_start.cpp">
       <Filter>Source Files\LMT</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_switch.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_switch.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_terrain_flags.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_terrain_flags.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_trooppagecondition_flags.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_trooppagecondition_flags.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ldb_variable.cpp">
+    <ClCompile Include="..\..\src\generated\ldb_variable.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lmu_eventpagecondition_flags.cpp">
+    <ClCompile Include="..\..\src\generated\lmu_eventpagecondition_flags.cpp">
       <Filter>Source Files\LMU</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_saveactor.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_saveactor.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savecommonevent.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savecommonevent.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_saveeventcommands.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_saveeventcommands.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_saveeventdata.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_saveeventdata.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_saveevents.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_saveevents.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_saveinventory.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_saveinventory.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savemapevent.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savemapevent.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savemapinfo.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savemapinfo.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savepartylocation.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savepartylocation.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savepicture.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savepicture.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savescreen.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savescreen.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savesystem.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savesystem.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savetarget.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savetarget.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savetitle.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savetitle.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\lsd_savevehiclelocation.cpp">
+    <ClCompile Include="..\..\src\generated\lsd_savevehiclelocation.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_battlecommands.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_battlecommands.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_saveactor.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_saveactor.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savecommonevent.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savecommonevent.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_saveeventcommands.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_saveeventcommands.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_saveeventdata.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_saveeventdata.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_saveevents.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_saveevents.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_saveinventory.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_saveinventory.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savemapevent.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savemapevent.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savemapinfo.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savemapinfo.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savepartylocation.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savepartylocation.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savepicture.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savepicture.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savescreen.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savescreen.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savesystem.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savesystem.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savetarget.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savetarget.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savetitle.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savetitle.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\rpg_savevehiclelocation.cpp">
+    <ClCompile Include="..\..\src\generated\rpg_savevehiclelocation.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rpg_setup.cpp">
