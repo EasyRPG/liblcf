@@ -1,3 +1,6 @@
 builds/cmake/libEasyRPG_Reader.a
 builds/cmake/test_time_stamp
+builds/vs2010/Debug*
+builds/vs2010/Release*
+builds/vs2010/*.user
 doc/
