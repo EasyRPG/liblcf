@@ -221,7 +221,7 @@ bool LcfReader::Ungetch(uint8_t ch) {
 
 ////////////////////////////////////////////////////////////
 #ifdef _DEBUG
-void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile) {
+void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info, const char* srcfile) {
 	// Dump the Chunk Data in Debug Mode
 #ifdef _WIN32
 	const char* srcfilename = strrchr(srcfile, '\\');
