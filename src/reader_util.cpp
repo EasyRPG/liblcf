@@ -19,12 +19,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #ifdef _WIN32
-#include <cstdio>
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <windows.h>
+#  include <cstdio>
+#  define WIN32_LEAN_AND_MEAN
+#  define NOMINMAX
+#  include <windows.h>
 #else
-#include <iconv.h>
+#  include <iconv.h>
 #endif
 
 #include <cstdlib>
@@ -119,11 +119,11 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	size_t dst_size = str_to_encode.size() * 5 + 10;
 	char *dst = new char[dst_size];
 	size_t dst_left = dst_size;
-#ifdef PSP
+#  if defined(PSP) && defined(_LIBICONV_H)
 	char const *p = src;
-#else
+#  else
 	char *p = src;
-#endif
+#  endif
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
