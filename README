@@ -1,0 +1,50 @@
+EasyRPG Readers
+===============
+
+EasyRPG Readers is a library to parse data structure of RPG Maker 2000 and 2003
+games. It can read and write LCF and XML files, regenerate C++ source data files
+using a template based Python script and CSV files.
+
+EasyRPG Readers is part of the EasyRPG Project. More information is available
+at the project website:
+
+  https://easy-rpg.org/
+
+
+Documentation
+-------------
+
+Documentation is available at the documentation wiki:
+
+  https://easy-rpg.org/wiki/
+
+
+Requirements
+------------
+
+Doxygen to generate source code documentation.
+Expat library for XML support.
+Iconv for the character set detection and UTF-8 conversion.
+Python for the template source code regeneration.
+
+See the documentation for further information.
+
+
+Development
+-----------
+
+EasyRPG Readers development is hosted by GitHub.
+Project files are available in Git repositories.
+
+  https://github.com/EasyRPG/Readers
+
+See the documentation for further development information.
+
+
+License
+-------
+
+EasyRPG Readers is free software. See the file COPYING for copying conditions.
+
+Readers code includes a copy of Boost Preprocessor and INIReader libraries.
+See the source code comment headers for license details.
