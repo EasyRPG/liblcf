@@ -50,7 +50,7 @@
 //		Enables support for XML file reading and writing.
 //		This option adds libexpat as a dependency.
 ////////////////////////////////////////////////////////////
-#define READER_SUPPORT_XML 1
+// #define READER_SUPPORT_XML 1
 
 #if defined(GEKKO)
 	#define READER_BIG_ENDIAN
