@@ -4,3 +4,8 @@ builds/vs2010/Debug*
 builds/vs2010/Release*
 builds/vs2010/*.user
 doc/
+CMakeCache.txt
+CMakeFiles
+*.cmake
+Makefile
+lib/

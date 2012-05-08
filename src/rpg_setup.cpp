@@ -157,11 +157,11 @@ void RPG::Save::Setup() {
 }
 
 void RPG::Actor::Init() {
-    #if RPGMAKER == RPG2K3
+#if RPGMAKER == RPG2K3
 	final_level = 99;
 	exp_base = 300;
 	exp_inflation = 300;
-    #endif
+#endif
 	parameters.Setup(final_level);
 }
 

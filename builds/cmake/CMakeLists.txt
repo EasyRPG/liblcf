@@ -8,10 +8,10 @@ LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../include)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake_module")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
 
 # Doxygen
-FIND_PACKAGE(Doxygen REQUIRED)
+FIND_PACKAGE(Doxygen)
 ADD_CUSTOM_TARGET(reader_doc
   ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
   DEPENDS ${SRCS}
@@ -58,7 +58,7 @@ AUX_SOURCE_DIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
 ADD_LIBRARY(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
 # expat
-find_package(Expat REQUIRED)
+find_package(Expat)
 include_directories(${EXPAT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
 
@@ -71,7 +71,7 @@ target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
 ENABLE_TESTING()
 
 find_package(Threads)
-find_package(GTest REQUIRED)
+find_package(GTest)
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/../../src
   ${GTEST_INCLUDE_DIRS})
@@ -91,6 +91,8 @@ FUNCTION(CXX_TEST target libs)
   ADD_DEPENDENCIES(test_${target} ${PROJECT_NAME})
 ENDFUNCTION()
 
-FOREACH(i time_stamp)
-  CXX_TEST(${i} ${GTEST_MAIN_LIBRARIES})
-ENDFOREACH()
+if(GTEST_FOUND)
+  FOREACH(i time_stamp)
+    CXX_TEST(${i} ${GTEST_MAIN_LIBRARIES})
+  ENDFOREACH()
+endif()
