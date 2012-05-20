@@ -1,21 +1,21 @@
-#include <gtest/gtest.h>
-#include <cmath>
 #include <cassert>
+#include <cmath>
+#include <cstdlib>
 #include <iostream>
 #include "lsd_reader.h"
 
 
-TEST(TimeStamp, ToMicrosoftAccessTime) {
+static void ToMicrosoftAccessTime() {
 #define CheckTime(val, year, month, day, hour, minute, second) { \
 			std::time_t const current = LSD_Reader::ToUnixTime(val);			 \
 		struct tm const* const t = std::gmtime(&current); \
 		 \
-		ASSERT_EQ(t->tm_year, year - 1900); \
-		ASSERT_EQ(t->tm_mon + 1, month); \
-		ASSERT_EQ(t->tm_mday, day); \
-		ASSERT_EQ(t->tm_hour, hour); \
-		ASSERT_EQ(t->tm_min, minute); \
-		ASSERT_EQ(t->tm_sec, second); \
+		assert(t->tm_year == year - 1900); \
+		assert(t->tm_mon + 1 == month); \
+		assert(t->tm_mday == day); \
+		assert(t->tm_hour == hour); \
+		assert(t->tm_min == minute); \
+		assert(t->tm_sec == second); \
 	} \
 
 	// 27468.96875   27468     1975 年 3 月 15 日    .96875    11:15:00 P.M.
@@ -30,12 +30,20 @@ TEST(TimeStamp, ToMicrosoftAccessTime) {
 #undef CheckTime
 }
 
-TEST(TimeStamp, ToUnixTime) {
+static void ToUnixTime() {
 	std::time_t const current = std::floor(std::time(NULL) / 1000.0) * 1000.0;
-	ASSERT_EQ(current, LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
+	assert(current == LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
 }
 
-TEST(TimeStamp, GenerateTimeStamp) {
+state void GenerateTimeStamp() {
 	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
-	ASSERT_EQ(current, LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
+	assert(current == LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
+}
+
+int main() {
+  ToMicrosoftAccessTime();
+  ToUnixTime();
+  GenerateTimeStamp();
+
+  return EXIT_SUCCESS;
 }
