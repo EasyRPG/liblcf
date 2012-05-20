@@ -24,7 +24,6 @@ Requirements
 
 libiconv for the character set detection and UTF-8 conversion.
 Expat for XML reading support (optional).
-Google Test to perform some unit tests (optional).
 Doxygen to generate source code documentation (optional).
 Graphviz to generate graphs with the dot program used by Doxygen (optional).
 Python for the template source code regeneration (optional).
