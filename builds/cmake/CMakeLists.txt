@@ -1,4 +1,4 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(EasyRPG_Reader CXX C)
 
@@ -70,29 +70,20 @@ target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
 # test
 ENABLE_TESTING()
 
-find_package(Threads)
-find_package(GTest)
-include_directories(
-  ${CMAKE_CURRENT_SOURCE_DIR}/../../src
-  ${GTEST_INCLUDE_DIRS})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../src)
 
 FUNCTION(CXX_TEST target libs)
-  ADD_EXECUTABLE(test_${target} ${CMAKE_CURRENT_SOURCE_DIR}/../../test/${target}.cpp)
-  TARGET_LINK_LIBRARIES(test_${target}
-    ${PROJECT_NAME} ${libs}
-    ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+  get_filename_component(name ${target} NAME_WE)
+  ADD_EXECUTABLE(test_${name} ${target})
+  TARGET_LINK_LIBRARIES(test_${name} ${PROJECT_NAME} ${libs})
   ADD_TEST(
-    NAME test_${target}
+    NAME test_${name}
     WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
-    COMMAND
-    ${EXECUTABLE_OUTPUT_PATH}/test_${target}
-    --gtest_output=xml:${EXECUTABLE_OUTPUT_PATH}/test_${target}.xml
-    --gtest_color=yes)
-  ADD_DEPENDENCIES(test_${target} ${PROJECT_NAME})
+    COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_${name})
+  ADD_DEPENDENCIES(test_${name} ${PROJECT_NAME})
 ENDFUNCTION()
 
-if(GTEST_FOUND)
-  FOREACH(i time_stamp)
-    CXX_TEST(${i} ${GTEST_MAIN_LIBRARIES})
-  ENDFOREACH()
-endif()
+file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../test/*.cpp)
+FOREACH(i ${TEST_FILES})
+  CXX_TEST(${i} ${ICONV_LIBRARY} ${EXPAT_LIBRARY})
+ENDFOREACH()
