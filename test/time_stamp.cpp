@@ -35,7 +35,7 @@ static void ToUnixTime() {
 	assert(current == LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
 }
 
-state void GenerateTimeStamp() {
+static void GenerateTimeStamp() {
 	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
 	assert(current == LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
 }
