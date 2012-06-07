@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_INIT(easyrpg-readers, 0.1, https://github.com/EasyRPG/Readers/issues)
 
 AM_INIT_AUTOMAKE([1.11])
 AM_MAINTAINER_MODE([enable])
