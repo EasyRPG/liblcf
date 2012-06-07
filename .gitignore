@@ -31,3 +31,4 @@ src/Makefile.in
 src/libreaders.a
 src/*.o
 stamp-h1
+build/

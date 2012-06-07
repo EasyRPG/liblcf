@@ -2,14 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT(easyrpg-readers, 0.1, https://github.com/EasyRPG/Readers/issues)
+AC_INIT([easyrpg-readers], [0.1], [https://github.com/EasyRPG/Readers/issues])
 
 AM_INIT_AUTOMAKE([1.11])
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
-
-LT_PREREQ([2.2])
-LT_INIT([disable-shared static no-pic])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
@@ -17,6 +14,7 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CXX
+AC_PROG_RANLIB
 
 # Checks for libraries.
 AM_ICONV
