@@ -93,8 +93,10 @@ void RPG::SaveSystem::Setup() {
 	frame_count = 0;
 	graphics_name = system.system_name;
 	switches_size = Data::switches.size();
+	switches.clear();
 	switches.resize(switches_size);
 	variables_size = Data::variables.size();
+	variables.clear();
 	variables.resize(variables_size);
 	message_transparent = -1;
 	message_position = -1;
