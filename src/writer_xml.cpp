@@ -47,7 +47,7 @@ XmlWriter::~XmlWriter() {
 ////////////////////////////////////////////////////////////
 void XmlWriter::Open() {
 	stream = fopen(filename.c_str(), "w");
-	fputs("<?xml version=\"1.1\" encoding=\"UTF-8\"?>\n", stream);
+	fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", stream);
 }
 
 ////////////////////////////////////////////////////////////
