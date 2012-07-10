@@ -141,7 +141,7 @@ void RPG::SaveSystem::Setup() {
 	save_allowed = true;
 	menu_allowed = true;
 	background = "";
-	save_count = -1;
+	save_count = 0;
 	save_slot = -1;
 }
 
