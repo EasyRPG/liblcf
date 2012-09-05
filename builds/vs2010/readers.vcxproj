@@ -161,6 +161,8 @@
       <AdditionalIncludeDirectories>..\..\include;;$(EASYDEV_MSVC)\include</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996;4661</DisableSpecificWarnings>
       <PreprocessorDefinitions>XML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -244,6 +246,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
