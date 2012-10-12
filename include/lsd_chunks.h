@@ -257,7 +257,7 @@ namespace LSD_Reader {
 			status			= 0x52, // array of short
 			changed_class	= 0x53, // bool
 			class_id		= 0x5A, // int class-id
-			unknown_5b		= 0x5B, // ?
+			row				= 0x5B, // RPG2k3 Battle row (-1 Back, 1 Front)
 			two_weapon		= 0x5C, // bool
 			lock_equipment	= 0x5D, // bool
 			auto_battle		= 0x5E, // bool

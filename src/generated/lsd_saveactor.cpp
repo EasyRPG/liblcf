@@ -57,7 +57,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, status),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, changed_class),
 	EASYRPG_STRUCT_TYPED_FIELD(int, class_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_5b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, row),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, two_weapon),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, lock_equipment),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, auto_battle),

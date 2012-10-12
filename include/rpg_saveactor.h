@@ -62,7 +62,7 @@ namespace RPG {
 		std::vector<int16_t> status;
 		bool changed_class;
 		int class_id;
-		int unknown_5b;
+		int row;
 		bool two_weapon;
 		bool lock_equipment;
 		bool auto_battle;

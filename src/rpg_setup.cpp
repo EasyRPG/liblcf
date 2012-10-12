@@ -42,7 +42,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	status.clear();
 	changed_class = false;
 	class_id = actor.class_id;
-	unknown_5b = -1;
+	row = -1;
 	two_weapon = actor.two_swords_style;
 	lock_equipment = actor.fix_equipment;
 	auto_battle = actor.auto_battle;
