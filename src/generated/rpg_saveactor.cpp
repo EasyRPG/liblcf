@@ -48,7 +48,7 @@ RPG::SaveActor::SaveActor() {
 	status_size = -1;
 	changed_class = false;
 	class_id = -1;
-	unknown_5b = -1;
+	row = -1;
 	two_weapon = false;
 	lock_equipment = false;
 	auto_battle = false;

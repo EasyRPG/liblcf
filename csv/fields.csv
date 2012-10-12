@@ -892,7 +892,7 @@ SaveActor,status_size,f,Integer,0x51,-1,?
 SaveActor,status,f,Vector<Int16>,0x52,,array of short
 SaveActor,changed_class,f,Boolean,0x53,False,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,int class-id
-SaveActor,unknown_5b,f,Integer,0x5B,-1,?
+SaveActor,row,f,Integer,0x5B,-1,RPG2k3 Battle row (-1 Back, 1 Front)
 SaveActor,two_weapon,f,Boolean,0x5C,False,bool
 SaveActor,lock_equipment,f,Boolean,0x5D,False,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,bool
