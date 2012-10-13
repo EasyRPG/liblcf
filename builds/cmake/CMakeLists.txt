@@ -12,11 +12,13 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
 
 # Doxygen
 FIND_PACKAGE(Doxygen)
-ADD_CUSTOM_TARGET(reader_doc
-  ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
-  DEPENDS ${SRCS}
-  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
-  COMMENT "Generating API documentation with Doxygen" VERBATIM)
+if(DOXYGEN_FOUND)
+  ADD_CUSTOM_TARGET(reader_doc
+    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
+    DEPENDS ${SRCS}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
+    COMMENT "Generating API documentation with Doxygen" VERBATIM)
+endif(DOXYGEN_FOUND)
 
 # endianess checking
 INCLUDE(TestBigEndian)
@@ -40,7 +42,7 @@ if(PYTHONINTERP_FOUND)
   string(REPLACE "\n" ";" outputs ${outputs})
   foreach(i ${outputs})
     if(${i} MATCHES "\\.cpp")
-      list(APPEND GEN_SRCS ${GENERATED_OUTPUT_DIR}/${i}) 
+      list(APPEND GEN_SRCS ${GENERATED_OUTPUT_DIR}/${i})
     endif()
   endforeach()
 
@@ -62,10 +64,18 @@ find_package(Expat)
 include_directories(${EXPAT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
 
-# iconv
-find_package(Iconv REQUIRED)
-include_directories(${ICONV_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
+if(WIN32)
+  set(ICONV_LIBRARY "")
+else()
+  # iconv
+  find_package(Iconv REQUIRED)
+  include_directories(${ICONV_INCLUDE_DIR})
+  target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
+
+  # Boost
+  find_package(Boost REQUIRED)
+  include_directories(${Boost_INCLUDE_DIRS})
+endif()
 
 # test
 ENABLE_TESTING()
