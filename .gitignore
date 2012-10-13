@@ -32,3 +32,4 @@ src/libreaders.a
 src/*.o
 stamp-h1
 build/
+*~
