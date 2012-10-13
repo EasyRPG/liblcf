@@ -92,19 +92,19 @@ static std::string RunIconv(const std::string& str_to_encode,
                             F const iconv_func) {
 	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
 	if (cd == (iconv_t)-1) {
-    return "";
-  }
+		return "";
+	}
 
 	size_t src_left = str_to_encode.size();
-  std::vector<char> dst(str_to_encode.size() * 5 + 10);
+	std::vector<char> dst(str_to_encode.size() * 5 + 10);
 	size_t dst_left = dst.size();
 
-  typedef typename boost::remove_pointer<
-    typename boost::function_traits<
-      typename boost::remove_pointer<F>::type
-      >::arg2_type
-    >::type src_type;
-  src_type p = (src_type)str_to_encode.c_str();
+	typedef typename boost::remove_pointer<
+		typename boost::function_traits<
+			typename boost::remove_pointer<F>::type
+			>::arg2_type
+		>::type src_type;
+	src_type p = (src_type)str_to_encode.c_str();
 	char *q = &dst.front();
 
 	size_t status = iconv_func(cd, &p, &src_left, &q, &dst_left);
@@ -119,8 +119,8 @@ static std::string RunIconv(const std::string& str_to_encode,
 
 ////////////////////////////////////////////////////////////
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
-							   const std::string& src_enc,
-							   const std::string& dst_enc) {
+                               const std::string& src_enc,
+                               const std::string& dst_enc) {
 #ifdef _WIN32
 	size_t strsize = str_to_encode.size();
 
@@ -149,7 +149,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return str;
 #else
-  return RunIconv(str_to_encode, src_enc, dst_enc, &::iconv);
+	return RunIconv(str_to_encode, src_enc, dst_enc, &::iconv);
 #endif
 }
 
