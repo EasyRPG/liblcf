@@ -24,19 +24,18 @@
 #  define NOMINMAX
 #  include <windows.h>
 #else
+#  include <vector>
 #  include <iconv.h>
+#  include <boost/type_traits/function_traits.hpp>
+#  include <boost/type_traits/remove_pointer.hpp>
 #endif
 
 #include <cstdlib>
 #include <cstring>
 #include <sstream>
-#include <vector>
 
 #include "inireader.h"
 #include "reader_util.h"
-
-#include <boost/type_traits/function_traits.hpp>
-#include <boost/type_traits/remove_pointer.hpp>
 
 ////////////////////////////////////////////////////////////
 namespace ReaderUtil {
