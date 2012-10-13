@@ -18,9 +18,11 @@ AC_PROG_RANLIB
 
 # Checks for libraries.
 AM_ICONV
+AC_CHECK_LIB([expat],[XML_ParserCreate],[],[AC_MSG_ERROR(['expat' is required but it doesn't seem to be installed on this system.])])
 
 # Checks for header files.
-AC_CHECK_HEADERS([stdint.h])
+AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
+AC_CHECK_HEADERS([expat.h],[],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
