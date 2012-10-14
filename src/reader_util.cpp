@@ -24,7 +24,10 @@
 #  define NOMINMAX
 #  include <windows.h>
 #else
+#  include <vector>
 #  include <iconv.h>
+#  include <boost/type_traits/function_traits.hpp>
+#  include <boost/type_traits/remove_pointer.hpp>
 #endif
 
 #include <cstdlib>
@@ -80,9 +83,43 @@ std::string ReaderUtil::GetEncoding() {
 }
 
 ////////////////////////////////////////////////////////////
+#ifndef _WIN32
+template<class F>
+static std::string RunIconv(const std::string& str_to_encode,
+                            const std::string& src_enc,
+                            const std::string& dst_enc,
+                            F const iconv_func) {
+	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
+	if (cd == (iconv_t)-1) {
+		return "";
+	}
+
+	size_t src_left = str_to_encode.size();
+	std::vector<char> dst(str_to_encode.size() * 5 + 10);
+	size_t dst_left = dst.size();
+
+	typedef typename boost::remove_pointer<
+		typename boost::function_traits<
+			typename boost::remove_pointer<F>::type
+			>::arg2_type
+		>::type src_type;
+	src_type p = (src_type)str_to_encode.c_str();
+	char *q = &dst.front();
+
+	size_t status = iconv_func(cd, &p, &src_left, &q, &dst_left);
+	iconv_close(cd);
+	if (status == (size_t) -1 || src_left > 0) {
+		return "";
+	}
+	*q++ = '\0';
+	return std::string(&dst.front());
+}
+#endif // not _WIN32
+
+////////////////////////////////////////////////////////////
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
-							   const std::string& src_enc,
-							   const std::string& dst_enc) {
+                               const std::string& src_enc,
+                               const std::string& dst_enc) {
 #ifdef _WIN32
 	size_t strsize = str_to_encode.size();
 
@@ -111,30 +148,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return str;
 #else
-	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
-	if (cd == (iconv_t)-1)
-		return str_to_encode;
-	char *src = const_cast<char *>(str_to_encode.c_str());
-	size_t src_left = str_to_encode.size();
-	size_t dst_size = str_to_encode.size() * 5 + 10;
-	char *dst = new char[dst_size];
-	size_t dst_left = dst_size;
-#  if defined(PSP) && defined(_LIBICONV_H)
-	char const *p = src;
-#  else
-	char *p = src;
-#  endif
-	char *q = dst;
-	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
-	iconv_close(cd);
-	if (status == (size_t) -1 || src_left > 0) {
-		delete[] dst;
-		return "";
-	}
-	*q++ = '\0';
-	std::string result(dst);
-	delete[] dst;
-	return result;
+	return RunIconv(str_to_encode, src_enc, dst_enc, &::iconv);
 #endif
 }
 
