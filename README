@@ -23,6 +23,7 @@ Requirements
 ------------
 
 libiconv for the character set detection and UTF-8 conversion.
+Boost for iconv fixes.
 Expat for XML reading support.
 Doxygen to generate source code documentation (optional).
 Graphviz to generate graphs with the dot program used by Doxygen (optional).
