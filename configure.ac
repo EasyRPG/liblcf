@@ -23,6 +23,9 @@ AC_CHECK_LIB([expat],[XML_ParserCreate],[],[AC_MSG_ERROR(['expat' is required bu
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
 AC_CHECK_HEADERS([expat.h],[],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
+AC_LANG_PUSH([C++])
+AC_CHECK_HEADERS([boost/foreach.hpp],[],[AC_MSG_ERROR(You need the Boost libraries.)])
+AC_LANG_POP([C++])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
