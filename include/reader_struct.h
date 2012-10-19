@@ -688,7 +688,7 @@ public:
 
 private:
 	const char* const name;
-	XmlHandler* handler;	
+	XmlHandler* handler;
 };
 
 ////////////////////////////////////////////////////////////
@@ -700,7 +700,7 @@ class RootXmlHandler : public XmlHandler {
 public:
 	RootXmlHandler(S& ref, const char* const name) : ref(ref), name(name) {}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, this->name) != 0)
 			stream.Error("Expecting %s but got %s", this->name, name);
 		TypeReader<S>::BeginXml(ref, stream);

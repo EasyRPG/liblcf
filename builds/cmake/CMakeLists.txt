@@ -1,19 +1,19 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8)
 
-PROJECT(EasyRPG_Reader CXX C)
+project(EasyRPG_Reader CXX C)
 
-SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
-SET(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
-LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../../include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../include)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
 
 # Doxygen
-FIND_PACKAGE(Doxygen)
+find_package(Doxygen)
 if(DOXYGEN_FOUND)
-  ADD_CUSTOM_TARGET(reader_doc
+  add_custom_target(reader_doc
     ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
     DEPENDS ${SRCS}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
@@ -21,11 +21,11 @@ if(DOXYGEN_FOUND)
 endif(DOXYGEN_FOUND)
 
 # endianess checking
-INCLUDE(TestBigEndian)
-TEST_BIG_ENDIAN(IS_BIG_ENDIAN)
-IF(IS_BIG_ENDIAN)
-  ADD_DEFINITIONS(-D READER_BIG_ENDIAN=1)
-ENDIF()
+include(TestBigEndian)
+test_big_endian(IS_BIG_ENDIAN)
+if(IS_BIG_ENDIAN)
+  add_definitions(-D READER_BIG_ENDIAN=1)
+endif()
 
 find_package(PythonInterp)
 set(GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated)
@@ -53,23 +53,18 @@ if(PYTHONINTERP_FOUND)
     DEPENDS ${GENERATE_PY} ${tmpl} ${csv}
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
 else()
-  AUX_SOURCE_DIRECTORY(${GENERATED_OUTPUT_DIR} GEN_SRCS)
+  aux_source_directory(${GENERATED_OUTPUT_DIR} GEN_SRCS)
 endif()
 
-AUX_SOURCE_DIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
-ADD_LIBRARY(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
-
-# expat
-find_package(Expat)
-include_directories(${EXPAT_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
+aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
+add_library(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
 if(WIN32)
   set(ICONV_LIBRARY "")
 else()
   # iconv
   find_package(Iconv REQUIRED)
-  include_directories(${ICONV_INCLUDE_DIR})
+  include_directories(BEFORE ${ICONV_INCLUDE_DIR})
   target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
 
   # Boost
@@ -77,23 +72,28 @@ else()
   include_directories(${Boost_INCLUDE_DIRS})
 endif()
 
+# expat
+find_package(Expat)
+include_directories(${EXPAT_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
+
 # test
-ENABLE_TESTING()
+enable_testing()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../src)
 
-FUNCTION(CXX_TEST target libs)
+function(CXX_TEST target libs)
   get_filename_component(name ${target} NAME_WE)
-  ADD_EXECUTABLE(test_${name} ${target})
-  TARGET_LINK_LIBRARIES(test_${name} ${PROJECT_NAME} ${libs})
-  ADD_TEST(
+  add_executable(test_${name} ${target})
+  target_link_libraries(test_${name} ${PROJECT_NAME} ${libs})
+  add_test(
     NAME test_${name}
     WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
     COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_${name})
-  ADD_DEPENDENCIES(test_${name} ${PROJECT_NAME})
-ENDFUNCTION()
+  add_dependencies(test_${name} ${PROJECT_NAME})
+endfunction()
 
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../test/*.cpp)
-FOREACH(i ${TEST_FILES})
-  CXX_TEST(${i} ${ICONV_LIBRARY} ${EXPAT_LIBRARY})
-ENDFOREACH()
+foreach(i ${TEST_FILES})
+  cxx_test(${i} ${ICONV_LIBRARY} ${EXPAT_LIBRARY})
+endforeach()
