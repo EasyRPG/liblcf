@@ -34,7 +34,7 @@ struct RawStruct<RPG::TreeMap> {
 ////////////////////////////////////////////////////////////
 /// Map Tree
 ////////////////////////////////////////////////////////////
-void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t /* length */) {
 	Struct<RPG::MapInfo>::ReadLcf(ref.maps, stream);
 	for (int i = stream.ReadInt(); i > 0; i--)
 		ref.tree_order.push_back(stream.ReadInt());
@@ -52,7 +52,7 @@ void RawStruct<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& strea
 	Struct<RPG::Start>::WriteLcf(ref.start, stream);
 }
 
-int RawStruct<RPG::TreeMap>::LcfSize(const RPG::TreeMap& ref, LcfWriter& stream) {
+int RawStruct<RPG::TreeMap>::LcfSize(const RPG::TreeMap& /* ref */, LcfWriter& /* stream */) {
 	// doesn't matter; this structure never occurs within a chunk
 	return 0;
 }
@@ -86,7 +86,7 @@ public:
 	TreeMapXmlHandler(RPG::TreeMap& ref) :
 		ref(ref), active_node(false), tree_order(false) {}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		active_node = false;
 		tree_order = false;
 		if (strcmp(name, "maps") == 0)
@@ -101,11 +101,11 @@ public:
 			stream.Error("Unrecognized field '%s'", name);
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		active_node = false;
 		tree_order = false;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (active_node)
 			XmlReader::Read<int>(ref.active_node, data);
 		if (tree_order)

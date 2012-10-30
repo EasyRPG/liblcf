@@ -316,9 +316,9 @@ void LcfReader::SwapByteOrder(double& d)
 	p[1] = tmp;
 }
 #else
-void LcfReader::SwapByteOrder(uint16_t& us) {}
-void LcfReader::SwapByteOrder(uint32_t& ui) {}
-void LcfReader::SwapByteOrder(double& d) {}
+void LcfReader::SwapByteOrder(uint16_t& /* us */) {}
+void LcfReader::SwapByteOrder(uint32_t& /* ui */) {}
+void LcfReader::SwapByteOrder(double& /* d */) {}
 #endif
 
 void LcfReader::SwapByteOrder(int16_t& s)

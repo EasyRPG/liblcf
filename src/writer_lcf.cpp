@@ -183,9 +183,9 @@ void LcfWriter::SwapByteOrder(double& d)
 	p[1] = tmp;
 }
 #else
-void LcfWriter::SwapByteOrder(uint16_t& us) {}
-void LcfWriter::SwapByteOrder(uint32_t& ui) {}
-void LcfWriter::SwapByteOrder(double& d) {}
+void LcfWriter::SwapByteOrder(uint16_t& /* us */) {}
+void LcfWriter::SwapByteOrder(uint32_t& /* ui */) {}
+void LcfWriter::SwapByteOrder(double& /* d */) {}
 #endif
 
 void LcfWriter::SwapByteOrder(int16_t& s)

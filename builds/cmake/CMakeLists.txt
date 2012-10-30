@@ -21,10 +21,12 @@ if(DOXYGEN_FOUND)
 endif(DOXYGEN_FOUND)
 
 # endianess checking
-include(TestBigEndian)
-test_big_endian(IS_BIG_ENDIAN)
-if(IS_BIG_ENDIAN)
-  add_definitions(-D READER_BIG_ENDIAN=1)
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  include(TestBigEndian)
+  test_big_endian(IS_BIG_ENDIAN)
+  if(IS_BIG_ENDIAN)
+    add_definitions(-D READER_BIG_ENDIAN=1)
+  endif()
 endif()
 
 find_package(PythonInterp)
