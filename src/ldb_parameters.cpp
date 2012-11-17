@@ -53,7 +53,7 @@ void RawStruct<RPG::Parameters>::WriteLcf(const RPG::Parameters& ref, LcfWriter&
 	stream.Write(ref.agility);
 }
 
-int RawStruct<RPG::Parameters>::LcfSize(const RPG::Parameters& ref, LcfWriter& stream) {
+int RawStruct<RPG::Parameters>::LcfSize(const RPG::Parameters& ref, LcfWriter& /* stream */) {
 	return ref.maxhp.size() * 2 * 6;
 }
 
@@ -74,7 +74,7 @@ private:
 	std::vector<int16_t>* field;
 public:
 	ParametersXmlHandler(RPG::Parameters& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "maxhp") == 0)
 			field = &ref.maxhp;
 		else if (strcmp(name, "maxsp") == 0)
@@ -92,10 +92,10 @@ public:
 			field = NULL;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
 			XmlReader::Read<std::vector<int16_t> >(*field, data);
 	}
