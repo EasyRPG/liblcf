@@ -34,7 +34,7 @@ struct RawStruct<RPG::Equipment> {
 ////////////////////////////////////////////////////////////
 /// Read Equipment
 ////////////////////////////////////////////////////////////
-void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t /* length */) {
 	stream.Read(ref.weapon_id);
 	stream.Read(ref.shield_id);
 	stream.Read(ref.armor_id);
@@ -50,7 +50,7 @@ void RawStruct<RPG::Equipment>::WriteLcf(const RPG::Equipment& ref, LcfWriter& s
 	stream.Write(ref.accessory_id);
 }
 
-int RawStruct<RPG::Equipment>::LcfSize(const RPG::Equipment& ref, LcfWriter& stream) {
+int RawStruct<RPG::Equipment>::LcfSize(const RPG::Equipment& /* ref */, LcfWriter& /* stream */) {
 	return 2 * 5;
 }
 
@@ -70,7 +70,7 @@ private:
 	int16_t* field;
 public:
 	EquipmentXmlHandler(RPG::Equipment& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "weapon_id") == 0)
 			field = &ref.weapon_id;
 		else if (strcmp(name, "shield_id") == 0)
@@ -86,10 +86,10 @@ public:
 			field = NULL;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream*/, const std::string& data) {
 		if (field != NULL)
 			XmlReader::Read(*field, data);
 	}

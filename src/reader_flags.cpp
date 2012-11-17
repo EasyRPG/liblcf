@@ -69,7 +69,7 @@ void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 }
 
 template <class S>
-int Flags<S>::LcfSize(const S& obj, LcfWriter& stream) {
+int Flags<S>::LcfSize(const S& obj, LcfWriter& /* stream */) {
 	int result = 0;
 	for (int i = 0; flags[i] != NULL; i++) {
 		bool S::*ref = flags[i]->ref;
@@ -100,7 +100,7 @@ public:
 		Flags<S>::MakeTagMap();
 	}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		const typename Flags<S>::Flag* flag = Flags<S>::tag_map[name];
 		if (flag != NULL) {
 			bool S::*ref = flag->ref;
@@ -111,10 +111,10 @@ public:
 			field = NULL;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
 			XmlReader::Read<bool>(*field, data);
 	}

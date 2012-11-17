@@ -42,7 +42,7 @@ struct RawStruct<std::vector<RPG::MoveCommand> > {
 ////////////////////////////////////////////////////////////
 /// Read Move Command
 ////////////////////////////////////////////////////////////
-void RawStruct<RPG::MoveCommand>::ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::MoveCommand>::ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t /* length */) {
 	ref.command_id = stream.ReadInt();
 	switch (ref.command_id) {
 		case RPG::MoveCommand::Code::switch_on:
@@ -146,7 +146,7 @@ private:
 public:
 	MoveCommandXmlHandler(RPG::MoveCommand& ref) :
 		ref(ref), field(NULL), parameter_string(false) {}
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "command_id") == 0)
 			field = &ref.command_id;
 		else if (strcmp(name, "parameter_a") == 0)
@@ -163,11 +163,11 @@ public:
 			parameter_string = false;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 		parameter_string = false;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
 			XmlReader::Read<int>(*field, data);
 		else if (parameter_string)
@@ -216,7 +216,7 @@ class MoveCommandVectorXmlHandler : public XmlHandler {
 public:
 	MoveCommandVectorXmlHandler(std::vector<RPG::MoveCommand>& ref) : ref(ref) {}
 
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "MoveCommand") != 0)
 			stream.Error("Expecting %s but got %s", "MoveCommand", name);
 		ref.resize(ref.size() + 1);

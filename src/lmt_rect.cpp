@@ -49,7 +49,7 @@ void RawStruct<RPG::Rect>::WriteLcf(const RPG::Rect& ref, LcfWriter& stream) {
 	stream.Write(ref.b);
 }
 
-int RawStruct<RPG::Rect>::LcfSize(const RPG::Rect& ref, LcfWriter& stream) {
+int RawStruct<RPG::Rect>::LcfSize(const RPG::Rect& /* ref */, LcfWriter& /* stream */) {
 	return 4 * 4;
 }
 
@@ -68,7 +68,7 @@ private:
 	uint32_t* field;
 public:
 	RectXmlHandler(RPG::Rect& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "l") == 0)
 			field = &ref.l;
 		else if (strcmp(name, "t") == 0)
@@ -82,10 +82,10 @@ public:
 			field = NULL;
 		}
 	}
-	void EndElement(XmlReader& stream, const char* name) {
+	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;
 	}
-	void CharacterData(XmlReader& stream, const std::string& data) {
+	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
 			XmlReader::Read(*field, data);
 	}
