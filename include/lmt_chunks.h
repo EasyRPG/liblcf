@@ -31,23 +31,23 @@ namespace LMT_Reader {
 	};
 	struct ChunkMapInfo {
 		enum Index {
-			name			= 0x01, // String	// Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data), always use RPG_RT.ini GameTitle instead
-			parent_map		= 0x02, // Integer	// Used to inherit parent map properties
-			indentation		= 0x03, // Integer	// Dummy editor dumped data, branch indentation level in TreeCtrl
-			type			= 0x04, // Integer	// 0=lmt root, can be ignored; 1=map; 2=area
-			scrollbar_x		= 0x05, // Integer	// Editor only
-			scrollbar_y		= 0x06, // Integer	// Editor only
-			expanded_node	= 0x07, // Flag		// Editor only
-			music_type		= 0x0B, // Integer	// 0=inherit; 1=from event; 2=specified in 0x0C
+			name			= 0x01, // String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
+			parent_map		= 0x02, // Integer. Used to inherit parent map properties
+			indentation		= 0x03, // Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
+			type			= 0x04, // Integer. 0=lmt root (can be ignored); 1=map; 2=area
+			scrollbar_x		= 0x05, // Integer. Editor only
+			scrollbar_y		= 0x06, // Integer. Editor only
+			expanded_node	= 0x07, // Flag. Editor only
+			music_type		= 0x0B, // Integer. 0=inherit; 1=from event; 2=specified in 0x0C
 			music			= 0x0C, // Array - RPG::Music
-			background_type	= 0x15, // Integer // 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
+			background_type	= 0x15, // Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
 			background_name	= 0x16, // String
-			teleport		= 0x1F, // Flag // 0=inherit; 1=allow; 2=disallow
-			escape			= 0x20, // Flag // 0=inherit; 1=allow; 2=disallow
-			save			= 0x21, // Flag // 0=inherit; 1=allow; 2=disallow
+			teleport		= 0x1F, // Flag. 0=inherit; 1=allow; 2=disallow
+			escape			= 0x20, // Flag. 0=inherit; 1=allow; 2=disallow
+			save			= 0x21, // Flag. 0=inherit; 1=allow; 2=disallow
 			encounters		= 0x29, // Array - RPG::Encounter
-			encounter_steps	= 0x2C, // Integer // 0 inherits from parent (?) FIXME
-			area_rect		= 0x33  // Uint32 x 4 (L,T,R,B) // normal map (non-area) is 0,0,0,0
+			encounter_steps	= 0x2C, // Integer. 0 inherits from parent (?) FIXME
+			area_rect		= 0x33  // Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0
 		};
 	};
 	struct ChunkStart {
