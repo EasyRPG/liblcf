@@ -24,7 +24,9 @@
 #include <string>
 #include <vector>
 #include <cstdio>
-#include <expat.h>
+#if defined(READER_SUPPORT_XML)
+#  include <expat.h>
+#endif
 #include "reader_types.h"
 #include "reader_options.h"
 #include "reader_util.h"
