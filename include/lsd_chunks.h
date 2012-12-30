@@ -122,10 +122,10 @@ namespace LSD_Reader {
 			shake_time_left		= 0x23, // int
 			pan_x				= 0x29, // int
 			pan_y				= 0x2A, // int
-			battleanim_id		= 0x2B, // int  - battle animation ID
-			battleanim_target	= 0x2C, // int	- battle animation target
-			battleanim_unk_2d	= 0x2D, // int  - battle animation ??
-			battleanim_global	= 0x2F, // int  - battle animation global scope
+			battleanim_id		= 0x2B, // int - battle animation ID
+			battleanim_target	= 0x2C, // int - battle animation target
+			battleanim_unk_2d	= 0x2D, // int - battle animation ??
+			battleanim_global	= 0x2F, // int - battle animation global scope
 			weather				= 0x30, // int
 			weather_strength	= 0x31  // int
 		};
@@ -232,8 +232,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveActor {
 		enum Index {
-			name			= 0x01, // string, "\x01" for default!?!?
-			title			= 0x02, // string, "\x01" for default!?!?
+			name			= 0x01, // string; "\x01" for default!?!?
+			title			= 0x02, // string; "\x01" for default!?!?
 			sprite_name		= 0x0B, // string
 			sprite_id		= 0x0C, // int
 			sprite_flags	= 0x0D, // int
@@ -257,7 +257,7 @@ namespace LSD_Reader {
 			status			= 0x52, // array of short
 			changed_class	= 0x53, // bool
 			class_id		= 0x5A, // int class-id
-			row				= 0x5B, // RPG2k3 Battle row (-1 Back, 1 Front)
+			row				= 0x5B, // RPG2k3 Battle row (-1 Back; 1 Front)
 			two_weapon		= 0x5C, // bool
 			lock_equipment	= 0x5D, // bool
 			auto_battle		= 0x5E, // bool

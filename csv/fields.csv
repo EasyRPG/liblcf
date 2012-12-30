@@ -591,23 +591,23 @@ Database,classes,f,Array<Class>,0x1E,,RPG::Class - RPG2003
 Database,classD1,f,,0x1F,,Duplicated? - Not used - RPG2003
 Database,battleranimations,f,Array<BattlerAnimation>,0x20,,RPG::BattlerAnimation - RPG2003
 Encounter,troop_id,f,Ref<Troop>,0x01,,Integer
-MapInfo,name,f,String,0x01,'',String	// Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data), always use RPG_RT.ini GameTitle instead
-MapInfo,parent_map,f,Ref<Map>,0x02,0,Integer	// Used to inherit parent map properties
-MapInfo,indentation,f,Integer,0x03,0,Integer	// Dummy editor dumped data, branch indentation level in TreeCtrl
-MapInfo,type,f,Integer,0x04,1,Integer	// 0=lmt root, can be ignored; 1=map; 2=area
-MapInfo,scrollbar_x,f,Integer,0x05,0,Integer	// Editor only
-MapInfo,scrollbar_y,f,Integer,0x06,0,Integer	// Editor only
-MapInfo,expanded_node,f,Boolean,0x07,False,Flag		// Editor only
-MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,Integer	// 0=inherit; 1=from event; 2=specified in 0x0C
+MapInfo,name,f,String,0x01,'',String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
+MapInfo,parent_map,f,Ref<Map>,0x02,0,Integer. Used to inherit parent map properties
+MapInfo,indentation,f,Integer,0x03,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
+MapInfo,type,f,Integer,0x04,1,Integer. 0=lmt root (can be ignored); 1=map; 2=area
+MapInfo,scrollbar_x,f,Integer,0x05,0,Integer. Editor only
+MapInfo,scrollbar_y,f,Integer,0x06,0,Integer. Editor only
+MapInfo,expanded_node,f,Boolean,0x07,False,Flag. Editor only
+MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,Integer. 0=inherit; 1=from event; 2=specified in 0x0C
 MapInfo,music,f,Music,0x0C,,Array - RPG::Music
-MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,Integer // 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
+MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
 MapInfo,background_name,f,String,0x16,'',String
-MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,Flag // 0=inherit; 1=allow; 2=disallow
-MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,Flag // 0=inherit; 1=allow; 2=disallow
-MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,Flag // 0=inherit; 1=allow; 2=disallow
+MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,Flag. 0=inherit; 1=allow; 2=disallow
+MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,Flag. 0=inherit; 1=allow; 2=disallow
+MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,encounters,f,Array<Encounter>,0x29,,Array - RPG::Encounter
-MapInfo,encounter_steps,f,Integer,0x2C,25,Integer // 0 inherits from parent (?) FIXME
-MapInfo,area_rect,f,Rect,0x33,,Uint32 x 4 (L,T,R,B) // normal map (non-area) is 0,0,0,0
+MapInfo,encounter_steps,f,Integer,0x2C,25,Integer. 0 inherits from parent (?) FIXME
+MapInfo,area_rect,f,Rect,0x33,,Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0
 Start,party_map_id,f,Ref<Map>,0x01,0,Integer
 Start,party_x,f,Integer,0x02,0,Integer
 Start,party_y,f,Integer,0x03,0,Integer
@@ -773,10 +773,10 @@ SaveScreen,shake_position,f,Integer,0x21,0,int
 SaveScreen,shake_time_left,f,Integer,0x23,-1,int
 SaveScreen,pan_x,f,Integer,0x29,-1,int
 SaveScreen,pan_y,f,Integer,0x2A,-1,int
-SaveScreen,battleanim_id,f,Integer,0x2B,-1,int  - battle animation ID
-SaveScreen,battleanim_target,f,Integer,0x2C,-1,int	- battle animation target
-SaveScreen,battleanim_unk_2d,f,Integer,0x2D,-1,int  - battle animation ??
-SaveScreen,battleanim_global,f,Boolean,0x2F,False,int  - battle animation global scope
+SaveScreen,battleanim_id,f,Integer,0x2B,-1,int - battle animation ID
+SaveScreen,battleanim_target,f,Integer,0x2C,-1,int - battle animation target
+SaveScreen,battleanim_unk_2d,f,Integer,0x2D,-1,int - battle animation ??
+SaveScreen,battleanim_global,f,Boolean,0x2F,False,int - battle animation global scope
 SaveScreen,weather,f,Integer,0x30,0,int
 SaveScreen,weather_strength,f,Integer,0x31,0,int
 SavePicture,name,f,String,0x01,'',string
@@ -867,8 +867,8 @@ SaveVehicleLocation,unknown_4b,f,Integer,0x4B,-1,?
 SaveVehicleLocation,unknown_65,f,Integer,0x65,-1,?
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,-1,int
-SaveActor,name,f,String,0x01,'',string, "\x01" for default!?!?
-SaveActor,title,f,String,0x02,'',string, "\x01" for default!?!?
+SaveActor,name,f,String,0x01,'',string; "\x01" for default!?!?
+SaveActor,title,f,String,0x02,'',string; "\x01" for default!?!?
 SaveActor,sprite_name,f,String,0x0B,'',string
 SaveActor,sprite_id,f,Integer,0x0C,-1,int
 SaveActor,sprite_flags,f,Integer,0x0D,-1,int
@@ -892,7 +892,7 @@ SaveActor,status_size,f,Integer,0x51,-1,?
 SaveActor,status,f,Vector<Int16>,0x52,,array of short
 SaveActor,changed_class,f,Boolean,0x53,False,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,int class-id
-SaveActor,row,f,Integer,0x5B,-1,RPG2k3 Battle row (-1 Back, 1 Front)
+SaveActor,row,f,Integer,0x5B,-1,RPG2k3 Battle row (-1 Back; 1 Front)
 SaveActor,two_weapon,f,Boolean,0x5C,False,bool
 SaveActor,lock_equipment,f,Boolean,0x5D,False,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,bool
