@@ -48,31 +48,33 @@ std::auto_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Save Map
 ////////////////////////////////////////////////////////////
-void LMU_Reader::Save(const std::string& filename, const RPG::Map& map) {
+bool LMU_Reader::Save(const std::string& filename, const RPG::Map& map) {
 	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
-		return;
+		return false;
 	}
 	const std::string header("LcfMapUnit");
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
 	Struct<RPG::Map>::WriteLcf(map, writer);
+	return true;
 }
 
 ////////////////////////////////////////////////////////////
 /// Save Map as XML
 ////////////////////////////////////////////////////////////
-void LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& map) {
+bool LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& map) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
-		return;
+		return false;
 	}
 	writer.BeginElement("LMU");
 	Struct<RPG::Map>::WriteXml(map, writer);
 	writer.EndElement("LMU");
+	return true;
 }
 
 ////////////////////////////////////////////////////////////
