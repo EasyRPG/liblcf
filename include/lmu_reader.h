@@ -30,8 +30,8 @@
 ////////////////////////////////////////////////////////////
 namespace LMU_Reader {
 	std::auto_ptr<RPG::Map> Load(const std::string &filename);
-	void Save(const std::string& filename, const RPG::Map& map);
-	void SaveXml(const std::string& filename, const RPG::Map& map);
+	bool Save(const std::string& filename, const RPG::Map& map);
+	bool SaveXml(const std::string& filename, const RPG::Map& map);
 	std::auto_ptr<RPG::Map> LoadXml(const std::string &filename);
 }
 

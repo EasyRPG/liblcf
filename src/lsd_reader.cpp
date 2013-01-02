@@ -69,11 +69,11 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 ////////////////////////////////////////////////////////////
 /// Save Save
 ////////////////////////////////////////////////////////////
-void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
+bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return;
+		return false;
 	}
 	const std::string header("LcfSaveData");
 	writer.WriteInt(header.size());
@@ -82,21 +82,23 @@ void LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	const_cast<RPG::Save&>(save).title.timestamp = GenerateTimeStamp();
 
 	Struct<RPG::Save>::WriteLcf(save, writer);
+	return true;
 }
 
 ////////////////////////////////////////////////////////////
 /// Save Save as XML
 ////////////////////////////////////////////////////////////
-void LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
+bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return;
+		return false;
 	}
 
 	writer.BeginElement("LSD");
 	Struct<RPG::Save>::WriteXml(save, writer);
 	writer.EndElement("LSD");
+	return true;
 }
 
 ////////////////////////////////////////////////////////////
