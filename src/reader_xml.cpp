@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 /// Expat callbacks
 ////////////////////////////////////////////////////////////
-/*
+#if defined(READER_SUPPORT_XML)
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
 	((XmlReader*) closure)->StartElement(name, atts);
@@ -41,7 +41,7 @@ static void CharacterDataHandler(void* closure, const XML_Char* s, int len) {
 	((XmlReader*) closure)->CharacterData(s, len);
 }
 }
-*/
+#endif
 
 ////////////////////////////////////////////////////////////
 XmlReader::XmlReader(const std::string& filename) :
