@@ -38,30 +38,6 @@
     <ClCompile Include="..\..\src\inireader.cpp">
       <Filter>Source Files\INI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_actor.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_animation.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_animationcelldata.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_animationframe.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_animationtiming.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_attribute.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_battlecommand.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\generated\ldb_battleranimation.cpp">
-      <Filter>Source Files\LDB</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\generated\ldb_battleranimationextension.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
@@ -463,6 +439,30 @@
     </ClCompile>
     <ClCompile Include="..\..\src\rpg_setup.cpp">
       <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_actor.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_animation.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_animationcelldata.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_animationframe.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_animationtiming.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_attribute.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_battlecommand.cpp">
+      <Filter>Source Files\LDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\ldb_battleranimation.cpp">
+      <Filter>Source Files\LDB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
