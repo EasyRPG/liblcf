@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,23 +13,23 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef _LSD_READER_H_
 #define _LSD_READER_H_
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <string>
 #include <vector>
 #include <memory>
 #include <ctime>
 #include "rpg_save.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// LDB Reader namespace
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace LSD_Reader {
 	double ToMicrosoftAccessTime(std::time_t const t);
 	std::time_t ToUnixTime(double const ms);

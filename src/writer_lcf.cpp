@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,14 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
-/// Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
+// Headers
+//----------------------------------------------------------
 #include "writer_lcf.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfWriter::LcfWriter(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
@@ -28,7 +28,7 @@ LcfWriter::LcfWriter(const char* filename, std::string encoding) :
 {
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfWriter::LcfWriter(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
@@ -36,19 +36,19 @@ LcfWriter::LcfWriter(const std::string& filename, std::string encoding) :
 {
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfWriter::~LcfWriter() {
 	Close();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfWriter::Close() {
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
 	fwrite(ptr, size, nmemb, stream);
@@ -57,27 +57,27 @@ void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<uint8_t>(uint8_t val) {
 	Write(&val, 1, 1);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<int16_t>(int16_t val) {
 	SwapByteOrder(val);
 	Write(&val, 2, 1);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<uint32_t>(uint32_t val) {
 	SwapByteOrder(val);
 	Write(&val, 4, 1);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfWriter::WriteInt(int val) {
 	uint32_t value = (uint32_t) val;
 	for (int i = 28; i >= 0; i -= 7)
@@ -85,27 +85,27 @@ void LcfWriter::WriteInt(int val) {
 			Write<uint8_t>((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<int>(int val) {
 	WriteInt(val);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<bool>(bool val) {
 	uint8_t x = val ? 1 : 0;
 	Write(x);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<double>(double val) {
 	SwapByteOrder(val);
 	Write(&val, 8, 1);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<bool>(const std::vector<bool>& buffer) {
 	std::vector<bool>::const_iterator it;
@@ -115,13 +115,13 @@ void LcfWriter::Write<bool>(const std::vector<bool>& buffer) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<uint8_t>(const std::vector<uint8_t>& buffer) {
 	Write(&buffer.front(), 1, buffer.size());
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
 	std::vector<int16_t>::const_iterator it;
@@ -129,7 +129,7 @@ void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
 		Write(*it);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
 	std::vector<uint32_t>::const_iterator it;
@@ -137,18 +137,18 @@ void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
 		Write(*it);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfWriter::Write(const std::string& _str) {
 	std::string str = Decode(_str);
 	Write(&*str.begin(), 1, str.size());
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LcfWriter::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string LcfWriter::Decode(const std::string& str_to_encode) {
 #ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, "65001", encoding);
@@ -157,7 +157,7 @@ std::string LcfWriter::Decode(const std::string& str_to_encode) {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifdef READER_BIG_ENDIAN
 void LcfWriter::SwapByteOrder(uint16_t& us)
 {

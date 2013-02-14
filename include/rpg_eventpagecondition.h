@@ -1,6 +1,6 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -15,14 +15,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef _RPG_EVENTPAGECONDITION_H_
 #define _RPG_EVENTPAGECONDITION_H_
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// RPG::EventPageCondition class
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace RPG {
 	class EventPageCondition {
 	public:

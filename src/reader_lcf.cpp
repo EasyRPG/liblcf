@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,20 +13,20 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <cstdarg>
 #include "reader_lcf.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Statics
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string LcfReader::error_str;
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfReader::LcfReader(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
@@ -34,7 +34,7 @@ LcfReader::LcfReader(const char* filename, std::string encoding) :
 {
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfReader::LcfReader(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
@@ -42,24 +42,24 @@ LcfReader::LcfReader(const std::string& filename, std::string encoding) :
 {
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 LcfReader::~LcfReader() {
 	Close();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfReader::Close() {
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 	return fread(ptr, size, nmemb, stream);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
 	Read0(ptr, size, nmemb);
@@ -68,33 +68,33 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<bool>(bool& ref) {
 	ref = ReadInt() > 0;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<uint8_t>(uint8_t& ref) {
 	Read(&ref, 1, 1);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<int16_t>(int16_t& ref) {
 	Read(&ref, 2, 1);
 	SwapByteOrder(ref);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<uint32_t>(uint32_t& ref) {
 	Read(&ref, 4, 1);
 	SwapByteOrder(ref);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 int LcfReader::ReadInt() {
 	int value = 0;
 	unsigned char temp = 0;
@@ -110,20 +110,20 @@ int LcfReader::ReadInt() {
 	return value;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<int>(int& ref) {
 	ref = ReadInt();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<double>(double& ref) {
 	Read(&ref, 8, 1);
 	SwapByteOrder(ref);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
 	buffer.clear();
@@ -135,7 +135,7 @@ void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
 	buffer.clear();
@@ -147,7 +147,7 @@ void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 	buffer.clear();
@@ -160,7 +160,7 @@ void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	buffer.clear();
@@ -173,7 +173,7 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfReader::ReadString(std::string& ref, size_t size) {
 	char* chars = new char[size + 1];
 	chars[size] = '\0';
@@ -182,17 +182,17 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 	delete[] chars;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LcfReader::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LcfReader::Eof() const {
 	return feof(stream) != 0;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfReader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
 	case LcfReader::FromStart:
@@ -209,17 +209,17 @@ void LcfReader::Seek(size_t pos, SeekMode mode) {
 	}
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 uint32_t LcfReader::Tell() {
 	return (uint32_t)ftell(stream);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LcfReader::Ungetch(uint8_t ch) {
 	return (ungetc(ch, stream) == ch);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifdef _DEBUG
 void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile) {
 	// Dump the Chunk Data in Debug Mode
@@ -252,7 +252,7 @@ void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info) {
 }
 #endif
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void LcfReader::SetError(const char* fmt, ...) {
 	va_list args;
 	va_start(args, fmt);
@@ -266,12 +266,12 @@ void LcfReader::SetError(const char* fmt, ...) {
 	va_end(args);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 const std::string& LcfReader::GetError() {
 	return error_str;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string LcfReader::Encode(const std::string& str_to_encode) {
 #ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, encoding, "65001");
@@ -280,7 +280,7 @@ std::string LcfReader::Encode(const std::string& str_to_encode) {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 int LcfReader::IntSize(unsigned int x) {
 	int result = 0;
 	do {
@@ -290,7 +290,7 @@ int LcfReader::IntSize(unsigned int x) {
 	return result;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifdef READER_BIG_ENDIAN
 void LcfReader::SwapByteOrder(uint16_t& us)
 {

@@ -1,6 +1,6 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -15,21 +15,21 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef _RPG_BATTLERANIMATION_H_
 #define _RPG_BATTLERANIMATION_H_
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <string>
 #include <vector>
 #include "rpg_battleranimationextension.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// RPG::BattlerAnimation class
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace RPG {
 	class BattlerAnimation {
 	public:

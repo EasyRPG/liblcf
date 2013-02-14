@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,11 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifdef _WIN32
 #  include <cstdio>
 #  define WIN32_LEAN_AND_MEAN
@@ -37,11 +37,11 @@
 #include "inireader.h"
 #include "reader_util.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace ReaderUtil {
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string ReaderUtil::CodepageToIconv(int codepage) {
 	if (codepage == 0)
 		return "";
@@ -51,7 +51,7 @@ std::string ReaderUtil::CodepageToIconv(int codepage) {
 	return out.str();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string ReaderUtil::GetEncoding() {
 	INIReader ini("RPG_RT.ini");
 	if (ini.ParseError() != -1) {
@@ -82,7 +82,7 @@ std::string ReaderUtil::GetEncoding() {
 	return "";
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifndef _WIN32
 template<class F>
 static std::string RunIconv(const std::string& str_to_encode,
@@ -116,7 +116,7 @@ static std::string RunIconv(const std::string& str_to_encode,
 }
 #endif // not _WIN32
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {

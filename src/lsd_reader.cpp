@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,11 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <cmath>
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
@@ -26,9 +26,9 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Timestamp
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace {
 double const DIFF_DAYS = std::floor(365.2422 * 70) + 3;
 double const SECOND_PER_HOUR = 60 * 60 * 24;
@@ -45,9 +45,9 @@ double LSD_Reader::GenerateTimeStamp(time_t const t) {
 	return ToMicrosoftAccessTime(t);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Load Save
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
@@ -66,9 +66,9 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 	return std::auto_ptr<RPG::Save>(save);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Save Save
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
@@ -85,9 +85,9 @@ bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Save Save as XML
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -101,9 +101,9 @@ bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Load Save as XML
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 std::auto_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {

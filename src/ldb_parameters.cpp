@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,11 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader_struct.h"
@@ -31,9 +31,9 @@ struct RawStruct<RPG::Parameters> {
 	static void BeginXml(RPG::Parameters& ref, XmlReader& stream);
 };
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Read Parameters
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void RawStruct<RPG::Parameters>::ReadLcf(RPG::Parameters& ref, LcfReader& stream, uint32_t length) {
 	int n = length / 6;
 	stream.Read(ref.maxhp, n);

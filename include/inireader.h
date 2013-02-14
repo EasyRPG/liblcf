@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // Read an INI file into easy-to-access name/value pairs.
 //
 // Go to the project home page for more info:
@@ -30,7 +30,7 @@
 // ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef __INIREADER_H__
 #define __INIREADER_H__

@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,41 +13,41 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef _EASYRPG_READER_UTIL_H_
 #define _EASYRPG_READER_UTIL_H_
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <string>
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// ReaderUtil namespace
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 namespace ReaderUtil {
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	/// Returns the iconv name of a windows codepage.
 	/// @param codepage : Codepage to lookup
 	/// @return Name used by iconv or NULL if not found
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	std::string CodepageToIconv(int codepage);
 	
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	/// Returns the encoding set in the ini file
 	/// @return Windows: Codepage, Other: iconv name,
 	/// Empty string if not found
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	std::string GetEncoding();
 
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	/// Converts a string between encodings
 	/// @param str_to_encode : the string to convert
 	/// @param src_enc : the source encoding
 	/// @param dst_enc : the destination encoding
 	/// @return : the recoded string
-	////////////////////////////////////////////////////////
+	//------------------------------------------------------
 	std::string Recode(const std::string& str_to_encode,
 					   const std::string& src_enc,
 					   const std::string& dst_enc);

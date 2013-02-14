@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,20 +13,20 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include <sstream>
 #include <cstdarg>
 #include <cstdio>
 #include "reader_lcf.h"
 #include "reader_xml.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Expat callbacks
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #if defined(READER_SUPPORT_XML)
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
@@ -43,7 +43,7 @@ static void CharacterDataHandler(void* closure, const XML_Char* s, int len) {
 }
 #endif
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 XmlReader::XmlReader(const std::string& filename) :
 	filename(filename),
 	stream(NULL),
@@ -52,12 +52,12 @@ XmlReader::XmlReader(const std::string& filename) :
 	Open();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 XmlReader::~XmlReader() {
 	Close();
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::Open() {
 #if defined(READER_SUPPORT_XML)
 	stream = fopen(filename.c_str(), "r");
@@ -71,7 +71,7 @@ void XmlReader::Open() {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::Close() {
 #if defined(READER_SUPPORT_XML)
 	if (stream != NULL)
@@ -84,12 +84,12 @@ void XmlReader::Close() {
 #endif
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool XmlReader::IsOk() const {
 	return (stream != NULL && !ferror(stream) && parser != NULL);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::Error(const char* fmt, ...) {
 	va_list ap;
 	va_start(ap, fmt);
@@ -98,7 +98,7 @@ void XmlReader::Error(const char* fmt, ...) {
 	va_end(ap);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::Parse() {
 #if defined(READER_SUPPORT_XML)
 	static const int bufsize = 4096;
@@ -112,16 +112,16 @@ void XmlReader::Parse() {
 #endif
 }
 
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Change the handler
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::SetHandler(XmlHandler* handler) {
 	handlers.back() = handler;
 }
 
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Start Element
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::StartElement(const char* name, const char** atts) {
 	XmlHandler* handler = handlers.back();
 	handlers.push_back(handler);
@@ -129,16 +129,16 @@ void XmlReader::StartElement(const char* name, const char** atts) {
 	buffer.clear();
 }
 
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Character Data
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::CharacterData(const char* s, int len) {
 	buffer.append(s, len);
 }
 
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// End Element
-////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void XmlReader::EndElement(const char* name) {
 	XmlHandler* handler = handlers.back();
 	handler->CharacterData(*this, buffer);
@@ -148,9 +148,9 @@ void XmlReader::EndElement(const char* name) {
 	handlers.back()->EndElement(*this, name);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Primitive type readers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 template <>
 void XmlReader::Read<bool>(bool& val, const std::string& data) {
 	std::istringstream s(data);
@@ -265,4 +265,4 @@ void XmlReader::Read<std::vector<double> >(std::vector<double>& val, const std::
 	ReadVector<double>(val, data);
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------

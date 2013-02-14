@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // inih -- simple .INI file parser
 // 
 // Go to the project home page for more info:
@@ -30,7 +30,7 @@
 // ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
 #ifndef __INI_H__
 #define __INI_H__
@@ -40,7 +40,7 @@
 extern "C" {
 #endif
 
-///////////////////////////////////////////////////////////
+//----------------------------------------------------------
 ///	Parse given INI-style file. May have [section]s, name=value pairs
 ///	(whitespace stripped), and comments starting with ';' (semicolon). Section
 ///	is "" if name=value pair parsed before any section heading.
@@ -51,17 +51,17 @@ extern "C" {
 ///	
 ///	@returns 0 on success, line number of first error on parse error (doesn't
 ///	stop on first error), or -1 on file open error.
-///////////////////////////////////////////////////////////
+//----------------------------------------------------------
 int ini_parse(const char* filename,
 			int (*handler)(void* user, const char* section,
 							 const char* name, const char* value),
 			void* user);
 
-///////////////////////////////////////////////////////////
+//----------------------------------------------------------
 ///	Nonzero to allow multi-line value parsing, in the style of Python's
 ///	ConfigParser. If allowed, ini_parse() will call the handler with the same
 ///	name for each subsequent line parsed.
-///////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #ifndef INI_ALLOW_MULTILINE
 #define INI_ALLOW_MULTILINE 1
 #endif

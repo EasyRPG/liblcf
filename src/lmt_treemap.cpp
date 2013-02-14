@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,11 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "reader_struct.h"
@@ -31,9 +31,9 @@ struct RawStruct<RPG::TreeMap> {
 	static void BeginXml(RPG::TreeMap& ref, XmlReader& stream);
 };
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Map Tree
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t /* length */) {
 	Struct<RPG::MapInfo>::ReadLcf(ref.maps, stream);
 	for (int i = stream.ReadInt(); i > 0; i--)

@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 // This file is part of EasyRPG.
 //
 // EasyRPG is free software: you can redistribute it and/or modify
@@ -13,20 +13,20 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+//===========================================================================
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 // Headers
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "data.h"
 #include "reader_util.h"
 #include "reader_struct.h"
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Load Map Tree
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LMT_Reader::Load(const std::string& filename) {
 	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
@@ -43,9 +43,9 @@ bool LMT_Reader::Load(const std::string& filename) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Save Map Tree
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LMT_Reader::Save(const std::string& filename) {
 	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
@@ -59,9 +59,9 @@ bool LMT_Reader::Save(const std::string& filename) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Save Map Tree as Xml
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LMT_Reader::SaveXml(const std::string& filename) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -74,9 +74,9 @@ bool LMT_Reader::SaveXml(const std::string& filename) {
 	return true;
 }
 
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 /// Load Map Tree as XML
-////////////////////////////////////////////////////////////
+//----------------------------------------------------------
 bool LMT_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {
