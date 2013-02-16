@@ -1,27 +1,26 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//----------------------------------------------------------
-/// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include <vector>
 #include "writer_xml.h"
 
-//----------------------------------------------------------
 XmlWriter::XmlWriter(const char* filename) :
 	filename(filename),
 	indent(0),
@@ -30,7 +29,6 @@ XmlWriter::XmlWriter(const char* filename) :
 	Open();
 }
 
-//----------------------------------------------------------
 XmlWriter::XmlWriter(const std::string& filename) :
 	filename(filename),
 	indent(0),
@@ -39,25 +37,21 @@ XmlWriter::XmlWriter(const std::string& filename) :
 	Open();
 }
 
-//----------------------------------------------------------
 XmlWriter::~XmlWriter() {
 	Close();
 }
 
-//----------------------------------------------------------
 void XmlWriter::Open() {
 	stream = fopen(filename.c_str(), "w");
 	fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", stream);
 }
 
-//----------------------------------------------------------
 void XmlWriter::Close() {
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
 }
 
-//----------------------------------------------------------
 template <>
 void XmlWriter::Write<bool>(const bool& val) {
 	Indent();
@@ -156,12 +150,10 @@ void XmlWriter::Write<std::vector<double> >(const std::vector<double>& val) {
 	WriteVector<double>(val);
 }
 
-//----------------------------------------------------------
 void XmlWriter::WriteInt(int val) {
 	Write<int>(val);
 }
 
-//----------------------------------------------------------
 template <class T>
 void XmlWriter::WriteVector(const std::vector<T>& val) {
 	Indent();
@@ -175,7 +167,6 @@ void XmlWriter::WriteVector(const std::vector<T>& val) {
 	}
 }
 
-//----------------------------------------------------------
 template <class T>
 void XmlWriter::WriteNode(const std::string& name, const T& val) {
 	BeginElement(name);
@@ -183,7 +174,6 @@ void XmlWriter::WriteNode(const std::string& name, const T& val) {
 	EndElement(name);
 }
 
-//----------------------------------------------------------
 void XmlWriter::BeginElement(const std::string& name) {
 	NewLine();
 	Indent();
@@ -191,7 +181,6 @@ void XmlWriter::BeginElement(const std::string& name) {
 	indent++;
 }
 
-//----------------------------------------------------------
 void XmlWriter::BeginElement(const std::string& name, int ID) {
 	NewLine();
 	Indent();
@@ -199,7 +188,6 @@ void XmlWriter::BeginElement(const std::string& name, int ID) {
 	indent++;
 }
 
-//----------------------------------------------------------
 void XmlWriter::EndElement(const std::string& name) {
 	indent--;
 	Indent();
@@ -207,7 +195,6 @@ void XmlWriter::EndElement(const std::string& name) {
 	NewLine();
 }
 
-//----------------------------------------------------------
 void XmlWriter::NewLine() {
 	if (at_bol)
 		return;
@@ -215,7 +202,6 @@ void XmlWriter::NewLine() {
 	at_bol = true;
 }
 
-//----------------------------------------------------------
 void XmlWriter::Indent() {
 	if (!at_bol)
 		return;
@@ -224,7 +210,6 @@ void XmlWriter::Indent() {
 	at_bol = false;
 }
 
-//----------------------------------------------------------
 bool XmlWriter::IsOk() const {
 	return (stream != NULL && !ferror(stream));
 }

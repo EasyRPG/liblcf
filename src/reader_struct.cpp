@@ -1,23 +1,23 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//----------------------------------------------------------
-/// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include <cstring>
 #include <iostream>
 #include <iomanip>
@@ -28,7 +28,9 @@
 #include "reader_struct.h"
 #include "rpg_save.h"
 
-/// Read/Write Struct
+/*
+ * Read/Write Struct
+ */
 
 template <class S>
 void Struct<S>::MakeFieldMap() {
@@ -190,7 +192,9 @@ void Struct<S>::BeginXml(S& obj, XmlReader& stream) {
 	stream.SetHandler(new StructFieldXmlHandler<S>(obj));
 }
 
-/// Read/Write std::vector<Struct>
+/*
+ * Read/Write std::vector<Struct>
+ */
 template <class S>
 void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
@@ -252,7 +256,9 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
 
-/// Instantiate templates
+/*
+ * Instantiate templates
+ */
 
 template class Struct<RPG::Actor>;
 template class Struct<RPG::Animation>;

@@ -1,26 +1,26 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #ifndef _EASYRPG_READER_STRUCT_H_
 #define _EASYRPG_READER_STRUCT_H_
 
-//----------------------------------------------------------
-// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include <string>
 #include <vector>
 #include <map>
@@ -43,16 +43,16 @@
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
 
-//----------------------------------------------------------
-// Forward declarations
-//----------------------------------------------------------
+/*
+ * Forward declarations
+ */
 
 template <class T>
 class Struct;
 
-//----------------------------------------------------------
-// Type categories
-//----------------------------------------------------------
+/*
+ * Type categories
+ */
 
 struct Category {
 	enum Index {
@@ -92,17 +92,15 @@ struct TypeCategory<std::vector<T> > {
 	static const Category::Index value = TypeCategory<T>::value;
 };
 
-//----------------------------------------------------------
-/// Typed data readers
-//----------------------------------------------------------
-
+/**
+ * Typed data readers.
+ */
 template <class T, Category::Index cat = TypeCategory<T>::value>
 struct TypeReader {};
 
-//----------------------------------------------------------
-/// Raw structure reader template
-//----------------------------------------------------------
-
+/**
+ * Raw structure reader template.
+ */
 template <class T>
 struct RawStruct {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length);
@@ -130,32 +128,29 @@ struct TypeReader<T, Category::RawStruct> {
 		RawStruct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		// no-op
+		/* no-op */
 	}
 };
 
-//----------------------------------------------------------
-/// Type Lcf size
-//----------------------------------------------------------
-
+/**
+ * Type Lcf size.
+ */
 template <class T>
 struct LcfSizeT {
 	static const uint32_t value = sizeof(T);
 };
 
-//----------------------------------------------------------
-/// Type Lcf bool size
-//----------------------------------------------------------
-
+/**
+ * Type Lcf bool size.
+ */
 template <>
 struct LcfSizeT<bool> {
 	static const uint32_t value = 1;
 };
 
-//----------------------------------------------------------
-/// Primitive type reader template
-//----------------------------------------------------------
-
+/**
+ * Primitive type reader template.
+ */
 template <class T>
 struct Primitive {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
@@ -176,10 +171,9 @@ struct Primitive {
 	}
 };
 
-//----------------------------------------------------------
-/// Vector specialization
-//----------------------------------------------------------
-
+/**
+ * Vector specialization.
+ */
 template <class T>
 struct Primitive<std::vector<T> > {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
@@ -199,10 +193,9 @@ struct Primitive<std::vector<T> > {
 	}
 };
 
-//----------------------------------------------------------
-/// Int specialization
-//----------------------------------------------------------
-
+/**
+ * Int specialization.
+ */
 template <>
 struct Primitive<int> {
 	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
@@ -223,10 +216,9 @@ struct Primitive<int> {
 	}
 };
 
-//----------------------------------------------------------
-/// String specialization
-//----------------------------------------------------------
-
+/**
+ * String specialization.
+ */
 template <>
 struct Primitive<std::string> {
 	static void ReadLcf(std::string& ref, LcfReader& stream, uint32_t length) {
@@ -246,10 +238,9 @@ struct Primitive<std::string> {
 	}
 };
 
-//----------------------------------------------------------
-/// Primitive Reader
-//----------------------------------------------------------
-
+/**
+ * Primitive Reader.
+ */
 template <class T>
 struct TypeReader<T, Category::Primitive> {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
@@ -265,17 +256,16 @@ struct TypeReader<T, Category::Primitive> {
 		Primitive<T>::WriteXml(ref, stream);
 	}
 	static void BeginXml(T& /* ref */, XmlReader& /* stream */) {
-		// no-op
+		/* no-op */
 	}
 	static void ParseXml(T& ref, const std::string& data) {
 		Primitive<T>::ParseXml(ref, data);
 	}
 };
 
-//----------------------------------------------------------
-/// Structure field reader
-//----------------------------------------------------------
-
+/**
+ * Structure field reader.
+ */
 template <class S, class T>
 struct FieldReader {
 	static void ReadLcf(S& obj, T S::*ref, LcfReader& stream, uint32_t length) {
@@ -298,10 +288,9 @@ struct FieldReader {
 	}
 };
 
-//----------------------------------------------------------
-/// Field abstract base class template
-//----------------------------------------------------------
-
+/**
+ * Field abstract base class template.
+ */
 template <class S>
 struct Field {
 	typedef S struct_type;
@@ -321,9 +310,9 @@ struct Field {
 		id(id), name(name) {}
 };
 
-//----------------------------------------------------------
-// Equivalence traits
-//----------------------------------------------------------
+/*
+ * Equivalence traits
+ */
 
 template <class T>
 struct Class_Test {
@@ -385,10 +374,9 @@ struct Compare_Traits {
 	}
 };
 
-//----------------------------------------------------------
-/// TypedField class template
-//----------------------------------------------------------
-
+/**
+ * TypedField class template.
+ */
 template <class S, class T>
 struct TypedField : public Field<S> {
 	T S::*ref;
@@ -421,10 +409,9 @@ struct TypedField : public Field<S> {
 		Field<S>(id, name), ref(ref) {}
 };
 
-//----------------------------------------------------------
-/// SizeField class template
-//----------------------------------------------------------
-
+/**
+ * SizeField class template.
+ */
 template <class S, class T>
 struct SizeField : public Field<S> {
 	const std::vector<T> S::*ref;
@@ -442,13 +429,13 @@ struct SizeField : public Field<S> {
 		return LcfReader::IntSize(size);
 	}
 	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const {
-		// no-op
+		/* no-op */
 	}
 	void BeginXml(S& /* obj */, XmlReader& /* stream */) const {
-		// no-op
+		/* no-op */
 	}
 	void ParseXml(S& /* obj */, const std::string& /* data */) const {
-		// no-op
+		/* no-op */
 	}
 	bool IsDefault(const S& a, const S& b) const {
 		return (a.*ref).empty() && (b.*ref).empty();
@@ -458,10 +445,9 @@ struct SizeField : public Field<S> {
 		Field<S>(id, ""), ref(ref) {}
 };
 
-//----------------------------------------------------------
-/// ID handling for Struct class
-//----------------------------------------------------------
-
+/**
+ * ID handling for Struct class.
+ */
 template <class T>
 struct IDChecker {
 	typedef char no;
@@ -476,9 +462,9 @@ struct IDChecker {
 	static const bool value = sizeof(check<T>(0)) == sizeof(yes);
 };
 
-//----------------------------------------------------------
-// ID reader for Struct class
-//----------------------------------------------------------
+/*
+ * ID reader for Struct class
+ */
 
 template <class S, bool T>
 struct IDReaderT {
@@ -523,9 +509,9 @@ struct StringComparator {
 	}
 };
 
-//----------------------------------------------------------
-// Struct class template
-//----------------------------------------------------------
+/*
+ * Struct class template
+ */
 
 template <class S>
 class Struct {
@@ -565,10 +551,9 @@ std::map<int, const Field<S>* > Struct<S>::field_map;
 template <class S>
 std::map<const char* const, const Field<S>*, StringComparator> Struct<S>::tag_map;
 
-//----------------------------------------------------------
-/// Struct reader
-//----------------------------------------------------------
-
+/**
+ * Struct reader.
+*/
 template <class T>
 struct TypeReader<T, Category::Struct> {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t /* length */) {
@@ -587,7 +572,7 @@ struct TypeReader<T, Category::Struct> {
 		Struct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		// no-op
+		/* no-op */
 	}
 };
 
@@ -609,14 +594,13 @@ struct TypeReader<std::vector<T>, Category::Struct> {
 		Struct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(std::vector<T>& /* ref */, const std::string& /* data */) {
-		// no-op
+		/* no-op */
 	}
 };
 
-//----------------------------------------------------------
-/// Flags class template
-//----------------------------------------------------------
-
+/**
+ * Flags class template.
+ */
 template <class S>
 class Flags {
 public:
@@ -648,10 +632,9 @@ public:
 template <class S>
 std::map<const char* const, const typename Flags<S>::Flag*, StringComparator> Flags<S>::tag_map;
 
-//----------------------------------------------------------
-/// Wrapper XML handler struct
-//----------------------------------------------------------
-
+/**
+ * Wrapper XML handler struct.
+ */
 template <class T>
 struct TypeReader<T, Category::Flags> {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
@@ -670,13 +653,13 @@ struct TypeReader<T, Category::Flags> {
 		Flags<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		// no-op
+		/* no-op */
 	}
 };
 
-//----------------------------------------------------------
-/// Wrapper XML handler class
-//----------------------------------------------------------
+/**
+ * Wrapper XML handler class.
+ */
 
 class WrapperXmlHandler : public XmlHandler {
 public:
@@ -694,12 +677,12 @@ private:
 	XmlHandler* handler;
 };
 
-//----------------------------------------------------------
-/// Root node XML handler
-//----------------------------------------------------------
-
+/**
+ * Root node XML handler.
+ */
 template <class S>
 class RootXmlHandler : public XmlHandler {
+
 public:
 	RootXmlHandler(S& ref, const char* const name) : ref(ref), name(name) {}
 
@@ -712,11 +695,12 @@ public:
 private:
 	S& ref;
 	const char* const name;
+
 };
 
-//----------------------------------------------------------
-// Macros
-//----------------------------------------------------------
+/*
+ * Macros
+ */
 
 /*
  needs define of

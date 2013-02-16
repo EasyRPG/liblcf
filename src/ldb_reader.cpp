@@ -1,32 +1,32 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//----------------------------------------------------------
-// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "data.h"
 #include "reader_util.h"
 #include "reader_struct.h"
 
-//----------------------------------------------------------
-/// Load Database
-//----------------------------------------------------------
+/**
+ * Loads Database.
+ */
 bool LDB_Reader::Load(const std::string& filename) {
 	LcfReader reader(filename, ReaderUtil::GetEncoding());
 	if (!reader.IsOk()) {
@@ -43,9 +43,9 @@ bool LDB_Reader::Load(const std::string& filename) {
 	return true;
 }
 
-//----------------------------------------------------------
-/// Save Database
-//----------------------------------------------------------
+/**
+ * Saves Database.
+ */
 bool LDB_Reader::Save(const std::string& filename) {
 	LcfWriter writer(filename, ReaderUtil::GetEncoding());
 	if (!writer.IsOk()) {
@@ -59,9 +59,9 @@ bool LDB_Reader::Save(const std::string& filename) {
 	return true;
 }
 
-//----------------------------------------------------------
-/// Save Database as XML
-//----------------------------------------------------------
+/**
+ * Saves Database as XML.
+ */
 bool LDB_Reader::SaveXml(const std::string& filename) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -74,9 +74,9 @@ bool LDB_Reader::SaveXml(const std::string& filename) {
 	return true;
 }
 
-//----------------------------------------------------------
-/// Load Database as XML
-//----------------------------------------------------------
+/**
+ * Load Database as XML.
+ */
 bool LDB_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {

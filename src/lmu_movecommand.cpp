@@ -1,23 +1,23 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//----------------------------------------------------------
-// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include "rpg_movecommand.h"
 #include "reader_struct.h"
 
@@ -39,9 +39,9 @@ struct RawStruct<std::vector<RPG::MoveCommand> > {
 	static void BeginXml(std::vector<RPG::MoveCommand>& ref, XmlReader& stream);
 };
 
-//----------------------------------------------------------
-/// Read Move Command
-//----------------------------------------------------------
+/**
+ * Reads Move Command.
+ */
 void RawStruct<RPG::MoveCommand>::ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t /* length */) {
 	ref.command_id = stream.ReadInt();
 	switch (ref.command_id) {
@@ -179,9 +179,9 @@ void RawStruct<RPG::MoveCommand>::BeginXml(RPG::MoveCommand& ref, XmlReader& str
 	stream.SetHandler(new WrapperXmlHandler("MoveCommand", new MoveCommandXmlHandler(ref)));
 }
 
-//----------------------------------------------------------
-/// Read Move Commands
-//----------------------------------------------------------
+/**
+ * Reads Move Commands.
+ */
 void RawStruct<std::vector<RPG::MoveCommand> >::ReadLcf(std::vector<RPG::MoveCommand>& ref, LcfReader& stream, uint32_t length) {
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;

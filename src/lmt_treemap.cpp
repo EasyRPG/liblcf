@@ -1,23 +1,23 @@
-//===========================================================================
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-//===========================================================================
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-//----------------------------------------------------------
-// Headers
-//----------------------------------------------------------
+/*
+ * Headers
+ */
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "reader_struct.h"
@@ -31,9 +31,9 @@ struct RawStruct<RPG::TreeMap> {
 	static void BeginXml(RPG::TreeMap& ref, XmlReader& stream);
 };
 
-//----------------------------------------------------------
-/// Map Tree
-//----------------------------------------------------------
+/**
+ * Reads Map Tree.
+ */
 void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t /* length */) {
 	Struct<RPG::MapInfo>::ReadLcf(ref.maps, stream);
 	for (int i = stream.ReadInt(); i > 0; i--)
@@ -53,7 +53,7 @@ void RawStruct<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& strea
 }
 
 int RawStruct<RPG::TreeMap>::LcfSize(const RPG::TreeMap& /* ref */, LcfWriter& /* stream */) {
-	// doesn't matter; this structure never occurs within a chunk
+	/* doesn't matter; this structure never occurs within a chunk */
 	return 0;
 }
 
