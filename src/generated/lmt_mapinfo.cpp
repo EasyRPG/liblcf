@@ -1,6 +1,6 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
-/**
+/*
  * This file is part of EasyRPG.
  *
  * EasyRPG is free software: you can redistribute it and/or modify
