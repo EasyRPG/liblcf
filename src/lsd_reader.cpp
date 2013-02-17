@@ -38,10 +38,10 @@ double LSD_Reader::ToMicrosoftAccessTime(std::time_t const t) {
 	return(t / SECOND_PER_HOUR + DIFF_DAYS);
 }
 std::time_t LSD_Reader::ToUnixTime(double const ms) {
-	return(time_t(ms * SECOND_PER_HOUR - DIFF_DAYS * SECOND_PER_HOUR));
+	return(std::time_t(ms * SECOND_PER_HOUR - DIFF_DAYS * SECOND_PER_HOUR));
 }
 
-double LSD_Reader::GenerateTimeStamp(time_t const t) {
+double LSD_Reader::GenerateTimeStamp(std::time_t const t) {
 	return ToMicrosoftAccessTime(t);
 }
 

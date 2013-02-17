@@ -41,6 +41,7 @@ public:
 	 * Constructs a new File Writer.
 	 *
 	 * @param filename file to open.
+	 * @param encoding name of the encoding.
 	 */
 	LcfWriter(const char* filename, std::string encoding = "");
 
@@ -48,6 +49,7 @@ public:
 	 * Constructs a new File Writer.
 	 *
 	 * @param filename file to open.
+	 * @param encoding name of the encoding.
 	 */
 	LcfWriter(const std::string& filename, std::string encoding = "");
 
@@ -142,14 +144,14 @@ private:
 	/**
 	 * Converts a 32bit unsigned integer to/from little-endian.
 	 *
-	 * @param us integer to convert.
+	 * @param ui integer to convert.
 	 */
 	static void SwapByteOrder(uint32_t &ui);
 
 	/**
 	 * Converts a double to/from little-endian.
 	 *
-	 * @param us double to convert.
+	 * @param d double to convert.
 	 */
 	static void SwapByteOrder(double &d);
 
