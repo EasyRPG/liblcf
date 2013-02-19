@@ -3,6 +3,7 @@ builds/cmake/test_time_stamp
 builds/vs2010/Debug*
 builds/vs2010/Release*
 builds/vs2010/*.user
+builds/vs2010/x64/
 doc/
 CMakeCache.txt
 CMakeFiles
