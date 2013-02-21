@@ -20,9 +20,7 @@
 #ifndef _RPG_MAPINFO_H_
 #define _RPG_MAPINFO_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_encounter.h"

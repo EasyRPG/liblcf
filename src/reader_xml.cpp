@@ -15,18 +15,14 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include <sstream>
 #include <cstdarg>
 #include <cstdio>
 #include "reader_lcf.h"
 #include "reader_xml.h"
 
-/*
- * Expat callbacks
- */
+// Expat callbacks
 #if defined(READER_SUPPORT_XML)
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
@@ -141,9 +137,7 @@ void XmlReader::EndElement(const char* name) {
 	handlers.back()->EndElement(*this, name);
 }
 
-/*
- * Primitive type readers
- */
+// Primitive type readers
 
 template <>
 void XmlReader::Read<bool>(bool& val, const std::string& data) {
@@ -194,10 +188,9 @@ void XmlReader::Read<std::string>(std::string& val, const std::string& data) {
 		return;
 	}
 
-	/* XML doesn't allow most C0 control codes, so they're re-mapped
-	 * to the private-use area at U+E000. The following code restores
-	 * re-mapped codes to their original value.
-	 */
+	// XML doesn't allow most C0 control codes, so they're re-mapped
+	// to the private-use area at U+E000. The following code restores
+	// re-mapped codes to their original value.
 
 	val.clear();
 

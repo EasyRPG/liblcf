@@ -20,9 +20,7 @@
 #ifndef _RPG_CLASS_H_
 #define _RPG_CLASS_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "reader_types.h"

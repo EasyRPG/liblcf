@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader_lcf.h"

@@ -20,9 +20,7 @@
 #ifndef _RPG_VARIABLE_H_
 #define _RPG_VARIABLE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

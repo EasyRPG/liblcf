@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #ifdef _WIN32
 #  include <cstdio>
 #  define WIN32_LEAN_AND_MEAN
@@ -63,14 +61,14 @@ std::string ReaderUtil::GetEncoding() {
 #ifdef _WIN32
 			int codepage = atoi(encoding.c_str());
 			if (codepage > 0) {
-				/* Looks like a valid codepage */
+				// Looks like a valid codepage
 				return encoding.c_str();
 			}
 #else
 			std::string iconv_str = CodepageToIconv(atoi(encoding.c_str()));
-			/* Check at first if the ini value is a codepage */
+			// Check at first if the ini value is a codepage
 			if (!iconv_str.empty()) {
-				/* Looks like a valid codepage */
+				// Looks like a valid codepage
 				return iconv_str;
 			}
 #endif
@@ -110,7 +108,7 @@ static std::string RunIconv(const std::string& str_to_encode,
 	*q++ = '\0';
 	return std::string(&dst.front());
 }
-#endif /* not _WIN32 */
+#endif // not _WIN32
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
@@ -120,24 +118,22 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
 
-	/*
-	 * To Utf16
-	 * Default codepage is 0, so we dont need a check here
-	 */
+	// To UTF-16
+	// Default codepage is 0, so we dont need a check here
 	int res = MultiByteToWideChar(atoi(src_enc.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
 	if (res == 0) {
-		/* Invalid codepage */
+		// Invalid codepage
 		delete [] widechar;
 		return str_to_encode;
 	}
 	widechar[res] = '\0';
 
-	/* Back to Utf8 ... */
+	// Back to UTF-8...
 	char* utf8char = new char[strsize * 5 + 1];
 	res = WideCharToMultiByte(atoi(dst_enc.c_str()), 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
 	utf8char[res] = '\0';
 
-	/* Result in str */
+	// Result in str
 	std::string str = std::string(utf8char, res);
 
 	delete [] widechar;

@@ -20,9 +20,7 @@
 #ifndef _RPG_BATTLECOMMAND_H_
 #define _RPG_BATTLECOMMAND_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

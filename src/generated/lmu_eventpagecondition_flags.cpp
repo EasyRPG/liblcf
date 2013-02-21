@@ -24,9 +24,9 @@
 #include "lmu_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read EventPageCondition.
- */
+
+// Read EventPageCondition.
+
 typedef RPG::EventPageCondition::Flags flags_type;
 
 template <>

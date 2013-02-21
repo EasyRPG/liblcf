@@ -15,17 +15,13 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "reader_struct.h"
 #include "rpg_trooppagecondition.h"
 #include "rpg_eventpagecondition.h"
 #include "rpg_terrain.h"
 
-/*
- * Templates
- */
+// Templates
 
 template <class S>
 void Flags<S>::MakeTagMap() {
@@ -125,9 +121,7 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler(name, new FlagsXmlHandler<S>(obj)));
 }
 
-/*
- * Instantiate templates
- */
+// Instantiate templates
 
 template class Flags<RPG::TroopPageCondition::Flags>;
 template class Flags<RPG::EventPageCondition::Flags>;

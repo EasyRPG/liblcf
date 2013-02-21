@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "reader_struct.h"
@@ -146,10 +144,8 @@ void RawStruct<RPG::EventCommand>::BeginXml(RPG::EventCommand& ref, XmlReader& s
  */
 void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 	std::vector<RPG::EventCommand>& event_commands, LcfReader& stream, uint32_t length) {
-	/*
-	 * Event Commands is a special array
-	 * Has no size information. Is terminated by 4 times 0x00.
-	 */
+	// Event Commands is a special array
+	// Has no size information. Is terminated by 4 times 0x00.
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;
 	for (;;) {

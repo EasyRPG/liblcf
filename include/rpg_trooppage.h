@@ -20,9 +20,7 @@
 #ifndef _RPG_TROOPPAGE_H_
 #define _RPG_TROOPPAGE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_eventcommand.h"
 #include "rpg_trooppagecondition.h"

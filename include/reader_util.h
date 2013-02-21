@@ -18,9 +18,7 @@
 #ifndef _EASYRPG_READER_UTIL_H_
 #define _EASYRPG_READER_UTIL_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

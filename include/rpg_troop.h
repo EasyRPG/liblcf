@@ -20,9 +20,7 @@
 #ifndef _RPG_TROOP_H_
 #define _RPG_TROOP_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_troopmember.h"

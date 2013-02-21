@@ -20,9 +20,7 @@
 #ifndef _RPG_STATE_H_
 #define _RPG_STATE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

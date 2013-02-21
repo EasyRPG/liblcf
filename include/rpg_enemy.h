@@ -20,9 +20,7 @@
 #ifndef _RPG_ENEMY_H_
 #define _RPG_ENEMY_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "reader_types.h"

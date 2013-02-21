@@ -20,9 +20,7 @@
 #ifndef _RPG_TERMS_H_
 #define _RPG_TERMS_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

@@ -18,9 +18,7 @@
 #ifndef _LMT_READER_H_
 #define _LMT_READER_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include "reader_lcf.h"
 #include "writer_lcf.h"

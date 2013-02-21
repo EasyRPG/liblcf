@@ -20,9 +20,7 @@
 #ifndef _RPG_MOVECOMMAND_H_
 #define _RPG_MOVECOMMAND_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

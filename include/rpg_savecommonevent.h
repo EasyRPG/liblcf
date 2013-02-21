@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVECOMMONEVENT_H_
 #define _RPG_SAVECOMMONEVENT_H_
 
-/*
- * Headers
- */
+// Headers
 #include "rpg_saveeventdata.h"
 
 /**

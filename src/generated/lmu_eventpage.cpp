@@ -17,16 +17,12 @@
  * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read EventPage.
- */
+// Read EventPage.
 
 #define EASYRPG_CHUNK_SUFFIX LMU_Reader
 #define EASYRPG_CURRENT_STRUCT EventPage

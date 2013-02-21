@@ -20,9 +20,7 @@
 #ifndef _RPG_TREEMAP_H_
 #define _RPG_TREEMAP_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_mapinfo.h"
 #include "rpg_start.h"

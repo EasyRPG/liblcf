@@ -20,9 +20,7 @@
 #ifndef _RPG_RECT_H_
 #define _RPG_RECT_H_
 
-/*
- * Headers
- */
+// Headers
 #include "reader_types.h"
 
 /**

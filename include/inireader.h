@@ -38,7 +38,7 @@
 #include <map>
 #include <string>
 
-/*
+/**
  * Read an INI file into easy-to-access name/value pairs. (Note that I've gone
  * for simplicity here rather than speed, but it should be pretty decent.)
  */
@@ -77,4 +77,4 @@ private:
 							const char* value);
 };
 
-#endif /* __INIREADER_H__ */
+#endif // __INIREADER_H__

@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVESYSTEM_H_
 #define _RPG_SAVESYSTEM_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "reader_types.h"

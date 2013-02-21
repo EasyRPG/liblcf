@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVETITLE_H_
 #define _RPG_SAVETITLE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

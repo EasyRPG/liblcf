@@ -18,9 +18,7 @@
 #ifndef EASYRPG_WRITER_LCF_H
 #define EASYRPG_WRITER_LCF_H
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include <iosfwd>

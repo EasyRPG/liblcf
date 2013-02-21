@@ -17,16 +17,12 @@
  * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read SaveTarget.
- */
+// Read SaveTarget.
 
 #define EASYRPG_CHUNK_SUFFIX LSD_Reader
 #define EASYRPG_CURRENT_STRUCT SaveTarget

@@ -18,9 +18,7 @@
 #ifndef _LDB_READER_H_
 #define _LDB_READER_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_actor.h"

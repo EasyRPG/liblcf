@@ -20,9 +20,7 @@
 #ifndef _RPG_BATTLERANIMATION_H_
 #define _RPG_BATTLERANIMATION_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_battleranimationextension.h"

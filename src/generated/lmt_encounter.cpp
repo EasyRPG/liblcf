@@ -17,16 +17,12 @@
  * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read Encounter.
- */
+// Read Encounter.
 
 #define EASYRPG_CHUNK_SUFFIX LMT_Reader
 #define EASYRPG_CURRENT_STRUCT Encounter

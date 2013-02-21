@@ -10,7 +10,8 @@ namespace %(typeupper)s_Reader {
 	struct Chunk%(structname)s {
 		enum Index {
 @tmpl
-			%(fname)s%(tabs)s= 0x%(code)02X%(comma)s /** %(comment)s */
+			/** %(comment)s */
+			%(fname)s%(tabs)s= 0x%(code)02X%(comma)s
 @footer
 		};
 	};

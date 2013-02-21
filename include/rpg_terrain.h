@@ -20,9 +20,7 @@
 #ifndef _RPG_TERRAIN_H_
 #define _RPG_TERRAIN_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include "rpg_sound.h"
 

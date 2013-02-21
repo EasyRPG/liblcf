@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVEEVENTCOMMANDS_H_
 #define _RPG_SAVEEVENTCOMMANDS_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "reader_types.h"
 #include "rpg_eventcommand.h"

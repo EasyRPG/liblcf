@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "reader_options.h"
 #include "rpg_actor.h"
 #include "rpg_event.h"

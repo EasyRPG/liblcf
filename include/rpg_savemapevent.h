@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVEMAPEVENT_H_
 #define _RPG_SAVEMAPEVENT_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include "rpg_event.h"
 #include "rpg_moveroute.h"

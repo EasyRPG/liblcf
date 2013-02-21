@@ -18,9 +18,7 @@
 #ifndef EASYRPG_READER_LCF_H
 #define EASYRPG_READER_LCF_H
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include <iosfwd>
@@ -31,9 +29,7 @@
 #include "reader_options.h"
 #include "reader_util.h"
 
-/*
- * Defines
- */
+// Defines
 #ifdef _DEBUG
 	#define Skip(x) SkipDebug(x, __FILE__)
 #endif

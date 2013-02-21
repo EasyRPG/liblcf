@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include <cmath>
 #include "lsd_reader.h"
 #include "lsd_chunks.h"

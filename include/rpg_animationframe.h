@@ -20,9 +20,7 @@
 #ifndef _RPG_ANIMATIONFRAME_H_
 #define _RPG_ANIMATIONFRAME_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_animationcelldata.h"
 

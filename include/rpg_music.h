@@ -20,9 +20,7 @@
 #ifndef _RPG_MUSIC_H_
 #define _RPG_MUSIC_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

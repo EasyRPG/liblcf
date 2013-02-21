@@ -20,9 +20,7 @@
 #ifndef _RPG_ANIMATIONTIMING_H_
 #define _RPG_ANIMATIONTIMING_H_
 
-/*
- * Headers
- */
+// Headers
 #include "rpg_sound.h"
 
 /**

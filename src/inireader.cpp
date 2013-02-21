@@ -60,7 +60,7 @@ long INIReader::GetInteger(string section, string name, long default_value)
 	string valstr = Get(section, name, "");
 	const char* value = valstr.c_str();
 	char* end;
-	/* This parses "1234" (decimal) and also "0x4D2" (hex) */
+	// This parses "1234" (decimal) and also "0x4D2" (hex)
 	long n = strtol(value, &end, 0);
 	return end > value ? n : default_value;
 }
@@ -68,7 +68,7 @@ long INIReader::GetInteger(string section, string name, long default_value)
 string INIReader::MakeKey(string section, string name)
 {
 	string key = section + "." + name;
-	/* Convert to lower case to make lookups case-insensitive */
+	// Convert to lower case to make lookups case-insensitive
 	for (unsigned int i = 0; i < key.length(); i++)
 		key[i] = tolower(key[i]);
 	return key;

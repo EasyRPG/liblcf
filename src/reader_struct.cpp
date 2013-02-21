@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include <cstring>
 #include <iostream>
 #include <iomanip>
@@ -28,9 +26,7 @@
 #include "reader_struct.h"
 #include "rpg_save.h"
 
-/*
- * Read/Write Struct
- */
+// Read/Write Struct
 
 template <class S>
 void Struct<S>::MakeFieldMap() {
@@ -192,9 +188,8 @@ void Struct<S>::BeginXml(S& obj, XmlReader& stream) {
 	stream.SetHandler(new StructFieldXmlHandler<S>(obj));
 }
 
-/*
- * Read/Write std::vector<Struct>
- */
+// Read/Write std::vector<Struct>
+
 template <class S>
 void Struct<S>::ReadLcf(std::vector<S>& vec, LcfReader& stream) {
 	int count = stream.ReadInt();
@@ -256,9 +251,7 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
 
-/*
- * Instantiate templates
- */
+// Instantiate templates
 
 template class Struct<RPG::Actor>;
 template class Struct<RPG::Animation>;

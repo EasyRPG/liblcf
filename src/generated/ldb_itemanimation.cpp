@@ -17,16 +17,12 @@
  * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read ItemAnimation.
- */
+// Read ItemAnimation.
 
 #define EASYRPG_CHUNK_SUFFIX LDB_Reader
 #define EASYRPG_CURRENT_STRUCT ItemAnimation

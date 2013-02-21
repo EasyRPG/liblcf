@@ -24,9 +24,9 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read TroopPageCondition.
- */
+
+// Read TroopPageCondition.
+
 typedef RPG::TroopPageCondition::Flags flags_type;
 
 template <>

@@ -20,9 +20,7 @@
 #ifndef _RPG_MOVEROUTE_H_
 #define _RPG_MOVEROUTE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_movecommand.h"
 

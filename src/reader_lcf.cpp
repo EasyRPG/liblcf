@@ -15,15 +15,12 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include <cstdarg>
 #include "reader_lcf.h"
 
-/*
- * Statics
- */
+// Statics
+
 std::string LcfReader::error_str;
 
 LcfReader::LcfReader(const char* filename, std::string encoding) :
@@ -198,7 +195,7 @@ bool LcfReader::Ungetch(uint8_t ch) {
 
 #ifdef _DEBUG
 void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile) {
-	/* Dump the Chunk Data in Debug Mode */
+	// Dump the Chunk Data in Debug Mode
 #ifdef _WIN32
 	const char* srcfilename = strrchr(srcfile, '\\');
 #else

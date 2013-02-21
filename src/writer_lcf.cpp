@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "writer_lcf.h"
 
 LcfWriter::LcfWriter(const char* filename, std::string encoding) :

@@ -18,9 +18,7 @@
 #ifndef _LMU_READER_H_
 #define _LMU_READER_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <memory>
 #include "rpg_map.h"

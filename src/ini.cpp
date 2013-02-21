@@ -90,12 +90,12 @@ static char* strncpy0(char* dest, const char* src, size_t size)
 	return dest;
 }
 
-/* See documentation in header file. */
+// See documentation in header file.
 int ini_parse(const char* filename,
 			int (*handler)(void*, const char*, const char*, const char*),
 			void* user)
 {
-	/* Uses a fair bit of stack (use heap instead if you need to) */
+	// Uses a fair bit of stack (use heap instead if you need to)
 	char line[MAX_LINE];
 	char section[MAX_SECTION] = "";
 	char prev_name[MAX_NAME] = "";
@@ -112,25 +112,25 @@ int ini_parse(const char* filename,
 	if (!file)
 		return -1;
 
-	/* Scan through file line by line */
+	// Scan through file line by line
 	while (fgets(line, sizeof(line), file) != NULL) {
 		lineno++;
 		start = lskip(rstrip((unsigned char*)line));
 
 #if INI_ALLOW_MULTILINE
 		if (*prev_name && *start && start > line) {
-			/* Non-black line with leading whitespace, treat as continuation
-			   of previous name's value (as per Python ConfigParser). */
+			// Non-black line with leading whitespace, treat as continuation
+			// of previous name's value (as per Python ConfigParser).
 			if (!handler(user, section, prev_name, start) && !error)
 				error = lineno;
 		}
 		else
 #endif
 		if (*start == ';' || *start == '#') {
-			/* Per Python ConfigParser, allow '#' comments at start of line */
+			// Per Python ConfigParser, allow '#' comments at start of line
 		}
 		else if (*start == '[') {
-			/* A "[section]" line */
+			// A "[section]" line
 			end = find_char_or_comment((unsigned char*)start + 1, ']');
 			if (*end == ']') {
 				*end = '\0';
@@ -138,12 +138,12 @@ int ini_parse(const char* filename,
 				*prev_name = '\0';
 			}
 			else if (!error) {
-				/* No ']' found on section line */
+				// No ']' found on section line
 				error = lineno;
 			}
 		}
 		else if (*start && *start != ';') {
-			/* Not a comment, must be a name=value pair */
+			// Not a comment, must be a name=value pair
 			end = find_char_or_comment((unsigned char*)start, '=');
 			if (*end == '=') {
 				*end = '\0';
@@ -154,13 +154,13 @@ int ini_parse(const char* filename,
 					*end = '\0';
 				rstrip((unsigned char*)value);
 
-				/* Valid name=value pair found, call handler */
+				// Valid name=value pair found, call handler
 				strncpy0(prev_name, name, sizeof(prev_name));
 				if (!handler(user, section, name, value) && !error)
 					error = lineno;
 			}
 			else if (!error) {
-				/* No '=' found on name=value line */
+				// No '=' found on name=value line
 				error = lineno;
 			}
 		}

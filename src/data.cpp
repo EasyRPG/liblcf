@@ -15,9 +15,7 @@
  * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Headers
- */
+// Headers
 #include "rpg_database.h"
 #include "data.h"
 
@@ -51,7 +49,9 @@ namespace Data {
 	RPG::TreeMap treemap;
 }
 
-/** Clears database data. */
+/**
+ * Clears database data.
+ */
 void Data::Clear() {
 	actors.clear();
 	skills.clear();

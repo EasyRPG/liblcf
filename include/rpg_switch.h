@@ -20,9 +20,7 @@
 #ifndef _RPG_SWITCH_H_
 #define _RPG_SWITCH_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 
 /**

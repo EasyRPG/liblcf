@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVEEVENTDATA_H_
 #define _RPG_SAVEEVENTDATA_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_saveeventcommands.h"
 

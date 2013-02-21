@@ -20,9 +20,7 @@
 #ifndef _RPG_ITEM_H_
 #define _RPG_ITEM_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_itemanimation.h"

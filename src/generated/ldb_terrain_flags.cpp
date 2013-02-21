@@ -24,9 +24,9 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
-/**
- * Read Terrain.
- */
+
+// Read Terrain.
+
 typedef RPG::Terrain::Flags flags_type;
 
 template <>

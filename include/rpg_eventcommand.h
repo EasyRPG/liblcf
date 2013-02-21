@@ -20,9 +20,7 @@
 #ifndef _RPG_EVENTCOMMAND_H_
 #define _RPG_EVENTCOMMAND_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 

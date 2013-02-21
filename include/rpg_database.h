@@ -20,9 +20,7 @@
 #ifndef _RPG_DATABASE_H_
 #define _RPG_DATABASE_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_actor.h"
 #include "rpg_animation.h"

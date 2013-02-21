@@ -20,9 +20,7 @@
 #ifndef _RPG_SKILL_H_
 #define _RPG_SKILL_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include "rpg_battleranimationdata.h"

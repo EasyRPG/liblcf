@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVEVEHICLELOCATION_H_
 #define _RPG_SAVEVEHICLELOCATION_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include "rpg_moveroute.h"
 

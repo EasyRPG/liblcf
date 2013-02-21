@@ -18,9 +18,7 @@
 #ifndef _LSD_READER_H_
 #define _LSD_READER_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include <memory>

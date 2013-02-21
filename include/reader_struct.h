@@ -18,9 +18,7 @@
 #ifndef _EASYRPG_READER_STRUCT_H_
 #define _EASYRPG_READER_STRUCT_H_
 
-/*
- * Headers
- */
+// Headers
 #include <string>
 #include <vector>
 #include <map>
@@ -43,16 +41,12 @@
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
 
-/*
- * Forward declarations
- */
+// Forward declarations
 
 template <class T>
 class Struct;
 
-/*
- * Type categories
- */
+// Type categories
 
 struct Category {
 	enum Index {
@@ -128,7 +122,7 @@ struct TypeReader<T, Category::RawStruct> {
 		RawStruct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		/* no-op */
+		//no-op
 	}
 };
 
@@ -256,7 +250,7 @@ struct TypeReader<T, Category::Primitive> {
 		Primitive<T>::WriteXml(ref, stream);
 	}
 	static void BeginXml(T& /* ref */, XmlReader& /* stream */) {
-		/* no-op */
+		// no-op
 	}
 	static void ParseXml(T& ref, const std::string& data) {
 		Primitive<T>::ParseXml(ref, data);
@@ -310,9 +304,7 @@ struct Field {
 		id(id), name(name) {}
 };
 
-/*
- * Equivalence traits
- */
+// Equivalence traits
 
 template <class T>
 struct Class_Test {
@@ -429,13 +421,13 @@ struct SizeField : public Field<S> {
 		return LcfReader::IntSize(size);
 	}
 	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const {
-		/* no-op */
+		// no-op
 	}
 	void BeginXml(S& /* obj */, XmlReader& /* stream */) const {
-		/* no-op */
+		// no-op
 	}
 	void ParseXml(S& /* obj */, const std::string& /* data */) const {
-		/* no-op */
+		// no-op
 	}
 	bool IsDefault(const S& a, const S& b) const {
 		return (a.*ref).empty() && (b.*ref).empty();
@@ -462,9 +454,7 @@ struct IDChecker {
 	static const bool value = sizeof(check<T>(0)) == sizeof(yes);
 };
 
-/*
- * ID reader for Struct class
- */
+// ID reader for Struct class
 
 template <class S, bool T>
 struct IDReaderT {
@@ -509,9 +499,7 @@ struct StringComparator {
 	}
 };
 
-/*
- * Struct class template
- */
+// Struct class template
 
 template <class S>
 class Struct {
@@ -572,7 +560,7 @@ struct TypeReader<T, Category::Struct> {
 		Struct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		/* no-op */
+		// no-op
 	}
 };
 
@@ -594,7 +582,7 @@ struct TypeReader<std::vector<T>, Category::Struct> {
 		Struct<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(std::vector<T>& /* ref */, const std::string& /* data */) {
-		/* no-op */
+		// no-op
 	}
 };
 
@@ -653,14 +641,13 @@ struct TypeReader<T, Category::Flags> {
 		Flags<T>::BeginXml(ref, stream);
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
-		/* no-op */
+		// no-op
 	}
 };
 
 /**
  * Wrapper XML handler class.
  */
-
 class WrapperXmlHandler : public XmlHandler {
 public:
 	WrapperXmlHandler(const char* const name, XmlHandler* handler) :
@@ -698,15 +685,12 @@ private:
 
 };
 
-/*
- * Macros
- */
+// Macros
 
-/*
- needs define of
- - EASYRPG_CHUNK_SUFFIX
- - EASYRPG_CURRENT_STRUCT
-*/
+// needs define of
+// - EASYRPG_CHUNK_SUFFIX
+// - EASYRPG_CURRENT_STRUCT
+
 #define EASYRPG_STRUCT_FIELDS_BEGIN() \
 	template <> \
 	char const* const Struct<RPG::EASYRPG_CURRENT_STRUCT>::name = BOOST_PP_STRINGIZE(EASYRPG_CURRENT_STRUCT); \

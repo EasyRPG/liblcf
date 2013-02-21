@@ -20,9 +20,7 @@
 #ifndef _RPG_BATTLECOMMANDS_H_
 #define _RPG_BATTLECOMMANDS_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "rpg_battlecommand.h"
 

@@ -20,9 +20,7 @@
 #ifndef _RPG_SAVEINVENTORY_H_
 #define _RPG_SAVEINVENTORY_H_
 
-/*
- * Headers
- */
+// Headers
 #include <vector>
 #include "reader_types.h"
 
