@@ -1,29 +1,29 @@
-/////////////////////////////////////////////////////////////////////////////
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-////////////////////////////////////////////////////////////
 // Headers
-////////////////////////////////////////////////////////////
 #include "rpg_database.h"
 #include "data.h"
 
-////////////////////////////////////////////////////////////
+/**
+ * Data namespace.
+ */
 namespace Data {
-	// Database Data (ldb)
+	/** Database Data (ldb). */
 	RPG::Database data;
 
 	std::vector<RPG::Actor>& actors = data.actors;
@@ -45,11 +45,13 @@ namespace Data {
 	std::vector<RPG::Switch>& switches = data.switches;
 	std::vector<RPG::Variable>& variables = data.variables;
 
-	// TreeMap (lmt)
+	/** TreeMap (lmt). */
 	RPG::TreeMap treemap;
 }
 
-////////////////////////////////////////////////////////////
+/**
+ * Clears database data.
+ */
 void Data::Clear() {
 	actors.clear();
 	skills.clear();

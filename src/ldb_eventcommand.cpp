@@ -1,23 +1,21 @@
-/////////////////////////////////////////////////////////////////////////////
-// This file is part of EasyRPG.
-//
-// EasyRPG is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// EasyRPG is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
-/////////////////////////////////////////////////////////////////////////////
+/*
+ * This file is part of EasyRPG.
+ *
+ * EasyRPG is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EasyRPG is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-////////////////////////////////////////////////////////////
 // Headers
-////////////////////////////////////////////////////////////
 #include <string>
 #include <vector>
 #include "reader_struct.h"
@@ -41,9 +39,9 @@ struct RawStruct<std::vector<RPG::EventCommand> > {
 	static void BeginXml(std::vector<RPG::EventCommand>& ref, XmlReader& stream);
 };
 
-////////////////////////////////////////////////////////////
-/// Read Event Command
-////////////////////////////////////////////////////////////
+/**
+ * Reads Event Command.
+ */
 void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t /* length */) {
 	stream.Read(event_command.code);
 	if (event_command.code != 0) {
@@ -141,9 +139,9 @@ void RawStruct<RPG::EventCommand>::BeginXml(RPG::EventCommand& ref, XmlReader& s
 	stream.SetHandler(new WrapperXmlHandler("EventCommand", new EventCommandXmlHandler(ref)));
 }
 
-////////////////////////////////////////////////////////////
-/// Read Event Commands
-////////////////////////////////////////////////////////////
+/**
+ * Reads event commands.
+ */
 void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 	std::vector<RPG::EventCommand>& event_commands, LcfReader& stream, uint32_t length) {
 	// Event Commands is a special array
