@@ -1,36 +1,36 @@
-/////////////////////////////////////////////////////////////////////////////
-// inih -- simple .INI file parser
-// 
-// Go to the project home page for more info:
-// http://code.google.com/p/inih/
-// 
-// inih and INIReader are released under the New BSD license:
-// 
-// Copyright (c) 2009, Brush Technology
-// All rights reserved.
-// 
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are met:
-// 	* Redistributions of source code must retain the above copyright
-// 		notice, this list of conditions and the following disclaimer.
-// 	* Redistributions in binary form must reproduce the above copyright
-// 		notice, this list of conditions and the following disclaimer in the
-// 		documentation and/or other materials provided with the distribution.
-// 	* Neither the name of Brush Technology nor the names of its contributors
-// 		may be used to endorse or promote products derived from this software
-// 		without specific prior written permission.
-// 
-// THIS SOFTWARE IS PROVIDED BY BRUSH TECHNOLOGY ''AS IS'' AND ANY
-// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-// DISCLAIMED. IN NO EVENT SHALL BRUSH TECHNOLOGY BE LIABLE FOR ANY
-// DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-/////////////////////////////////////////////////////////////////////////////
+/*
+ * inih -- simple .INI file parser
+ * 
+ * Go to the project home page for more info:
+ * http://code.google.com/p/inih/
+ * 
+ * inih and INIReader are released under the New BSD license:
+ * 
+ * Copyright (c) 2009, Brush Technology
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of Brush Technology nor the names of its contributors
+ *       may be used to endorse or promote products derived from this software
+ *       without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY BRUSH TECHNOLOGY ''AS IS'' AND ANY
+ * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL BRUSH TECHNOLOGY BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 #include <cstdio>
 #include <cctype>
@@ -42,8 +42,11 @@
 #define MAX_SECTION 50
 #define MAX_NAME 50
 
-/// Strip whitespace chars off end of given string, in place.
-/// @returns s.
+/**
+ * Strip whitespace chars off end of given string, in place.
+ *
+ * @returns s.
+ */
 static unsigned char* rstrip(unsigned char* s)
 {
 	unsigned char* p = s + strlen((char*)s);
@@ -52,7 +55,9 @@ static unsigned char* rstrip(unsigned char* s)
 	return s;
 }
 
-/// @returns pointer to first non-whitespace char in given string.
+/**
+ * @returns pointer to first non-whitespace char in given string.
+ */
 static char* lskip(const unsigned char* s)
 {
 	while (*s && isspace(*s))
@@ -60,9 +65,11 @@ static char* lskip(const unsigned char* s)
 	return (char*)s;
 }
 
-/// @returns pointer to first char c or ';' comment in given string, or pointer to
-///	null at end of string if neither found. ';' must be prefixed by a whitespace
-///	character to register as a comment.
+/**
+ * @returns pointer to first char c or ';' comment in given string, or pointer
+ *          to null at end of string if neither found. ';' must be prefixed by
+ *          a whitespace character to register as a comment.
+ */
 static char* find_char_or_comment(const unsigned char* s, char c)
 {
 	int was_whitespace = 0;
@@ -73,7 +80,9 @@ static char* find_char_or_comment(const unsigned char* s, char c)
 	return (char*)s;
 }
 
-/// Version of strncpy that ensures dest (size bytes) is null-terminated.
+/**
+ * Version of strncpy that ensures dest (size bytes) is null-terminated.
+ */
 static char* strncpy0(char* dest, const char* src, size_t size)
 {
 	strncpy(dest, src, size);
