@@ -19,20 +19,21 @@ Documentation is available at the documentation wiki:
   https://easy-rpg.org/wiki/
 
 
+Source code generated documentation is available at:
+
+  https://easy-rpg.org/docs/readers/index.html
+
+
 Requirements
 ------------
 
-libiconv for the character set detection and UTF-8 conversion.
-Boost for iconv fixes.
-Expat for XML reading support.
-Doxygen to generate source code documentation (optional).
-Graphviz to generate graphs with the dot program used by Doxygen (optional).
+libiconv for the character set detection and UTF-8 conversion (not for Win32).
+Boost for iconv fixes (not for Win32).
+Expat for XML reading support (optional).
 Python for the template source code regeneration (optional).
 
-See the documentation for further information.
 
-
-Development
+Source code
 -----------
 
 EasyRPG Readers development is hosted by GitHub.
@@ -40,7 +41,27 @@ Project files are available in Git repositories.
 
   https://github.com/EasyRPG/Readers
 
-See the documentation for further development information.
+
+Building
+--------
+
+* Autotools method:
+
+  Requirements:
+  autoconf >= 2.68, automake >= 1.11, gettext-devel
+
+  Compile with:
+  ./autogen.sh && ./configure --prefix=ABSOLUTE/PATH/FOR/build && make && make install
+
+
+* Cmake method:
+
+  Requirements:
+  cmake >= 2.8
+
+  Compile with:
+  cmake PATH/TO/Readers/builds/cmake && make
+  If you want to build it with debug mode pass "-D CMAKE_BUILD_TYPE=Debug" to cmake.
 
 
 License
