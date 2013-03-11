@@ -29,16 +29,16 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   endif()
 endif()
 
-find_package(PythonInterp)
+find_program(PYTHON2_EXECUTABLE python2)
 set(GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated)
-if(PYTHONINTERP_FOUND)
+if(PYTHON2_EXECUTABLE)
   set(GENERATE_PY "${CMAKE_CURRENT_SOURCE_DIR}/../../generate.py")
 
   file(GLOB tmpl "${CMAKE_CURRENT_SOURC_DIR}/../../templates/*.tmpl")
   file(GLOB csv "${CMAKE_CURRENT_SOURC_DIR}/../../csv/*.csv")
 
   execute_process(
-    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY} -l
+    COMMAND ${PYTHON2_EXECUTABLE} ${GENERATE_PY} -l
     OUTPUT_VARIABLE outputs
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
   string(REPLACE "\n" ";" outputs ${outputs})
@@ -50,7 +50,7 @@ if(PYTHONINTERP_FOUND)
 
   add_custom_command(
     OUTPUT ${GEN_SRCS}
-    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY}
+    COMMAND ${PYTHON2_EXECUTABLE} ${GENERATE_PY}
     MAIN_DEPENDENCT ${GENERATE_PY}
     DEPENDS ${GENERATE_PY} ${tmpl} ${csv}
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
