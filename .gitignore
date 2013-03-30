@@ -1,9 +1,9 @@
 builds/cmake/libEasyRPG_Reader.a
 builds/cmake/test_time_stamp
-builds/vs2010/Debug*
-builds/vs2010/Release*
-builds/vs2010/*.user
-builds/vs2010/x64/
+builds/vs20*/Debug*
+builds/vs20*/Release*
+builds/vs20*/*.user
+builds/vs20*/x64/
 doc/
 CMakeCache.txt
 CMakeFiles
