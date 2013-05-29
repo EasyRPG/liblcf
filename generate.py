@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from __future__ import division
+
 import sys
 import os
 import re
@@ -350,7 +352,7 @@ def generate_header(f, struct_name, hasid, vars):
 def generate_chunks(f, struct_name, vars):
     f.write(chunk.header % vars)
     mwidth = max(len(field[0] + ('_size' if field[1] else '')) for field in sfields[struct_name]) + 1
-    mwidth = (mwidth + 3) / 4 * 4
+    mwidth = (mwidth + 3) // 4 * 4
     # print struct_name, mwidth
     sf = sfields[struct_name]
     n = len(sf)
@@ -359,7 +361,7 @@ def generate_chunks(f, struct_name, vars):
         if issize:
             fname += '_size'
         pad = mwidth - len(fname)
-        ntabs = (pad + 3) / 4
+        ntabs = (pad + 3) // 4
         tabs = '\t' * ntabs
         comma = ' ' if i == n - 1 else ','
         fvars = dict(
@@ -416,9 +418,9 @@ def generate_rawstruct(filename, struct_name):
         generate_header(f, struct_name, False, vars)
 
 def generate_flags(filetype, filename, struct_name):
-    maxsize = (len(flags[struct_name]) + 7) / 8
+    maxsize = (len(flags[struct_name]) + 7) // 8
     maxwidth = max(len(fname) for fname in flags[struct_name])
-    maxwidth = (maxwidth + 2 + 3) / 4 * 4
+    maxwidth = (maxwidth + 2 + 3) // 4 * 4
     vars = dict(
         filetype = filetype,
         filename = filename,
@@ -434,9 +436,9 @@ def generate_flags(filetype, filename, struct_name):
         for fname in flags[struct_name]:
             width = len(fname)
             pad1 = maxwidth - width - 2
-            tabs1 = (pad1 + 3) / 4
+            tabs1 = (pad1 + 3) // 4
             pad2 = maxwidth - width - 2
-            tabs2 = (pad2 + 3) / 4
+            tabs2 = (pad2 + 3) // 4
             fvars = dict(
                 fname = fname,
                 pad1 = '\t' * tabs1,
@@ -470,22 +472,22 @@ def generate():
 def list_files_struct(filetype, filename, struct_name, hasid):
     if struct_name not in sfields:
         return
-    print '%s_%s.cpp' % (filetype, filename)
+    print('%s_%s.cpp' % (filetype, filename))
     if needs_ctor(struct_name, hasid):
-        print 'rpg_%s.cpp' % filename
-    print 'rpg_%s.h' % filename
+        print('rpg_%s.cpp' % filename)
+    print('rpg_%s.h' % filename)
 
 def list_files_rawstruct(filename, struct_name):
     if needs_ctor(struct_name, False):
-        print 'rpg_%s.cpp' % filename
-    print 'rpg_%s.h' % filename
+        print('rpg_%s.cpp' % filename)
+    print('rpg_%s.h' % filename)
 
 def list_files_flags(filetype, filename, struct_name):
-    print '%s_%s_flags.cpp' % (filetype, filename)
+    print('%s_%s_flags.cpp' % (filetype, filename))
 
 def list_files():
     for filetype in ['ldb','lmt','lmu','lsd']:
-        print '%s_chunks.h' % filetype
+        print('%s_chunks.h' % filetype)
 
     for filetype, filename, struct_name, hasid in structs:
         if hasid is not None:
