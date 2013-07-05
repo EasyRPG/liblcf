@@ -1,15 +1,18 @@
-find_path(ICONV_INCLUDE_DIR iconv.h HINTS "/opt/local/include")
-find_library(ICONV_LIBRARY iconv HINTS "/opt/local/lib")
+list(REVERSE CMAKE_SYSTEM_PREFIX_PATH)
 
-if(EXISTS ${ICONV_INCLUDE_DIR})
-  message(STATUS "iconv.h found: ${ICONV_INCLUDE_DIR}")
-  set(Iconv_FOUND TRUE)
+find_path(ICONV_INCLUDE_DIR iconv.h)
+find_library(ICONV_LIBRARY iconv)
 
-  if(NOT EXISTS ${ICONV_LIBRARY})
-    set(ICONV_LIBRARY "")
-  else()
-    message(STATUS "iconv library found: ${ICONV_LIBRARY}")
-  endif()
+list(REVERSE CMAKE_SYSTEM_PREFIX_PATH)
+
+if(EXISTS "${ICONV_LIBRARY}")
+	get_filename_component(library_path "${ICONV_LIBRARY}" PATH)
+	get_filename_component(library_prefix "${library_path}/.." ABSOLUTE)
+	set(ICONV_INCLUDE_DIR "${library_prefix}/include")
 else()
-  set(Iconv_FOUND FALSE)
+	unset(ICONV_LIBRARY CACHE)
 endif()
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(Iconv
+	REQUIRED_VARS ICONV_INCLUDE_DIR)
