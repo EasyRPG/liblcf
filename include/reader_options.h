@@ -38,14 +38,24 @@
 /** Map tree filename. */
 #define TREEMAP_NAME "RPG_RT.lmt"
 
+/*
+ * Includes GNU Autotools build configuration parameters.
+ * This option may have defined READER_SUPPORT_XML and others.
+ */
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#endif
+
 /**
  * Enables support for XML file reading and writing.
  * This option adds libexpat as a dependency.
  */
-//#define READER_SUPPORT_XML
+//#ifndef READER_SUPPORT_XML
+//#  define READER_SUPPORT_XML
+//#endif
 
 /** Enables big endian byte order for Wii port. */
-#if defined(GEKKO)
+#ifdef GEKKO
 #  define READER_BIG_ENDIAN
 #endif
 
