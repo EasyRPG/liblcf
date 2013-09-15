@@ -121,7 +121,9 @@ void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
 
 void LcfWriter::Write(const std::string& _str) {
 	std::string str = Decode(_str);
-	Write(&*str.begin(), 1, str.size());
+	if (!str.empty()) {
+		Write(&*str.begin(), 1, str.size());
+	}
 }
 
 bool LcfWriter::IsOk() const {

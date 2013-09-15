@@ -72,12 +72,12 @@ void RawStruct<RPG::MoveCommand>::WriteLcf(const RPG::MoveCommand& ref, LcfWrite
 			stream.Write(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::change_graphic:
-			stream.WriteInt(ref.parameter_string.size());
+			stream.WriteInt(stream.Decode(ref.parameter_string).size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::play_sound_effect:
-			stream.WriteInt(ref.parameter_string.size());
+			stream.WriteInt(stream.Decode(ref.parameter_string).size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			stream.Write(ref.parameter_b);
@@ -97,12 +97,12 @@ int RawStruct<RPG::MoveCommand>::LcfSize(const RPG::MoveCommand& ref, LcfWriter&
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::change_graphic:
-			result += LcfReader::IntSize(ref.parameter_string.size());
+			result += LcfReader::IntSize(stream.Decode(ref.parameter_string).size());
 			result += stream.Decode(ref.parameter_string).size();
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::play_sound_effect:
-			result += LcfReader::IntSize(ref.parameter_string.size());
+			result += LcfReader::IntSize(stream.Decode(ref.parameter_string).size());
 			result += stream.Decode(ref.parameter_string).size();
 			result += LcfReader::IntSize(ref.parameter_a);
 			result += LcfReader::IntSize(ref.parameter_b);
