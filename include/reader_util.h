@@ -42,6 +42,15 @@ namespace ReaderUtil {
 	std::string GetEncoding();
 
 	/**
+	 * Converts a string to unicode.
+	 * src encoding is read from the ini file.
+	 *
+	 * @param str_to_encode string to encode
+	 * @return the recoded string.
+	 */
+	std::string Recode(const std::string& str_to_encode);
+
+	/**
 	 * Converts a string between encodings.
 	 *
 	 * @param str_to_encode the string to convert.
