@@ -110,6 +110,14 @@ static std::string RunIconv(const std::string& str_to_encode,
 }
 #endif // not _WIN32
 
+std::string ReaderUtil::Recode(const std::string& str_to_encode) {
+#ifdef _WIN32
+	return ReaderUtil::Recode(str_to_encode, GetEncoding(), "65001");
+#else
+	return ReaderUtil::Recode(str_to_encode, GetEncoding(), "UTF-8");
+#endif
+}
+
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {
