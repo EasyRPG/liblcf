@@ -19,11 +19,6 @@ Documentation is available at the documentation wiki:
   https://easy-rpg.org/wiki/
 
 
-Source code generated documentation is available at:
-
-  https://easy-rpg.org/docs/readers/index.html
-
-
 Requirements
 ------------
 
@@ -51,7 +46,10 @@ Building
   autoconf >= 2.68, automake >= 1.11, gettext-devel
 
   Compile with:
-  ./autogen.sh && ./configure --prefix=ABSOLUTE/PATH/FOR/build && make && make install
+  ./configure && make
+
+  Install as super user with:
+  make install
 
 
 * Cmake method:
