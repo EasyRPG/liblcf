@@ -23,7 +23,6 @@ Requirements
 ------------
 
 libiconv for the character set detection and UTF-8 conversion (not for Win32).
-Boost for iconv fixes (not for Win32).
 Expat for XML reading support (optional).
 Python for the template source code regeneration (optional).
 

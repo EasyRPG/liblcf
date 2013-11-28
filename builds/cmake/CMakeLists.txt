@@ -66,12 +66,10 @@ if(WIN32)
 else()
   # iconv
   find_package(Iconv REQUIRED)
+  set(HAVE_ICONV ${ICONV_FOUND})
+  set(ICONV_CONST ${ICONV_SECOND_ARGUMENT_IS_CONST})
   include_directories(BEFORE ${ICONV_INCLUDE_DIR})
-  target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARY})
-
-  # Boost
-  find_package(Boost REQUIRED)
-  include_directories(${Boost_INCLUDE_DIRS})
+  target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARIES})
 endif()
 
 # expat
@@ -97,5 +95,5 @@ endfunction()
 
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../test/*.cpp)
 foreach(i ${TEST_FILES})
-  cxx_test(${i} ${ICONV_LIBRARY} ${EXPAT_LIBRARY})
+  cxx_test(${i} ${ICONV_LIBRARIES} ${EXPAT_LIBRARY})
 endforeach()
