@@ -15,8 +15,8 @@ find_library(ICONV_LIBRARIES NAMES iconv libiconv libiconv-2 c)
 
 # handle the QUIETLY and REQUIRED arguments and set ICONV_FOUND to TRUE if
 # all listed variables are TRUE
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(ICONV REQUIRED_VARS ICONV_LIBRARY ICONV_INCLUDE_DIR
+include(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(ICONV REQUIRED_VARS ICONV_LIBRARIES ICONV_INCLUDE_DIR
                                           VERSION_VAR ICONV_VERSION)
 
 if (ICONV_FOUND)
