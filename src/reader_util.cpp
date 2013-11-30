@@ -123,7 +123,11 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	size_t dst_size = str_to_encode.size() * 5 + 10;
 	char *dst = new char[dst_size];
 	size_t dst_left = dst_size;
+#  ifdef ICONV_CONST
 	char ICONV_CONST *p = src;
+#  else
+	char *p = src;
+#  endif
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
