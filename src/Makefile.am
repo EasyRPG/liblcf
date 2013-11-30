@@ -1,4 +1,5 @@
 lib_LIBRARIES = libreaders.a
+AM_CXXFLAGS = -Wall -Wextra -O0 -g3
 libreaders_a_SOURCES = \
 	data.cpp \
 	ini.cpp \
