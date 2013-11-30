@@ -1,3 +1,7 @@
+nobase_include_HEADERS = \
+	boost/preprocessor/cat.hpp \
+	boost/preprocessor/stringize.hpp \
+	boost/preprocessor/config/config.hpp
 include_HEADERS = \
 	command_codes.h \
 	data.h \

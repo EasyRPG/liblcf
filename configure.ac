@@ -5,10 +5,11 @@ AC_PREREQ([2.68])
 AC_INIT([easyrpg-readers],[0.1.3],[https://github.com/EasyRPG/Readers/issues])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
-AM_INIT_AUTOMAKE([1.11 foreign subdir-objects  -Wall -Werror -Wno-extra-portability])
+AM_INIT_AUTOMAKE([1.11 foreign subdir-objects -Wall -Werror -Wno-extra-portability])
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
+AC_CONFIG_SRCDIR([src/data.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -31,7 +32,7 @@ AS_IF([test "x$enable_xml" = "xyes"],[
 ])
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_HEADER_STDBOOL
+AC_CHECK_HEADER_STDBOOL
 AC_TYPE_INT16_T
 AC_TYPE_INT32_T
 AC_TYPE_SIZE_T
@@ -40,8 +41,7 @@ AC_TYPE_UINT32_T
 AC_TYPE_UINT8_T
 
 # Checks for library functions.
-AC_FUNC_ERROR_AT_LINE
-AC_CHECK_FUNCS_ONCE([floor strrchr strtol])
+AC_CHECK_FUNCS([floor strrchr strtol])
 
 AC_CONFIG_FILES([Makefile
                  include/Makefile
