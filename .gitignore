@@ -1,3 +1,4 @@
+bin/
 builds/cmake/libEasyRPG_Reader.a
 builds/cmake/test_time_stamp
 builds/vs20*/Debug*
@@ -31,6 +32,9 @@ src/.deps/
 src/Makefile.in
 src/libreaders.a
 src/*.o
+src/generated/.deps/
+src/generated/.dirstamp
+src/generated/*.o
 stamp-h1
 build/
 *~

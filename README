@@ -22,8 +22,7 @@ Documentation is available at the documentation wiki:
 Requirements
 ------------
 
-libiconv for the character set detection and UTF-8 conversion (not for Win32).
-Boost for iconv fixes (not for Win32).
+iconv for the character set conversion (not for Win32, included in libc).
 Expat for XML reading support (optional).
 Python for the template source code regeneration (optional).
 

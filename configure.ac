@@ -9,7 +9,6 @@ AM_INIT_AUTOMAKE([1.11 foreign subdir-objects  -Wall -Werror -Wno-extra-portabil
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
-AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
@@ -30,10 +29,6 @@ AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out]
 AS_IF([test "x$enable_xml" = "xyes"],[
 	AC_CHECK_HEADERS([expat.h],[AC_DEFINE([READER_SUPPORT_XML],[1],[Enable XML (Requires Expat)])],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
 ])
-
-AC_LANG_PUSH([C++])
-	AC_CHECK_HEADERS([boost/foreach.hpp],[],[AC_MSG_ERROR(You need the Boost libraries.)])
-AC_LANG_POP([C++])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
