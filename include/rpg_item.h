@@ -82,10 +82,10 @@ namespace RPG {
 		bool no_terrain_damage;
 		bool cursed;
 		bool entire_party;
-		int recover_hp;
 		int recover_hp_rate;
-		int recover_sp;
+		int recover_hp;
 		int recover_sp_rate;
+		int recover_sp;
 		bool occasion_field1;
 		bool ko_only;
 		int max_hp_points;

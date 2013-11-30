@@ -495,13 +495,13 @@ namespace LDB_Reader {
 			/** Flag */
 			entire_party		= 0x1F,
 			/** Integer */
-			recover_hp			= 0x20,
+			recover_hp_rate		= 0x20,
 			/** Integer */
-			recover_hp_rate		= 0x21,
+			recover_hp			= 0x21,
 			/** Integer */
-			recover_sp			= 0x22,
+			recover_sp_rate		= 0x22,
 			/** Integer */
-			recover_sp_rate		= 0x23,
+			recover_sp			= 0x23,
 			/** Flag */
 			occasion_field1		= 0x25,
 			/** Flag */

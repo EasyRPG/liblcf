@@ -196,10 +196,10 @@ Item,half_sp_cost,f,Boolean,0x1B,False,Flag
 Item,no_terrain_damage,f,Boolean,0x1C,False,Flag
 Item,cursed,f,Boolean,0x1D,False,Flag - RPG2003
 Item,entire_party,f,Boolean,0x1F,False,Flag
-Item,recover_hp,f,Integer,0x20,0,Integer
-Item,recover_hp_rate,f,Integer,0x21,0,Integer
-Item,recover_sp,f,Integer,0x22,0,Integer
-Item,recover_sp_rate,f,Integer,0x23,0,Integer
+Item,recover_hp_rate,f,Integer,0x20,0,Integer
+Item,recover_hp,f,Integer,0x21,0,Integer
+Item,recover_sp_rate,f,Integer,0x22,0,Integer
+Item,recover_sp,f,Integer,0x23,0,Integer
 Item,occasion_field1,f,Boolean,0x25,False,Flag
 Item,ko_only,f,Boolean,0x26,False,Flag
 Item,max_hp_points,f,Integer,0x29,0,Integer

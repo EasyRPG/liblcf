@@ -49,10 +49,10 @@ RPG::Item::Item() {
 	no_terrain_damage = false;
 	cursed = false;
 	entire_party = false;
-	recover_hp = 0;
 	recover_hp_rate = 0;
-	recover_sp = 0;
+	recover_hp = 0;
 	recover_sp_rate = 0;
+	recover_sp = 0;
 	occasion_field1 = false;
 	ko_only = false;
 	max_hp_points = 0;
