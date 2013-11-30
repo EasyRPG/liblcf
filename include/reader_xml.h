@@ -133,6 +133,7 @@ public:
 	virtual void CharacterData(XmlReader& /* reader */, const std::string& /* data */) {}
 	virtual void EndElement(XmlReader& /* reader */, const char* /* name */) {}
 	XmlHandler() {}
+	virtual ~XmlHandler() {}
 
 };
 
