@@ -1,3 +1,4 @@
+bin/
 builds/cmake/libEasyRPG_Reader.a
 builds/cmake/test_time_stamp
 builds/vs20*/Debug*
