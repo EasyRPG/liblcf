@@ -1,4 +1,5 @@
 lib_LIBRARIES = libreaders.a
+libreaders_a_CXXFLAGS = -I$(top_srcdir)/include
 libreaders_a_SOURCES = \
 	data.cpp \
 	ini.cpp \
@@ -144,4 +145,3 @@ libreaders_a_SOURCES = \
 	generated/rpg_trooppagecondition.cpp \
 	generated/rpg_trooppage.cpp \
 	generated/rpg_variable.cpp
-libreaders_a_CXXFLAGS = -I$(top_srcdir)/include

@@ -19,7 +19,7 @@ AC_PROG_RANLIB
 # Checks for libraries.
 AM_ICONV
 
-AC_ARG_ENABLE([xml],AS_HELP_STRING([--enable-xml],[Enable XML support (requires Expat library)]))
+AC_ARG_ENABLE([xml],[AS_HELP_STRING([--enable-xml],[Enable XML support (requires Expat library)])])
 AS_IF([test "x$enable_xml" = "xyes"],[
 	AC_CHECK_LIB([expat],[XML_ParserCreate],[],[AC_MSG_ERROR(['expat' is required for XML but it doesn't seem to be installed on this system.])])
 ])
