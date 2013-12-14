@@ -54,11 +54,13 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 	}
 	std::string header;
 	reader.ReadString(header, reader.ReadInt());
-	if (header != "LcfSaveData") {
+	if (header.length() != 11) {
 		LcfReader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
 	}
-
+	if (header != "LcfSaveData") {
+		fprintf(stderr, "Warning: %s header is not LcfSaveData and might not be a valid RPG2000 save.\n", filename.c_str());
+	}
 	RPG::Save* save = new RPG::Save();
 	Struct<RPG::Save>::ReadLcf(*save, reader);
 	return std::auto_ptr<RPG::Save>(save);

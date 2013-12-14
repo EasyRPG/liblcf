@@ -33,9 +33,12 @@ bool LDB_Reader::Load(const std::string& filename) {
 	}
 	std::string header;
 	reader.ReadString(header, reader.ReadInt());
-	if (header != "LcfDataBase") {
+	if (header.length() != 11) {
 		LcfReader::SetError("%s is not a valid RPG2000 database.\n", filename.c_str());
 		return false;
+	}
+	if (header != "LcfDataBase") {
+		fprintf(stderr, "Warning: %s header is not LcfDataBase and might not be a valid RPG2000 database.\n", filename.c_str());
 	}
 	TypeReader<RPG::Database>::ReadLcf(Data::data, reader, 0);
 	return true;
