@@ -46,8 +46,8 @@ double LSD_Reader::GenerateTimeStamp(std::time_t const t) {
 /**
  * Loads Savegame.
  */
-std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
-	LcfReader reader(filename, ReaderUtil::GetEncoding());
+std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string &encoding) {
+	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Save>(NULL);
@@ -69,8 +69,8 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename) {
 /**
  * Saves Savegame.
  */
-bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save) {
-	LcfWriter writer(filename, ReaderUtil::GetEncoding());
+bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const std::string &encoding) {
+	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
 		return false;

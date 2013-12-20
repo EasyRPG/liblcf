@@ -25,8 +25,8 @@
 /**
  * Loads Map Tree.
  */
-bool LMT_Reader::Load(const std::string& filename) {
-	LcfReader reader(filename, ReaderUtil::GetEncoding());
+bool LMT_Reader::Load(const std::string& filename, const std::string &encoding) {
+	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;
@@ -47,8 +47,8 @@ bool LMT_Reader::Load(const std::string& filename) {
 /**
  * Saves Map Tree.
  */
-bool LMT_Reader::Save(const std::string& filename) {
-	LcfWriter writer(filename, ReaderUtil::GetEncoding());
+bool LMT_Reader::Save(const std::string& filename, const std::string &encoding) {
+	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map tree file.\n", filename.c_str());
 		return false;

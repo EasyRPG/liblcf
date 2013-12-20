@@ -33,8 +33,8 @@ namespace LSD_Reader {
 	std::time_t ToUnixTime(double const ms);
 	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename);
-	bool Save(const std::string& filename, const RPG::Save& save);
+	std::auto_ptr<RPG::Save> Load(const std::string &filename, const std::string &encoding);
+	bool Save(const std::string& filename, const RPG::Save& save, const std::string &encoding);
 	bool SaveXml(const std::string& filename, const RPG::Save& save);
 	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
 }

@@ -46,13 +46,13 @@ std::string ReaderUtil::CodepageToIconv(int codepage) {
 	return out.str();
 }
 
-std::string ReaderUtil::GetEncoding() {
-	INIReader ini("RPG_RT.ini");
+std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
+	INIReader ini(ini_file);
 	if (ini.ParseError() != -1) {
-#if defined(GEKKO) || defined(PSP)
-		std::string default_enc = "1252";
-#else
+#ifdef _WIN32
 		std::string default_enc = "";
+#else
+		std::string default_enc = "1252";
 #endif
 		std::string encoding = ini.Get("EasyRpg", "Encoding", default_enc);
 
@@ -76,11 +76,11 @@ std::string ReaderUtil::GetEncoding() {
 	return "";
 }
 
-std::string ReaderUtil::Recode(const std::string& str_to_encode) {
+std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
 #ifdef _WIN32
-	return ReaderUtil::Recode(str_to_encode, GetEncoding(), "65001");
+	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
 #else
-	return ReaderUtil::Recode(str_to_encode, GetEncoding(), "UTF-8");
+	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
 #endif
 }
 

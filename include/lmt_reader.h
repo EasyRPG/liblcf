@@ -29,8 +29,8 @@
  * LMT Reader namespace.
  */
 namespace LMT_Reader {
-	bool Load(const std::string &filename);
-	bool Save(const std::string& filename);
+	bool Load(const std::string &filename, const std::string &encoding);
+	bool Save(const std::string& filename, const std::string &encoding);
 	bool SaveXml(const std::string& filename);
 	bool LoadXml(const std::string &filename);
 }

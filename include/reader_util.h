@@ -35,20 +35,23 @@ namespace ReaderUtil {
 	
 	/**
 	 * Returns the encoding set in the ini file.
+	 * 
+	 * @param ini_file The ini file to parse.
 	 *
 	 * @return Windows: codepage, other: iconv name,
 	 *         empty string if not found.
 	 */
-	std::string GetEncoding();
+	std::string GetEncoding(const std::string& ini_file);
 
 	/**
 	 * Converts a string to unicode.
-	 * src encoding is read from the ini file.
 	 *
 	 * @param str_to_encode string to encode
+	 * @param source_encoding Encoding of str_to_encode
+	 *
 	 * @return the recoded string.
 	 */
-	std::string Recode(const std::string& str_to_encode);
+	std::string Recode(const std::string& str_to_encode, const std::string& source_encoding);
 
 	/**
 	 * Converts a string between encodings.
