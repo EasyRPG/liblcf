@@ -27,8 +27,8 @@
  * LMU Reader namespace.
  */
 namespace LMU_Reader {
-	std::auto_ptr<RPG::Map> Load(const std::string &filename);
-	bool Save(const std::string& filename, const RPG::Map& map);
+	std::auto_ptr<RPG::Map> Load(const std::string &filename, const std::string &encoding);
+	bool Save(const std::string& filename, const RPG::Map& map, const std::string &encoding);
 	bool SaveXml(const std::string& filename, const RPG::Map& map);
 	std::auto_ptr<RPG::Map> LoadXml(const std::string &filename);
 }

@@ -25,8 +25,8 @@
 /**
  * Loads Map.
  */
-std::auto_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename) {
-	LcfReader reader(filename, ReaderUtil::GetEncoding());
+std::auto_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const std::string &encoding) {
+	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return std::auto_ptr<RPG::Map>(NULL);
@@ -49,8 +49,8 @@ std::auto_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename) {
 /**
  * Saves Map.
  */
-bool LMU_Reader::Save(const std::string& filename, const RPG::Map& map) {
-	LcfWriter writer(filename, ReaderUtil::GetEncoding());
+bool LMU_Reader::Save(const std::string& filename, const RPG::Map& map, const std::string &encoding) {
+	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't find %s map file.\n", filename.c_str());
 		return false;
