@@ -711,6 +711,7 @@
     <ClCompile Include="..\..\src\generated\rpg_savetarget.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_savetitle.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_savevehiclelocation.cpp" />
+    <ClCompile Include="..\..\src\rpg_fixup.cpp" />
     <ClCompile Include="..\..\src\rpg_setup.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_skill.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_sound.cpp" />
