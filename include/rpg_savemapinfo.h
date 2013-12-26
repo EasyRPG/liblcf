@@ -38,6 +38,7 @@ namespace RPG {
 		void Setup();
 		void Setup(const RPG::Map& map);
 		void Setup(const RPG::MapInfo& map_info);
+		void Fixup(const RPG::Map& map);
 
 		int pan_x;
 		int pan_y;

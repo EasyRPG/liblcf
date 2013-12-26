@@ -35,6 +35,7 @@ namespace RPG {
 	public:
 		SaveSystem();
 		void Setup();
+		void Fixup();
 
 		int screen;
 		int frame_count;

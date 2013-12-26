@@ -33,6 +33,7 @@ namespace RPG {
 	public:
 		SaveActor();
 		void Setup(int actor_id);
+		void Fixup();
 
 		int ID;
 		std::string name;

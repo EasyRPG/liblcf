@@ -45,10 +45,10 @@ RPG::SaveSystem::SaveSystem() {
 	battle_start_fadein = -1;
 	battle_end_fadeout = -1;
 	battle_end_fadein = -1;
-	teleport_allowed = false;
-	escape_allowed = false;
-	save_allowed = false;
-	menu_allowed = false;
+	teleport_allowed = true;
+	escape_allowed = true;
+	save_allowed = true;
+	menu_allowed = true;
 	save_count = 0;
 	save_slot = 1;
 }
