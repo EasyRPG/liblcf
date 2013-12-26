@@ -133,6 +133,26 @@ void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
 	}
 }
 
-//void RPG::SavePartyLocation::Fixup() {
-//}
-	//const RPG::SavePartyLocation& location = Data::;
+void RPG::SavePicture::Fixup() {
+	if (effect_mode == -1) {
+		effect_mode = 0;
+	}
+	if (finish_magnify == -1) {
+		finish_magnify = 100;
+	}
+	if (finish_red == -1) {
+		finish_red = 100;
+	}
+	if (finish_green == -1) {
+		finish_green = 100;
+	}
+	if (finish_blue == -1) {
+		finish_blue = 100;
+	}
+	if (finish_sat == -1) {
+		finish_sat = 100;
+	}
+	if (time_left == -1) {
+		time_left = 0;
+	}
+}

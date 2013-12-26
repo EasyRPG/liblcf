@@ -30,6 +30,7 @@ namespace RPG {
 	class SavePicture {
 	public:
 		SavePicture();
+		void Fixup();
 
 		int ID;
 		std::string name;
