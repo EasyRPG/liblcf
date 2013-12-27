@@ -302,7 +302,7 @@ namespace LSD_Reader {
 			anim_frame			= 0x17,
 			/** ? */
 			unknown_20			= 0x20,
-			/** ? */
+			/** int? similar to SaveMapEvent layer? */
 			unknown_21			= 0x21,
 			/** ? */
 			unknown_23			= 0x23,
@@ -310,7 +310,7 @@ namespace LSD_Reader {
 			unknown_25			= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route			= 0x29,
-			/** ? */
+			/** int/bool? */
 			unknown_2a			= 0x2A,
 			/** ? */
 			unknown_2b			= 0x2B,
@@ -320,9 +320,9 @@ namespace LSD_Reader {
 			sprite_transparent	= 0x2E,
 			/** ? */
 			unknown_2f			= 0x2F,
-			/** ? */
+			/** int/bool? */
 			unknown_33			= 0x33,
-			/** ? */
+			/** int? */
 			unknown_34			= 0x34,
 			/** ? */
 			unknown_35			= 0x35,
@@ -338,11 +338,11 @@ namespace LSD_Reader {
 			sprite_id			= 0x4A,
 			/** ? */
 			unknown_4b			= 0x4B,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_red? */
 			unknown_51			= 0x51,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_green? */
 			unknown_52			= 0x52,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_blue? */
 			unknown_53			= 0x53,
 			/** int */
 			pan_state			= 0x6F,
@@ -380,7 +380,7 @@ namespace LSD_Reader {
 			anim_frame		= 0x17,
 			/** ? */
 			unknown_20		= 0x20,
-			/** ? */
+			/** int? similar to SaveMapEvent layer? */
 			unknown_21		= 0x21,
 			/** ? */
 			unknown_23		= 0x23,
@@ -388,11 +388,11 @@ namespace LSD_Reader {
 			unknown_25		= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route		= 0x29,
-			/** ? */
+			/** int/bool? */
 			unknown_2a		= 0x2A,
 			/** ? */
 			unknown_2b		= 0x2B,
-			/** ? */
+			/** int? */
 			unknown_34		= 0x34,
 			/** ? */
 			unknown_35		= 0x35,

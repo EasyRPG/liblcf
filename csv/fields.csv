@@ -815,17 +815,17 @@ SavePartyLocation,facing1,f,Integer,0x15,-1,?
 SavePartyLocation,facing2,f,Integer,0x16,-1,?
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_20,f,Integer,0x20,-1,?
-SavePartyLocation,unknown_21,f,Integer,0x21,-1,?
+SavePartyLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
 SavePartyLocation,unknown_23,f,Integer,0x23,-1,?
 SavePartyLocation,unknown_25,f,Integer,0x25,-1,?
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,?
+SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
 SavePartyLocation,unknown_2b,f,Integer,0x2B,-1,?
 SavePartyLocation,unknown_2c,f,Integer,0x2C,-1,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
 SavePartyLocation,unknown_2f,f,Integer,0x2F,-1,?
-SavePartyLocation,unknown_33,f,Integer,0x33,-1,?
-SavePartyLocation,unknown_34,f,Integer,0x34,-1,?
+SavePartyLocation,unknown_33,f,Integer,0x33,-1,int/bool?
+SavePartyLocation,unknown_34,f,Integer,0x34,-1,int?
 SavePartyLocation,unknown_35,f,Integer,0x35,-1,?
 SavePartyLocation,unknown_36,f,Integer,0x36,-1,?
 SavePartyLocation,unknown_3e,f,Integer,0x3E,-1,?
@@ -833,9 +833,9 @@ SavePartyLocation,unknown_3f,f,Integer,0x3F,-1,?
 SavePartyLocation,sprite_name,f,String,0x49,'',?
 SavePartyLocation,sprite_id,f,Integer,0x4A,-1,?
 SavePartyLocation,unknown_4b,f,Integer,0x4B,-1,?
-SavePartyLocation,unknown_51,f,Integer,0x51,-1,?
-SavePartyLocation,unknown_52,f,Integer,0x52,-1,?
-SavePartyLocation,unknown_53,f,Integer,0x53,-1,?
+SavePartyLocation,unknown_51,f,Integer,0x51,-1,int? similar to SaveMapEvent flash_red?
+SavePartyLocation,unknown_52,f,Integer,0x52,-1,int? similar to SaveMapEvent flash_green?
+SavePartyLocation,unknown_53,f,Integer,0x53,-1,int? similar to SaveMapEvent flash_blue?
 SavePartyLocation,pan_state,f,Integer,0x6F,-1,int
 SavePartyLocation,pan_current_x,f,Integer,0x70,-1,int
 SavePartyLocation,pan_current_y,f,Integer,0x71,-1,?
@@ -852,13 +852,13 @@ SaveVehicleLocation,facing1,f,Integer,0x15,-1,?
 SaveVehicleLocation,facing2,f,Integer,0x16,-1,?
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_20,f,Integer,0x20,-1,?
-SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,?
+SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
 SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,?
 SaveVehicleLocation,unknown_25,f,Integer,0x25,-1,?
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,?
+SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
 SaveVehicleLocation,unknown_2b,f,Integer,0x2B,-1,?
-SaveVehicleLocation,unknown_34,f,Integer,0x34,-1,?
+SaveVehicleLocation,unknown_34,f,Integer,0x34,-1,int?
 SaveVehicleLocation,unknown_35,f,Integer,0x35,-1,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,-1,?
 SaveVehicleLocation,sprite_name,f,String,0x49,'',?
