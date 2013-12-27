@@ -32,7 +32,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	anim_frame = 1;
 	unknown_20 = -1;
 	unknown_21 = -1;
-	unknown_23 = -1;
+	anim_type = -1;
 	unknown_25 = -1;
 	unknown_2a = -1;
 	unknown_2b = -1;

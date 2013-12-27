@@ -816,14 +816,14 @@ SavePartyLocation,facing2,f,Integer,0x16,-1,?
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_20,f,Integer,0x20,-1,?
 SavePartyLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
-SavePartyLocation,unknown_23,f,Integer,0x23,-1,?
+SavePartyLocation,anim_type,f,Integer,0x23,-1,similar to Enum AnimType?
 SavePartyLocation,unknown_25,f,Integer,0x25,-1,?
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
 SavePartyLocation,unknown_2b,f,Integer,0x2B,-1,?
 SavePartyLocation,unknown_2c,f,Integer,0x2C,-1,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
-SavePartyLocation,unknown_2f,f,Integer,0x2F,-1,?
+SavePartyLocation,unknown_2f,f,Integer,0x2F,-1,bool? passability related?
 SavePartyLocation,unknown_33,f,Integer,0x33,-1,int/bool?
 SavePartyLocation,unknown_34,f,Integer,0x34,-1,int?
 SavePartyLocation,unknown_35,f,Integer,0x35,-1,?
@@ -853,7 +853,7 @@ SaveVehicleLocation,facing2,f,Integer,0x16,-1,?
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_20,f,Integer,0x20,-1,?
 SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
-SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,?
+SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,int/bool/Enum<EventPage_AnimType>?
 SaveVehicleLocation,unknown_25,f,Integer,0x25,-1,?
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
@@ -948,13 +948,13 @@ SaveMapEvent,unknown_1f,f,Integer,0x1F,-1,?
 SaveMapEvent,unknown_20,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,-1,int
 SaveMapEvent,unknown_22,f,Integer,0x22,-1,?
-SaveMapEvent,unknown_23,f,Integer,0x23,-1,?
+SaveMapEvent,anim_type,f,Integer,0x23,-1,int/bool/Enum<EventPage_AnimType>? 0 = still; 1 continuous walk
 SaveMapEvent,unknown_24,f,Integer,0x24,-1,?
 SaveMapEvent,unknown_25,f,Integer,0x25,-1,?
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,unknown_2a,f,Integer,0x2A,-1,int/bool
 SaveMapEvent,unknown_2b,f,Integer,0x2B,-1,?
-SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,?
+SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,bool? passability related?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,bool
 SaveMapEvent,unknown_33,f,Integer,0x33,-1,int/bool?
 SaveMapEvent,unknown_34,f,Integer,0x34,-1,int:

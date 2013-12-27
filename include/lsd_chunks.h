@@ -304,8 +304,8 @@ namespace LSD_Reader {
 			unknown_20			= 0x20,
 			/** int? similar to SaveMapEvent layer? */
 			unknown_21			= 0x21,
-			/** ? */
-			unknown_23			= 0x23,
+			/** similar to Enum AnimType? */
+			anim_type			= 0x23,
 			/** ? */
 			unknown_25			= 0x25,
 			/** chunks: RPG::MoveRoute */
@@ -318,7 +318,7 @@ namespace LSD_Reader {
 			unknown_2c			= 0x2C,
 			/** bool */
 			sprite_transparent	= 0x2E,
-			/** ? */
+			/** bool? passability related? */
 			unknown_2f			= 0x2F,
 			/** int/bool? */
 			unknown_33			= 0x33,
@@ -382,7 +382,7 @@ namespace LSD_Reader {
 			unknown_20		= 0x20,
 			/** int? similar to SaveMapEvent layer? */
 			unknown_21		= 0x21,
-			/** ? */
+			/** int/bool/Enum<EventPage_AnimType>? */
 			unknown_23		= 0x23,
 			/** ? */
 			unknown_25		= 0x25,
@@ -596,8 +596,8 @@ namespace LSD_Reader {
 			layer				= 0x21,
 			/** ? */
 			unknown_22			= 0x22,
-			/** ? */
-			unknown_23			= 0x23,
+			/** int/bool/Enum<EventPage_AnimType>? 0 = still; 1 continuous walk */
+			anim_type			= 0x23,
 			/** ? */
 			unknown_24			= 0x24,
 			/** ? */
@@ -608,7 +608,7 @@ namespace LSD_Reader {
 			unknown_2a			= 0x2A,
 			/** ? */
 			unknown_2b			= 0x2B,
-			/** ? */
+			/** bool? passability related? */
 			unknown_2f			= 0x2F,
 			/** bool */
 			anim_paused			= 0x30,
