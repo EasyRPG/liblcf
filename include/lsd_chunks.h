@@ -299,7 +299,7 @@ namespace LSD_Reader {
 			/** ? */
 			facing2				= 0x16,
 			/** ? */
-			unknown_17			= 0x17,
+			anim_frame			= 0x17,
 			/** ? */
 			unknown_20			= 0x20,
 			/** ? */
@@ -377,7 +377,7 @@ namespace LSD_Reader {
 			/** ? */
 			facing2			= 0x16,
 			/** ? */
-			unknown_17		= 0x17,
+			anim_frame		= 0x17,
 			/** ? */
 			unknown_20		= 0x20,
 			/** ? */

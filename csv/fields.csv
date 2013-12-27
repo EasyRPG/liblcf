@@ -813,7 +813,7 @@ SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
 SavePartyLocation,facing1,f,Integer,0x15,-1,?
 SavePartyLocation,facing2,f,Integer,0x16,-1,?
-SavePartyLocation,unknown_17,f,Integer,0x17,-1,?
+SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_20,f,Integer,0x20,-1,?
 SavePartyLocation,unknown_21,f,Integer,0x21,-1,?
 SavePartyLocation,unknown_23,f,Integer,0x23,-1,?
@@ -850,7 +850,7 @@ SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
 SaveVehicleLocation,facing1,f,Integer,0x15,-1,?
 SaveVehicleLocation,facing2,f,Integer,0x16,-1,?
-SaveVehicleLocation,unknown_17,f,Integer,0x17,-1,?
+SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_20,f,Integer,0x20,-1,?
 SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,?
 SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,?
