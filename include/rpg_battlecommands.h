@@ -65,7 +65,7 @@ namespace RPG {
 		int death_handler1;
 		int row;
 		int battle_type;
-		int unknown1;
+		int unknown_09;
 		std::vector<BattleCommand> commands;
 		int death_handler2;
 		int death_event;

@@ -32,7 +32,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, death_handler1),
 	EASYRPG_STRUCT_TYPED_FIELD(int, row),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battle_type),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown1),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_09),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::BattleCommand>, commands),
 	EASYRPG_STRUCT_TYPED_FIELD(int, death_handler2),
 	EASYRPG_STRUCT_TYPED_FIELD(int, death_event),

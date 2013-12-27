@@ -98,10 +98,10 @@ namespace LSD_Reader {
 			inn_music				= 0x4A,
 			/**  */
 			current_music			= 0x4B,
-			/**  */
-			unknown1_music			= 0x4C,
-			/**  */
-			unknown2_music			= 0x4D,
+			/** Music that was playing before you got on a vehicle, and gets played again after you disembark. */
+			before_vehicle_music	= 0x4C,
+			/** Music that was playing before the battle started, and gets played again after the battle ends. */
+			before_battle_music		= 0x4D,
 			/**  */
 			stored_music			= 0x4E,
 			/**  */
@@ -167,61 +167,61 @@ namespace LSD_Reader {
 	struct ChunkSaveScreen {
 		enum Index {
 			/** int */
-			tint_finish_red		= 0x01,
+			tint_finish_red			= 0x01,
 			/** int */
-			tint_finish_green	= 0x02,
+			tint_finish_green		= 0x02,
 			/** int */
-			tint_finish_blue	= 0x03,
+			tint_finish_blue		= 0x03,
 			/** int */
-			tint_finish_sat		= 0x04,
+			tint_finish_sat			= 0x04,
 			/** double */
-			tint_current_red	= 0x0B,
+			tint_current_red		= 0x0B,
 			/** double */
-			tint_current_green	= 0x0C,
+			tint_current_green		= 0x0C,
 			/** double */
-			tint_current_blue	= 0x0D,
+			tint_current_blue		= 0x0D,
 			/** double */
-			tint_current_sat	= 0x0E,
+			tint_current_sat		= 0x0E,
 			/** int */
-			tint_time_left		= 0x0F,
+			tint_time_left			= 0x0F,
 			/** int */
-			flash_continuous	= 0x14,
+			flash_continuous		= 0x14,
 			/** int */
-			flash_red			= 0x15,
+			flash_red				= 0x15,
 			/** int */
-			flash_green			= 0x16,
+			flash_green				= 0x16,
 			/** int */
-			flash_blue			= 0x17,
+			flash_blue				= 0x17,
 			/** double */
-			flash_current_level	= 0x18,
+			flash_current_level		= 0x18,
 			/** int */
-			flash_time_left		= 0x19,
+			flash_time_left			= 0x19,
 			/** int */
-			shake_continuous	= 0x1E,
+			shake_continuous		= 0x1E,
 			/** int */
-			shake_strength		= 0x1F,
+			shake_strength			= 0x1F,
 			/** int */
-			shake_speed			= 0x20,
+			shake_speed				= 0x20,
 			/** int */
-			shake_position		= 0x21,
+			shake_position			= 0x21,
 			/** int */
-			shake_time_left		= 0x23,
+			shake_time_left			= 0x23,
 			/** int */
-			pan_x				= 0x29,
+			pan_x					= 0x29,
 			/** int */
-			pan_y				= 0x2A,
+			pan_y					= 0x2A,
 			/** int - battle animation ID */
-			battleanim_id		= 0x2B,
+			battleanim_id			= 0x2B,
 			/** int - battle animation target */
-			battleanim_target	= 0x2C,
+			battleanim_target		= 0x2C,
 			/** int - battle animation ?? */
-			battleanim_unk_2d	= 0x2D,
+			battleanim_unknown_2d	= 0x2D,
 			/** int - battle animation global scope */
-			battleanim_global	= 0x2F,
+			battleanim_global		= 0x2F,
 			/** int */
-			weather				= 0x30,
+			weather					= 0x30,
 			/** int */
-			weather_strength	= 0x31 
+			weather_strength		= 0x31 
 		};
 	};
 	struct ChunkSavePicture {

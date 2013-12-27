@@ -75,7 +75,7 @@ BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,Integer
 BattleCommands,death_handler1,f,Integer,0x04,0,Integer
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,Integer
-BattleCommands,unknown1,f,Integer,0x09,0,Integer
+BattleCommands,unknown_09,f,Integer,0x09,0,Integer
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,Array - RPG::BattleCommand
 BattleCommands,death_handler2,f,Integer,0x0F,0,Integer
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,0,Integer
@@ -719,8 +719,8 @@ SaveSystem,battle_music,f,Music,0x48,,
 SaveSystem,battle_end_music,f,Music,0x49,,
 SaveSystem,inn_music,f,Music,0x4A,,
 SaveSystem,current_music,f,Music,0x4B,,
-SaveSystem,unknown1_music,f,Music,0x4C,,
-SaveSystem,unknown2_music,f,Music,0x4D,,
+SaveSystem,before_vehicle_music,f,Music,0x4C,,Music that was playing before you got on a vehicle, and gets played again after you disembark.
+SaveSystem,before_battle_music,f,Music,0x4D,,Music that was playing before the battle started, and gets played again after the battle ends.
 SaveSystem,stored_music,f,Music,0x4E,,
 SaveSystem,boat_music,f,Music,0x4F,,
 SaveSystem,ship_music,f,Music,0x50,,
@@ -775,7 +775,7 @@ SaveScreen,pan_x,f,Integer,0x29,-1,int
 SaveScreen,pan_y,f,Integer,0x2A,-1,int
 SaveScreen,battleanim_id,f,Integer,0x2B,-1,int - battle animation ID
 SaveScreen,battleanim_target,f,Integer,0x2C,-1,int - battle animation target
-SaveScreen,battleanim_unk_2d,f,Integer,0x2D,-1,int - battle animation ??
+SaveScreen,battleanim_unknown_2d,f,Integer,0x2D,-1,int - battle animation ??
 SaveScreen,battleanim_global,f,Boolean,0x2F,False,int - battle animation global scope
 SaveScreen,weather,f,Integer,0x30,0,int
 SaveScreen,weather_strength,f,Integer,0x31,0,int
