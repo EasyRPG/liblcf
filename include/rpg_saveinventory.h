@@ -52,7 +52,7 @@ namespace RPG {
 		int defeats;
 		int escapes;
 		int victories;
-		int unknown_29;
+		int turns;
 		int steps;
 	};
 }

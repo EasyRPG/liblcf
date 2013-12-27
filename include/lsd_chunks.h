@@ -518,8 +518,8 @@ namespace LSD_Reader {
 			escapes			= 0x22,
 			/** ? */
 			victories		= 0x23,
-			/** ? */
-			unknown_29		= 0x29,
+			/** Number of turns passed in the latest battle fought. In rpg2k = hero + enemy pair conts 1 action, in rpg2k3 every single action counts 1 action. */
+			turns			= 0x29,
 			/** ? */
 			steps			= 0x2A 
 		};

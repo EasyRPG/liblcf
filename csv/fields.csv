@@ -917,7 +917,7 @@ SaveInventory,battles,f,Integer,0x20,0,?
 SaveInventory,defeats,f,Integer,0x21,0,?
 SaveInventory,escapes,f,Integer,0x22,0,?
 SaveInventory,victories,f,Integer,0x23,0,?
-SaveInventory,unknown_29,f,Integer,0x29,-1,?
+SaveInventory,turns,f,Integer,0x29,-1,Number of turns passed in the latest battle fought. In rpg2k = hero + enemy pair conts 1 action, in rpg2k3 every single action counts 1 action.
 SaveInventory,steps,f,Integer,0x2A,0,?
 SaveTarget,map_id,f,Integer,0x01,-1,int
 SaveTarget,map_x,f,Integer,0x02,-1,int
