@@ -28,8 +28,8 @@
 #define EASYRPG_CURRENT_STRUCT SaveMapInfo
 
 EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_x),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_y),
+	EASYRPG_STRUCT_TYPED_FIELD(int, position_x),
+	EASYRPG_STRUCT_TYPED_FIELD(int, position_y),
 	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),
 	EASYRPG_STRUCT_TYPED_FIELD(int, chipset_id),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent>, events),

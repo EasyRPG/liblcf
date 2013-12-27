@@ -40,8 +40,8 @@ namespace RPG {
 		void Setup(const RPG::MapInfo& map_info);
 		void Fixup(const RPG::Map& map);
 
-		int pan_x;
-		int pan_y;
+		int position_x;
+		int position_y;
 		int encounter_rate;
 		int chipset_id;
 		std::vector<SaveMapEvent> events;

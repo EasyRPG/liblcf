@@ -653,9 +653,9 @@ namespace LSD_Reader {
 	struct ChunkSaveMapInfo {
 		enum Index {
 			/** int */
-			pan_x				= 0x01,
+			position_x			= 0x01,
 			/** int */
-			pan_y				= 0x02,
+			position_y			= 0x02,
 			/** int */
 			encounter_rate		= 0x03,
 			/** int */

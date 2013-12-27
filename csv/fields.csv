@@ -974,8 +974,8 @@ SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
 SaveMapEvent,unknown_66,f,Integer,0x66,-1,?
 SaveMapEvent,unknown_67,f,Integer,0x67,-1,?
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
-SaveMapInfo,pan_x,f,Integer,0x01,0,int
-SaveMapInfo,pan_y,f,Integer,0x02,0,int
+SaveMapInfo,position_x,f,Integer,0x01,0,int
+SaveMapInfo,position_y,f,Integer,0x02,0,int
 SaveMapInfo,encounter_rate,f,Integer,0x03,-1,int
 SaveMapInfo,chipset_id,f,Integer,0x05,-1,int
 SaveMapInfo,events,f,Array<SaveMapEvent>,0x0B,,? array

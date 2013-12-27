@@ -80,8 +80,8 @@ void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
 }
 
 void RPG::SaveMapInfo::Setup() {
-	pan_x = 0;
-	pan_y = 0;
+	position_x = 0;
+	position_y = 0;
 	lower_tiles.resize(144);
 	upper_tiles.resize(144);
 	for (int i = 0; i < 144; i++) {
