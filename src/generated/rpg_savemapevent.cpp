@@ -37,7 +37,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_20 = -1;
 	layer = -1;
 	unknown_22 = -1;
-	unknown_23 = -1;
+	anim_type = -1;
 	unknown_24 = -1;
 	unknown_25 = -1;
 	unknown_2a = -1;

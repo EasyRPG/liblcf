@@ -29,7 +29,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	position_y = -1;
 	facing1 = -1;
 	facing2 = -1;
-	unknown_17 = -1;
+	anim_frame = 1;
 	unknown_20 = -1;
 	unknown_21 = -1;
 	unknown_23 = -1;

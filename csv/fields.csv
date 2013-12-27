@@ -75,7 +75,7 @@ BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,Integer
 BattleCommands,death_handler1,f,Integer,0x04,0,Integer
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,Integer
-BattleCommands,unknown1,f,Integer,0x09,0,Integer
+BattleCommands,unknown_09,f,Integer,0x09,0,Integer
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,Array - RPG::BattleCommand
 BattleCommands,death_handler2,f,Integer,0x0F,0,Integer
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,0,Integer
@@ -719,8 +719,8 @@ SaveSystem,battle_music,f,Music,0x48,,
 SaveSystem,battle_end_music,f,Music,0x49,,
 SaveSystem,inn_music,f,Music,0x4A,,
 SaveSystem,current_music,f,Music,0x4B,,
-SaveSystem,unknown1_music,f,Music,0x4C,,
-SaveSystem,unknown2_music,f,Music,0x4D,,
+SaveSystem,before_vehicle_music,f,Music,0x4C,,Music that was playing before you got on a vehicle, and gets played again after you disembark.
+SaveSystem,before_battle_music,f,Music,0x4D,,Music that was playing before the battle started, and gets played again after the battle ends.
 SaveSystem,stored_music,f,Music,0x4E,,
 SaveSystem,boat_music,f,Music,0x4F,,
 SaveSystem,ship_music,f,Music,0x50,,
@@ -775,7 +775,7 @@ SaveScreen,pan_x,f,Integer,0x29,-1,int
 SaveScreen,pan_y,f,Integer,0x2A,-1,int
 SaveScreen,battleanim_id,f,Integer,0x2B,-1,int - battle animation ID
 SaveScreen,battleanim_target,f,Integer,0x2C,-1,int - battle animation target
-SaveScreen,battleanim_unk_2d,f,Integer,0x2D,-1,int - battle animation ??
+SaveScreen,battleanim_unknown_2d,f,Integer,0x2D,-1,int - battle animation ??
 SaveScreen,battleanim_global,f,Boolean,0x2F,False,int - battle animation global scope
 SaveScreen,weather,f,Integer,0x30,0,int
 SaveScreen,weather_strength,f,Integer,0x31,0,int
@@ -813,19 +813,19 @@ SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
 SavePartyLocation,facing1,f,Integer,0x15,-1,?
 SavePartyLocation,facing2,f,Integer,0x16,-1,?
-SavePartyLocation,unknown_17,f,Integer,0x17,-1,?
+SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_20,f,Integer,0x20,-1,?
-SavePartyLocation,unknown_21,f,Integer,0x21,-1,?
-SavePartyLocation,unknown_23,f,Integer,0x23,-1,?
+SavePartyLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
+SavePartyLocation,anim_type,f,Integer,0x23,-1,similar to Enum AnimType?
 SavePartyLocation,unknown_25,f,Integer,0x25,-1,?
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,?
+SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
 SavePartyLocation,unknown_2b,f,Integer,0x2B,-1,?
 SavePartyLocation,unknown_2c,f,Integer,0x2C,-1,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
-SavePartyLocation,unknown_2f,f,Integer,0x2F,-1,?
-SavePartyLocation,unknown_33,f,Integer,0x33,-1,?
-SavePartyLocation,unknown_34,f,Integer,0x34,-1,?
+SavePartyLocation,unknown_2f,f,Integer,0x2F,-1,bool? passability related?
+SavePartyLocation,unknown_33,f,Integer,0x33,-1,int/bool?
+SavePartyLocation,unknown_34,f,Integer,0x34,-1,int?
 SavePartyLocation,unknown_35,f,Integer,0x35,-1,?
 SavePartyLocation,unknown_36,f,Integer,0x36,-1,?
 SavePartyLocation,unknown_3e,f,Integer,0x3E,-1,?
@@ -833,9 +833,9 @@ SavePartyLocation,unknown_3f,f,Integer,0x3F,-1,?
 SavePartyLocation,sprite_name,f,String,0x49,'',?
 SavePartyLocation,sprite_id,f,Integer,0x4A,-1,?
 SavePartyLocation,unknown_4b,f,Integer,0x4B,-1,?
-SavePartyLocation,unknown_51,f,Integer,0x51,-1,?
-SavePartyLocation,unknown_52,f,Integer,0x52,-1,?
-SavePartyLocation,unknown_53,f,Integer,0x53,-1,?
+SavePartyLocation,unknown_51,f,Integer,0x51,-1,int? similar to SaveMapEvent flash_red?
+SavePartyLocation,unknown_52,f,Integer,0x52,-1,int? similar to SaveMapEvent flash_green?
+SavePartyLocation,unknown_53,f,Integer,0x53,-1,int? similar to SaveMapEvent flash_blue?
 SavePartyLocation,pan_state,f,Integer,0x6F,-1,int
 SavePartyLocation,pan_current_x,f,Integer,0x70,-1,int
 SavePartyLocation,pan_current_y,f,Integer,0x71,-1,?
@@ -850,15 +850,15 @@ SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
 SaveVehicleLocation,facing1,f,Integer,0x15,-1,?
 SaveVehicleLocation,facing2,f,Integer,0x16,-1,?
-SaveVehicleLocation,unknown_17,f,Integer,0x17,-1,?
+SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_20,f,Integer,0x20,-1,?
-SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,?
-SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,?
+SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,int? similar to SaveMapEvent layer?
+SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,int/bool/Enum<EventPage_AnimType>?
 SaveVehicleLocation,unknown_25,f,Integer,0x25,-1,?
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,?
+SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,int/bool?
 SaveVehicleLocation,unknown_2b,f,Integer,0x2B,-1,?
-SaveVehicleLocation,unknown_34,f,Integer,0x34,-1,?
+SaveVehicleLocation,unknown_34,f,Integer,0x34,-1,int?
 SaveVehicleLocation,unknown_35,f,Integer,0x35,-1,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,-1,?
 SaveVehicleLocation,sprite_name,f,String,0x49,'',?
@@ -917,7 +917,7 @@ SaveInventory,battles,f,Integer,0x20,0,?
 SaveInventory,defeats,f,Integer,0x21,0,?
 SaveInventory,escapes,f,Integer,0x22,0,?
 SaveInventory,victories,f,Integer,0x23,0,?
-SaveInventory,unknown_29,f,Integer,0x29,-1,?
+SaveInventory,turns,f,Integer,0x29,-1,Number of turns passed in the latest battle fought. In rpg2k = hero + enemy pair conts 1 action, in rpg2k3 every single action counts 1 action.
 SaveInventory,steps,f,Integer,0x2A,0,?
 SaveTarget,map_id,f,Integer,0x01,-1,int
 SaveTarget,map_x,f,Integer,0x02,-1,int
@@ -948,13 +948,13 @@ SaveMapEvent,unknown_1f,f,Integer,0x1F,-1,?
 SaveMapEvent,unknown_20,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,-1,int
 SaveMapEvent,unknown_22,f,Integer,0x22,-1,?
-SaveMapEvent,unknown_23,f,Integer,0x23,-1,?
+SaveMapEvent,anim_type,f,Integer,0x23,-1,int/bool/Enum<EventPage_AnimType>? 0 = still; 1 continuous walk
 SaveMapEvent,unknown_24,f,Integer,0x24,-1,?
 SaveMapEvent,unknown_25,f,Integer,0x25,-1,?
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,unknown_2a,f,Integer,0x2A,-1,int/bool
 SaveMapEvent,unknown_2b,f,Integer,0x2B,-1,?
-SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,?
+SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,bool? passability related?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,bool
 SaveMapEvent,unknown_33,f,Integer,0x33,-1,int/bool?
 SaveMapEvent,unknown_34,f,Integer,0x34,-1,int:

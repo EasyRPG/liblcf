@@ -28,7 +28,7 @@ RPG::BattleCommands::BattleCommands() {
 	death_handler1 = 0;
 	row = 0;
 	battle_type = 0;
-	unknown1 = 0;
+	unknown_09 = 0;
 	death_handler2 = 0;
 	death_event = 0;
 	window_size = 0;

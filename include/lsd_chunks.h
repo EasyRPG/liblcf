@@ -98,10 +98,10 @@ namespace LSD_Reader {
 			inn_music				= 0x4A,
 			/**  */
 			current_music			= 0x4B,
-			/**  */
-			unknown1_music			= 0x4C,
-			/**  */
-			unknown2_music			= 0x4D,
+			/** Music that was playing before you got on a vehicle, and gets played again after you disembark. */
+			before_vehicle_music	= 0x4C,
+			/** Music that was playing before the battle started, and gets played again after the battle ends. */
+			before_battle_music		= 0x4D,
 			/**  */
 			stored_music			= 0x4E,
 			/**  */
@@ -167,61 +167,61 @@ namespace LSD_Reader {
 	struct ChunkSaveScreen {
 		enum Index {
 			/** int */
-			tint_finish_red		= 0x01,
+			tint_finish_red			= 0x01,
 			/** int */
-			tint_finish_green	= 0x02,
+			tint_finish_green		= 0x02,
 			/** int */
-			tint_finish_blue	= 0x03,
+			tint_finish_blue		= 0x03,
 			/** int */
-			tint_finish_sat		= 0x04,
+			tint_finish_sat			= 0x04,
 			/** double */
-			tint_current_red	= 0x0B,
+			tint_current_red		= 0x0B,
 			/** double */
-			tint_current_green	= 0x0C,
+			tint_current_green		= 0x0C,
 			/** double */
-			tint_current_blue	= 0x0D,
+			tint_current_blue		= 0x0D,
 			/** double */
-			tint_current_sat	= 0x0E,
+			tint_current_sat		= 0x0E,
 			/** int */
-			tint_time_left		= 0x0F,
+			tint_time_left			= 0x0F,
 			/** int */
-			flash_continuous	= 0x14,
+			flash_continuous		= 0x14,
 			/** int */
-			flash_red			= 0x15,
+			flash_red				= 0x15,
 			/** int */
-			flash_green			= 0x16,
+			flash_green				= 0x16,
 			/** int */
-			flash_blue			= 0x17,
+			flash_blue				= 0x17,
 			/** double */
-			flash_current_level	= 0x18,
+			flash_current_level		= 0x18,
 			/** int */
-			flash_time_left		= 0x19,
+			flash_time_left			= 0x19,
 			/** int */
-			shake_continuous	= 0x1E,
+			shake_continuous		= 0x1E,
 			/** int */
-			shake_strength		= 0x1F,
+			shake_strength			= 0x1F,
 			/** int */
-			shake_speed			= 0x20,
+			shake_speed				= 0x20,
 			/** int */
-			shake_position		= 0x21,
+			shake_position			= 0x21,
 			/** int */
-			shake_time_left		= 0x23,
+			shake_time_left			= 0x23,
 			/** int */
-			pan_x				= 0x29,
+			pan_x					= 0x29,
 			/** int */
-			pan_y				= 0x2A,
+			pan_y					= 0x2A,
 			/** int - battle animation ID */
-			battleanim_id		= 0x2B,
+			battleanim_id			= 0x2B,
 			/** int - battle animation target */
-			battleanim_target	= 0x2C,
+			battleanim_target		= 0x2C,
 			/** int - battle animation ?? */
-			battleanim_unk_2d	= 0x2D,
+			battleanim_unknown_2d	= 0x2D,
 			/** int - battle animation global scope */
-			battleanim_global	= 0x2F,
+			battleanim_global		= 0x2F,
 			/** int */
-			weather				= 0x30,
+			weather					= 0x30,
 			/** int */
-			weather_strength	= 0x31 
+			weather_strength		= 0x31 
 		};
 	};
 	struct ChunkSavePicture {
@@ -299,18 +299,18 @@ namespace LSD_Reader {
 			/** ? */
 			facing2				= 0x16,
 			/** ? */
-			unknown_17			= 0x17,
+			anim_frame			= 0x17,
 			/** ? */
 			unknown_20			= 0x20,
-			/** ? */
+			/** int? similar to SaveMapEvent layer? */
 			unknown_21			= 0x21,
-			/** ? */
-			unknown_23			= 0x23,
+			/** similar to Enum AnimType? */
+			anim_type			= 0x23,
 			/** ? */
 			unknown_25			= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route			= 0x29,
-			/** ? */
+			/** int/bool? */
 			unknown_2a			= 0x2A,
 			/** ? */
 			unknown_2b			= 0x2B,
@@ -318,11 +318,11 @@ namespace LSD_Reader {
 			unknown_2c			= 0x2C,
 			/** bool */
 			sprite_transparent	= 0x2E,
-			/** ? */
+			/** bool? passability related? */
 			unknown_2f			= 0x2F,
-			/** ? */
+			/** int/bool? */
 			unknown_33			= 0x33,
-			/** ? */
+			/** int? */
 			unknown_34			= 0x34,
 			/** ? */
 			unknown_35			= 0x35,
@@ -338,11 +338,11 @@ namespace LSD_Reader {
 			sprite_id			= 0x4A,
 			/** ? */
 			unknown_4b			= 0x4B,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_red? */
 			unknown_51			= 0x51,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_green? */
 			unknown_52			= 0x52,
-			/** ? */
+			/** int? similar to SaveMapEvent flash_blue? */
 			unknown_53			= 0x53,
 			/** int */
 			pan_state			= 0x6F,
@@ -377,22 +377,22 @@ namespace LSD_Reader {
 			/** ? */
 			facing2			= 0x16,
 			/** ? */
-			unknown_17		= 0x17,
+			anim_frame		= 0x17,
 			/** ? */
 			unknown_20		= 0x20,
-			/** ? */
+			/** int? similar to SaveMapEvent layer? */
 			unknown_21		= 0x21,
-			/** ? */
+			/** int/bool/Enum<EventPage_AnimType>? */
 			unknown_23		= 0x23,
 			/** ? */
 			unknown_25		= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route		= 0x29,
-			/** ? */
+			/** int/bool? */
 			unknown_2a		= 0x2A,
 			/** ? */
 			unknown_2b		= 0x2B,
-			/** ? */
+			/** int? */
 			unknown_34		= 0x34,
 			/** ? */
 			unknown_35		= 0x35,
@@ -518,8 +518,8 @@ namespace LSD_Reader {
 			escapes			= 0x22,
 			/** ? */
 			victories		= 0x23,
-			/** ? */
-			unknown_29		= 0x29,
+			/** Number of turns passed in the latest battle fought. In rpg2k = hero + enemy pair conts 1 action, in rpg2k3 every single action counts 1 action. */
+			turns			= 0x29,
 			/** ? */
 			steps			= 0x2A 
 		};
@@ -596,8 +596,8 @@ namespace LSD_Reader {
 			layer				= 0x21,
 			/** ? */
 			unknown_22			= 0x22,
-			/** ? */
-			unknown_23			= 0x23,
+			/** int/bool/Enum<EventPage_AnimType>? 0 = still; 1 continuous walk */
+			anim_type			= 0x23,
 			/** ? */
 			unknown_24			= 0x24,
 			/** ? */
@@ -608,7 +608,7 @@ namespace LSD_Reader {
 			unknown_2a			= 0x2A,
 			/** ? */
 			unknown_2b			= 0x2B,
-			/** ? */
+			/** bool? passability related? */
 			unknown_2f			= 0x2F,
 			/** bool */
 			anim_paused			= 0x30,

@@ -52,7 +52,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, pan_y),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battleanim_id),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battleanim_target),
-	EASYRPG_STRUCT_TYPED_FIELD(int, battleanim_unk_2d),
+	EASYRPG_STRUCT_TYPED_FIELD(int, battleanim_unknown_2d),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, battleanim_global),
 	EASYRPG_STRUCT_TYPED_FIELD(int, weather),
 	EASYRPG_STRUCT_TYPED_FIELD(int, weather_strength),

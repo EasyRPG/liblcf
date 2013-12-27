@@ -48,7 +48,7 @@ namespace RPG {
 		int unknown_20;
 		int layer;
 		int unknown_22;
-		int unknown_23;
+		int anim_type;
 		int unknown_24;
 		int unknown_25;
 		MoveRoute move_route;
