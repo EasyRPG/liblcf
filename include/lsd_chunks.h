@@ -358,7 +358,7 @@ namespace LSD_Reader {
 			unknown_79			= 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
 			encounter_steps		= 0x7C,
-			/** ? */
+			/** Must be set to 2 during runtime, otherwise current event not resumed after loading(?) */
 			unknown_83			= 0x83,
 			/** ? */
 			unknown_84			= 0x84 

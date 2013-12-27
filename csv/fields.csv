@@ -843,7 +843,7 @@ SavePartyLocation,pan_finish_x,f,Integer,0x72,-1,?
 SavePartyLocation,pan_finish_y,f,Integer,0x73,-1,?
 SavePartyLocation,unknown_79,f,Integer,0x79,-1,?
 SavePartyLocation,encounter_steps,f,Integer,0x7C,-1,int: sum of terrain.encounter_rate for each step
-SavePartyLocation,unknown_83,f,Integer,0x83,-1,?
+SavePartyLocation,unknown_83,f,Integer,0x83,-1,Must be set to 2 during runtime, otherwise current event not resumed after loading(?)
 SavePartyLocation,unknown_84,f,Integer,0x84,-1,?
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
