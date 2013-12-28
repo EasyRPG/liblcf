@@ -811,12 +811,13 @@ SavePicture,current_waver,f,Integer,0x35,-1,int
 SavePartyLocation,map_id,f,Integer,0x0B,-1,?
 SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
-SavePartyLocation,facing1,f,Integer,0x15,-1,?
-SavePartyLocation,facing2,f,Integer,0x16,-1,?
+SavePartyLocation,prelock_facing,f,Integer,0x15,-1,Facing direction before lock
+SavePartyLocation,facing,f,Integer,0x16,-1,Current facing direction
 SavePartyLocation,unknown_17,f,Integer,0x17,-1,?
 SavePartyLocation,unknown_20,f,Integer,0x20,-1,?
 SavePartyLocation,unknown_21,f,Integer,0x21,-1,?
 SavePartyLocation,unknown_23,f,Integer,0x23,-1,?
+SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SavePartyLocation,unknown_25,f,Integer,0x25,-1,?
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SavePartyLocation,unknown_2a,f,Integer,0x2A,-1,?
@@ -848,12 +849,13 @@ SavePartyLocation,unknown_84,f,Integer,0x84,-1,?
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
-SaveVehicleLocation,facing1,f,Integer,0x15,-1,?
-SaveVehicleLocation,facing2,f,Integer,0x16,-1,?
+SaveVehicleLocation,prelock_facing,f,Integer,0x15,-1,Facing direction before lock
+SaveVehicleLocation,facing,f,Integer,0x16,-1,Current facing direction
 SaveVehicleLocation,unknown_17,f,Integer,0x17,-1,?
 SaveVehicleLocation,unknown_20,f,Integer,0x20,-1,?
 SaveVehicleLocation,unknown_21,f,Integer,0x21,-1,?
 SaveVehicleLocation,unknown_23,f,Integer,0x23,-1,?
+SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SaveVehicleLocation,unknown_25,f,Integer,0x25,-1,?
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,?
@@ -940,8 +942,8 @@ SaveMapEvent,unknown_01,f,Integer,0x01,-1,?
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
 SaveMapEvent,position_y,f,Integer,0x0D,-1,?
-SaveMapEvent,facing1,f,Integer,0x15,-1,?
-SaveMapEvent,facing2,f,Integer,0x16,-1,?
+SaveMapEvent,prelock_facing,f,Integer,0x15,-1,Facing direction before lock
+SaveMapEvent,facing,f,Integer,0x16,-1,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,unknown_18,f,Integer,0x18,-1,?
 SaveMapEvent,unknown_1f,f,Integer,0x1F,-1,?
@@ -949,7 +951,7 @@ SaveMapEvent,unknown_20,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,-1,int
 SaveMapEvent,unknown_22,f,Integer,0x22,-1,?
 SaveMapEvent,unknown_23,f,Integer,0x23,-1,?
-SaveMapEvent,unknown_24,f,Integer,0x24,-1,?
+SaveMapEvent,lock_facing,f,Boolean,0x24,False,facing locked
 SaveMapEvent,unknown_25,f,Integer,0x25,-1,?
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,unknown_2a,f,Integer,0x2A,-1,int/bool

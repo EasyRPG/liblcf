@@ -35,12 +35,13 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int facing1;
-		int facing2;
+		int prelock_facing;
+		int facing;
 		int unknown_17;
 		int unknown_20;
 		int unknown_21;
 		int unknown_23;
+		bool lock_facing;
 		int unknown_25;
 		MoveRoute move_route;
 		int unknown_2a;

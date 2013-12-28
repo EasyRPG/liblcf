@@ -27,12 +27,13 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	facing1 = -1;
-	facing2 = -1;
+	prelock_facing = -1;
+	facing = -1;
 	unknown_17 = -1;
 	unknown_20 = -1;
 	unknown_21 = -1;
 	unknown_23 = -1;
+	lock_facing = false;
 	unknown_25 = -1;
 	unknown_2a = -1;
 	unknown_2b = -1;

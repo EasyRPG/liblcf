@@ -40,8 +40,8 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int facing1;
-		int facing2;
+		int prelock_facing;
+		int facing;
 		int anim_frame;
 		int unknown_18;
 		int unknown_1f;
@@ -49,7 +49,7 @@ namespace RPG {
 		int layer;
 		int unknown_22;
 		int unknown_23;
-		int unknown_24;
+		bool lock_facing;
 		int unknown_25;
 		MoveRoute move_route;
 		int unknown_2a;

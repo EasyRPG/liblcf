@@ -294,10 +294,10 @@ namespace LSD_Reader {
 			position_x			= 0x0C,
 			/** ? */
 			position_y			= 0x0D,
-			/** ? */
-			facing1				= 0x15,
-			/** ? */
-			facing2				= 0x16,
+			/** Facing direction before lock */
+			prelock_facing		= 0x15,
+			/** Current facing direction */
+			facing				= 0x16,
 			/** ? */
 			unknown_17			= 0x17,
 			/** ? */
@@ -306,6 +306,8 @@ namespace LSD_Reader {
 			unknown_21			= 0x21,
 			/** ? */
 			unknown_23			= 0x23,
+			/** facing locked */
+			lock_facing			= 0x24,
 			/** ? */
 			unknown_25			= 0x25,
 			/** chunks: RPG::MoveRoute */
@@ -372,10 +374,10 @@ namespace LSD_Reader {
 			position_x		= 0x0C,
 			/** ? */
 			position_y		= 0x0D,
-			/** ? */
-			facing1			= 0x15,
-			/** ? */
-			facing2			= 0x16,
+			/** Facing direction before lock */
+			prelock_facing	= 0x15,
+			/** Current facing direction */
+			facing			= 0x16,
 			/** ? */
 			unknown_17		= 0x17,
 			/** ? */
@@ -384,6 +386,8 @@ namespace LSD_Reader {
 			unknown_21		= 0x21,
 			/** ? */
 			unknown_23		= 0x23,
+			/** facing locked */
+			lock_facing		= 0x24,
 			/** ? */
 			unknown_25		= 0x25,
 			/** chunks: RPG::MoveRoute */
@@ -580,10 +584,10 @@ namespace LSD_Reader {
 			position_x			= 0x0C,
 			/** ? */
 			position_y			= 0x0D,
-			/** ? */
-			facing1				= 0x15,
-			/** ? */
-			facing2				= 0x16,
+			/** Facing direction before lock */
+			prelock_facing		= 0x15,
+			/** Current facing direction */
+			facing				= 0x16,
 			/** ? */
 			anim_frame			= 0x17,
 			/** ? */
@@ -598,8 +602,8 @@ namespace LSD_Reader {
 			unknown_22			= 0x22,
 			/** ? */
 			unknown_23			= 0x23,
-			/** ? */
-			unknown_24			= 0x24,
+			/** facing locked */
+			lock_facing			= 0x24,
 			/** ? */
 			unknown_25			= 0x25,
 			/** chunks: RPG::MoveRoute */
