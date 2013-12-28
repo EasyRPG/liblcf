@@ -1269,7 +1269,7 @@ namespace LDB_Reader {
 			/** Array - RPG::TestBattler */
 			battletest_data			= 0x55,
 			/** Integer */
-			saved_times				= 0x5B,
+			save_count				= 0x5B,
 			/** Integer */
 			battletest_terrain		= 0x5E,
 			/** Integer */

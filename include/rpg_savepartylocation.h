@@ -67,7 +67,7 @@ namespace RPG {
 		int pan_finish_y;
 		int unknown_79;
 		int encounter_steps;
-		int unknown_83;
+		int map_save_count;
 		int unknown_84;
 	};
 }

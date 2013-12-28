@@ -75,7 +75,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, selected_hero),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, battletest_background),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::TestBattler>, battletest_data),
-	EASYRPG_STRUCT_TYPED_FIELD(int, saved_times),
+	EASYRPG_STRUCT_TYPED_FIELD(int, save_count),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battletest_terrain),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battletest_formation),
 	EASYRPG_STRUCT_TYPED_FIELD(int, battletest_condition),

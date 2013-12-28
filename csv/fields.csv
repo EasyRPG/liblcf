@@ -559,7 +559,7 @@ System,selected_condition,f,Integer,0x51,0,Integer
 System,selected_hero,f,Ref<Actor>,0x52,0,Integer
 System,battletest_background,f,String,0x54,'',String
 System,battletest_data,f,Array<TestBattler>,0x55,,Array - RPG::TestBattler
-System,saved_times,f,Integer,0x5B,0,Integer
+System,save_count,f,Integer,0x5B,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,Integer
 System,battletest_formation,f,Enum<System_BattleFormation>,0x5F,0,Integer
 System,battletest_condition,f,Enum<System_BattleCondition>,0x60,0,Integer
@@ -684,7 +684,7 @@ Map,generator_tile_ids,f,Vector<Int16>,0x3E,,Array - Short
 Map,lower_layer,f,Vector<Int16>,0x47,,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,Array - Short
 Map,events,f,Array<Event>,0x51,,Array - RPG::Event
-Map,save_times,f,Integer,0x5B,0,Integer
+Map,save_count,f,Integer,0x5B,0,Integer
 SaveTitle,timestamp,f,Double,0x01,,double(?)
 SaveTitle,hero_name,f,String,0x0B,,char[]: hero name
 SaveTitle,hero_level,f,Integer,0x0C,0,int: hero level
@@ -843,7 +843,7 @@ SavePartyLocation,pan_finish_x,f,Integer,0x72,-1,?
 SavePartyLocation,pan_finish_y,f,Integer,0x73,-1,?
 SavePartyLocation,unknown_79,f,Integer,0x79,-1,?
 SavePartyLocation,encounter_steps,f,Integer,0x7C,-1,int: sum of terrain.encounter_rate for each step
-SavePartyLocation,unknown_83,f,Integer,0x83,-1,Must be set to 2 during runtime, otherwise current event not resumed after loading(?)
+SavePartyLocation,map_save_count,f,Integer,0x83,-1,Mirros save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,unknown_84,f,Integer,0x84,-1,?
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?

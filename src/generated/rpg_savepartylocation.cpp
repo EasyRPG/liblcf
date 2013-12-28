@@ -58,6 +58,6 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	pan_finish_y = -1;
 	unknown_79 = -1;
 	encounter_steps = -1;
-	unknown_83 = -1;
+	map_save_count = -1;
 	unknown_84 = -1;
 }

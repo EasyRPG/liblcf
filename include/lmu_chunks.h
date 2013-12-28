@@ -171,7 +171,7 @@ namespace LMU_Reader {
 			/** Array - RPG::Event */
 			events					= 0x51,
 			/** Integer */
-			save_times				= 0x5B 
+			save_count				= 0x5B 
 		};
 	};
 }

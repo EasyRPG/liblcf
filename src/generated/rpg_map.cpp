@@ -49,5 +49,5 @@ RPG::Map::Map() {
 	generator_floor_c = true;
 	generator_extra_b = true;
 	generator_extra_c = true;
-	save_times = 0;
+	save_count = 0;
 }

@@ -82,7 +82,7 @@ namespace RPG {
 		std::vector<int16_t> lower_layer;
 		std::vector<int16_t> upper_layer;
 		std::vector<Event> events;
-		int save_times;
+		int save_count;
 	};
 }
 
