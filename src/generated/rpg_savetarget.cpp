@@ -25,9 +25,9 @@
  */
 RPG::SaveTarget::SaveTarget() {
 	ID = 0;
-	map_id = -1;
-	map_x = -1;
-	map_y = -1;
+	map_id = 0;
+	map_x = 0;
+	map_y = 0;
 	switch_on = false;
-	switch_id = -1;
+	switch_id = 0;
 }

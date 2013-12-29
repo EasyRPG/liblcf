@@ -60,6 +60,10 @@ namespace LSD_Reader {
 			frame_count				= 0x0B,
 			/** string */
 			graphics_name			= 0x15,
+			/** ? */
+			unknown_16				= 0x16,
+			/** ? */
+			unknown_17				= 0x17,
 			/**  */
 			switches_size			= 0x1F,
 			/**  */
@@ -161,7 +165,9 @@ namespace LSD_Reader {
 			/**  */
 			save_count				= 0x83,
 			/**  */
-			save_slot				= 0x84 
+			save_slot				= 0x84,
+			/**  */
+			unknown_8c				= 0x8C 
 		};
 	};
 	struct ChunkSaveScreen {
@@ -205,6 +211,8 @@ namespace LSD_Reader {
 			/** int */
 			shake_position		= 0x21,
 			/** int */
+			unknown_22			= 0x22,
+			/** int */
 			shake_time_left		= 0x23,
 			/** int */
 			pan_x				= 0x29,
@@ -216,6 +224,8 @@ namespace LSD_Reader {
 			battleanim_target	= 0x2C,
 			/** int - battle animation ?? */
 			battleanim_unk_2d	= 0x2D,
+			/** int */
+			unknown_2e			= 0x2E,
 			/** int - battle animation global scope */
 			battleanim_global	= 0x2F,
 			/** int */
@@ -289,6 +299,8 @@ namespace LSD_Reader {
 	struct ChunkSavePartyLocation {
 		enum Index {
 			/** ? */
+			unknown_01			= 0x01,
+			/** ? */
 			map_id				= 0x0B,
 			/** ? */
 			position_x			= 0x0C,
@@ -299,17 +311,23 @@ namespace LSD_Reader {
 			/** Current facing direction */
 			facing				= 0x16,
 			/** ? */
-			unknown_17			= 0x17,
+			anim_frame			= 0x17,
 			/** ? */
-			unknown_20			= 0x20,
+			unknown_18			= 0x18,
 			/** ? */
-			unknown_21			= 0x21,
+			unknown_1f			= 0x1F,
+			/** ? */
+			move_speed			= 0x20,
+			/** ? */
+			layer				= 0x21,
+			/** ? */
+			unknown_22			= 0x22,
 			/** ? */
 			unknown_23			= 0x23,
 			/** facing locked */
 			lock_facing			= 0x24,
-			/** ? */
-			unknown_25			= 0x25,
+			/**  */
+			move_frequency		= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route			= 0x29,
 			/** ? */
@@ -323,6 +341,8 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_2f			= 0x2F,
 			/** ? */
+			anim_paused			= 0x30,
+			/** ? */
 			unknown_33			= 0x33,
 			/** ? */
 			unknown_34			= 0x34,
@@ -331,22 +351,44 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_36			= 0x36,
 			/** ? */
+			unknown_3d			= 0x3D,
+			/** ? */
 			unknown_3e			= 0x3E,
 			/** ? */
 			unknown_3f			= 0x3F,
+			/** ? */
+			unknown_47			= 0x47,
+			/** ? */
+			unknown_48			= 0x48,
 			/** ? */
 			sprite_name			= 0x49,
 			/** ? */
 			sprite_id			= 0x4A,
 			/** ? */
 			unknown_4b			= 0x4B,
-			/** ? */
-			unknown_51			= 0x51,
-			/** ? */
-			unknown_52			= 0x52,
-			/** ? */
-			unknown_53			= 0x53,
 			/** int */
+			flash_red			= 0x51,
+			/** int */
+			flash_green			= 0x52,
+			/** int */
+			flash_blue			= 0x53,
+			/** double */
+			flash_current_level	= 0x54,
+			/** int */
+			flash_time_left		= 0x55,
+			/**  */
+			unknown_65			= 0x65,
+			/**  */
+			unknown_66			= 0x66,
+			/**  */
+			unknown_67			= 0x67,
+			/**  */
+			unknown_68			= 0x68,
+			/**  */
+			unknown_69			= 0x69,
+			/**  */
+			unknown_6c			= 0x6C,
+			/**  */
 			pan_state			= 0x6F,
 			/** int */
 			pan_current_x		= 0x70,
@@ -360,7 +402,9 @@ namespace LSD_Reader {
 			unknown_79			= 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
 			encounter_steps		= 0x7C,
-			/** Mirros save_count of current map. On mismatch events are not continued after load. */
+			/** ? */
+			unknown_7d			= 0x7D,
+			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
 			map_save_count		= 0x83,
 			/** ? */
 			unknown_84			= 0x84 
@@ -369,51 +413,87 @@ namespace LSD_Reader {
 	struct ChunkSaveVehicleLocation {
 		enum Index {
 			/** ? */
-			map_id			= 0x0B,
+			unknown_01			= 0x01,
 			/** ? */
-			position_x		= 0x0C,
+			map_id				= 0x0B,
 			/** ? */
-			position_y		= 0x0D,
+			position_x			= 0x0C,
+			/** ? */
+			position_y			= 0x0D,
 			/** Facing direction before lock */
-			prelock_facing	= 0x15,
+			prelock_facing		= 0x15,
 			/** Current facing direction */
-			facing			= 0x16,
+			facing				= 0x16,
 			/** ? */
-			unknown_17		= 0x17,
+			anim_frame			= 0x17,
 			/** ? */
-			unknown_20		= 0x20,
+			unknown_18			= 0x18,
 			/** ? */
-			unknown_21		= 0x21,
+			unknown_1f			= 0x1F,
 			/** ? */
-			unknown_23		= 0x23,
+			move_speed			= 0x20,
+			/** ? */
+			layer				= 0x21,
+			/** ? */
+			unknown_22			= 0x22,
+			/** ? */
+			unknown_23			= 0x23,
 			/** facing locked */
-			lock_facing		= 0x24,
-			/** ? */
-			unknown_25		= 0x25,
+			lock_facing			= 0x24,
+			/**  */
+			move_frequency		= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route		= 0x29,
+			move_route			= 0x29,
 			/** ? */
-			unknown_2a		= 0x2A,
+			unknown_2a			= 0x2A,
 			/** ? */
-			unknown_2b		= 0x2B,
+			unknown_2b			= 0x2B,
 			/** ? */
-			unknown_34		= 0x34,
+			anim_paused			= 0x30,
 			/** ? */
-			unknown_35		= 0x35,
+			unknown_33			= 0x33,
 			/** ? */
-			unknown_36		= 0x36,
+			unknown_34			= 0x34,
 			/** ? */
-			sprite_name		= 0x49,
+			unknown_35			= 0x35,
 			/** ? */
-			sprite_id		= 0x4A,
+			unknown_36			= 0x36,
 			/** ? */
-			unknown_4b		= 0x4B,
+			unknown_3d			= 0x3D,
 			/** ? */
-			unknown_65		= 0x65,
-			/** string */
-			sprite2_name	= 0x6F,
+			unknown_3e			= 0x3E,
+			/** ? */
+			unknown_3f			= 0x3F,
+			/** ? */
+			unknown_47			= 0x47,
+			/** ? */
+			unknown_48			= 0x48,
+			/** ? */
+			sprite_name			= 0x49,
+			/** ? */
+			sprite_id			= 0x4A,
+			/** ? */
+			unknown_4b			= 0x4B,
 			/** int */
-			sprite2_id		= 0x70 
+			flash_red			= 0x51,
+			/** int */
+			flash_green			= 0x52,
+			/** int */
+			flash_blue			= 0x53,
+			/** double */
+			flash_current_level	= 0x54,
+			/** int */
+			flash_time_left		= 0x55,
+			/** ? */
+			unknown_65			= 0x65,
+			/** ? */
+			unknown_6a			= 0x6A,
+			/** ? */
+			unknown_6b			= 0x6B,
+			/** string */
+			sprite2_name		= 0x6F,
+			/** int */
+			sprite2_id			= 0x70 
 		};
 	};
 	struct ChunkSaveActor {
@@ -595,8 +675,8 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_1f			= 0x1F,
 			/** ? */
-			unknown_20			= 0x20,
-			/** int */
+			move_speed			= 0x20,
+			/** ? */
 			layer				= 0x21,
 			/** ? */
 			unknown_22			= 0x22,
@@ -604,8 +684,8 @@ namespace LSD_Reader {
 			unknown_23			= 0x23,
 			/** facing locked */
 			lock_facing			= 0x24,
-			/** ? */
-			unknown_25			= 0x25,
+			/**  */
+			move_frequency		= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route			= 0x29,
 			/** int/bool */
@@ -614,22 +694,26 @@ namespace LSD_Reader {
 			unknown_2b			= 0x2B,
 			/** ? */
 			unknown_2f			= 0x2F,
-			/** bool */
+			/** ? */
 			anim_paused			= 0x30,
-			/** int/bool? */
+			/** ? */
 			unknown_33			= 0x33,
-			/** int: */
+			/** ? */
 			unknown_34			= 0x34,
 			/** ? */
 			unknown_35			= 0x35,
 			/** ? */
 			unknown_36			= 0x36,
 			/** ? */
+			unknown_3d			= 0x3D,
+			/** ? */
 			unknown_3e			= 0x3E,
 			/** ? */
 			unknown_3f			= 0x3F,
 			/** ? */
 			unknown_47			= 0x47,
+			/** ? */
+			unknown_48			= 0x48,
 			/** ? */
 			sprite_name			= 0x49,
 			/** ? */
@@ -692,20 +776,42 @@ namespace LSD_Reader {
 			events		= 0x01,
 			/** int */
 			events_size	= 0x04,
-			/** int */
+			/**  */
+			unknown_0b	= 0x0B,
+			/**  */
+			unknown_0d	= 0x0D,
+			/**  */
+			unknown_15	= 0x15,
+			/**  */
 			unknown_16	= 0x16,
-			/** int */
+			/**  */
 			unknown_17	= 0x17,
-			/** int */
+			/**  */
 			unknown_18	= 0x18,
+			/**  */
+			unknown_19	= 0x19,
+			/**  */
+			unknown_1a	= 0x1A,
+			/**  */
+			unknown_1b	= 0x1B,
 			/** int/bool */
 			unknown_1c	= 0x1C,
+			/**  */
+			unknown_1f	= 0x1F,
 			/** int/bool */
 			unknown_20	= 0x20,
+			/**  */
+			unknown_23	= 0x23,
 			/** int/bool */
 			unknown_24	= 0x24,
 			/** int/bool */
-			unknown_25	= 0x25 
+			unknown_25	= 0x25,
+			/**  */
+			unknown_26	= 0x26,
+			/**  */
+			unknown_29	= 0x29,
+			/**  */
+			unknown_2a	= 0x2A 
 		};
 	};
 	struct ChunkSaveCommonEvent {

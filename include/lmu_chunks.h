@@ -81,7 +81,7 @@ namespace LMU_Reader {
 			/** Integer */
 			trigger				= 0x21,
 			/** Integer */
-			priority_type		= 0x22,
+			layer				= 0x22,
 			/** Flag */
 			overlap				= 0x23,
 			/** Integer */

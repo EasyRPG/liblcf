@@ -28,14 +28,14 @@ RPG::SaveActor::SaveActor() {
 	name = "";
 	title = "";
 	sprite_name = "";
-	sprite_id = -1;
-	sprite_flags = -1;
+	sprite_id = 0;
+	sprite_flags = 0;
 	face_name = "";
-	face_id = -1;
+	face_id = 0;
 	level = -1;
 	exp = -1;
-	hp_mod = 0;
-	sp_mod = 0;
+	hp_mod = -1;
+	sp_mod = -1;
 	attack_mod = 0;
 	defense_mod = 0;
 	spirit_mod = 0;
@@ -43,13 +43,13 @@ RPG::SaveActor::SaveActor() {
 	skills_size = -1;
 	current_hp = -1;
 	current_sp = -1;
-	status_size = -1;
+	status_size = 0;
 	changed_class = false;
 	class_id = -1;
-	row = -1;
+	row = 0;
 	two_weapon = false;
 	lock_equipment = false;
 	auto_battle = false;
 	mighty_guard = false;
-	unknown_60 = -1;
+	unknown_60 = 0;
 }

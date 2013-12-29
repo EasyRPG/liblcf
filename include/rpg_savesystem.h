@@ -40,6 +40,8 @@ namespace RPG {
 		int screen;
 		int frame_count;
 		std::string graphics_name;
+		int unknown_16;
+		int unknown_17;
 		int switches_size;
 		std::vector<bool> switches;
 		int variables_size;
@@ -91,6 +93,7 @@ namespace RPG {
 		std::string background;
 		int save_count;
 		int save_slot;
+		int unknown_8c;
 	};
 }
 

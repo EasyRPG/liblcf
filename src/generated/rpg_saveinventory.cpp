@@ -24,8 +24,8 @@
  * Constructor.
  */
 RPG::SaveInventory::SaveInventory() {
-	party_size = 0;
-	items_size = 0;
+	party_size = -1;
+	items_size = -1;
 	gold = 0;
 	timer1_secs = 0;
 	timer1_active = false;
@@ -39,6 +39,6 @@ RPG::SaveInventory::SaveInventory() {
 	defeats = 0;
 	escapes = 0;
 	victories = 0;
-	unknown_29 = -1;
+	unknown_29 = 0;
 	steps = 0;
 }

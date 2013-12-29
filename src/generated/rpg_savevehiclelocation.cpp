@@ -24,26 +24,44 @@
  * Constructor.
  */
 RPG::SaveVehicleLocation::SaveVehicleLocation() {
+	unknown_01 = -1;
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
 	prelock_facing = -1;
 	facing = -1;
-	unknown_17 = -1;
-	unknown_20 = -1;
-	unknown_21 = -1;
-	unknown_23 = -1;
+	anim_frame = 1;
+	unknown_18 = 0;
+	unknown_1f = 0;
+	move_speed = 2;
+	layer = 1;
+	unknown_22 = 0;
+	unknown_23 = 1;
 	lock_facing = false;
-	unknown_25 = -1;
+	move_frequency = -1;
 	unknown_2a = -1;
 	unknown_2b = -1;
-	unknown_34 = -1;
-	unknown_35 = -1;
-	unknown_36 = -1;
+	anim_paused = 0;
+	unknown_33 = 0;
+	unknown_34 = 0;
+	unknown_35 = 0;
+	unknown_36 = 0;
+	unknown_3d = 0;
+	unknown_3e = 0;
+	unknown_3f = 0;
+	unknown_47 = 0;
+	unknown_48 = 0;
 	sprite_name = "";
-	sprite_id = -1;
-	unknown_4b = -1;
-	unknown_65 = -1;
+	sprite_id = 0;
+	unknown_4b = 0;
+	flash_red = 100;
+	flash_green = 100;
+	flash_blue = 100;
+	flash_current_level = 0.0;
+	flash_time_left = 0;
+	unknown_65 = 0;
+	unknown_6a = 0;
+	unknown_6b = 0;
 	sprite2_name = "";
-	sprite2_id = -1;
+	sprite2_id = 0;
 }

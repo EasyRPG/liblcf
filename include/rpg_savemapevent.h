@@ -45,12 +45,12 @@ namespace RPG {
 		int anim_frame;
 		int unknown_18;
 		int unknown_1f;
-		int unknown_20;
+		int move_speed;
 		int layer;
 		int unknown_22;
 		int unknown_23;
 		bool lock_facing;
-		int unknown_25;
+		int move_frequency;
 		MoveRoute move_route;
 		int unknown_2a;
 		int unknown_2b;
@@ -60,9 +60,11 @@ namespace RPG {
 		int unknown_34;
 		int unknown_35;
 		int unknown_36;
+		int unknown_3d;
 		int unknown_3e;
 		int unknown_3f;
 		int unknown_47;
+		int unknown_48;
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;
