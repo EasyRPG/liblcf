@@ -29,8 +29,8 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	prelock_facing = -1;
-	facing = -1;
+	prelock_direction = -1;
+	direction = -1;
 	anim_frame = 1;
 	unknown_18 = 0;
 	unknown_1f = 0;

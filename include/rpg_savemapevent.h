@@ -40,8 +40,8 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int prelock_facing;
-		int facing;
+		int prelock_direction;
+		int direction;
 		int anim_frame;
 		int unknown_18;
 		int unknown_1f;

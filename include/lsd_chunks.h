@@ -307,9 +307,9 @@ namespace LSD_Reader {
 			/** ? */
 			position_y			= 0x0D,
 			/** Facing direction before lock */
-			prelock_facing		= 0x15,
+			prelock_direction	= 0x15,
 			/** Current facing direction */
-			facing				= 0x16,
+			direction			= 0x16,
 			/** ? */
 			anim_frame			= 0x17,
 			/** ? */
@@ -421,9 +421,9 @@ namespace LSD_Reader {
 			/** ? */
 			position_y			= 0x0D,
 			/** Facing direction before lock */
-			prelock_facing		= 0x15,
+			prelock_direction	= 0x15,
 			/** Current facing direction */
-			facing				= 0x16,
+			direction			= 0x16,
 			/** ? */
 			anim_frame			= 0x17,
 			/** ? */
@@ -665,9 +665,9 @@ namespace LSD_Reader {
 			/** ? */
 			position_y			= 0x0D,
 			/** Facing direction before lock */
-			prelock_facing		= 0x15,
+			prelock_direction	= 0x15,
 			/** Current facing direction */
-			facing				= 0x16,
+			direction			= 0x16,
 			/** ? */
 			anim_frame			= 0x17,
 			/** ? */

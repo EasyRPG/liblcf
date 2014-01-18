@@ -817,8 +817,8 @@ SavePartyLocation,unknown_01,f,Integer,0x01,1,?
 SavePartyLocation,map_id,f,Integer,0x0B,-1,?
 SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
-SavePartyLocation,prelock_facing,f,Integer,0x15,1,Facing direction before lock
-SavePartyLocation,facing,f,Integer,0x16,1,Current facing direction
+SavePartyLocation,prelock_direction,f,Integer,0x15,1,Facing direction before lock
+SavePartyLocation,direction,f,Integer,0x16,1,Current facing direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_18,f,Integer,0x18,0,?
 SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
@@ -872,8 +872,8 @@ SaveVehicleLocation,unknown_01,f,Integer,0x01,-1,?
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
-SaveVehicleLocation,prelock_facing,f,Integer,0x15,-1,Facing direction before lock
-SaveVehicleLocation,facing,f,Integer,0x16,-1,Current facing direction
+SaveVehicleLocation,prelock_direction,f,Integer,0x15,-1,Facing direction before lock
+SaveVehicleLocation,direction,f,Integer,0x16,-1,Current facing direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_18,f,Integer,0x18,0,?
 SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
@@ -982,8 +982,8 @@ SaveMapEvent,unknown_01,f,Integer,0x01,-1,?
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
 SaveMapEvent,position_y,f,Integer,0x0D,-1,?
-SaveMapEvent,prelock_facing,f,Integer,0x15,-1,Facing direction before lock
-SaveMapEvent,facing,f,Integer,0x16,-1,Current facing direction
+SaveMapEvent,prelock_direction,f,Integer,0x15,-1,Facing direction before lock
+SaveMapEvent,direction,f,Integer,0x16,-1,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,unknown_18,f,Integer,0x18,0,?
 SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?
