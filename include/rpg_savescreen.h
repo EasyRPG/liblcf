@@ -27,6 +27,7 @@ namespace RPG {
 	class SaveScreen {
 	public:
 		SaveScreen();
+		void Fixup();
 
 		int tint_finish_red;
 		int tint_finish_green;

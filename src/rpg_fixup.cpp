@@ -133,26 +133,17 @@ void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
 	}
 }
 
-void RPG::SavePicture::Fixup() {
-	if (effect_mode == -1) {
-		effect_mode = 0;
+void RPG::SaveScreen::Fixup() {
+	if (tint_current_red == -1.0) {
+		tint_current_red = 100.0;
 	}
-	if (finish_magnify == -1) {
-		finish_magnify = 100;
+	if (tint_current_green == -1.0) {
+		tint_current_green = 100.0;
 	}
-	if (finish_red == -1) {
-		finish_red = 100;
+	if (tint_current_blue == -1.0) {
+		tint_current_blue = 100.0;
 	}
-	if (finish_green == -1) {
-		finish_green = 100;
-	}
-	if (finish_blue == -1) {
-		finish_blue = 100;
-	}
-	if (finish_sat == -1) {
-		finish_sat = 100;
-	}
-	if (time_left == -1) {
-		time_left = 0;
+	if (tint_current_sat == -1.0) {
+		tint_current_sat = 100.0;
 	}
 }
