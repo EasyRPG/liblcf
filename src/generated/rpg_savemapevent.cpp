@@ -40,7 +40,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_23 = 1;
 	lock_facing = false;
 	move_frequency = -1;
-	unknown_2a = -1;
+	move_route_overwrite = false;
 	move_route_index = 0;
 	unknown_2f = -1;
 	anim_paused = 0;

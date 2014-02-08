@@ -330,8 +330,8 @@ namespace LSD_Reader {
 			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
-			/** ? */
-			unknown_2a					= 0x2A,
+			/** Use custom move route */
+			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
 			/** ? */
@@ -444,8 +444,8 @@ namespace LSD_Reader {
 			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
-			/** ? */
-			unknown_2a					= 0x2A,
+			/** Use custom move route */
+			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
 			/** ? */
@@ -688,8 +688,8 @@ namespace LSD_Reader {
 			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
-			/** int/bool */
-			unknown_2a					= 0x2A,
+			/** Use custom move route */
+			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
 			/** ? */

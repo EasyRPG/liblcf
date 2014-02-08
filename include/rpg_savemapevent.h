@@ -52,7 +52,7 @@ namespace RPG {
 		bool lock_facing;
 		int move_frequency;
 		MoveRoute move_route;
-		int unknown_2a;
+		bool move_route_overwrite;
 		int move_route_index;
 		int unknown_2f;
 		int anim_paused;

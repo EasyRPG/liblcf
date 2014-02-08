@@ -829,7 +829,7 @@ SavePartyLocation,unknown_23,f,Integer,0x23,1,?
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SavePartyLocation,move_frequency,f,Integer,0x25,-1,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SavePartyLocation,unknown_2a,f,Integer,0x2A,0,?
+SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SavePartyLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SavePartyLocation,unknown_2c,f,Integer,0x2C,0,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
@@ -884,7 +884,7 @@ SaveVehicleLocation,unknown_23,f,Integer,0x23,1,?
 SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SaveVehicleLocation,move_frequency,f,Integer,0x25,-1,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,?
+SaveVehicleLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SaveVehicleLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
 SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
@@ -994,7 +994,7 @@ SaveMapEvent,unknown_23,f,Integer,0x23,1,?
 SaveMapEvent,lock_facing,f,Boolean,0x24,False,facing locked
 SaveMapEvent,move_frequency,f,Integer,0x25,-1,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
-SaveMapEvent,unknown_2a,f,Integer,0x2A,-1,int/bool
+SaveMapEvent,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?

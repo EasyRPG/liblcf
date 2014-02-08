@@ -39,7 +39,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	unknown_23 = 1;
 	lock_facing = false;
 	move_frequency = -1;
-	unknown_2a = -1;
+	move_route_overwrite = false;
 	move_route_index = 0;
 	anim_paused = 0;
 	unknown_33 = 0;

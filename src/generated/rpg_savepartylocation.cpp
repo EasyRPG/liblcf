@@ -39,7 +39,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	unknown_23 = 1;
 	lock_facing = false;
 	move_frequency = -1;
-	unknown_2a = 0;
+	move_route_overwrite = false;
 	move_route_index = 0;
 	unknown_2c = 0;
 	sprite_transparent = false;

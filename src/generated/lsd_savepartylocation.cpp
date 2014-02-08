@@ -44,7 +44,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(bool, lock_facing),
 	EASYRPG_STRUCT_TYPED_FIELD(int, move_frequency),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2a),
+	EASYRPG_STRUCT_TYPED_FIELD(bool, move_route_overwrite),
 	EASYRPG_STRUCT_TYPED_FIELD(int, move_route_index),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2c),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, sprite_transparent),
