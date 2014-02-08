@@ -45,7 +45,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, move_frequency),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2a),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2b),
+	EASYRPG_STRUCT_TYPED_FIELD(int, move_route_index),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2f),
 	EASYRPG_STRUCT_TYPED_FIELD(int, anim_paused),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_33),
@@ -65,7 +65,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, flash_blue),
 	EASYRPG_STRUCT_TYPED_FIELD(double, flash_current_level),
 	EASYRPG_STRUCT_TYPED_FIELD(int, flash_time_left),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_66),
+	EASYRPG_STRUCT_TYPED_FIELD(int, original_move_route_index),
 	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_67),
 	EASYRPG_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data),
 EASYRPG_STRUCT_FIELDS_END()

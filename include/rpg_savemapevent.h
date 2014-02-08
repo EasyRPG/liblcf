@@ -53,7 +53,7 @@ namespace RPG {
 		int move_frequency;
 		MoveRoute move_route;
 		int unknown_2a;
-		int unknown_2b;
+		int move_route_index;
 		int unknown_2f;
 		int anim_paused;
 		int unknown_33;
@@ -73,7 +73,7 @@ namespace RPG {
 		int flash_blue;
 		double flash_current_level;
 		int flash_time_left;
-		int unknown_66;
+		int original_move_route_index;
 		int unknown_67;
 		SaveEventData event_data;
 	};

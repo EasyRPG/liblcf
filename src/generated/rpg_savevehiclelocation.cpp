@@ -40,7 +40,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	lock_facing = false;
 	move_frequency = -1;
 	unknown_2a = -1;
-	unknown_2b = -1;
+	move_route_index = 0;
 	anim_paused = 0;
 	unknown_33 = 0;
 	unknown_34 = 0;
@@ -61,7 +61,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	flash_time_left = 0;
 	unknown_65 = 0;
 	unknown_6a = 0;
-	unknown_6b = 0;
+	original_move_route_index = 0;
 	sprite2_name = "";
 	sprite2_id = 0;
 }

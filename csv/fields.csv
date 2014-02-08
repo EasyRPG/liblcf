@@ -830,7 +830,7 @@ SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SavePartyLocation,move_frequency,f,Integer,0x25,-1,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SavePartyLocation,unknown_2a,f,Integer,0x2A,0,?
-SavePartyLocation,unknown_2b,f,Integer,0x2B,0,?
+SavePartyLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SavePartyLocation,unknown_2c,f,Integer,0x2C,0,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
 SavePartyLocation,unknown_2f,f,Integer,0x2F,0,?
@@ -853,7 +853,7 @@ SavePartyLocation,flash_blue,f,Integer,0x53,100,int
 SavePartyLocation,flash_current_level,f,Double,0x54,0.0,double
 SavePartyLocation,flash_time_left,f,Integer,0x55,0,int
 SavePartyLocation,unknown_65,f,Integer,0x65,0,
-SavePartyLocation,unknown_66,f,Integer,0x66,0,
+SavePartyLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
 SavePartyLocation,unknown_67,f,Integer,0x67,0,
 SavePartyLocation,unknown_68,f,Integer,0x68,0,
 SavePartyLocation,unknown_69,f,Integer,0x69,4,
@@ -885,7 +885,7 @@ SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SaveVehicleLocation,move_frequency,f,Integer,0x25,-1,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveVehicleLocation,unknown_2a,f,Integer,0x2A,-1,?
-SaveVehicleLocation,unknown_2b,f,Integer,0x2B,-1,?
+SaveVehicleLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
 SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
 SaveVehicleLocation,unknown_34,f,Integer,0x34,0,?
@@ -906,7 +906,7 @@ SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,double
 SaveVehicleLocation,flash_time_left,f,Integer,0x55,0,int
 SaveVehicleLocation,unknown_65,f,Integer,0x65,0,?
 SaveVehicleLocation,unknown_6a,f,Integer,0x6A,0,?
-SaveVehicleLocation,unknown_6b,f,Integer,0x6B,0,?
+SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
 SaveActor,name,f,String,0x01,'',string; "\x01" for default!?!?
@@ -995,7 +995,7 @@ SaveMapEvent,lock_facing,f,Boolean,0x24,False,facing locked
 SaveMapEvent,move_frequency,f,Integer,0x25,-1,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,unknown_2a,f,Integer,0x2A,-1,int/bool
-SaveMapEvent,unknown_2b,f,Integer,0x2B,-1,?
+SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
 SaveMapEvent,unknown_33,f,Integer,0x33,0,?
@@ -1015,7 +1015,7 @@ SaveMapEvent,flash_green,f,Integer,0x52,100,int
 SaveMapEvent,flash_blue,f,Integer,0x53,100,int
 SaveMapEvent,flash_current_level,f,Double,0x54,0.0,double
 SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
-SaveMapEvent,unknown_66,f,Integer,0x66,-1,?
+SaveMapEvent,original_move_route_index,f,Integer,0x66,0,Index of custom move route
 SaveMapEvent,unknown_67,f,Integer,0x67,-1,?
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
 SaveMapInfo,position_x,f,Integer,0x01,0,int

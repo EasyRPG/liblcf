@@ -49,7 +49,7 @@ namespace RPG {
 		int move_frequency;
 		MoveRoute move_route;
 		int unknown_2a;
-		int unknown_2b;
+		int move_route_index;
 		int anim_paused;
 		int unknown_33;
 		int unknown_34;
@@ -70,7 +70,7 @@ namespace RPG {
 		int flash_time_left;
 		int unknown_65;
 		int unknown_6a;
-		int unknown_6b;
+		int original_move_route_index;
 		std::string sprite2_name;
 		int sprite2_id;
 	};

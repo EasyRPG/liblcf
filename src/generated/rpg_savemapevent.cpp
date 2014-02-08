@@ -41,7 +41,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	lock_facing = false;
 	move_frequency = -1;
 	unknown_2a = -1;
-	unknown_2b = -1;
+	move_route_index = 0;
 	unknown_2f = -1;
 	anim_paused = 0;
 	unknown_33 = 0;
@@ -61,6 +61,6 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	flash_blue = 100;
 	flash_current_level = 0.0;
 	flash_time_left = 0;
-	unknown_66 = -1;
+	original_move_route_index = 0;
 	unknown_67 = -1;
 }

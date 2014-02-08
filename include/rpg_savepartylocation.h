@@ -49,7 +49,7 @@ namespace RPG {
 		int move_frequency;
 		MoveRoute move_route;
 		int unknown_2a;
-		int unknown_2b;
+		int move_route_index;
 		int unknown_2c;
 		bool sprite_transparent;
 		int unknown_2f;
@@ -72,7 +72,7 @@ namespace RPG {
 		double flash_current_level;
 		int flash_time_left;
 		int unknown_65;
-		int unknown_66;
+		int original_move_route_index;
 		int unknown_67;
 		int unknown_68;
 		int unknown_69;

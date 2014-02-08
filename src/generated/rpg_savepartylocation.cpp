@@ -40,7 +40,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	lock_facing = false;
 	move_frequency = -1;
 	unknown_2a = 0;
-	unknown_2b = 0;
+	move_route_index = 0;
 	unknown_2c = 0;
 	sprite_transparent = false;
 	unknown_2f = 0;
@@ -63,7 +63,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	flash_current_level = 0.0;
 	flash_time_left = 0;
 	unknown_65 = 0;
-	unknown_66 = 0;
+	original_move_route_index = 0;
 	unknown_67 = 0;
 	unknown_68 = 0;
 	unknown_69 = 4;

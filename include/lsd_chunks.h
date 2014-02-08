@@ -299,201 +299,201 @@ namespace LSD_Reader {
 	struct ChunkSavePartyLocation {
 		enum Index {
 			/** ? */
-			unknown_01			= 0x01,
+			unknown_01					= 0x01,
 			/** ? */
-			map_id				= 0x0B,
+			map_id						= 0x0B,
 			/** ? */
-			position_x			= 0x0C,
+			position_x					= 0x0C,
 			/** ? */
-			position_y			= 0x0D,
+			position_y					= 0x0D,
 			/** Facing direction before lock */
-			prelock_direction	= 0x15,
+			prelock_direction			= 0x15,
 			/** Current facing direction */
-			direction			= 0x16,
+			direction					= 0x16,
 			/** ? */
-			anim_frame			= 0x17,
+			anim_frame					= 0x17,
 			/** ? */
-			unknown_18			= 0x18,
+			unknown_18					= 0x18,
 			/** ? */
-			unknown_1f			= 0x1F,
+			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed			= 0x20,
+			move_speed					= 0x20,
 			/** ? */
-			layer				= 0x21,
+			layer						= 0x21,
 			/** ? */
-			unknown_22			= 0x22,
+			unknown_22					= 0x22,
 			/** ? */
-			unknown_23			= 0x23,
+			unknown_23					= 0x23,
 			/** facing locked */
-			lock_facing			= 0x24,
+			lock_facing					= 0x24,
 			/**  */
-			move_frequency		= 0x25,
+			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route			= 0x29,
+			move_route					= 0x29,
 			/** ? */
-			unknown_2a			= 0x2A,
+			unknown_2a					= 0x2A,
+			/** Index of MoveEvent command route */
+			move_route_index			= 0x2B,
 			/** ? */
-			unknown_2b			= 0x2B,
-			/** ? */
-			unknown_2c			= 0x2C,
+			unknown_2c					= 0x2C,
 			/** bool */
-			sprite_transparent	= 0x2E,
+			sprite_transparent			= 0x2E,
 			/** ? */
-			unknown_2f			= 0x2F,
+			unknown_2f					= 0x2F,
 			/** ? */
-			anim_paused			= 0x30,
+			anim_paused					= 0x30,
 			/** ? */
-			unknown_33			= 0x33,
+			unknown_33					= 0x33,
 			/** ? */
-			unknown_34			= 0x34,
+			unknown_34					= 0x34,
 			/** ? */
-			unknown_35			= 0x35,
+			unknown_35					= 0x35,
 			/** ? */
-			unknown_36			= 0x36,
+			unknown_36					= 0x36,
 			/** ? */
-			unknown_3d			= 0x3D,
+			unknown_3d					= 0x3D,
 			/** ? */
-			unknown_3e			= 0x3E,
+			unknown_3e					= 0x3E,
 			/** ? */
-			unknown_3f			= 0x3F,
+			unknown_3f					= 0x3F,
 			/** ? */
-			unknown_47			= 0x47,
+			unknown_47					= 0x47,
 			/** ? */
-			unknown_48			= 0x48,
+			unknown_48					= 0x48,
 			/** ? */
-			sprite_name			= 0x49,
+			sprite_name					= 0x49,
 			/** ? */
-			sprite_id			= 0x4A,
+			sprite_id					= 0x4A,
 			/** ? */
-			unknown_4b			= 0x4B,
+			unknown_4b					= 0x4B,
 			/** int */
-			flash_red			= 0x51,
+			flash_red					= 0x51,
 			/** int */
-			flash_green			= 0x52,
+			flash_green					= 0x52,
 			/** int */
-			flash_blue			= 0x53,
+			flash_blue					= 0x53,
 			/** double */
-			flash_current_level	= 0x54,
+			flash_current_level			= 0x54,
 			/** int */
-			flash_time_left		= 0x55,
+			flash_time_left				= 0x55,
 			/**  */
-			unknown_65			= 0x65,
+			unknown_65					= 0x65,
+			/** Index of custom move route */
+			original_move_route_index	= 0x66,
 			/**  */
-			unknown_66			= 0x66,
+			unknown_67					= 0x67,
 			/**  */
-			unknown_67			= 0x67,
+			unknown_68					= 0x68,
 			/**  */
-			unknown_68			= 0x68,
+			unknown_69					= 0x69,
 			/**  */
-			unknown_69			= 0x69,
+			unknown_6c					= 0x6C,
 			/**  */
-			unknown_6c			= 0x6C,
-			/**  */
-			pan_state			= 0x6F,
+			pan_state					= 0x6F,
 			/** int */
-			pan_current_x		= 0x70,
+			pan_current_x				= 0x70,
 			/** ? */
-			pan_current_y		= 0x71,
+			pan_current_y				= 0x71,
 			/** ? */
-			pan_finish_x		= 0x72,
+			pan_finish_x				= 0x72,
 			/** ? */
-			pan_finish_y		= 0x73,
+			pan_finish_y				= 0x73,
 			/** ? */
-			unknown_79			= 0x79,
+			unknown_79					= 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
-			encounter_steps		= 0x7C,
+			encounter_steps				= 0x7C,
 			/** ? */
-			unknown_7d			= 0x7D,
+			unknown_7d					= 0x7D,
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
-			map_save_count		= 0x83,
+			map_save_count				= 0x83,
 			/** ? */
-			unknown_84			= 0x84 
+			unknown_84					= 0x84 
 		};
 	};
 	struct ChunkSaveVehicleLocation {
 		enum Index {
 			/** ? */
-			unknown_01			= 0x01,
+			unknown_01					= 0x01,
 			/** ? */
-			map_id				= 0x0B,
+			map_id						= 0x0B,
 			/** ? */
-			position_x			= 0x0C,
+			position_x					= 0x0C,
 			/** ? */
-			position_y			= 0x0D,
+			position_y					= 0x0D,
 			/** Facing direction before lock */
-			prelock_direction	= 0x15,
+			prelock_direction			= 0x15,
 			/** Current facing direction */
-			direction			= 0x16,
+			direction					= 0x16,
 			/** ? */
-			anim_frame			= 0x17,
+			anim_frame					= 0x17,
 			/** ? */
-			unknown_18			= 0x18,
+			unknown_18					= 0x18,
 			/** ? */
-			unknown_1f			= 0x1F,
+			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed			= 0x20,
+			move_speed					= 0x20,
 			/** ? */
-			layer				= 0x21,
+			layer						= 0x21,
 			/** ? */
-			unknown_22			= 0x22,
+			unknown_22					= 0x22,
 			/** ? */
-			unknown_23			= 0x23,
+			unknown_23					= 0x23,
 			/** facing locked */
-			lock_facing			= 0x24,
+			lock_facing					= 0x24,
 			/**  */
-			move_frequency		= 0x25,
+			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route			= 0x29,
+			move_route					= 0x29,
 			/** ? */
-			unknown_2a			= 0x2A,
+			unknown_2a					= 0x2A,
+			/** Index of MoveEvent command route */
+			move_route_index			= 0x2B,
 			/** ? */
-			unknown_2b			= 0x2B,
+			anim_paused					= 0x30,
 			/** ? */
-			anim_paused			= 0x30,
+			unknown_33					= 0x33,
 			/** ? */
-			unknown_33			= 0x33,
+			unknown_34					= 0x34,
 			/** ? */
-			unknown_34			= 0x34,
+			unknown_35					= 0x35,
 			/** ? */
-			unknown_35			= 0x35,
+			unknown_36					= 0x36,
 			/** ? */
-			unknown_36			= 0x36,
+			unknown_3d					= 0x3D,
 			/** ? */
-			unknown_3d			= 0x3D,
+			unknown_3e					= 0x3E,
 			/** ? */
-			unknown_3e			= 0x3E,
+			unknown_3f					= 0x3F,
 			/** ? */
-			unknown_3f			= 0x3F,
+			unknown_47					= 0x47,
 			/** ? */
-			unknown_47			= 0x47,
+			unknown_48					= 0x48,
 			/** ? */
-			unknown_48			= 0x48,
+			sprite_name					= 0x49,
 			/** ? */
-			sprite_name			= 0x49,
+			sprite_id					= 0x4A,
 			/** ? */
-			sprite_id			= 0x4A,
-			/** ? */
-			unknown_4b			= 0x4B,
+			unknown_4b					= 0x4B,
 			/** int */
-			flash_red			= 0x51,
+			flash_red					= 0x51,
 			/** int */
-			flash_green			= 0x52,
+			flash_green					= 0x52,
 			/** int */
-			flash_blue			= 0x53,
+			flash_blue					= 0x53,
 			/** double */
-			flash_current_level	= 0x54,
+			flash_current_level			= 0x54,
 			/** int */
-			flash_time_left		= 0x55,
+			flash_time_left				= 0x55,
 			/** ? */
-			unknown_65			= 0x65,
+			unknown_65					= 0x65,
 			/** ? */
-			unknown_6a			= 0x6A,
-			/** ? */
-			unknown_6b			= 0x6B,
+			unknown_6a					= 0x6A,
+			/** Index of custom move route */
+			original_move_route_index	= 0x66,
 			/** string */
-			sprite2_name		= 0x6F,
+			sprite2_name				= 0x6F,
 			/** int */
-			sprite2_id			= 0x70 
+			sprite2_id					= 0x70 
 		};
 	};
 	struct ChunkSaveActor {
@@ -657,85 +657,85 @@ namespace LSD_Reader {
 	struct ChunkSaveMapEvent {
 		enum Index {
 			/** ? */
-			unknown_01			= 0x01,
+			unknown_01					= 0x01,
 			/** ? */
-			map_id				= 0x0B,
+			map_id						= 0x0B,
 			/** ? */
-			position_x			= 0x0C,
+			position_x					= 0x0C,
 			/** ? */
-			position_y			= 0x0D,
+			position_y					= 0x0D,
 			/** Facing direction before lock */
-			prelock_direction	= 0x15,
+			prelock_direction			= 0x15,
 			/** Current facing direction */
-			direction			= 0x16,
+			direction					= 0x16,
 			/** ? */
-			anim_frame			= 0x17,
+			anim_frame					= 0x17,
 			/** ? */
-			unknown_18			= 0x18,
+			unknown_18					= 0x18,
 			/** ? */
-			unknown_1f			= 0x1F,
+			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed			= 0x20,
+			move_speed					= 0x20,
 			/** ? */
-			layer				= 0x21,
+			layer						= 0x21,
 			/** ? */
-			unknown_22			= 0x22,
+			unknown_22					= 0x22,
 			/** ? */
-			unknown_23			= 0x23,
+			unknown_23					= 0x23,
 			/** facing locked */
-			lock_facing			= 0x24,
+			lock_facing					= 0x24,
 			/**  */
-			move_frequency		= 0x25,
+			move_frequency				= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route			= 0x29,
+			move_route					= 0x29,
 			/** int/bool */
-			unknown_2a			= 0x2A,
+			unknown_2a					= 0x2A,
+			/** Index of MoveEvent command route */
+			move_route_index			= 0x2B,
 			/** ? */
-			unknown_2b			= 0x2B,
+			unknown_2f					= 0x2F,
 			/** ? */
-			unknown_2f			= 0x2F,
+			anim_paused					= 0x30,
 			/** ? */
-			anim_paused			= 0x30,
+			unknown_33					= 0x33,
 			/** ? */
-			unknown_33			= 0x33,
+			unknown_34					= 0x34,
 			/** ? */
-			unknown_34			= 0x34,
+			unknown_35					= 0x35,
 			/** ? */
-			unknown_35			= 0x35,
+			unknown_36					= 0x36,
 			/** ? */
-			unknown_36			= 0x36,
+			unknown_3d					= 0x3D,
 			/** ? */
-			unknown_3d			= 0x3D,
+			unknown_3e					= 0x3E,
 			/** ? */
-			unknown_3e			= 0x3E,
+			unknown_3f					= 0x3F,
 			/** ? */
-			unknown_3f			= 0x3F,
+			unknown_47					= 0x47,
 			/** ? */
-			unknown_47			= 0x47,
+			unknown_48					= 0x48,
 			/** ? */
-			unknown_48			= 0x48,
+			sprite_name					= 0x49,
 			/** ? */
-			sprite_name			= 0x49,
+			sprite_id					= 0x4A,
 			/** ? */
-			sprite_id			= 0x4A,
-			/** ? */
-			unknown_4b			= 0x4B,
+			unknown_4b					= 0x4B,
 			/** int */
-			flash_red			= 0x51,
+			flash_red					= 0x51,
 			/** int */
-			flash_green			= 0x52,
+			flash_green					= 0x52,
 			/** int */
-			flash_blue			= 0x53,
+			flash_blue					= 0x53,
 			/** double */
-			flash_current_level	= 0x54,
+			flash_current_level			= 0x54,
 			/** int */
-			flash_time_left		= 0x55,
+			flash_time_left				= 0x55,
+			/** Index of custom move route */
+			original_move_route_index	= 0x66,
 			/** ? */
-			unknown_66			= 0x66,
-			/** ? */
-			unknown_67			= 0x67,
+			unknown_67					= 0x67,
 			/** chunks */
-			event_data			= 0x6C 
+			event_data					= 0x6C 
 		};
 	};
 	struct ChunkSaveMapInfo {
