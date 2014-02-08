@@ -31,6 +31,7 @@ namespace RPG {
 	class SavePartyLocation {
 	public:
 		SavePartyLocation();
+		void Fixup();
 
 		int unknown_01;
 		int map_id;

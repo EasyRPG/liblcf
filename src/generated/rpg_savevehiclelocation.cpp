@@ -33,7 +33,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	anim_frame = 1;
 	unknown_18 = 0;
 	unknown_1f = 0;
-	move_speed = 2;
+	move_speed = -1;
 	layer = 1;
 	unknown_22 = 0;
 	unknown_23 = 1;

@@ -148,6 +148,12 @@ void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
 	}
 }
 
+void RPG::SavePartyLocation::Fixup() {
+	if (move_speed == -1) {
+		move_speed = 4;
+	}
+}
+
 void RPG::SaveScreen::Fixup() {
 	if (tint_current_red == -1.0) {
 		tint_current_red = 100.0;

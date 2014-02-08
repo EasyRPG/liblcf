@@ -822,7 +822,7 @@ SavePartyLocation,direction,f,Integer,0x16,1,Current facing direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_18,f,Integer,0x18,0,?
 SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
-SavePartyLocation,move_speed,f,Integer,0x20,2,?
+SavePartyLocation,move_speed,f,Integer,0x20,-1,?
 SavePartyLocation,layer,f,Integer,0x21,1,?
 SavePartyLocation,unknown_22,f,Integer,0x22,0,?
 SavePartyLocation,unknown_23,f,Integer,0x23,1,?
@@ -877,7 +877,7 @@ SaveVehicleLocation,direction,f,Integer,0x16,1,Current facing direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_18,f,Integer,0x18,0,?
 SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
-SaveVehicleLocation,move_speed,f,Integer,0x20,2,?
+SaveVehicleLocation,move_speed,f,Integer,0x20,-1,?
 SaveVehicleLocation,layer,f,Integer,0x21,1,?
 SaveVehicleLocation,unknown_22,f,Integer,0x22,0,?
 SaveVehicleLocation,unknown_23,f,Integer,0x23,1,?
@@ -987,7 +987,7 @@ SaveMapEvent,direction,f,Integer,0x16,1,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,unknown_18,f,Integer,0x18,0,?
 SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?
-SaveMapEvent,move_speed,f,Integer,0x20,2,?
+SaveMapEvent,move_speed,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,1,?
 SaveMapEvent,unknown_22,f,Integer,0x22,0,?
 SaveMapEvent,unknown_23,f,Integer,0x23,1,?

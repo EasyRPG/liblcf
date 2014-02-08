@@ -11,6 +11,7 @@ SaveMapInfo,void Setup(),
 SaveMapInfo,void Setup(const RPG::Map& map),"rpg_map.h"
 SaveMapInfo,void Setup(const RPG::MapInfo& map_info),"rpg_mapinfo.h"
 SaveMapInfo,void Fixup(const RPG::Map& map),
+SavePartyLocation,void Fixup(),
 SaveSystem,void Setup(),
 SaveSystem,void Fixup(),
 SaveScreen,void Fixup(),
