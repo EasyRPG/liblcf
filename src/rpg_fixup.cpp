@@ -52,13 +52,28 @@ void RPG::SaveActor::Fixup() {
 	if (class_id == -1) {
 		class_id = actor.class_id;
 	}
-	// Remove beginning from first zero conditions (invalid value)
+	// Remove, beginning from first zero conditions (invalid value)
 	// No idea why they are written in the savegame by RPG_RT
 	for (size_t i = 0; i < status.size(); ++i) {
 		if (status[i] == 0) {
 			status.resize(i);
 			break;
 		}
+	}
+}
+
+void RPG::SaveMapEvent::Fixup(const RPG::EventPage& page) {
+	if (move_frequency == -1) {
+		move_frequency = page.move_frequency;
+	}
+	if (move_speed == -1) {
+		move_speed = page.move_speed;
+	}
+	if (sprite_name.empty()) {
+		sprite_name = page.character_name;
+	}
+	if (sprite_id == -1) {
+		sprite_id = page.character_index;
 	}
 }
 

@@ -34,6 +34,7 @@ namespace RPG {
 	public:
 		SaveMapEvent();
 		void Setup(const RPG::Event& event);
+		void Fixup(const RPG::EventPage& page);
 
 		int ID;
 		int unknown_01;
