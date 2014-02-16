@@ -116,10 +116,6 @@ void RPG::SaveSystem::Setup() {
 	variables_size = Data::variables.size();
 	variables.clear();
 	variables.resize(variables_size);
-	message_transparent = -1;
-	message_position = -1;
-	message_placement = -1;
-	message_continue = -1;
 	face_name = "";
 	face_id = -1;
 	face_right = false;

@@ -48,8 +48,8 @@ namespace RPG {
 		std::vector<uint32_t> variables;
 		int message_transparent;
 		int message_position;
-		int message_placement;
-		int message_continue;
+		int message_prevent_overlap;
+		int message_continue_events;
 		std::string face_name;
 		int face_id;
 		bool face_right;

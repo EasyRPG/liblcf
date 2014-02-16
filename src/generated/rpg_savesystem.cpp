@@ -33,8 +33,8 @@ RPG::SaveSystem::SaveSystem() {
 	variables_size = 0;
 	message_transparent = 0;
 	message_position = 2;
-	message_placement = 1;
-	message_continue = 0;
+	message_prevent_overlap = 1;
+	message_continue_events = 0;
 	face_name = "";
 	face_id = 0;
 	face_right = false;

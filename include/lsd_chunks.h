@@ -77,9 +77,9 @@ namespace LSD_Reader {
 			/**  */
 			message_position		= 0x2A,
 			/**  */
-			message_placement		= 0x2B,
+			message_prevent_overlap	= 0x2B,
 			/**  */
-			message_continue		= 0x2C,
+			message_continue_events	= 0x2C,
 			/**  */
 			face_name				= 0x33,
 			/**  */
