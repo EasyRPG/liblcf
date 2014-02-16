@@ -163,9 +163,13 @@ void RPG::SaveSystem::Setup() {
 
 void RPG::Save::Setup() {
 	system.Setup();
+	screen = RPG::SaveScreen();
+	pictures.clear();
 	pictures.resize(50);
-	for (int i = 1; i <= (int) pictures.size(); i++)
+	for (int i = 1; i <= (int)pictures.size(); i++) {
 		pictures[i - 1].ID = i;
+	}
+	actors.clear();
 	actors.resize(Data::actors.size());
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
