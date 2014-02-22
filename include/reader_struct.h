@@ -173,8 +173,8 @@ template <class T>
 struct Primitive<std::vector<T> > {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
 		stream.Read(ref, length);
-		std::vector<T>::iterator it;
 #ifdef READER_DEBUG_TRACE
+		typename std::vector<T>::iterator it;
 		printf("  ");
 		for (it = ref.begin(); it != ref.end(); ++it) {
 			printf("%d, ", *it);
