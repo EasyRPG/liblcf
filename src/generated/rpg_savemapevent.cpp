@@ -34,12 +34,12 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	anim_frame = 1;
 	unknown_18 = 0;
 	unknown_1f = 0;
-	move_speed = -1;
+	move_frequency = -1;
 	layer = 1;
 	unknown_22 = 0;
 	unknown_23 = 1;
 	lock_facing = false;
-	move_frequency = -1;
+	move_speed = -1;
 	move_route_overwrite = false;
 	move_route_index = 0;
 	unknown_2f = -1;

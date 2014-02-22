@@ -317,7 +317,7 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed					= 0x20,
+			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
 			/** ? */
@@ -327,7 +327,7 @@ namespace LSD_Reader {
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
-			move_frequency				= 0x25,
+			move_speed					= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
 			/** Use custom move route */
@@ -431,7 +431,7 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed					= 0x20,
+			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
 			/** ? */
@@ -441,7 +441,7 @@ namespace LSD_Reader {
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
-			move_frequency				= 0x25,
+			move_speed					= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
 			/** Use custom move route */
@@ -675,7 +675,7 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_1f					= 0x1F,
 			/** ? */
-			move_speed					= 0x20,
+			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
 			/** ? */
@@ -685,7 +685,7 @@ namespace LSD_Reader {
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
-			move_frequency				= 0x25,
+			move_speed					= 0x25,
 			/** chunks: RPG::MoveRoute */
 			move_route					= 0x29,
 			/** Use custom move route */

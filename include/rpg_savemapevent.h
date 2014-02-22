@@ -46,12 +46,12 @@ namespace RPG {
 		int anim_frame;
 		int unknown_18;
 		int unknown_1f;
-		int move_speed;
+		int move_frequency;
 		int layer;
 		int unknown_22;
 		int unknown_23;
 		bool lock_facing;
-		int move_frequency;
+		int move_speed;
 		MoveRoute move_route;
 		bool move_route_overwrite;
 		int move_route_index;
