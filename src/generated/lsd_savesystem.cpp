@@ -31,14 +31,16 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(int, screen),
 	EASYRPG_STRUCT_TYPED_FIELD(int, frame_count),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, graphics_name),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),
 	EASYRPG_STRUCT_TYPED_FIELD(int, switches_size),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, switches),
 	EASYRPG_STRUCT_TYPED_FIELD(int, variables_size),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, variables),
 	EASYRPG_STRUCT_TYPED_FIELD(int, message_transparent),
 	EASYRPG_STRUCT_TYPED_FIELD(int, message_position),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_placement),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_continue),
+	EASYRPG_STRUCT_TYPED_FIELD(int, message_prevent_overlap),
+	EASYRPG_STRUCT_TYPED_FIELD(int, message_continue_events),
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, face_name),
 	EASYRPG_STRUCT_TYPED_FIELD(int, face_id),
 	EASYRPG_STRUCT_TYPED_FIELD(bool, face_right),
@@ -82,6 +84,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::string, background),
 	EASYRPG_STRUCT_TYPED_FIELD(int, save_count),
 	EASYRPG_STRUCT_TYPED_FIELD(int, save_slot),
+	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_8c),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

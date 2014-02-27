@@ -58,7 +58,7 @@ EASYRPG_STRUCT_FIELDS_BEGIN()
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, lower_layer),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<int16_t>, upper_layer),
 	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::Event>, events),
-	EASYRPG_STRUCT_TYPED_FIELD(int, save_times),
+	EASYRPG_STRUCT_TYPED_FIELD(int, save_count),
 EASYRPG_STRUCT_FIELDS_END()
 
 #undef EASYRPG_CURRENT_STRUCT

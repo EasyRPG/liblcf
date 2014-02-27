@@ -464,6 +464,9 @@
     <ClCompile Include="..\..\src\generated\ldb_battleranimation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\rpg_fixup.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\event_reader.h">

@@ -59,4 +59,9 @@
 #  define READER_BIG_ENDIAN
 #endif
 
+/**
+ * Output information about read chunks on stdout during parsing
+ */
+//#define READER_DEBUG_TRACE
+
 #endif

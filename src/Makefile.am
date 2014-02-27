@@ -19,6 +19,7 @@ libreaders_a_SOURCES = \
 	reader_struct.cpp \
 	reader_util.cpp \
 	reader_xml.cpp \
+	rpg_fixup.cpp \
 	rpg_setup.cpp \
 	writer_lcf.cpp \
 	writer_xml.cpp \

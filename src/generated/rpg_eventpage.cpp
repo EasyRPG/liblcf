@@ -33,7 +33,7 @@ RPG::EventPage::EventPage() {
 	move_type = 1;
 	move_frequency = 3;
 	trigger = 0;
-	priority_type = 0;
+	layer = 0;
 	overlap = false;
 	animation_type = 0;
 	move_speed = 3;

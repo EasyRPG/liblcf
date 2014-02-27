@@ -35,18 +35,21 @@ namespace RPG {
 	public:
 		SaveSystem();
 		void Setup();
+		void Fixup();
 
 		int screen;
 		int frame_count;
 		std::string graphics_name;
+		int unknown_16;
+		int unknown_17;
 		int switches_size;
 		std::vector<bool> switches;
 		int variables_size;
 		std::vector<uint32_t> variables;
 		int message_transparent;
 		int message_position;
-		int message_placement;
-		int message_continue;
+		int message_prevent_overlap;
+		int message_continue_events;
 		std::string face_name;
 		int face_id;
 		bool face_right;
@@ -90,6 +93,7 @@ namespace RPG {
 		std::string background;
 		int save_count;
 		int save_slot;
+		int unknown_8c;
 	};
 }
 

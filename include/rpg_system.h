@@ -150,7 +150,7 @@ namespace RPG {
 		int selected_hero;
 		std::string battletest_background;
 		std::vector<TestBattler> battletest_data;
-		int saved_times;
+		int save_count;
 		int battletest_terrain;
 		int battletest_formation;
 		int battletest_condition;

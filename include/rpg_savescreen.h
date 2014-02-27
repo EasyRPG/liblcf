@@ -27,6 +27,7 @@ namespace RPG {
 	class SaveScreen {
 	public:
 		SaveScreen();
+		void Fixup();
 
 		int tint_finish_red;
 		int tint_finish_green;
@@ -47,12 +48,14 @@ namespace RPG {
 		int shake_strength;
 		int shake_speed;
 		int shake_position;
+		int unknown_22;
 		int shake_time_left;
 		int pan_x;
 		int pan_y;
 		int battleanim_id;
 		int battleanim_target;
 		int battleanim_unk_2d;
+		int unknown_2e;
 		bool battleanim_global;
 		int weather;
 		int weather_strength;

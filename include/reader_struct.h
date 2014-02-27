@@ -149,6 +149,7 @@ template <class T>
 struct Primitive {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
 		assert(length == LcfSizeT<T>::value);
+
 		stream.Read(ref);
 	}
 	static void WriteLcf(const T& ref, LcfWriter& stream) {
@@ -172,6 +173,14 @@ template <class T>
 struct Primitive<std::vector<T> > {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
 		stream.Read(ref, length);
+#ifdef READER_DEBUG_TRACE
+		typename std::vector<T>::iterator it;
+		printf("  ");
+		for (it = ref.begin(); it != ref.end(); ++it) {
+			printf("%d, ", *it);
+		}
+		printf("\n");
+#endif
 	}
 	static void WriteLcf(const std::vector<T>& ref, LcfWriter& stream) {
 		stream.Write(ref);
@@ -195,6 +204,9 @@ struct Primitive<int> {
 	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
 		assert(length >= 1 && length <= 5);
 		ref = stream.ReadInt();
+#ifdef READER_DEBUG_TRACE
+		printf("  %d\n", ref);
+#endif
 	}
 	static void WriteLcf(const int& ref, LcfWriter& stream) {
 		stream.WriteInt(ref);
@@ -217,6 +229,9 @@ template <>
 struct Primitive<std::string> {
 	static void ReadLcf(std::string& ref, LcfReader& stream, uint32_t length) {
 		stream.ReadString(ref, length);
+#ifdef READER_DEBUG_TRACE
+		printf("  %s\n", ref.c_str());
+#endif
 	}
 	static void WriteLcf(const std::string& ref, LcfWriter& stream) {
 		stream.Write(ref);

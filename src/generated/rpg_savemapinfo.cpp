@@ -24,10 +24,10 @@
  * Constructor.
  */
 RPG::SaveMapInfo::SaveMapInfo() {
-	pan_x = 0;
-	pan_y = 0;
+	position_x = 0;
+	position_y = 0;
 	encounter_rate = -1;
-	chipset_id = -1;
+	chipset_id = 0;
 	parallax_name = "";
 	parallax_horz = false;
 	parallax_vert = false;
