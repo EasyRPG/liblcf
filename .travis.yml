@@ -5,7 +5,6 @@ before_script:
   - sudo apt-get update -qq
 #gnulib provides stdbool.m4 for AC_CHECK_HEADER_STDBOOL in configure.ac
   - sudo apt-get install -qq libexpat1-dev gnulib
-script:
 #not running autogen.sh because autoreconf requires extra path
   - autoreconf -i -I/usr/share/gnulib/m4
   - automake -a
