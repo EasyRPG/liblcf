@@ -40,7 +40,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D892967A-6B8E-4AC5-9D38-785D748796D0}</ProjectGuid>
-    <RootNamespace>readers</RootNamespace>
+    <RootNamespace>lcf</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -193,63 +193,63 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>liblcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_XML|Win32'">
     <OutDir>..\..\lib\Debug\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>lcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_XML|x64'">
     <OutDir>..\..\lib\Debug\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Pixman|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug SoftBitmap|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>liblcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_XML|Win32'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>liblcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>liblcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_XML|Win32'">
     <OutDir>..\..\lib\Release\</OutDir>
-    <TargetName>readers</TargetName>
+    <TargetName>liblcf</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_XML|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_XML|x64'">
     <OutDir>..\..\lib\Release\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release SoftBitmap|x64'">
     <OutDir>..\..\lib\$(Configuration)\</OutDir>
-    <TargetName>readers64</TargetName>
+    <TargetName>liblcf64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -277,7 +277,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\include;$(EASYDEV_MSVC)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
-      <PreprocessorDefinitions>XML_STATIC;READER_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_STATIC;LCF_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
@@ -316,7 +316,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>..\..\include;$(EASYDEV_MSVC)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
-      <PreprocessorDefinitions>XML_STATIC;READER_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_STATIC;LCF_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -440,7 +440,7 @@
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>XML_STATIC;READER_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_STATIC;LCF_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -543,7 +543,7 @@
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>XML_STATIC;READER_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XML_STATIC;LCF_SUPPORT_XML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>false</ExceptionHandling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>

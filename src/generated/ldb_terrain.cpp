@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,43 +13,43 @@
 
 // Read Terrain.
 
-#define EASYRPG_CHUNK_SUFFIX LDB_Reader
-#define EASYRPG_CURRENT_STRUCT Terrain
+#define LCF_CHUNK_SUFFIX LDB_Reader
+#define LCF_CURRENT_STRUCT Terrain
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, name),
-	EASYRPG_STRUCT_TYPED_FIELD(int, damage),
-	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_rate),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_name),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, boat_pass),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, ship_pass),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, airship_pass),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, airship_land),
-	EASYRPG_STRUCT_TYPED_FIELD(int, bush_depth),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, footstep),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, on_damage_se),
-	EASYRPG_STRUCT_TYPED_FIELD(int, background_type),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_a_name),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, background_a_scrollh),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, background_a_scrollv),
-	EASYRPG_STRUCT_TYPED_FIELD(int, background_a_scrollh_speed),
-	EASYRPG_STRUCT_TYPED_FIELD(int, background_a_scrollv_speed),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, background_b_name),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b_scrollh),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, background_b_scrollv),
-	EASYRPG_STRUCT_TYPED_FIELD(int, background_b_scrollh_speed),
-	EASYRPG_STRUCT_TYPED_FIELD(int, background_b_scrollv_speed),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Terrain::Flags, special_flags),
-	EASYRPG_STRUCT_TYPED_FIELD(int, special_back_party),
-	EASYRPG_STRUCT_TYPED_FIELD(int, special_back_enemies),
-	EASYRPG_STRUCT_TYPED_FIELD(int, special_lateral_party),
-	EASYRPG_STRUCT_TYPED_FIELD(int, special_lateral_enemies),
-	EASYRPG_STRUCT_TYPED_FIELD(int, grid_location),
-	EASYRPG_STRUCT_TYPED_FIELD(int, grid_a),
-	EASYRPG_STRUCT_TYPED_FIELD(int, grid_b),
-	EASYRPG_STRUCT_TYPED_FIELD(int, grid_c),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(std::string, name),
+	LCF_STRUCT_TYPED_FIELD(int, damage),
+	LCF_STRUCT_TYPED_FIELD(int, encounter_rate),
+	LCF_STRUCT_TYPED_FIELD(std::string, background_name),
+	LCF_STRUCT_TYPED_FIELD(bool, boat_pass),
+	LCF_STRUCT_TYPED_FIELD(bool, ship_pass),
+	LCF_STRUCT_TYPED_FIELD(bool, airship_pass),
+	LCF_STRUCT_TYPED_FIELD(bool, airship_land),
+	LCF_STRUCT_TYPED_FIELD(int, bush_depth),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, footstep),
+	LCF_STRUCT_TYPED_FIELD(bool, on_damage_se),
+	LCF_STRUCT_TYPED_FIELD(int, background_type),
+	LCF_STRUCT_TYPED_FIELD(std::string, background_a_name),
+	LCF_STRUCT_TYPED_FIELD(bool, background_a_scrollh),
+	LCF_STRUCT_TYPED_FIELD(bool, background_a_scrollv),
+	LCF_STRUCT_TYPED_FIELD(int, background_a_scrollh_speed),
+	LCF_STRUCT_TYPED_FIELD(int, background_a_scrollv_speed),
+	LCF_STRUCT_TYPED_FIELD(bool, background_b),
+	LCF_STRUCT_TYPED_FIELD(std::string, background_b_name),
+	LCF_STRUCT_TYPED_FIELD(bool, background_b_scrollh),
+	LCF_STRUCT_TYPED_FIELD(bool, background_b_scrollv),
+	LCF_STRUCT_TYPED_FIELD(int, background_b_scrollh_speed),
+	LCF_STRUCT_TYPED_FIELD(int, background_b_scrollv_speed),
+	LCF_STRUCT_TYPED_FIELD(RPG::Terrain::Flags, special_flags),
+	LCF_STRUCT_TYPED_FIELD(int, special_back_party),
+	LCF_STRUCT_TYPED_FIELD(int, special_back_enemies),
+	LCF_STRUCT_TYPED_FIELD(int, special_lateral_party),
+	LCF_STRUCT_TYPED_FIELD(int, special_lateral_enemies),
+	LCF_STRUCT_TYPED_FIELD(int, grid_location),
+	LCF_STRUCT_TYPED_FIELD(int, grid_a),
+	LCF_STRUCT_TYPED_FIELD(int, grid_b),
+	LCF_STRUCT_TYPED_FIELD(int, grid_c),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX

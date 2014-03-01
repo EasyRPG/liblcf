@@ -32,8 +32,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __INIREADER_H__
-#define __INIREADER_H__
+#ifndef LCF_INIREADER_H
+#define LCF_INIREADER_H
 
 #include <map>
 #include <string>
@@ -77,4 +77,4 @@ private:
 							const char* value);
 };
 
-#endif // __INIREADER_H__
+#endif

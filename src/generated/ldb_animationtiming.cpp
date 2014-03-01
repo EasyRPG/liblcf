@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,19 +13,19 @@
 
 // Read AnimationTiming.
 
-#define EASYRPG_CHUNK_SUFFIX LDB_Reader
-#define EASYRPG_CURRENT_STRUCT AnimationTiming
+#define LCF_CHUNK_SUFFIX LDB_Reader
+#define LCF_CURRENT_STRUCT AnimationTiming
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(int, frame),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, se),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_scope),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_red),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_green),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_blue),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_power),
-	EASYRPG_STRUCT_TYPED_FIELD(int, screen_shake),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(int, frame),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, se),
+	LCF_STRUCT_TYPED_FIELD(int, flash_scope),
+	LCF_STRUCT_TYPED_FIELD(int, flash_red),
+	LCF_STRUCT_TYPED_FIELD(int, flash_green),
+	LCF_STRUCT_TYPED_FIELD(int, flash_blue),
+	LCF_STRUCT_TYPED_FIELD(int, flash_power),
+	LCF_STRUCT_TYPED_FIELD(int, screen_shake),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX

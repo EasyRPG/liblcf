@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([easyrpg-readers],[0.1.3],[https://github.com/EasyRPG/Readers/issues])
+AC_INIT([liblcf],[0.1.3],[https://github.com/EasyRPG/liblcf/issues])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
 AM_INIT_AUTOMAKE([1.11 foreign subdir-objects -Wall -Werror -Wno-extra-portability])
@@ -28,7 +28,7 @@ AS_IF([test "x$enable_xml" = "xyes"],[
 AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
 
 AS_IF([test "x$enable_xml" = "xyes"],[
-	AC_CHECK_HEADERS([expat.h],[AC_DEFINE([READER_SUPPORT_XML],[1],[Enable XML (Requires Expat)])],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
+	AC_CHECK_HEADERS([expat.h],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML (Requires Expat)])],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
 ])
 
 # Checks for typedefs, structures, and compiler characteristics.

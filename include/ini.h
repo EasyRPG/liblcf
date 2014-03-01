@@ -32,8 +32,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef __INI_H__
-#define __INI_H__
+#ifndef LCF_INI_H
+#define LCF_INI_H
 
 // Make this header file easier to include in C++ code
 #ifdef __cplusplus
@@ -70,4 +70,4 @@ int ini_parse(const char* filename,
 }
 #endif
 
-#endif // __INI_H__
+#endif

@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,68 +13,68 @@
 
 // Read SaveSystem.
 
-#define EASYRPG_CHUNK_SUFFIX LSD_Reader
-#define EASYRPG_CURRENT_STRUCT SaveSystem
+#define LCF_CHUNK_SUFFIX LSD_Reader
+#define LCF_CURRENT_STRUCT SaveSystem
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(int, screen),
-	EASYRPG_STRUCT_TYPED_FIELD(int, frame_count),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, graphics_name),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),
-	EASYRPG_STRUCT_TYPED_FIELD(int, switches_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<bool>, switches),
-	EASYRPG_STRUCT_TYPED_FIELD(int, variables_size),
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<uint32_t>, variables),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_transparent),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_position),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_prevent_overlap),
-	EASYRPG_STRUCT_TYPED_FIELD(int, message_continue_events),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, face_name),
-	EASYRPG_STRUCT_TYPED_FIELD(int, face_id),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, face_right),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, face_flip),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, transparent),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_3d),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, title_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, battle_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, battle_end_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, inn_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, current_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, unknown1_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, unknown2_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, stored_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, boat_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, ship_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, airship_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Music, gameover_music),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, cursor_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, decision_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, cancel_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, buzzer_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, battle_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, escape_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, enemy_attack_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, enemy_damaged_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, actor_damaged_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, dodge_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, enemy_death_se),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::Sound, item_se),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, transition_out),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, transition_in),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadeout),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadein),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadeout),
-	EASYRPG_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadein),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, teleport_allowed),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, escape_allowed),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, save_allowed),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, menu_allowed),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, background),
-	EASYRPG_STRUCT_TYPED_FIELD(int, save_count),
-	EASYRPG_STRUCT_TYPED_FIELD(int, save_slot),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_8c),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(int, screen),
+	LCF_STRUCT_TYPED_FIELD(int, frame_count),
+	LCF_STRUCT_TYPED_FIELD(std::string, graphics_name),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_16),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_17),
+	LCF_STRUCT_TYPED_FIELD(int, switches_size),
+	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, switches),
+	LCF_STRUCT_TYPED_FIELD(int, variables_size),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint32_t>, variables),
+	LCF_STRUCT_TYPED_FIELD(int, message_transparent),
+	LCF_STRUCT_TYPED_FIELD(int, message_position),
+	LCF_STRUCT_TYPED_FIELD(int, message_prevent_overlap),
+	LCF_STRUCT_TYPED_FIELD(int, message_continue_events),
+	LCF_STRUCT_TYPED_FIELD(std::string, face_name),
+	LCF_STRUCT_TYPED_FIELD(int, face_id),
+	LCF_STRUCT_TYPED_FIELD(bool, face_right),
+	LCF_STRUCT_TYPED_FIELD(bool, face_flip),
+	LCF_STRUCT_TYPED_FIELD(bool, transparent),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_3d),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, title_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_end_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, inn_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, current_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, unknown1_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, unknown2_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, stored_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, boat_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, ship_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, airship_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, gameover_music),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, cursor_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, decision_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, cancel_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, buzzer_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, battle_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, escape_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, enemy_attack_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, enemy_damaged_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, actor_damaged_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, dodge_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, enemy_death_se),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, item_se),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, transition_out),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, transition_in),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadeout),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadein),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadeout),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadein),
+	LCF_STRUCT_TYPED_FIELD(bool, teleport_allowed),
+	LCF_STRUCT_TYPED_FIELD(bool, escape_allowed),
+	LCF_STRUCT_TYPED_FIELD(bool, save_allowed),
+	LCF_STRUCT_TYPED_FIELD(bool, menu_allowed),
+	LCF_STRUCT_TYPED_FIELD(std::string, background),
+	LCF_STRUCT_TYPED_FIELD(int, save_count),
+	LCF_STRUCT_TYPED_FIELD(int, save_slot),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_8c),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX

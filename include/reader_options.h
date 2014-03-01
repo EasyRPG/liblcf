@@ -1,22 +1,11 @@
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
-#ifndef _DATA_OPTIONS_H_
-#define _DATA_OPTIONS_H_
+#ifndef LCF_OPTIONS_H
+#define LCF_OPTIONS_H
 
 #define RPG2K	1
 #define RPG2K3	2
@@ -40,7 +29,7 @@
 
 /*
  * Includes GNU Autotools build configuration parameters.
- * This option may have defined READER_SUPPORT_XML and others.
+ * This option may have defined LCF_SUPPORT_XML and others.
  */
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -50,18 +39,18 @@
  * Enables support for XML file reading and writing.
  * This option adds libexpat as a dependency.
  */
-//#ifndef READER_SUPPORT_XML
-//#  define READER_SUPPORT_XML
+//#ifndef LCF_SUPPORT_XML
+//#  define LCF_SUPPORT_XML
 //#endif
 
 /** Enables big endian byte order for Wii port. */
 #ifdef GEKKO
-#  define READER_BIG_ENDIAN
+#  define LCF_BIG_ENDIAN
 #endif
 
 /**
- * Output information about read chunks on stdout during parsing
+ * Outputs information about read chunks on stdout during parsing
  */
-//#define READER_DEBUG_TRACE
+//#define LCF_DEBUG_TRACE
 
 #endif

@@ -1,24 +1,12 @@
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
-#ifndef _EASYRPG_READER_STRUCT_H_
-#define _EASYRPG_READER_STRUCT_H_
+#ifndef LCF_READER_STRUCT_H
+#define LCF_READER_STRUCT_H
 
-// Headers
 #include <string>
 #include <vector>
 #include <map>
@@ -173,7 +161,7 @@ template <class T>
 struct Primitive<std::vector<T> > {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
 		stream.Read(ref, length);
-#ifdef READER_DEBUG_TRACE
+#ifdef LCF_DEBUG_TRACE
 		typename std::vector<T>::iterator it;
 		printf("  ");
 		for (it = ref.begin(); it != ref.end(); ++it) {
@@ -204,7 +192,7 @@ struct Primitive<int> {
 	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
 		assert(length >= 1 && length <= 5);
 		ref = stream.ReadInt();
-#ifdef READER_DEBUG_TRACE
+#ifdef LCF_DEBUG_TRACE
 		printf("  %d\n", ref);
 #endif
 	}
@@ -229,7 +217,7 @@ template <>
 struct Primitive<std::string> {
 	static void ReadLcf(std::string& ref, LcfReader& stream, uint32_t length) {
 		stream.ReadString(ref, length);
-#ifdef READER_DEBUG_TRACE
+#ifdef LCF_DEBUG_TRACE
 		printf("  %s\n", ref.c_str());
 #endif
 	}
@@ -703,29 +691,29 @@ private:
 // Macros
 
 // needs define of
-// - EASYRPG_CHUNK_SUFFIX
-// - EASYRPG_CURRENT_STRUCT
+// - LCF_CHUNK_SUFFIX
+// - LCF_CURRENT_STRUCT
 
-#define EASYRPG_STRUCT_FIELDS_BEGIN() \
+#define LCF_STRUCT_FIELDS_BEGIN() \
 	template <> \
-	char const* const Struct<RPG::EASYRPG_CURRENT_STRUCT>::name = BOOST_PP_STRINGIZE(EASYRPG_CURRENT_STRUCT); \
+	char const* const Struct<RPG::LCF_CURRENT_STRUCT>::name = BOOST_PP_STRINGIZE(LCF_CURRENT_STRUCT); \
 	template <> \
-	Field<RPG::EASYRPG_CURRENT_STRUCT> const* Struct<RPG::EASYRPG_CURRENT_STRUCT>::fields[] = { \
+	Field<RPG::LCF_CURRENT_STRUCT> const* Struct<RPG::LCF_CURRENT_STRUCT>::fields[] = { \
 
-#define EASYRPG_STRUCT_FIELDS_END() \
+#define LCF_STRUCT_FIELDS_END() \
 	NULL }; \
 
-#define EASYRPG_STRUCT_TYPED_FIELD(T, REF) \
-	new TypedField<RPG::EASYRPG_CURRENT_STRUCT, T>( \
-		  &RPG::EASYRPG_CURRENT_STRUCT::REF \
-		, EASYRPG_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, EASYRPG_CURRENT_STRUCT)::REF \
+#define LCF_STRUCT_TYPED_FIELD(T, REF) \
+	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \
 	) \
 
-#define EASYRPG_STRUCT_SIZE_FIELD(T, REF) \
-	new SizeField<RPG::EASYRPG_CURRENT_STRUCT, T>( \
-		  &RPG::EASYRPG_CURRENT_STRUCT::REF \
-		, EASYRPG_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, EASYRPG_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+#define LCF_STRUCT_SIZE_FIELD(T, REF) \
+	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
 	) \
 
 #endif
