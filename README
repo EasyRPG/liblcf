@@ -52,5 +52,5 @@ License
 liblcf is free software. See the file COPYING for copying conditions.
 
 liblcf code includes a copy of Boost Preprocessor Cat and Stringize
-(Boost Software License 1.0) abn a copy of inih (New BSD license).
+(Boost Software License 1.0) and a copy of inih (New BSD license).
 See the source code comment headers for license details.
