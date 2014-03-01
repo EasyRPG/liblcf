@@ -1,11 +1,11 @@
-EasyRPG Readers
-===============
+liblcf
+======
 
-EasyRPG Readers is a library to parse data structure of RPG Maker 2000 and 2003
-games. It can read and write LCF and XML files, regenerate C++ source data files
-using a template based Python script, template files and CSV files.
+liblcf is a library to handle RPG Maker 2000 and 2003 game data.
+It can read and write LCF and XML files. Part of C++ source files
+can be regenerated from templates and CSV files using a Python script.
 
-EasyRPG Readers is part of the EasyRPG Project. More information is available
+liblcf is part of the EasyRPG Project. More information is available
 at the project website:
 
   https://easy-rpg.org/
@@ -22,7 +22,7 @@ Documentation is available at the documentation wiki:
 Requirements
 ------------
 
-iconv for the character set conversion (not for Win32, included in libc).
+iconv for the character set conversion (not for Win32 or libc).
 Expat for XML reading support (optional).
 Python for the template source code regeneration (optional).
 
@@ -30,19 +30,14 @@ Python for the template source code regeneration (optional).
 Source code
 -----------
 
-EasyRPG Readers development is hosted by GitHub.
+liblcf development is hosted by GitHub.
 Project files are available in Git repositories.
 
-  https://github.com/EasyRPG/Readers
+  https://github.com/EasyRPG/liblcf
 
 
 Building
 --------
-
-* Autotools method:
-
-  Requirements:
-  autoconf >= 2.68, automake >= 1.11, gettext-devel
 
   Compile with:
   ./configure && make
@@ -51,20 +46,11 @@ Building
   make install
 
 
-* Cmake method:
-
-  Requirements:
-  cmake >= 2.8
-
-  Compile with:
-  cmake PATH/TO/Readers/builds/cmake && make
-  If you want to build it with debug mode pass "-D CMAKE_BUILD_TYPE=Debug" to cmake.
-
-
 License
 -------
 
-EasyRPG Readers is free software. See the file COPYING for copying conditions.
+liblcf is free software. See the file COPYING for copying conditions.
 
-Readers code includes a copy of Boost Preprocessor Cat and Stringize and a copy
-of INIReader libraries. See the source code comment headers for license details.
+liblcf code includes a copy of Boost Preprocessor Cat and Stringize
+(Boost Software License 1.0) abn a copy of inih (New BSD license).
+See the source code comment headers for license details.

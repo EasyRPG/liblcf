@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,31 +13,31 @@
 
 // Read SaveEvents.
 
-#define EASYRPG_CHUNK_SUFFIX LSD_Reader
-#define EASYRPG_CURRENT_STRUCT SaveEvents
+#define LCF_CHUNK_SUFFIX LSD_Reader
+#define LCF_CURRENT_STRUCT SaveEvents
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, events),
-	EASYRPG_STRUCT_TYPED_FIELD(int, events_size),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_0b),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_0d),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_15),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_16),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_17),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_18),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_19),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1a),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1b),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1c),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1f),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_20),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_23),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_24),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_25),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_26),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_29),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2a),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, events),
+	LCF_STRUCT_TYPED_FIELD(int, events_size),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_0b),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_0d),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_15),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_16),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_17),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_18),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_19),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_1a),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_1b),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_1c),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_1f),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_20),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_23),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_24),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_25),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_26),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_29),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2a),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX

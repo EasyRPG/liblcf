@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,66 +13,66 @@
 
 // Read SavePartyLocation.
 
-#define EASYRPG_CHUNK_SUFFIX LSD_Reader
-#define EASYRPG_CURRENT_STRUCT SavePartyLocation
+#define LCF_CHUNK_SUFFIX LSD_Reader
+#define LCF_CURRENT_STRUCT SavePartyLocation
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_01),
-	EASYRPG_STRUCT_TYPED_FIELD(int, map_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, position_x),
-	EASYRPG_STRUCT_TYPED_FIELD(int, position_y),
-	EASYRPG_STRUCT_TYPED_FIELD(int, prelock_direction),
-	EASYRPG_STRUCT_TYPED_FIELD(int, direction),
-	EASYRPG_STRUCT_TYPED_FIELD(int, anim_frame),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_18),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_1f),
-	EASYRPG_STRUCT_TYPED_FIELD(int, move_frequency),
-	EASYRPG_STRUCT_TYPED_FIELD(int, layer),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_22),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_23),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, lock_facing),
-	EASYRPG_STRUCT_TYPED_FIELD(int, move_speed),
-	EASYRPG_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, move_route_overwrite),
-	EASYRPG_STRUCT_TYPED_FIELD(int, move_route_index),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2c),
-	EASYRPG_STRUCT_TYPED_FIELD(bool, sprite_transparent),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_2f),
-	EASYRPG_STRUCT_TYPED_FIELD(int, anim_paused),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_33),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_34),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_35),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_36),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_3d),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_3e),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_3f),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_47),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_48),
-	EASYRPG_STRUCT_TYPED_FIELD(std::string, sprite_name),
-	EASYRPG_STRUCT_TYPED_FIELD(int, sprite_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_4b),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_red),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_green),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_blue),
-	EASYRPG_STRUCT_TYPED_FIELD(double, flash_current_level),
-	EASYRPG_STRUCT_TYPED_FIELD(int, flash_time_left),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_65),
-	EASYRPG_STRUCT_TYPED_FIELD(int, original_move_route_index),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_67),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_68),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_69),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_6c),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_state),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_current_x),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_current_y),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_finish_x),
-	EASYRPG_STRUCT_TYPED_FIELD(int, pan_finish_y),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_79),
-	EASYRPG_STRUCT_TYPED_FIELD(int, encounter_steps),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_7d),
-	EASYRPG_STRUCT_TYPED_FIELD(int, map_save_count),
-	EASYRPG_STRUCT_TYPED_FIELD(int, unknown_84),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(int, unknown_01),
+	LCF_STRUCT_TYPED_FIELD(int, map_id),
+	LCF_STRUCT_TYPED_FIELD(int, position_x),
+	LCF_STRUCT_TYPED_FIELD(int, position_y),
+	LCF_STRUCT_TYPED_FIELD(int, prelock_direction),
+	LCF_STRUCT_TYPED_FIELD(int, direction),
+	LCF_STRUCT_TYPED_FIELD(int, anim_frame),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_18),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_1f),
+	LCF_STRUCT_TYPED_FIELD(int, move_frequency),
+	LCF_STRUCT_TYPED_FIELD(int, layer),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_22),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_23),
+	LCF_STRUCT_TYPED_FIELD(bool, lock_facing),
+	LCF_STRUCT_TYPED_FIELD(int, move_speed),
+	LCF_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
+	LCF_STRUCT_TYPED_FIELD(bool, move_route_overwrite),
+	LCF_STRUCT_TYPED_FIELD(int, move_route_index),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2c),
+	LCF_STRUCT_TYPED_FIELD(bool, sprite_transparent),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2f),
+	LCF_STRUCT_TYPED_FIELD(int, anim_paused),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_33),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_34),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_35),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_36),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_3d),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_3e),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_3f),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_47),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_48),
+	LCF_STRUCT_TYPED_FIELD(std::string, sprite_name),
+	LCF_STRUCT_TYPED_FIELD(int, sprite_id),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_4b),
+	LCF_STRUCT_TYPED_FIELD(int, flash_red),
+	LCF_STRUCT_TYPED_FIELD(int, flash_green),
+	LCF_STRUCT_TYPED_FIELD(int, flash_blue),
+	LCF_STRUCT_TYPED_FIELD(double, flash_current_level),
+	LCF_STRUCT_TYPED_FIELD(int, flash_time_left),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_65),
+	LCF_STRUCT_TYPED_FIELD(int, original_move_route_index),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_67),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_68),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_69),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_6c),
+	LCF_STRUCT_TYPED_FIELD(int, pan_state),
+	LCF_STRUCT_TYPED_FIELD(int, pan_current_x),
+	LCF_STRUCT_TYPED_FIELD(int, pan_current_y),
+	LCF_STRUCT_TYPED_FIELD(int, pan_finish_x),
+	LCF_STRUCT_TYPED_FIELD(int, pan_finish_y),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_79),
+	LCF_STRUCT_TYPED_FIELD(int, encounter_steps),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_7d),
+	LCF_STRUCT_TYPED_FIELD(int, map_save_count),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_84),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX

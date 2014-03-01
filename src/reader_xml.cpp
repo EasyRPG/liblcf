@@ -1,21 +1,9 @@
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
-// Headers
 #include <sstream>
 #include <cstdarg>
 #include <cstdio>
@@ -23,7 +11,7 @@
 #include "reader_xml.h"
 
 // Expat callbacks
-#if defined(READER_SUPPORT_XML)
+#if defined(LCF_SUPPORT_XML)
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
 	((XmlReader*) closure)->StartElement(name, atts);
@@ -52,7 +40,7 @@ XmlReader::~XmlReader() {
 }
 
 void XmlReader::Open() {
-#if defined(READER_SUPPORT_XML)
+#if defined(LCF_SUPPORT_XML)
 	stream = fopen(filename.c_str(), "r");
 	parser = XML_ParserCreate("UTF-8");
 
@@ -65,7 +53,7 @@ void XmlReader::Open() {
 }
 
 void XmlReader::Close() {
-#if defined(READER_SUPPORT_XML)
+#if defined(LCF_SUPPORT_XML)
 	if (stream != NULL)
 		fclose(stream);
 	stream = NULL;
@@ -89,7 +77,7 @@ void XmlReader::Error(const char* fmt, ...) {
 }
 
 void XmlReader::Parse() {
-#if defined(READER_SUPPORT_XML)
+#if defined(LCF_SUPPORT_XML)
 	static const int bufsize = 4096;
 	while (IsOk() && !feof(stream)) {
 		void* buffer = XML_GetBuffer(parser, bufsize);
@@ -252,4 +240,3 @@ template <>
 void XmlReader::Read<std::vector<double> >(std::vector<double>& val, const std::string& data) {
 	ReadVector<double>(val, data);
 }
-

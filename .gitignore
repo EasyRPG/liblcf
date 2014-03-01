@@ -1,5 +1,5 @@
 bin/
-builds/cmake/libEasyRPG_Reader.a
+builds/cmake/liblcf.a
 builds/cmake/test_time_stamp
 builds/vs20*/Debug*
 builds/vs20*/Release*
@@ -30,7 +30,7 @@ m4/
 missing
 src/.deps/
 src/Makefile.in
-src/libreaders.a
+src/liblcf.a
 src/*.o
 src/generated/.deps/
 src/generated/.dirstamp

@@ -1,6 +1,6 @@
-lib_LIBRARIES = libreaders.a
-libreaders_a_CXXFLAGS = -I$(top_srcdir)/include
-libreaders_a_SOURCES = \
+lib_LIBRARIES = liblcf.a
+liblcf_a_CXXFLAGS = -I$(top_srcdir)/include
+liblcf_a_SOURCES = \
 	data.cpp \
 	ini.cpp \
 	inireader.cpp \

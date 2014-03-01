@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(EasyRPG_Reader CXX C)
+project(liblcf CXX)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
@@ -13,7 +13,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Modules")
 # Doxygen
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-  add_custom_target(reader_doc
+  add_custom_target(doc
     ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/../Doxyfile
     DEPENDS ${SRCS}
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
@@ -25,7 +25,7 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   include(TestBigEndian)
   test_big_endian(IS_BIG_ENDIAN)
   if(IS_BIG_ENDIAN)
-    add_definitions(-D READER_BIG_ENDIAN=1)
+    add_definitions(-D LCF_BIG_ENDIAN=1)
   endif()
 endif()
 

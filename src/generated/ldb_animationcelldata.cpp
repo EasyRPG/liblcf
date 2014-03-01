@@ -1,20 +1,9 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * This file is part of EasyRPG.
- *
- * EasyRPG is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * EasyRPG is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with EasyRPG Player. If not, see <http: *www.gnu.org/licenses/>.
+ * Copyright (c) 2014 liblcf authors
+ * This file is released under the MIT License
+ * http://opensource.org/licenses/MIT
  */
 
 // Headers
@@ -24,21 +13,21 @@
 
 // Read AnimationCellData.
 
-#define EASYRPG_CHUNK_SUFFIX LDB_Reader
-#define EASYRPG_CURRENT_STRUCT AnimationCellData
+#define LCF_CHUNK_SUFFIX LDB_Reader
+#define LCF_CURRENT_STRUCT AnimationCellData
 
-EASYRPG_STRUCT_FIELDS_BEGIN()
-	EASYRPG_STRUCT_TYPED_FIELD(int, priority),
-	EASYRPG_STRUCT_TYPED_FIELD(int, cell_id),
-	EASYRPG_STRUCT_TYPED_FIELD(int, x),
-	EASYRPG_STRUCT_TYPED_FIELD(int, y),
-	EASYRPG_STRUCT_TYPED_FIELD(int, zoom),
-	EASYRPG_STRUCT_TYPED_FIELD(int, tone_red),
-	EASYRPG_STRUCT_TYPED_FIELD(int, tone_green),
-	EASYRPG_STRUCT_TYPED_FIELD(int, tone_blue),
-	EASYRPG_STRUCT_TYPED_FIELD(int, tone_gray),
-	EASYRPG_STRUCT_TYPED_FIELD(int, transparency),
-EASYRPG_STRUCT_FIELDS_END()
+LCF_STRUCT_FIELDS_BEGIN()
+	LCF_STRUCT_TYPED_FIELD(int, priority),
+	LCF_STRUCT_TYPED_FIELD(int, cell_id),
+	LCF_STRUCT_TYPED_FIELD(int, x),
+	LCF_STRUCT_TYPED_FIELD(int, y),
+	LCF_STRUCT_TYPED_FIELD(int, zoom),
+	LCF_STRUCT_TYPED_FIELD(int, tone_red),
+	LCF_STRUCT_TYPED_FIELD(int, tone_green),
+	LCF_STRUCT_TYPED_FIELD(int, tone_blue),
+	LCF_STRUCT_TYPED_FIELD(int, tone_gray),
+	LCF_STRUCT_TYPED_FIELD(int, transparency),
+LCF_STRUCT_FIELDS_END()
 
-#undef EASYRPG_CURRENT_STRUCT
-#undef EASYRPG_CHUNK_SUFFIX
+#undef LCF_CURRENT_STRUCT
+#undef LCF_CHUNK_SUFFIX
