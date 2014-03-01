@@ -1,5 +1,6 @@
 language: cpp
 compiler:
+  - cmake
   - gcc
 before_script:
   - sudo apt-get update -qq
