@@ -9,5 +9,5 @@ before_script:
 #not running autogen.sh because autoreconf requires extra path
   - autoreconf -i -I/usr/share/gnulib/m4
   - automake -a
-  - ./configure --enable-xml CXXFLAGS="-O0"
+  - ./configure --enable-xml CXXFLAGS="-O0 -Wall -Wextra -ansi -pedantic"
 script: make
