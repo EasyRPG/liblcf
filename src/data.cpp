@@ -57,4 +57,7 @@ void Data::Clear() {
 	battleranimations.clear();
 	switches.clear();
 	variables.clear();
+	treemap.active_node = 0;
+	treemap.maps.clear();
+	treemap.tree_order.clear();
 }
