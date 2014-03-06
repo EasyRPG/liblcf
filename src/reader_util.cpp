@@ -49,7 +49,7 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 		// Gets the language part only
 		std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
 
-		if      (loc_full == "th_TH") default_enc = "874";
+		if      (loc_lang == "th")    default_enc = "874";
 		else if (loc_lang == "jp")    default_enc = "932";
 		else if (loc_full == "zh_CN" ||
 		         loc_full == "zh_SG") default_enc = "936";
