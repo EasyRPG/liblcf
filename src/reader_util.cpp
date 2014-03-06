@@ -12,6 +12,7 @@
 #  endif
 #  include <windows.h>
 #else
+#  include <locale>
 #  include <iconv.h>
 #endif
 
@@ -41,8 +42,51 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 		std::string default_enc = "";
 #else
 		std::string default_enc = "1252";
+
+		std::locale loc = std::locale();
+		// Gets the language and culture part only
+		std::string loc_full = loc.name().substr(0, loc.name().find_first_of("@."));
+		// Gets the language part only
+		std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
+
+		if      (loc_full == "th_TH") default_enc = "874";
+		else if (loc_lang == "jp")    default_enc = "932";
+		else if (loc_full == "zh_CN" ||
+		         loc_full == "zh_SG") default_enc = "936";
+		else if (loc_lang == "ko")    default_enc = "949";
+		else if (loc_full == "zh_TW" ||
+		         loc_full == "zh_HK") default_enc = "950";
+		else if (loc_lang == "cs" ||
+		         loc_lang == "hu" ||
+		         loc_lang == "pl" ||
+		         loc_lang == "ro" ||
+		         loc_lang == "hr" ||
+		         loc_lang == "sk" ||
+		         loc_lang == "sl")    default_enc = "1250";
+		else if (loc_lang == "ru")    default_enc = "1251";
+		else if (loc_lang == "ca" ||
+		         loc_lang == "da" ||
+		         loc_lang == "de" ||
+		         loc_lang == "en" ||
+		         loc_lang == "es" ||
+		         loc_lang == "fi" ||
+		         loc_lang == "fr" ||
+		         loc_lang == "it" ||
+		         loc_lang == "nl" ||
+		         loc_lang == "nb" ||
+		         loc_lang == "pt" ||
+		         loc_lang == "sv" ||
+		         loc_lang == "eu")    default_enc = "1252";
+		else if (loc_lang == "el")    default_enc = "1253";
+		else if (loc_lang == "tr")    default_enc = "1254";
+		else if (loc_lang == "he")    default_enc = "1255";
+		else if (loc_lang == "ar")    default_enc = "1256";
+		else if (loc_lang == "et" ||
+		         loc_lang == "lt" ||
+		         loc_lang == "lv")    default_enc = "1257";
+		else if (loc_lang == "vi")    default_enc = "1258";
 #endif
-		std::string encoding = ini.Get("EasyRpg", "Encoding", default_enc);
+		std::string encoding = ini.Get("EasyRPG", "Encoding", default_enc);
 
 		if (!encoding.empty()) {
 #ifdef _WIN32
