@@ -43,14 +43,14 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 #else
 		std::string default_enc = "1252";
 
-		std::locale loc = std::locale();
+		std::locale loc = std::locale("");
 		// Gets the language and culture part only
 		std::string loc_full = loc.name().substr(0, loc.name().find_first_of("@."));
 		// Gets the language part only
 		std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
 
 		if      (loc_lang == "th")    default_enc = "874";
-		else if (loc_lang == "jp")    default_enc = "932";
+		else if (loc_lang == "ja")    default_enc = "932";
 		else if (loc_full == "zh_CN" ||
 		         loc_full == "zh_SG") default_enc = "936";
 		else if (loc_lang == "ko")    default_enc = "949";
