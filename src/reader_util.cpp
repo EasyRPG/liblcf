@@ -30,9 +30,13 @@ std::string ReaderUtil::CodepageToIconv(int codepage) {
 	if (codepage == 0)
 		return "";
 
-	std::ostringstream out;
-	out << "CP" << codepage;
-	return out.str();
+	if (codepage == 932) {
+		return "SHIFT_JIS";
+	} else {
+		std::ostringstream out;
+		out << "CP" << codepage;
+		return out.str();
+	}
 }
 
 std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
