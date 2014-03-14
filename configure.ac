@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.68])
+AC_PREREQ([2.69])
 AC_INIT([liblcf],[0.1.3],[https://github.com/EasyRPG/liblcf/issues])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
