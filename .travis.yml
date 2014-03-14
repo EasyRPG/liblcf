@@ -4,6 +4,7 @@ compiler:
   - gcc
 before_script:
   - echo "\n" | sudo add-apt-repository ppa:costamagnagianfranco/autoconf
+  - echo "\n" | sudo add-apt-repository ppa:cjohnston/ci
   - sudo apt-get update -qq
   - sudo apt-get install -qq libexpat1-dev autoconf
   - autoreconf -i
