@@ -19,17 +19,13 @@ AC_PROG_RANLIB
 # Checks for libraries.
 AM_ICONV
 
-AC_ARG_ENABLE([xml],[AS_HELP_STRING([--enable-xml],[Enable XML support (requires Expat library)])])
-AS_IF([test "x$enable_xml" = "xyes"],[
-	AC_CHECK_LIB([expat],[XML_ParserCreate],[],[AC_MSG_ERROR(['expat' is required for XML but it doesn't seem to be installed on this system.])])
+AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat)])])
+AS_IF([test "x$enable_xml" != "xno"],[
+	PKG_CHECK_MODULES([EXPAT],[expat],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML reading support (expat)])])
 ])
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
-
-AS_IF([test "x$enable_xml" = "xyes"],[
-	AC_CHECK_HEADERS([expat.h],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML (Requires Expat)])],[AC_MSG_ERROR([cannot find expat.h, bailing out])])
-])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_CHECK_HEADER_STDBOOL
