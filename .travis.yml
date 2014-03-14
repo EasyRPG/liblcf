@@ -6,8 +6,7 @@ before_script:
   - sudo apt-get update -qq
 #gnulib provides stdbool.m4 for AC_CHECK_HEADER_STDBOOL in configure.ac
   - sudo apt-get install -qq libexpat1-dev gnulib
-#not running autogen.sh because autoreconf requires extra path
+#autoreconf does not detect stdbool.m4 and re requires include path
   - autoreconf -i -I/usr/share/gnulib/m4
-  - automake -a
-  - ./configure --enable-xml CXXFLAGS="-O0 -Wall -Wextra -ansi -pedantic"
+  - ./configure CXXFLAGS="-O0 -Wall -Wextra -ansi -pedantic"
 script: make
