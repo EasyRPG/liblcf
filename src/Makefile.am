@@ -1,4 +1,5 @@
 lib_LIBRARIES = liblcf.a
+liblcf_a_CXXFLAGS = -I$(srcdir)/generated
 liblcf_a_SOURCES = \
 	data.cpp \
 	ini.cpp \
