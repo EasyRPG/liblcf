@@ -22,7 +22,6 @@ config.status
 config.sub
 configure
 depcomp
-include/Makefile.in
 install-sh
 libtool
 ltmain.sh

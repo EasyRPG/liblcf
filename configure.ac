@@ -40,7 +40,6 @@ AC_TYPE_UINT8_T
 AC_CHECK_FUNCS([floor strrchr strtol])
 
 AC_CONFIG_FILES([Makefile
-                 include/Makefile
                  src/Makefile])
 
 AC_OUTPUT

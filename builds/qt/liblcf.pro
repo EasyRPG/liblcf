@@ -158,7 +158,92 @@ SOURCES += \
     ../../src/generated/rpg_trooppagecondition.cpp \
     ../../src/generated/rpg_variable.cpp
 
-INCLUDEPATH += $$PWD/../../include
+HEADERS += \
+	../../src/command_codes.h \
+	../../src/data.h \
+	../../src/ini.h \
+	../../src/inireader.h \
+	../../src/ldb_reader.h \
+	../../src/lmt_reader.h \
+	../../src/lmu_reader.h \
+	../../src/lsd_reader.h \
+	../../src/reader_lcf.h \
+	../../src/reader_options.h \
+	../../src/reader_struct.h \
+	../../src/reader_types.h \
+	../../src/reader_util.h \
+	../../src/reader_xml.h \
+	../../src/writer_lcf.h \
+	../../src/writer_xml.h \
+	../../src/generated/ldb_chunks.h \
+	../../src/generated/lmt_chunks.h \
+	../../src/generated/lmu_chunks.h \
+	../../src/generated/lsd_chunks.h \
+	../../src/generated/rpg_actor.h \
+	../../src/generated/rpg_animationcelldata.h \
+	../../src/generated/rpg_animationframe.h \
+	../../src/generated/rpg_animation.h \
+	../../src/generated/rpg_animationtiming.h \
+	../../src/generated/rpg_attribute.h \
+	../../src/generated/rpg_battlecommand.h \
+	../../src/generated/rpg_battlecommands.h \
+	../../src/generated/rpg_battleranimationdata.h \
+	../../src/generated/rpg_battleranimationextension.h \
+	../../src/generated/rpg_battleranimation.h \
+	../../src/generated/rpg_chipset.h \
+	../../src/generated/rpg_class.h \
+	../../src/generated/rpg_commonevent.h \
+	../../src/generated/rpg_database.h \
+	../../src/generated/rpg_encounter.h \
+	../../src/generated/rpg_enemyaction.h \
+	../../src/generated/rpg_enemy.h \
+	../../src/generated/rpg_equipment.h \
+	../../src/generated/rpg_eventcommand.h \
+	../../src/generated/rpg_event.h \
+	../../src/generated/rpg_eventpagecondition.h \
+	../../src/generated/rpg_eventpage.h \
+	../../src/generated/rpg_itemanimation.h \
+	../../src/generated/rpg_item.h \
+	../../src/generated/rpg_learning.h \
+	../../src/generated/rpg_map.h \
+	../../src/generated/rpg_mapinfo.h \
+	../../src/generated/rpg_movecommand.h \
+	../../src/generated/rpg_moveroute.h \
+	../../src/generated/rpg_music.h \
+	../../src/generated/rpg_parameters.h \
+	../../src/generated/rpg_rect.h \
+	../../src/generated/rpg_saveactor.h \
+	../../src/generated/rpg_savecommonevent.h \
+	../../src/generated/rpg_saveeventcommands.h \
+	../../src/generated/rpg_saveeventdata.h \
+	../../src/generated/rpg_saveevents.h \
+	../../src/generated/rpg_save.h \
+	../../src/generated/rpg_saveinventory.h \
+	../../src/generated/rpg_savemapevent.h \
+	../../src/generated/rpg_savemapinfo.h \
+	../../src/generated/rpg_savepartylocation.h \
+	../../src/generated/rpg_savepicture.h \
+	../../src/generated/rpg_savescreen.h \
+	../../src/generated/rpg_savesystem.h \
+	../../src/generated/rpg_savetarget.h \
+	../../src/generated/rpg_savetitle.h \
+	../../src/generated/rpg_savevehiclelocation.h \
+	../../src/generated/rpg_skill.h \
+	../../src/generated/rpg_sound.h \
+	../../src/generated/rpg_start.h \
+	../../src/generated/rpg_state.h \
+	../../src/generated/rpg_switch.h \
+	../../src/generated/rpg_system.h \
+	../../src/generated/rpg_terms.h \
+	../../src/generated/rpg_terrain.h \
+	../../src/generated/rpg_testbattler.h \
+	../../src/generated/rpg_treemap.h \
+	../../src/generated/rpg_troop.h \
+	../../src/generated/rpg_troopmember.h \
+	../../src/generated/rpg_trooppagecondition.h \
+	../../src/generated/rpg_trooppage.h \
+	../../src/generated/rpg_variable.h
+
 INCLUDEPATH += $$(EASYDEV_MSVC)\include
 
 win32 {
@@ -166,9 +251,3 @@ win32 {
     CONFIG(debug, debug|release) DESTDIR = ../../lib/debug
     CONFIG(release, debug|release) DESTDIR = ../../lib/release
 }
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
