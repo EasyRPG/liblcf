@@ -38,3 +38,4 @@ stamp-h1
 build/
 *~
 /builds/qt/
+!/builds/qt/liblcf.pro
