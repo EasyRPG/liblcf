@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\RPG">
+      <UniqueIdentifier>{0dde9b4a-c124-498a-b7a4-0c21c2eafe59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\INI">
       <UniqueIdentifier>{c881e760-80a5-4102-8ad3-58978999c396}</UniqueIdentifier>
@@ -21,14 +24,11 @@
     <Filter Include="Source Files\LMU">
       <UniqueIdentifier>{9d62bde7-1f5a-4ad1-8365-e4d398bf1acb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\RPG">
-      <UniqueIdentifier>{0dde9b4a-c124-498a-b7a4-0c21c2eafe59}</UniqueIdentifier>
+    <Filter Include="Source Files\LSD">
+      <UniqueIdentifier>{832422a3-2afc-4db0-bc0e-a16ecda61ba0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\RPG">
       <UniqueIdentifier>{a0b75d9e-2ee0-4d4b-85e1-1bbe7c6f074f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\LSD">
-      <UniqueIdentifier>{832422a3-2afc-4db0-bc0e-a16ecda61ba0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
