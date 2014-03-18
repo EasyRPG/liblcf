@@ -397,7 +397,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories></AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\generated;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <DebugInformationFormat>
@@ -420,7 +420,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories></AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src\generated;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <DebugInformationFormat>
