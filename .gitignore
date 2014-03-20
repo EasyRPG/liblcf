@@ -22,7 +22,6 @@ config.status
 config.sub
 configure
 depcomp
-include/Makefile.in
 install-sh
 libtool
 ltmain.sh
@@ -38,15 +37,5 @@ src/generated/*.o
 stamp-h1
 build/
 *~
-/builds/qt/*.pdb
-/builds/qt/*.user
-/builds/qt/*
-/builds/qt/*.Debug
-/builds/qt/*.Release
-/builds/qt/*.Release
-/builds/qt/*.pdb
-/builds/qt/*.user
-/builds/qt/*
-/builds/qt/*.Debug
-/builds/qt/release
-/builds/qt/debug
+/builds/qt/
+!/builds/qt/liblcf.pro

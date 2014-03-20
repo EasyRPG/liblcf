@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\RPG">
+      <UniqueIdentifier>{0dde9b4a-c124-498a-b7a4-0c21c2eafe59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\INI">
       <UniqueIdentifier>{c881e760-80a5-4102-8ad3-58978999c396}</UniqueIdentifier>
@@ -21,14 +24,11 @@
     <Filter Include="Source Files\LMU">
       <UniqueIdentifier>{9d62bde7-1f5a-4ad1-8365-e4d398bf1acb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\RPG">
-      <UniqueIdentifier>{0dde9b4a-c124-498a-b7a4-0c21c2eafe59}</UniqueIdentifier>
+    <Filter Include="Source Files\LSD">
+      <UniqueIdentifier>{832422a3-2afc-4db0-bc0e-a16ecda61ba0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\RPG">
       <UniqueIdentifier>{a0b75d9e-2ee0-4d4b-85e1-1bbe7c6f074f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\LSD">
-      <UniqueIdentifier>{832422a3-2afc-4db0-bc0e-a16ecda61ba0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -469,259 +469,256 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\event_reader.h">
+    <ClInclude Include="..\..\src\command_codes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ini.h">
+    <ClInclude Include="..\..\src\data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\inireader.h">
+    <ClInclude Include="..\..\src\ini.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ldb_chunks.h">
+    <ClInclude Include="..\..\src\inireader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\ldb_reader.h">
+    <ClInclude Include="..\..\src\ldb_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\lmt_chunks.h">
+    <ClInclude Include="..\..\src\lmt_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\lmt_reader.h">
+    <ClInclude Include="..\..\src\lmu_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\lmu_chunks.h">
+    <ClInclude Include="..\..\src\lsd_reader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\lmu_reader.h">
+    <ClInclude Include="..\..\src\reader_lcf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_actor.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_animation.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_animationcelldata.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_animationframe.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_animationtiming.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_attribute.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_battlecommand.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_battleranimation.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_battleranimationextension.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_chipset.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_class.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_commonevent.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_encounter.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_enemy.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_enemyaction.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_event.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_eventcommand.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_eventpage.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_eventpagecondition.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_item.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_learning.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_map.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_mapinfo.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_movecommand.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_moveroute.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_music.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_skill.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_sound.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_state.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_system.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_terms.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_terrain.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_testbattler.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_treemap.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_troop.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_troopmember.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_trooppage.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_trooppagecondition.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\data.h">
+    <ClInclude Include="..\..\src\reader_options.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\reader_options.h">
+    <ClInclude Include="..\..\src\reader_struct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_battleranimationdata.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_itemanimation.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\lsd_reader.h">
+    <ClInclude Include="..\..\src\reader_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\lsd_chunks.h">
+    <ClInclude Include="..\..\src\reader_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_save.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\reader_util.h">
+    <ClInclude Include="..\..\src\reader_xml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\reader_lcf.h">
+    <ClInclude Include="..\..\src\writer_lcf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\reader_struct.h">
+    <ClInclude Include="..\..\src\writer_xml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\reader_types.h">
+    <ClInclude Include="..\..\src\generated\ldb_chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\reader_xml.h">
+    <ClInclude Include="..\..\src\generated\lmt_chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\command_codes.h">
+    <ClInclude Include="..\..\src\generated\lmu_chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\writer_lcf.h">
+    <ClInclude Include="..\..\src\generated\lsd_chunks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\writer_xml.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\rpg_database.h">
+    <ClInclude Include="..\..\src\generated\rpg_actor.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_equipment.h">
+    <ClInclude Include="..\..\src\generated\rpg_animation.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_parameters.h">
+    <ClInclude Include="..\..\src\generated\rpg_animationcelldata.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_rect.h">
+    <ClInclude Include="..\..\src\generated\rpg_animationframe.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_start.h">
+    <ClInclude Include="..\..\src\generated\rpg_animationtiming.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_switch.h">
+    <ClInclude Include="..\..\src\generated\rpg_attribute.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_variable.h">
+    <ClInclude Include="..\..\src\generated\rpg_battlecommand.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_battlecommands.h">
+    <ClInclude Include="..\..\src\generated\rpg_battlecommands.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_saveactor.h">
+    <ClInclude Include="..\..\src\generated\rpg_battleranimation.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savecommonevent.h">
+    <ClInclude Include="..\..\src\generated\rpg_battleranimationdata.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_saveeventcommands.h">
+    <ClInclude Include="..\..\src\generated\rpg_battleranimationextension.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_saveeventdata.h">
+    <ClInclude Include="..\..\src\generated\rpg_chipset.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_saveevents.h">
+    <ClInclude Include="..\..\src\generated\rpg_class.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_saveinventory.h">
+    <ClInclude Include="..\..\src\generated\rpg_commonevent.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savemapevent.h">
+    <ClInclude Include="..\..\src\generated\rpg_database.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savemapinfo.h">
+    <ClInclude Include="..\..\src\generated\rpg_encounter.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savepartylocation.h">
+    <ClInclude Include="..\..\src\generated\rpg_enemy.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savepicture.h">
+    <ClInclude Include="..\..\src\generated\rpg_enemyaction.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savescreen.h">
+    <ClInclude Include="..\..\src\generated\rpg_equipment.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savesystem.h">
+    <ClInclude Include="..\..\src\generated\rpg_event.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savetarget.h">
+    <ClInclude Include="..\..\src\generated\rpg_eventcommand.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savetitle.h">
+    <ClInclude Include="..\..\src\generated\rpg_eventpage.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\rpg_savevehiclelocation.h">
+    <ClInclude Include="..\..\src\generated\rpg_eventpagecondition.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_item.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_itemanimation.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_learning.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_map.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_mapinfo.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_movecommand.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_moveroute.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_music.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_parameters.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_rect.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_save.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_saveactor.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savecommonevent.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_saveeventcommands.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_saveeventdata.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_saveevents.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_saveinventory.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savemapevent.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savemapinfo.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savepartylocation.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savepicture.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savescreen.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savesystem.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savetarget.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savetitle.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_savevehiclelocation.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_skill.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_sound.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_start.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_state.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_switch.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_system.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_terms.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_terrain.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_testbattler.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_treemap.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_troop.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_troopmember.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_trooppage.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_trooppagecondition.h">
+      <Filter>Header Files\RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\generated\rpg_variable.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,7 @@ import re
 csv_dir = 'csv'
 tmpl_dir = 'templates'
 srcdir = 'src/generated'
-hdrdir = 'include'
+hdrdir = 'src/generated'
 
 class Template(object):
     def __init__(self, filename):

@@ -158,17 +158,11 @@ SOURCES += \
     ../../src/generated/rpg_trooppagecondition.cpp \
     ../../src/generated/rpg_variable.cpp
 
-INCLUDEPATH += $$PWD/../../include
-INCLUDEPATH += $$(EASYDEV_MSVC)\include
+INCLUDEPATH += $$PWD/../../src/generated
+INCLUDEPATH += $$(EASYDEV_MSVC)/include
 
 win32 {
     contains(QMAKE_HOST.arch, x86_64) TARGET = liblcf64
     CONFIG(debug, debug|release) DESTDIR = ../../lib/debug
     CONFIG(release, debug|release) DESTDIR = ../../lib/release
 }
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
