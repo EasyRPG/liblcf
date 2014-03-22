@@ -145,7 +145,10 @@ liblcf_a_SOURCES = \
 	generated/rpg_troopmember.cpp \
 	generated/rpg_trooppagecondition.cpp \
 	generated/rpg_trooppage.cpp \
-	generated/rpg_variable.cpp
+	generated/rpg_variable.cpp \
+	boost/preprocessor/cat.hpp \
+	boost/preprocessor/stringize.hpp \
+	boost/preprocessor/config/config.hpp
 include_HEADERS = \
 	command_codes.h \
 	data.h \

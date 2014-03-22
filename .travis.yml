@@ -9,4 +9,4 @@ before_script:
   - sudo apt-get install -qq libexpat1-dev autoconf
   - autoreconf -i
   - ./configure CXXFLAGS="-O0 -Wall -Wextra -ansi -pedantic"
-script: make
+script: make distcheck
