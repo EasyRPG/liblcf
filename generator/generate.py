@@ -8,8 +8,8 @@ import re
 
 csv_dir = 'csv'
 tmpl_dir = 'templates'
-srcdir = 'src/generated'
-hdrdir = 'src/generated'
+srcdir = '../src/generated'
+hdrdir = '../src/generated'
 
 class Template(object):
     def __init__(self, filename):

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-project(liblcf CXX)
+project(liblcf C CXX)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
@@ -32,14 +32,14 @@ endif()
 find_package(PythonInterp)
 set(GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated)
 if(PYTHONINTERP_FOUND)
-  set(GENERATE_PY "${CMAKE_CURRENT_SOURCE_DIR}/../../generate.py")
+  set(GENERATE_PY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator/generate.py")
 
-  file(GLOB tmpl "${CMAKE_CURRENT_SOURC_DIR}/../../templates/*.tmpl")
-  file(GLOB csv "${CMAKE_CURRENT_SOURC_DIR}/../../csv/*.csv")
+  file(GLOB tmpl "${CMAKE_CURRENT_SOURC_DIR}/../../generator/templates/*.tmpl")
+  file(GLOB csv "${CMAKE_CURRENT_SOURC_DIR}/../../generator/csv/*.csv")
 
   execute_process(
     COMMAND "${PYTHON_EXECUTABLE}" "${GENERATE_PY}" "-l"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../.."
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator"
     OUTPUT_VARIABLE gen_list)
   string(REPLACE "\n" ";" gen_list "${gen_list}")
   foreach(i ${gen_list})
@@ -53,7 +53,7 @@ if(PYTHONINTERP_FOUND)
     COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY}
     MAIN_DEPENDENCT ${GENERATE_PY}
     DEPENDS ${GENERATE_PY} ${tmpl} ${csv}
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator")
 else()
   aux_source_directory(${GENERATED_OUTPUT_DIR} GEN_SRCS)
 endif()
@@ -93,7 +93,7 @@ function(CXX_TEST target libs)
   add_dependencies(test_${name} ${PROJECT_NAME})
 endfunction()
 
-file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../test/*.cpp)
+file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../tests/*.cpp)
 foreach(i ${TEST_FILES})
   cxx_test(${i} ${ICONV_LIBRARIES} ${EXPAT_LIBRARY})
 endforeach()
