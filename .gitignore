@@ -7,7 +7,7 @@ bin/
 /lib/
 /liblcf-*/
 /m4/
-/tests/time_stamp
+/tests/time_stamp*
 .deps/
 aclocal.m4
 builds/cmake/test_time_stamp
@@ -33,6 +33,7 @@ ltmain.sh
 missing
 stamp-h1
 test-driver
+test-suite.log
 *~
 *.cmake
 *.a
