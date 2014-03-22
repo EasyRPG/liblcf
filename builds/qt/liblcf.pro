@@ -158,6 +158,7 @@ SOURCES += \
     ../../src/generated/rpg_trooppagecondition.cpp \
     ../../src/generated/rpg_variable.cpp
 
+INCLUDEPATH += $$PWD/../../src
 INCLUDEPATH += $$PWD/../../src/generated
 INCLUDEPATH += $$(EASYDEV_MSVC)/include
 
