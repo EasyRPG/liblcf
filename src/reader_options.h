@@ -36,15 +36,15 @@
 #endif
 
 /**
- * Enables support for XML file reading and writing.
+ * Enables support for XML file reading and writing (deprecated).
  * This option adds libexpat as a dependency.
  */
 //#ifndef LCF_SUPPORT_XML
 //#  define LCF_SUPPORT_XML
 //#endif
 
-/** Enables big endian byte order for Wii port. */
-#ifdef GEKKO
+/** Enables big endian byte order for Wii port (deprecated). */
+#if defined(GEKKO) && !defined(LCF_BIG_ENDIAN)
 #  define LCF_BIG_ENDIAN
 #endif
 
