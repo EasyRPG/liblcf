@@ -77,6 +77,15 @@ find_package(Expat)
 include_directories(${EXPAT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
 
+# installation
+set(LIB_INSTALL_DIR "lib" CACHE STRING "The install directory for libraries")
+set(INCLUDE_INSTALL_DIR "include" CACHE STRING "The install directory for headers")
+mark_as_advanced(LIB_INSTALL_DIR INCLUDE_INSTALL_DIR)
+file(GLOB includefiles "${CMAKE_CURRENT_SOURCE_DIR}/../../src/*.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated/*.h")
+install(FILES ${includefiles} DESTINATION ${INCLUDE_INSTALL_DIR})
+install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
+
 # test
 enable_testing()
 
