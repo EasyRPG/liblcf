@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([liblcf],[0.1.3],[https://github.com/EasyRPG/liblcf/issues])
+AC_INIT([liblcf],[0.1.3],[https://github.com/EasyRPG/liblcf/issues],[liblcf],[https://easy-rpg.org/])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
 AM_INIT_AUTOMAKE([1.11 foreign subdir-objects -Wall -Werror -Wno-extra-portability])
@@ -47,6 +47,7 @@ AC_CHECK_FUNCS([floor strrchr strtol])
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile
-                 tests/Makefile])
+                 tests/Makefile
+                 builds/liblcf.pc])
 
 AC_OUTPUT
