@@ -11,6 +11,7 @@ bin/
 .deps/
 aclocal.m4
 builds/cmake/test_time_stamp
+builds/liblcf.pc
 builds/vs20*/Debug*
 builds/vs20*/Release*
 builds/vs20*/*.user

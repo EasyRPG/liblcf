@@ -149,7 +149,7 @@ liblcf_a_SOURCES = \
 	boost/preprocessor/cat.hpp \
 	boost/preprocessor/stringize.hpp \
 	boost/preprocessor/config/config.hpp
-include_HEADERS = \
+pkginclude_HEADERS = \
 	command_codes.h \
 	data.h \
 	ini.h \
