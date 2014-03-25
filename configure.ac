@@ -14,7 +14,7 @@ AC_CONFIG_SRCDIR([src/data.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
-LT_INIT
+LT_INIT([win32-dll])
 AC_PROG_CXX
 
 # Checks for libraries.
