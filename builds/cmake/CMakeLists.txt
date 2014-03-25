@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(liblcf C CXX)
+set(VERSION 0.1.3)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../lib)
@@ -76,6 +77,26 @@ endif()
 find_package(Expat)
 include_directories(${EXPAT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
+
+# installation
+set(LIB_INSTALL_DIR "lib" CACHE STRING "The install directory for libraries")
+set(INCLUDE_INSTALL_DIR "include" CACHE STRING "The install directory for headers")
+mark_as_advanced(LIB_INSTALL_DIR INCLUDE_INSTALL_DIR)
+file(GLOB includefiles "${CMAKE_CURRENT_SOURCE_DIR}/../../src/*.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated/*.h")
+install(FILES ${includefiles} DESTINATION ${INCLUDE_INSTALL_DIR})
+install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
+
+# pkg-config file generation
+set(PACKAGE_TARNAME ${PROJECT_NAME})
+set(PACKAGE_VERSION ${VERSION})
+set(prefix "${CMAKE_INSTALL_PREFIX}")
+set(exec_prefix "\${prefix}")
+set(libdir "\${exec_prefix}/${LIB_INSTALL_DIR}")
+set(includedir "\${prefix}/${INCLUDE_INSTALL_DIR}")
+configure_file(../liblcf.pc.in ${CMAKE_BINARY_DIR}/liblcf.pc @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/liblcf.pc
+  DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
 
 # test
 enable_testing()
