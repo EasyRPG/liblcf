@@ -9,6 +9,7 @@ bin/
 /m4/
 /tests/time_stamp*
 .deps/
+.libs/
 aclocal.m4
 builds/cmake/test_time_stamp
 builds/liblcf.pc
@@ -40,5 +41,6 @@ test-suite.log
 *.a
 *.la
 *.o
+*.lo
 *.tar.gz
 .dirstamp
