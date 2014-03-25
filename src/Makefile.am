@@ -1,6 +1,6 @@
-lib_LIBRARIES = liblcf.a
-liblcf_a_CXXFLAGS = -I$(srcdir)/generated
-liblcf_a_SOURCES = \
+lib_LTLIBRARIES = liblcf.la
+liblcf_la_CXXFLAGS = -I$(srcdir)/generated
+liblcf_la_SOURCES = \
 	data.cpp \
 	ini.cpp \
 	inireader.cpp \

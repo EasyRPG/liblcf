@@ -13,6 +13,7 @@ AC_CONFIG_SRCDIR([src/data.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
+LT_INIT
 AC_PROG_CXX
 AC_PROG_RANLIB
 
@@ -26,9 +27,9 @@ AS_IF([test "x$enable_xml" != "xno"],[
 
 # Check for endianess
 AC_C_BIGENDIAN
-if [ test "$ac_cv_c_bigendian" = "yes" ]; then
-	AC_DEFINE(LCF_BIG_ENDIAN,1,[Define if byte order is big-endian])
-fi
+AS_IF([test "x$ac_cv_c_bigendian" = "xyes"],[
+	AC_DEFINE([LCF_BIG_ENDIAN],[1],[Define if byte order is big-endian])
+])
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
