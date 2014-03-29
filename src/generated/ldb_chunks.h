@@ -119,7 +119,7 @@ namespace LDB_Reader {
 			flash_blue		= 0x06,
 			/** Integer */
 			flash_power		= 0x07,
-			/** Integer - RPG2003 - TODO: Get chunk id */
+			/** Integer - RPG2003 - TODO: Get chunk ID */
 			screen_shake	= 0x08 
 		};
 	};
@@ -206,7 +206,7 @@ namespace LDB_Reader {
 			/** Integer */
 			battle_type		= 0x07,
 			/** Integer */
-			unknown1		= 0x09,
+			unknown_09		= 0x09,
 			/** Array - RPG::BattleCommand */
 			commands		= 0x0A,
 			/** Integer */

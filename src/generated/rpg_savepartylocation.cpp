@@ -25,14 +25,14 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	move_frequency = -1;
 	layer = 1;
 	unknown_22 = 0;
-	unknown_23 = 1;
+	unknown_23_animation_type = 1;
 	lock_facing = false;
 	move_speed = -1;
 	move_route_overwrite = false;
 	move_route_index = 0;
 	unknown_2c = 0;
 	sprite_transparent = false;
-	unknown_2f = 0;
+	unknown_2f_overlap = 0;
 	anim_paused = 0;
 	unknown_33 = 0;
 	unknown_34 = 0;

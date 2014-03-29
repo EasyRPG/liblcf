@@ -41,7 +41,7 @@ namespace RPG {
 		int defeats;
 		int escapes;
 		int victories;
-		int unknown_29;
+		int unknown_29_turns;
 		int steps;
 	};
 }

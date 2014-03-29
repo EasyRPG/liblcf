@@ -43,7 +43,7 @@ namespace RPG {
 		int pan_y;
 		int battleanim_id;
 		int battleanim_target;
-		int battleanim_unk_2d;
+		int unknown_2d_battle_anim;
 		int unknown_2e;
 		bool battleanim_global;
 		int weather;

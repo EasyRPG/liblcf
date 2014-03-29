@@ -28,6 +28,6 @@ RPG::SaveInventory::SaveInventory() {
 	defeats = 0;
 	escapes = 0;
 	victories = 0;
-	unknown_29 = 0;
+	unknown_29_turns = 0;
 	steps = 0;
 }
