@@ -29,7 +29,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, move_frequency),
 	LCF_STRUCT_TYPED_FIELD(int, layer),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_22),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_23),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_23_animation_type),
 	LCF_STRUCT_TYPED_FIELD(bool, lock_facing),
 	LCF_STRUCT_TYPED_FIELD(int, move_speed),
 	LCF_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),

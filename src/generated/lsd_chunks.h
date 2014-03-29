@@ -15,7 +15,7 @@
 namespace LSD_Reader {
 	struct ChunkSaveTitle {
 		enum Index {
-			/** double(?) */
+			/** double - timestamp in msaccess format */
 			timestamp	= 0x01,
 			/** char[]: hero name */
 			hero_name	= 0x0B,
@@ -92,9 +92,9 @@ namespace LSD_Reader {
 			/**  */
 			current_music			= 0x4B,
 			/**  */
-			unknown1_music			= 0x4C,
+			before_vehicle_music	= 0x4C,
 			/**  */
-			unknown2_music			= 0x4D,
+			before_battle_music		= 0x4D,
 			/**  */
 			stored_music			= 0x4E,
 			/**  */
@@ -162,65 +162,65 @@ namespace LSD_Reader {
 	struct ChunkSaveScreen {
 		enum Index {
 			/** int */
-			tint_finish_red		= 0x01,
+			tint_finish_red			= 0x01,
 			/** int */
-			tint_finish_green	= 0x02,
+			tint_finish_green		= 0x02,
 			/** int */
-			tint_finish_blue	= 0x03,
+			tint_finish_blue		= 0x03,
 			/** int */
-			tint_finish_sat		= 0x04,
+			tint_finish_sat			= 0x04,
 			/** double */
-			tint_current_red	= 0x0B,
+			tint_current_red		= 0x0B,
 			/** double */
-			tint_current_green	= 0x0C,
+			tint_current_green		= 0x0C,
 			/** double */
-			tint_current_blue	= 0x0D,
+			tint_current_blue		= 0x0D,
 			/** double */
-			tint_current_sat	= 0x0E,
+			tint_current_sat		= 0x0E,
 			/** int */
-			tint_time_left		= 0x0F,
+			tint_time_left			= 0x0F,
 			/** int */
-			flash_continuous	= 0x14,
+			flash_continuous		= 0x14,
 			/** int */
-			flash_red			= 0x15,
+			flash_red				= 0x15,
 			/** int */
-			flash_green			= 0x16,
+			flash_green				= 0x16,
 			/** int */
-			flash_blue			= 0x17,
+			flash_blue				= 0x17,
 			/** double */
-			flash_current_level	= 0x18,
+			flash_current_level		= 0x18,
 			/** int */
-			flash_time_left		= 0x19,
+			flash_time_left			= 0x19,
 			/** int */
-			shake_continuous	= 0x1E,
+			shake_continuous		= 0x1E,
 			/** int */
-			shake_strength		= 0x1F,
+			shake_strength			= 0x1F,
 			/** int */
-			shake_speed			= 0x20,
+			shake_speed				= 0x20,
 			/** int */
-			shake_position		= 0x21,
+			shake_position			= 0x21,
 			/** int */
-			unknown_22			= 0x22,
+			unknown_22				= 0x22,
 			/** int */
-			shake_time_left		= 0x23,
+			shake_time_left			= 0x23,
 			/** int */
-			pan_x				= 0x29,
+			pan_x					= 0x29,
 			/** int */
-			pan_y				= 0x2A,
+			pan_y					= 0x2A,
 			/** int - battle animation ID */
-			battleanim_id		= 0x2B,
+			battleanim_id			= 0x2B,
 			/** int - battle animation target */
-			battleanim_target	= 0x2C,
-			/** int - battle animation ?? */
-			battleanim_unk_2d	= 0x2D,
+			battleanim_target		= 0x2C,
+			/** int - battle animation? Ref<Animation>? */
+			unknown_2d_battle_anim	= 0x2D,
 			/** int */
-			unknown_2e			= 0x2E,
+			unknown_2e				= 0x2E,
 			/** int - battle animation global scope */
-			battleanim_global	= 0x2F,
+			battleanim_global		= 0x2F,
 			/** int */
-			weather				= 0x30,
+			weather					= 0x30,
 			/** int */
-			weather_strength	= 0x31 
+			weather_strength		= 0x31 
 		};
 	};
 	struct ChunkSavePicture {
@@ -311,8 +311,8 @@ namespace LSD_Reader {
 			layer						= 0x21,
 			/** ? */
 			unknown_22					= 0x22,
-			/** ? */
-			unknown_23					= 0x23,
+			/** Integer - Enum<EventPage_AnimType>? */
+			unknown_23_animation_type	= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
@@ -327,8 +327,8 @@ namespace LSD_Reader {
 			unknown_2c					= 0x2C,
 			/** bool */
 			sprite_transparent			= 0x2E,
-			/** ? */
-			unknown_2f					= 0x2F,
+			/** Boolean - Overlap? */
+			unknown_2f_overlap			= 0x2F,
 			/** ? */
 			anim_paused					= 0x30,
 			/** ? */
@@ -425,8 +425,8 @@ namespace LSD_Reader {
 			layer						= 0x21,
 			/** ? */
 			unknown_22					= 0x22,
-			/** ? */
-			unknown_23					= 0x23,
+			/** Integer - Enum<EventPage_AnimType>? */
+			unknown_23_animation_type	= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
@@ -537,7 +537,7 @@ namespace LSD_Reader {
 			changed_class	= 0x53,
 			/** int class-id */
 			class_id		= 0x5A,
-			/** RPG2k3 Battle row (-1 Back; 1 Front) */
+			/** RPG2003 Battle row (-1 Back; 1 Front) */
 			row				= 0x5B,
 			/** bool */
 			two_weapon		= 0x5C,
@@ -554,47 +554,47 @@ namespace LSD_Reader {
 	struct ChunkSaveInventory {
 		enum Index {
 			/** ? */
-			party_size		= 0x01,
+			party_size			= 0x01,
 			/** ? */
-			party			= 0x02,
+			party				= 0x02,
 			/** ? */
-			items_size		= 0x0B,
+			items_size			= 0x0B,
 			/** short[]: item list */
-			item_ids		= 0x0C,
+			item_ids			= 0x0C,
 			/** ? */
-			item_counts		= 0x0D,
+			item_counts			= 0x0D,
 			/** ? */
-			item_usage		= 0x0E,
+			item_usage			= 0x0E,
 			/** int */
-			gold			= 0x15,
+			gold				= 0x15,
 			/** int */
-			timer1_secs		= 0x17,
+			timer1_secs			= 0x17,
 			/** bool */
-			timer1_active	= 0x18,
+			timer1_active		= 0x18,
 			/** bool */
-			timer1_visible	= 0x19,
+			timer1_visible		= 0x19,
 			/** bool */
-			timer1_battle	= 0x1A,
+			timer1_battle		= 0x1A,
 			/** int */
-			timer2_secs		= 0x1B,
+			timer2_secs			= 0x1B,
 			/** bool */
-			timer2_active	= 0x1C,
+			timer2_active		= 0x1C,
 			/** bool */
-			timer2_visible	= 0x1D,
+			timer2_visible		= 0x1D,
 			/** bool */
-			timer2_battle	= 0x1E,
+			timer2_battle		= 0x1E,
 			/** ? */
-			battles			= 0x20,
+			battles				= 0x20,
 			/** ? */
-			defeats			= 0x21,
+			defeats				= 0x21,
 			/** ? */
-			escapes			= 0x22,
+			escapes				= 0x22,
 			/** ? */
-			victories		= 0x23,
+			victories			= 0x23,
+			/** Number of turns passed in the latest battle fought? RPG2000: "turn" passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a "turn". */
+			unknown_29_turns	= 0x29,
 			/** ? */
-			unknown_29		= 0x29,
-			/** ? */
-			steps			= 0x2A 
+			steps				= 0x2A 
 		};
 	};
 	struct ChunkSaveTarget {
@@ -669,8 +669,8 @@ namespace LSD_Reader {
 			layer						= 0x21,
 			/** ? */
 			unknown_22					= 0x22,
-			/** ? */
-			unknown_23					= 0x23,
+			/** Integer - Enum<EventPage_AnimType>? */
+			unknown_23_animation_type	= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
@@ -681,8 +681,8 @@ namespace LSD_Reader {
 			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
-			/** ? */
-			unknown_2f					= 0x2F,
+			/** Boolean - Overlap? */
+			unknown_2f_overlap			= 0x2F,
 			/** ? */
 			anim_paused					= 0x30,
 			/** ? */

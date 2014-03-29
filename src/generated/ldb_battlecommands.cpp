@@ -21,7 +21,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, death_handler1),
 	LCF_STRUCT_TYPED_FIELD(int, row),
 	LCF_STRUCT_TYPED_FIELD(int, battle_type),
-	LCF_STRUCT_TYPED_FIELD(int, unknown1),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_09),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattleCommand>, commands),
 	LCF_STRUCT_TYPED_FIELD(int, death_handler2),
 	LCF_STRUCT_TYPED_FIELD(int, death_event),

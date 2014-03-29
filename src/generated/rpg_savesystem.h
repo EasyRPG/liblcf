@@ -50,8 +50,8 @@ namespace RPG {
 		Music battle_end_music;
 		Music inn_music;
 		Music current_music;
-		Music unknown1_music;
-		Music unknown2_music;
+		Music before_vehicle_music;
+		Music before_battle_music;
 		Music stored_music;
 		Music boat_music;
 		Music ship_music;

@@ -38,13 +38,13 @@ namespace RPG {
 		int move_frequency;
 		int layer;
 		int unknown_22;
-		int unknown_23;
+		int unknown_23_animation_type;
 		bool lock_facing;
 		int move_speed;
 		MoveRoute move_route;
 		bool move_route_overwrite;
 		int move_route_index;
-		int unknown_2f;
+		int unknown_2f_overlap;
 		int anim_paused;
 		int unknown_33;
 		int unknown_34;

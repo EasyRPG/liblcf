@@ -44,7 +44,7 @@ AnimationTiming,flash_red,f,Integer,0x04,31,Integer
 AnimationTiming,flash_green,f,Integer,0x05,31,Integer
 AnimationTiming,flash_blue,f,Integer,0x06,31,Integer
 AnimationTiming,flash_power,f,Integer,0x07,31,Integer
-AnimationTiming,screen_shake,f,Enum<AnimationTiming_ScreenShake>,0x08,0,Integer - RPG2003 - TODO: Get chunk id
+AnimationTiming,screen_shake,f,Enum<AnimationTiming_ScreenShake>,0x08,0,Integer - RPG2003 - TODO: Get chunk ID
 AnimationCellData,priority,f,Integer,0x01,1,Bool - TODO: Needs confirmation
 AnimationCellData,cell_id,f,Integer,0x02,0,Integer
 AnimationCellData,x,f,Integer,0x03,0,Integer
@@ -75,7 +75,7 @@ BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,Integer
 BattleCommands,death_handler1,f,Integer,0x04,0,Integer
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,Integer
-BattleCommands,unknown1,f,Integer,0x09,0,Integer
+BattleCommands,unknown_09,f,Integer,0x09,0,Integer
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,Array - RPG::BattleCommand
 BattleCommands,death_handler2,f,Integer,0x0F,0,Integer
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,0,Integer
@@ -685,7 +685,7 @@ Map,lower_layer,f,Vector<Int16>,0x47,,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,Array - Short
 Map,events,f,Array<Event>,0x51,,Array - RPG::Event
 Map,save_count,f,Integer,0x5B,0,Integer
-SaveTitle,timestamp,f,Double,0x01,,double(?)
+SaveTitle,timestamp,f,Double,0x01,,double - timestamp in msaccess format
 SaveTitle,hero_name,f,String,0x0B,,char[]: hero name
 SaveTitle,hero_level,f,Integer,0x0C,0,int: hero level
 SaveTitle,hero_hp,f,Integer,0x0D,0,int: hero HP
@@ -721,8 +721,8 @@ SaveSystem,battle_music,f,Music,0x48,,
 SaveSystem,battle_end_music,f,Music,0x49,,
 SaveSystem,inn_music,f,Music,0x4A,,
 SaveSystem,current_music,f,Music,0x4B,,
-SaveSystem,unknown1_music,f,Music,0x4C,,
-SaveSystem,unknown2_music,f,Music,0x4D,,
+SaveSystem,before_vehicle_music,f,Music,0x4C,,
+SaveSystem,before_battle_music,f,Music,0x4D,,
 SaveSystem,stored_music,f,Music,0x4E,,
 SaveSystem,boat_music,f,Music,0x4F,,
 SaveSystem,ship_music,f,Music,0x50,,
@@ -779,7 +779,7 @@ SaveScreen,pan_x,f,Integer,0x29,0,int
 SaveScreen,pan_y,f,Integer,0x2A,0,int
 SaveScreen,battleanim_id,f,Integer,0x2B,0,int - battle animation ID
 SaveScreen,battleanim_target,f,Integer,0x2C,0,int - battle animation target
-SaveScreen,battleanim_unk_2d,f,Integer,0x2D,0,int - battle animation ??
+SaveScreen,unknown_2d_battle_anim,f,Integer,0x2D,0,int - battle animation? Ref<Animation>?
 SaveScreen,unknown_2e,f,Integer,0x2E,0,int
 SaveScreen,battleanim_global,f,Boolean,0x2F,False,int - battle animation global scope
 SaveScreen,weather,f,Integer,0x30,0,int
@@ -825,7 +825,7 @@ SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
 SavePartyLocation,move_frequency,f,Integer,0x20,-1,?
 SavePartyLocation,layer,f,Integer,0x21,1,?
 SavePartyLocation,unknown_22,f,Integer,0x22,0,?
-SavePartyLocation,unknown_23,f,Integer,0x23,1,?
+SavePartyLocation,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SavePartyLocation,move_speed,f,Integer,0x25,-1,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
@@ -833,7 +833,7 @@ SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move rout
 SavePartyLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SavePartyLocation,unknown_2c,f,Integer,0x2C,0,?
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
-SavePartyLocation,unknown_2f,f,Integer,0x2F,0,?
+SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap?
 SavePartyLocation,anim_paused,f,Integer,0x30,0,?
 SavePartyLocation,unknown_33,f,Integer,0x33,0,?
 SavePartyLocation,unknown_34,f,Integer,0x34,0,?
@@ -880,7 +880,7 @@ SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
 SaveVehicleLocation,move_frequency,f,Integer,0x20,-1,?
 SaveVehicleLocation,layer,f,Integer,0x21,1,?
 SaveVehicleLocation,unknown_22,f,Integer,0x22,0,?
-SaveVehicleLocation,unknown_23,f,Integer,0x23,1,?
+SaveVehicleLocation,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
 SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SaveVehicleLocation,move_speed,f,Integer,0x25,-1,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
@@ -934,7 +934,7 @@ SaveActor,status_size,f,Integer,0x51,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,array of short
 SaveActor,changed_class,f,Boolean,0x53,False,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,int class-id
-SaveActor,row,f,Integer,0x5B,0,RPG2k3 Battle row (-1 Back; 1 Front)
+SaveActor,row,f,Integer,0x5B,0,RPG2003 Battle row (-1 Back; 1 Front)
 SaveActor,two_weapon,f,Boolean,0x5C,False,bool
 SaveActor,lock_equipment,f,Boolean,0x5D,False,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,bool
@@ -959,7 +959,7 @@ SaveInventory,battles,f,Integer,0x20,0,?
 SaveInventory,defeats,f,Integer,0x21,0,?
 SaveInventory,escapes,f,Integer,0x22,0,?
 SaveInventory,victories,f,Integer,0x23,0,?
-SaveInventory,unknown_29,f,Integer,0x29,0,?
+SaveInventory,unknown_29_turns,f,Integer,0x29,0,Number of turns passed in the latest battle fought? RPG2000: "turn" passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a "turn".
 SaveInventory,steps,f,Integer,0x2A,0,?
 SaveTarget,map_id,f,Integer,0x01,0,int
 SaveTarget,map_x,f,Integer,0x02,0,int
@@ -990,13 +990,13 @@ SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?
 SaveMapEvent,move_frequency,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,1,?
 SaveMapEvent,unknown_22,f,Integer,0x22,0,?
-SaveMapEvent,unknown_23,f,Integer,0x23,1,?
+SaveMapEvent,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
 SaveMapEvent,lock_facing,f,Boolean,0x24,False,facing locked
 SaveMapEvent,move_speed,f,Integer,0x25,-1,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
-SaveMapEvent,unknown_2f,f,Integer,0x2F,-1,?
+SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
 SaveMapEvent,unknown_33,f,Integer,0x33,0,?
 SaveMapEvent,unknown_34,f,Integer,0x34,0,?

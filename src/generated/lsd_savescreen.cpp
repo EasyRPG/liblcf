@@ -42,7 +42,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, pan_y),
 	LCF_STRUCT_TYPED_FIELD(int, battleanim_id),
 	LCF_STRUCT_TYPED_FIELD(int, battleanim_target),
-	LCF_STRUCT_TYPED_FIELD(int, battleanim_unk_2d),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2d_battle_anim),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_2e),
 	LCF_STRUCT_TYPED_FIELD(bool, battleanim_global),
 	LCF_STRUCT_TYPED_FIELD(int, weather),

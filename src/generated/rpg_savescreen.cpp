@@ -38,7 +38,7 @@ RPG::SaveScreen::SaveScreen() {
 	pan_y = 0;
 	battleanim_id = 0;
 	battleanim_target = 0;
-	battleanim_unk_2d = 0;
+	unknown_2d_battle_anim = 0;
 	unknown_2e = 0;
 	battleanim_global = false;
 	weather = 0;
