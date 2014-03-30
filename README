@@ -23,7 +23,7 @@ Requirements
 ------------
 
 iconv for the character set conversion (not for Win32 or libc).
-Expat for XML reading support (optional).
+Expat for XML reading support.
 Python for the template source code regeneration (optional).
 
 
@@ -39,11 +39,11 @@ Project files are available in Git repositories.
 Building
 --------
 
-  Compile with:
-  ./configure && make
+  Compile and install with:
 
-  Install as super user with:
-  make install
+  ./configure --prefix usr
+  make
+  sudo make install
 
 
 License
