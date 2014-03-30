@@ -41,7 +41,7 @@ Building
 
   Compile and install with:
 
-  ./configure --prefix usr
+  ./configure --prefix /usr
   make
   sudo make install
 
