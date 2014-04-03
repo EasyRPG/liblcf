@@ -6,7 +6,7 @@ bin/
 /doc/
 /lib/
 /liblcf-*/
-/m4/
+/builds/autoconf/m4/
 /tests/time_stamp*
 .deps/
 .libs/
