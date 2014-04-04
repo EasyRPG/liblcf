@@ -1,28 +1,27 @@
 
 # autotools build method
 /autom4te.cache/
-/builds/autoconf/m4/
+/builds/autoconf/
+!/builds/autoconf/config.rpath
+/liblcf-*/
+/tests/*.log
+/tests/*.trs
 .deps/
 .libs/
 .dirstamp
 Makefile.in
 aclocal.m4
-compile
-config.guess
 config.h
 config.h.in
 config.log
 config.status
-config.sub
 configure
-depcomp
-install-sh
+liblcf-*.tar.gz
 libtool
-ltmain.sh
-missing
 stamp-h1
-test-driver
 test-suite.log
+*.la
+*.lo
 
 # visual studio build method
 /builds/vs20*/Debug*
@@ -50,13 +49,9 @@ CMakeFiles/
 Makefile
 *~
 *.a
-*.la
-*.lo
 *.o
 *.pc
-*.tar.gz
 
-# to be clarified
-/build/
-/liblcf-*/
+# tests
 /tests/time_stamp*
+!/tests/time_stamp.cpp
