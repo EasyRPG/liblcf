@@ -34,9 +34,8 @@ CMakeCache.txt
 CMakeFiles/
 *.cmake
 !/builds/cmake/Modules/Find*.cmake
-/builds/cmake/test_time_stamp
-/bin/
-/lib/
+/builds/cmake/bin/
+/builds/cmake/lib/
 
 # qt build method
 /builds/qt/
