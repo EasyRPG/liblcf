@@ -36,10 +36,15 @@ CMakeFiles/
 *.cmake
 !/builds/cmake/Modules/Find*.cmake
 /builds/cmake/test_time_stamp
+/bin/
+/lib/
 
 # qt build method
 /builds/qt/
 !/builds/qt/liblcf.pro
+
+# doxygen generated files
+/doc/
 
 # other generated files
 Makefile
@@ -52,9 +57,6 @@ Makefile
 *.tar.gz
 
 # to be clarified
-bin/
 /build/
-/doc/
-/lib/
 /liblcf-*/
 /tests/time_stamp*
