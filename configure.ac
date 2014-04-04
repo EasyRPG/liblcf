@@ -5,11 +5,11 @@ AC_PREREQ([2.69])
 AC_INIT([liblcf],[0.1.3],[https://github.com/EasyRPG/liblcf/issues],[liblcf],[https://easy-rpg.org/])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
-AM_INIT_AUTOMAKE([1.11 foreign subdir-objects -Wall -Werror -Wno-extra-portability])
+AM_INIT_AUTOMAKE([1.11.4 foreign subdir-objects -Wall -Werror -Wno-extra-portability])
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
-AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
 AC_CONFIG_SRCDIR([src/data.cpp])
 AC_CONFIG_HEADERS([config.h])
 

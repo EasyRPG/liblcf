@@ -1,46 +1,56 @@
+
+# autotools build method
 /autom4te.cache/
-bin/
-/build/
-/builds/qt/
-!/builds/qt/liblcf.pro
-/doc/
-/lib/
+/builds/autoconf/
+!/builds/autoconf/config.rpath
 /liblcf-*/
-/m4/
-/tests/time_stamp*
+/tests/*.log
+/tests/*.trs
 .deps/
 .libs/
-aclocal.m4
-builds/cmake/test_time_stamp
-builds/liblcf.pc
-builds/vs20*/Debug*
-builds/vs20*/Release*
-builds/vs20*/*.user
-builds/vs20*/x64/
-CMakeCache.txt
-CMakeFiles
-Makefile
+.dirstamp
 Makefile.in
-config.guess
+aclocal.m4
 config.h
 config.h.in
 config.log
 config.status
-config.sub
 configure
-depcomp
-install-sh
+liblcf-*.tar.gz
 libtool
-ltmain.sh
-missing
 stamp-h1
-test-driver
 test-suite.log
-*~
-*.cmake
-*.a
 *.la
-*.o
 *.lo
-*.tar.gz
-.dirstamp
+
+# visual studio build method
+/builds/vs20*/Debug*
+/builds/vs20*/Release*
+/builds/vs20*/*.user
+/builds/vs20*/x64/
+
+# cmake build method
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+!/builds/cmake/Modules/Find*.cmake
+/builds/cmake/bin/
+/builds/cmake/lib/
+
+# qt build method
+/builds/qt/
+!/builds/qt/liblcf.pro
+
+# doxygen generated files
+/doc/
+
+# other generated files
+Makefile
+*~
+*.a
+*.o
+*.pc
+
+# tests
+/tests/time_stamp*
+!/tests/time_stamp.cpp
