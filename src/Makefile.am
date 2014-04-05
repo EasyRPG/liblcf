@@ -1,5 +1,6 @@
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CXXFLAGS = -I$(srcdir)/generated
+liblcf_la_LDFLAGS = -no-undefined
 liblcf_la_SOURCES = \
 	data.cpp \
 	ini.cpp \
