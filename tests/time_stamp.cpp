@@ -31,12 +31,12 @@ static void ToMicrosoftAccessTime() {
 }
 
 static void ToUnixTime() {
-	std::time_t const current = std::floor(std::time(NULL) / 100.0) * 100.0;
+	std::time_t const current = std::floor(std::time(NULL) / 1000.0) * 1000.0;
 	assert(current == LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
 }
 
 static void GenerateTimeStamp() {
-	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 100.0) * 100.0);
+	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
 	assert(current == LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
 }
 

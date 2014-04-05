@@ -16,15 +16,15 @@
  * Timestamp.
  */
 namespace {
-double const DIFF_DAYS = std::floor(365.2422 * 70) + 3;
-double const SECOND_PER_HOUR = 60 * 60 * 24;
+double const DIFF_DAYS = 25569;
+double const SECONDS_PER_DAY = 86400;
 }
 
 double LSD_Reader::ToMicrosoftAccessTime(std::time_t const t) {
-	return(t / SECOND_PER_HOUR + DIFF_DAYS);
+	return(t / SECONDS_PER_DAY + DIFF_DAYS);
 }
 std::time_t LSD_Reader::ToUnixTime(double const ms) {
-	return(std::time_t(ms * SECOND_PER_HOUR - DIFF_DAYS * SECOND_PER_HOUR));
+	return(std::time_t(ms * SECONDS_PER_DAY - DIFF_DAYS * SECONDS_PER_DAY));
 }
 
 double LSD_Reader::GenerateTimeStamp(std::time_t const t) {
