@@ -685,7 +685,7 @@ Map,lower_layer,f,Vector<Int16>,0x47,,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,Array - Short
 Map,events,f,Array<Event>,0x51,,Array - RPG::Event
 Map,save_count,f,Integer,0x5B,0,Integer
-SaveTitle,timestamp,f,Double,0x01,,double - timestamp in msaccess format
+SaveTitle,timestamp,f,Double,0x01,,double - timestamp in Delphi's TDateTime format
 SaveTitle,hero_name,f,String,0x0B,,char[]: hero name
 SaveTitle,hero_level,f,Integer,0x0C,0,int: hero level
 SaveTitle,hero_hp,f,Integer,0x0D,0,int: hero HP

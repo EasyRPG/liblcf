@@ -15,7 +15,7 @@
 namespace LSD_Reader {
 	struct ChunkSaveTitle {
 		enum Index {
-			/** double - timestamp in msaccess format */
+			/** double - timestamp in Delphi's TDateTime format */
 			timestamp	= 0x01,
 			/** char[]: hero name */
 			hero_name	= 0x0B,
