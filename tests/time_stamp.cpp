@@ -5,9 +5,9 @@
 #include "lsd_reader.h"
 
 
-static void ToMicrosoftAccessTime() {
+static void ToTDateTime() {
 #define CheckTime(val, year, month, day, hour, minute, second) { \
-			std::time_t const current = LSD_Reader::ToUnixTime(val);			 \
+			std::time_t const current = LSD_Reader::ToUnixTimestamp(val);			 \
 		struct tm const* const t = std::gmtime(&current); \
 		 \
 		assert(t->tm_year == year - 1900); \
@@ -30,20 +30,20 @@ static void ToMicrosoftAccessTime() {
 #undef CheckTime
 }
 
-static void ToUnixTime() {
-	std::time_t const current = std::floor(std::time(NULL) / 100.0) * 100.0;
-	assert(current == LSD_Reader::ToUnixTime(LSD_Reader::ToMicrosoftAccessTime(current)));
+static void ToUnixTimestamp() {
+	std::time_t const current = std::floor(std::time(NULL) / 1000.0) * 1000.0;
+	assert(current == LSD_Reader::ToUnixTimestamp(LSD_Reader::ToTDateTime(current)));
 }
 
-static void GenerateTimeStamp() {
-	double const current = LSD_Reader::ToMicrosoftAccessTime(std::floor(std::time(NULL) / 100.0) * 100.0);
-	assert(current == LSD_Reader::ToMicrosoftAccessTime(LSD_Reader::ToUnixTime(current)));
+static void GenerateTimestamp() {
+	double const current = LSD_Reader::ToTDateTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
+	assert(current == LSD_Reader::ToTDateTime(LSD_Reader::ToUnixTimestamp(current)));
 }
 
 int main() {
-  ToMicrosoftAccessTime();
-  ToUnixTime();
-  GenerateTimeStamp();
+  ToTDateTime();
+  ToUnixTimestamp();
+  GenerateTimestamp();
 
   return EXIT_SUCCESS;
 }
