@@ -35,15 +35,6 @@ namespace ReaderUtil {
 	 * Converts a string to unicode.
 	 *
 	 * @param str_to_encode string to encode
-	 *
-	 * @return the recoded string.
-	 */
-	std::string Recode(const std::string& str_to_encode);
-
-	/**
-	 * Converts a string to unicode from specified encoding.
-	 *
-	 * @param str_to_encode string to encode
 	 * @param source_encoding Encoding of str_to_encode
 	 *
 	 * @return the recoded string.

@@ -112,10 +112,6 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	return "";
 }
 
-std::string ReaderUtil::Recode(const std::string& str_to_encode) {
-	return ReaderUtil::Recode(str_to_encode, ReaderUtil::GetEncoding(FileFinder::FindDefault(INI_NAME)));
-}
-
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
 #ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
