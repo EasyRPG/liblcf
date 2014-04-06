@@ -7,11 +7,7 @@
 #include "rpg_database.h"
 #include "data.h"
 
-/**
- * Data namespace.
- */
 namespace Data {
-	/** Database Data (ldb). */
 	RPG::Database data;
 
 	std::vector<RPG::Actor>& actors = data.actors;
@@ -33,13 +29,9 @@ namespace Data {
 	std::vector<RPG::Switch>& switches = data.switches;
 	std::vector<RPG::Variable>& variables = data.variables;
 
-	/** TreeMap (lmt). */
 	RPG::TreeMap treemap;
 }
 
-/**
- * Clears database data.
- */
 void Data::Clear() {
 	actors.clear();
 	skills.clear();

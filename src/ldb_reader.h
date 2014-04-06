@@ -37,10 +37,26 @@
  * LDB Reader namespace.
  */
 namespace LDB_Reader {
-	bool Load(const std::string &filename, const std::string &encoding);
-	bool Save(const std::string &filename, const std::string &encoding);
-	bool SaveXml(const std::string &filename);
-	bool LoadXml(const std::string &filename);
+
+	/**
+	 * Loads Database.
+	 */
+	bool Load(const std::string& filename, const std::string& encoding);
+
+	/**
+	 * Saves Database.
+	 */
+	bool Save(const std::string& filename, const std::string& encoding);
+
+	/**
+	 * Saves Database as XML.
+	 */
+	bool SaveXml(const std::string& filename);
+
+	/**
+	 * Load Database as XML.
+	 */
+	bool LoadXml(const std::string& filename);
 }
 
 #endif

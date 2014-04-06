@@ -62,7 +62,7 @@ namespace Data {
 	extern RPG::TreeMap treemap;
 
 	/**
-	 * Clears all data.
+	 * Clears database data.
 	 */
 	void Clear();
 }
