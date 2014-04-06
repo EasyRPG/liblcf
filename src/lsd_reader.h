@@ -17,14 +17,41 @@
  * LSD Reader namespace.
  */
 namespace LSD_Reader {
-	double ToMicrosoftAccessTime(std::time_t const t);
-	std::time_t ToUnixTime(double const ms);
-	double GenerateTimeStamp(std::time_t const t = std::time(NULL));
+	/**
+	 * Converts from UNIX timestamp to Delphi's TDateTime format.
+	 */
+	double ToTDateTime(std::time_t const t);
 
-	std::auto_ptr<RPG::Save> Load(const std::string &filename, const std::string &encoding);
+
+	/**
+	 * Converts from Delphi's TDateTime format to UNIX timestamp.
+	 */
+	std::time_t ToUnixTimestamp(double const ms);
+
+	/**
+	 * Returns current system time encoded in Delphi's TDateTime format.
+	 */
+	double GenerateTimestamp(std::time_t const t = std::time(NULL));
+
+	/**
+	 * Loads Savegame.
+	 */
+	std::auto_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);
+
+	/**
+	 * Saves Savegame.
+	 */
 	bool Save(const std::string& filename, const RPG::Save& save, const std::string &encoding);
+
+	/*
+	 * Saves Savegame as XML.
+	 */
 	bool SaveXml(const std::string& filename, const RPG::Save& save);
-	std::auto_ptr<RPG::Save> LoadXml(const std::string &filename);
+
+	/**
+	 * Loads Savegame as XML.
+	 */
+	std::auto_ptr<RPG::Save> LoadXml(const std::string& filename);
 }
 
 #endif

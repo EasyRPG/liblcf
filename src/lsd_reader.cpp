@@ -12,28 +12,20 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
-/**
- * Timestamp.
- */
-namespace {
-double const DIFF_DAYS = 25569;
-double const SECONDS_PER_DAY = 86400;
+
+double LSD_Reader::ToTDateTime(std::time_t const t) {
+	// 25569 is UnixDateDelta: number of days between 1970-01-01 and 1900-01-01
+	return(t / 86400.0 + 25569.0);
 }
 
-double LSD_Reader::ToMicrosoftAccessTime(std::time_t const t) {
-	return(t / SECONDS_PER_DAY + DIFF_DAYS);
-}
-std::time_t LSD_Reader::ToUnixTime(double const ms) {
-	return(std::time_t(ms * SECONDS_PER_DAY - DIFF_DAYS * SECONDS_PER_DAY));
+std::time_t LSD_Reader::ToUnixTimestamp(double const ms) {
+	return(std::time_t(std::floor(ms * 86400.0 - 25569.0 * 86400.0)));
 }
 
-double LSD_Reader::GenerateTimeStamp(std::time_t const t) {
-	return ToMicrosoftAccessTime(t);
+double LSD_Reader::GenerateTimestamp(std::time_t const t) {
+	return ToTDateTime(t);
 }
 
-/**
- * Loads Savegame.
- */
 std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string &encoding) {
 	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
@@ -54,9 +46,6 @@ std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std
 	return std::auto_ptr<RPG::Save>(save);
 }
 
-/**
- * Saves Savegame.
- */
 bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const std::string &encoding) {
 	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
@@ -67,15 +56,12 @@ bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const 
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
-	const_cast<RPG::Save&>(save).title.timestamp = GenerateTimeStamp();
+	const_cast<RPG::Save&>(save).title.timestamp = GenerateTimestamp();
 
 	Struct<RPG::Save>::WriteLcf(save, writer);
 	return true;
 }
 
-/*
- * Saves Savegame as XML.
- */
 bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -89,9 +75,6 @@ bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	return true;
 }
 
-/**
- * Loads Savegame as XML.
- */
 std::auto_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {
