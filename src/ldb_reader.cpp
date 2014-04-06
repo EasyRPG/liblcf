@@ -10,10 +10,7 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
-/**
- * Loads Database.
- */
-bool LDB_Reader::Load(const std::string& filename, const std::string &encoding) {
+bool LDB_Reader::Load(const std::string& filename, const std::string& encoding) {
 	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s database file.\n", filename.c_str());
@@ -32,10 +29,7 @@ bool LDB_Reader::Load(const std::string& filename, const std::string &encoding) 
 	return true;
 }
 
-/**
- * Saves Database.
- */
-bool LDB_Reader::Save(const std::string& filename, const std::string &encoding) {
+bool LDB_Reader::Save(const std::string& filename, const std::string& encoding) {
 	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't open %s database file.\n", filename.c_str());
@@ -48,9 +42,6 @@ bool LDB_Reader::Save(const std::string& filename, const std::string &encoding) 
 	return true;
 }
 
-/**
- * Saves Database as XML.
- */
 bool LDB_Reader::SaveXml(const std::string& filename) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -63,9 +54,6 @@ bool LDB_Reader::SaveXml(const std::string& filename) {
 	return true;
 }
 
-/**
- * Load Database as XML.
- */
 bool LDB_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {

@@ -84,11 +84,19 @@ public:
 	template <class T>
 	static void ReadVector(std::vector<T>& ref, const std::string& data);
 
-	/*
-	 * Callbacks
+	/**
+	 * Start element callback.
 	 */
 	void StartElement(const char* name, const char** atts);
+
+	/**
+	 * Character data callback.
+	 */
 	void CharacterData(const char* s, int len);
+
+	/**
+	 * End element callback.
+	 */
 	void EndElement(const char* name);
 
 protected:

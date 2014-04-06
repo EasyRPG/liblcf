@@ -10,9 +10,6 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
-/**
- * Loads Map Tree.
- */
 bool LMT_Reader::Load(const std::string& filename, const std::string &encoding) {
 	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
@@ -32,9 +29,6 @@ bool LMT_Reader::Load(const std::string& filename, const std::string &encoding) 
 	return true;
 }
 
-/**
- * Saves Map Tree.
- */
 bool LMT_Reader::Save(const std::string& filename, const std::string &encoding) {
 	LcfWriter writer(filename, encoding);
 	if (!writer.IsOk()) {
@@ -48,9 +42,6 @@ bool LMT_Reader::Save(const std::string& filename, const std::string &encoding) 
 	return true;
 }
 
-/**
- * Saves Map Tree as XML.
- */
 bool LMT_Reader::SaveXml(const std::string& filename) {
 	XmlWriter writer(filename);
 	if (!writer.IsOk()) {
@@ -63,9 +54,6 @@ bool LMT_Reader::SaveXml(const std::string& filename) {
 	return true;
 }
 
-/**
- * Loads Map Tree as XML.
- */
 bool LMT_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {

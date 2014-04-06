@@ -89,16 +89,10 @@ void XmlReader::Parse() {
 #endif
 }
 
-/**
- * Change the handler
- */
 void XmlReader::SetHandler(XmlHandler* handler) {
 	handlers.back() = handler;
 }
 
-/**
- * Start Element
- */
 void XmlReader::StartElement(const char* name, const char** atts) {
 	XmlHandler* handler = handlers.back();
 	handlers.push_back(handler);
@@ -106,16 +100,10 @@ void XmlReader::StartElement(const char* name, const char** atts) {
 	buffer.clear();
 }
 
-/**
- * Character Data
- */
 void XmlReader::CharacterData(const char* s, int len) {
 	buffer.append(s, len);
 }
 
-/**
- * End Element
- */
 void XmlReader::EndElement(const char* name) {
 	XmlHandler* handler = handlers.back();
 	handler->CharacterData(*this, buffer);
