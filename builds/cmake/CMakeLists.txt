@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(liblcf C CXX)
 set(VERSION 0.1.3)
 
-set(EXECUTABLE_OUTPUT_PATH bin)
-set(LIBRARY_OUTPUT_PATH lib)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/lib)
 #link_directories(lib)
 #cmake_policy(CMP0015 NEW)
 
