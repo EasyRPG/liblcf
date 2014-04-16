@@ -28,6 +28,7 @@ test-suite.log
 /builds/vs20*/Release*
 /builds/vs20*/*.user
 /builds/vs20*/x64/
+/lib/
 
 # cmake build method
 CMakeCache.txt
