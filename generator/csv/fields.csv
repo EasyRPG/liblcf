@@ -6,7 +6,7 @@ Actor,character_name,f,String,0x03,'',String
 Actor,character_index,f,Integer,0x04,0,Integer
 Actor,transparent,f,Boolean,0x05,False,Flag
 Actor,initial_level,f,Integer,0x07,1,Integer
-Actor,final_level,f,Integer,0x08,50|99,Integer
+Actor,final_level,f,Integer,0x08,-1,Integer
 Actor,critical_hit,f,Boolean,0x09,True,Flag
 Actor,critical_hit_chance,f,Integer,0x0A,30,Integer
 Actor,face_name,f,String,0x0F,,String
@@ -16,8 +16,8 @@ Actor,fix_equipment,f,Boolean,0x16,False,Flag
 Actor,auto_battle,f,Boolean,0x17,False,Flag
 Actor,super_guard,f,Boolean,0x18,False,Flag
 Actor,parameters,f,Parameters,0x1F,,Array x 6 - Short
-Actor,exp_base,f,Integer,0x29,30|300,Integer
-Actor,exp_inflation,f,Integer,0x2A,30|300,Integer
+Actor,exp_base,f,Integer,0x29,-1,Integer
+Actor,exp_inflation,f,Integer,0x2A,-1,Integer
 Actor,exp_correction,f,Integer,0x2B,0,Integer
 Actor,initial_equipment,f,Equipment,0x33,,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,Integer

@@ -7,17 +7,6 @@
 #ifndef LCF_OPTIONS_H
 #define LCF_OPTIONS_H
 
-#define RPG2K	1
-#define RPG2K3	2
-
-/**
- * Defines RPG Maker compability, RPG2K for RPG Maker 2000
- * and RPG2K3 for RPG Maker 2003.
- */
-#ifndef RPGMAKER
-#  define RPGMAKER RPG2K
-#endif
-
 /** INI configuration filename. */
 #define INI_NAME "RPG_RT.ini"
 /** Read game title from ini file. */

@@ -164,12 +164,17 @@ void RPG::Save::Setup() {
 	map_info.Setup();
 }
 
-void RPG::Actor::Init() {
-#if RPGMAKER == RPG2K3
-	final_level = 99;
-	exp_base = 300;
-	exp_inflation = 300;
-#endif
+void RPG::Actor::Setup() {
+	if (Data::system.ldb_id == 2003) {
+		final_level = final_level == -1 ? 99 : final_level;
+		exp_base = exp_base == -1 ? 300 : exp_base;
+		exp_inflation = exp_inflation == -1 ? 300 : exp_inflation;
+	}
+	else {
+		final_level = final_level == -1 ? 50 : final_level;
+		exp_base = exp_base == -1 ? 30 : exp_base;
+		exp_inflation = exp_inflation == -1 ? 30 : exp_inflation;
+	}
 	parameters.Setup(final_level);
 }
 
