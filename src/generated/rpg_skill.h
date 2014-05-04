@@ -25,7 +25,8 @@ namespace RPG {
 			Type_normal = 0,
 			Type_teleport = 1,
 			Type_escape = 2,
-			Type_switch = 3
+			Type_switch = 3,
+			Type_custom = 4
 		};
 		enum SpType {
 			SpType_cost = 0,

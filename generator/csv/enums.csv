@@ -54,6 +54,7 @@ Skill,Type,normal,0
 Skill,Type,teleport,1
 Skill,Type,escape,2
 Skill,Type,switch,3
+Skill,Type,custom,4
 Skill,SpType,cost,0
 Skill,SpType,percent,1
 Skill,Scope,enemy,0
