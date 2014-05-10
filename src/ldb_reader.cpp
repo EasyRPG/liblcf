@@ -26,6 +26,14 @@ bool LDB_Reader::Load(const std::string& filename, const std::string& encoding) 
 		fprintf(stderr, "Warning: %s header is not LcfDataBase and might not be a valid RPG2000 database.\n", filename.c_str());
 	}
 	TypeReader<RPG::Database>::ReadLcf(Data::data, reader, 0);
+
+	// Delayed initialization of some actor fields because they are engine
+	// dependent
+	std::vector<RPG::Actor>::iterator it;
+	for (it = Data::actors.begin(); it != Data::actors.end(); ++it) {
+		(*it).Setup();
+	}
+
 	return true;
 }
 

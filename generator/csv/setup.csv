@@ -1,4 +1,4 @@
-Actor,void Init(),
+Actor,void Setup(),
 Chipset,void Init(),
 MapInfo,void Init(),
 Save,void Setup(),

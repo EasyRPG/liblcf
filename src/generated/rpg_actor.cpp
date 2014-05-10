@@ -20,7 +20,7 @@ RPG::Actor::Actor() {
 	character_index = 0;
 	transparent = false;
 	initial_level = 1;
-	final_level = 50;
+	final_level = -1;
 	critical_hit = true;
 	critical_hit_chance = 30;
 	face_index = 0;
@@ -28,8 +28,8 @@ RPG::Actor::Actor() {
 	fix_equipment = false;
 	auto_battle = false;
 	super_guard = false;
-	exp_base = 30;
-	exp_inflation = 30;
+	exp_base = -1;
+	exp_inflation = -1;
 	exp_correction = 0;
 	unarmed_animation = 1;
 	class_id = 0;
@@ -38,6 +38,4 @@ RPG::Actor::Actor() {
 	battler_animation = 1;
 	rename_skill = false;
 	skill_name = "";
-
-	Init();
 }
