@@ -590,7 +590,7 @@ Database,battlecommands,f,BattleCommands,0x1D,,RPG::BattleCommand - RPG2003
 Database,classes,f,Array<Class>,0x1E,,RPG::Class - RPG2003
 Database,classD1,f,,0x1F,,Duplicated? - Not used - RPG2003
 Database,battleranimations,f,Array<BattlerAnimation>,0x20,,RPG::BattlerAnimation - RPG2003
-Encounter,troop_id,f,Ref<Troop>,0x01,,Integer
+Encounter,troop_id,f,Ref<Troop>,0x01,0,Integer
 MapInfo,name,f,String,0x01,'',String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,Integer. Used to inherit parent map properties
 MapInfo,indentation,f,Integer,0x03,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
@@ -685,7 +685,7 @@ Map,lower_layer,f,Vector<Int16>,0x47,,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,Array - Short
 Map,events,f,Array<Event>,0x51,,Array - RPG::Event
 Map,save_count,f,Integer,0x5B,0,Integer
-SaveTitle,timestamp,f,Double,0x01,,double - timestamp in Delphi's TDateTime format
+SaveTitle,timestamp,f,Double,0x01,0,double - timestamp in Delphi's TDateTime format
 SaveTitle,hero_name,f,String,0x0B,,char[]: hero name
 SaveTitle,hero_level,f,Integer,0x0C,0,int: hero level
 SaveTitle,hero_hp,f,Integer,0x0D,0,int: hero HP
@@ -817,8 +817,8 @@ SavePartyLocation,unknown_01,f,Integer,0x01,1,?
 SavePartyLocation,map_id,f,Integer,0x0B,-1,?
 SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
-SavePartyLocation,prelock_direction,f,Integer,0x15,1,Facing direction before lock
-SavePartyLocation,direction,f,Integer,0x16,1,Current facing direction
+SavePartyLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
+SavePartyLocation,direction,f,Integer,0x16,2,Current facing direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,unknown_18,f,Integer,0x18,0,?
 SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
@@ -872,8 +872,8 @@ SaveVehicleLocation,unknown_01,f,Integer,0x01,-1,?
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
-SaveVehicleLocation,prelock_direction,f,Integer,0x15,1,Facing direction before lock
-SaveVehicleLocation,direction,f,Integer,0x16,1,Current facing direction
+SaveVehicleLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
+SaveVehicleLocation,direction,f,Integer,0x16,2,Current facing direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,unknown_18,f,Integer,0x18,0,?
 SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
@@ -982,8 +982,8 @@ SaveMapEvent,unknown_01,f,Integer,0x01,-1,?
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
 SaveMapEvent,position_y,f,Integer,0x0D,-1,?
-SaveMapEvent,prelock_direction,f,Integer,0x15,1,Facing direction before lock
-SaveMapEvent,direction,f,Integer,0x16,1,Current facing direction
+SaveMapEvent,prelock_direction,f,Integer,0x15,2,Facing direction before lock
+SaveMapEvent,direction,f,Integer,0x16,2,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,unknown_18,f,Integer,0x18,0,?
 SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?

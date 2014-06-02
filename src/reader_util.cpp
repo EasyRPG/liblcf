@@ -97,7 +97,7 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 			int codepage = atoi(encoding.c_str());
 			if (codepage > 0) {
 				// Looks like a valid codepage
-				return encoding.c_str();
+				return encoding;
 			}
 #else
 			std::string iconv_str = CodepageToIconv(atoi(encoding.c_str()));

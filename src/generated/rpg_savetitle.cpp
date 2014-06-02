@@ -13,6 +13,7 @@
  * Constructor.
  */
 RPG::SaveTitle::SaveTitle() {
+	timestamp = 0;
 	hero_level = 0;
 	hero_hp = 0;
 	face1_id = 0;
