@@ -31,6 +31,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	move_speed = -1;
 	move_route_overwrite = false;
 	move_route_index = 0;
+	move_route_repeated = false;
 	unknown_2f_overlap = -1;
 	anim_paused = 0;
 	unknown_33 = 0;

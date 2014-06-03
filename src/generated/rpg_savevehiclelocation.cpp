@@ -30,6 +30,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	move_speed = -1;
 	move_route_overwrite = false;
 	move_route_index = 0;
+	move_route_repeated = false;
 	anim_paused = 0;
 	unknown_33 = 0;
 	unknown_34 = 0;

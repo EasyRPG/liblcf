@@ -44,6 +44,7 @@ namespace RPG {
 		MoveRoute move_route;
 		bool move_route_overwrite;
 		int move_route_index;
+		bool move_route_repeated;
 		int unknown_2f_overlap;
 		int anim_paused;
 		int unknown_33;
