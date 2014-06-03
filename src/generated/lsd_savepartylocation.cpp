@@ -35,7 +35,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
 	LCF_STRUCT_TYPED_FIELD(bool, move_route_overwrite),
 	LCF_STRUCT_TYPED_FIELD(int, move_route_index),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_2c),
+	LCF_STRUCT_TYPED_FIELD(bool, move_route_repeated),
 	LCF_STRUCT_TYPED_FIELD(bool, sprite_transparent),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_2f_overlap),
 	LCF_STRUCT_TYPED_FIELD(int, anim_paused),

@@ -40,7 +40,7 @@ namespace RPG {
 		MoveRoute move_route;
 		bool move_route_overwrite;
 		int move_route_index;
-		int unknown_2c;
+		bool move_route_repeated;
 		bool sprite_transparent;
 		int unknown_2f_overlap;
 		int anim_paused;

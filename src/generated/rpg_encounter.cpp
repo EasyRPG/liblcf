@@ -14,4 +14,5 @@
  */
 RPG::Encounter::Encounter() {
 	ID = 0;
+	troop_id = 0;
 }

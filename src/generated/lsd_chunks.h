@@ -323,8 +323,8 @@ namespace LSD_Reader {
 			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
-			/** ? */
-			unknown_2c					= 0x2C,
+			/** Boolean - Repeating move route has been completed at least once */
+			move_route_repeated			= 0x2C,
 			/** bool */
 			sprite_transparent			= 0x2E,
 			/** Boolean - Overlap? */
@@ -437,6 +437,8 @@ namespace LSD_Reader {
 			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
+			/** Boolean - Repeating move route has been completed at least once */
+			move_route_repeated			= 0x2C,
 			/** ? */
 			anim_paused					= 0x30,
 			/** ? */
@@ -681,6 +683,8 @@ namespace LSD_Reader {
 			move_route_overwrite		= 0x2A,
 			/** Index of MoveEvent command route */
 			move_route_index			= 0x2B,
+			/** Boolean - Repeating move route has been completed at least once */
+			move_route_repeated			= 0x2C,
 			/** Boolean - Overlap? */
 			unknown_2f_overlap			= 0x2F,
 			/** ? */

@@ -17,8 +17,8 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	prelock_direction = 1;
-	direction = 1;
+	prelock_direction = 2;
+	direction = 2;
 	anim_frame = 1;
 	unknown_18 = 0;
 	unknown_1f = 0;
@@ -30,7 +30,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	move_speed = -1;
 	move_route_overwrite = false;
 	move_route_index = 0;
-	unknown_2c = 0;
+	move_route_repeated = false;
 	sprite_transparent = false;
 	unknown_2f_overlap = 0;
 	anim_paused = 0;
