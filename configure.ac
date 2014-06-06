@@ -26,12 +26,6 @@ AS_IF([test "x$enable_xml" != "xno"],[
 	PKG_CHECK_MODULES([EXPAT],[expat],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML reading support (expat)])])
 ])
 
-# Check for endianess
-AC_C_BIGENDIAN
-AS_IF([test "x$ac_cv_c_bigendian" = "xyes"],[
-	AC_DEFINE([LCF_BIG_ENDIAN],[1],[Define if byte order is big-endian])
-])
-
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h],[],[AC_MSG_ERROR([cannot find stdint.h, bailing out])])
 
@@ -43,6 +37,7 @@ AC_TYPE_SIZE_T
 AC_TYPE_UINT16_T
 AC_TYPE_UINT32_T
 AC_TYPE_UINT8_T
+AC_C_BIGENDIAN
 
 # Checks for library functions.
 AC_CHECK_FUNCS([floor strrchr strtol])
