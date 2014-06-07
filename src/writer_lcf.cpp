@@ -126,7 +126,7 @@ std::string LcfWriter::Decode(const std::string& str_to_encode) {
 #endif
 }
 
-#ifdef LCF_BIG_ENDIAN
+#ifdef WORDS_BIGENDIAN
 void LcfWriter::SwapByteOrder(uint16_t& us)
 {
 	us =	(us >> 8) |

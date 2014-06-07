@@ -2,8 +2,7 @@ liblcf
 ======
 
 liblcf is a library to handle RPG Maker 2000 and 2003 game data.
-It can read and write LCF and XML files. Part of C++ source files
-can be regenerated from templates and CSV files using a Python script.
+It can read and write LCF and XML files.
 
 liblcf is part of the EasyRPG Project. More information is available
 at the project website:
@@ -22,9 +21,8 @@ Documentation is available at the documentation wiki:
 Requirements
 ------------
 
-iconv for the character set conversion (not for Win32 or libc).
+iconv for character set conversion (not for Win32 or libc).
 Expat for XML reading support.
-Python for the template source code regeneration (optional).
 
 
 Source code
@@ -39,11 +37,57 @@ Project files are available in Git repositories.
 Building
 --------
 
-  Compile and install with:
+* Makefile method:
 
-  ./configure --prefix /usr
-  make
-  sudo make install
+  Building requirements:
+
+    pkg-config
+    make
+
+  1. Unpack the tarball with:
+
+    tar xf liblcf-0.2.tar.xz
+
+  2. Enter in the package directory with:
+
+    cd liblcf-0.2
+
+  3. Compile and install with:
+
+    ./configure --prefix /usr
+    make
+    sudo make install
+
+
+  Specific building requirements from source tree (Git):
+
+    autoconf >= 2.69
+    automake >= 1.11.4
+    libtool
+
+  To generate the "configure" script, run:
+
+    autoreconf -i
+
+  Then follow the "3. Compile with:" section.
+
+
+  Read more detailed instructions at:
+
+  https://easy-rpg.org/wiki/development/compiling/liblcf/autotools
+  https://easy-rpg.org/wiki/development/compiling/liblcf/cmake
+
+
+Bug reporting
+-------------
+
+Available options:
+
+* File an issue at https://github.com/EasyRPG/liblcf/issues
+
+* Open a thread at https://easy-rpg.org/forums/
+
+* Chat with us via IRC: #easyrpg at irc.freenode.net
 
 
 License

@@ -247,7 +247,7 @@ int LcfReader::IntSize(unsigned int x) {
 	return result;
 }
 
-#ifdef LCF_BIG_ENDIAN
+#ifdef WORDS_BIGENDIAN
 void LcfReader::SwapByteOrder(uint16_t& us)
 {
 	us =	(us >> 8) |
