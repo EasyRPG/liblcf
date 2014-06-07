@@ -19,7 +19,7 @@ RPG::SavePicture::SavePicture() {
 	start_y = 0.0;
 	current_x = 0.0;
 	current_y = 0.0;
-	picture_scrolls = false;
+	fixed_to_map = false;
 	current_magnify = -1.0;
 	current_top_trans = 0.0;
 	transparency = false;

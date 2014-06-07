@@ -789,7 +789,7 @@ SavePicture,start_x,f,Double,0x02,0.0,double
 SavePicture,start_y,f,Double,0x03,0.0,double
 SavePicture,current_x,f,Double,0x04,0.0,double
 SavePicture,current_y,f,Double,0x05,0.0,double
-SavePicture,picture_scrolls,f,Boolean,0x06,False,bool
+SavePicture,fixed_to_map,f,Boolean,0x06,False,bool
 SavePicture,current_magnify,f,Double,0x07,-1.0,double
 SavePicture,current_top_trans,f,Double,0x08,0.0,double
 SavePicture,transparency,f,Boolean,0x09,False,bool
