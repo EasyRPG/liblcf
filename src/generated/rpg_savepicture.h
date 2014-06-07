@@ -26,7 +26,7 @@ namespace RPG {
 		double start_y;
 		double current_x;
 		double current_y;
-		bool picture_scrolls;
+		bool fixed_to_map;
 		double current_magnify;
 		double current_top_trans;
 		bool transparency;

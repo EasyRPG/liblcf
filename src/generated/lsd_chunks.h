@@ -236,7 +236,7 @@ namespace LSD_Reader {
 			/** double */
 			current_y			= 0x05,
 			/** bool */
-			picture_scrolls		= 0x06,
+			fixed_to_map		= 0x06,
 			/** double */
 			current_magnify		= 0x07,
 			/** double */

@@ -22,7 +22,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(double, start_y),
 	LCF_STRUCT_TYPED_FIELD(double, current_x),
 	LCF_STRUCT_TYPED_FIELD(double, current_y),
-	LCF_STRUCT_TYPED_FIELD(bool, picture_scrolls),
+	LCF_STRUCT_TYPED_FIELD(bool, fixed_to_map),
 	LCF_STRUCT_TYPED_FIELD(double, current_magnify),
 	LCF_STRUCT_TYPED_FIELD(double, current_top_trans),
 	LCF_STRUCT_TYPED_FIELD(bool, transparency),
