@@ -4,21 +4,25 @@
  * http://opensource.org/licenses/MIT
  */
 
-#ifdef _WIN32
-#  include <cstdio>
-#  define WIN32_LEAN_AND_MEAN
-#  ifndef NOMINMAX
-#    define NOMINMAX
-#  endif
-#  include <windows.h>
+#include "reader_options.h"
+#ifdef LCF_SUPPORT_ICU
+#  include "unicode/ucnv.h"
 #else
-#  include <locale>
-#  include <iconv.h>
+#  ifdef _WIN32
+#    include <cstdio>
+#    define WIN32_LEAN_AND_MEAN
+#    ifndef NOMINMAX
+#      define NOMINMAX
+#    endif
+#    include <windows.h>
+#  else
+#    include <locale>
+#  endif
 #endif
 
 #include <cstdlib>
-#include <cstring>
 #include <sstream>
+#include <vector>
 
 #include "inireader.h"
 #include "reader_util.h"
@@ -26,15 +30,23 @@
 namespace ReaderUtil {
 }
 
-std::string ReaderUtil::CodepageToIconv(int codepage) {
+std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
 		return "";
 
 	if (codepage == 932) {
+#ifdef LCF_SUPPORT_ICU
+		return "cp943";
+#else
 		return "SHIFT_JIS";
+#endif
 	} else {
 		std::ostringstream out;
+#ifdef LCF_SUPPORT_ICU
+		out << "windows-" << codepage;
+#else
 		out << "CP" << codepage;
+#endif
 		return out.str();
 	}
 }
@@ -91,7 +103,6 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 		else if (loc_lang == "vi")    default_enc = "1258";
 #endif
 		std::string encoding = ini.Get("EasyRPG", "Encoding", default_enc);
-
 		if (!encoding.empty()) {
 #ifdef _WIN32
 			int codepage = atoi(encoding.c_str());
@@ -100,11 +111,11 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 				return encoding;
 			}
 #else
-			std::string iconv_str = CodepageToIconv(atoi(encoding.c_str()));
+			std::string encoding_str = CodepageToEncoding(atoi(encoding.c_str()));
 			// Check at first if the ini value is a codepage
-			if (!iconv_str.empty()) {
+			if (!encoding_str.empty()) {
 				// Looks like a valid codepage
-				return iconv_str;
+				return encoding_str;
 			}
 #endif
 		}
@@ -113,17 +124,38 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
-#ifdef _WIN32
+#  ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
-#else
+#  else
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
-#endif
+#  endif
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {
-#ifdef _WIN32
+#ifdef LCF_SUPPORT_ICU
+	UErrorCode status = U_ZERO_ERROR;
+	int size = str_to_encode.size() * 4;
+	UChar unicode_str[size];
+	UConverter *conv;
+	int length;
+
+	conv = ucnv_open(src_enc.c_str(), &status);
+	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
+	ucnv_close(conv);
+
+	char result[length];
+
+	conv = ucnv_open(dst_enc.c_str(), &status);
+	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
+	ucnv_close(conv);
+
+	if (status != 0) return std::string();
+
+	return std::string(&result[0]);
+#else
+#  ifdef _WIN32
 	size_t strsize = str_to_encode.size();
 
 	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
@@ -159,21 +191,16 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	size_t dst_size = str_to_encode.size() * 5 + 10;
 	char *dst = new char[dst_size];
 	size_t dst_left = dst_size;
-#  ifdef ICONV_CONST
+#    ifdef ICONV_CONST
 	char ICONV_CONST *p = src;
-#  else
+#    else
 	char *p = src;
-#  endif
+#    endif
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
-	if (status == (size_t) -1 || src_left > 0) {
-	delete[] dst;
-		return "";
-	}
-	*q++ = '\0';
 	std::string result(dst);
-	delete[] dst;
-	return result;
+	return std::string(result);
+#  endif
 #endif
 }

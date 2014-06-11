@@ -19,7 +19,7 @@ namespace ReaderUtil {
 	 * @param codepage codepage to lookup.
 	 * @return name used by iconv or NULL if not found.
 	 */
-	std::string CodepageToIconv(int codepage);
+	std::string CodepageToEncoding(int codepage);
 	
 	/**
 	 * Returns the encoding set in the ini file.
