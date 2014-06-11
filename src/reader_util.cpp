@@ -124,11 +124,11 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
-#  ifdef _WIN32
+#ifdef _WIN32
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
-#  else
+#else
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
-#  endif
+#endif
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
@@ -182,7 +182,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	delete [] utf8char;
 
 	return str;
-#else
+#  else
 	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
@@ -199,8 +199,14 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	char *q = dst;
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
+	if (status == (size_t) -1 || src_left > 0) {
+	delete[] dst;
+		return "";
+	}
+	*q++ = '\0';
 	std::string result(dst);
-	return std::string(result);
+	delete[] dst;
+	return result;
 #  endif
 #endif
 }
