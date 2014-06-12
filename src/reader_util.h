@@ -20,14 +20,22 @@ namespace ReaderUtil {
 	 * @return name used by iconv or NULL if not found.
 	 */
 	std::string CodepageToEncoding(int codepage);
-	
+
+	/**
+	 * Detects the encoding based on text analysis.
+	 *
+	 * @param text a string with few hundred of words to analyze.
+	 *
+	 * @return encoding or empty string if not detected.
+	 */
+	std::string DetectEncoding(const std::string& text);
+
 	/**
 	 * Returns the encoding set in the ini file.
-	 * 
+	 *
 	 * @param ini_file The ini file to parse.
 	 *
-	 * @return Windows: codepage, other: iconv name,
-	 *         empty string if not found.
+	 * @return encoding or empty string if not found.
 	 */
 	std::string GetEncoding(const std::string& ini_file);
 

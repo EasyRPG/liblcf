@@ -6,6 +6,7 @@
 
 #include "reader_options.h"
 #ifdef LCF_SUPPORT_ICU
+#  include "unicode/ucsdet.h"
 #  include "unicode/ucnv.h"
 #else
 #  ifdef _WIN32
@@ -49,6 +50,25 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 #endif
 		return out.str();
 	}
+}
+
+std::string ReaderUtil::DetectEncoding(const std::string& text) {
+	const char* encoding = "";
+
+#ifdef LCF_SUPPORT_ICU
+	UErrorCode status = U_ZERO_ERROR;
+	UCharsetDetector* detector = ucsdet_open(&status);
+
+	ucsdet_setText(detector, text.data(), text.length(), &status);
+	const UCharsetMatch* match = ucsdet_detect(detector, &status);
+	if (match != NULL)
+	{
+		encoding = ucsdet_getName(match, &status);
+	}
+	ucsdet_close(detector);
+#endif
+
+	return std::string(encoding);
 }
 
 std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
