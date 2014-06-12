@@ -21,7 +21,7 @@ LT_INIT([win32-dll])
 # Checks for libraries.
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-icu],[Disable ICU (fallback to iconv)])])
 AS_IF([test "x$enable_icu" != "xno"],[
-	PKG_CHECK_MODULES([ICU],[icu-uc],[AC_DEFINE([LCF_SUPPORT_ICU],[1],[Enable ICU support])])
+	PKG_CHECK_MODULES([ICU],[icu-i18n],[AC_DEFINE([LCF_SUPPORT_ICU],[1],[Enable ICU support])])
 ])
 
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat)])])
