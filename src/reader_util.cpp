@@ -154,6 +154,9 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::stri
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {
+	if (src_enc.empty()) {
+		return str_to_encode;
+	}
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
 	int size = str_to_encode.size() * 4;
