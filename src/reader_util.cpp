@@ -33,23 +33,34 @@ namespace ReaderUtil {
 
 std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
-		return "";
-
-	if (codepage == 932) {
-#ifdef LCF_SUPPORT_ICU
-		return "cp943";
+		return std::string();
+#ifdef _WIN32
+	if (codepage > 0) {
+		// Looks like a valid codepage
+		return std::string(codepage);
+	}
 #else
+	if (codepage == 932) {
+#  ifdef LCF_SUPPORT_ICU
+		return "cp943";
+#  else
 		return "SHIFT_JIS";
-#endif
+#  endif
 	} else {
 		std::ostringstream out;
-#ifdef LCF_SUPPORT_ICU
+#  ifdef LCF_SUPPORT_ICU
 		out << "windows-" << codepage;
-#else
+#  else
 		out << "CP" << codepage;
-#endif
-		return out.str();
+#  endif
+		// Check at first if the ini value is a codepage
+		if (!out.str().empty()) {
+			// Looks like a valid codepage
+			return out.str();
+		}
+		return std::string();
 	}
+#endif
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& text) {
@@ -74,73 +85,65 @@ std::string ReaderUtil::DetectEncoding(const std::string& text) {
 std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	INIReader ini(ini_file);
 	if (ini.ParseError() != -1) {
-#ifdef _WIN32
-		std::string default_enc = "";
-#else
-		std::string default_enc = "1252";
-
-		std::locale loc = std::locale("");
-		// Gets the language and culture part only
-		std::string loc_full = loc.name().substr(0, loc.name().find_first_of("@."));
-		// Gets the language part only
-		std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
-
-		if      (loc_lang == "th")    default_enc = "874";
-		else if (loc_lang == "ja")    default_enc = "932";
-		else if (loc_full == "zh_CN" ||
-		         loc_full == "zh_SG") default_enc = "936";
-		else if (loc_lang == "ko")    default_enc = "949";
-		else if (loc_full == "zh_TW" ||
-		         loc_full == "zh_HK") default_enc = "950";
-		else if (loc_lang == "cs" ||
-		         loc_lang == "hu" ||
-		         loc_lang == "pl" ||
-		         loc_lang == "ro" ||
-		         loc_lang == "hr" ||
-		         loc_lang == "sk" ||
-		         loc_lang == "sl")    default_enc = "1250";
-		else if (loc_lang == "ru")    default_enc = "1251";
-		else if (loc_lang == "ca" ||
-		         loc_lang == "da" ||
-		         loc_lang == "de" ||
-		         loc_lang == "en" ||
-		         loc_lang == "es" ||
-		         loc_lang == "fi" ||
-		         loc_lang == "fr" ||
-		         loc_lang == "it" ||
-		         loc_lang == "nl" ||
-		         loc_lang == "nb" ||
-		         loc_lang == "pt" ||
-		         loc_lang == "sv" ||
-		         loc_lang == "eu")    default_enc = "1252";
-		else if (loc_lang == "el")    default_enc = "1253";
-		else if (loc_lang == "tr")    default_enc = "1254";
-		else if (loc_lang == "he")    default_enc = "1255";
-		else if (loc_lang == "ar")    default_enc = "1256";
-		else if (loc_lang == "et" ||
-		         loc_lang == "lt" ||
-		         loc_lang == "lv")    default_enc = "1257";
-		else if (loc_lang == "vi")    default_enc = "1258";
-#endif
-		std::string encoding = ini.Get("EasyRPG", "Encoding", default_enc);
+		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
-#ifdef _WIN32
-			int codepage = atoi(encoding.c_str());
-			if (codepage > 0) {
-				// Looks like a valid codepage
-				return encoding;
-			}
-#else
-			std::string encoding_str = CodepageToEncoding(atoi(encoding.c_str()));
-			// Check at first if the ini value is a codepage
-			if (!encoding_str.empty()) {
-				// Looks like a valid codepage
-				return encoding_str;
-			}
-#endif
+			return CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
-	return "";
+	return std::string();
+}
+
+std::string ReaderUtil::GetLocaleEncoding() {
+#ifdef _WIN32
+	// On Windows, empty string encoding means current system locale.
+	std::string encoding = "";
+#else
+	std::string encoding = "1252";
+
+	std::locale loc = std::locale("");
+	// Gets the language and culture part only
+	std::string loc_full = loc.name().substr(0, loc.name().find_first_of("@."));
+	// Gets the language part only
+	std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
+
+	if      (loc_lang == "th")    encoding = "874";
+	else if (loc_lang == "ja")    encoding = "932";
+	else if (loc_full == "zh_CN" ||
+	         loc_full == "zh_SG") encoding = "936";
+	else if (loc_lang == "ko")    encoding = "949";
+	else if (loc_full == "zh_TW" ||
+	         loc_full == "zh_HK") encoding = "950";
+	else if (loc_lang == "cs" ||
+	         loc_lang == "hu" ||
+	         loc_lang == "pl" ||
+	         loc_lang == "ro" ||
+	         loc_lang == "hr" ||
+	         loc_lang == "sk" ||
+	         loc_lang == "sl")    encoding = "1250";
+	else if (loc_lang == "ru")    encoding = "1251";
+	else if (loc_lang == "ca" ||
+	         loc_lang == "da" ||
+	         loc_lang == "de" ||
+	         loc_lang == "en" ||
+	         loc_lang == "es" ||
+	         loc_lang == "fi" ||
+	         loc_lang == "fr" ||
+	         loc_lang == "it" ||
+	         loc_lang == "nl" ||
+	         loc_lang == "nb" ||
+	         loc_lang == "pt" ||
+	         loc_lang == "sv" ||
+	         loc_lang == "eu")    encoding = "1252";
+	else if (loc_lang == "el")    encoding = "1253";
+	else if (loc_lang == "tr")    encoding = "1254";
+	else if (loc_lang == "he")    encoding = "1255";
+	else if (loc_lang == "ar")    encoding = "1256";
+	else if (loc_lang == "et" ||
+	         loc_lang == "lt" ||
+	         loc_lang == "lv")    encoding = "1257";
+	else if (loc_lang == "vi")    encoding = "1258";
+#endif
+	return encoding;
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
@@ -224,7 +227,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	iconv_close(cd);
 	if (status == (size_t) -1 || src_left > 0) {
 	delete[] dst;
-		return "";
+		return std::string();
 	}
 	*q++ = '\0';
 	std::string result(dst);
