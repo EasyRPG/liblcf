@@ -16,9 +16,10 @@
 #      define NOMINMAX
 #    endif
 #    include <windows.h>
-#  else
-#    include <locale>
 #  endif
+#endif
+#ifndef _WIN32
+#  include <locale>
 #endif
 
 #include <cstdlib>
@@ -157,8 +158,13 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::stri
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {
+	std::string encoding_str = src_enc;
+
 	if (src_enc.empty()) {
 		return str_to_encode;
+	}
+	if (atoi(src_enc.c_str()) > 0) {
+		encoding_str = ReaderUtil::CodepageToEncoding(atoi(src_enc.c_str()));
 	}
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
@@ -167,7 +173,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	UConverter *conv;
 	int length;
 
-	conv = ucnv_open(src_enc.c_str(), &status);
+	conv = ucnv_open(encoding_str.c_str(), &status);
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
 
@@ -188,7 +194,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	// To UTF-16
 	// Default codepage is 0, so we dont need a check here
-	int res = MultiByteToWideChar(atoi(src_enc.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
+	int res = MultiByteToWideChar(atoi(encoding_str.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
 	if (res == 0) {
 		// Invalid codepage
 		delete [] widechar;
@@ -209,7 +215,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return str;
 #  else
-	iconv_t cd = iconv_open(dst_enc.c_str(), src_enc.c_str());
+	iconv_t cd = iconv_open(dst_enc.c_str(), encoding_str.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
 	char *src = const_cast<char *>(str_to_encode.c_str());
