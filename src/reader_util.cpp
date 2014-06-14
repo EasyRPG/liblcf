@@ -73,7 +73,7 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& text) {
-	const char* encoding = "";
+	std::string encoding;
 
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
@@ -86,9 +86,43 @@ std::string ReaderUtil::DetectEncoding(const std::string& text) {
 		encoding = ucsdet_getName(match, &status);
 	}
 	ucsdet_close(detector);
+
+	// Fixes to ensure proper Windows encodings
+	if (encoding == "Shift_JIS")
+	{
+		encoding = "cp943"; // Japanese
+	}
+	else if (encoding == "EUC-KR")
+	{
+		encoding = "cp949"; // Korean
+	}
+	else if (encoding == "ISO-8859-1")
+	{
+		encoding = "windows-1252"; // Occidental
+	}
+	else if (encoding == "ISO-8859-2")
+	{
+		encoding = "windows-1250"; // Central Europe
+	}
+	else if (encoding == "ISO-8859-5")
+	{
+		encoding = "windows-1251"; // Cyrillic
+	}
+	else if (encoding == "ISO-8859-6")
+	{
+		encoding = "windows-1256"; // Arabic
+	}
+	else if (encoding == "ISO-8859-7")
+	{
+		encoding = "windows-1253"; // Greek
+	}
+	else if (encoding == "ISO-8859-8")
+	{
+		encoding = "windows-1255"; // Hebrew
+	}
 #endif
 
-	return std::string(encoding);
+	return encoding;
 }
 
 std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
