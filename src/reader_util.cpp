@@ -35,33 +35,41 @@ namespace ReaderUtil {
 std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
 		return std::string();
-#ifdef _WIN32
+#ifndef LCF_SUPPORT_ICU
+#  ifdef _WIN32
 	if (codepage > 0) {
 		// Looks like a valid codepage
 		return std::string(codepage);
 	}
-#else
-	if (codepage == 932) {
-#  ifdef LCF_SUPPORT_ICU
-		return "cp943";
-#  else
-		return "SHIFT_JIS";
 #  endif
-	} else {
-		std::ostringstream out;
-#  ifdef LCF_SUPPORT_ICU
-		out << "windows-" << codepage;
-#  else
-		out << "CP" << codepage;
-#  endif
-		// Check at first if the ini value is a codepage
-		if (!out.str().empty()) {
-			// Looks like a valid codepage
-			return out.str();
-		}
-		return std::string();
-	}
 #endif
+	if (codepage == 932) {
+#ifdef LCF_SUPPORT_ICU
+		return "cp943";
+#else
+		return "SHIFT_JIS";
+#endif
+	}
+	if (codepage == 949) {
+#ifdef LCF_SUPPORT_ICU
+		return "cp949";
+#else
+		return "cp1361";
+#endif
+	}
+	std::ostringstream out;
+#ifdef LCF_SUPPORT_ICU
+	out << "windows-" << codepage;
+#else
+	out << "CP" << codepage;
+#endif
+	// Check at first if the ini value is a codepage
+	if (!out.str().empty()) {
+		// Looks like a valid codepage
+		return out.str();
+	}
+
+	return std::string();
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& text) {
