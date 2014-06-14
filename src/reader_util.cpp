@@ -88,7 +88,7 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
-			return CodepageToEncoding(atoi(encoding.c_str()));
+			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
 	return std::string();
@@ -96,10 +96,10 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 
 std::string ReaderUtil::GetLocaleEncoding() {
 #ifdef _WIN32
-	// On Windows, empty string encoding means current system locale.
-	std::string encoding = "";
+	// On Windows means current system locale.
+	int codepage = 0;
 #else
-	std::string encoding = "1252";
+	int codepage = 1252;
 
 	std::locale loc = std::locale("");
 	// Gets the language and culture part only
@@ -107,21 +107,21 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	// Gets the language part only
 	std::string loc_lang = loc.name().substr(0, loc.name().find_first_of("_"));
 
-	if      (loc_lang == "th")    encoding = "874";
-	else if (loc_lang == "ja")    encoding = "932";
+	if      (loc_lang == "th")    codepage = 874;
+	else if (loc_lang == "ja")    codepage = 932;
 	else if (loc_full == "zh_CN" ||
-	         loc_full == "zh_SG") encoding = "936";
-	else if (loc_lang == "ko")    encoding = "949";
+	         loc_full == "zh_SG") codepage = 936;
+	else if (loc_lang == "ko")    codepage = 949;
 	else if (loc_full == "zh_TW" ||
-	         loc_full == "zh_HK") encoding = "950";
+	         loc_full == "zh_HK") codepage = 950;
 	else if (loc_lang == "cs" ||
 	         loc_lang == "hu" ||
 	         loc_lang == "pl" ||
 	         loc_lang == "ro" ||
 	         loc_lang == "hr" ||
 	         loc_lang == "sk" ||
-	         loc_lang == "sl")    encoding = "1250";
-	else if (loc_lang == "ru")    encoding = "1251";
+	         loc_lang == "sl")    codepage = 1250;
+	else if (loc_lang == "ru")    codepage = 1251;
 	else if (loc_lang == "ca" ||
 	         loc_lang == "da" ||
 	         loc_lang == "de" ||
@@ -134,17 +134,17 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	         loc_lang == "nb" ||
 	         loc_lang == "pt" ||
 	         loc_lang == "sv" ||
-	         loc_lang == "eu")    encoding = "1252";
-	else if (loc_lang == "el")    encoding = "1253";
-	else if (loc_lang == "tr")    encoding = "1254";
-	else if (loc_lang == "he")    encoding = "1255";
-	else if (loc_lang == "ar")    encoding = "1256";
+	         loc_lang == "eu")    codepage = 1252;
+	else if (loc_lang == "el")    codepage = 1253;
+	else if (loc_lang == "tr")    codepage = 1254;
+	else if (loc_lang == "he")    codepage = 1255;
+	else if (loc_lang == "ar")    codepage = 1256;
 	else if (loc_lang == "et" ||
 	         loc_lang == "lt" ||
-	         loc_lang == "lv")    encoding = "1257";
-	else if (loc_lang == "vi")    encoding = "1258";
+	         loc_lang == "lv")    codepage = 1257;
+	else if (loc_lang == "vi")    codepage = 1258;
 #endif
-	return encoding;
+	return CodepageToEncoding(codepage);
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
@@ -169,7 +169,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
 	int size = str_to_encode.size() * 4;
-	UChar unicode_str[size];
+	UChar unicode_str[size]; // FIXME
 	UConverter *conv;
 	int length;
 
@@ -177,7 +177,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
 
-	char result[length];
+	char result[length]; // FIXME
 
 	conv = ucnv_open(dst_enc.c_str(), &status);
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
