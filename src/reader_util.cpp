@@ -26,7 +26,9 @@
 #include <sstream>
 #include <vector>
 
+#include "data.h"
 #include "inireader.h"
+#include "ldb_reader.h"
 #include "reader_util.h"
 
 namespace ReaderUtil {
@@ -72,53 +74,97 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	return std::string();
 }
 
-std::string ReaderUtil::DetectEncoding(const std::string& text) {
+std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
+#ifdef LCF_SUPPORT_ICU
+	std::ostringstream text;
 	std::string encoding;
 
-#ifdef LCF_SUPPORT_ICU
-	UErrorCode status = U_ZERO_ERROR;
-	UCharsetDetector* detector = ucsdet_open(&status);
+	//Populate Data::terms or will empty by default even if load fails
+	LDB_Reader::Load(database_file, "");
 
-	ucsdet_setText(detector, text.data(), text.length(), &status);
-	const UCharsetMatch* match = ucsdet_detect(detector, &status);
-	if (match != NULL)
-	{
-		encoding = ucsdet_getName(match, &status);
-	}
-	ucsdet_close(detector);
+	text <<
+	Data::terms.menu_save << " " <<
+	Data::terms.menu_quit << " " <<
+	Data::terms.new_game << " " <<
+	Data::terms.load_game << " " <<
+	Data::terms.exit_game << " " <<
+	Data::terms.status << " " <<
+	Data::terms.row << " " <<
+	Data::terms.order << " " <<
+	Data::terms.wait_on << " " <<
+	Data::terms.wait_off << " " <<
+	Data::terms.level << " " <<
+	Data::terms.health_points << " " <<
+	Data::terms.spirit_points << " " <<
+	Data::terms.normal_status << " " <<
+	Data::terms.exp_short << " " <<
+	Data::terms.lvl_short << " " <<
+	Data::terms.hp_short << " " <<
+	Data::terms.sp_short << " " <<
+	Data::terms.sp_cost << " " <<
+	Data::terms.attack << " " <<
+	Data::terms.defense << " " <<
+	Data::terms.spirit << " " <<
+	Data::terms.agility << " " <<
+	Data::terms.weapon << " " <<
+	Data::terms.shield << " " <<
+	Data::terms.armor << " " <<
+	Data::terms.helmet << " " <<
+	Data::terms.accessory << " " <<
+	Data::terms.save_game_message << " " <<
+	Data::terms.load_game_message << " " <<
+	Data::terms.file << " " <<
+	Data::terms.exit_game_message << " " <<
+	Data::terms.yes << " " <<
+	Data::terms.no;
 
-	// Fixes to ensure proper Windows encodings
-	if (encoding == "Shift_JIS")
+	// Checks if there are more than the above 33 spaces (no data)
+	if (text.str().size() > 33)
 	{
-		encoding = "cp943"; // Japanese
-	}
-	else if (encoding == "EUC-KR")
-	{
-		encoding = "cp949"; // Korean
-	}
-	else if (encoding == "ISO-8859-1")
-	{
-		encoding = "windows-1252"; // Occidental
-	}
-	else if (encoding == "ISO-8859-2")
-	{
-		encoding = "windows-1250"; // Central Europe
-	}
-	else if (encoding == "ISO-8859-5")
-	{
-		encoding = "windows-1251"; // Cyrillic
-	}
-	else if (encoding == "ISO-8859-6")
-	{
-		encoding = "windows-1256"; // Arabic
-	}
-	else if (encoding == "ISO-8859-7")
-	{
-		encoding = "windows-1253"; // Greek
-	}
-	else if (encoding == "ISO-8859-8")
-	{
-		encoding = "windows-1255"; // Hebrew
+		UErrorCode status = U_ZERO_ERROR;
+		UCharsetDetector* detector = ucsdet_open(&status);
+
+		ucsdet_setText(detector, text.str().data(), text.str().length(), &status);
+		const UCharsetMatch* match = ucsdet_detect(detector, &status);
+		if (match != NULL)
+		{
+			encoding = ucsdet_getName(match, &status);
+		}
+		ucsdet_close(detector);
+
+		// Fixes to ensure proper Windows encodings
+		if (encoding == "Shift_JIS")
+		{
+			encoding = "cp943"; // Japanese
+		}
+		else if (encoding == "EUC-KR")
+		{
+			encoding = "cp949"; // Korean
+		}
+		else if (encoding == "ISO-8859-1")
+		{
+			encoding = "windows-1252"; // Occidental
+		}
+		else if (encoding == "ISO-8859-2")
+		{
+			encoding = "windows-1250"; // Central Europe
+		}
+		else if (encoding == "ISO-8859-5")
+		{
+			encoding = "windows-1251"; // Cyrillic
+		}
+		else if (encoding == "ISO-8859-6")
+		{
+			encoding = "windows-1256"; // Arabic
+		}
+		else if (encoding == "ISO-8859-7")
+		{
+			encoding = "windows-1253"; // Greek
+		}
+		else if (encoding == "ISO-8859-8")
+		{
+			encoding = "windows-1255"; // Hebrew
+		}
 	}
 #endif
 

@@ -28,7 +28,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(const std::string& text);
+	std::string DetectEncoding(const std::string& database_file);
 
 	/**
 	 * Returns the encoding set in the ini file.
