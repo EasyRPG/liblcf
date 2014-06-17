@@ -31,11 +31,11 @@ test-suite.log
 /lib/
 
 # cmake build method
+bin/
 CMakeCache.txt
 CMakeFiles/
 *.cmake
 !/builds/cmake/Modules/Find*.cmake
-/builds/cmake/bin/
 /builds/cmake/lib/
 
 # qt build method

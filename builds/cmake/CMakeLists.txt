@@ -63,16 +63,11 @@ endif()
 aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
 add_library(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
-if(WIN32)
-  set(ICONV_LIBRARY "")
-else()
-  # iconv
-  find_package(Iconv REQUIRED)
-  set(HAVE_ICONV ${ICONV_FOUND})
-  set(ICONV_CONST ${ICONV_SECOND_ARGUMENT_IS_CONST})
-  include_directories(BEFORE ${ICONV_INCLUDE_DIR})
-  target_link_libraries(${PROJECT_NAME} ${ICONV_LIBRARIES})
-endif()
+# icu
+find_package(ICU REQUIRED)
+add_definitions(-D LCF_SUPPORT_ICU=1)
+include_directories(BEFORE ${ICU_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${ICU_LIBRARIES})
 
 # expat
 find_package(Expat)
@@ -117,5 +112,5 @@ endfunction()
 
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../tests/*.cpp)
 foreach(i ${TEST_FILES})
-  cxx_test(${i} ${ICONV_LIBRARIES} ${EXPAT_LIBRARY})
+  cxx_test(${i} ${ICU_LIBRARIES} ${EXPAT_LIBRARY})
 endforeach()
