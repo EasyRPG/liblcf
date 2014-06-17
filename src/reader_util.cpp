@@ -257,21 +257,21 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
 	int size = str_to_encode.size() * 4;
-	UChar unicode_str[size]; // FIXME
+	UChar* unicode_str = new UChar[size];
 	UConverter *conv;
 	int length;
 
 	conv = ucnv_open(encoding_str.c_str(), &status);
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
+	if (status != U_ZERO_ERROR) return std::string();
 
-	char result[length]; // FIXME
+	char* result = new char[length * 4];
 
 	conv = ucnv_open(dst_enc.c_str(), &status);
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
-
-	if (status != 0) return std::string();
+	if (status != U_ZERO_ERROR) return std::string();
 
 	return std::string(&result[0]);
 #else
