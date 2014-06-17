@@ -260,6 +260,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	UChar* unicode_str = new UChar[size];
 	UConverter *conv;
 	int length;
+	std::string result_str;
 
 	conv = ucnv_open(encoding_str.c_str(), &status);
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
@@ -273,7 +274,12 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) return std::string();
 
-	return std::string(&result[0]);
+	result_str = result;
+
+	delete[] unicode_str;
+	delete[] result;
+
+	return std::string(result_str);
 #else
 #  ifdef _WIN32
 	size_t strsize = str_to_encode.size();
