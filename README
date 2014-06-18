@@ -21,8 +21,8 @@ Documentation is available at the documentation wiki:
 Requirements
 ------------
 
-iconv for character set conversion (not for Win32 or libc).
 Expat for XML reading support.
+ICU for character encoding detection and conversion.
 
 
 Source code
