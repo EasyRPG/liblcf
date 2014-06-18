@@ -77,9 +77,9 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
+	std::string encoding;
 #ifdef LCF_SUPPORT_ICU
 	std::ostringstream text;
-	std::string encoding;
 
 	//Populate Data::terms or will empty by default even if load fails
 	LDB_Reader::Load(database_file, "");
