@@ -41,7 +41,9 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 #  ifdef _WIN32
 	if (codepage > 0) {
 		// Looks like a valid codepage
-		return std::string(codepage);
+		std::stringstream encoding;
+		encoding << i;
+		return std::string(encoding.str());
 	}
 #  endif
 #endif
