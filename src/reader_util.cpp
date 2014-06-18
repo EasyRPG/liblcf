@@ -42,7 +42,7 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage > 0) {
 		// Looks like a valid codepage
 		std::stringstream encoding;
-		encoding << i;
+		encoding << codepage;
 		return std::string(encoding.str());
 	}
 #  endif
