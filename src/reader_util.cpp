@@ -49,14 +49,14 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 #endif
 	if (codepage == 932) {
 #ifdef LCF_SUPPORT_ICU
-		return "cp943";
+		return "ibm-943_P130-1999";
 #else
 		return "SHIFT_JIS";
 #endif
 	}
 	if (codepage == 949) {
 #ifdef LCF_SUPPORT_ICU
-		return "cp949";
+		return "ibm-949_P110-1999";
 #else
 		return "cp1361";
 #endif
@@ -137,35 +137,35 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 		// Fixes to ensure proper Windows encodings
 		if (encoding == "Shift_JIS")
 		{
-			encoding = "cp943"; // Japanese
+			encoding = "ibm-943_P130-1999"; // Japanese with Yen backslash
 		}
 		else if (encoding == "EUC-KR")
 		{
-			encoding = "cp949"; // Korean
+			encoding = "ibm-949_P110-1999"; // Korean with Won backslash
 		}
-		else if (encoding == "ISO-8859-1")
+		else if (encoding == "ISO-8859-1" || encoding == "windows-1252")
 		{
-			encoding = "windows-1252"; // Occidental
+			encoding = "ibm-5348_P100-1997"; // Occidental with Euro
 		}
-		else if (encoding == "ISO-8859-2")
+		else if (encoding == "ISO-8859-2" || encoding == "windows-1250")
 		{
-			encoding = "windows-1250"; // Central Europe
+			encoding = "ibm-5346_P100-1998"; // Central Europe with Euro
 		}
-		else if (encoding == "ISO-8859-5")
+		else if (encoding == "ISO-8859-5" || encoding == "windows-1251")
 		{
-			encoding = "windows-1251"; // Cyrillic
+			encoding = "ibm-5347_P100-1998"; // Cyrillic with Euro
 		}
-		else if (encoding == "ISO-8859-6")
+		else if (encoding == "ISO-8859-6" || encoding == "windows-1256")
 		{
-			encoding = "windows-1256"; // Arabic
+			encoding = "ibm-9448_X100-2005"; // Arabic with Euro + 8 chars
 		}
-		else if (encoding == "ISO-8859-7")
+		else if (encoding == "ISO-8859-7" || encoding == "windows-1253")
 		{
-			encoding = "windows-1253"; // Greek
+			encoding = "ibm-5349_P100-1998"; // Greek with Euro
 		}
-		else if (encoding == "ISO-8859-8")
+		else if (encoding == "ISO-8859-8" || encoding == "windows-1255")
 		{
-			encoding = "windows-1255"; // Hebrew
+			encoding = "ibm-9447_P100-2002"; // Hebrew with Euro
 		}
 	}
 #endif
