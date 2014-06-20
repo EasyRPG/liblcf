@@ -5,21 +5,20 @@
  */
 
 #include "reader_options.h"
+
 #ifdef LCF_SUPPORT_ICU
 #  include "unicode/ucsdet.h"
 #  include "unicode/ucnv.h"
-#else
-#  ifdef _WIN32
-#    include <cstdio>
+#endif
+
+#ifdef _WIN32
 #    define WIN32_LEAN_AND_MEAN
 #    ifndef NOMINMAX
 #      define NOMINMAX
 #    endif
 #    include <windows.h>
-#  endif
-#endif
-#ifndef _WIN32
-#  include <locale>
+#else
+#include <locale>
 #endif
 
 #include <cstdlib>
@@ -37,16 +36,7 @@ namespace ReaderUtil {
 std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
 		return std::string();
-#ifndef LCF_SUPPORT_ICU
-#  ifdef _WIN32
-	if (codepage > 0) {
-		// Looks like a valid codepage
-		std::stringstream encoding;
-		encoding << codepage;
-		return std::string(encoding.str());
-	}
-#  endif
-#endif
+
 	if (codepage == 932) {
 #ifdef LCF_SUPPORT_ICU
 		return "ibm-943_P130-1999";
@@ -67,13 +57,10 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 #else
 	out << "CP" << codepage;
 #endif
-	// Check at first if the ini value is a codepage
-	if (!out.str().empty()) {
-		// Looks like a valid codepage
-		return out.str();
-	}
 
-	return std::string();
+	// Looks like a valid codepage
+	std::string outs = out.str();
+	return outs;
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
@@ -126,7 +113,9 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		ucsdet_setText(detector, text.str().data(), text.str().length(), &status);
+		std::string s = text.str();
+		ucsdet_setText(detector, s.c_str(), s.length(), &status);
+
 		const UCharsetMatch* match = ucsdet_detect(detector, &status);
 		if (match != NULL)
 		{
@@ -186,8 +175,7 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 
 std::string ReaderUtil::GetLocaleEncoding() {
 #ifdef _WIN32
-	// On Windows means current system locale.
-	int codepage = 0;
+	int codepage = GetACP();
 #else
 	int codepage = 1252;
 
@@ -234,15 +222,12 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	         loc_lang == "lv")    codepage = 1257;
 	else if (loc_lang == "vi")    codepage = 1258;
 #endif
+
 	return CodepageToEncoding(codepage);
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
-#ifdef _WIN32
-	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
-#else
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
-#endif
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
@@ -271,7 +256,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	char* result = new char[length * 4];
 
-	conv = ucnv_open(dst_enc.c_str(), &status);
+	conv = ucnv_open(dst_enc.data(), &status);
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) return std::string();
@@ -283,34 +268,6 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return std::string(result_str);
 #else
-#  ifdef _WIN32
-	size_t strsize = str_to_encode.size();
-
-	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
-
-	// To UTF-16
-	// Default codepage is 0, so we dont need a check here
-	int res = MultiByteToWideChar(atoi(encoding_str.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
-	if (res == 0) {
-		// Invalid codepage
-		delete [] widechar;
-		return str_to_encode;
-	}
-	widechar[res] = '\0';
-
-	// Back to UTF-8...
-	char* utf8char = new char[strsize * 5 + 1];
-	res = WideCharToMultiByte(atoi(dst_enc.c_str()), 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
-	utf8char[res] = '\0';
-
-	// Result in str
-	std::string str = std::string(utf8char, res);
-
-	delete [] widechar;
-	delete [] utf8char;
-
-	return str;
-#  else
 	iconv_t cd = iconv_open(dst_enc.c_str(), encoding_str.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
@@ -335,6 +292,5 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	std::string result(dst);
 	delete[] dst;
 	return result;
-#  endif
 #endif
 }
