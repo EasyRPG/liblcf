@@ -126,7 +126,9 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		ucsdet_setText(detector, text.str().data(), text.str().length(), &status);
+		std::string s = text.str();
+		ucsdet_setText(detector, s.c_str(), s.length(), &status);
+
 		const UCharsetMatch* match = ucsdet_detect(detector, &status);
 		if (match != NULL)
 		{
@@ -271,7 +273,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	char* result = new char[length * 4];
 
-	conv = ucnv_open(dst_enc.c_str(), &status);
+	conv = ucnv_open(dst_enc.data(), &status);
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) return std::string();
