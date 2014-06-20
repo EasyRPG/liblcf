@@ -48,13 +48,10 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 #else
 	out << "CP" << codepage;
 #endif
-	// Check at first if the ini value is a codepage
-	if (!out.str().empty()) {
-		// Looks like a valid codepage
-		return out.str();
-	}
 
-	return std::string();
+	// Looks like a valid codepage
+	std::string outs = out.str();
+	return outs;
 }
 
 std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
