@@ -231,11 +231,7 @@ const std::string& LcfReader::GetError() {
 }
 
 std::string LcfReader::Encode(const std::string& str_to_encode) {
-#ifdef _WIN32
-	return ReaderUtil::Recode(str_to_encode, encoding, "65001");
-#else
 	return ReaderUtil::Recode(str_to_encode, encoding, "UTF-8");
-#endif
 }
 
 int LcfReader::IntSize(unsigned int x) {

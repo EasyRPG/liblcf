@@ -5,24 +5,14 @@
  */
 
 #include "reader_options.h"
+
 #ifdef LCF_SUPPORT_ICU
 #  include "unicode/ucsdet.h"
 #  include "unicode/ucnv.h"
-#else
-#  ifdef _WIN32
-#    include <cstdio>
-#    define WIN32_LEAN_AND_MEAN
-#    ifndef NOMINMAX
-#      define NOMINMAX
-#    endif
-#    include <windows.h>
-#  endif
-#endif
-#ifndef _WIN32
-#  include <locale>
 #endif
 
 #include <cstdlib>
+#include <locale>
 #include <sstream>
 #include <vector>
 
@@ -37,16 +27,7 @@ namespace ReaderUtil {
 std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
 		return std::string();
-#ifndef LCF_SUPPORT_ICU
-#  ifdef _WIN32
-	if (codepage > 0) {
-		// Looks like a valid codepage
-		std::stringstream encoding;
-		encoding << codepage;
-		return std::string(encoding.str());
-	}
-#  endif
-#endif
+
 	if (codepage == 932) {
 #ifdef LCF_SUPPORT_ICU
 		return "ibm-943_P130-1999";
@@ -187,10 +168,6 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 }
 
 std::string ReaderUtil::GetLocaleEncoding() {
-#ifdef _WIN32
-	// On Windows means current system locale.
-	int codepage = 0;
-#else
 	int codepage = 1252;
 
 	std::locale loc = std::locale("");
@@ -235,16 +212,12 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	         loc_lang == "lt" ||
 	         loc_lang == "lv")    codepage = 1257;
 	else if (loc_lang == "vi")    codepage = 1258;
-#endif
+
 	return CodepageToEncoding(codepage);
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
-#ifdef _WIN32
-	return ReaderUtil::Recode(str_to_encode, source_encoding, "65001");
-#else
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
-#endif
 }
 
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
@@ -285,34 +258,6 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return std::string(result_str);
 #else
-#  ifdef _WIN32
-	size_t strsize = str_to_encode.size();
-
-	wchar_t* widechar = new wchar_t[strsize * 5 + 1];
-
-	// To UTF-16
-	// Default codepage is 0, so we dont need a check here
-	int res = MultiByteToWideChar(atoi(encoding_str.c_str()), 0, str_to_encode.c_str(), strsize, widechar, strsize * 5 + 1);
-	if (res == 0) {
-		// Invalid codepage
-		delete [] widechar;
-		return str_to_encode;
-	}
-	widechar[res] = '\0';
-
-	// Back to UTF-8...
-	char* utf8char = new char[strsize * 5 + 1];
-	res = WideCharToMultiByte(atoi(dst_enc.c_str()), 0, widechar, res, utf8char, strsize * 5 + 1, NULL, NULL);
-	utf8char[res] = '\0';
-
-	// Result in str
-	std::string str = std::string(utf8char, res);
-
-	delete [] widechar;
-	delete [] utf8char;
-
-	return str;
-#  else
 	iconv_t cd = iconv_open(dst_enc.c_str(), encoding_str.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
@@ -337,6 +282,5 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	std::string result(dst);
 	delete[] dst;
 	return result;
-#  endif
 #endif
 }

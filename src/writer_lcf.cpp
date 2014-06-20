@@ -119,11 +119,7 @@ bool LcfWriter::IsOk() const {
 }
 
 std::string LcfWriter::Decode(const std::string& str_to_encode) {
-#ifdef _WIN32
-	return ReaderUtil::Recode(str_to_encode, "65001", encoding);
-#else
 	return ReaderUtil::Recode(str_to_encode, "UTF-8", encoding);
-#endif
 }
 
 #ifdef WORDS_BIGENDIAN
