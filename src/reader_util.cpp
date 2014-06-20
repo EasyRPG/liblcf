@@ -11,8 +11,17 @@
 #  include "unicode/ucnv.h"
 #endif
 
-#include <cstdlib>
+#ifdef _WIN32
+#    define WIN32_LEAN_AND_MEAN
+#    ifndef NOMINMAX
+#      define NOMINMAX
+#    endif
+#    include <windows.h>
+#else
 #include <locale>
+#endif
+
+#include <cstdlib>
 #include <sstream>
 #include <vector>
 
@@ -165,6 +174,9 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 }
 
 std::string ReaderUtil::GetLocaleEncoding() {
+#ifdef _WIN32
+	int codepage = GetACP();
+#else
 	int codepage = 1252;
 
 	std::locale loc = std::locale("");
@@ -209,6 +221,7 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	         loc_lang == "lt" ||
 	         loc_lang == "lv")    codepage = 1257;
 	else if (loc_lang == "vi")    codepage = 1258;
+#endif
 
 	return CodepageToEncoding(codepage);
 }
