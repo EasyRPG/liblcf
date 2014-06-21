@@ -63,8 +63,13 @@ endif()
 aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
 add_library(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
+
 # icu
-find_package(ICU REQUIRED)
+# Remove the following lines and uncomment the next line to remove the
+# pkg-config dependency.
+find_package(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(ICU REQUIRED icu-i18n)
+#find_package(ICU REQUIRED)
 add_definitions(-D LCF_SUPPORT_ICU=1)
 include_directories(BEFORE ${ICU_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${ICU_LIBRARIES})
