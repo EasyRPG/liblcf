@@ -477,10 +477,10 @@ namespace LSD_Reader {
 			flash_time_left				= 0x55,
 			/** ? */
 			unknown_65					= 0x65,
-			/** ? */
-			unknown_6a					= 0x6A,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
+			/** ? */
+			unknown_6a					= 0x6A,
 			/** string */
 			sprite2_name				= 0x6F,
 			/** int */
@@ -723,6 +723,8 @@ namespace LSD_Reader {
 			flash_current_level			= 0x54,
 			/** int */
 			flash_time_left				= 0x55,
+			/** Related to autostarting events */
+			unknown_65					= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
 			/** ? */

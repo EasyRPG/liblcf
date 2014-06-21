@@ -59,8 +59,8 @@ namespace RPG {
 		double flash_current_level;
 		int flash_time_left;
 		int unknown_65;
-		int unknown_6a;
 		int original_move_route_index;
+		int unknown_6a;
 		std::string sprite2_name;
 		int sprite2_id;
 	};
