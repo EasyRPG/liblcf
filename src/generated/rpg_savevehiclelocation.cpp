@@ -50,8 +50,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	flash_current_level = 0.0;
 	flash_time_left = 0;
 	unknown_65 = 0;
-	unknown_6a = 0;
 	original_move_route_index = 0;
+	unknown_6a = 0;
 	sprite2_name = "";
 	sprite2_id = 0;
 }

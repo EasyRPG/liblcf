@@ -51,6 +51,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	flash_blue = 100;
 	flash_current_level = 0.0;
 	flash_time_left = 0;
+	unknown_65 = 0;
 	original_move_route_index = 0;
 	unknown_67 = -1;
 }

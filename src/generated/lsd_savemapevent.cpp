@@ -55,6 +55,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, flash_blue),
 	LCF_STRUCT_TYPED_FIELD(double, flash_current_level),
 	LCF_STRUCT_TYPED_FIELD(int, flash_time_left),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_65),
 	LCF_STRUCT_TYPED_FIELD(int, original_move_route_index),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_67),
 	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data),

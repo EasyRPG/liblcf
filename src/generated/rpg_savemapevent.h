@@ -64,6 +64,7 @@ namespace RPG {
 		int flash_blue;
 		double flash_current_level;
 		int flash_time_left;
+		int unknown_65;
 		int original_move_route_index;
 		int unknown_67;
 		SaveEventData event_data;
