@@ -7,6 +7,10 @@
 #include <cstdarg>
 #include "reader_lcf.h"
 
+#ifdef NDEBUG
+#  include <stdio.h>
+#endif
+
 // Statics
 
 std::string LcfReader::error_str;
@@ -36,7 +40,13 @@ void LcfReader::Close() {
 }
 
 size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
-	return fread(ptr, size, nmemb, stream);
+	size_t result = fread(ptr, size, nmemb, stream);
+#ifdef NDEBUG
+	if (result != nmemb && !Eof()) {
+		perror("Reading error: ");
+	}
+#endif
+	return result;
 }
 
 void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
