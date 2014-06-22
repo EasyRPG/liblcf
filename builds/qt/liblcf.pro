@@ -10,7 +10,7 @@ TARGET = liblcf
 TEMPLATE = lib
 CONFIG += staticlib
 
-DEFINES += LCF_SUPPORT_XML XML_STATIC
+DEFINES += LCF_SUPPORT_XML LCF_SUPPORT_ICU XML_STATIC
 
 SOURCES += \
     ../../src/data.cpp \
