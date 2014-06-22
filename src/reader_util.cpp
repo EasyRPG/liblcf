@@ -7,18 +7,25 @@
 #include "reader_options.h"
 
 #ifdef LCF_SUPPORT_ICU
-#  include "unicode/ucsdet.h"
-#  include "unicode/ucnv.h"
+#   include <unicode/ucsdet.h>
+#   include <unicode/ucnv.h>
+#else
+#   ifdef _MSC_VER
+#		error MSVC builds require ICU
+#	endif
 #endif
 
 #ifdef _WIN32
-#    define WIN32_LEAN_AND_MEAN
-#    ifndef NOMINMAX
-#      define NOMINMAX
-#    endif
-#    include <windows.h>
+#   define WIN32_LEAN_AND_MEAN
+#   ifndef NOMINMAX
+#       define NOMINMAX
+#   endif
+#   include <windows.h>
 #else
-#include <locale>
+#   ifndef LCF_SUPPORT_ICU
+#       include <iconv.h>
+#   endif
+#   include <locale>
 #endif
 
 #include <cstdlib>
