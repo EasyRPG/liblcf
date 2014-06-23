@@ -3,7 +3,7 @@ liblcf_la_CXXFLAGS = \
 	-I$(srcdir)/generated \
 	$(EXPAT_CFLAGS) \
 	$(ICU_CFLAGS)
-liblcf_la_LDADD = \
+liblcf_la_LIBADD = \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
 liblcf_la_LDFLAGS = -no-undefined
