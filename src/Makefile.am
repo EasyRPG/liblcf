@@ -1,5 +1,11 @@
 lib_LTLIBRARIES = liblcf.la
-liblcf_la_CXXFLAGS = -I$(srcdir)/generated
+liblcf_la_CXXFLAGS = \
+	-I$(srcdir)/generated \
+	$(EXPAT_CFLAGS) \
+	$(ICU_CFLAGS)
+liblcf_la_LIBADD = \
+	$(EXPAT_LIBS) \
+	$(ICU_LIBS)
 liblcf_la_LDFLAGS = -no-undefined
 liblcf_la_SOURCES = \
 	data.cpp \
