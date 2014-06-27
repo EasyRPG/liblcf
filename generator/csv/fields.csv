@@ -296,6 +296,7 @@ TroopPage,event_commands,t,EventCommand,0x0B,,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,Array - RPG::EventCommand
 Troop,name,f,String,0x01,'',String
 Troop,members,f,Array<TroopMember>,0x02,,Array - RPG::TroopMember
+Troop,auto_alignment,f,Boolean,0x03,False,Flag
 Troop,terrain_set,t,Boolean,0x04,,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,Array - Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,Array - RPG::TroopPage
