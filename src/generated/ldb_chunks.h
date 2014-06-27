@@ -707,6 +707,8 @@ namespace LDB_Reader {
 			name				= 0x01,
 			/** Array - RPG::TroopMember */
 			members				= 0x02,
+			/** Flag */
+			auto_alignment		= 0x03,
 			/** Integer */
 			terrain_set_size	= 0x04,
 			/** Array - Flag */

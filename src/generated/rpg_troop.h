@@ -26,6 +26,7 @@ namespace RPG {
 		int ID;
 		std::string name;
 		std::vector<TroopMember> members;
+		bool auto_alignment;
 		std::vector<bool> terrain_set;
 		std::vector<TroopPage> pages;
 	};

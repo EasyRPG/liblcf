@@ -15,4 +15,5 @@
 RPG::Troop::Troop() {
 	ID = 0;
 	name = "";
+	auto_alignment = false;
 }

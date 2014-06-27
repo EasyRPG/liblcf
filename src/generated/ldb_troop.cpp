@@ -19,6 +19,7 @@
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, name),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members),
+	LCF_STRUCT_TYPED_FIELD(bool, auto_alignment),
 	LCF_STRUCT_SIZE_FIELD(bool, terrain_set),
 	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, terrain_set),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage>, pages),
