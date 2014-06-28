@@ -52,7 +52,7 @@ namespace RPG {
 		int unknown_3e;
 		int unknown_3f;
 		int unknown_47;
-		int unknown_48;
+		bool flying;
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;
@@ -63,7 +63,7 @@ namespace RPG {
 		int flash_time_left;
 		int unknown_65;
 		int original_move_route_index;
-		int unknown_67;
+		int vehicle;
 		int unknown_68;
 		int unknown_69;
 		int unknown_6c;

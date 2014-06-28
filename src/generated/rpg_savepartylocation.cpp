@@ -42,7 +42,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	unknown_3e = 0;
 	unknown_3f = 0;
 	unknown_47 = 0;
-	unknown_48 = 0;
+	flying = false;
 	sprite_name = "";
 	sprite_id = 0;
 	unknown_4b = 0;
@@ -53,7 +53,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	flash_time_left = 0;
 	unknown_65 = 0;
 	original_move_route_index = 0;
-	unknown_67 = 0;
+	vehicle = 0;
 	unknown_68 = 0;
 	unknown_69 = 4;
 	unknown_6c = 0;

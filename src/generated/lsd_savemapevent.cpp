@@ -46,7 +46,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, unknown_3e),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_3f),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_47),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_48),
+	LCF_STRUCT_TYPED_FIELD(bool, flying),
 	LCF_STRUCT_TYPED_FIELD(std::string, sprite_name),
 	LCF_STRUCT_TYPED_FIELD(int, sprite_id),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_4b),
