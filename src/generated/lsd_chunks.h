@@ -287,8 +287,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSavePartyLocation {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */
@@ -347,8 +347,8 @@ namespace LSD_Reader {
 			unknown_3f					= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
-			/** ? */
-			unknown_48					= 0x48,
+			/** Flag */
+			flying						= 0x48,
 			/** ? */
 			sprite_name					= 0x49,
 			/** ? */
@@ -369,8 +369,8 @@ namespace LSD_Reader {
 			unknown_65					= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/**  */
-			unknown_67					= 0x67,
+			/** 0 = no vehicle, 1 = skiff, 2 = ship, 3 = airship */
+			vehicle						= 0x67,
 			/**  */
 			unknown_68					= 0x68,
 			/**  */
@@ -401,8 +401,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveVehicleLocation {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */
@@ -457,8 +457,8 @@ namespace LSD_Reader {
 			unknown_3f					= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
-			/** ? */
-			unknown_48					= 0x48,
+			/** Flag */
+			flying						= 0x48,
 			/** ? */
 			sprite_name					= 0x49,
 			/** ? */
@@ -647,8 +647,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveMapEvent {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */
@@ -705,8 +705,8 @@ namespace LSD_Reader {
 			unknown_3f					= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
-			/** ? */
-			unknown_48					= 0x48,
+			/** Flag */
+			flying						= 0x48,
 			/** ? */
 			sprite_name					= 0x49,
 			/** ? */

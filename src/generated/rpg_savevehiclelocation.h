@@ -21,7 +21,7 @@ namespace RPG {
 	public:
 		SaveVehicleLocation();
 
-		int unknown_01;
+		bool active;
 		int map_id;
 		int position_x;
 		int position_y;
@@ -49,7 +49,7 @@ namespace RPG {
 		int unknown_3e;
 		int unknown_3f;
 		int unknown_47;
-		int unknown_48;
+		bool flying;
 		std::string sprite_name;
 		int sprite_id;
 		int unknown_4b;

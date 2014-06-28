@@ -14,7 +14,7 @@
  */
 RPG::SaveMapEvent::SaveMapEvent() {
 	ID = 0;
-	unknown_01 = -1;
+	active = true;
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
@@ -42,7 +42,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_3e = 0;
 	unknown_3f = 0;
 	unknown_47 = 0;
-	unknown_48 = 0;
+	flying = false;
 	sprite_name = "";
 	sprite_id = -1;
 	unknown_4b = -1;
