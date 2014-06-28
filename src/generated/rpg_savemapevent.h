@@ -26,7 +26,7 @@ namespace RPG {
 		void Fixup(const RPG::EventPage& page);
 
 		int ID;
-		int unknown_01;
+		bool active;
 		int map_id;
 		int position_x;
 		int position_y;

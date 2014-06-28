@@ -287,8 +287,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSavePartyLocation {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */
@@ -401,8 +401,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveVehicleLocation {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */
@@ -647,8 +647,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveMapEvent {
 		enum Index {
-			/** ? */
-			unknown_01					= 0x01,
+			/** Flag */
+			active						= 0x01,
 			/** ? */
 			map_id						= 0x0B,
 			/** ? */

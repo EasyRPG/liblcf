@@ -21,7 +21,7 @@ namespace RPG {
 	public:
 		SaveVehicleLocation();
 
-		int unknown_01;
+		bool active;
 		int map_id;
 		int position_x;
 		int position_y;

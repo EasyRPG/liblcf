@@ -814,7 +814,7 @@ SavePicture,effect2_speed,f,Integer,0x2E,0,int
 SavePicture,time_left,f,Integer,0x33,0,int
 SavePicture,current_rotation,f,Double,0x34,0.0,double
 SavePicture,current_waver,f,Integer,0x35,0,int
-SavePartyLocation,unknown_01,f,Integer,0x01,1,?
+SavePartyLocation,active,f,Boolean,0x01,True,Flag
 SavePartyLocation,map_id,f,Integer,0x0B,-1,?
 SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
@@ -869,7 +869,7 @@ SavePartyLocation,encounter_steps,f,Integer,0x7C,0,int: sum of terrain.encounter
 SavePartyLocation,unknown_7d,f,Integer,0x7D,0,?
 SavePartyLocation,map_save_count,f,Integer,0x83,0,Mirrors save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,unknown_84,f,Integer,0x84,0,?
-SaveVehicleLocation,unknown_01,f,Integer,0x01,-1,?
+SaveVehicleLocation,active,f,Boolean,0x01,True,Flag
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
@@ -980,7 +980,7 @@ SaveEventData,unknown_16,f,Integer,0x16,-1,
 SaveEventData,unknown_17,f,Integer,0x17,-1,
 SaveEventData,time_left,f,Integer,0x1F,-1,int
 SaveEventData,unknown_20,f,Integer,0x20,-1,
-SaveMapEvent,unknown_01,f,Integer,0x01,-1,?
+SaveMapEvent,active,f,Boolean,0x01,True,Flag
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
 SaveMapEvent,position_y,f,Integer,0x0D,-1,?

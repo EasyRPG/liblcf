@@ -13,7 +13,7 @@
  * Constructor.
  */
 RPG::SaveVehicleLocation::SaveVehicleLocation() {
-	unknown_01 = -1;
+	active = true;
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;

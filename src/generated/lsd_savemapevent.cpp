@@ -17,7 +17,7 @@
 #define LCF_CURRENT_STRUCT SaveMapEvent
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, unknown_01),
+	LCF_STRUCT_TYPED_FIELD(bool, active),
 	LCF_STRUCT_TYPED_FIELD(int, map_id),
 	LCF_STRUCT_TYPED_FIELD(int, position_x),
 	LCF_STRUCT_TYPED_FIELD(int, position_y),
