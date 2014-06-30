@@ -27,7 +27,7 @@ namespace RPG {
 		std::vector<EventCommand> commands;
 		int current_command;
 		int unknown_0c;
-		int unknown_0d;
+		bool actioned;
 		int unknown_15;
 		std::vector<uint8_t> unknown_16;
 	};

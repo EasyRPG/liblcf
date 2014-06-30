@@ -623,8 +623,8 @@ namespace LSD_Reader {
 			current_command	= 0x0B,
 			/** int */
 			unknown_0c		= 0x0C,
-			/** int */
-			unknown_0d		= 0x0D,
+			/** Event was triggered by the Action Key */
+			actioned		= 0x0D,
 			/** byte */
 			unknown_15		= 0x15,
 			/** byte */
