@@ -621,10 +621,10 @@ namespace LSD_Reader {
 			commands		= 0x02,
 			/** int */
 			current_command	= 0x0B,
-			/** int */
-			unknown_0c		= 0x0C,
-			/** int */
-			unknown_0d		= 0x0D,
+			/** 0 if it's common event or in other map */
+			event_id		= 0x0C,
+			/** Event was triggered by the Action Key */
+			actioned		= 0x0D,
 			/** byte */
 			unknown_15		= 0x15,
 			/** byte */

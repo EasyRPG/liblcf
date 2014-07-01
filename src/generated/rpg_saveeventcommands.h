@@ -26,8 +26,8 @@ namespace RPG {
 		int commands_size;
 		std::vector<EventCommand> commands;
 		int current_command;
-		int unknown_0c;
-		int unknown_0d;
+		int event_id;
+		bool actioned;
 		int unknown_15;
 		std::vector<uint8_t> unknown_16;
 	};
