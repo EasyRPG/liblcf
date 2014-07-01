@@ -971,7 +971,7 @@ SaveTarget,switch_id,f,Ref<Switch>,0x05,0,int
 SaveEventCommands,commands_size,f,Integer,0x01,0,int
 SaveEventCommands,commands,f,Vector<EventCommand>,0x02,,event command list
 SaveEventCommands,current_command,f,Integer,0x0B,-1,int
-SaveEventCommands,unknown_0c,f,Integer,0x0C,-1,int
+SaveEventCommands,event_id,f,Integer,0x0C,0,0 if it's common event or in other map
 SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Action Key
 SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
 SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte

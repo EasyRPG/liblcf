@@ -20,7 +20,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, commands_size),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, commands),
 	LCF_STRUCT_TYPED_FIELD(int, current_command),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_0c),
+	LCF_STRUCT_TYPED_FIELD(int, event_id),
 	LCF_STRUCT_TYPED_FIELD(bool, actioned),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_15),
 	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16),

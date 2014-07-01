@@ -16,7 +16,7 @@ RPG::SaveEventCommands::SaveEventCommands() {
 	ID = 0;
 	commands_size = 0;
 	current_command = -1;
-	unknown_0c = -1;
+	event_id = 0;
 	actioned = false;
 	unknown_15 = -1;
 }
