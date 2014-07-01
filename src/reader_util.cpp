@@ -257,6 +257,12 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	std::string result_str;
 
 	conv = ucnv_open(encoding_str.c_str(), &status);
+	
+	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
+		return std::string();
+	}
+	status = U_ZERO_ERROR;
+
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) return std::string();
