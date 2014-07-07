@@ -309,10 +309,10 @@ namespace LSD_Reader {
 			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
-			/** ? */
-			unknown_22					= 0x22,
-			/** Integer - Enum<EventPage_AnimType>? */
-			unknown_23_animation_type	= 0x23,
+			/** Flag */
+			overlap_forbidden			= 0x22,
+			/** Integer */
+			animation_type				= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
@@ -369,7 +369,7 @@ namespace LSD_Reader {
 			unknown_65					= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** 0 = no vehicle, 1 = skiff, 2 = ship, 3 = airship */
+			/** Vehicle in use */
 			vehicle						= 0x67,
 			/**  */
 			unknown_68					= 0x68,
@@ -423,10 +423,10 @@ namespace LSD_Reader {
 			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
-			/** ? */
-			unknown_22					= 0x22,
-			/** Integer - Enum<EventPage_AnimType>? */
-			unknown_23_animation_type	= 0x23,
+			/** Flag */
+			overlap_forbidden			= 0x22,
+			/**  */
+			animation_type				= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */
@@ -669,10 +669,10 @@ namespace LSD_Reader {
 			move_frequency				= 0x20,
 			/** ? */
 			layer						= 0x21,
-			/** ? */
-			unknown_22					= 0x22,
-			/** Integer - Enum<EventPage_AnimType>? */
-			unknown_23_animation_type	= 0x23,
+			/** Flag */
+			overlap_forbidden			= 0x22,
+			/**  */
+			animation_type				= 0x23,
 			/** facing locked */
 			lock_facing					= 0x24,
 			/**  */

@@ -25,8 +25,8 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_1f = 0;
 	move_frequency = -1;
 	layer = 1;
-	unknown_22 = 0;
-	unknown_23_animation_type = 1;
+	overlap_forbidden = false;
+	animation_type = 1;
 	lock_facing = false;
 	move_speed = -1;
 	move_route_overwrite = false;

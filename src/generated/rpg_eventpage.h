@@ -84,7 +84,7 @@ namespace RPG {
 		int move_frequency;
 		int trigger;
 		int layer;
-		bool overlap;
+		bool overlap_forbidden;
 		int animation_type;
 		int move_speed;
 		MoveRoute move_route;

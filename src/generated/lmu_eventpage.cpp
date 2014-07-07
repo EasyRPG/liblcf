@@ -27,7 +27,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, move_frequency),
 	LCF_STRUCT_TYPED_FIELD(int, trigger),
 	LCF_STRUCT_TYPED_FIELD(int, layer),
-	LCF_STRUCT_TYPED_FIELD(bool, overlap),
+	LCF_STRUCT_TYPED_FIELD(bool, overlap_forbidden),
 	LCF_STRUCT_TYPED_FIELD(int, animation_type),
 	LCF_STRUCT_TYPED_FIELD(int, move_speed),
 	LCF_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route),
