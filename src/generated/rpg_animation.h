@@ -36,6 +36,7 @@ namespace RPG {
 		int ID;
 		std::string name;
 		std::string animation_name;
+		int unknown_03;
 		std::vector<AnimationTiming> timings;
 		int scope;
 		int position;

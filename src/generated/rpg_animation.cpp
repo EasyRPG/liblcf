@@ -16,6 +16,7 @@ RPG::Animation::Animation() {
 	ID = 0;
 	name = "";
 	animation_name = "";
+	unknown_03 = -1;
 	scope = 0;
 	position = 2;
 }

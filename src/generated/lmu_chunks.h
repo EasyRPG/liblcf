@@ -72,7 +72,7 @@ namespace LMU_Reader {
 			/** Integer */
 			layer				= 0x22,
 			/** Flag */
-			overlap				= 0x23,
+			overlap_forbidden	= 0x23,
 			/** Integer */
 			animation_type		= 0x24,
 			/** Integer */

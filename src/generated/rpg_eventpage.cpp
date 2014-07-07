@@ -23,7 +23,7 @@ RPG::EventPage::EventPage() {
 	move_frequency = 3;
 	trigger = 0;
 	layer = 0;
-	overlap = false;
+	overlap_forbidden = false;
 	animation_type = 0;
 	move_speed = 3;
 }

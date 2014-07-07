@@ -113,6 +113,10 @@ Terrain,BushDepth,half,2
 Terrain,BushDepth,full,3
 Terrain,BGAssociation,background,0
 Terrain,BGAssociation,frame,1
+SavePartyLocation,VehicleType,none,0
+SavePartyLocation,VehicleType,skiff,1
+SavePartyLocation,VehicleType,ship,2
+SavePartyLocation,VehicleType,airship,3
 State,Persistence,ends,0
 State,Persistence,persists,1
 State,Restriction,normal,0

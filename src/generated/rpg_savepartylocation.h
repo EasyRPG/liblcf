@@ -19,6 +19,13 @@
 namespace RPG {
 	class SavePartyLocation {
 	public:
+		enum VehicleType {
+			VehicleType_none = 0,
+			VehicleType_skiff = 1,
+			VehicleType_ship = 2,
+			VehicleType_airship = 3
+		};
+
 		SavePartyLocation();
 		void Fixup();
 
@@ -33,8 +40,8 @@ namespace RPG {
 		int unknown_1f;
 		int move_frequency;
 		int layer;
-		int unknown_22;
-		int unknown_23_animation_type;
+		bool overlap_forbidden;
+		int animation_type;
 		bool lock_facing;
 		int move_speed;
 		MoveRoute move_route;

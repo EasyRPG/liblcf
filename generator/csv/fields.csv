@@ -58,6 +58,7 @@ AnimationCellData,transparency,f,Integer,0x0A,0,Integer
 AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,Array - RPG::AnimationCellData
 Animation,name,f,String,0x01,'',String
 Animation,animation_name,f,String,0x02,'',String
+Animation,unknown_03,f,Integer,0x03,-1,?
 Animation,timings,f,Array<AnimationTiming>,0x06,,Array - RPG::AnimationTiming
 Animation,scope,f,Enum<Animation_Scope>,0x09,0,Integer
 Animation,position,f,Enum<Animation_Position>,0x0A,2,Integer
@@ -645,7 +646,7 @@ EventPage,move_type,f,Enum<EventPage_MoveType>,0x1F,1,Integer
 EventPage,move_frequency,f,Integer,0x20,3,Integer
 EventPage,trigger,f,Enum<EventPage_Trigger>,0x21,0,Integer
 EventPage,layer,f,Enum<EventPage_Layers>,0x22,0,Integer
-EventPage,overlap,f,Boolean,0x23,False,Flag
+EventPage,overlap_forbidden,f,Boolean,0x23,False,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,Integer
 EventPage,move_route,f,MoveRoute,0x29,,RPG::MoveRoute
@@ -825,8 +826,8 @@ SavePartyLocation,unknown_18,f,Integer,0x18,0,?
 SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
 SavePartyLocation,move_frequency,f,Integer,0x20,-1,?
 SavePartyLocation,layer,f,Integer,0x21,1,?
-SavePartyLocation,unknown_22,f,Integer,0x22,0,?
-SavePartyLocation,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
+SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
+SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,Integer
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SavePartyLocation,move_speed,f,Integer,0x25,-1,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
@@ -855,7 +856,7 @@ SavePartyLocation,flash_current_level,f,Double,0x54,0.0,double
 SavePartyLocation,flash_time_left,f,Integer,0x55,0,int
 SavePartyLocation,unknown_65,f,Integer,0x65,0,
 SavePartyLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SavePartyLocation,vehicle,f,Integer,0x67,0,0 = no vehicle, 1 = skiff, 2 = ship, 3 = airship
+SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,Vehicle in use
 SavePartyLocation,unknown_68,f,Integer,0x68,0,
 SavePartyLocation,unknown_69,f,Integer,0x69,4,
 SavePartyLocation,unknown_6c,f,Integer,0x6C,0,
@@ -880,8 +881,8 @@ SaveVehicleLocation,unknown_18,f,Integer,0x18,0,?
 SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
 SaveVehicleLocation,move_frequency,f,Integer,0x20,-1,?
 SaveVehicleLocation,layer,f,Integer,0x21,1,?
-SaveVehicleLocation,unknown_22,f,Integer,0x22,0,?
-SaveVehicleLocation,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
+SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
+SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,
 SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,facing locked
 SaveVehicleLocation,move_speed,f,Integer,0x25,-1,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
@@ -991,8 +992,8 @@ SaveMapEvent,unknown_18,f,Integer,0x18,0,?
 SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?
 SaveMapEvent,move_frequency,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,1,?
-SaveMapEvent,unknown_22,f,Integer,0x22,0,?
-SaveMapEvent,unknown_23_animation_type,f,Integer,0x23,1,Integer - Enum<EventPage_AnimType>?
+SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,Flag
+SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,
 SaveMapEvent,lock_facing,f,Boolean,0x24,False,facing locked
 SaveMapEvent,move_speed,f,Integer,0x25,-1,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
