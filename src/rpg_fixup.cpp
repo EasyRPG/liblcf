@@ -19,7 +19,7 @@ void RPG::SaveActor::Fixup() {
 		name = actor.name;
 	}
 	if (title == "\x1") {
-		title = actor.name;
+		title = actor.title;
 	}
 	if (sprite_name.empty()) {
 		sprite_name = actor.character_name;
@@ -27,13 +27,13 @@ void RPG::SaveActor::Fixup() {
 	if (face_name.empty()) {
 		face_name = actor.face_name;
 	}
-	if (face_id == -1) {
+	if (face_id == 0) {
 		face_id = actor.face_index;
 	}
-	if (sprite_id == -1) {
+	if (sprite_id == 0) {
 		sprite_id = actor.character_index;
 	}
-	if (sprite_flags == -1) {
+	if (sprite_flags == 0) {
 		sprite_flags = actor.transparent ? 3 : 0;
 	}
 	if (class_id == -1) {

@@ -159,6 +159,8 @@ namespace LDB_Reader {
 			name			= 0x01,
 			/** String */
 			animation_name	= 0x02,
+			/** ? */
+			unknown_03		= 0x03,
 			/** Array - RPG::AnimationTiming */
 			timings			= 0x06,
 			/** Integer */
