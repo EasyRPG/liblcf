@@ -31,12 +31,12 @@ static void ToTDateTime() {
 }
 
 static void ToUnixTimestamp() {
-	std::time_t const current = std::floor(std::time(NULL) / 1000.0) * 1000.0;
+	std::time_t const current = std::time(NULL);
 	assert(current == LSD_Reader::ToUnixTimestamp(LSD_Reader::ToTDateTime(current)));
 }
 
 static void GenerateTimestamp() {
-	double const current = LSD_Reader::ToTDateTime(std::floor(std::time(NULL) / 1000.0) * 1000.0);
+	double const current = LSD_Reader::ToTDateTime(std::time(NULL));
 	assert(current == LSD_Reader::ToTDateTime(LSD_Reader::ToUnixTimestamp(current)));
 }
 
