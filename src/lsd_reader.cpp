@@ -19,7 +19,8 @@ double LSD_Reader::ToTDateTime(std::time_t const t) {
 }
 
 std::time_t LSD_Reader::ToUnixTimestamp(double const ms) {
-	return(std::time_t(std::floor(ms * 86400.0 - 25569.0 * 86400.0)));
+	double timestamp = ms * 86400.0 - 25569.0 * 86400.0;
+	return(std::time_t(timestamp + (timestamp < 0 ? -0.5 : 0.5)));
 }
 
 double LSD_Reader::GenerateTimestamp(std::time_t const t) {
