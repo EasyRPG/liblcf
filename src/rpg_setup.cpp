@@ -189,10 +189,10 @@ void RPG::Chipset::Init() {
 }
 
 void RPG::Parameters::Setup(int final_level) {
-	maxhp.resize(final_level + 1, 1);
-	maxsp.resize(final_level + 1, 0);
-	attack.resize(final_level + 1, 1);
-	defense.resize(final_level + 1, 1);
-	spirit.resize(final_level + 1, 1);
-	agility.resize(final_level + 1, 1);
+	maxhp.resize(final_level, 1);
+	maxsp.resize(final_level, 0);
+	attack.resize(final_level, 1);
+	defense.resize(final_level, 1);
+	spirit.resize(final_level, 1);
+	agility.resize(final_level, 1);
 }
