@@ -190,11 +190,19 @@ struct Primitive<std::vector<T> > {
 template <>
 struct Primitive<int> {
 	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
-		assert(length >= 1 && length <= 5);
-		ref = stream.ReadInt();
+		if (length >= 1 || length <= 5) {
+			ref = stream.ReadInt();
 #ifdef LCF_DEBUG_TRACE
-		printf("  %d\n", ref);
+			printf("  %d\n", ref);
 #endif
+		} else {
+			ref = 0;
+#ifdef LCF_DEBUG_TRACE
+			printf("Invalid integer at %s\n", stream->Tell());
+#endif
+			stream.Seek(length, LcfReader::FromCurrent);
+		}
+		
 	}
 	static void WriteLcf(const int& ref, LcfWriter& stream) {
 		stream.WriteInt(ref);
