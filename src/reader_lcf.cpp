@@ -137,6 +137,10 @@ void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 		SwapByteOrder(val);
 		buffer.push_back(val);
 	}
+	if (size % 2 != 0) {
+		Seek(1, FromCurrent);
+		buffer.push_back(0);
+	}
 }
 
 template <>
@@ -148,6 +152,10 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 		Read(&val, 4, 1);
 		SwapByteOrder(val);
 		buffer.push_back(val);
+	}
+	if (size % 4 != 0) {
+		Seek(size % 4, FromCurrent);
+		buffer.push_back(0);
 	}
 }
 
