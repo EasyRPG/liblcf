@@ -242,6 +242,9 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 }
 
 // Instantiate templates
+#ifdef _MSC_VER
+#pragma warning (disable : 4661)
+#endif
 
 template class Struct<RPG::Actor>;
 template class Struct<RPG::Animation>;

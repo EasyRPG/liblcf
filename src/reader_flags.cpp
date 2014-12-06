@@ -110,6 +110,9 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 }
 
 // Instantiate templates
+#ifdef _MSC_VER
+#pragma warning (disable : 4661)
+#endif
 
 template class Flags<RPG::TroopPageCondition::Flags>;
 template class Flags<RPG::EventPageCondition::Flags>;
