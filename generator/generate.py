@@ -224,7 +224,7 @@ def get_headers(structs, sfields, setup):
 
 def write_enums(sname, f):
     for ename in enums[sname]:
-        dcl = decl2 if (sname, ename) == ('MoveCommand','Code') else decl
+        dcl = decl2 if (sname, ename) in [('MoveCommand','Code'),('EventCommand','Code')] else decl
         evars = dict(ename = ename)
         f.write(dcl.enum_header % evars)
         ef = efields[sname, ename]
@@ -291,7 +291,8 @@ def generate_ctor(f, struct_name, hasid, vars):
         elif ftype == 'String':
             dfl = '"' + dfl[1:-1] + '"'
         if '|' in dfl:
-            dfl = re.sub(r'(.*)\|(.*)', r'\1', dfl)
+            # dfl = re.sub(r'(.*)\|(.*)', r'\1', dfl)
+            dfl = -1
         fvars = dict(
             fname = fname,
             default = dfl)
