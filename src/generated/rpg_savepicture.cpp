@@ -28,7 +28,7 @@ RPG::SavePicture::SavePicture() {
 	current_blue = -1.0;
 	current_sat = -1.0;
 	effect_mode = 0;
-	effect_speed = 0.0;
+	current_effect = 0.0;
 	current_bot_trans = 0.0;
 	finish_x = 0.0;
 	finish_y = 0.0;
@@ -39,7 +39,7 @@ RPG::SavePicture::SavePicture() {
 	finish_green = 100;
 	finish_blue = 100;
 	finish_sat = 100;
-	effect2_speed = 0;
+	finish_effect = 0;
 	time_left = 0;
 	current_rotation = 0.0;
 	current_waver = 0;
