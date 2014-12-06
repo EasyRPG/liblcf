@@ -593,7 +593,7 @@ namespace LSD_Reader {
 			escapes				= 0x22,
 			/** ? */
 			victories			= 0x23,
-			/** Number of turns passed in the latest battle fought? RPG2000: "turn" passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a "turn". */
+			/** Number of turns passed in the latest battle fought? RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'. */
 			unknown_29_turns	= 0x29,
 			/** ? */
 			steps				= 0x2A 
