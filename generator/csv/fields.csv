@@ -6,7 +6,7 @@ Actor,character_name,f,String,0x03,'',String
 Actor,character_index,f,Integer,0x04,0,Integer
 Actor,transparent,f,Boolean,0x05,False,Flag
 Actor,initial_level,f,Integer,0x07,1,Integer
-Actor,final_level,f,Integer,0x08,-1,Integer
+Actor,final_level,f,Integer,0x08,50|99,Integer
 Actor,critical_hit,f,Boolean,0x09,True,Flag
 Actor,critical_hit_chance,f,Integer,0x0A,30,Integer
 Actor,face_name,f,String,0x0F,,String
@@ -16,8 +16,8 @@ Actor,fix_equipment,f,Boolean,0x16,False,Flag
 Actor,auto_battle,f,Boolean,0x17,False,Flag
 Actor,super_guard,f,Boolean,0x18,False,Flag
 Actor,parameters,f,Parameters,0x1F,,Array x 6 - Short
-Actor,exp_base,f,Integer,0x29,-1,Integer
-Actor,exp_inflation,f,Integer,0x2A,-1,Integer
+Actor,exp_base,f,Integer,0x29,30|300,Integer
+Actor,exp_inflation,f,Integer,0x2A,30|300,Integer
 Actor,exp_correction,f,Integer,0x2B,0,Integer
 Actor,initial_equipment,f,Equipment,0x33,,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,Integer
@@ -912,8 +912,8 @@ SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom m
 SaveVehicleLocation,unknown_6a,f,Integer,0x6A,0,?
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
-SaveActor,name,f,String,0x01,'',string; "\x01" for default!?!?
-SaveActor,title,f,String,0x02,'',string; "\x01" for default!?!?
+SaveActor,name,f,String,0x01,'',string; ''\x01'' for default!?!?
+SaveActor,title,f,String,0x02,'',string; ''\x01'' for default!?!?
 SaveActor,sprite_name,f,String,0x0B,'',string
 SaveActor,sprite_id,f,Integer,0x0C,0,int
 SaveActor,sprite_flags,f,Integer,0x0D,0,int
@@ -962,7 +962,7 @@ SaveInventory,battles,f,Integer,0x20,0,?
 SaveInventory,defeats,f,Integer,0x21,0,?
 SaveInventory,escapes,f,Integer,0x22,0,?
 SaveInventory,victories,f,Integer,0x23,0,?
-SaveInventory,unknown_29_turns,f,Integer,0x29,0,Number of turns passed in the latest battle fought? RPG2000: "turn" passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a "turn".
+SaveInventory,unknown_29_turns,f,Integer,0x29,0,Number of turns passed in the latest battle fought? RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'.
 SaveInventory,steps,f,Integer,0x2A,0,?
 SaveTarget,map_id,f,Integer,0x01,0,int
 SaveTarget,map_x,f,Integer,0x02,0,int
@@ -1078,11 +1078,11 @@ Equipment,shield_id,,Ref<Item:Int16>,,0,
 Equipment,armor_id,,Ref<Item:Int16>,,0,
 Equipment,helmet_id,,Ref<Item:Int16>,,0,
 Equipment,accessory_id,,Ref<Item:Int16>,,0,
-EventCommand,code,,Integer,,0,
+EventCommand,code,,Enum<EventCommand_Code>,,0,
 EventCommand,indent,,Integer,,0,
 EventCommand,string,,String,,'',
 EventCommand,parameters,,Vector<Integer>,,,
-MoveCommand,command_id,,Integer,,0,
+MoveCommand,command_id,,Enum<MoveCommand_Code>,,0,
 MoveCommand,parameter_string,,String,,'',
 MoveCommand,parameter_a,,Integer,,0,
 MoveCommand,parameter_b,,Integer,,0,
