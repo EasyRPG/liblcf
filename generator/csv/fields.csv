@@ -912,8 +912,8 @@ SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom m
 SaveVehicleLocation,unknown_6a,f,Integer,0x6A,0,?
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
-SaveActor,name,f,String,0x01,'',string; "\x01" for default!?!?
-SaveActor,title,f,String,0x02,'',string; "\x01" for default!?!?
+SaveActor,name,f,String,0x01,'',string; ''\x01'' for default!?!?
+SaveActor,title,f,String,0x02,'',string; ''\x01'' for default!?!?
 SaveActor,sprite_name,f,String,0x0B,'',string
 SaveActor,sprite_id,f,Integer,0x0C,0,int
 SaveActor,sprite_flags,f,Integer,0x0D,0,int

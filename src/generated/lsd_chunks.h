@@ -489,9 +489,9 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveActor {
 		enum Index {
-			/** string; "\x01" for default!?!? */
+			/** string; ''\x01'' for default!?!? */
 			name			= 0x01,
-			/** string; "\x01" for default!?!? */
+			/** string; ''\x01'' for default!?!? */
 			title			= 0x02,
 			/** string */
 			sprite_name		= 0x0B,
