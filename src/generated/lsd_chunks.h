@@ -254,7 +254,7 @@ namespace LSD_Reader {
 			/** int */
 			effect_mode			= 0x0F,
 			/** double */
-			effect_speed		= 0x10,
+			current_effect		= 0x10,
 			/** double */
 			current_bot_trans	= 0x12,
 			/** double */
@@ -276,7 +276,7 @@ namespace LSD_Reader {
 			/** int */
 			finish_sat			= 0x2C,
 			/** int */
-			effect2_speed		= 0x2E,
+			finish_effect		= 0x2E,
 			/** int */
 			time_left			= 0x33,
 			/** double */

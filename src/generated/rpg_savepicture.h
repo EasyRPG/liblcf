@@ -35,7 +35,7 @@ namespace RPG {
 		double current_blue;
 		double current_sat;
 		int effect_mode;
-		double effect_speed;
+		double current_effect;
 		double current_bot_trans;
 		double finish_x;
 		double finish_y;
@@ -46,7 +46,7 @@ namespace RPG {
 		int finish_green;
 		int finish_blue;
 		int finish_sat;
-		int effect2_speed;
+		int finish_effect;
 		int time_left;
 		double current_rotation;
 		int current_waver;

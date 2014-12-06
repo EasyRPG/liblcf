@@ -800,7 +800,7 @@ SavePicture,current_green,f,Double,0x0C,-1.0,double
 SavePicture,current_blue,f,Double,0x0D,-1.0,double
 SavePicture,current_sat,f,Double,0x0E,-1.0,double
 SavePicture,effect_mode,f,Integer,0x0F,0,int
-SavePicture,effect_speed,f,Double,0x10,0.0,double
+SavePicture,current_effect,f,Double,0x10,0.0,double
 SavePicture,current_bot_trans,f,Double,0x12,0.0,double
 SavePicture,finish_x,f,Double,0x1F,0.0,double
 SavePicture,finish_y,f,Double,0x20,0.0,double
@@ -811,7 +811,7 @@ SavePicture,finish_red,f,Integer,0x29,100,int
 SavePicture,finish_green,f,Integer,0x2A,100,int
 SavePicture,finish_blue,f,Integer,0x2B,100,int
 SavePicture,finish_sat,f,Integer,0x2C,100,int
-SavePicture,effect2_speed,f,Integer,0x2E,0,int
+SavePicture,finish_effect,f,Integer,0x2E,0,int
 SavePicture,time_left,f,Integer,0x33,0,int
 SavePicture,current_rotation,f,Double,0x34,0.0,double
 SavePicture,current_waver,f,Integer,0x35,0,int
