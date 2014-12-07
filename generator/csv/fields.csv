@@ -822,8 +822,8 @@ SavePartyLocation,position_y,f,Integer,0x0D,-1,?
 SavePartyLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
 SavePartyLocation,direction,f,Integer,0x16,2,Current facing direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
-SavePartyLocation,unknown_18,f,Integer,0x18,0,?
-SavePartyLocation,unknown_1f,f,Integer,0x1F,0,?
+SavePartyLocation,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the main party member
+SavePartyLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
 SavePartyLocation,move_frequency,f,Integer,0x20,-1,?
 SavePartyLocation,layer,f,Integer,0x21,1,?
 SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
@@ -838,8 +838,8 @@ SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
 SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap?
 SavePartyLocation,anim_paused,f,Integer,0x30,0,?
 SavePartyLocation,unknown_33,f,Integer,0x33,0,?
-SavePartyLocation,unknown_34,f,Integer,0x34,0,?
-SavePartyLocation,unknown_35,f,Integer,0x35,0,?
+SavePartyLocation,stop_count,f,Integer,0x34,0,?
+SavePartyLocation,anim_count,f,Integer,0x35,0,?
 SavePartyLocation,unknown_36,f,Integer,0x36,0,?
 SavePartyLocation,unknown_3d,f,Integer,0x3D,0,?
 SavePartyLocation,unknown_3e,f,Integer,0x3E,0,?
@@ -869,7 +869,7 @@ SavePartyLocation,unknown_79,f,Integer,0x79,16,?
 SavePartyLocation,encounter_steps,f,Integer,0x7C,0,int: sum of terrain.encounter_rate for each step
 SavePartyLocation,unknown_7d,f,Integer,0x7D,0,?
 SavePartyLocation,map_save_count,f,Integer,0x83,0,Mirrors save_count of current map. On mismatch events are not continued after load.
-SavePartyLocation,unknown_84,f,Integer,0x84,0,?
+SavePartyLocation,database_save_count,f,Integer,0x84,0,?
 SaveVehicleLocation,active,f,Boolean,0x01,True,Flag
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
@@ -877,8 +877,8 @@ SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
 SaveVehicleLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
 SaveVehicleLocation,direction,f,Integer,0x16,2,Current facing direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
-SaveVehicleLocation,unknown_18,f,Integer,0x18,0,?
-SaveVehicleLocation,unknown_1f,f,Integer,0x1F,0,?
+SaveVehicleLocation,transparency,f,Integer,0x18,0,always 0
+SaveVehicleLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
 SaveVehicleLocation,move_frequency,f,Integer,0x20,-1,?
 SaveVehicleLocation,layer,f,Integer,0x21,1,?
 SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
@@ -891,8 +891,8 @@ SaveVehicleLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command
 SaveVehicleLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
 SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
-SaveVehicleLocation,unknown_34,f,Integer,0x34,0,?
-SaveVehicleLocation,unknown_35,f,Integer,0x35,0,?
+SaveVehicleLocation,stop_count,f,Integer,0x34,0,?
+SaveVehicleLocation,anim_count,f,Integer,0x35,0,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,0,?
 SaveVehicleLocation,unknown_3d,f,Integer,0x3D,0,?
 SaveVehicleLocation,unknown_3e,f,Integer,0x3E,0,?
@@ -988,8 +988,8 @@ SaveMapEvent,position_y,f,Integer,0x0D,-1,?
 SaveMapEvent,prelock_direction,f,Integer,0x15,2,Facing direction before lock
 SaveMapEvent,direction,f,Integer,0x16,2,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
-SaveMapEvent,unknown_18,f,Integer,0x18,0,?
-SaveMapEvent,unknown_1f,f,Integer,0x1F,0,?
+SaveMapEvent,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the current event page
+SaveMapEvent,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
 SaveMapEvent,move_frequency,f,Integer,0x20,-1,?
 SaveMapEvent,layer,f,Integer,0x21,1,?
 SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,Flag
@@ -1003,8 +1003,8 @@ SaveMapEvent,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move r
 SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
 SaveMapEvent,unknown_33,f,Integer,0x33,0,?
-SaveMapEvent,unknown_34,f,Integer,0x34,0,?
-SaveMapEvent,unknown_35,f,Integer,0x35,0,?
+SaveMapEvent,stop_count,f,Integer,0x34,0,?
+SaveMapEvent,anim_count,f,Integer,0x35,0,?
 SaveMapEvent,unknown_36,f,Integer,0x36,0,?
 SaveMapEvent,unknown_3d,f,Integer,0x3D,0,?
 SaveMapEvent,unknown_3e,f,Integer,0x3E,0,?
@@ -1019,9 +1019,9 @@ SaveMapEvent,flash_green,f,Integer,0x52,100,int
 SaveMapEvent,flash_blue,f,Integer,0x53,100,int
 SaveMapEvent,flash_current_level,f,Double,0x54,0.0,double
 SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
-SaveMapEvent,unknown_65,f,Integer,0x65,0,Related to autostarting events
+SaveMapEvent,running,f,Boolean,0x65,False,?
 SaveMapEvent,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveMapEvent,unknown_67,f,Integer,0x67,-1,?
+SaveMapEvent,pending,f,Boolean,0x67,False,If true, this event will run after the current running event stops running
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
 SaveMapInfo,position_x,f,Integer,0x01,0,int
 SaveMapInfo,position_y,f,Integer,0x02,0,int

@@ -301,10 +301,10 @@ namespace LSD_Reader {
 			direction					= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
-			/** ? */
-			unknown_18					= 0x18,
-			/** ? */
-			unknown_1f					= 0x1F,
+			/** 0 or 3 - Transparency level of the main party member */
+			transparency				= 0x18,
+			/** Remaining distance of the current move (from 0 to 256) */
+			remaining_step				= 0x1F,
 			/** ? */
 			move_frequency				= 0x20,
 			/** ? */
@@ -334,9 +334,9 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_33					= 0x33,
 			/** ? */
-			unknown_34					= 0x34,
+			stop_count					= 0x34,
 			/** ? */
-			unknown_35					= 0x35,
+			anim_count					= 0x35,
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
@@ -396,7 +396,7 @@ namespace LSD_Reader {
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
 			map_save_count				= 0x83,
 			/** ? */
-			unknown_84					= 0x84 
+			database_save_count			= 0x84 
 		};
 	};
 	struct ChunkSaveVehicleLocation {
@@ -415,10 +415,10 @@ namespace LSD_Reader {
 			direction					= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
-			/** ? */
-			unknown_18					= 0x18,
-			/** ? */
-			unknown_1f					= 0x1F,
+			/** always 0 */
+			transparency				= 0x18,
+			/** Remaining distance of the current move (from 0 to 256) */
+			remaining_step				= 0x1F,
 			/** ? */
 			move_frequency				= 0x20,
 			/** ? */
@@ -444,9 +444,9 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_33					= 0x33,
 			/** ? */
-			unknown_34					= 0x34,
+			stop_count					= 0x34,
 			/** ? */
-			unknown_35					= 0x35,
+			anim_count					= 0x35,
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
@@ -661,10 +661,10 @@ namespace LSD_Reader {
 			direction					= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
-			/** ? */
-			unknown_18					= 0x18,
-			/** ? */
-			unknown_1f					= 0x1F,
+			/** 0 or 3 - Transparency level of the current event page */
+			transparency				= 0x18,
+			/** Remaining distance of the current move (from 0 to 256) */
+			remaining_step				= 0x1F,
 			/** ? */
 			move_frequency				= 0x20,
 			/** ? */
@@ -692,9 +692,9 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_33					= 0x33,
 			/** ? */
-			unknown_34					= 0x34,
+			stop_count					= 0x34,
 			/** ? */
-			unknown_35					= 0x35,
+			anim_count					= 0x35,
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
@@ -723,12 +723,12 @@ namespace LSD_Reader {
 			flash_current_level			= 0x54,
 			/** int */
 			flash_time_left				= 0x55,
-			/** Related to autostarting events */
-			unknown_65					= 0x65,
+			/** ? */
+			running						= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** ? */
-			unknown_67					= 0x67,
+			/** If true, this event will run after the current running event stops running */
+			pending						= 0x67,
 			/** chunks */
 			event_data					= 0x6C 
 		};

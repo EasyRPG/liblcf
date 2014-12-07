@@ -20,8 +20,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	prelock_direction = 2;
 	direction = 2;
 	anim_frame = 1;
-	unknown_18 = 0;
-	unknown_1f = 0;
+	transparency = 0;
+	remaining_step = 0;
 	move_frequency = -1;
 	layer = 1;
 	overlap_forbidden = false;
@@ -33,8 +33,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	move_route_repeated = false;
 	anim_paused = 0;
 	unknown_33 = 0;
-	unknown_34 = 0;
-	unknown_35 = 0;
+	stop_count = 0;
+	anim_count = 0;
 	unknown_36 = 0;
 	unknown_3d = 0;
 	unknown_3e = 0;

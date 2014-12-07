@@ -21,8 +21,8 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	prelock_direction = 2;
 	direction = 2;
 	anim_frame = 1;
-	unknown_18 = 0;
-	unknown_1f = 0;
+	transparency = 0;
+	remaining_step = 0;
 	move_frequency = -1;
 	layer = 1;
 	overlap_forbidden = false;
@@ -35,8 +35,8 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	unknown_2f_overlap = -1;
 	anim_paused = 0;
 	unknown_33 = 0;
-	unknown_34 = 0;
-	unknown_35 = 0;
+	stop_count = 0;
+	anim_count = 0;
 	unknown_36 = 0;
 	unknown_3d = 0;
 	unknown_3e = 0;
@@ -51,7 +51,7 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	flash_blue = 100;
 	flash_current_level = 0.0;
 	flash_time_left = 0;
-	unknown_65 = 0;
+	running = false;
 	original_move_route_index = 0;
-	unknown_67 = -1;
+	pending = false;
 }
