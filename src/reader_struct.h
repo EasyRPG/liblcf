@@ -269,31 +269,6 @@ struct TypeReader<T, Category::Primitive> {
 };
 
 /**
- * Structure field reader.
- */
-template <class S, class T>
-struct FieldReader {
-	static void ReadLcf(S& obj, T S::*ref, LcfReader& stream, uint32_t length) {
-		TypeReader<T>::ReadLcf(obj.*ref, stream, length);
-	}
-	static void WriteLcf(const S& obj, const T S::*ref, LcfWriter& stream) {
-		TypeReader<T>::WriteLcf(obj.*ref, stream);
-	}
-	static int LcfSize(const S& obj, const T S::*ref, LcfWriter& stream) {
-		return TypeReader<T>::LcfSize(obj.*ref, stream);
-	}
-	static void WriteXml(const S& obj, const T S::*ref, XmlWriter& stream) {
-		TypeReader<T>::WriteXml(obj.*ref, stream);
-	}
-	static void BeginXml(S& obj, T S::*ref, XmlReader& stream) {
-		TypeReader<T>::BeginXml(obj.*ref, stream);
-	}
-	static void ParseXml(S& obj, T S::*ref, const std::string& data) {
-		TypeReader<T>::ParseXml(obj.*ref, data);
-	}
-};
-
-/**
  * Field abstract base class template.
  */
 template <class S>
@@ -385,24 +360,24 @@ struct TypedField : public Field<S> {
 	T S::*ref;
 
 	void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const {
-		FieldReader<S, T>::ReadLcf(obj, ref, stream, length);
+		TypeReader<T>::ReadLcf(obj.*ref, stream, length);
 	}
 	void WriteLcf(const S& obj, LcfWriter& stream) const {
-		FieldReader<S, T>::WriteLcf(obj, ref, stream);
+		TypeReader<T>::WriteLcf(obj.*ref, stream);
 	}
 	int LcfSize(const S& obj, LcfWriter& stream) const {
-		return FieldReader<S, T>::LcfSize(obj, ref, stream);
+		return TypeReader<T>::LcfSize(obj.*ref, stream);
 	}
 	void WriteXml(const S& obj, XmlWriter& stream) const {
 		stream.BeginElement(this->name);
-		FieldReader<S, T>::WriteXml(obj, ref, stream);
+		TypeReader<T>::WriteXml(obj.*ref, stream);
 		stream.EndElement(this->name);
 	}
 	void BeginXml(S& obj, XmlReader& stream) const {
-		FieldReader<S, T>::BeginXml(obj, ref, stream);
+		TypeReader<T>::BeginXml(obj.*ref, stream);
 	}
 	void ParseXml(S& obj, const std::string& data) const {
-		FieldReader<S, T>::ParseXml(obj, ref, data);
+		TypeReader<T>::ParseXml(obj.*ref, data);
 	}
 	bool IsDefault(const S& a, const S& b) const {
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
