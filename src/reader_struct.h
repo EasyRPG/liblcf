@@ -190,7 +190,7 @@ struct Primitive<std::vector<T> > {
 template <>
 struct Primitive<int> {
 	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
-		if (length >= 1 || length <= 5) {
+		if (length >= 1 && length <= 5) {
 			ref = stream.ReadInt();
 #ifdef LCF_DEBUG_TRACE
 			printf("  %d\n", ref);
