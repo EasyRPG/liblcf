@@ -24,8 +24,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, prelock_direction),
 	LCF_STRUCT_TYPED_FIELD(int, direction),
 	LCF_STRUCT_TYPED_FIELD(int, anim_frame),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_18),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_1f),
+	LCF_STRUCT_TYPED_FIELD(int, transparency),
+	LCF_STRUCT_TYPED_FIELD(int, remaining_step),
 	LCF_STRUCT_TYPED_FIELD(int, move_frequency),
 	LCF_STRUCT_TYPED_FIELD(int, layer),
 	LCF_STRUCT_TYPED_FIELD(bool, overlap_forbidden),
@@ -40,8 +40,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, unknown_2f_overlap),
 	LCF_STRUCT_TYPED_FIELD(int, anim_paused),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_33),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_34),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_35),
+	LCF_STRUCT_TYPED_FIELD(int, stop_count),
+	LCF_STRUCT_TYPED_FIELD(int, anim_count),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_36),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_3d),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_3e),
@@ -71,7 +71,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, encounter_steps),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_7d),
 	LCF_STRUCT_TYPED_FIELD(int, map_save_count),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_84),
+	LCF_STRUCT_TYPED_FIELD(int, database_save_count),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

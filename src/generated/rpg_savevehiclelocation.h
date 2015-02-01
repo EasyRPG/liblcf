@@ -28,8 +28,8 @@ namespace RPG {
 		int prelock_direction;
 		int direction;
 		int anim_frame;
-		int unknown_18;
-		int unknown_1f;
+		int transparency;
+		int remaining_step;
 		int move_frequency;
 		int layer;
 		bool overlap_forbidden;
@@ -42,8 +42,8 @@ namespace RPG {
 		bool move_route_repeated;
 		int anim_paused;
 		int unknown_33;
-		int unknown_34;
-		int unknown_35;
+		int stop_count;
+		int anim_count;
 		int unknown_36;
 		int unknown_3d;
 		int unknown_3e;
