@@ -46,8 +46,6 @@ AC_C_BIGENDIAN
 AC_CHECK_FUNCS([floor strrchr strtol])
 
 AC_CONFIG_FILES([Makefile
-                 src/Makefile
-                 tests/Makefile
                  builds/liblcf.pc])
 
 AC_OUTPUT
