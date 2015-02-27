@@ -22,10 +22,24 @@ namespace RPG {
 		SaveEventData();
 
 		std::vector<SaveEventCommands> commands;
-		int unknown_16;
-		int unknown_17;
+		int unknown_0d;
+		bool keyinput_wait;
+		int keyinput_variable;
+		bool keyinput_all_directions;
+		bool keyinput_decision;
+		bool keyinput_cancel;
+		bool keyinput_numbers;
+		bool keyinput_operators;
+		bool keyinput_shift;
+		bool keyinput_value_right;
+		bool keyinput_value_up;
 		int time_left;
-		int unknown_20;
+		int keyinput_time_variable;
+		bool keyinput_down;
+		bool keyinput_left;
+		bool keyinput_right;
+		bool keyinput_up;
+		bool keyinput_timed;
 	};
 }
 

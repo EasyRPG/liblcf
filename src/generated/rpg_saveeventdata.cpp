@@ -13,8 +13,22 @@
  * Constructor.
  */
 RPG::SaveEventData::SaveEventData() {
-	unknown_16 = -1;
-	unknown_17 = -1;
+	unknown_0d = -1;
+	keyinput_wait = false;
+	keyinput_variable = -1;
+	keyinput_all_directions = false;
+	keyinput_decision = false;
+	keyinput_cancel = false;
+	keyinput_numbers = false;
+	keyinput_operators = false;
+	keyinput_shift = false;
+	keyinput_value_right = false;
+	keyinput_value_up = false;
 	time_left = -1;
-	unknown_20 = -1;
+	keyinput_time_variable = -1;
+	keyinput_down = false;
+	keyinput_left = false;
+	keyinput_right = false;
+	keyinput_up = false;
+	keyinput_timed = false;
 }

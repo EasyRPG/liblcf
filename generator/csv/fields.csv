@@ -978,10 +978,24 @@ SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Actio
 SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
 SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte
 SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
-SaveEventData,unknown_16,f,Integer,0x16,-1,
-SaveEventData,unknown_17,f,Integer,0x17,-1,
+SaveEventData,unknown_0d,f,Integer,0x0D,-1,
+SaveEventData,keyinput_wait,f,Boolean,0x15,False,
+SaveEventData,keyinput_variable,f,Integer,0x16,-1,
+SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,
+SaveEventData,keyinput_decision,f,Boolean,0x18,False,
+SaveEventData,keyinput_cancel,f,Boolean,0x19,False,
+SaveEventData,keyinput_numbers,f,Boolean,0x1A,False,In RM2k Value this is keyinput_shift
+SaveEventData,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
+SaveEventData,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
+SaveEventData,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
+SaveEventData,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
 SaveEventData,time_left,f,Integer,0x1F,-1,int
-SaveEventData,unknown_20,f,Integer,0x20,-1,
+SaveEventData,keyinput_time_variable,f,Integer,0x20,-1,
+SaveEventData,keyinput_down,f,Boolean,0x23,False,
+SaveEventData,keyinput_left,f,Boolean,0x24,False,
+SaveEventData,keyinput_right,f,Boolean,0x25,False,
+SaveEventData,keyinput_up,f,Boolean,0x26,False,
+SaveEventData,keyinput_timed,f,Boolean,0x29,False,
 SaveMapEvent,active,f,Boolean,0x01,True,Flag
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?

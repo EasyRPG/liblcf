@@ -636,15 +636,43 @@ namespace LSD_Reader {
 	struct ChunkSaveEventData {
 		enum Index {
 			/** array */
-			commands	= 0x01,
+			commands				= 0x01,
 			/**  */
-			unknown_16	= 0x16,
+			unknown_0d				= 0x0D,
 			/**  */
-			unknown_17	= 0x17,
+			keyinput_wait			= 0x15,
+			/**  */
+			keyinput_variable		= 0x16,
+			/**  */
+			keyinput_all_directions	= 0x17,
+			/**  */
+			keyinput_decision		= 0x18,
+			/**  */
+			keyinput_cancel			= 0x19,
+			/** In RM2k Value this is keyinput_shift */
+			keyinput_numbers		= 0x1A,
+			/** In Value keyinput_down */
+			keyinput_operators		= 0x1B,
+			/** In Value keyinput_left */
+			keyinput_shift			= 0x1C,
+			/** Only in Value */
+			keyinput_value_right	= 0x1D,
+			/** Only in Value */
+			keyinput_value_up		= 0x1E,
 			/** int */
-			time_left	= 0x1F,
+			time_left				= 0x1F,
 			/**  */
-			unknown_20	= 0x20 
+			keyinput_time_variable	= 0x20,
+			/**  */
+			keyinput_down			= 0x23,
+			/**  */
+			keyinput_left			= 0x24,
+			/**  */
+			keyinput_right			= 0x25,
+			/**  */
+			keyinput_up				= 0x26,
+			/**  */
+			keyinput_timed			= 0x29 
 		};
 	};
 	struct ChunkSaveMapEvent {
