@@ -29,7 +29,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, unknown_1a),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_1b),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_1c),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_1f),
+	LCF_STRUCT_TYPED_FIELD(int, wait_count),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_20),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_23),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_24),

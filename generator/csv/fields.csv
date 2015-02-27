@@ -841,9 +841,9 @@ SavePartyLocation,unknown_33,f,Integer,0x33,0,?
 SavePartyLocation,stop_count,f,Integer,0x34,0,?
 SavePartyLocation,anim_count,f,Integer,0x35,0,?
 SavePartyLocation,unknown_36,f,Integer,0x36,0,?
-SavePartyLocation,unknown_3d,f,Integer,0x3D,0,?
-SavePartyLocation,unknown_3e,f,Integer,0x3E,0,?
-SavePartyLocation,unknown_3f,f,Integer,0x3F,0,?
+SavePartyLocation,jumping,f,Boolean,0x3D,False,?
+SavePartyLocation,begin_jump_x,f,Integer,0x3E,0,?
+SavePartyLocation,begin_jump_y,f,Integer,0x3F,0,?
 SavePartyLocation,unknown_47,f,Integer,0x47,0,?
 SavePartyLocation,flying,f,Boolean,0x48,False,Flag
 SavePartyLocation,sprite_name,f,String,0x49,'',?
@@ -894,9 +894,9 @@ SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
 SaveVehicleLocation,stop_count,f,Integer,0x34,0,?
 SaveVehicleLocation,anim_count,f,Integer,0x35,0,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,0,?
-SaveVehicleLocation,unknown_3d,f,Integer,0x3D,0,?
-SaveVehicleLocation,unknown_3e,f,Integer,0x3E,0,?
-SaveVehicleLocation,unknown_3f,f,Integer,0x3F,0,?
+SaveVehicleLocation,jumping,f,Boolean,0x3D,False,?
+SaveVehicleLocation,begin_jump_x,f,Integer,0x3E,0,?
+SaveVehicleLocation,begin_jump_y,f,Integer,0x3F,0,?
 SaveVehicleLocation,unknown_47,f,Integer,0x47,0,?
 SaveVehicleLocation,flying,f,Boolean,0x48,False,Flag
 SaveVehicleLocation,sprite_name,f,String,0x49,'',?
@@ -1006,9 +1006,9 @@ SaveMapEvent,unknown_33,f,Integer,0x33,0,?
 SaveMapEvent,stop_count,f,Integer,0x34,0,?
 SaveMapEvent,anim_count,f,Integer,0x35,0,?
 SaveMapEvent,unknown_36,f,Integer,0x36,0,?
-SaveMapEvent,unknown_3d,f,Integer,0x3D,0,?
-SaveMapEvent,unknown_3e,f,Integer,0x3E,0,?
-SaveMapEvent,unknown_3f,f,Integer,0x3F,0,?
+SaveMapEvent,jumping,f,Boolean,0x3D,False,?
+SaveMapEvent,begin_jump_x,f,Integer,0x3E,0,?
+SaveMapEvent,begin_jump_y,f,Integer,0x3F,0,?
 SaveMapEvent,unknown_47,f,Integer,0x47,0,?
 SaveMapEvent,flying,f,Boolean,0x48,False,Flag
 SaveMapEvent,sprite_name,f,String,0x49,'',?
@@ -1049,7 +1049,7 @@ SaveEvents,unknown_19,f,Integer,0x19,0,
 SaveEvents,unknown_1a,f,Integer,0x1A,0,
 SaveEvents,unknown_1b,f,Integer,0x1B,0,
 SaveEvents,unknown_1c,f,Integer,0x1C,0,int/bool
-SaveEvents,unknown_1f,f,Integer,0x1F,0,
+SaveEvents,wait_count,f,Integer,0x1F,0,Number of frames to wait
 SaveEvents,unknown_20,f,Integer,0x20,0,int/bool
 SaveEvents,unknown_23,f,Integer,0x23,0,
 SaveEvents,unknown_24,f,Integer,0x24,0,int/bool

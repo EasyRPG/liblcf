@@ -33,7 +33,7 @@ namespace RPG {
 		int unknown_1a;
 		int unknown_1b;
 		int unknown_1c;
-		int unknown_1f;
+		int wait_count;
 		int unknown_20;
 		int unknown_23;
 		int unknown_24;

@@ -340,11 +340,11 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
-			unknown_3d					= 0x3D,
+			jumping						= 0x3D,
 			/** ? */
-			unknown_3e					= 0x3E,
+			begin_jump_x				= 0x3E,
 			/** ? */
-			unknown_3f					= 0x3F,
+			begin_jump_y				= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
 			/** Flag */
@@ -450,11 +450,11 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
-			unknown_3d					= 0x3D,
+			jumping						= 0x3D,
 			/** ? */
-			unknown_3e					= 0x3E,
+			begin_jump_x				= 0x3E,
 			/** ? */
-			unknown_3f					= 0x3F,
+			begin_jump_y				= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
 			/** Flag */
@@ -698,11 +698,11 @@ namespace LSD_Reader {
 			/** ? */
 			unknown_36					= 0x36,
 			/** ? */
-			unknown_3d					= 0x3D,
+			jumping						= 0x3D,
 			/** ? */
-			unknown_3e					= 0x3E,
+			begin_jump_x				= 0x3E,
 			/** ? */
-			unknown_3f					= 0x3F,
+			begin_jump_y				= 0x3F,
 			/** ? */
 			unknown_47					= 0x47,
 			/** Flag */
@@ -791,8 +791,8 @@ namespace LSD_Reader {
 			unknown_1b	= 0x1B,
 			/** int/bool */
 			unknown_1c	= 0x1C,
-			/**  */
-			unknown_1f	= 0x1F,
+			/** Number of frames to wait */
+			wait_count	= 0x1F,
 			/** int/bool */
 			unknown_20	= 0x20,
 			/**  */

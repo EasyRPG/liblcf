@@ -24,7 +24,7 @@ RPG::SaveEvents::SaveEvents() {
 	unknown_1a = 0;
 	unknown_1b = 0;
 	unknown_1c = 0;
-	unknown_1f = 0;
+	wait_count = 0;
 	unknown_20 = 0;
 	unknown_23 = 0;
 	unknown_24 = 0;

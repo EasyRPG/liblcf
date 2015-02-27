@@ -38,9 +38,9 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	stop_count = 0;
 	anim_count = 0;
 	unknown_36 = 0;
-	unknown_3d = 0;
-	unknown_3e = 0;
-	unknown_3f = 0;
+	jumping = false;
+	begin_jump_x = 0;
+	begin_jump_y = 0;
 	unknown_47 = 0;
 	flying = false;
 	sprite_name = "";
