@@ -23,18 +23,12 @@ void RPG::SaveActor::Fixup() {
 	}
 	if (sprite_name.empty()) {
 		sprite_name = actor.character_name;
+		sprite_id = actor.character_index;
+		sprite_flags = actor.transparent ? 3 : 0;
 	}
 	if (face_name.empty()) {
 		face_name = actor.face_name;
-	}
-	if (face_id == 0) {
 		face_id = actor.face_index;
-	}
-	if (sprite_id == 0) {
-		sprite_id = actor.character_index;
-	}
-	if (sprite_flags == 0) {
-		sprite_flags = actor.transparent ? 3 : 0;
 	}
 	if (class_id == -1) {
 		class_id = actor.class_id;
