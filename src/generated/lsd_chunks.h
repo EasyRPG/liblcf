@@ -331,8 +331,8 @@ namespace LSD_Reader {
 			unknown_2f_overlap		= 0x2F,
 			/** ? */
 			anim_paused				= 0x30,
-			/** ? */
-			unknown_33				= 0x33,
+			/** Can go through anything */
+			through					= 0x33,
 			/** ? */
 			stop_count				= 0x34,
 			/** ? */
@@ -373,8 +373,8 @@ namespace LSD_Reader {
 			vehicle					= 0x67,
 			/**  */
 			unboarding				= 0x68,
-			/**  */
-			unknown_69				= 0x69,
+			/** Move speed before the party boarded the vehicle */
+			preboard_move_speed		= 0x69,
 			/**  */
 			unknown_6c				= 0x6C,
 			/**  */
@@ -441,8 +441,8 @@ namespace LSD_Reader {
 			move_route_repeated			= 0x2C,
 			/** ? */
 			anim_paused					= 0x30,
-			/** ? */
-			unknown_33					= 0x33,
+			/** Can go through anything */
+			through						= 0x33,
 			/** ? */
 			stop_count					= 0x34,
 			/** ? */
@@ -719,8 +719,8 @@ namespace LSD_Reader {
 			unknown_2f_overlap			= 0x2F,
 			/** ? */
 			anim_paused					= 0x30,
-			/** ? */
-			unknown_33					= 0x33,
+			/** Can go through anything */
+			through						= 0x33,
 			/** ? */
 			stop_count					= 0x34,
 			/** ? */

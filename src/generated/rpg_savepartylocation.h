@@ -51,7 +51,7 @@ namespace RPG {
 		bool sprite_transparent;
 		int unknown_2f_overlap;
 		int anim_paused;
-		int unknown_33;
+		bool through;
 		int stop_count;
 		int anim_count;
 		int unknown_36;
@@ -72,7 +72,7 @@ namespace RPG {
 		bool aboard;
 		int vehicle;
 		bool unboarding;
-		int unknown_69;
+		int preboard_move_speed;
 		int unknown_6c;
 		int pan_state;
 		int pan_current_x;

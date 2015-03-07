@@ -837,7 +837,7 @@ SavePartyLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating m
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
 SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap?
 SavePartyLocation,anim_paused,f,Integer,0x30,0,?
-SavePartyLocation,unknown_33,f,Integer,0x33,0,?
+SavePartyLocation,through,f,Boolean,0x33,False,Can go through anything
 SavePartyLocation,stop_count,f,Integer,0x34,0,?
 SavePartyLocation,anim_count,f,Integer,0x35,0,?
 SavePartyLocation,unknown_36,f,Integer,0x36,0,?
@@ -858,7 +858,7 @@ SavePartyLocation,boarding,f,Boolean,0x65,False,
 SavePartyLocation,aboard,f,Boolean,0x66,False,
 SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,Vehicle in use
 SavePartyLocation,unboarding,f,Boolean,0x68,False,
-SavePartyLocation,unknown_69,f,Integer,0x69,4,
+SavePartyLocation,preboard_move_speed,f,Integer,0x69,4,Move speed before the party boarded the vehicle
 SavePartyLocation,unknown_6c,f,Integer,0x6C,0,
 SavePartyLocation,pan_state,f,Integer,0x6f,1,
 SavePartyLocation,pan_current_x,f,Integer,0x70,2304,int
@@ -890,7 +890,7 @@ SaveVehicleLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move ro
 SaveVehicleLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveVehicleLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
-SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
+SaveVehicleLocation,through,f,Boolean,0x33,False,Can go through anything
 SaveVehicleLocation,stop_count,f,Integer,0x34,0,?
 SaveVehicleLocation,anim_count,f,Integer,0x35,0,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,0,?
@@ -1017,7 +1017,7 @@ SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveMapEvent,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
-SaveMapEvent,unknown_33,f,Integer,0x33,0,?
+SaveMapEvent,through,f,Boolean,0x33,False,Can go through anything
 SaveMapEvent,stop_count,f,Integer,0x34,0,?
 SaveMapEvent,anim_count,f,Integer,0x35,0,?
 SaveMapEvent,unknown_36,f,Integer,0x36,0,?

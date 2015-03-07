@@ -47,7 +47,7 @@ namespace RPG {
 		bool move_route_repeated;
 		int unknown_2f_overlap;
 		int anim_paused;
-		int unknown_33;
+		bool through;
 		int stop_count;
 		int anim_count;
 		int unknown_36;

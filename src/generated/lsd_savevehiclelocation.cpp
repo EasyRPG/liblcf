@@ -37,7 +37,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, move_route_index),
 	LCF_STRUCT_TYPED_FIELD(bool, move_route_repeated),
 	LCF_STRUCT_TYPED_FIELD(int, anim_paused),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_33),
+	LCF_STRUCT_TYPED_FIELD(bool, through),
 	LCF_STRUCT_TYPED_FIELD(int, stop_count),
 	LCF_STRUCT_TYPED_FIELD(int, anim_count),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_36),

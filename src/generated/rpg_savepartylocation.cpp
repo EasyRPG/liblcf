@@ -34,7 +34,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	sprite_transparent = false;
 	unknown_2f_overlap = 0;
 	anim_paused = 0;
-	unknown_33 = 0;
+	through = false;
 	stop_count = 0;
 	anim_count = 0;
 	unknown_36 = 0;
@@ -55,7 +55,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	aboard = false;
 	vehicle = 0;
 	unboarding = false;
-	unknown_69 = 4;
+	preboard_move_speed = 4;
 	unknown_6c = 0;
 	pan_state = 1;
 	pan_current_x = 2304;

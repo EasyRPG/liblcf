@@ -41,7 +41,7 @@ namespace RPG {
 		int move_route_index;
 		bool move_route_repeated;
 		int anim_paused;
-		int unknown_33;
+		bool through;
 		int stop_count;
 		int anim_count;
 		int unknown_36;
