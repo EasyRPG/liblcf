@@ -51,10 +51,10 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	flash_blue = 100;
 	flash_current_level = 0.0;
 	flash_time_left = 0;
-	unknown_65 = 0;
-	original_move_route_index = 0;
+	boarding = false;
+	aboard = false;
 	vehicle = 0;
-	unknown_68 = 0;
+	unboarding = false;
 	unknown_69 = 4;
 	unknown_6c = 0;
 	pan_state = 1;

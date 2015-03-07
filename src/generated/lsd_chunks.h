@@ -288,115 +288,115 @@ namespace LSD_Reader {
 	struct ChunkSavePartyLocation {
 		enum Index {
 			/** Flag */
-			active						= 0x01,
+			active					= 0x01,
 			/** ? */
-			map_id						= 0x0B,
+			map_id					= 0x0B,
 			/** ? */
-			position_x					= 0x0C,
+			position_x				= 0x0C,
 			/** ? */
-			position_y					= 0x0D,
+			position_y				= 0x0D,
 			/** Facing direction before lock */
-			prelock_direction			= 0x15,
+			prelock_direction		= 0x15,
 			/** Current facing direction */
-			direction					= 0x16,
+			direction				= 0x16,
 			/** ? */
-			anim_frame					= 0x17,
+			anim_frame				= 0x17,
 			/** 0 or 3 - Transparency level of the main party member */
-			transparency				= 0x18,
-			/** Remaining distance of the current move (from 0 to 256) */
-			remaining_step				= 0x1F,
+			transparency			= 0x18,
+			/** From 0 to 255 - Remaining distance of the current move */
+			remaining_step			= 0x1F,
 			/** ? */
-			move_frequency				= 0x20,
+			move_frequency			= 0x20,
 			/** ? */
-			layer						= 0x21,
+			layer					= 0x21,
 			/** Flag */
-			overlap_forbidden			= 0x22,
+			overlap_forbidden		= 0x22,
 			/** Integer */
-			animation_type				= 0x23,
+			animation_type			= 0x23,
 			/** facing locked */
-			lock_facing					= 0x24,
+			lock_facing				= 0x24,
 			/**  */
-			move_speed					= 0x25,
+			move_speed				= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route					= 0x29,
+			move_route				= 0x29,
 			/** Use custom move route */
-			move_route_overwrite		= 0x2A,
+			move_route_overwrite	= 0x2A,
 			/** Index of MoveEvent command route */
-			move_route_index			= 0x2B,
+			move_route_index		= 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated			= 0x2C,
+			move_route_repeated		= 0x2C,
 			/** bool */
-			sprite_transparent			= 0x2E,
+			sprite_transparent		= 0x2E,
 			/** Boolean - Overlap? */
-			unknown_2f_overlap			= 0x2F,
+			unknown_2f_overlap		= 0x2F,
 			/** ? */
-			anim_paused					= 0x30,
+			anim_paused				= 0x30,
 			/** ? */
-			unknown_33					= 0x33,
+			unknown_33				= 0x33,
 			/** ? */
-			stop_count					= 0x34,
+			stop_count				= 0x34,
 			/** ? */
-			anim_count					= 0x35,
+			anim_count				= 0x35,
 			/** ? */
-			unknown_36					= 0x36,
+			unknown_36				= 0x36,
 			/** ? */
-			jumping						= 0x3D,
+			jumping					= 0x3D,
 			/** ? */
-			begin_jump_x				= 0x3E,
+			begin_jump_x			= 0x3E,
 			/** ? */
-			begin_jump_y				= 0x3F,
+			begin_jump_y			= 0x3F,
 			/** ? */
-			unknown_47					= 0x47,
+			unknown_47				= 0x47,
 			/** Flag */
-			flying						= 0x48,
+			flying					= 0x48,
 			/** ? */
-			sprite_name					= 0x49,
+			sprite_name				= 0x49,
 			/** ? */
-			sprite_id					= 0x4A,
+			sprite_id				= 0x4A,
 			/** ? */
-			unknown_4b					= 0x4B,
+			unknown_4b				= 0x4B,
 			/** int */
-			flash_red					= 0x51,
+			flash_red				= 0x51,
 			/** int */
-			flash_green					= 0x52,
+			flash_green				= 0x52,
 			/** int */
-			flash_blue					= 0x53,
+			flash_blue				= 0x53,
 			/** double */
-			flash_current_level			= 0x54,
+			flash_current_level		= 0x54,
 			/** int */
-			flash_time_left				= 0x55,
+			flash_time_left			= 0x55,
 			/**  */
-			unknown_65					= 0x65,
-			/** Index of custom move route */
-			original_move_route_index	= 0x66,
+			boarding				= 0x65,
+			/**  */
+			aboard					= 0x66,
 			/** Vehicle in use */
-			vehicle						= 0x67,
+			vehicle					= 0x67,
 			/**  */
-			unknown_68					= 0x68,
+			unboarding				= 0x68,
 			/**  */
-			unknown_69					= 0x69,
+			unknown_69				= 0x69,
 			/**  */
-			unknown_6c					= 0x6C,
+			unknown_6c				= 0x6C,
 			/**  */
-			pan_state					= 0x6F,
+			pan_state				= 0x6F,
 			/** int */
-			pan_current_x				= 0x70,
+			pan_current_x			= 0x70,
 			/** ? */
-			pan_current_y				= 0x71,
+			pan_current_y			= 0x71,
 			/** ? */
-			pan_finish_x				= 0x72,
+			pan_finish_x			= 0x72,
 			/** ? */
-			pan_finish_y				= 0x73,
+			pan_finish_y			= 0x73,
 			/** ? */
-			unknown_79					= 0x79,
+			unknown_79				= 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
-			encounter_steps				= 0x7C,
+			encounter_steps			= 0x7C,
 			/** ? */
-			unknown_7d					= 0x7D,
+			unknown_7d				= 0x7D,
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
-			map_save_count				= 0x83,
+			map_save_count			= 0x83,
 			/** ? */
-			database_save_count			= 0x84 
+			database_save_count		= 0x84 
 		};
 	};
 	struct ChunkSaveVehicleLocation {
@@ -417,7 +417,7 @@ namespace LSD_Reader {
 			anim_frame					= 0x17,
 			/** always 0 */
 			transparency				= 0x18,
-			/** Remaining distance of the current move (from 0 to 256) */
+			/** From 0 to 255 - Remaining distance of the current move */
 			remaining_step				= 0x1F,
 			/** ? */
 			move_frequency				= 0x20,
@@ -480,7 +480,9 @@ namespace LSD_Reader {
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
 			/** ? */
-			unknown_6a					= 0x6A,
+			remaining_ascension			= 0x6A,
+			/** ? */
+			remaining_descent			= 0x6B,
 			/** string */
 			sprite2_name				= 0x6F,
 			/** int */
@@ -663,7 +665,7 @@ namespace LSD_Reader {
 			anim_frame					= 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
 			transparency				= 0x18,
-			/** Remaining distance of the current move (from 0 to 256) */
+			/** From 0 to 255 - Remaining distance of the current move */
 			remaining_step				= 0x1F,
 			/** ? */
 			move_frequency				= 0x20,

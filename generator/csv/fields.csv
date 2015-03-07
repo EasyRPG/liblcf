@@ -854,10 +854,10 @@ SavePartyLocation,flash_green,f,Integer,0x52,100,int
 SavePartyLocation,flash_blue,f,Integer,0x53,100,int
 SavePartyLocation,flash_current_level,f,Double,0x54,0.0,double
 SavePartyLocation,flash_time_left,f,Integer,0x55,0,int
-SavePartyLocation,unknown_65,f,Integer,0x65,0,
-SavePartyLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
+SavePartyLocation,boarding,f,Boolean,0x65,False,
+SavePartyLocation,aboard,f,Boolean,0x66,False,
 SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,Vehicle in use
-SavePartyLocation,unknown_68,f,Integer,0x68,0,
+SavePartyLocation,unboarding,f,Boolean,0x68,False,
 SavePartyLocation,unknown_69,f,Integer,0x69,4,
 SavePartyLocation,unknown_6c,f,Integer,0x6C,0,
 SavePartyLocation,pan_state,f,Integer,0x6f,1,
@@ -909,7 +909,8 @@ SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,double
 SaveVehicleLocation,flash_time_left,f,Integer,0x55,0,int
 SaveVehicleLocation,unknown_65,f,Integer,0x65,0,?
 SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveVehicleLocation,unknown_6a,f,Integer,0x6A,0,?
+SaveVehicleLocation,remaining_ascension,f,Integer,0x6A,0,?
+SaveVehicleLocation,remaining_descent,f,Integer,0x6B,0,?
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
 SaveActor,name,f,String,0x01,'',string; ''\x01'' for default!?!?

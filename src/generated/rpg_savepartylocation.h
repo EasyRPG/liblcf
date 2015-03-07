@@ -68,10 +68,10 @@ namespace RPG {
 		int flash_blue;
 		double flash_current_level;
 		int flash_time_left;
-		int unknown_65;
-		int original_move_route_index;
+		bool boarding;
+		bool aboard;
 		int vehicle;
-		int unknown_68;
+		bool unboarding;
 		int unknown_69;
 		int unknown_6c;
 		int pan_state;
