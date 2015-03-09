@@ -56,7 +56,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, flash_time_left),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_65),
 	LCF_STRUCT_TYPED_FIELD(int, original_move_route_index),
-	LCF_STRUCT_TYPED_FIELD(int, remaining_ascension),
+	LCF_STRUCT_TYPED_FIELD(int, remaining_ascent),
 	LCF_STRUCT_TYPED_FIELD(int, remaining_descent),
 	LCF_STRUCT_TYPED_FIELD(std::string, sprite2_name),
 	LCF_STRUCT_TYPED_FIELD(int, sprite2_id),

@@ -479,9 +479,9 @@ namespace LSD_Reader {
 			unknown_65					= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** ? */
-			remaining_ascension			= 0x6A,
-			/** ? */
+			/** From 0 to 255 - In flying vehicles, remaining distance to ascend */
+			remaining_ascent			= 0x6A,
+			/** From 0 to 255 - In flying vehicles, remaining distance to descend */
 			remaining_descent			= 0x6B,
 			/** string */
 			sprite2_name				= 0x6F,
@@ -637,7 +637,7 @@ namespace LSD_Reader {
 		enum Index {
 			/** array */
 			commands				= 0x01,
-			/**  */
+			/** Related to move events */
 			unknown_0d				= 0x0D,
 			/**  */
 			keyinput_wait			= 0x15,

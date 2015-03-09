@@ -51,7 +51,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	flash_time_left = 0;
 	unknown_65 = 0;
 	original_move_route_index = 0;
-	remaining_ascension = 0;
+	remaining_ascent = 0;
 	remaining_descent = 0;
 	sprite2_name = "";
 	sprite2_id = 0;

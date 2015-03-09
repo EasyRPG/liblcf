@@ -60,7 +60,7 @@ namespace RPG {
 		int flash_time_left;
 		int unknown_65;
 		int original_move_route_index;
-		int remaining_ascension;
+		int remaining_ascent;
 		int remaining_descent;
 		std::string sprite2_name;
 		int sprite2_id;
