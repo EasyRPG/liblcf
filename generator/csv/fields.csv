@@ -1055,22 +1055,24 @@ SaveMapInfo,parallax_vert_speed,f,Integer,0x26,0,int
 SaveEvents,events,f,Array<SaveEventCommands>,0x01,,array
 SaveEvents,events_size,f,Integer,0x04,0,int
 SaveEvents,unknown_0b,f,Integer,0x0B,0,
-SaveEvents,unknown_0d,f,Integer,0x0D,0,
-SaveEvents,unknown_15,f,Integer,0x15,0,
-SaveEvents,unknown_16,f,Integer,0x16,0,
-SaveEvents,unknown_17,f,Integer,0x17,0,
-SaveEvents,unknown_18,f,Integer,0x18,0,
-SaveEvents,unknown_19,f,Integer,0x19,0,
-SaveEvents,unknown_1a,f,Integer,0x1A,0,
-SaveEvents,unknown_1b,f,Integer,0x1B,0,
-SaveEvents,unknown_1c,f,Integer,0x1C,0,int/bool
-SaveEvents,wait_count,f,Integer,0x1F,0,Number of frames to wait
-SaveEvents,unknown_20,f,Integer,0x20,0,int/bool
-SaveEvents,unknown_23,f,Integer,0x23,0,
-SaveEvents,unknown_24,f,Integer,0x24,0,int/bool
-SaveEvents,unknown_25,f,Integer,0x25,0,int/bool
-SaveEvents,unknown_26,f,Integer,0x26,0,
-SaveEvents,unknown_29,f,Integer,0x29,0,
+SaveEvents,unknown_0d,f,Integer,0x0D,0,Related to move events
+SaveEvents,keyinput_wait,f,Boolean,0x15,False,
+SaveEvents,keyinput_variable,f,Integer,0x16,-1,
+SaveEvents,keyinput_all_directions,f,Boolean,0x17,False,
+SaveEvents,keyinput_decision,f,Boolean,0x18,False,
+SaveEvents,keyinput_cancel,f,Boolean,0x19,False,
+SaveEvents,keyinput_numbers,f,Boolean,0x1A,False,In RM2k Value this is keyinput_shift
+SaveEvents,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
+SaveEvents,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
+SaveEvents,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
+SaveEvents,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
+SaveEvents,time_left,f,Integer,0x1F,0,Number of frames to wait
+SaveEvents,keyinput_time_variable,f,Integer,0x20,-1,
+SaveEvents,keyinput_down,f,Boolean,0x23,False,
+SaveEvents,keyinput_left,f,Boolean,0x24,False,
+SaveEvents,keyinput_right,f,Boolean,0x25,False,
+SaveEvents,keyinput_up,f,Boolean,0x26,False,
+SaveEvents,keyinput_timed,f,Boolean,0x29,False,
 SaveEvents,unknown_2a,f,Integer,0x2a,0,
 SaveCommonEvent,event_data,f,SaveEventData,0x01,,chunks
 Save,title,f,SaveTitle,0x64,,RPG::SaveTitle

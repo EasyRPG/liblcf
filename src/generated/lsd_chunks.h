@@ -798,45 +798,49 @@ namespace LSD_Reader {
 	struct ChunkSaveEvents {
 		enum Index {
 			/** array */
-			events		= 0x01,
+			events					= 0x01,
 			/** int */
-			events_size	= 0x04,
+			events_size				= 0x04,
 			/**  */
-			unknown_0b	= 0x0B,
+			unknown_0b				= 0x0B,
+			/** Related to move events */
+			unknown_0d				= 0x0D,
 			/**  */
-			unknown_0d	= 0x0D,
+			keyinput_wait			= 0x15,
 			/**  */
-			unknown_15	= 0x15,
+			keyinput_variable		= 0x16,
 			/**  */
-			unknown_16	= 0x16,
+			keyinput_all_directions	= 0x17,
 			/**  */
-			unknown_17	= 0x17,
+			keyinput_decision		= 0x18,
 			/**  */
-			unknown_18	= 0x18,
-			/**  */
-			unknown_19	= 0x19,
-			/**  */
-			unknown_1a	= 0x1A,
-			/**  */
-			unknown_1b	= 0x1B,
-			/** int/bool */
-			unknown_1c	= 0x1C,
+			keyinput_cancel			= 0x19,
+			/** In RM2k Value this is keyinput_shift */
+			keyinput_numbers		= 0x1A,
+			/** In Value keyinput_down */
+			keyinput_operators		= 0x1B,
+			/** In Value keyinput_left */
+			keyinput_shift			= 0x1C,
+			/** Only in Value */
+			keyinput_value_right	= 0x1D,
+			/** Only in Value */
+			keyinput_value_up		= 0x1E,
 			/** Number of frames to wait */
-			wait_count	= 0x1F,
-			/** int/bool */
-			unknown_20	= 0x20,
+			time_left				= 0x1F,
 			/**  */
-			unknown_23	= 0x23,
-			/** int/bool */
-			unknown_24	= 0x24,
-			/** int/bool */
-			unknown_25	= 0x25,
+			keyinput_time_variable	= 0x20,
 			/**  */
-			unknown_26	= 0x26,
+			keyinput_down			= 0x23,
 			/**  */
-			unknown_29	= 0x29,
+			keyinput_left			= 0x24,
 			/**  */
-			unknown_2a	= 0x2A 
+			keyinput_right			= 0x25,
+			/**  */
+			keyinput_up				= 0x26,
+			/**  */
+			keyinput_timed			= 0x29,
+			/**  */
+			unknown_2a				= 0x2A 
 		};
 	};
 	struct ChunkSaveCommonEvent {
