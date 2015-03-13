@@ -909,8 +909,8 @@ SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,double
 SaveVehicleLocation,flash_time_left,f,Integer,0x55,0,int
 SaveVehicleLocation,unknown_65,f,Integer,0x65,0,?
 SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveVehicleLocation,remaining_ascent,f,Integer,0x6A,0,From 0 to 255 - In flying vehicles, remaining distance to ascend
-SaveVehicleLocation,remaining_descent,f,Integer,0x6B,0,From 0 to 255 - In flying vehicles, remaining distance to descend
+SaveVehicleLocation,remaining_ascent,f,Integer,0x6A,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
+SaveVehicleLocation,remaining_descent,f,Integer,0x6B,0,From 0 to 255 - In flying vehicles; remaining distance to descend
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
 SaveActor,name,f,String,0x01,'',string; ''\x01'' for default!?!?
@@ -1036,7 +1036,7 @@ SaveMapEvent,flash_current_level,f,Double,0x54,0.0,double
 SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,?
 SaveMapEvent,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveMapEvent,pending,f,Boolean,0x67,False,If true, this event will run after the current running event stops running
+SaveMapEvent,pending,f,Boolean,0x67,False,If true; this event will run after the current running event stops running
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
 SaveMapInfo,position_x,f,Integer,0x01,0,int
 SaveMapInfo,position_y,f,Integer,0x02,0,int

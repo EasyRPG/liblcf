@@ -479,9 +479,9 @@ namespace LSD_Reader {
 			unknown_65					= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** From 0 to 255 - In flying vehicles, remaining distance to ascend */
+			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
 			remaining_ascent			= 0x6A,
-			/** From 0 to 255 - In flying vehicles, remaining distance to descend */
+			/** From 0 to 255 - In flying vehicles; remaining distance to descend */
 			remaining_descent			= 0x6B,
 			/** string */
 			sprite2_name				= 0x6F,
@@ -757,7 +757,7 @@ namespace LSD_Reader {
 			running						= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** If true, this event will run after the current running event stops running */
+			/** If true; this event will run after the current running event stops running */
 			pending						= 0x67,
 			/** chunks */
 			event_data					= 0x6C 
