@@ -13,6 +13,7 @@
  * Constructor.
  */
 RPG::SaveEventData::SaveEventData() {
+	unknown_04 = -1;
 	unknown_0d = -1;
 	keyinput_wait = false;
 	keyinput_variable = -1;

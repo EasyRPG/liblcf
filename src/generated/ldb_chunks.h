@@ -1269,6 +1269,8 @@ namespace LDB_Reader {
 			battletest_formation	= 0x5F,
 			/** Integer */
 			battletest_condition	= 0x60,
+			/** ? */
+			unknown_61				= 0x61,
 			/** Flag - RPG2003 */
 			show_frame				= 0x63,
 			/** String - RPG2003 */

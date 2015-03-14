@@ -565,6 +565,7 @@ System,save_count,f,Integer,0x5B,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,Integer
 System,battletest_formation,f,Enum<System_BattleFormation>,0x5F,0,Integer
 System,battletest_condition,f,Enum<System_BattleCondition>,0x60,0,Integer
+System,unknown_61,f,Integer,0x61,-1,?
 System,show_frame,f,Boolean,0x63,False,Flag - RPG2003
 System,frame_name,f,String,0x64,'',String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,Flag - RPG2003
@@ -978,6 +979,7 @@ SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Actio
 SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
 SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte
 SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
+SaveEventData,unknown_04,f,Integer,0x04,-1,Related to called events
 SaveEventData,unknown_0d,f,Integer,0x0D,-1,Related to move events
 SaveEventData,keyinput_wait,f,Boolean,0x15,False,
 SaveEventData,keyinput_variable,f,Integer,0x16,-1,

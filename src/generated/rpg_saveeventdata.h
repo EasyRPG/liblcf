@@ -22,6 +22,7 @@ namespace RPG {
 		SaveEventData();
 
 		std::vector<SaveEventCommands> commands;
+		int unknown_04;
 		int unknown_0d;
 		bool keyinput_wait;
 		int keyinput_variable;
