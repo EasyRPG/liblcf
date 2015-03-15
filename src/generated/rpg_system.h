@@ -143,6 +143,7 @@ namespace RPG {
 		int battletest_terrain;
 		int battletest_formation;
 		int battletest_condition;
+		int unknown_61;
 		bool show_frame;
 		std::string frame_name;
 		bool invert_animations;

@@ -47,13 +47,13 @@ namespace RPG {
 		bool move_route_repeated;
 		int unknown_2f_overlap;
 		int anim_paused;
-		int unknown_33;
+		bool through;
 		int stop_count;
 		int anim_count;
 		int unknown_36;
-		int unknown_3d;
-		int unknown_3e;
-		int unknown_3f;
+		bool jumping;
+		int begin_jump_x;
+		int begin_jump_y;
 		int unknown_47;
 		bool flying;
 		std::string sprite_name;

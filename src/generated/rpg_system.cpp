@@ -39,6 +39,7 @@ RPG::System::System() {
 	battletest_terrain = 0;
 	battletest_formation = 0;
 	battletest_condition = 0;
+	unknown_61 = -1;
 	show_frame = false;
 	frame_name = "";
 	invert_animations = false;

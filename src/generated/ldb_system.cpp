@@ -68,6 +68,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, battletest_terrain),
 	LCF_STRUCT_TYPED_FIELD(int, battletest_formation),
 	LCF_STRUCT_TYPED_FIELD(int, battletest_condition),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_61),
 	LCF_STRUCT_TYPED_FIELD(bool, show_frame),
 	LCF_STRUCT_TYPED_FIELD(std::string, frame_name),
 	LCF_STRUCT_TYPED_FIELD(bool, invert_animations),

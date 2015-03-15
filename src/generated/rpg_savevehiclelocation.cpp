@@ -32,13 +32,13 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	move_route_index = 0;
 	move_route_repeated = false;
 	anim_paused = 0;
-	unknown_33 = 0;
+	through = false;
 	stop_count = 0;
 	anim_count = 0;
 	unknown_36 = 0;
-	unknown_3d = 0;
-	unknown_3e = 0;
-	unknown_3f = 0;
+	jumping = false;
+	begin_jump_x = 0;
+	begin_jump_y = 0;
 	unknown_47 = 0;
 	flying = false;
 	sprite_name = "";
@@ -51,7 +51,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	flash_time_left = 0;
 	unknown_65 = 0;
 	original_move_route_index = 0;
-	unknown_6a = 0;
+	remaining_ascent = 0;
+	remaining_descent = 0;
 	sprite2_name = "";
 	sprite2_id = 0;
 }

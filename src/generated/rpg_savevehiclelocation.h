@@ -41,13 +41,13 @@ namespace RPG {
 		int move_route_index;
 		bool move_route_repeated;
 		int anim_paused;
-		int unknown_33;
+		bool through;
 		int stop_count;
 		int anim_count;
 		int unknown_36;
-		int unknown_3d;
-		int unknown_3e;
-		int unknown_3f;
+		bool jumping;
+		int begin_jump_x;
+		int begin_jump_y;
 		int unknown_47;
 		bool flying;
 		std::string sprite_name;
@@ -60,7 +60,8 @@ namespace RPG {
 		int flash_time_left;
 		int unknown_65;
 		int original_move_route_index;
-		int unknown_6a;
+		int remaining_ascent;
+		int remaining_descent;
 		std::string sprite2_name;
 		int sprite2_id;
 	};

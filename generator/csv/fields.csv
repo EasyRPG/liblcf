@@ -565,6 +565,7 @@ System,save_count,f,Integer,0x5B,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,Integer
 System,battletest_formation,f,Enum<System_BattleFormation>,0x5F,0,Integer
 System,battletest_condition,f,Enum<System_BattleCondition>,0x60,0,Integer
+System,unknown_61,f,Integer,0x61,-1,?
 System,show_frame,f,Boolean,0x63,False,Flag - RPG2003
 System,frame_name,f,String,0x64,'',String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,Flag - RPG2003
@@ -837,13 +838,13 @@ SavePartyLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating m
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
 SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap?
 SavePartyLocation,anim_paused,f,Integer,0x30,0,?
-SavePartyLocation,unknown_33,f,Integer,0x33,0,?
+SavePartyLocation,through,f,Boolean,0x33,False,Can go through anything
 SavePartyLocation,stop_count,f,Integer,0x34,0,?
 SavePartyLocation,anim_count,f,Integer,0x35,0,?
 SavePartyLocation,unknown_36,f,Integer,0x36,0,?
-SavePartyLocation,unknown_3d,f,Integer,0x3D,0,?
-SavePartyLocation,unknown_3e,f,Integer,0x3E,0,?
-SavePartyLocation,unknown_3f,f,Integer,0x3F,0,?
+SavePartyLocation,jumping,f,Boolean,0x3D,False,?
+SavePartyLocation,begin_jump_x,f,Integer,0x3E,0,?
+SavePartyLocation,begin_jump_y,f,Integer,0x3F,0,?
 SavePartyLocation,unknown_47,f,Integer,0x47,0,?
 SavePartyLocation,flying,f,Boolean,0x48,False,Flag
 SavePartyLocation,sprite_name,f,String,0x49,'',?
@@ -854,11 +855,11 @@ SavePartyLocation,flash_green,f,Integer,0x52,100,int
 SavePartyLocation,flash_blue,f,Integer,0x53,100,int
 SavePartyLocation,flash_current_level,f,Double,0x54,0.0,double
 SavePartyLocation,flash_time_left,f,Integer,0x55,0,int
-SavePartyLocation,unknown_65,f,Integer,0x65,0,
-SavePartyLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
+SavePartyLocation,boarding,f,Boolean,0x65,False,
+SavePartyLocation,aboard,f,Boolean,0x66,False,
 SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,Vehicle in use
-SavePartyLocation,unknown_68,f,Integer,0x68,0,
-SavePartyLocation,unknown_69,f,Integer,0x69,4,
+SavePartyLocation,unboarding,f,Boolean,0x68,False,
+SavePartyLocation,preboard_move_speed,f,Integer,0x69,4,Move speed before the party boarded the vehicle
 SavePartyLocation,unknown_6c,f,Integer,0x6C,0,
 SavePartyLocation,pan_state,f,Integer,0x6f,1,
 SavePartyLocation,pan_current_x,f,Integer,0x70,2304,int
@@ -890,13 +891,13 @@ SaveVehicleLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move ro
 SaveVehicleLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveVehicleLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
-SaveVehicleLocation,unknown_33,f,Integer,0x33,0,?
+SaveVehicleLocation,through,f,Boolean,0x33,False,Can go through anything
 SaveVehicleLocation,stop_count,f,Integer,0x34,0,?
 SaveVehicleLocation,anim_count,f,Integer,0x35,0,?
 SaveVehicleLocation,unknown_36,f,Integer,0x36,0,?
-SaveVehicleLocation,unknown_3d,f,Integer,0x3D,0,?
-SaveVehicleLocation,unknown_3e,f,Integer,0x3E,0,?
-SaveVehicleLocation,unknown_3f,f,Integer,0x3F,0,?
+SaveVehicleLocation,jumping,f,Boolean,0x3D,False,?
+SaveVehicleLocation,begin_jump_x,f,Integer,0x3E,0,?
+SaveVehicleLocation,begin_jump_y,f,Integer,0x3F,0,?
 SaveVehicleLocation,unknown_47,f,Integer,0x47,0,?
 SaveVehicleLocation,flying,f,Boolean,0x48,False,Flag
 SaveVehicleLocation,sprite_name,f,String,0x49,'',?
@@ -909,7 +910,8 @@ SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,double
 SaveVehicleLocation,flash_time_left,f,Integer,0x55,0,int
 SaveVehicleLocation,unknown_65,f,Integer,0x65,0,?
 SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveVehicleLocation,unknown_6a,f,Integer,0x6A,0,?
+SaveVehicleLocation,remaining_ascent,f,Integer,0x6A,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
+SaveVehicleLocation,remaining_descent,f,Integer,0x6B,0,From 0 to 255 - In flying vehicles; remaining distance to descend
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',string
 SaveVehicleLocation,sprite2_id,f,Integer,0x70,0,int
 SaveActor,name,f,String,0x01,'',string; ''\x01'' for default!?!?
@@ -977,10 +979,25 @@ SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Actio
 SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
 SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte
 SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
-SaveEventData,unknown_16,f,Integer,0x16,-1,
-SaveEventData,unknown_17,f,Integer,0x17,-1,
+SaveEventData,unknown_04,f,Integer,0x04,-1,Related to called events
+SaveEventData,unknown_0d,f,Integer,0x0D,-1,Related to move events
+SaveEventData,keyinput_wait,f,Boolean,0x15,False,
+SaveEventData,keyinput_variable,f,Integer,0x16,-1,
+SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,
+SaveEventData,keyinput_decision,f,Boolean,0x18,False,
+SaveEventData,keyinput_cancel,f,Boolean,0x19,False,
+SaveEventData,keyinput_numbers,f,Boolean,0x1A,False,In RM2k Value this is keyinput_shift
+SaveEventData,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
+SaveEventData,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
+SaveEventData,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
+SaveEventData,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
 SaveEventData,time_left,f,Integer,0x1F,-1,int
-SaveEventData,unknown_20,f,Integer,0x20,-1,
+SaveEventData,keyinput_time_variable,f,Integer,0x20,-1,
+SaveEventData,keyinput_down,f,Boolean,0x23,False,
+SaveEventData,keyinput_left,f,Boolean,0x24,False,
+SaveEventData,keyinput_right,f,Boolean,0x25,False,
+SaveEventData,keyinput_up,f,Boolean,0x26,False,
+SaveEventData,keyinput_timed,f,Boolean,0x29,False,
 SaveMapEvent,active,f,Boolean,0x01,True,Flag
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
@@ -1002,13 +1019,13 @@ SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveMapEvent,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap?
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
-SaveMapEvent,unknown_33,f,Integer,0x33,0,?
+SaveMapEvent,through,f,Boolean,0x33,False,Can go through anything
 SaveMapEvent,stop_count,f,Integer,0x34,0,?
 SaveMapEvent,anim_count,f,Integer,0x35,0,?
 SaveMapEvent,unknown_36,f,Integer,0x36,0,?
-SaveMapEvent,unknown_3d,f,Integer,0x3D,0,?
-SaveMapEvent,unknown_3e,f,Integer,0x3E,0,?
-SaveMapEvent,unknown_3f,f,Integer,0x3F,0,?
+SaveMapEvent,jumping,f,Boolean,0x3D,False,?
+SaveMapEvent,begin_jump_x,f,Integer,0x3E,0,?
+SaveMapEvent,begin_jump_y,f,Integer,0x3F,0,?
 SaveMapEvent,unknown_47,f,Integer,0x47,0,?
 SaveMapEvent,flying,f,Boolean,0x48,False,Flag
 SaveMapEvent,sprite_name,f,String,0x49,'',?
@@ -1021,7 +1038,7 @@ SaveMapEvent,flash_current_level,f,Double,0x54,0.0,double
 SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,?
 SaveMapEvent,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveMapEvent,pending,f,Boolean,0x67,False,If true, this event will run after the current running event stops running
+SaveMapEvent,pending,f,Boolean,0x67,False,If true; this event will run after the current running event stops running
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
 SaveMapInfo,position_x,f,Integer,0x01,0,int
 SaveMapInfo,position_y,f,Integer,0x02,0,int
@@ -1040,22 +1057,24 @@ SaveMapInfo,parallax_vert_speed,f,Integer,0x26,0,int
 SaveEvents,events,f,Array<SaveEventCommands>,0x01,,array
 SaveEvents,events_size,f,Integer,0x04,0,int
 SaveEvents,unknown_0b,f,Integer,0x0B,0,
-SaveEvents,unknown_0d,f,Integer,0x0D,0,
-SaveEvents,unknown_15,f,Integer,0x15,0,
-SaveEvents,unknown_16,f,Integer,0x16,0,
-SaveEvents,unknown_17,f,Integer,0x17,0,
-SaveEvents,unknown_18,f,Integer,0x18,0,
-SaveEvents,unknown_19,f,Integer,0x19,0,
-SaveEvents,unknown_1a,f,Integer,0x1A,0,
-SaveEvents,unknown_1b,f,Integer,0x1B,0,
-SaveEvents,unknown_1c,f,Integer,0x1C,0,int/bool
-SaveEvents,unknown_1f,f,Integer,0x1F,0,
-SaveEvents,unknown_20,f,Integer,0x20,0,int/bool
-SaveEvents,unknown_23,f,Integer,0x23,0,
-SaveEvents,unknown_24,f,Integer,0x24,0,int/bool
-SaveEvents,unknown_25,f,Integer,0x25,0,int/bool
-SaveEvents,unknown_26,f,Integer,0x26,0,
-SaveEvents,unknown_29,f,Integer,0x29,0,
+SaveEvents,unknown_0d,f,Integer,0x0D,0,Related to move events
+SaveEvents,keyinput_wait,f,Boolean,0x15,False,
+SaveEvents,keyinput_variable,f,Integer,0x16,-1,
+SaveEvents,keyinput_all_directions,f,Boolean,0x17,False,
+SaveEvents,keyinput_decision,f,Boolean,0x18,False,
+SaveEvents,keyinput_cancel,f,Boolean,0x19,False,
+SaveEvents,keyinput_numbers,f,Boolean,0x1A,False,In RM2k Value this is keyinput_shift
+SaveEvents,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
+SaveEvents,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
+SaveEvents,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
+SaveEvents,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
+SaveEvents,time_left,f,Integer,0x1F,0,Number of frames to wait
+SaveEvents,keyinput_time_variable,f,Integer,0x20,-1,
+SaveEvents,keyinput_down,f,Boolean,0x23,False,
+SaveEvents,keyinput_left,f,Boolean,0x24,False,
+SaveEvents,keyinput_right,f,Boolean,0x25,False,
+SaveEvents,keyinput_up,f,Boolean,0x26,False,
+SaveEvents,keyinput_timed,f,Boolean,0x29,False,
 SaveEvents,unknown_2a,f,Integer,0x2a,0,
 SaveCommonEvent,event_data,f,SaveEventData,0x01,,chunks
 Save,title,f,SaveTitle,0x64,,RPG::SaveTitle
