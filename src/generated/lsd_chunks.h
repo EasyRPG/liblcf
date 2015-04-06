@@ -637,8 +637,8 @@ namespace LSD_Reader {
 		enum Index {
 			/** array */
 			commands				= 0x01,
-			/** Related to called events */
-			unknown_04				= 0x04,
+			/** Show Message command has been executed in the current move route */
+			show_message			= 0x04,
 			/** Related to move events */
 			unknown_0d				= 0x0D,
 			/**  */

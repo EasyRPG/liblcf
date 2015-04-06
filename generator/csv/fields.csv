@@ -979,7 +979,7 @@ SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Actio
 SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
 SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte
 SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
-SaveEventData,unknown_04,f,Integer,0x04,-1,Related to called events
+SaveEventData,show_message,f,Boolean,0x04,False,Show Message command has been executed in the current move route
 SaveEventData,unknown_0d,f,Integer,0x0D,-1,Related to move events
 SaveEventData,keyinput_wait,f,Boolean,0x15,False,
 SaveEventData,keyinput_variable,f,Integer,0x16,-1,
