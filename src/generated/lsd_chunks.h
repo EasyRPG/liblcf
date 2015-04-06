@@ -295,10 +295,10 @@ namespace LSD_Reader {
 			position_x				= 0x0C,
 			/** ? */
 			position_y				= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction		= 0x15,
-			/** Current facing direction */
-			direction				= 0x16,
+			/** Facing direction */
+			direction				= 0x15,
+			/** Sprite direction */
+			sprite_direction		= 0x16,
 			/** ? */
 			anim_frame				= 0x17,
 			/** 0 or 3 - Transparency level of the main party member */
@@ -409,10 +409,10 @@ namespace LSD_Reader {
 			position_x					= 0x0C,
 			/** ? */
 			position_y					= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction			= 0x15,
-			/** Current facing direction */
-			direction					= 0x16,
+			/** Facing direction */
+			direction					= 0x15,
+			/** Sprite direction */
+			sprite_direction			= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
 			/** always 0 */
@@ -687,10 +687,10 @@ namespace LSD_Reader {
 			position_x					= 0x0C,
 			/** ? */
 			position_y					= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction			= 0x15,
-			/** Current facing direction */
-			direction					= 0x16,
+			/** Facing direction */
+			direction					= 0x15,
+			/** Sprite direction */
+			sprite_direction			= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
 			/** 0 or 3 - Transparency level of the current event page */

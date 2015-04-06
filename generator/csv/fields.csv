@@ -820,8 +820,8 @@ SavePartyLocation,active,f,Boolean,0x01,True,Flag
 SavePartyLocation,map_id,f,Integer,0x0B,-1,?
 SavePartyLocation,position_x,f,Integer,0x0C,-1,?
 SavePartyLocation,position_y,f,Integer,0x0D,-1,?
-SavePartyLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
-SavePartyLocation,direction,f,Integer,0x16,2,Current facing direction
+SavePartyLocation,direction,f,Integer,0x15,2,Facing direction
+SavePartyLocation,sprite_direction,f,Integer,0x16,2,Sprite direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the main party member
 SavePartyLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
@@ -875,8 +875,8 @@ SaveVehicleLocation,active,f,Boolean,0x01,True,Flag
 SaveVehicleLocation,map_id,f,Integer,0x0B,-1,?
 SaveVehicleLocation,position_x,f,Integer,0x0C,-1,?
 SaveVehicleLocation,position_y,f,Integer,0x0D,-1,?
-SaveVehicleLocation,prelock_direction,f,Integer,0x15,2,Facing direction before lock
-SaveVehicleLocation,direction,f,Integer,0x16,2,Current facing direction
+SaveVehicleLocation,direction,f,Integer,0x15,2,Facing direction
+SaveVehicleLocation,sprite_direction,f,Integer,0x16,2,Sprite direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,transparency,f,Integer,0x18,0,always 0
 SaveVehicleLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
@@ -1002,8 +1002,8 @@ SaveMapEvent,active,f,Boolean,0x01,True,Flag
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
 SaveMapEvent,position_y,f,Integer,0x0D,-1,?
-SaveMapEvent,prelock_direction,f,Integer,0x15,2,Facing direction before lock
-SaveMapEvent,direction,f,Integer,0x16,2,Current facing direction
+SaveMapEvent,direction,f,Integer,0x15,2,Facing direction
+SaveMapEvent,sprite_direction,f,Integer,0x16,2,Sprite direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the current event page
 SaveMapEvent,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move

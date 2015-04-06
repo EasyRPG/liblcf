@@ -17,8 +17,8 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	prelock_direction = 2;
 	direction = 2;
+	sprite_direction = 2;
 	anim_frame = 1;
 	transparency = 0;
 	remaining_step = 0;

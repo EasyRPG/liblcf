@@ -25,8 +25,8 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int prelock_direction;
 		int direction;
+		int sprite_direction;
 		int anim_frame;
 		int transparency;
 		int remaining_step;
