@@ -825,7 +825,7 @@ SavePartyLocation,direction,f,Integer,0x16,2,Current facing direction
 SavePartyLocation,anim_frame,f,Integer,0x17,1,?
 SavePartyLocation,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the main party member
 SavePartyLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
-SavePartyLocation,move_frequency,f,Integer,0x20,-1,?
+SavePartyLocation,move_frequency,f,Integer,0x20,2,?
 SavePartyLocation,layer,f,Integer,0x21,1,?
 SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
 SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,Integer
@@ -841,7 +841,7 @@ SavePartyLocation,anim_paused,f,Integer,0x30,0,?
 SavePartyLocation,through,f,Boolean,0x33,False,Can go through anything
 SavePartyLocation,stop_count,f,Integer,0x34,0,?
 SavePartyLocation,anim_count,f,Integer,0x35,0,?
-SavePartyLocation,unknown_36,f,Integer,0x36,0,?
+SavePartyLocation,max_stop_count,f,Integer,0x36,0,2^move_frequency - Once stop_count reaches it; the next move command is executed
 SavePartyLocation,jumping,f,Boolean,0x3D,False,?
 SavePartyLocation,begin_jump_x,f,Integer,0x3E,0,?
 SavePartyLocation,begin_jump_y,f,Integer,0x3F,0,?
@@ -880,7 +880,7 @@ SaveVehicleLocation,direction,f,Integer,0x16,2,Current facing direction
 SaveVehicleLocation,anim_frame,f,Integer,0x17,1,?
 SaveVehicleLocation,transparency,f,Integer,0x18,0,always 0
 SaveVehicleLocation,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
-SaveVehicleLocation,move_frequency,f,Integer,0x20,-1,?
+SaveVehicleLocation,move_frequency,f,Integer,0x20,2,?
 SaveVehicleLocation,layer,f,Integer,0x21,1,?
 SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
 SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,
@@ -894,7 +894,7 @@ SaveVehicleLocation,anim_paused,f,Integer,0x30,0,?
 SaveVehicleLocation,through,f,Boolean,0x33,False,Can go through anything
 SaveVehicleLocation,stop_count,f,Integer,0x34,0,?
 SaveVehicleLocation,anim_count,f,Integer,0x35,0,?
-SaveVehicleLocation,unknown_36,f,Integer,0x36,0,?
+SaveVehicleLocation,max_stop_count,f,Integer,0x36,0,2^move_frequency - Once stop_count reaches it; the next move command is executed
 SaveVehicleLocation,jumping,f,Boolean,0x3D,False,?
 SaveVehicleLocation,begin_jump_x,f,Integer,0x3E,0,?
 SaveVehicleLocation,begin_jump_y,f,Integer,0x3F,0,?
@@ -1007,7 +1007,7 @@ SaveMapEvent,direction,f,Integer,0x16,2,Current facing direction
 SaveMapEvent,anim_frame,f,Integer,0x17,1,?
 SaveMapEvent,transparency,f,Integer,0x18,0,0 or 3 - Transparency level of the current event page
 SaveMapEvent,remaining_step,f,Integer,0x1F,0,From 0 to 255 - Remaining distance of the current move
-SaveMapEvent,move_frequency,f,Integer,0x20,-1,?
+SaveMapEvent,move_frequency,f,Integer,0x20,2,?
 SaveMapEvent,layer,f,Integer,0x21,1,?
 SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,Flag
 SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,
@@ -1022,7 +1022,7 @@ SaveMapEvent,anim_paused,f,Integer,0x30,0,?
 SaveMapEvent,through,f,Boolean,0x33,False,Can go through anything
 SaveMapEvent,stop_count,f,Integer,0x34,0,?
 SaveMapEvent,anim_count,f,Integer,0x35,0,?
-SaveMapEvent,unknown_36,f,Integer,0x36,0,?
+SaveMapEvent,max_stop_count,f,Integer,0x36,0,2^move_frequency unless it's a random move route - Once stop_count reaches it; the next move command is executed
 SaveMapEvent,jumping,f,Boolean,0x3D,False,?
 SaveMapEvent,begin_jump_x,f,Integer,0x3E,0,?
 SaveMapEvent,begin_jump_y,f,Integer,0x3F,0,?

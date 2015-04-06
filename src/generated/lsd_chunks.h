@@ -337,8 +337,8 @@ namespace LSD_Reader {
 			stop_count				= 0x34,
 			/** ? */
 			anim_count				= 0x35,
-			/** ? */
-			unknown_36				= 0x36,
+			/** 2^move_frequency - Once stop_count reaches it; the next move command is executed */
+			max_stop_count			= 0x36,
 			/** ? */
 			jumping					= 0x3D,
 			/** ? */
@@ -447,8 +447,8 @@ namespace LSD_Reader {
 			stop_count					= 0x34,
 			/** ? */
 			anim_count					= 0x35,
-			/** ? */
-			unknown_36					= 0x36,
+			/** 2^move_frequency - Once stop_count reaches it; the next move command is executed */
+			max_stop_count				= 0x36,
 			/** ? */
 			jumping						= 0x3D,
 			/** ? */
@@ -727,8 +727,8 @@ namespace LSD_Reader {
 			stop_count					= 0x34,
 			/** ? */
 			anim_count					= 0x35,
-			/** ? */
-			unknown_36					= 0x36,
+			/** 2^move_frequency unless it's a random move route - Once stop_count reaches it; the next move command is executed */
+			max_stop_count				= 0x36,
 			/** ? */
 			jumping						= 0x3D,
 			/** ? */

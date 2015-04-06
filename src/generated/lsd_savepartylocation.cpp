@@ -42,7 +42,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, through),
 	LCF_STRUCT_TYPED_FIELD(int, stop_count),
 	LCF_STRUCT_TYPED_FIELD(int, anim_count),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_36),
+	LCF_STRUCT_TYPED_FIELD(int, max_stop_count),
 	LCF_STRUCT_TYPED_FIELD(bool, jumping),
 	LCF_STRUCT_TYPED_FIELD(int, begin_jump_x),
 	LCF_STRUCT_TYPED_FIELD(int, begin_jump_y),

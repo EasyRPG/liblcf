@@ -22,7 +22,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	anim_frame = 1;
 	transparency = 0;
 	remaining_step = 0;
-	move_frequency = -1;
+	move_frequency = 2;
 	layer = 1;
 	overlap_forbidden = false;
 	animation_type = 1;
@@ -35,7 +35,7 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	through = false;
 	stop_count = 0;
 	anim_count = 0;
-	unknown_36 = 0;
+	max_stop_count = 0;
 	jumping = false;
 	begin_jump_x = 0;
 	begin_jump_y = 0;

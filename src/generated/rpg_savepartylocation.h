@@ -54,7 +54,7 @@ namespace RPG {
 		bool through;
 		int stop_count;
 		int anim_count;
-		int unknown_36;
+		int max_stop_count;
 		bool jumping;
 		int begin_jump_x;
 		int begin_jump_y;
