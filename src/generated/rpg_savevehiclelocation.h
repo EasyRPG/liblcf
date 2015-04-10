@@ -25,8 +25,8 @@ namespace RPG {
 		int map_id;
 		int position_x;
 		int position_y;
-		int prelock_direction;
 		int direction;
+		int sprite_direction;
 		int anim_frame;
 		int transparency;
 		int remaining_step;
@@ -44,7 +44,7 @@ namespace RPG {
 		bool through;
 		int stop_count;
 		int anim_count;
-		int unknown_36;
+		int max_stop_count;
 		bool jumping;
 		int begin_jump_x;
 		int begin_jump_y;

@@ -295,10 +295,10 @@ namespace LSD_Reader {
 			position_x				= 0x0C,
 			/** ? */
 			position_y				= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction		= 0x15,
-			/** Current facing direction */
-			direction				= 0x16,
+			/** Facing direction */
+			direction				= 0x15,
+			/** Sprite direction */
+			sprite_direction		= 0x16,
 			/** ? */
 			anim_frame				= 0x17,
 			/** 0 or 3 - Transparency level of the main party member */
@@ -337,8 +337,8 @@ namespace LSD_Reader {
 			stop_count				= 0x34,
 			/** ? */
 			anim_count				= 0x35,
-			/** ? */
-			unknown_36				= 0x36,
+			/** 2^move_frequency - Once stop_count reaches it; the next move command is executed */
+			max_stop_count			= 0x36,
 			/** ? */
 			jumping					= 0x3D,
 			/** ? */
@@ -409,10 +409,10 @@ namespace LSD_Reader {
 			position_x					= 0x0C,
 			/** ? */
 			position_y					= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction			= 0x15,
-			/** Current facing direction */
-			direction					= 0x16,
+			/** Facing direction */
+			direction					= 0x15,
+			/** Sprite direction */
+			sprite_direction			= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
 			/** always 0 */
@@ -447,8 +447,8 @@ namespace LSD_Reader {
 			stop_count					= 0x34,
 			/** ? */
 			anim_count					= 0x35,
-			/** ? */
-			unknown_36					= 0x36,
+			/** 2^move_frequency - Once stop_count reaches it; the next move command is executed */
+			max_stop_count				= 0x36,
 			/** ? */
 			jumping						= 0x3D,
 			/** ? */
@@ -637,8 +637,8 @@ namespace LSD_Reader {
 		enum Index {
 			/** array */
 			commands				= 0x01,
-			/** Related to called events */
-			unknown_04				= 0x04,
+			/** Show Message command has been executed in the current move route */
+			show_message			= 0x04,
 			/** Related to move events */
 			unknown_0d				= 0x0D,
 			/**  */
@@ -687,10 +687,10 @@ namespace LSD_Reader {
 			position_x					= 0x0C,
 			/** ? */
 			position_y					= 0x0D,
-			/** Facing direction before lock */
-			prelock_direction			= 0x15,
-			/** Current facing direction */
-			direction					= 0x16,
+			/** Facing direction */
+			direction					= 0x15,
+			/** Sprite direction */
+			sprite_direction			= 0x16,
 			/** ? */
 			anim_frame					= 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
@@ -727,8 +727,8 @@ namespace LSD_Reader {
 			stop_count					= 0x34,
 			/** ? */
 			anim_count					= 0x35,
-			/** ? */
-			unknown_36					= 0x36,
+			/** 2^move_frequency unless it's a random move route - Once stop_count reaches it; the next move command is executed */
+			max_stop_count				= 0x36,
 			/** ? */
 			jumping						= 0x3D,
 			/** ? */

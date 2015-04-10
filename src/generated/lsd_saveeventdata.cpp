@@ -18,7 +18,7 @@
 
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, commands),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_04),
+	LCF_STRUCT_TYPED_FIELD(bool, show_message),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_0d),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_wait),
 	LCF_STRUCT_TYPED_FIELD(int, keyinput_variable),

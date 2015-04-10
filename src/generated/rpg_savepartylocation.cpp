@@ -17,12 +17,12 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	map_id = -1;
 	position_x = -1;
 	position_y = -1;
-	prelock_direction = 2;
 	direction = 2;
+	sprite_direction = 2;
 	anim_frame = 1;
 	transparency = 0;
 	remaining_step = 0;
-	move_frequency = -1;
+	move_frequency = 2;
 	layer = 1;
 	overlap_forbidden = false;
 	animation_type = 1;
@@ -37,7 +37,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	through = false;
 	stop_count = 0;
 	anim_count = 0;
-	unknown_36 = 0;
+	max_stop_count = 0;
 	jumping = false;
 	begin_jump_x = 0;
 	begin_jump_y = 0;
