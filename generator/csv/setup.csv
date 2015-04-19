@@ -1,3 +1,4 @@
+#Structure,Method,Headers
 Actor,void Setup(),
 Chipset,void Init(),
 MapInfo,void Init(),

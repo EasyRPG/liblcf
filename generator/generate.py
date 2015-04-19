@@ -144,7 +144,12 @@ def get_structs(filename = 'structs.csv'):
     result = []
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             filetype, structname, hasid = data
             hasid = bool(int(hasid)) if hasid else None
             filename = structname.lower()
@@ -155,7 +160,12 @@ def get_fields(filename = 'fields.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',', 6)
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',', 6)
             struct, fname, issize, ftype, code, dfl, comment = data
             issize = issize.lower() == 't'
             code = int(code, 16) if code else None
@@ -169,7 +179,12 @@ def get_enums(filename = 'enums.csv'):
     fields = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             sname, ename, name, num = data
             num = int(num)
             if (sname, ename) not in fields:
@@ -184,7 +199,12 @@ def get_flags(filename = 'flags.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             struct, fname = data
             if struct not in result:
                 result[struct] = []
@@ -195,7 +215,12 @@ def get_setup(filename = 'setup.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             struct, method, headers = data
             headers = headers.split(' ') if headers else []
             if struct not in result:
