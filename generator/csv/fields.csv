@@ -1,3 +1,4 @@
+#Structure,Field,Size Field?,Type,Index,Default Value,Comment
 Learning,level,f,Integer,0x01,1,Integer
 Learning,skill_id,f,Ref<Skill>,0x02,1,Integer
 Actor,name,f,String,0x01,'',String

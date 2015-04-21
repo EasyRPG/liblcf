@@ -6,10 +6,10 @@ import sys
 import os
 import re
 
-csv_dir = 'csv'
-tmpl_dir = 'templates'
-srcdir = '../src/generated'
-hdrdir = '../src/generated'
+gen_dir = os.path.dirname(os.path.abspath(__file__))
+csv_dir = os.path.join(gen_dir, "csv")
+tmpl_dir = os.path.join(gen_dir, "templates")
+dest_dir = os.path.abspath(os.path.join(gen_dir, "..", "src", "generated"))
 
 class Template(object):
     def __init__(self, filename):
@@ -144,7 +144,12 @@ def get_structs(filename = 'structs.csv'):
     result = []
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             filetype, structname, hasid = data
             hasid = bool(int(hasid)) if hasid else None
             filename = structname.lower()
@@ -155,7 +160,12 @@ def get_fields(filename = 'fields.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',', 6)
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',', 6)
             struct, fname, issize, ftype, code, dfl, comment = data
             issize = issize.lower() == 't'
             code = int(code, 16) if code else None
@@ -169,7 +179,12 @@ def get_enums(filename = 'enums.csv'):
     fields = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             sname, ename, name, num = data
             num = int(num)
             if (sname, ename) not in fields:
@@ -184,7 +199,12 @@ def get_flags(filename = 'flags.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             struct, fname = data
             if struct not in result:
                 result[struct] = []
@@ -195,7 +215,12 @@ def get_setup(filename = 'setup.csv'):
     result = {}
     with open(os.path.join(csv_dir, filename), 'r') as f:
         for line in f:
-            data = line.strip().split(',')
+            sline = line.strip()
+            if not sline:
+                continue
+            if sline.startswith("#"):
+                continue
+            data = sline.split(',')
             struct, method, headers = data
             headers = headers.split(' ') if headers else []
             if struct not in result:
@@ -386,20 +411,20 @@ def generate_struct(filetype, filename, struct_name, hasid):
         structupper = struct_name.upper(),
         idtype = ['NoID','WithID'][hasid])
 
-    filepath = os.path.join(srcdir, '%s_%s.cpp' % (filetype, filename))
+    filepath = os.path.join(dest_dir, '%s_%s.cpp' % (filetype, filename))
     with open(filepath, 'w') as f:
         generate_reader(f, struct_name, vars)
 
     if needs_ctor(struct_name, hasid):
-        filepath = os.path.join(srcdir, 'rpg_%s.cpp' % filename)
+        filepath = os.path.join(dest_dir, 'rpg_%s.cpp' % filename)
         with open(filepath, 'w') as f:
             generate_ctor(f, struct_name, hasid, vars)
 
-    filepath = os.path.join(hdrdir, 'rpg_%s.h' % filename)
+    filepath = os.path.join(dest_dir, 'rpg_%s.h' % filename)
     with open(filepath, 'w') as f:
         generate_header(f, struct_name, hasid, vars)
 
-    filepath = os.path.join(hdrdir, '%s_chunks.h' % filetype)
+    filepath = os.path.join(dest_dir, '%s_chunks.h' % filetype)
     with open(filepath, 'a') as f:
         generate_chunks(f, struct_name, vars)
 
@@ -410,11 +435,11 @@ def generate_rawstruct(filename, struct_name):
         structupper = struct_name.upper())
 
     if needs_ctor(struct_name, False):
-        filepath = os.path.join(srcdir, 'rpg_%s.cpp' % filename)
+        filepath = os.path.join(dest_dir, 'rpg_%s.cpp' % filename)
         with open(filepath, 'w') as f:
             generate_ctor(f, struct_name, False, vars)
 
-    filepath = os.path.join(hdrdir, 'rpg_%s.h' % filename)
+    filepath = os.path.join(dest_dir, 'rpg_%s.h' % filename)
     with open(filepath, 'w') as f:
         generate_header(f, struct_name, False, vars)
 
@@ -430,7 +455,7 @@ def generate_flags(filetype, filename, struct_name):
         maxsize = maxsize
         )
 
-    filepath = os.path.join(srcdir, '%s_%s_flags.cpp' % (filetype, filename))
+    filepath = os.path.join(dest_dir, '%s_%s_flags.cpp' % (filetype, filename))
     with open(filepath, 'w') as f:
         f.write(copy.header)
         f.write(freader.header % vars)
@@ -452,7 +477,7 @@ def generate():
         vars = dict(
             filetype = filetype,
             typeupper = filetype.upper())
-        filepath = os.path.join(hdrdir, '%s_chunks.h' % filetype)
+        filepath = os.path.join(dest_dir, '%s_chunks.h' % filetype)
         with open(filepath, 'w') as f:
             f.write(copy.header)
             f.write(chunk.file_header % vars)
@@ -466,7 +491,7 @@ def generate():
             generate_flags(filetype, filename, struct_name)
 
     for filetype in ['ldb','lmt','lmu','lsd']:
-        filepath = os.path.join(hdrdir, '%s_chunks.h' % filetype)
+        filepath = os.path.join(dest_dir, '%s_chunks.h' % filetype)
         with open(filepath, 'a') as f:
             f.write(chunk.file_footer)
 
@@ -499,11 +524,8 @@ def list_files():
             list_files_flags(filetype, filename, struct_name)
 
 def main(argv):
-    if not os.path.exists(srcdir):
-        os.mkdir(srcdir)
-
-    if not os.path.exists(hdrdir):
-        os.mkdir(hdrdir)
+    if not os.path.exists(dest_dir):
+        os.mkdir(dest_dir)
 
     global structs, sfields, enums, efields, flags, setup, headers
 
