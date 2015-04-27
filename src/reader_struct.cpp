@@ -93,9 +93,9 @@ void Struct<RPG::Save>::WriteLcf(const RPG::Save& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		printf("\n%s", field->name);
+		//printf("\n%s", field->name);
 		if (field->IsDefault(obj, ref)) {
-			printf(" -> default");
+			//printf(" -> default");
 			continue;
 		}
 		stream.WriteInt(field->id);
