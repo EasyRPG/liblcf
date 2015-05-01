@@ -23,12 +23,12 @@ LT_INIT([win32-dll])
 # Checks for libraries.
 AC_ARG_ENABLE([icu],[AS_HELP_STRING([--disable-icu],[Disable ICU encoding detection (fallback to iconv)])])
 AS_IF([test "x$enable_icu" != "xno"],[
-	AX_PKG_CHECK_MODULES([ICU],[icu-i18n],[],[AC_DEFINE([LCF_SUPPORT_ICU],[1],[Enable encoding detection (ICU)])])
+	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[AC_DEFINE([LCF_SUPPORT_ICU],[1],[Enable encoding detection (ICU)])])
 ])
 
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat)])])
 AS_IF([test "x$enable_xml" != "xno"],[
-	AX_PKG_CHECK_MODULES([EXPAT],[expat >= 2.1],[],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML reading support (expat)])])
+	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML reading support (expat)])])
 ])
 
 # Checks for header files.

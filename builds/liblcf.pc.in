@@ -7,6 +7,6 @@ Name: @PACKAGE_TARNAME@
 Description: Library to handle RPG Maker 2000 and 2003 game data
 Version: @PACKAGE_VERSION@
 URL: https://easy-rpg.org/
-Requires: @AX_PACKAGE_REQUIRES@
+Requires.private: @AX_PACKAGE_REQUIRES_PRIVATE@
 Libs: -L${libdir} -llcf
 Cflags: -I${includedir}/@PACKAGE_TARNAME@
