@@ -256,12 +256,14 @@ pkginclude_HEADERS = \
 check_PROGRAMS = time_stamp
 TESTS = time_stamp
 time_stamp_SOURCES = tests/time_stamp.cpp
-time_stamp_CXXFLAGS = \
+time_stamp_CPPFLAGS = \
 	-I$(srcdir)/src \
-	-I$(srcdir)/src/generated \
+	-I$(srcdir)/src/generated
+time_stamp_CXXFLAGS = \
 	$(EXPAT_CXXFLAGS) \
 	$(ICU_CXXFLAGS)
 time_stamp_LDADD = \
 	liblcf.la \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
+time_stamp_LDFLAGS = -no-install
