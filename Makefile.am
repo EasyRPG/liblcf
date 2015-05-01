@@ -4,15 +4,20 @@ pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
 lib_LTLIBRARIES = liblcf.la
-liblcf_la_CXXFLAGS = \
+liblcf_la_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
 	-I$(srcdir)/src \
-	-I$(srcdir)/src/generated \
-	$(EXPAT_CFLAGS) \
-	$(ICU_CFLAGS)
+	-I$(srcdir)/src/generated
+liblcf_la_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
+	$(EXPAT_CXXFLAGS) \
+	$(ICU_CXXFLAGS)
 liblcf_la_LIBADD = \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
-liblcf_la_LDFLAGS = -no-undefined
+liblcf_la_LDFLAGS = \
+	$(AM_LDFLAGS) \
+	-no-undefined
 liblcf_la_SOURCES = \
 	src/data.cpp \
 	src/ini.cpp \

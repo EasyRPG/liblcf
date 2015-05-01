@@ -12,9 +12,11 @@ AM_SILENT_RULES([yes])
 AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
 AC_CONFIG_SRCDIR([src/data.cpp])
 AC_CONFIG_HEADERS([config.h])
+AC_LANG([C++])
 
 # Checks for programs.
 AM_PROG_AR
+AC_PROG_CXXCPP
 AC_PROG_CXX
 LT_INIT([win32-dll])
 
@@ -45,6 +47,12 @@ AC_C_BIGENDIAN
 # Checks for library functions.
 AC_CHECK_FUNCS([floor strrchr strtol])
 
+# Distribute additional flags among Makefiles
+AC_SUBST([AM_CPPFLAGS])
+AC_SUBST([AM_CXXFLAGS])
+AC_SUBST([AM_LDFLAGS])
+
+# Files to generate
 AC_CONFIG_FILES([Makefile
                  builds/liblcf.pc])
 
