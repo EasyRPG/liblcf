@@ -240,13 +240,17 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::stri
 std::string ReaderUtil::Recode(const std::string& str_to_encode,
                                const std::string& src_enc,
                                const std::string& dst_enc) {
-	std::string encoding_str = src_enc;
+	std::string src_enc_str = src_enc;
+	std::string dst_enc_str = dst_enc;
 
-	if (src_enc.empty()) {
+	if (src_enc.empty() || dst_enc.empty()) {
 		return str_to_encode;
 	}
 	if (atoi(src_enc.c_str()) > 0) {
-		encoding_str = ReaderUtil::CodepageToEncoding(atoi(src_enc.c_str()));
+		src_enc_str = ReaderUtil::CodepageToEncoding(atoi(src_enc.c_str()));
+	}
+	if (atoi(dst_enc.c_str()) > 0) {
+		dst_enc_str = ReaderUtil::CodepageToEncoding(atoi(dst_enc.c_str()));
 	}
 #ifdef LCF_SUPPORT_ICU
 	UErrorCode status = U_ZERO_ERROR;
@@ -256,7 +260,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	int length;
 	std::string result_str;
 
-	conv = ucnv_open(encoding_str.c_str(), &status);
+	conv = ucnv_open(src_enc_str.c_str(), &status);
 	
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
 		return std::string();
@@ -269,7 +273,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	char* result = new char[length * 4];
 
-	conv = ucnv_open(dst_enc.data(), &status);
+	conv = ucnv_open(dst_enc_str.c_str(), &status);
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) return std::string();
@@ -281,7 +285,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 	return std::string(result_str);
 #else
-	iconv_t cd = iconv_open(dst_enc.c_str(), encoding_str.c_str());
+	iconv_t cd = iconv_open(dst_enc_str.c_str(), src_enc_str.c_str());
 	if (cd == (iconv_t)-1)
 		return str_to_encode;
 	char *src = const_cast<char *>(str_to_encode.c_str());
