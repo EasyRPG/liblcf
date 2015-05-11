@@ -10,8 +10,8 @@ liblcf_la_CPPFLAGS = \
 	-I$(srcdir)/src/generated
 liblcf_la_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
-	$(EXPAT_CXXFLAGS) \
-	$(ICU_CXXFLAGS)
+	$(EXPAT_CFLAGS) \
+	$(ICU_CFLAGS)
 liblcf_la_LIBADD = \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
