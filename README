@@ -46,11 +46,11 @@ Building
 
   1. Unpack the tarball with:
 
-    tar xf liblcf-0.2.2.tar.xz
+    tar xf liblcf-0.3.tar.xz
 
   2. Enter in the package directory with:
 
-    cd liblcf-0.2.2
+    cd liblcf-0.3
 
   3. Compile and install with:
 
