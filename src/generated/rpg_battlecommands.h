@@ -38,7 +38,7 @@ namespace RPG {
 		};
 		enum Transparency {
 			Transparency_opaque = 0,
-			Transparency_tranparent = 1
+			Transparency_transparent = 1
 		};
 		enum Facing {
 			Facing_retain = 0,

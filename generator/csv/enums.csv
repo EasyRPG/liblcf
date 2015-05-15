@@ -29,7 +29,7 @@ BattleCommands,BattleType,gauge,2
 BattleCommands,WindowSize,large,0
 BattleCommands,WindowSize,small,1
 BattleCommands,Transparency,opaque,0
-BattleCommands,Transparency,tranparent,1
+BattleCommands,Transparency,transparent,1
 BattleCommands,Facing,retain,0
 BattleCommands,Facing,up,1
 BattleCommands,Facing,right,2
