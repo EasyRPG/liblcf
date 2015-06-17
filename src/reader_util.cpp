@@ -183,6 +183,9 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 std::string ReaderUtil::GetLocaleEncoding() {
 #ifdef _WIN32
 	int codepage = GetACP();
+#elif defined(__APPLE__) && defined(__MACH__)
+	// libstdc++ does not support locale properly at least on OS X
+	int codepage = 0;
 #else
 	int codepage = 1252;
 
