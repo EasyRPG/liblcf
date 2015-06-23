@@ -175,8 +175,6 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
-			fprintf(stderr, "Encoding returned by INI parser: %s\n", encoding.c_str());
-			fprintf(stderr, "Encoding returned by CodepageToEncoding: : %s\n", ReaderUtil::CodepageToEncoding(atoi(encoding.c_str())).c_str());
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
@@ -269,25 +267,33 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	conv = ucnv_open(src_enc_str.c_str(), &status);
 	
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
+		fprintf(stderr, "liblcf: ucnv_open(\"%s\") source encoding error: %d\n", src_enc_str.c_str(), status);
 		return std::string();
 	}
 	status = U_ZERO_ERROR;
 
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
-	if (status != U_ZERO_ERROR) return std::string();
+	if (status != U_ZERO_ERROR) {
+		fprintf(stderr, "liblcf: ucnv_toUChars() error: %d\n", status);
+		return std::string();
+	}
 
 	char* result = new char[length * 4];
 
 	conv = ucnv_open(dst_enc_str.c_str(), &status);
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
+		fprintf(stderr, "liblcf: ucnv_open(\"%s\") destination encoding error: %d\n", dst_enc_str.c_str(), status);
 		return std::string();
 	}
 	status = U_ZERO_ERROR;
 
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
-	if (status != U_ZERO_ERROR) return std::string();
+	if (status != U_ZERO_ERROR) {
+		fprintf(stderr, "liblcf: ucnv_fromUChars() error: %d\n", status);
+		return std::string();
+	}
 
 	result_str = result;
 
