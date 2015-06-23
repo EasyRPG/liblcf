@@ -29,6 +29,7 @@
 #endif
 
 #include <cstdlib>
+#include <cstdio>
 #include <sstream>
 #include <vector>
 
@@ -174,6 +175,8 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
+			fprintf(stderr, "Encoding returned by INI parser: %s\n", encoding.c_str());
+			fprintf(stderr, "Encoding returned by CodepageToEncoding: : %s\n", ReaderUtil::CodepageToEncoding(atoi(encoding.c_str())).c_str());
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
