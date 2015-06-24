@@ -29,6 +29,7 @@
 #endif
 
 #include <cstdlib>
+#include <cstdio>
 #include <sstream>
 #include <vector>
 
@@ -266,25 +267,33 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	conv = ucnv_open(src_enc_str.c_str(), &status);
 	
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
+		fprintf(stderr, "liblcf:  ucnv_open() error for source encoding \"%s\": %s\n", src_enc_str.c_str(), u_errorName(status));
 		return std::string();
 	}
 	status = U_ZERO_ERROR;
 
 	length = ucnv_toUChars(conv, unicode_str, size, str_to_encode.c_str(), -1, &status);
 	ucnv_close(conv);
-	if (status != U_ZERO_ERROR) return std::string();
+	if (status != U_ZERO_ERROR) {
+		fprintf(stderr, "liblcf: ucnv_toUChars() error when encoding \"%s\": %s\n", str_to_encode.c_str(), u_errorName(status));
+		return std::string();
+	}
 
 	char* result = new char[length * 4];
 
 	conv = ucnv_open(dst_enc_str.c_str(), &status);
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
+		fprintf(stderr, "liblcf: ucnv_open() error for destination encoding \"%s\": %s\n", dst_enc_str.c_str(), u_errorName(status));
 		return std::string();
 	}
 	status = U_ZERO_ERROR;
 
 	ucnv_fromUChars(conv, result, length * 4, unicode_str, -1, &status);
 	ucnv_close(conv);
-	if (status != U_ZERO_ERROR) return std::string();
+	if (status != U_ZERO_ERROR) {
+		fprintf(stderr, "liblcf: ucnv_fromUChars() error: %s\n", u_errorName(status));
+		return std::string();
+	}
 
 	result_str = result;
 
