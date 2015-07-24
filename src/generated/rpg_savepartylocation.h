@@ -27,7 +27,6 @@ namespace RPG {
 		};
 
 		SavePartyLocation();
-		void Fixup();
 
 		bool active;
 		int map_id;
