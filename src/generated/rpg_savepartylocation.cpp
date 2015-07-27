@@ -27,7 +27,7 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	overlap_forbidden = false;
 	animation_type = 1;
 	lock_facing = false;
-	move_speed = -1;
+	move_speed = 4;
 	move_route_overwrite = false;
 	move_route_index = 0;
 	move_route_repeated = false;

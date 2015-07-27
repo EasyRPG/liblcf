@@ -17,7 +17,7 @@ RPG::MapInfo::MapInfo() {
 	name = "";
 	parent_map = 0;
 	indentation = 0;
-	type = 1;
+	type = -1;
 	scrollbar_x = 0;
 	scrollbar_y = 0;
 	expanded_node = false;

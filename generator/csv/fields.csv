@@ -598,7 +598,7 @@ Encounter,troop_id,f,Ref<Troop>,0x01,0,Integer
 MapInfo,name,f,String,0x01,'',String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,Integer. Used to inherit parent map properties
 MapInfo,indentation,f,Integer,0x03,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
-MapInfo,type,f,Integer,0x04,1,Integer. 0=lmt root (can be ignored); 1=map; 2=area
+MapInfo,type,f,Integer,0x04,-1,Integer. 0=lmt root (can be ignored); 1=map; 2=area
 MapInfo,scrollbar_x,f,Integer,0x05,0,Integer. Editor only
 MapInfo,scrollbar_y,f,Integer,0x06,0,Integer. Editor only
 MapInfo,expanded_node,f,Boolean,0x07,False,Flag. Editor only
@@ -762,10 +762,10 @@ SaveScreen,tint_finish_red,f,Integer,0x01,100,int
 SaveScreen,tint_finish_green,f,Integer,0x02,100,int
 SaveScreen,tint_finish_blue,f,Integer,0x03,100,int
 SaveScreen,tint_finish_sat,f,Integer,0x04,100,int
-SaveScreen,tint_current_red,f,Double,0x0B,-1.0,double
-SaveScreen,tint_current_green,f,Double,0x0C,-1.0,double
-SaveScreen,tint_current_blue,f,Double,0x0D,-1.0,double
-SaveScreen,tint_current_sat,f,Double,0x0E,-1.0,double
+SaveScreen,tint_current_red,f,Double,0x0B,100.0,double
+SaveScreen,tint_current_green,f,Double,0x0C,100.0,double
+SaveScreen,tint_current_blue,f,Double,0x0D,100.0,double
+SaveScreen,tint_current_sat,f,Double,0x0E,100.0,double
 SaveScreen,tint_time_left,f,Integer,0x0F,0,int
 SaveScreen,flash_continuous,f,Boolean,0x14,False,int
 SaveScreen,flash_red,f,Integer,0x15,0,int
@@ -831,7 +831,7 @@ SavePartyLocation,layer,f,Integer,0x21,1,?
 SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,Flag
 SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,Integer
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,facing locked
-SavePartyLocation,move_speed,f,Integer,0x25,-1,
+SavePartyLocation,move_speed,f,Integer,0x25,4,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SavePartyLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route

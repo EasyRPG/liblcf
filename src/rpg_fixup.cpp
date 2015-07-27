@@ -128,24 +128,3 @@ void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
 		chipset_id = map.chipset_id;
 	}
 }
-
-void RPG::SavePartyLocation::Fixup() {
-	if (move_speed == -1) {
-		move_speed = 4;
-	}
-}
-
-void RPG::SaveScreen::Fixup() {
-	if (tint_current_red == -1.0) {
-		tint_current_red = 100.0;
-	}
-	if (tint_current_green == -1.0) {
-		tint_current_green = 100.0;
-	}
-	if (tint_current_blue == -1.0) {
-		tint_current_blue = 100.0;
-	}
-	if (tint_current_sat == -1.0) {
-		tint_current_sat = 100.0;
-	}
-}
