@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -59,8 +59,8 @@ namespace RPG {
 		bool occasion_field;
 		bool occasion_battle;
 		bool state_effect;
-		int pdef_f;
-		int mdef_f;
+		int physical_rate;
+		int magical_rate;
 		int variance;
 		int power;
 		int hit;
