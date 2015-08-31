@@ -145,8 +145,8 @@ Skill,sound_effect,f,Sound,0x10,,RPG::Sound
 Skill,occasion_field,f,Boolean,0x12,True,Flag
 Skill,occasion_battle,f,Boolean,0x13,False,Flag
 Skill,state_effect,f,Boolean,0x14,False,Flag - RPG2003
-Skill,pdef_f,f,Integer,0x15,0,Integer
-Skill,mdef_f,f,Integer,0x16,3,Integer
+Skill,physical_rate,f,Integer,0x15,0,Integer
+Skill,magical_rate,f,Integer,0x16,3,Integer
 Skill,variance,f,Integer,0x17,4,Integer
 Skill,power,f,Integer,0x18,0,Integer
 Skill,hit,f,Integer,0x19,100,Integer

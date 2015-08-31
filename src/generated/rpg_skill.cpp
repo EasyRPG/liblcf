@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -29,8 +29,8 @@ RPG::Skill::Skill() {
 	occasion_field = true;
 	occasion_battle = false;
 	state_effect = false;
-	pdef_f = 0;
-	mdef_f = 3;
+	physical_rate = 0;
+	magical_rate = 3;
 	variance = 4;
 	power = 0;
 	hit = 100;

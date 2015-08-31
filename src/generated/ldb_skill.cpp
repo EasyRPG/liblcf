@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -33,8 +33,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, occasion_field),
 	LCF_STRUCT_TYPED_FIELD(bool, occasion_battle),
 	LCF_STRUCT_TYPED_FIELD(bool, state_effect),
-	LCF_STRUCT_TYPED_FIELD(int, pdef_f),
-	LCF_STRUCT_TYPED_FIELD(int, mdef_f),
+	LCF_STRUCT_TYPED_FIELD(int, physical_rate),
+	LCF_STRUCT_TYPED_FIELD(int, magical_rate),
 	LCF_STRUCT_TYPED_FIELD(int, variance),
 	LCF_STRUCT_TYPED_FIELD(int, power),
 	LCF_STRUCT_TYPED_FIELD(int, hit),

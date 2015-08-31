@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -372,9 +372,9 @@ namespace LDB_Reader {
 			/** Flag - RPG2003 */
 			state_effect			= 0x14,
 			/** Integer */
-			pdef_f					= 0x15,
+			physical_rate			= 0x15,
 			/** Integer */
-			mdef_f					= 0x16,
+			magical_rate			= 0x16,
 			/** Integer */
 			variance				= 0x17,
 			/** Integer */
