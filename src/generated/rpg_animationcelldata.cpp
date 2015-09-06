@@ -14,7 +14,7 @@
  */
 RPG::AnimationCellData::AnimationCellData() {
 	ID = 0;
-	priority = 1;
+	valid = 1;
 	cell_id = 0;
 	x = 0;
 	y = 0;

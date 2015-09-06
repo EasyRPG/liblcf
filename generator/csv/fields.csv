@@ -46,7 +46,7 @@ AnimationTiming,flash_green,f,Integer,0x05,31,Integer
 AnimationTiming,flash_blue,f,Integer,0x06,31,Integer
 AnimationTiming,flash_power,f,Integer,0x07,31,Integer
 AnimationTiming,screen_shake,f,Enum<AnimationTiming_ScreenShake>,0x08,0,Integer - RPG2003 - TODO: Get chunk ID
-AnimationCellData,priority,f,Integer,0x01,1,Bool - TODO: Needs confirmation
+AnimationCellData,valid,f,Integer,0x01,1,Bool
 AnimationCellData,cell_id,f,Integer,0x02,0,Integer
 AnimationCellData,x,f,Integer,0x03,0,Integer
 AnimationCellData,y,f,Integer,0x04,0,Integer

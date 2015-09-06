@@ -125,8 +125,8 @@ namespace LDB_Reader {
 	};
 	struct ChunkAnimationCellData {
 		enum Index {
-			/** Bool - TODO: Needs confirmation */
-			priority		= 0x01,
+			/** Bool */
+			valid			= 0x01,
 			/** Integer */
 			cell_id			= 0x02,
 			/** Integer */
