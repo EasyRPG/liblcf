@@ -51,10 +51,10 @@ AnimationCellData,cell_id,f,Integer,0x02,0,Integer
 AnimationCellData,x,f,Integer,0x03,0,Integer
 AnimationCellData,y,f,Integer,0x04,0,Integer
 AnimationCellData,zoom,f,Integer,0x05,100,Integer
-AnimationCellData,tone_red,f,Integer,0x06,0,Integer
-AnimationCellData,tone_green,f,Integer,0x07,0,Integer
-AnimationCellData,tone_blue,f,Integer,0x08,0,Integer
-AnimationCellData,tone_gray,f,Integer,0x09,0,Integer
+AnimationCellData,tone_red,f,Integer,0x06,100,Integer
+AnimationCellData,tone_green,f,Integer,0x07,100,Integer
+AnimationCellData,tone_blue,f,Integer,0x08,100,Integer
+AnimationCellData,tone_gray,f,Integer,0x09,100,Integer
 AnimationCellData,transparency,f,Integer,0x0A,0,Integer
 AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,Array - RPG::AnimationCellData
 Animation,name,f,String,0x01,'',String
