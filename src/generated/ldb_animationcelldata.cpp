@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -17,7 +17,7 @@
 #define LCF_CURRENT_STRUCT AnimationCellData
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, priority),
+	LCF_STRUCT_TYPED_FIELD(int, valid),
 	LCF_STRUCT_TYPED_FIELD(int, cell_id),
 	LCF_STRUCT_TYPED_FIELD(int, x),
 	LCF_STRUCT_TYPED_FIELD(int, y),
