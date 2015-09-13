@@ -19,6 +19,7 @@ liblcf_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-no-undefined
 liblcf_la_SOURCES = \
+	src/reader_struct.cpp \
 	src/data.cpp \
 	src/ini.cpp \
 	src/inireader.cpp \
@@ -34,7 +35,6 @@ liblcf_la_SOURCES = \
 	src/lsd_reader.cpp \
 	src/reader_flags.cpp \
 	src/reader_lcf.cpp \
-	src/reader_struct.cpp \
 	src/reader_util.cpp \
 	src/reader_xml.cpp \
 	src/rpg_fixup.cpp \

@@ -13,6 +13,7 @@ CONFIG += staticlib
 DEFINES += LCF_SUPPORT_XML LCF_SUPPORT_ICU XML_STATIC
 
 SOURCES += \
+    ../../src/reader_struct.cpp \
     ../../src/data.cpp \
     ../../src/ini.cpp \
     ../../src/inireader.cpp \
@@ -28,7 +29,6 @@ SOURCES += \
     ../../src/lsd_reader.cpp \
     ../../src/reader_flags.cpp \
     ../../src/reader_lcf.cpp \
-    ../../src/reader_struct.cpp \
     ../../src/reader_util.cpp \
     ../../src/reader_xml.cpp \
     ../../src/rpg_setup.cpp \
