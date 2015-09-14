@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -36,14 +36,14 @@ namespace RPG {
 		int shake_strength;
 		int shake_speed;
 		int shake_position;
-		int unknown_22;
+		int shake_position_y;
 		int shake_time_left;
 		int pan_x;
 		int pan_y;
 		int battleanim_id;
 		int battleanim_target;
-		int unknown_2d_battle_anim;
-		int unknown_2e;
+		int battleanim_frame;
+		int unknown_2e_battleanim_active;
 		bool battleanim_global;
 		int weather;
 		int weather_strength;

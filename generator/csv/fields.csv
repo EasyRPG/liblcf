@@ -704,8 +704,8 @@ SaveTitle,face4_id,f,Integer,0x1C,0,int: face id
 SaveSystem,screen,f,Integer,0x01,1,
 SaveSystem,frame_count,f,Integer,0x0B,0,
 SaveSystem,graphics_name,f,String,0x15,'',string
-SaveSystem,unknown_16,f,Integer,0x16,0,?
-SaveSystem,unknown_17,f,Integer,0x17,0,?
+SaveSystem,message_stretch,f,Integer,0x16,0,Integer
+SaveSystem,font_id,f,Integer,0x17,0,Integer
 SaveSystem,switches_size,f,Integer,0x1F,0,
 SaveSystem,switches,f,Vector<Boolean>,0x20,,
 SaveSystem,variables_size,f,Integer,0x21,0,
@@ -719,7 +719,7 @@ SaveSystem,face_id,f,Integer,0x34,0,
 SaveSystem,face_right,f,Boolean,0x35,False,bool
 SaveSystem,face_flip,f,Boolean,0x36,False,bool
 SaveSystem,transparent,f,Boolean,0x37,False,
-SaveSystem,unknown_3d,f,Integer,0x3D,0,
+SaveSystem,unknown_music_fadeout,f,Integer,0x3D,0,music fade out? FIXME
 SaveSystem,title_music,f,Music,0x47,,
 SaveSystem,battle_music,f,Music,0x48,,
 SaveSystem,battle_end_music,f,Music,0x49,,
@@ -757,7 +757,7 @@ SaveSystem,menu_allowed,f,Boolean,0x7C,True,
 SaveSystem,background,f,String,0x7D,,string
 SaveSystem,save_count,f,Integer,0x83,0,
 SaveSystem,save_slot,f,Integer,0x84,1,
-SaveSystem,unknown_8c,f,Integer,0x8C,0,
+SaveSystem,unknown_8c_active_wait_atb,f,Integer,0x8C,0,Maybe ATB mode active / wait in 2k3 but not sure FIXME
 SaveScreen,tint_finish_red,f,Integer,0x01,100,int
 SaveScreen,tint_finish_green,f,Integer,0x02,100,int
 SaveScreen,tint_finish_blue,f,Integer,0x03,100,int
@@ -777,14 +777,14 @@ SaveScreen,shake_continuous,f,Boolean,0x1E,False,int
 SaveScreen,shake_strength,f,Integer,0x1F,0,int
 SaveScreen,shake_speed,f,Integer,0x20,0,int
 SaveScreen,shake_position,f,Integer,0x21,0,int
-SaveScreen,unknown_22,f,Integer,0x22,0,int
+SaveScreen,shake_position_y,f,Integer,0x22,0,int - unused
 SaveScreen,shake_time_left,f,Integer,0x23,0,int
 SaveScreen,pan_x,f,Integer,0x29,0,int
 SaveScreen,pan_y,f,Integer,0x2A,0,int
 SaveScreen,battleanim_id,f,Integer,0x2B,0,int - battle animation ID
 SaveScreen,battleanim_target,f,Integer,0x2C,0,int - battle animation target
-SaveScreen,unknown_2d_battle_anim,f,Integer,0x2D,0,int - battle animation? Ref<Animation>?
-SaveScreen,unknown_2e,f,Integer,0x2E,0,int
+SaveScreen,battleanim_frame,f,Integer,0x2D,0,int - frame count - Ref<Animation>? FIXME
+SaveScreen,unknown_2e_battleanim_active,f,Integer,0x2E,0,int - unsure FIXME
 SaveScreen,battleanim_global,f,Boolean,0x2F,False,int - battle animation global scope
 SaveScreen,weather,f,Integer,0x30,0,int
 SaveScreen,weather_strength,f,Integer,0x31,0,int
@@ -837,7 +837,7 @@ SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,Use custom move rout
 SavePartyLocation,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SavePartyLocation,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
 SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,bool
-SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap?
+SavePartyLocation,unknown_2f_overlap,f,Integer,0x2F,0,Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME
 SavePartyLocation,anim_paused,f,Integer,0x30,0,?
 SavePartyLocation,through,f,Boolean,0x33,False,Can go through anything
 SavePartyLocation,stop_count,f,Integer,0x34,0,?
@@ -846,11 +846,11 @@ SavePartyLocation,max_stop_count,f,Integer,0x36,0,2^move_frequency - Once stop_c
 SavePartyLocation,jumping,f,Boolean,0x3D,False,?
 SavePartyLocation,begin_jump_x,f,Integer,0x3E,0,?
 SavePartyLocation,begin_jump_y,f,Integer,0x3F,0,?
-SavePartyLocation,unknown_47,f,Integer,0x47,0,?
+SavePartyLocation,unknown_47_pause,f,Integer,0x47,0,used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME
 SavePartyLocation,flying,f,Boolean,0x48,False,Flag
 SavePartyLocation,sprite_name,f,String,0x49,'',?
 SavePartyLocation,sprite_id,f,Integer,0x4A,0,?
-SavePartyLocation,unknown_4b,f,Integer,0x4B,0,?
+SavePartyLocation,unknown_4b_sprite_move,f,Integer,0x4B,0,Flag whether an event (the hero is also an event) in the current frame have any movement action has made.
 SavePartyLocation,flash_red,f,Integer,0x51,100,int
 SavePartyLocation,flash_green,f,Integer,0x52,100,int
 SavePartyLocation,flash_blue,f,Integer,0x53,100,int
@@ -861,15 +861,15 @@ SavePartyLocation,aboard,f,Boolean,0x66,False,
 SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,Vehicle in use
 SavePartyLocation,unboarding,f,Boolean,0x68,False,
 SavePartyLocation,preboard_move_speed,f,Integer,0x69,4,Move speed before the party boarded the vehicle
-SavePartyLocation,unknown_6c,f,Integer,0x6C,0,
+SavePartyLocation,unknown_6c_menu_calling,f,Integer,0x6C,0,flag which briefly is true if the player presses ESC and another place in the code is set to false when subsequently calls the menu.
 SavePartyLocation,pan_state,f,Integer,0x6f,1,
 SavePartyLocation,pan_current_x,f,Integer,0x70,2304,int
 SavePartyLocation,pan_current_y,f,Integer,0x71,1792,?
 SavePartyLocation,pan_finish_x,f,Integer,0x72,2304,?
 SavePartyLocation,pan_finish_y,f,Integer,0x73,1792,?
-SavePartyLocation,unknown_79,f,Integer,0x79,16,?
+SavePartyLocation,pan_speed,f,Integer,0x79,16,speed in the scrolls of the screen - shown in sixteenth pixels.
 SavePartyLocation,encounter_steps,f,Integer,0x7C,0,int: sum of terrain.encounter_rate for each step
-SavePartyLocation,unknown_7d,f,Integer,0x7D,0,?
+SavePartyLocation,unknown_7d_encounter_calling,f,Boolean,0x7D,False,Similar to 0x6C - is used to signal a different piece of code that an Encounter to be triggered.
 SavePartyLocation,map_save_count,f,Integer,0x83,0,Mirrors save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,database_save_count,f,Integer,0x84,0,?
 SaveVehicleLocation,active,f,Boolean,0x01,True,Flag
@@ -899,17 +899,17 @@ SaveVehicleLocation,max_stop_count,f,Integer,0x36,0,2^move_frequency - Once stop
 SaveVehicleLocation,jumping,f,Boolean,0x3D,False,?
 SaveVehicleLocation,begin_jump_x,f,Integer,0x3E,0,?
 SaveVehicleLocation,begin_jump_y,f,Integer,0x3F,0,?
-SaveVehicleLocation,unknown_47,f,Integer,0x47,0,?
+SaveVehicleLocation,unknown_47_pause,f,Integer,0x47,0,used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME
 SaveVehicleLocation,flying,f,Boolean,0x48,False,Flag
 SaveVehicleLocation,sprite_name,f,String,0x49,'',?
 SaveVehicleLocation,sprite_id,f,Integer,0x4A,0,?
-SaveVehicleLocation,unknown_4b,f,Integer,0x4B,0,?
+SaveVehicleLocation,unknown_4b_sprite_move,f,Integer,0x4B,0,Flag whether an event (the hero is also an event) in the current frame have any movement action has made.
 SaveVehicleLocation,flash_red,f,Integer,0x51,100,int
 SaveVehicleLocation,flash_green,f,Integer,0x52,100,int
 SaveVehicleLocation,flash_blue,f,Integer,0x53,100,int
 SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,double
 SaveVehicleLocation,flash_time_left,f,Integer,0x55,0,int
-SaveVehicleLocation,unknown_65,f,Integer,0x65,0,?
+SaveVehicleLocation,vehicle,f,Integer,0x65,0,Ship ID: 1 = boat; 2 = Ship; 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME
 SaveVehicleLocation,original_move_route_index,f,Integer,0x66,0,Index of custom move route
 SaveVehicleLocation,remaining_ascent,f,Integer,0x6A,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
 SaveVehicleLocation,remaining_descent,f,Integer,0x6B,0,From 0 to 255 - In flying vehicles; remaining distance to descend
@@ -965,7 +965,7 @@ SaveInventory,battles,f,Integer,0x20,0,?
 SaveInventory,defeats,f,Integer,0x21,0,?
 SaveInventory,escapes,f,Integer,0x22,0,?
 SaveInventory,victories,f,Integer,0x23,0,?
-SaveInventory,unknown_29_turns,f,Integer,0x29,0,Number of turns passed in the latest battle fought? RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'.
+SaveInventory,turns,f,Integer,0x29,0,Number of turns passed in the latest battle fought. RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'.
 SaveInventory,steps,f,Integer,0x2A,0,?
 SaveTarget,map_id,f,Integer,0x01,0,int
 SaveTarget,map_x,f,Integer,0x02,0,int
@@ -977,11 +977,11 @@ SaveEventCommands,commands,f,Vector<EventCommand>,0x02,,event command list
 SaveEventCommands,current_command,f,Integer,0x0B,0,int
 SaveEventCommands,event_id,f,Integer,0x0C,0,0 if it's common event or in other map
 SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Action Key
-SaveEventCommands,unknown_15,f,Integer,0x15,-1,byte
-SaveEventCommands,unknown_16,f,Vector<UInt8>,0x16,,byte
-SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
+SaveEventCommands,unknown_15_subcommand_path_size,f,Integer,0x15,-1,size of the 0x16 vector: an array which stores the to be brought into an event code path FIXME
+SaveEventCommands,unknown_16_subcommand_path,f,Vector<UInt8>,0x16,,byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is "3" (or maybe 2? not tested) stored there. When a "Case XXX" is achieved command; it is checked whether the value is stored there; the value of the "Case"-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME
+SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array FIXME what is the difference between SaveEvents and SaveEventData?
 SaveEventData,show_message,f,Boolean,0x04,False,Show Message command has been executed in the current move route
-SaveEventData,unknown_0d,f,Integer,0x0D,-1,Related to move events
+SaveEventData,unknown_0d_move_waiting,f,Integer,0x0D,-1,flag which is set when the event is waiting for a move event. FIXME
 SaveEventData,keyinput_wait,f,Boolean,0x15,False,
 SaveEventData,keyinput_variable,f,Integer,0x16,-1,
 SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,
@@ -1018,7 +1018,7 @@ SaveMapEvent,move_route,f,MoveRoute,0x29,,chunks: RPG::MoveRoute
 SaveMapEvent,move_route_overwrite,f,Boolean,0x2A,False,Use custom move route
 SaveMapEvent,move_route_index,f,Integer,0x2B,0,Index of MoveEvent command route
 SaveMapEvent,move_route_repeated,f,Boolean,0x2C,False,Boolean - Repeating move route has been completed at least once
-SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap?
+SaveMapEvent,unknown_2f_overlap,f,Integer,0x2F,-1,Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME
 SaveMapEvent,anim_paused,f,Integer,0x30,0,?
 SaveMapEvent,through,f,Boolean,0x33,False,Can go through anything
 SaveMapEvent,stop_count,f,Integer,0x34,0,?
@@ -1027,11 +1027,11 @@ SaveMapEvent,max_stop_count,f,Integer,0x36,0,2^move_frequency unless it's a rand
 SaveMapEvent,jumping,f,Boolean,0x3D,False,?
 SaveMapEvent,begin_jump_x,f,Integer,0x3E,0,?
 SaveMapEvent,begin_jump_y,f,Integer,0x3F,0,?
-SaveMapEvent,unknown_47,f,Integer,0x47,0,?
+SaveMapEvent,unknown_47_pause,f,Integer,0x47,0,used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME
 SaveMapEvent,flying,f,Boolean,0x48,False,Flag
 SaveMapEvent,sprite_name,f,String,0x49,'',?
 SaveMapEvent,sprite_id,f,Integer,0x4A,-1,?
-SaveMapEvent,unknown_4b,f,Integer,0x4B,-1,?
+SaveMapEvent,unknown_4b_sprite_move,f,Integer,0x4B,-1,Flag whether an event (the hero is also an event) in the current frame have any movement action has made.
 SaveMapEvent,flash_red,f,Integer,0x51,100,int
 SaveMapEvent,flash_green,f,Integer,0x52,100,int
 SaveMapEvent,flash_blue,f,Integer,0x53,100,int
@@ -1055,10 +1055,10 @@ SaveMapInfo,parallax_horz_auto,f,Boolean,0x23,False,bool
 SaveMapInfo,parallax_horz_speed,f,Integer,0x24,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,bool
 SaveMapInfo,parallax_vert_speed,f,Integer,0x26,0,int
-SaveEvents,events,f,Array<SaveEventCommands>,0x01,,array
+SaveEvents,events,f,Array<SaveEventCommands>,0x01,,array FIXME what is the difference between SaveEvents and SaveEventData?
 SaveEvents,events_size,f,Integer,0x04,0,int
-SaveEvents,unknown_0b,f,Integer,0x0B,0,
-SaveEvents,unknown_0d,f,Integer,0x0D,0,Related to move events
+SaveEvents,unknown_0b_escape,f,Integer,0x0B,0,Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME
+SaveEvents,unknown_0d_move_waiting,f,Integer,0x0D,0,Flag which is set when the event is waiting for a move event. FIXME
 SaveEvents,keyinput_wait,f,Boolean,0x15,False,
 SaveEvents,keyinput_variable,f,Integer,0x16,-1,
 SaveEvents,keyinput_all_directions,f,Boolean,0x17,False,
@@ -1076,7 +1076,7 @@ SaveEvents,keyinput_left,f,Boolean,0x24,False,
 SaveEvents,keyinput_right,f,Boolean,0x25,False,
 SaveEvents,keyinput_up,f,Boolean,0x26,False,
 SaveEvents,keyinput_timed,f,Boolean,0x29,False,
-SaveEvents,unknown_2a,f,Integer,0x2a,0,
+SaveEvents,unknown_2a_time_left,f,Integer,0x2a,0,number of frames have to wait until the event continues. FIXME difference with 0x1F?
 SaveCommonEvent,event_data,f,SaveEventData,0x01,,chunks
 Save,title,f,SaveTitle,0x64,,RPG::SaveTitle
 Save,system,f,SaveSystem,0x65,,RPG::SaveSystem
@@ -1090,7 +1090,7 @@ Save,actors,f,Array<SaveActor>,0x6C,,array of RPG::SaveActor
 Save,inventory,f,SaveInventory,0x6D,,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,array of RPG::SaveTarget
 Save,map_info,f,SaveMapInfo,0x6F,,RPG::SaveMapInfo
-Save,unknown_70,f,Integer,0x70,-1,? chunks?
+Save,panorama_data,f,Integer,0x70,-1,Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object.
 Save,events,f,SaveEvents,0x71,,RPG::SaveEvents
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,

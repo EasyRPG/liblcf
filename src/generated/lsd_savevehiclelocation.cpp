@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -44,17 +44,17 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, jumping),
 	LCF_STRUCT_TYPED_FIELD(int, begin_jump_x),
 	LCF_STRUCT_TYPED_FIELD(int, begin_jump_y),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_47),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_47_pause),
 	LCF_STRUCT_TYPED_FIELD(bool, flying),
 	LCF_STRUCT_TYPED_FIELD(std::string, sprite_name),
 	LCF_STRUCT_TYPED_FIELD(int, sprite_id),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_4b),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_4b_sprite_move),
 	LCF_STRUCT_TYPED_FIELD(int, flash_red),
 	LCF_STRUCT_TYPED_FIELD(int, flash_green),
 	LCF_STRUCT_TYPED_FIELD(int, flash_blue),
 	LCF_STRUCT_TYPED_FIELD(double, flash_current_level),
 	LCF_STRUCT_TYPED_FIELD(int, flash_time_left),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_65),
+	LCF_STRUCT_TYPED_FIELD(int, vehicle),
 	LCF_STRUCT_TYPED_FIELD(int, original_move_route_index),
 	LCF_STRUCT_TYPED_FIELD(int, remaining_ascent),
 	LCF_STRUCT_TYPED_FIELD(int, remaining_descent),

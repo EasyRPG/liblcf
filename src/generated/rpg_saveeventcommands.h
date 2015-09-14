@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -28,8 +28,8 @@ namespace RPG {
 		int current_command;
 		int event_id;
 		bool actioned;
-		int unknown_15;
-		std::vector<uint8_t> unknown_16;
+		int unknown_15_subcommand_path_size;
+		std::vector<uint8_t> unknown_16_subcommand_path;
 	};
 }
 

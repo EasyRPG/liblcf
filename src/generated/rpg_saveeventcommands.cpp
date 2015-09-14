@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -18,5 +18,5 @@ RPG::SaveEventCommands::SaveEventCommands() {
 	current_command = 0;
 	event_id = 0;
 	actioned = false;
-	unknown_15 = -1;
+	unknown_15_subcommand_path_size = -1;
 }

@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -44,183 +44,183 @@ namespace LSD_Reader {
 	struct ChunkSaveSystem {
 		enum Index {
 			/**  */
-			screen					= 0x01,
+			screen						= 0x01,
 			/**  */
-			frame_count				= 0x0B,
+			frame_count					= 0x0B,
 			/** string */
-			graphics_name			= 0x15,
-			/** ? */
-			unknown_16				= 0x16,
-			/** ? */
-			unknown_17				= 0x17,
+			graphics_name				= 0x15,
+			/** Integer */
+			message_stretch				= 0x16,
+			/** Integer */
+			font_id						= 0x17,
 			/**  */
-			switches_size			= 0x1F,
+			switches_size				= 0x1F,
 			/**  */
-			switches				= 0x20,
+			switches					= 0x20,
 			/**  */
-			variables_size			= 0x21,
+			variables_size				= 0x21,
 			/**  */
-			variables				= 0x22,
+			variables					= 0x22,
 			/**  */
-			message_transparent		= 0x29,
+			message_transparent			= 0x29,
 			/**  */
-			message_position		= 0x2A,
+			message_position			= 0x2A,
 			/**  */
-			message_prevent_overlap	= 0x2B,
+			message_prevent_overlap		= 0x2B,
 			/**  */
-			message_continue_events	= 0x2C,
+			message_continue_events		= 0x2C,
 			/**  */
-			face_name				= 0x33,
+			face_name					= 0x33,
 			/**  */
-			face_id					= 0x34,
+			face_id						= 0x34,
 			/** bool */
-			face_right				= 0x35,
+			face_right					= 0x35,
 			/** bool */
-			face_flip				= 0x36,
+			face_flip					= 0x36,
 			/**  */
-			transparent				= 0x37,
+			transparent					= 0x37,
+			/** music fade out? FIXME */
+			unknown_music_fadeout		= 0x3D,
 			/**  */
-			unknown_3d				= 0x3D,
+			title_music					= 0x47,
 			/**  */
-			title_music				= 0x47,
+			battle_music				= 0x48,
 			/**  */
-			battle_music			= 0x48,
+			battle_end_music			= 0x49,
 			/**  */
-			battle_end_music		= 0x49,
+			inn_music					= 0x4A,
 			/**  */
-			inn_music				= 0x4A,
+			current_music				= 0x4B,
 			/**  */
-			current_music			= 0x4B,
+			before_vehicle_music		= 0x4C,
 			/**  */
-			before_vehicle_music	= 0x4C,
+			before_battle_music			= 0x4D,
 			/**  */
-			before_battle_music		= 0x4D,
+			stored_music				= 0x4E,
 			/**  */
-			stored_music			= 0x4E,
+			boat_music					= 0x4F,
 			/**  */
-			boat_music				= 0x4F,
+			ship_music					= 0x50,
 			/**  */
-			ship_music				= 0x50,
+			airship_music				= 0x51,
 			/**  */
-			airship_music			= 0x51,
+			gameover_music				= 0x52,
 			/**  */
-			gameover_music			= 0x52,
+			cursor_se					= 0x5B,
 			/**  */
-			cursor_se				= 0x5B,
+			decision_se					= 0x5C,
 			/**  */
-			decision_se				= 0x5C,
+			cancel_se					= 0x5D,
 			/**  */
-			cancel_se				= 0x5D,
+			buzzer_se					= 0x5E,
 			/**  */
-			buzzer_se				= 0x5E,
+			battle_se					= 0x5F,
 			/**  */
-			battle_se				= 0x5F,
+			escape_se					= 0x60,
 			/**  */
-			escape_se				= 0x60,
+			enemy_attack_se				= 0x61,
 			/**  */
-			enemy_attack_se			= 0x61,
+			enemy_damaged_se			= 0x62,
 			/**  */
-			enemy_damaged_se		= 0x62,
+			actor_damaged_se			= 0x63,
 			/**  */
-			actor_damaged_se		= 0x63,
+			dodge_se					= 0x64,
 			/**  */
-			dodge_se				= 0x64,
+			enemy_death_se				= 0x65,
 			/**  */
-			enemy_death_se			= 0x65,
+			item_se						= 0x66,
 			/**  */
-			item_se					= 0x66,
+			transition_out				= 0x6F,
 			/**  */
-			transition_out			= 0x6F,
+			transition_in				= 0x70,
 			/**  */
-			transition_in			= 0x70,
+			battle_start_fadeout		= 0x71,
 			/**  */
-			battle_start_fadeout	= 0x71,
+			battle_start_fadein			= 0x72,
 			/**  */
-			battle_start_fadein		= 0x72,
+			battle_end_fadeout			= 0x73,
 			/**  */
-			battle_end_fadeout		= 0x73,
+			battle_end_fadein			= 0x74,
 			/**  */
-			battle_end_fadein		= 0x74,
+			teleport_allowed			= 0x79,
 			/**  */
-			teleport_allowed		= 0x79,
+			escape_allowed				= 0x7A,
 			/**  */
-			escape_allowed			= 0x7A,
+			save_allowed				= 0x7B,
 			/**  */
-			save_allowed			= 0x7B,
-			/**  */
-			menu_allowed			= 0x7C,
+			menu_allowed				= 0x7C,
 			/** string */
-			background				= 0x7D,
+			background					= 0x7D,
 			/**  */
-			save_count				= 0x83,
+			save_count					= 0x83,
 			/**  */
-			save_slot				= 0x84,
-			/**  */
-			unknown_8c				= 0x8C 
+			save_slot					= 0x84,
+			/** Maybe ATB mode active / wait in 2k3 but not sure FIXME */
+			unknown_8c_active_wait_atb	= 0x8C 
 		};
 	};
 	struct ChunkSaveScreen {
 		enum Index {
 			/** int */
-			tint_finish_red			= 0x01,
+			tint_finish_red					= 0x01,
 			/** int */
-			tint_finish_green		= 0x02,
+			tint_finish_green				= 0x02,
 			/** int */
-			tint_finish_blue		= 0x03,
+			tint_finish_blue				= 0x03,
 			/** int */
-			tint_finish_sat			= 0x04,
+			tint_finish_sat					= 0x04,
 			/** double */
-			tint_current_red		= 0x0B,
+			tint_current_red				= 0x0B,
 			/** double */
-			tint_current_green		= 0x0C,
+			tint_current_green				= 0x0C,
 			/** double */
-			tint_current_blue		= 0x0D,
+			tint_current_blue				= 0x0D,
 			/** double */
-			tint_current_sat		= 0x0E,
+			tint_current_sat				= 0x0E,
 			/** int */
-			tint_time_left			= 0x0F,
+			tint_time_left					= 0x0F,
 			/** int */
-			flash_continuous		= 0x14,
+			flash_continuous				= 0x14,
 			/** int */
-			flash_red				= 0x15,
+			flash_red						= 0x15,
 			/** int */
-			flash_green				= 0x16,
+			flash_green						= 0x16,
 			/** int */
-			flash_blue				= 0x17,
+			flash_blue						= 0x17,
 			/** double */
-			flash_current_level		= 0x18,
+			flash_current_level				= 0x18,
 			/** int */
-			flash_time_left			= 0x19,
+			flash_time_left					= 0x19,
 			/** int */
-			shake_continuous		= 0x1E,
+			shake_continuous				= 0x1E,
 			/** int */
-			shake_strength			= 0x1F,
+			shake_strength					= 0x1F,
 			/** int */
-			shake_speed				= 0x20,
+			shake_speed						= 0x20,
 			/** int */
-			shake_position			= 0x21,
+			shake_position					= 0x21,
+			/** int - unused */
+			shake_position_y				= 0x22,
 			/** int */
-			unknown_22				= 0x22,
+			shake_time_left					= 0x23,
 			/** int */
-			shake_time_left			= 0x23,
+			pan_x							= 0x29,
 			/** int */
-			pan_x					= 0x29,
-			/** int */
-			pan_y					= 0x2A,
+			pan_y							= 0x2A,
 			/** int - battle animation ID */
-			battleanim_id			= 0x2B,
+			battleanim_id					= 0x2B,
 			/** int - battle animation target */
-			battleanim_target		= 0x2C,
-			/** int - battle animation? Ref<Animation>? */
-			unknown_2d_battle_anim	= 0x2D,
-			/** int */
-			unknown_2e				= 0x2E,
+			battleanim_target				= 0x2C,
+			/** int - frame count - Ref<Animation>? FIXME */
+			battleanim_frame				= 0x2D,
+			/** int - unsure FIXME */
+			unknown_2e_battleanim_active	= 0x2E,
 			/** int - battle animation global scope */
-			battleanim_global		= 0x2F,
+			battleanim_global				= 0x2F,
 			/** int */
-			weather					= 0x30,
+			weather							= 0x30,
 			/** int */
-			weather_strength		= 0x31 
+			weather_strength				= 0x31 
 		};
 	};
 	struct ChunkSavePicture {
@@ -288,115 +288,115 @@ namespace LSD_Reader {
 	struct ChunkSavePartyLocation {
 		enum Index {
 			/** Flag */
-			active					= 0x01,
+			active							= 0x01,
 			/** ? */
-			map_id					= 0x0B,
+			map_id							= 0x0B,
 			/** ? */
-			position_x				= 0x0C,
+			position_x						= 0x0C,
 			/** ? */
-			position_y				= 0x0D,
+			position_y						= 0x0D,
 			/** Facing direction */
-			direction				= 0x15,
+			direction						= 0x15,
 			/** Sprite direction */
-			sprite_direction		= 0x16,
+			sprite_direction				= 0x16,
 			/** ? */
-			anim_frame				= 0x17,
+			anim_frame						= 0x17,
 			/** 0 or 3 - Transparency level of the main party member */
-			transparency			= 0x18,
+			transparency					= 0x18,
 			/** From 0 to 255 - Remaining distance of the current move */
-			remaining_step			= 0x1F,
+			remaining_step					= 0x1F,
 			/** ? */
-			move_frequency			= 0x20,
+			move_frequency					= 0x20,
 			/** ? */
-			layer					= 0x21,
+			layer							= 0x21,
 			/** Flag */
-			overlap_forbidden		= 0x22,
+			overlap_forbidden				= 0x22,
 			/** Integer */
-			animation_type			= 0x23,
+			animation_type					= 0x23,
 			/** facing locked */
-			lock_facing				= 0x24,
+			lock_facing						= 0x24,
 			/**  */
-			move_speed				= 0x25,
+			move_speed						= 0x25,
 			/** chunks: RPG::MoveRoute */
-			move_route				= 0x29,
+			move_route						= 0x29,
 			/** Use custom move route */
-			move_route_overwrite	= 0x2A,
+			move_route_overwrite			= 0x2A,
 			/** Index of MoveEvent command route */
-			move_route_index		= 0x2B,
+			move_route_index				= 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated		= 0x2C,
+			move_route_repeated				= 0x2C,
 			/** bool */
-			sprite_transparent		= 0x2E,
-			/** Boolean - Overlap? */
-			unknown_2f_overlap		= 0x2F,
+			sprite_transparent				= 0x2E,
+			/** Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME */
+			unknown_2f_overlap				= 0x2F,
 			/** ? */
-			anim_paused				= 0x30,
+			anim_paused						= 0x30,
 			/** Can go through anything */
-			through					= 0x33,
+			through							= 0x33,
 			/** ? */
-			stop_count				= 0x34,
+			stop_count						= 0x34,
 			/** ? */
-			anim_count				= 0x35,
+			anim_count						= 0x35,
 			/** 2^move_frequency - Once stop_count reaches it; the next move command is executed */
-			max_stop_count			= 0x36,
+			max_stop_count					= 0x36,
 			/** ? */
-			jumping					= 0x3D,
+			jumping							= 0x3D,
 			/** ? */
-			begin_jump_x			= 0x3E,
+			begin_jump_x					= 0x3E,
 			/** ? */
-			begin_jump_y			= 0x3F,
-			/** ? */
-			unknown_47				= 0x47,
+			begin_jump_y					= 0x3F,
+			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
+			unknown_47_pause				= 0x47,
 			/** Flag */
-			flying					= 0x48,
+			flying							= 0x48,
 			/** ? */
-			sprite_name				= 0x49,
+			sprite_name						= 0x49,
 			/** ? */
-			sprite_id				= 0x4A,
-			/** ? */
-			unknown_4b				= 0x4B,
+			sprite_id						= 0x4A,
+			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
+			unknown_4b_sprite_move			= 0x4B,
 			/** int */
-			flash_red				= 0x51,
+			flash_red						= 0x51,
 			/** int */
-			flash_green				= 0x52,
+			flash_green						= 0x52,
 			/** int */
-			flash_blue				= 0x53,
+			flash_blue						= 0x53,
 			/** double */
-			flash_current_level		= 0x54,
+			flash_current_level				= 0x54,
 			/** int */
-			flash_time_left			= 0x55,
+			flash_time_left					= 0x55,
 			/**  */
-			boarding				= 0x65,
+			boarding						= 0x65,
 			/**  */
-			aboard					= 0x66,
+			aboard							= 0x66,
 			/** Vehicle in use */
-			vehicle					= 0x67,
+			vehicle							= 0x67,
 			/**  */
-			unboarding				= 0x68,
+			unboarding						= 0x68,
 			/** Move speed before the party boarded the vehicle */
-			preboard_move_speed		= 0x69,
+			preboard_move_speed				= 0x69,
+			/** flag which briefly is true if the player presses ESC and another place in the code is set to false when subsequently calls the menu. */
+			unknown_6c_menu_calling			= 0x6C,
 			/**  */
-			unknown_6c				= 0x6C,
-			/**  */
-			pan_state				= 0x6F,
+			pan_state						= 0x6F,
 			/** int */
-			pan_current_x			= 0x70,
+			pan_current_x					= 0x70,
 			/** ? */
-			pan_current_y			= 0x71,
+			pan_current_y					= 0x71,
 			/** ? */
-			pan_finish_x			= 0x72,
+			pan_finish_x					= 0x72,
 			/** ? */
-			pan_finish_y			= 0x73,
-			/** ? */
-			unknown_79				= 0x79,
+			pan_finish_y					= 0x73,
+			/** speed in the scrolls of the screen - shown in sixteenth pixels. */
+			pan_speed						= 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
-			encounter_steps			= 0x7C,
-			/** ? */
-			unknown_7d				= 0x7D,
+			encounter_steps					= 0x7C,
+			/** Similar to 0x6C - is used to signal a different piece of code that an Encounter to be triggered. */
+			unknown_7d_encounter_calling	= 0x7D,
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
-			map_save_count			= 0x83,
+			map_save_count					= 0x83,
 			/** ? */
-			database_save_count		= 0x84 
+			database_save_count				= 0x84 
 		};
 	};
 	struct ChunkSaveVehicleLocation {
@@ -455,16 +455,16 @@ namespace LSD_Reader {
 			begin_jump_x				= 0x3E,
 			/** ? */
 			begin_jump_y				= 0x3F,
-			/** ? */
-			unknown_47					= 0x47,
+			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
+			unknown_47_pause			= 0x47,
 			/** Flag */
 			flying						= 0x48,
 			/** ? */
 			sprite_name					= 0x49,
 			/** ? */
 			sprite_id					= 0x4A,
-			/** ? */
-			unknown_4b					= 0x4B,
+			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
+			unknown_4b_sprite_move		= 0x4B,
 			/** int */
 			flash_red					= 0x51,
 			/** int */
@@ -475,8 +475,8 @@ namespace LSD_Reader {
 			flash_current_level			= 0x54,
 			/** int */
 			flash_time_left				= 0x55,
-			/** ? */
-			unknown_65					= 0x65,
+			/** Ship ID: 1 = boat, 2 = Ship, 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME */
+			vehicle						= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
 			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
@@ -558,47 +558,47 @@ namespace LSD_Reader {
 	struct ChunkSaveInventory {
 		enum Index {
 			/** ? */
-			party_size			= 0x01,
+			party_size		= 0x01,
 			/** ? */
-			party				= 0x02,
+			party			= 0x02,
 			/** ? */
-			items_size			= 0x0B,
+			items_size		= 0x0B,
 			/** short[]: item list */
-			item_ids			= 0x0C,
+			item_ids		= 0x0C,
 			/** ? */
-			item_counts			= 0x0D,
+			item_counts		= 0x0D,
 			/** ? */
-			item_usage			= 0x0E,
+			item_usage		= 0x0E,
 			/** int */
-			gold				= 0x15,
+			gold			= 0x15,
 			/** int */
-			timer1_secs			= 0x17,
+			timer1_secs		= 0x17,
 			/** bool */
-			timer1_active		= 0x18,
+			timer1_active	= 0x18,
 			/** bool */
-			timer1_visible		= 0x19,
+			timer1_visible	= 0x19,
 			/** bool */
-			timer1_battle		= 0x1A,
+			timer1_battle	= 0x1A,
 			/** int */
-			timer2_secs			= 0x1B,
+			timer2_secs		= 0x1B,
 			/** bool */
-			timer2_active		= 0x1C,
+			timer2_active	= 0x1C,
 			/** bool */
-			timer2_visible		= 0x1D,
+			timer2_visible	= 0x1D,
 			/** bool */
-			timer2_battle		= 0x1E,
+			timer2_battle	= 0x1E,
 			/** ? */
-			battles				= 0x20,
+			battles			= 0x20,
 			/** ? */
-			defeats				= 0x21,
+			defeats			= 0x21,
 			/** ? */
-			escapes				= 0x22,
+			escapes			= 0x22,
 			/** ? */
-			victories			= 0x23,
-			/** Number of turns passed in the latest battle fought? RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'. */
-			unknown_29_turns	= 0x29,
+			victories		= 0x23,
+			/** Number of turns passed in the latest battle fought. RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'. */
+			turns			= 0x29,
 			/** ? */
-			steps				= 0x2A 
+			steps			= 0x2A 
 		};
 	};
 	struct ChunkSaveTarget {
@@ -618,29 +618,29 @@ namespace LSD_Reader {
 	struct ChunkSaveEventCommands {
 		enum Index {
 			/** int */
-			commands_size	= 0x01,
+			commands_size					= 0x01,
 			/** event command list */
-			commands		= 0x02,
+			commands						= 0x02,
 			/** int */
-			current_command	= 0x0B,
+			current_command					= 0x0B,
 			/** 0 if it's common event or in other map */
-			event_id		= 0x0C,
+			event_id						= 0x0C,
 			/** Event was triggered by the Action Key */
-			actioned		= 0x0D,
-			/** byte */
-			unknown_15		= 0x15,
-			/** byte */
-			unknown_16		= 0x16 
+			actioned						= 0x0D,
+			/** size of the 0x16 vector: an array which stores the to be brought into an event code path FIXME */
+			unknown_15_subcommand_path_size	= 0x15,
+			/** byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is "3" (or maybe 2? not tested) stored there. When a "Case XXX" is achieved command; it is checked whether the value is stored there; the value of the "Case"-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME */
+			unknown_16_subcommand_path		= 0x16 
 		};
 	};
 	struct ChunkSaveEventData {
 		enum Index {
-			/** array */
+			/** array FIXME what is the difference between SaveEvents and SaveEventData? */
 			commands				= 0x01,
 			/** Show Message command has been executed in the current move route */
 			show_message			= 0x04,
-			/** Related to move events */
-			unknown_0d				= 0x0D,
+			/** flag which is set when the event is waiting for a move event. FIXME */
+			unknown_0d_move_waiting	= 0x0D,
 			/**  */
 			keyinput_wait			= 0x15,
 			/**  */
@@ -717,7 +717,7 @@ namespace LSD_Reader {
 			move_route_index			= 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
 			move_route_repeated			= 0x2C,
-			/** Boolean - Overlap? */
+			/** Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME */
 			unknown_2f_overlap			= 0x2F,
 			/** ? */
 			anim_paused					= 0x30,
@@ -735,16 +735,16 @@ namespace LSD_Reader {
 			begin_jump_x				= 0x3E,
 			/** ? */
 			begin_jump_y				= 0x3F,
-			/** ? */
-			unknown_47					= 0x47,
+			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
+			unknown_47_pause			= 0x47,
 			/** Flag */
 			flying						= 0x48,
 			/** ? */
 			sprite_name					= 0x49,
 			/** ? */
 			sprite_id					= 0x4A,
-			/** ? */
-			unknown_4b					= 0x4B,
+			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
+			unknown_4b_sprite_move		= 0x4B,
 			/** int */
 			flash_red					= 0x51,
 			/** int */
@@ -799,14 +799,14 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveEvents {
 		enum Index {
-			/** array */
+			/** array FIXME what is the difference between SaveEvents and SaveEventData? */
 			events					= 0x01,
 			/** int */
 			events_size				= 0x04,
-			/**  */
-			unknown_0b				= 0x0B,
-			/** Related to move events */
-			unknown_0d				= 0x0D,
+			/** Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME */
+			unknown_0b_escape		= 0x0B,
+			/** Flag which is set when the event is waiting for a move event. FIXME */
+			unknown_0d_move_waiting	= 0x0D,
 			/**  */
 			keyinput_wait			= 0x15,
 			/**  */
@@ -841,8 +841,8 @@ namespace LSD_Reader {
 			keyinput_up				= 0x26,
 			/**  */
 			keyinput_timed			= 0x29,
-			/**  */
-			unknown_2a				= 0x2A 
+			/** number of frames have to wait until the event continues. FIXME difference with 0x1F? */
+			unknown_2a_time_left	= 0x2A 
 		};
 	};
 	struct ChunkSaveCommonEvent {
@@ -877,8 +877,8 @@ namespace LSD_Reader {
 			targets				= 0x6E,
 			/** RPG::SaveMapInfo */
 			map_info			= 0x6F,
-			/** ? chunks? */
-			unknown_70			= 0x70,
+			/** Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object. */
+			panorama_data		= 0x70,
 			/** RPG::SaveEvents */
 			events				= 0x71,
 			/** array of RPG::SaveCommonEvent */

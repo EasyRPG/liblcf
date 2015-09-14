@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -36,14 +36,14 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, shake_strength),
 	LCF_STRUCT_TYPED_FIELD(int, shake_speed),
 	LCF_STRUCT_TYPED_FIELD(int, shake_position),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_22),
+	LCF_STRUCT_TYPED_FIELD(int, shake_position_y),
 	LCF_STRUCT_TYPED_FIELD(int, shake_time_left),
 	LCF_STRUCT_TYPED_FIELD(int, pan_x),
 	LCF_STRUCT_TYPED_FIELD(int, pan_y),
 	LCF_STRUCT_TYPED_FIELD(int, battleanim_id),
 	LCF_STRUCT_TYPED_FIELD(int, battleanim_target),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_2d_battle_anim),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_2e),
+	LCF_STRUCT_TYPED_FIELD(int, battleanim_frame),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2e_battleanim_active),
 	LCF_STRUCT_TYPED_FIELD(bool, battleanim_global),
 	LCF_STRUCT_TYPED_FIELD(int, weather),
 	LCF_STRUCT_TYPED_FIELD(int, weather_strength),

@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -41,11 +41,11 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	jumping = false;
 	begin_jump_x = 0;
 	begin_jump_y = 0;
-	unknown_47 = 0;
+	unknown_47_pause = 0;
 	flying = false;
 	sprite_name = "";
 	sprite_id = 0;
-	unknown_4b = 0;
+	unknown_4b_sprite_move = 0;
 	flash_red = 100;
 	flash_green = 100;
 	flash_blue = 100;
@@ -56,15 +56,15 @@ RPG::SavePartyLocation::SavePartyLocation() {
 	vehicle = 0;
 	unboarding = false;
 	preboard_move_speed = 4;
-	unknown_6c = 0;
+	unknown_6c_menu_calling = 0;
 	pan_state = 1;
 	pan_current_x = 2304;
 	pan_current_y = 1792;
 	pan_finish_x = 2304;
 	pan_finish_y = 1792;
-	unknown_79 = 16;
+	pan_speed = 16;
 	encounter_steps = 0;
-	unknown_7d = 0;
+	unknown_7d_encounter_calling = false;
 	map_save_count = 0;
 	database_save_count = 0;
 }

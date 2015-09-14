@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -29,8 +29,8 @@ namespace RPG {
 		int screen;
 		int frame_count;
 		std::string graphics_name;
-		int unknown_16;
-		int unknown_17;
+		int message_stretch;
+		int font_id;
 		int switches_size;
 		std::vector<bool> switches;
 		int variables_size;
@@ -44,7 +44,7 @@ namespace RPG {
 		bool face_right;
 		bool face_flip;
 		bool transparent;
-		int unknown_3d;
+		int unknown_music_fadeout;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;
@@ -82,7 +82,7 @@ namespace RPG {
 		std::string background;
 		int save_count;
 		int save_slot;
-		int unknown_8c;
+		int unknown_8c_active_wait_atb;
 	};
 }
 

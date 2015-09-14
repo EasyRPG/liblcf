@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -41,7 +41,7 @@ namespace RPG {
 		int defeats;
 		int escapes;
 		int victories;
-		int unknown_29_turns;
+		int turns;
 		int steps;
 	};
 }

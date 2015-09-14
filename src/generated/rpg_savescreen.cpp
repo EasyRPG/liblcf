@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -32,14 +32,14 @@ RPG::SaveScreen::SaveScreen() {
 	shake_strength = 0;
 	shake_speed = 0;
 	shake_position = 0;
-	unknown_22 = 0;
+	shake_position_y = 0;
 	shake_time_left = 0;
 	pan_x = 0;
 	pan_y = 0;
 	battleanim_id = 0;
 	battleanim_target = 0;
-	unknown_2d_battle_anim = 0;
-	unknown_2e = 0;
+	battleanim_frame = 0;
+	unknown_2e_battleanim_active = 0;
 	battleanim_global = false;
 	weather = 0;
 	weather_strength = 0;
