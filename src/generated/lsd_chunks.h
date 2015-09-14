@@ -80,7 +80,7 @@ namespace LSD_Reader {
 			/**  */
 			transparent					= 0x37,
 			/** music fade out? FIXME */
-			unknown_music_fadeout		= 0x3D,
+			unknown_3d_music_fadeout	= 0x3D,
 			/**  */
 			title_music					= 0x47,
 			/**  */
@@ -475,7 +475,7 @@ namespace LSD_Reader {
 			flash_current_level			= 0x54,
 			/** int */
 			flash_time_left				= 0x55,
-			/** Ship ID: 1 = boat, 2 = Ship, 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME */
+			/** Ship ID: 1 = boat; 2 = Ship; 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME */
 			vehicle						= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,

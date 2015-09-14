@@ -44,7 +44,7 @@ namespace RPG {
 		bool face_right;
 		bool face_flip;
 		bool transparent;
-		int unknown_music_fadeout;
+		int unknown_3d_music_fadeout;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;

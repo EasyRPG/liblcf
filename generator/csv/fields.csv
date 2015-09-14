@@ -719,7 +719,7 @@ SaveSystem,face_id,f,Integer,0x34,0,
 SaveSystem,face_right,f,Boolean,0x35,False,bool
 SaveSystem,face_flip,f,Boolean,0x36,False,bool
 SaveSystem,transparent,f,Boolean,0x37,False,
-SaveSystem,unknown_music_fadeout,f,Integer,0x3D,0,music fade out? FIXME
+SaveSystem,unknown_3d_music_fadeout,f,Integer,0x3D,0,music fade out? FIXME
 SaveSystem,title_music,f,Music,0x47,,
 SaveSystem,battle_music,f,Music,0x48,,
 SaveSystem,battle_end_music,f,Music,0x49,,

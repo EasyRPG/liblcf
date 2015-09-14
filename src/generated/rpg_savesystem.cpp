@@ -29,7 +29,7 @@ RPG::SaveSystem::SaveSystem() {
 	face_right = false;
 	face_flip = false;
 	transparent = false;
-	unknown_music_fadeout = 0;
+	unknown_3d_music_fadeout = 0;
 	transition_out = 1;
 	transition_in = 1;
 	battle_start_fadeout = 1;
