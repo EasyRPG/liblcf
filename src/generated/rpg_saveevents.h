@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -23,8 +23,8 @@ namespace RPG {
 
 		std::vector<SaveEventCommands> events;
 		int events_size;
-		int unknown_0b;
-		int unknown_0d;
+		int unknown_0b_escape;
+		int unknown_0d_move_waiting;
 		bool keyinput_wait;
 		int keyinput_variable;
 		bool keyinput_all_directions;
@@ -42,7 +42,7 @@ namespace RPG {
 		bool keyinput_right;
 		bool keyinput_up;
 		bool keyinput_timed;
-		int unknown_2a;
+		int unknown_2a_time_left;
 	};
 }
 

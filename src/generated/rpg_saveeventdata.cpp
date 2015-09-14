@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -14,7 +14,7 @@
  */
 RPG::SaveEventData::SaveEventData() {
 	show_message = false;
-	unknown_0d = -1;
+	unknown_0d_move_waiting = -1;
 	keyinput_wait = false;
 	keyinput_variable = -1;
 	keyinput_all_directions = false;

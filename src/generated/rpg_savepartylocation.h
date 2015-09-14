@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -57,11 +57,11 @@ namespace RPG {
 		bool jumping;
 		int begin_jump_x;
 		int begin_jump_y;
-		int unknown_47;
+		int unknown_47_pause;
 		bool flying;
 		std::string sprite_name;
 		int sprite_id;
-		int unknown_4b;
+		int unknown_4b_sprite_move;
 		int flash_red;
 		int flash_green;
 		int flash_blue;
@@ -72,15 +72,15 @@ namespace RPG {
 		int vehicle;
 		bool unboarding;
 		int preboard_move_speed;
-		int unknown_6c;
+		int unknown_6c_menu_calling;
 		int pan_state;
 		int pan_current_x;
 		int pan_current_y;
 		int pan_finish_x;
 		int pan_finish_y;
-		int unknown_79;
+		int pan_speed;
 		int encounter_steps;
-		int unknown_7d;
+		bool unknown_7d_encounter_calling;
 		int map_save_count;
 		int database_save_count;
 	};

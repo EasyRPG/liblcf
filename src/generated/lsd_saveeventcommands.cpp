@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -22,8 +22,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, current_command),
 	LCF_STRUCT_TYPED_FIELD(int, event_id),
 	LCF_STRUCT_TYPED_FIELD(bool, actioned),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_15),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_15_subcommand_path_size),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16_subcommand_path),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

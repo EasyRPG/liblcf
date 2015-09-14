@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -14,8 +14,8 @@
  */
 RPG::SaveEvents::SaveEvents() {
 	events_size = 0;
-	unknown_0b = 0;
-	unknown_0d = 0;
+	unknown_0b_escape = 0;
+	unknown_0d_move_waiting = 0;
 	keyinput_wait = false;
 	keyinput_variable = -1;
 	keyinput_all_directions = false;
@@ -33,5 +33,5 @@ RPG::SaveEvents::SaveEvents() {
 	keyinput_right = false;
 	keyinput_up = false;
 	keyinput_timed = false;
-	unknown_2a = 0;
+	unknown_2a_time_left = 0;
 }

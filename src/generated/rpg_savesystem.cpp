@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -16,8 +16,8 @@ RPG::SaveSystem::SaveSystem() {
 	screen = 1;
 	frame_count = 0;
 	graphics_name = "";
-	unknown_16 = 0;
-	unknown_17 = 0;
+	message_stretch = 0;
+	font_id = 0;
 	switches_size = 0;
 	variables_size = 0;
 	message_transparent = 0;
@@ -29,7 +29,7 @@ RPG::SaveSystem::SaveSystem() {
 	face_right = false;
 	face_flip = false;
 	transparent = false;
-	unknown_3d = 0;
+	unknown_3d_music_fadeout = 0;
 	transition_out = 1;
 	transition_in = 1;
 	battle_start_fadeout = 1;
@@ -42,5 +42,5 @@ RPG::SaveSystem::SaveSystem() {
 	menu_allowed = true;
 	save_count = 0;
 	save_slot = 1;
-	unknown_8c = 0;
+	unknown_8c_active_wait_atb = 0;
 }

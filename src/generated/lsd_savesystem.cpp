@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -20,8 +20,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, screen),
 	LCF_STRUCT_TYPED_FIELD(int, frame_count),
 	LCF_STRUCT_TYPED_FIELD(std::string, graphics_name),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_16),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_17),
+	LCF_STRUCT_TYPED_FIELD(int, message_stretch),
+	LCF_STRUCT_TYPED_FIELD(int, font_id),
 	LCF_STRUCT_TYPED_FIELD(int, switches_size),
 	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, switches),
 	LCF_STRUCT_TYPED_FIELD(int, variables_size),
@@ -35,7 +35,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, face_right),
 	LCF_STRUCT_TYPED_FIELD(bool, face_flip),
 	LCF_STRUCT_TYPED_FIELD(bool, transparent),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_3d),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_3d_music_fadeout),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, title_music),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_music),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_end_music),
@@ -73,7 +73,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, background),
 	LCF_STRUCT_TYPED_FIELD(int, save_count),
 	LCF_STRUCT_TYPED_FIELD(int, save_slot),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_8c),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_8c_active_wait_atb),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

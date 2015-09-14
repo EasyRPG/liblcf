@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -54,11 +54,11 @@ namespace RPG {
 		bool jumping;
 		int begin_jump_x;
 		int begin_jump_y;
-		int unknown_47;
+		int unknown_47_pause;
 		bool flying;
 		std::string sprite_name;
 		int sprite_id;
-		int unknown_4b;
+		int unknown_4b_sprite_move;
 		int flash_red;
 		int flash_green;
 		int flash_blue;

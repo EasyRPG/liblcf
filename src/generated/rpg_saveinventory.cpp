@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -28,6 +28,6 @@ RPG::SaveInventory::SaveInventory() {
 	defeats = 0;
 	escapes = 0;
 	victories = 0;
-	unknown_29_turns = 0;
+	turns = 0;
 	steps = 0;
 }

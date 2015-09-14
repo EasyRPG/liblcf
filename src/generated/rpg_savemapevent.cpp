@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -41,11 +41,11 @@ RPG::SaveMapEvent::SaveMapEvent() {
 	jumping = false;
 	begin_jump_x = 0;
 	begin_jump_y = 0;
-	unknown_47 = 0;
+	unknown_47_pause = 0;
 	flying = false;
 	sprite_name = "";
 	sprite_id = -1;
-	unknown_4b = -1;
+	unknown_4b_sprite_move = -1;
 	flash_red = 100;
 	flash_green = 100;
 	flash_blue = 100;

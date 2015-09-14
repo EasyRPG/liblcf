@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -19,8 +19,8 @@
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, events),
 	LCF_STRUCT_TYPED_FIELD(int, events_size),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_0b),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_0d),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_0b_escape),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_0d_move_waiting),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_wait),
 	LCF_STRUCT_TYPED_FIELD(int, keyinput_variable),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_all_directions),
@@ -38,7 +38,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_right),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_up),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_timed),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_2a),
+	LCF_STRUCT_TYPED_FIELD(int, unknown_2a_time_left),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

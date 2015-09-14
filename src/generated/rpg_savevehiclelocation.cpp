@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!! */
 
 /*
- * Copyright (c) 2014 liblcf authors
+ * Copyright (c) 2015 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */
@@ -39,17 +39,17 @@ RPG::SaveVehicleLocation::SaveVehicleLocation() {
 	jumping = false;
 	begin_jump_x = 0;
 	begin_jump_y = 0;
-	unknown_47 = 0;
+	unknown_47_pause = 0;
 	flying = false;
 	sprite_name = "";
 	sprite_id = 0;
-	unknown_4b = 0;
+	unknown_4b_sprite_move = 0;
 	flash_red = 100;
 	flash_green = 100;
 	flash_blue = 100;
 	flash_current_level = 0.0;
 	flash_time_left = 0;
-	unknown_65 = 0;
+	vehicle = 0;
 	original_move_route_index = 0;
 	remaining_ascent = 0;
 	remaining_descent = 0;
