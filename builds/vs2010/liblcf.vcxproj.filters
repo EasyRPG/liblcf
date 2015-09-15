@@ -164,6 +164,9 @@
     <ClCompile Include="..\..\src\generated\rpg_commonevent.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\generated\rpg_database.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\generated\rpg_encounter.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>

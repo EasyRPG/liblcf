@@ -116,6 +116,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_chipset.cpp \
 	src/generated/rpg_class.cpp \
 	src/generated/rpg_commonevent.cpp \
+	src/generated/rpg_database.cpp \
 	src/generated/rpg_encounter.cpp \
 	src/generated/rpg_enemyaction.cpp \
 	src/generated/rpg_enemy.cpp \

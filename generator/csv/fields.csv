@@ -570,6 +570,7 @@ System,unknown_61,f,Integer,0x61,-1,?
 System,show_frame,f,Boolean,0x63,False,Flag - RPG2003
 System,frame_name,f,String,0x64,'',String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,Flag - RPG2003
+System,show_title,f,Boolean,0x6F,True,When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11
 Switch,name,f,String,0x01,'',String
 Variable,name,f,String,0x01,'',String
 Database,actors,f,Array<Actor>,0x0B,,RPG::Actor
@@ -587,7 +588,7 @@ Database,system,f,System,0x16,,RPG::System
 Database,switches,f,Array<Switch>,0x17,,RPG::Switchs
 Database,variables,f,Array<Variable>,0x18,,RPG::Variables
 Database,commonevents,f,Array<CommonEvent>,0x19,,RPG::CommonEvent
-Database,commoneventD1,f,,0x1A,,Duplicated? - Not used - RPG2003
+Database,version,f,Integer,0x1A,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61
 Database,commoneventD2,f,,0x1B,,Duplicated? - Not used - RPG2003
 Database,commoneventD3,f,,0x1C,,Duplicated? - Not used - RPG2003
 Database,battlecommands,f,BattleCommands,0x1D,,RPG::BattleCommand - RPG2003
