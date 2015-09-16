@@ -185,7 +185,8 @@ void RPG::MapInfo::Init() {
 void RPG::Chipset::Init() {
 	terrain_data.resize(162, 1);
 	passable_data_lower.resize(162, 15);
-	passable_data_upper.resize(162, 15);
+	passable_data_upper.resize(144, 15);
+	passable_data_upper.front() = 31;
 }
 
 void RPG::Parameters::Setup(int final_level) {
