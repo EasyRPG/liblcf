@@ -104,7 +104,7 @@ Chipset,name,f,String,0x01,'',String
 Chipset,chipset_name,f,String,0x02,'',String
 Chipset,terrain_data,f,Vector<Int16>,0x03,[1]*162,Array - Short x 162
 Chipset,passable_data_lower,f,Vector<UInt8>,0x04,[15]*162,Array - Bitflag x 162
-Chipset,passable_data_upper,f,Vector<UInt8>,0x05,[15]*162,Array - Bitflag x 144
+Chipset,passable_data_upper,f,Vector<UInt8>,0x05,[31]+[15]*143,Array - Bitflag x 144
 Chipset,animation_type,f,Enum<Chipset_AnimType>,0x0B,0,Integer
 Chipset,animation_speed,f,Integer,0x0C,0,Integer
 Class,name,f,String,0x01,'',String

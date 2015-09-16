@@ -629,7 +629,7 @@ namespace LSD_Reader {
 			actioned						= 0x0D,
 			/** size of the 0x16 vector: an array which stores the to be brought into an event code path FIXME */
 			unknown_15_subcommand_path_size	= 0x15,
-			/** byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is "3" (or maybe 2? not tested) stored there. When a "Case XXX" is achieved command; it is checked whether the value is stored there; the value of the "Case"-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME */
+			/** byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is '3' (or maybe 2? not tested) stored there. When a 'Case XXX' is achieved command; it is checked whether the value is stored there; the value of the 'Case'-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME */
 			unknown_16_subcommand_path		= 0x16 
 		};
 	};
