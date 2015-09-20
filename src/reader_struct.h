@@ -198,7 +198,7 @@ struct Primitive<int> {
 		} else {
 			ref = 0;
 #ifdef LCF_DEBUG_TRACE
-			printf("Invalid integer at %s\n", stream->Tell());
+			printf("Invalid integer at %X\n", stream.Tell());
 #endif
 			stream.Seek(length, LcfReader::FromCurrent);
 		}
