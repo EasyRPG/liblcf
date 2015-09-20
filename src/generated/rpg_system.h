@@ -147,6 +147,7 @@ namespace RPG {
 		bool show_frame;
 		std::string frame_name;
 		bool invert_animations;
+		bool show_title;
 	};
 }
 

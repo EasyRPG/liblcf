@@ -441,6 +441,7 @@
     <ClCompile Include="..\..\src\generated\rpg_chipset.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_class.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_commonevent.cpp" />
+    <ClCompile Include="..\..\src\generated\rpg_database.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_encounter.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_enemy.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_enemyaction.cpp" />

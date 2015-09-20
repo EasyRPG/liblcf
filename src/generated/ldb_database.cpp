@@ -32,6 +32,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Switch>, switches),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Variable>, variables),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::CommonEvent>, commonevents),
+	LCF_STRUCT_TYPED_FIELD(int, version),
 	LCF_STRUCT_TYPED_FIELD(RPG::BattleCommands, battlecommands),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Class>, classes),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimation>, battleranimations),

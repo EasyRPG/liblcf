@@ -293,6 +293,11 @@ EventCommand,Code,ForceFlee,1006
 EventCommand,Code,EnableCombo,1007
 EventCommand,Code,ChangeClass,1008
 EventCommand,Code,ChangeBattleCommands,1009
+EventCommand,Code,OpenLoadMenu,5001
+EventCommand,Code,ExitGame,5002
+EventCommand,Code,ToggleAtbMode,5003
+EventCommand,Code,ToggleFullscreen,5004
+EventCommand,Code,OpenVideoOptions,5005
 EventCommand,Code,ShowMessage,10110
 EventCommand,Code,MessageOptions,10120
 EventCommand,Code,ChangeFaceGraphic,10130

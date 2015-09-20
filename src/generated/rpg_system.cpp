@@ -43,4 +43,5 @@ RPG::System::System() {
 	show_frame = false;
 	frame_name = "";
 	invert_animations = false;
+	show_title = true;
 }

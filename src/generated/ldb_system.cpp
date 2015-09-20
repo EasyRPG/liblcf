@@ -72,6 +72,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, show_frame),
 	LCF_STRUCT_TYPED_FIELD(std::string, frame_name),
 	LCF_STRUCT_TYPED_FIELD(bool, invert_animations),
+	LCF_STRUCT_TYPED_FIELD(bool, show_title),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

@@ -1276,7 +1276,9 @@ namespace LDB_Reader {
 			/** String - RPG2003 */
 			frame_name				= 0x64,
 			/** Flag - RPG2003 */
-			invert_animations		= 0x65 
+			invert_animations		= 0x65,
+			/** When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11 */
+			show_title				= 0x6F 
 		};
 	};
 	struct ChunkSwitch {
@@ -1323,8 +1325,8 @@ namespace LDB_Reader {
 			variables			= 0x18,
 			/** RPG::CommonEvent */
 			commonevents		= 0x19,
-			/** Duplicated? - Not used - RPG2003 */
-			commoneventD1		= 0x1A,
+			/** Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61 */
+			version				= 0x1A,
 			/** Duplicated? - Not used - RPG2003 */
 			commoneventD2		= 0x1B,
 			/** Duplicated? - Not used - RPG2003 */
