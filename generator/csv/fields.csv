@@ -984,7 +984,7 @@ SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array FIXME what is the 
 SaveEventData,show_message,f,Boolean,0x04,False,Show Message command has been executed in the current move route
 SaveEventData,unknown_0d_move_waiting,f,Integer,0x0D,-1,flag which is set when the event is waiting for a move event. FIXME
 SaveEventData,keyinput_wait,f,Boolean,0x15,False,
-SaveEventData,keyinput_variable,f,Integer,0x16,-1,
+SaveEventData,keyinput_variable,f,UInt8,0x16,0,
 SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,
 SaveEventData,keyinput_decision,f,Boolean,0x18,False,
 SaveEventData,keyinput_cancel,f,Boolean,0x19,False,
@@ -1061,7 +1061,7 @@ SaveEvents,events_size,f,Integer,0x04,0,int
 SaveEvents,unknown_0b_escape,f,Integer,0x0B,0,Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME
 SaveEvents,unknown_0d_move_waiting,f,Integer,0x0D,0,Flag which is set when the event is waiting for a move event. FIXME
 SaveEvents,keyinput_wait,f,Boolean,0x15,False,
-SaveEvents,keyinput_variable,f,Integer,0x16,-1,
+SaveEvents,keyinput_variable,f,UInt8,0x16,0,
 SaveEvents,keyinput_all_directions,f,Boolean,0x17,False,
 SaveEvents,keyinput_decision,f,Boolean,0x18,False,
 SaveEvents,keyinput_cancel,f,Boolean,0x19,False,

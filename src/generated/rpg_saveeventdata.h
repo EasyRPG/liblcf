@@ -11,6 +11,7 @@
 
 // Headers
 #include <vector>
+#include "reader_types.h"
 #include "rpg_saveeventcommands.h"
 
 /**
@@ -25,7 +26,7 @@ namespace RPG {
 		bool show_message;
 		int unknown_0d_move_waiting;
 		bool keyinput_wait;
-		int keyinput_variable;
+		uint8_t keyinput_variable;
 		bool keyinput_all_directions;
 		bool keyinput_decision;
 		bool keyinput_cancel;

@@ -22,7 +22,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, unknown_0b_escape),
 	LCF_STRUCT_TYPED_FIELD(int, unknown_0d_move_waiting),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_wait),
-	LCF_STRUCT_TYPED_FIELD(int, keyinput_variable),
+	LCF_STRUCT_TYPED_FIELD(uint8_t, keyinput_variable),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_all_directions),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_decision),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_cancel),
