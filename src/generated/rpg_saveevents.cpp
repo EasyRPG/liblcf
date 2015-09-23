@@ -17,7 +17,7 @@ RPG::SaveEvents::SaveEvents() {
 	unknown_0b_escape = 0;
 	unknown_0d_move_waiting = 0;
 	keyinput_wait = false;
-	keyinput_variable = -1;
+	keyinput_variable = 0;
 	keyinput_all_directions = false;
 	keyinput_decision = false;
 	keyinput_cancel = false;
