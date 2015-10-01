@@ -8,7 +8,7 @@ QT       -= core gui
 
 TARGET = liblcf
 TEMPLATE = lib
-CONFIG += staticlib
+CONFIG += staticlib -std=c++11
 
 DEFINES += LCF_SUPPORT_XML LCF_SUPPORT_ICU XML_STATIC
 
