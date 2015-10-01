@@ -15,16 +15,14 @@
 namespace RPG {
 	class TestBattler {
 	public:
-		TestBattler();
-
-		int ID;
-		int actor_id;
-		int level;
-		int weapon_id;
-		int shield_id;
-		int armor_id;
-		int helmet_id;
-		int accessory_id;
+		int ID = 0;
+		int actor_id = 1;
+		int level = 1;
+		int weapon_id = 0;
+		int shield_id = 0;
+		int armor_id = 0;
+		int helmet_id = 0;
+		int accessory_id = 0;
 	};
 }
 

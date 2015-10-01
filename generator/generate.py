@@ -294,56 +294,13 @@ def write_flags(f, sname, fname):
             name = name)
         f.write(ctor.flags % fvars)
 
-def generate_ctor(f, struct_name, hasid, vars):
+def generate_ctor(f, vars):
     f.write(copy.header)
-    f.write(ctor.header % vars)
-    if hasid:
-        f.write(ctor.tmpl % dict(fname = 'ID', default = '0'))
-    for field in sfields[struct_name]:
-        fname, issize, ftype, code, dfl, comment = field
-        if not ftype:
-            continue
-        if issize:
-            continue
-        if ftype.endswith('_Flags'):
-            write_flags(f, struct_name, fname)
-            continue
-        if dfl == '':
-            continue
-        if ftype.startswith('Vector'):
-            continue
-        if ftype.startswith('Array'):
-            continue
-        if ftype == 'Boolean':
-            dfl = dfl.lower()
-        elif ftype == 'String':
-            dfl = '"' + dfl[1:-1] + '"'
-        if '|' in dfl:
-            # dfl = re.sub(r'(.*)\|(.*)', r'\1', dfl)
-            dfl = -1
-        fvars = dict(
-            fname = fname,
-            default = dfl)
-        f.write(ctor.tmpl % fvars)
-    if struct_name in setup and any('Init()' in method
-                                    for method, hdrs in setup[struct_name]):
-        f.write('\n\tInit();\n')
-    f.write(ctor.footer % vars)
+    f.write(ctor.ctor % vars)
 
-def needs_ctor(struct_name, hasid):
-    if hasid:
-        return True
-    for field in sfields[struct_name]:
-        fname, issize, ftype, code, dfl, comment = field
-        if not ftype:
-            continue
-        if issize:
-            continue
-        if ftype.endswith('_Flags'):
-            return True
-        if dfl != '':
-            return True
-    return False
+def needs_ctor(struct_name):
+    return struct_name in setup and any('Init()' in method
+                                    for method, hdrs in setup[struct_name])
 
 def generate_header(f, struct_name, hasid, vars):
     f.write(copy.header)
@@ -356,7 +313,7 @@ def generate_header(f, struct_name, hasid, vars):
     if struct_name in enums:
         write_enums(struct_name, f)
     needs_blank = False
-    if needs_ctor(struct_name, hasid):
+    if needs_ctor(struct_name):
         f.write(decl.ctor % vars)
         needs_blank = True
     if struct_name in setup:
@@ -365,17 +322,31 @@ def generate_header(f, struct_name, hasid, vars):
     if needs_blank:
         f.write('\n')
     if hasid:
-        f.write(decl.tmpl % dict(ftype = 'int', fname = 'ID'))
+        f.write(decl.pod % dict(ftype = 'int', fname = 'ID', default = 0))
     for field in sfields[struct_name]:
         fname, issize, ftype, code, dfl, comment = field
         if not ftype:
             continue
         if issize:
             continue
-        fvars = dict(
-            ftype = cpp_type(ftype, False, struct_name),
-            fname = fname)
-        f.write(decl.tmpl % fvars)
+        if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array'):
+            fvars = dict(
+                ftype = cpp_type(ftype, False, struct_name),
+                fname = fname)
+            f.write(decl.non_pod % fvars)
+        else:
+            if ftype == 'Boolean':
+                dfl = dfl.lower()
+            elif ftype == 'String':
+                dfl = '"' + dfl[1:-1] + '"'
+            if '|' in dfl:
+                # dfl = re.sub(r'(.*)\|(.*)', r'\1', dfl)
+                dfl = -1
+            fvars =  dict(
+                ftype = cpp_type(ftype, False, struct_name),
+                fname = fname,
+                default = dfl)
+            f.write(decl.pod % fvars)
     f.write(decl.footer % vars)
 
 def generate_chunks(f, struct_name, vars):
@@ -418,10 +389,10 @@ def generate_struct(filetype, filename, struct_name, hasid):
     with open(filepath, 'w') as f:
         generate_reader(f, struct_name, vars)
 
-    if needs_ctor(struct_name, hasid):
+    if needs_ctor(struct_name):
         filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
         with open(filepath, 'w') as f:
-            generate_ctor(f, struct_name, hasid, vars)
+            generate_ctor(f, vars)
 
     filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
     with open(filepath, 'w') as f:
@@ -436,11 +407,6 @@ def generate_rawstruct(filename, struct_name):
         filename = filename,
         structname = struct_name,
         structupper = struct_name.upper())
-
-    if needs_ctor(struct_name, False):
-        filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
-        with open(filepath, 'w') as f:
-            generate_ctor(f, struct_name, False, vars)
 
     filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
     with open(filepath, 'w') as f:
@@ -512,12 +478,12 @@ def list_files_struct(filetype, filename, struct_name, hasid):
     if struct_name not in sfields:
         return
     print('%s_%s.cpp' % (filetype, filename))
-    if needs_ctor(struct_name, hasid):
+    if needs_ctor(struct_name):
         print('rpg_%s.cpp' % filename)
     print('rpg_%s.h' % filename)
 
 def list_files_rawstruct(filename, struct_name):
-    if needs_ctor(struct_name, False):
+    if needs_ctor(struct_name):
         print('rpg_%s.cpp' % filename)
     print('rpg_%s.h' % filename)
 

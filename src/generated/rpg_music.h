@@ -18,13 +18,11 @@
 namespace RPG {
 	class Music {
 	public:
-		Music();
-
 		std::string name;
-		int fadein;
-		int volume;
-		int tempo;
-		int balance;
+		int fadein = 0;
+		int volume = 100;
+		int tempo = 100;
+		int balance = 50;
 	};
 }
 

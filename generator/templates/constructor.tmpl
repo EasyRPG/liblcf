@@ -1,4 +1,4 @@
-@header
+@ctor
 // Headers
 #include "rpg_%(filename)s.h"
 
@@ -6,9 +6,5 @@
  * Constructor.
  */
 RPG::%(structname)s::%(structname)s() {
-@tmpl
-	%(fname)s = %(default)s;
-@flags
-	%(fname)s.%(name)s = false;
-@footer
+	Init();
 }

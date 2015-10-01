@@ -36,8 +36,6 @@
 namespace RPG {
 	class Database {
 	public:
-		Database();
-
 		std::vector<Actor> actors;
 		std::vector<Skill> skills;
 		std::vector<Item> items;
@@ -53,7 +51,7 @@ namespace RPG {
 		std::vector<Switch> switches;
 		std::vector<Variable> variables;
 		std::vector<CommonEvent> commonevents;
-		int version;
+		int version = 0;
 		BattleCommands battlecommands;
 		std::vector<Class> classes;
 		std::vector<BattlerAnimation> battleranimations;

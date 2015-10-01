@@ -71,22 +71,20 @@ namespace RPG {
 			MoveSpeed_fourfold = 6
 		};
 
-		EventPage();
-
-		int ID;
+		int ID = 0;
 		EventPageCondition condition;
 		std::string character_name;
-		int character_index;
-		int character_direction;
-		int character_pattern;
-		bool translucent;
-		int move_type;
-		int move_frequency;
-		int trigger;
-		int layer;
-		bool overlap_forbidden;
-		int animation_type;
-		int move_speed;
+		int character_index = 0;
+		int character_direction = 2;
+		int character_pattern = 1;
+		bool translucent = false;
+		int move_type = 1;
+		int move_frequency = 3;
+		int trigger = 0;
+		int layer = 0;
+		bool overlap_forbidden = false;
+		int animation_type = 0;
+		int move_speed = 3;
 		MoveRoute move_route;
 		std::vector<EventCommand> event_commands;
 	};

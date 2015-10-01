@@ -30,7 +30,9 @@ namespace RPG {
 		};
 @ctor
 		%(structname)s();
-@tmpl
+@pod
+		%(ftype)s %(fname)s = %(default)s;
+@non_pod
 		%(ftype)s %(fname)s;
 @footer
 	};

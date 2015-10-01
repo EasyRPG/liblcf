@@ -26,12 +26,10 @@ namespace RPG {
 			AfterImage_add = 1
 		};
 
-		BattlerAnimationData();
-
-		int ID;
-		int move;
-		int after_image;
-		int pose;
+		int ID = 0;
+		int move = 0;
+		int after_image = 0;
+		int pose = 0;
 	};
 }
 

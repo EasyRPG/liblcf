@@ -24,8 +24,6 @@ namespace RPG {
 			Comparison_not_equal = 5
 		};
 
-		EventPageCondition();
-
 		struct Flags {
 			bool switch_a;
 			bool switch_b;
@@ -35,15 +33,15 @@ namespace RPG {
 			bool timer;
 			bool timer2;
 		} flags;
-		int switch_a_id;
-		int switch_b_id;
-		int variable_id;
-		int variable_value;
-		int item_id;
-		int actor_id;
-		int timer_sec;
-		int timer2_sec;
-		int compare_operator;
+		int switch_a_id = 1;
+		int switch_b_id = 1;
+		int variable_id = 1;
+		int variable_value = 0;
+		int item_id = 1;
+		int actor_id = 1;
+		int timer_sec = 0;
+		int timer2_sec = 0;
+		int compare_operator = 1;
 	};
 }
 

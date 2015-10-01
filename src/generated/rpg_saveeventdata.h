@@ -20,28 +20,26 @@
 namespace RPG {
 	class SaveEventData {
 	public:
-		SaveEventData();
-
 		std::vector<SaveEventCommands> commands;
-		bool show_message;
-		int unknown_0d_move_waiting;
-		bool keyinput_wait;
-		uint8_t keyinput_variable;
-		bool keyinput_all_directions;
-		bool keyinput_decision;
-		bool keyinput_cancel;
-		bool keyinput_numbers;
-		bool keyinput_operators;
-		bool keyinput_shift;
-		bool keyinput_value_right;
-		bool keyinput_value_up;
-		int time_left;
-		int keyinput_time_variable;
-		bool keyinput_down;
-		bool keyinput_left;
-		bool keyinput_right;
-		bool keyinput_up;
-		bool keyinput_timed;
+		bool show_message = false;
+		int unknown_0d_move_waiting = -1;
+		bool keyinput_wait = false;
+		uint8_t keyinput_variable = 0;
+		bool keyinput_all_directions = false;
+		bool keyinput_decision = false;
+		bool keyinput_cancel = false;
+		bool keyinput_numbers = false;
+		bool keyinput_operators = false;
+		bool keyinput_shift = false;
+		bool keyinput_value_right = false;
+		bool keyinput_value_up = false;
+		int time_left = -1;
+		int keyinput_time_variable = -1;
+		bool keyinput_down = false;
+		bool keyinput_left = false;
+		bool keyinput_right = false;
+		bool keyinput_up = false;
+		bool keyinput_timed = false;
 	};
 }
 

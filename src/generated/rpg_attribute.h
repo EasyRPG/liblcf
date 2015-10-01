@@ -23,16 +23,14 @@ namespace RPG {
 			Type_magical = 1
 		};
 
-		Attribute();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		int type;
-		int a_rate;
-		int b_rate;
-		int c_rate;
-		int d_rate;
-		int e_rate;
+		int type = 0;
+		int a_rate = 300;
+		int b_rate = 200;
+		int c_rate = 100;
+		int d_rate = 50;
+		int e_rate = 0;
 	};
 }
 

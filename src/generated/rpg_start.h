@@ -15,20 +15,18 @@
 namespace RPG {
 	class Start {
 	public:
-		Start();
-
-		int party_map_id;
-		int party_x;
-		int party_y;
-		int boat_map_id;
-		int boat_x;
-		int boat_y;
-		int ship_map_id;
-		int ship_x;
-		int ship_y;
-		int airship_map_id;
-		int airship_x;
-		int airship_y;
+		int party_map_id = 0;
+		int party_x = 0;
+		int party_y = 0;
+		int boat_map_id = 0;
+		int boat_x = 0;
+		int boat_y = 0;
+		int ship_map_id = 0;
+		int ship_x = 0;
+		int ship_y = 0;
+		int airship_map_id = 0;
+		int airship_x = 0;
+		int airship_y = 0;
 	};
 }
 

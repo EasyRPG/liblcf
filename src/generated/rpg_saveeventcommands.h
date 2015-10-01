@@ -20,15 +20,13 @@
 namespace RPG {
 	class SaveEventCommands {
 	public:
-		SaveEventCommands();
-
-		int ID;
-		int commands_size;
+		int ID = 0;
+		int commands_size = 0;
 		std::vector<EventCommand> commands;
-		int current_command;
-		int event_id;
-		bool actioned;
-		int unknown_15_subcommand_path_size;
+		int current_command = 0;
+		int event_id = 0;
+		bool actioned = false;
+		int unknown_15_subcommand_path_size = -1;
 		std::vector<uint8_t> unknown_16_subcommand_path;
 	};
 }

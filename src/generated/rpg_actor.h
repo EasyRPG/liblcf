@@ -23,37 +23,36 @@
 namespace RPG {
 	class Actor {
 	public:
-		Actor();
 		void Setup();
 
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string title;
 		std::string character_name;
-		int character_index;
-		bool transparent;
-		int initial_level;
-		int final_level;
-		bool critical_hit;
-		int critical_hit_chance;
+		int character_index = 0;
+		bool transparent = false;
+		int initial_level = 1;
+		int final_level = -1;
+		bool critical_hit = true;
+		int critical_hit_chance = 30;
 		std::string face_name;
-		int face_index;
-		bool two_swords_style;
-		bool fix_equipment;
-		bool auto_battle;
-		bool super_guard;
+		int face_index = 0;
+		bool two_swords_style = false;
+		bool fix_equipment = false;
+		bool auto_battle = false;
+		bool super_guard = false;
 		Parameters parameters;
-		int exp_base;
-		int exp_inflation;
-		int exp_correction;
+		int exp_base = -1;
+		int exp_inflation = -1;
+		int exp_correction = 0;
 		Equipment initial_equipment;
-		int unarmed_animation;
-		int class_id;
-		int battle_x;
-		int battle_y;
-		int battler_animation;
+		int unarmed_animation = 1;
+		int class_id = 0;
+		int battle_x = 0;
+		int battle_y = 0;
+		int battler_animation = 1;
 		std::vector<Learning> skills;
-		bool rename_skill;
+		bool rename_skill = false;
 		std::string skill_name;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;

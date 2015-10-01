@@ -20,9 +20,7 @@
 namespace RPG {
 	class TroopPage {
 	public:
-		TroopPage();
-
-		int ID;
+		int ID = 0;
 		TroopPageCondition condition;
 		std::vector<EventCommand> event_commands;
 	};

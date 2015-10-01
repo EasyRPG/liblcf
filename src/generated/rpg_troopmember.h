@@ -15,13 +15,11 @@
 namespace RPG {
 	class TroopMember {
 	public:
-		TroopMember();
-
-		int ID;
-		int enemy_id;
-		int x;
-		int y;
-		bool invisible;
+		int ID = 0;
+		int enemy_id = 1;
+		int x = 0;
+		int y = 0;
+		bool invisible = false;
 	};
 }
 

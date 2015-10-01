@@ -41,23 +41,23 @@ namespace RPG {
 		MapInfo();
 		void Init();
 
-		int ID;
+		int ID = 0;
 		std::string name;
-		int parent_map;
-		int indentation;
-		int type;
-		int scrollbar_x;
-		int scrollbar_y;
-		bool expanded_node;
-		int music_type;
+		int parent_map = 0;
+		int indentation = 0;
+		int type = -1;
+		int scrollbar_x = 0;
+		int scrollbar_y = 0;
+		bool expanded_node = false;
+		int music_type = 0;
 		Music music;
-		int background_type;
+		int background_type = 0;
 		std::string background_name;
-		int teleport;
-		int escape;
-		int save;
+		int teleport = 0;
+		int escape = 0;
+		int save = 0;
 		std::vector<Encounter> encounters;
-		int encounter_steps;
+		int encounter_steps = 25;
 		Rect area_rect;
 	};
 }

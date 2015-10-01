@@ -95,68 +95,8 @@ SOURCES += \
     ../../src/generated/lsd_savetarget.cpp \
     ../../src/generated/lsd_savetitle.cpp \
     ../../src/generated/lsd_savevehiclelocation.cpp \
-    ../../src/generated/rpg_actor.cpp \
-    ../../src/generated/rpg_animation.cpp \
-    ../../src/generated/rpg_animationcelldata.cpp \
-    ../../src/generated/rpg_animationframe.cpp \
-    ../../src/generated/rpg_animationtiming.cpp \
-    ../../src/generated/rpg_attribute.cpp \
-    ../../src/generated/rpg_battlecommand.cpp \
-    ../../src/generated/rpg_battlecommands.cpp \
-    ../../src/generated/rpg_battleranimation.cpp \
-    ../../src/generated/rpg_battleranimationdata.cpp \
-    ../../src/generated/rpg_battleranimationextension.cpp \
     ../../src/generated/rpg_chipset.cpp \
-    ../../src/generated/rpg_class.cpp \
-    ../../src/generated/rpg_commonevent.cpp \
-    ../../src/generated/rpg_encounter.cpp \
-    ../../src/generated/rpg_enemy.cpp \
-    ../../src/generated/rpg_enemyaction.cpp \
-    ../../src/generated/rpg_equipment.cpp \
-    ../../src/generated/rpg_event.cpp \
-    ../../src/generated/rpg_eventcommand.cpp \
-    ../../src/generated/rpg_eventpage.cpp \
-    ../../src/generated/rpg_eventpagecondition.cpp \
-    ../../src/generated/rpg_item.cpp \
-    ../../src/generated/rpg_itemanimation.cpp \
-    ../../src/generated/rpg_learning.cpp \
-    ../../src/generated/rpg_map.cpp \
-    ../../src/generated/rpg_mapinfo.cpp \
-    ../../src/generated/rpg_movecommand.cpp \
-    ../../src/generated/rpg_moveroute.cpp \
-    ../../src/generated/rpg_music.cpp \
-    ../../src/generated/rpg_rect.cpp \
-    ../../src/generated/rpg_save.cpp \
-    ../../src/generated/rpg_saveactor.cpp \
-    ../../src/generated/rpg_savecommonevent.cpp \
-    ../../src/generated/rpg_saveeventcommands.cpp \
-    ../../src/generated/rpg_saveeventdata.cpp \
-    ../../src/generated/rpg_saveevents.cpp \
-    ../../src/generated/rpg_saveinventory.cpp \
-    ../../src/generated/rpg_savemapevent.cpp \
-    ../../src/generated/rpg_savemapinfo.cpp \
-    ../../src/generated/rpg_savepartylocation.cpp \
-    ../../src/generated/rpg_savepicture.cpp \
-    ../../src/generated/rpg_savescreen.cpp \
-    ../../src/generated/rpg_savesystem.cpp \
-    ../../src/generated/rpg_savetarget.cpp \
-    ../../src/generated/rpg_savetitle.cpp \
-    ../../src/generated/rpg_savevehiclelocation.cpp \
-    ../../src/generated/rpg_skill.cpp \
-    ../../src/generated/rpg_sound.cpp \
-    ../../src/generated/rpg_start.cpp \
-    ../../src/generated/rpg_state.cpp \
-    ../../src/generated/rpg_switch.cpp \
-    ../../src/generated/rpg_system.cpp \
-    ../../src/generated/rpg_terms.cpp \
-    ../../src/generated/rpg_terrain.cpp \
-    ../../src/generated/rpg_testbattler.cpp \
-    ../../src/generated/rpg_treemap.cpp \
-    ../../src/generated/rpg_troop.cpp \
-    ../../src/generated/rpg_troopmember.cpp \
-    ../../src/generated/rpg_trooppage.cpp \
-    ../../src/generated/rpg_trooppagecondition.cpp \
-    ../../src/generated/rpg_variable.cpp
+    ../../src/generated/rpg_mapinfo.cpp
 
 INCLUDEPATH += $$PWD/../../src
 INCLUDEPATH += $$PWD/../../src/generated

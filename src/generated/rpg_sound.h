@@ -18,12 +18,10 @@
 namespace RPG {
 	class Sound {
 	public:
-		Sound();
-
 		std::string name;
-		int volume;
-		int tempo;
-		int balance;
+		int volume = 100;
+		int tempo = 100;
+		int balance = 50;
 	};
 }
 
