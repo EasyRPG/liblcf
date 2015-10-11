@@ -3,7 +3,7 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="Configuration">
     <OutDir>$(EASYDEV_MSVC)\lib\$(PlatformShortName)\$(Configuration)\</OutDir>
-	<IntDir>Output\$(ProjectName)\$(PlatformShortName)\$(Configuration)\</IntDir>
+	<IntDir>Output\$(PlatformShortName)\$(Configuration)\</IntDir>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
