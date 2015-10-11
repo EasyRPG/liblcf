@@ -28,6 +28,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
 	  <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>..\..\src;..\..\src\generated;$(EASYDEV_MSVC)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ProgramDataBaseFileName>$(OutDir)$(ProjectName).pdb</ProgramDataBaseFileName>
 	</ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />
