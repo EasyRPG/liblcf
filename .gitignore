@@ -25,8 +25,7 @@ test-suite.log
 *.lo
 
 # visual studio build method
-/builds/vs20*/Debug*
-/builds/vs20*/Release*
+/builds/vs20*/Output/
 /builds/vs20*/*.user
 /builds/vs20*/x64/
 /lib/
