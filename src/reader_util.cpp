@@ -276,6 +276,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) {
 		fprintf(stderr, "liblcf: ucnv_toUChars() error when encoding \"%s\": %s\n", str_to_encode.c_str(), u_errorName(status));
+		delete[] unicode_str;
 		return std::string();
 	}
 
@@ -284,6 +285,8 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	conv = ucnv_open(dst_enc_str.c_str(), &status);
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
 		fprintf(stderr, "liblcf: ucnv_open() error for destination encoding \"%s\": %s\n", dst_enc_str.c_str(), u_errorName(status));
+		delete[] unicode_str;
+		delete[] result;
 		return std::string();
 	}
 	status = U_ZERO_ERROR;
@@ -292,6 +295,8 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	ucnv_close(conv);
 	if (status != U_ZERO_ERROR) {
 		fprintf(stderr, "liblcf: ucnv_fromUChars() error: %s\n", u_errorName(status));
+		delete[] unicode_str;
+		delete[] result;
 		return std::string();
 	}
 
@@ -319,7 +324,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
 	iconv_close(cd);
 	if (status == (size_t) -1 || src_left > 0) {
-	delete[] dst;
+		delete[] dst;
 		return std::string();
 	}
 	*q++ = '\0';
