@@ -44,9 +44,11 @@ void Data::Clear() {
 	animations.clear();
 	chipsets.clear();
 	commonevents.clear();
-	battlecommands.commands.clear();
+	battlecommands = RPG::BattleCommands();
 	classes.clear();
 	battleranimations.clear();
+	terms = RPG::Terms();
+	system = RPG::System();
 	switches.clear();
 	variables.clear();
 	treemap.active_node = 0;
