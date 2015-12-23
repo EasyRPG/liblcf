@@ -184,6 +184,10 @@ std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 std::string ReaderUtil::GetLocaleEncoding() {
 #ifdef _WIN32
 	int codepage = GetACP();
+#elif __ANDROID__
+	// No std::locale support in NDK
+	// Doesn't really matter because the Android version auto-detects via ICU
+	int codepage = 1252;
 #else
 	int codepage = 1252;
 
