@@ -56,7 +56,7 @@ int RawStruct<RPG::EventCommand>::LcfSize(const RPG::EventCommand& event_command
 	int result = 0;
 	result += LcfReader::IntSize(event_command.code);
 	result += LcfReader::IntSize(event_command.indent);
-	result += LcfReader::IntSize(event_command.string.size());
+	result += LcfReader::IntSize(stream.Decode(event_command.string).size());
 	result += stream.Decode(event_command.string).size();
 	int count = event_command.parameters.size();
 	result += LcfReader::IntSize(count);
