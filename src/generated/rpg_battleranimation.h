@@ -26,11 +26,9 @@ namespace RPG {
 			Speed_fast = 14
 		};
 
-		BattlerAnimation();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		int speed;
+		int speed = 0;
 		std::vector<BattlerAnimationExtension> base_data;
 		std::vector<BattlerAnimationExtension> weapon_data;
 	};

@@ -22,29 +22,28 @@
 namespace RPG {
 	class SaveSystem {
 	public:
-		SaveSystem();
 		void Setup();
 		void Fixup();
 
-		int screen;
-		int frame_count;
+		int screen = 1;
+		int frame_count = 0;
 		std::string graphics_name;
-		int message_stretch;
-		int font_id;
-		int switches_size;
+		int message_stretch = 0;
+		int font_id = 0;
+		int switches_size = 0;
 		std::vector<bool> switches;
-		int variables_size;
+		int variables_size = 0;
 		std::vector<uint32_t> variables;
-		int message_transparent;
-		int message_position;
-		int message_prevent_overlap;
-		int message_continue_events;
+		int message_transparent = 0;
+		int message_position = 2;
+		int message_prevent_overlap = 1;
+		int message_continue_events = 0;
 		std::string face_name;
-		int face_id;
-		bool face_right;
-		bool face_flip;
-		bool transparent;
-		int unknown_3d_music_fadeout;
+		int face_id = 0;
+		bool face_right = false;
+		bool face_flip = false;
+		bool transparent = false;
+		int unknown_3d_music_fadeout = 0;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;
@@ -69,20 +68,20 @@ namespace RPG {
 		Sound dodge_se;
 		Sound enemy_death_se;
 		Sound item_se;
-		uint8_t transition_out;
-		uint8_t transition_in;
-		uint8_t battle_start_fadeout;
-		uint8_t battle_start_fadein;
-		uint8_t battle_end_fadeout;
-		uint8_t battle_end_fadein;
-		bool teleport_allowed;
-		bool escape_allowed;
-		bool save_allowed;
-		bool menu_allowed;
+		uint8_t transition_out = 1;
+		uint8_t transition_in = 1;
+		uint8_t battle_start_fadeout = 1;
+		uint8_t battle_start_fadein = 1;
+		uint8_t battle_end_fadeout = 1;
+		uint8_t battle_end_fadein = 1;
+		bool teleport_allowed = true;
+		bool escape_allowed = true;
+		bool save_allowed = true;
+		bool menu_allowed = true;
 		std::string background;
-		int save_count;
-		int save_slot;
-		int unknown_8c_active_wait_atb;
+		int save_count = 0;
+		int save_slot = 1;
+		int unknown_8c_active_wait_atb = 0;
 	};
 }
 

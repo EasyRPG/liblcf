@@ -20,12 +20,10 @@
 namespace RPG {
 	class Event {
 	public:
-		Event();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		int x;
-		int y;
+		int x = 0;
+		int y = 0;
 		std::vector<EventPage> pages;
 	};
 }

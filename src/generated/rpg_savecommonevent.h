@@ -18,9 +18,7 @@
 namespace RPG {
 	class SaveCommonEvent {
 	public:
-		SaveCommonEvent();
-
-		int ID;
+		int ID = 0;
 		SaveEventData event_data;
 	};
 }

@@ -28,14 +28,14 @@ namespace RPG {
 		Chipset();
 		void Init();
 
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string chipset_name;
 		std::vector<int16_t> terrain_data;
 		std::vector<uint8_t> passable_data_lower;
 		std::vector<uint8_t> passable_data_upper;
-		int animation_type;
-		int animation_speed;
+		int animation_type = 0;
+		int animation_speed = 0;
 	};
 }
 

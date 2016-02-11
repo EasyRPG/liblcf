@@ -13,11 +13,5 @@
  * Constructor.
  */
 RPG::Chipset::Chipset() {
-	ID = 0;
-	name = "";
-	chipset_name = "";
-	animation_type = 0;
-	animation_speed = 0;
-
 	Init();
 }

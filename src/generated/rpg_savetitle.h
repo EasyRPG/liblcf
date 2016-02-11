@@ -18,20 +18,18 @@
 namespace RPG {
 	class SaveTitle {
 	public:
-		SaveTitle();
-
-		double timestamp;
+		double timestamp = 0;
 		std::string hero_name;
-		int hero_level;
-		int hero_hp;
+		int hero_level = 0;
+		int hero_hp = 0;
 		std::string face1_name;
-		int face1_id;
+		int face1_id = 0;
 		std::string face2_name;
-		int face2_id;
+		int face2_id = 0;
 		std::string face3_name;
-		int face3_id;
+		int face3_id = 0;
 		std::string face4_name;
-		int face4_id;
+		int face4_id = 0;
 	};
 }
 

@@ -18,13 +18,11 @@
 namespace RPG {
 	class Equipment {
 	public:
-		Equipment();
-
-		int16_t weapon_id;
-		int16_t shield_id;
-		int16_t armor_id;
-		int16_t helmet_id;
-		int16_t accessory_id;
+		int16_t weapon_id = 0;
+		int16_t shield_id = 0;
+		int16_t armor_id = 0;
+		int16_t helmet_id = 0;
+		int16_t accessory_id = 0;
 	};
 }
 

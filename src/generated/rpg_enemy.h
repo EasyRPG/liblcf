@@ -21,27 +21,25 @@
 namespace RPG {
 	class Enemy {
 	public:
-		Enemy();
-
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string battler_name;
-		int battler_hue;
-		int max_hp;
-		int max_sp;
-		int attack;
-		int defense;
-		int spirit;
-		int agility;
-		bool transparent;
-		int exp;
-		int gold;
-		int drop_id;
-		int drop_prob;
-		bool critical_hit;
-		int critical_hit_chance;
-		bool miss;
-		bool levitate;
+		int battler_hue = 0;
+		int max_hp = 10;
+		int max_sp = 10;
+		int attack = 10;
+		int defense = 10;
+		int spirit = 10;
+		int agility = 10;
+		bool transparent = false;
+		int exp = 0;
+		int gold = 0;
+		int drop_id = 0;
+		int drop_prob = 100;
+		bool critical_hit = false;
+		int critical_hit_chance = 30;
+		bool miss = false;
+		bool levitate = false;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<EnemyAction> actions;

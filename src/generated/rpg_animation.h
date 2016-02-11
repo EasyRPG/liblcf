@@ -31,15 +31,13 @@ namespace RPG {
 			Position_down = 2
 		};
 
-		Animation();
-
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string animation_name;
-		int unknown_03;
+		int unknown_03 = -1;
 		std::vector<AnimationTiming> timings;
-		int scope;
-		int position;
+		int scope = 0;
+		int position = 2;
 		std::vector<AnimationFrame> frames;
 	};
 }

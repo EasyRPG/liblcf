@@ -28,11 +28,9 @@ namespace RPG {
 			Type_special = 6
 		};
 
-		BattleCommand();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		int type;
+		int type = 0;
 	};
 }
 

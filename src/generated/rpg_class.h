@@ -22,19 +22,17 @@
 namespace RPG {
 	class Class {
 	public:
-		Class();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		bool two_swords_style;
-		bool fix_equipment;
-		bool auto_battle;
-		bool super_guard;
+		bool two_swords_style = false;
+		bool fix_equipment = false;
+		bool auto_battle = false;
+		bool super_guard = false;
 		Parameters parameters;
-		int exp_base;
-		int exp_inflation;
-		int exp_correction;
-		int unarmed_animation;
+		int exp_base = 300;
+		int exp_inflation = 300;
+		int exp_correction = 0;
+		int unarmed_animation = 0;
 		std::vector<Learning> skills;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;

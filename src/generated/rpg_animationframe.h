@@ -19,9 +19,7 @@
 namespace RPG {
 	class AnimationFrame {
 	public:
-		AnimationFrame();
-
-		int ID;
+		int ID = 0;
 		std::vector<AnimationCellData> cells;
 	};
 }

@@ -18,9 +18,7 @@
 namespace RPG {
 	class Switch {
 	public:
-		Switch();
-
-		int ID;
+		int ID = 0;
 		std::string name;
 	};
 }

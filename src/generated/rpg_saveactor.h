@@ -20,42 +20,41 @@
 namespace RPG {
 	class SaveActor {
 	public:
-		SaveActor();
 		void Setup(int actor_id);
 		void Fixup();
 
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string title;
 		std::string sprite_name;
-		int sprite_id;
-		int sprite_flags;
+		int sprite_id = 0;
+		int sprite_flags = 0;
 		std::string face_name;
-		int face_id;
-		int level;
-		int exp;
-		int hp_mod;
-		int sp_mod;
-		int attack_mod;
-		int defense_mod;
-		int spirit_mod;
-		int agility_mod;
-		int skills_size;
+		int face_id = 0;
+		int level = -1;
+		int exp = -1;
+		int hp_mod = -1;
+		int sp_mod = -1;
+		int attack_mod = 0;
+		int defense_mod = 0;
+		int spirit_mod = 0;
+		int agility_mod = 0;
+		int skills_size = -1;
 		std::vector<int16_t> skills;
 		std::vector<int16_t> equipped;
-		int current_hp;
-		int current_sp;
+		int current_hp = -1;
+		int current_sp = -1;
 		std::vector<uint32_t> battle_commands;
-		int status_size;
+		int status_size = 0;
 		std::vector<int16_t> status;
-		bool changed_class;
-		int class_id;
-		int row;
-		bool two_weapon;
-		bool lock_equipment;
-		bool auto_battle;
-		bool mighty_guard;
-		int unknown_60;
+		bool changed_class = false;
+		int class_id = -1;
+		int row = 0;
+		bool two_weapon = false;
+		bool lock_equipment = false;
+		bool auto_battle = false;
+		bool mighty_guard = false;
+		int unknown_60 = 0;
 	};
 }
 

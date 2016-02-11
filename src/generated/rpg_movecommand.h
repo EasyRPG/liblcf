@@ -65,13 +65,11 @@ namespace RPG {
 			};
 		};
 
-		MoveCommand();
-
-		int command_id;
+		int command_id = 0;
 		std::string parameter_string;
-		int parameter_a;
-		int parameter_b;
-		int parameter_c;
+		int parameter_a = 0;
+		int parameter_b = 0;
+		int parameter_c = 0;
 	};
 }
 

@@ -48,23 +48,21 @@ namespace RPG {
 			Facing_left = 4
 		};
 
-		BattleCommands();
-
-		int placement;
-		int death_handler1;
-		int row;
-		int battle_type;
-		int unknown_09;
+		int placement = 0;
+		int death_handler1 = 0;
+		int row = 0;
+		int battle_type = 0;
+		int unknown_09 = 0;
 		std::vector<BattleCommand> commands;
-		int death_handler2;
-		int death_event;
-		int window_size;
-		int transparency;
-		bool teleport;
-		int teleport_id;
-		int teleport_x;
-		int teleport_y;
-		int teleport_face;
+		int death_handler2 = 0;
+		int death_event = 0;
+		int window_size = 0;
+		int transparency = 0;
+		bool teleport = false;
+		int teleport_id = 0;
+		int teleport_x = 0;
+		int teleport_y = 0;
+		int teleport_face = 0;
 	};
 }
 

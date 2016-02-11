@@ -18,38 +18,36 @@
 namespace RPG {
 	class SavePicture {
 	public:
-		SavePicture();
-
-		int ID;
+		int ID = 0;
 		std::string name;
-		double start_x;
-		double start_y;
-		double current_x;
-		double current_y;
-		bool fixed_to_map;
-		double current_magnify;
-		double current_top_trans;
-		bool transparency;
-		double current_red;
-		double current_green;
-		double current_blue;
-		double current_sat;
-		int effect_mode;
-		double current_effect;
-		double current_bot_trans;
-		double finish_x;
-		double finish_y;
-		int finish_magnify;
-		int finish_top_trans;
-		int finish_bot_trans;
-		int finish_red;
-		int finish_green;
-		int finish_blue;
-		int finish_sat;
-		int finish_effect;
-		int time_left;
-		double current_rotation;
-		int current_waver;
+		double start_x = 0.0;
+		double start_y = 0.0;
+		double current_x = 0.0;
+		double current_y = 0.0;
+		bool fixed_to_map = false;
+		double current_magnify = -1.0;
+		double current_top_trans = 0.0;
+		bool transparency = false;
+		double current_red = -1.0;
+		double current_green = -1.0;
+		double current_blue = -1.0;
+		double current_sat = -1.0;
+		int effect_mode = 0;
+		double current_effect = 0.0;
+		double current_bot_trans = 0.0;
+		double finish_x = 0.0;
+		double finish_y = 0.0;
+		int finish_magnify = 100;
+		int finish_top_trans = 0;
+		int finish_bot_trans = 0;
+		int finish_red = 100;
+		int finish_green = 100;
+		int finish_blue = 100;
+		int finish_sat = 100;
+		int finish_effect = 0;
+		int time_left = 0;
+		double current_rotation = 0.0;
+		int current_waver = 0;
 	};
 }
 

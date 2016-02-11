@@ -23,14 +23,12 @@ namespace RPG {
 			AnimType_animation = 1
 		};
 
-		BattlerAnimationExtension();
-
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::string battler_name;
-		int battler_index;
-		int animation_type;
-		int animation_id;
+		int battler_index = 0;
+		int animation_type = 0;
+		int animation_id = 0;
 	};
 }
 

@@ -15,8 +15,6 @@
 namespace RPG {
 	class TroopPageCondition {
 	public:
-		TroopPageCondition();
-
 		struct Flags {
 			bool switch_a;
 			bool switch_b;
@@ -29,28 +27,28 @@ namespace RPG {
 			bool turn_actor;
 			bool command_actor;
 		} flags;
-		int switch_a_id;
-		int switch_b_id;
-		int variable_id;
-		int variable_value;
-		int turn_a;
-		int turn_b;
-		int fatigue_min;
-		int fatigue_max;
-		int enemy_id;
-		int enemy_hp_min;
-		int enemy_hp_max;
-		int actor_id;
-		int actor_hp_min;
-		int actor_hp_max;
-		int turn_enemy_id;
-		int turn_enemy_a;
-		int turn_enemy_b;
-		int turn_actor_id;
-		int turn_actor_a;
-		int turn_actor_b;
-		int command_actor_id;
-		int command_id;
+		int switch_a_id = 1;
+		int switch_b_id = 1;
+		int variable_id = 1;
+		int variable_value = 0;
+		int turn_a = 0;
+		int turn_b = 0;
+		int fatigue_min = 0;
+		int fatigue_max = 100;
+		int enemy_id = 1;
+		int enemy_hp_min = 0;
+		int enemy_hp_max = 100;
+		int actor_id = 1;
+		int actor_hp_min = 0;
+		int actor_hp_max = 100;
+		int turn_enemy_id = 0;
+		int turn_enemy_a = 0;
+		int turn_enemy_b = 0;
+		int turn_actor_id = 1;
+		int turn_actor_a = 0;
+		int turn_actor_b = 0;
+		int command_actor_id = 1;
+		int command_id = 1;
 	};
 }
 

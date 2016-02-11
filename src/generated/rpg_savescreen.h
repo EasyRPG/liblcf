@@ -15,38 +15,36 @@
 namespace RPG {
 	class SaveScreen {
 	public:
-		SaveScreen();
-
-		int tint_finish_red;
-		int tint_finish_green;
-		int tint_finish_blue;
-		int tint_finish_sat;
-		double tint_current_red;
-		double tint_current_green;
-		double tint_current_blue;
-		double tint_current_sat;
-		int tint_time_left;
-		bool flash_continuous;
-		int flash_red;
-		int flash_green;
-		int flash_blue;
-		double flash_current_level;
-		int flash_time_left;
-		bool shake_continuous;
-		int shake_strength;
-		int shake_speed;
-		int shake_position;
-		int shake_position_y;
-		int shake_time_left;
-		int pan_x;
-		int pan_y;
-		int battleanim_id;
-		int battleanim_target;
-		int battleanim_frame;
-		int unknown_2e_battleanim_active;
-		bool battleanim_global;
-		int weather;
-		int weather_strength;
+		int tint_finish_red = 100;
+		int tint_finish_green = 100;
+		int tint_finish_blue = 100;
+		int tint_finish_sat = 100;
+		double tint_current_red = 100.0;
+		double tint_current_green = 100.0;
+		double tint_current_blue = 100.0;
+		double tint_current_sat = 100.0;
+		int tint_time_left = 0;
+		bool flash_continuous = false;
+		int flash_red = 0;
+		int flash_green = 0;
+		int flash_blue = 0;
+		double flash_current_level = 0.0;
+		int flash_time_left = 0;
+		bool shake_continuous = false;
+		int shake_strength = 0;
+		int shake_speed = 0;
+		int shake_position = 0;
+		int shake_position_y = 0;
+		int shake_time_left = 0;
+		int pan_x = 0;
+		int pan_y = 0;
+		int battleanim_id = 0;
+		int battleanim_target = 0;
+		int battleanim_frame = 0;
+		int unknown_2e_battleanim_active = 0;
+		bool battleanim_global = false;
+		int weather = 0;
+		int weather_strength = 0;
 	};
 }
 

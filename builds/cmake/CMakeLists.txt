@@ -63,6 +63,13 @@ endif()
 aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
 add_library(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})
 
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+if(COMPILER_SUPPORTS_CXX11)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+else()
+    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support.")
+endif()
 
 # icu
 # Remove the following lines and uncomment the next line to remove the

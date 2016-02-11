@@ -21,12 +21,10 @@
 namespace RPG {
 	class Troop {
 	public:
-		Troop();
-
-		int ID;
+		int ID = 0;
 		std::string name;
 		std::vector<TroopMember> members;
-		bool auto_alignment;
+		bool auto_alignment = false;
 		std::vector<bool> terrain_set;
 		std::vector<TroopPage> pages;
 	};

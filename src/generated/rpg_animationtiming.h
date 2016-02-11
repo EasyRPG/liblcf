@@ -29,17 +29,15 @@ namespace RPG {
 			ScreenShake_screen = 2
 		};
 
-		AnimationTiming();
-
-		int ID;
-		int frame;
+		int ID = 0;
+		int frame = 0;
 		Sound se;
-		int flash_scope;
-		int flash_red;
-		int flash_green;
-		int flash_blue;
-		int flash_power;
-		int screen_shake;
+		int flash_scope = 0;
+		int flash_red = 31;
+		int flash_green = 31;
+		int flash_blue = 31;
+		int flash_power = 31;
+		int screen_shake = 0;
 	};
 }
 

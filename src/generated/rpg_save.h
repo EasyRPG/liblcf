@@ -30,7 +30,6 @@
 namespace RPG {
 	class Save {
 	public:
-		Save();
 		void Setup();
 
 		SaveTitle title;
@@ -45,7 +44,7 @@ namespace RPG {
 		SaveInventory inventory;
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
-		int panorama_data;
+		int panorama_data = -1;
 		SaveEvents events;
 		std::vector<SaveCommonEvent> common_events;
 	};

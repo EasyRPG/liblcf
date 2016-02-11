@@ -41,22 +41,20 @@ namespace RPG {
 			ConditionType_party_fatigue = 7
 		};
 
-		EnemyAction();
-
-		int ID;
-		int kind;
-		int basic;
-		int skill_id;
-		int enemy_id;
-		int condition_type;
-		int condition_param1;
-		int condition_param2;
-		int switch_id;
-		bool switch_on;
-		int switch_on_id;
-		bool switch_off;
-		int switch_off_id;
-		int rating;
+		int ID = 0;
+		int kind = 0;
+		int basic = 1;
+		int skill_id = 1;
+		int enemy_id = 1;
+		int condition_type = 0;
+		int condition_param1 = 0;
+		int condition_param2 = 0;
+		int switch_id = 1;
+		bool switch_on = false;
+		int switch_on_id = 1;
+		bool switch_off = false;
+		int switch_off_id = 1;
+		int rating = 50;
 	};
 }
 

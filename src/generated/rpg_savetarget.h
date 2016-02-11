@@ -15,14 +15,12 @@
 namespace RPG {
 	class SaveTarget {
 	public:
-		SaveTarget();
-
-		int ID;
-		int map_id;
-		int map_x;
-		int map_y;
-		bool switch_on;
-		int switch_id;
+		int ID = 0;
+		int map_id = 0;
+		int map_x = 0;
+		int map_y = 0;
+		bool switch_on = false;
+		int switch_id = 0;
 	};
 }
 

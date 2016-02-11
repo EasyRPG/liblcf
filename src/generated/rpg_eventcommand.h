@@ -152,10 +152,8 @@ namespace RPG {
 			};
 		};
 
-		EventCommand();
-
-		int code;
-		int indent;
+		int code = 0;
+		int indent = 0;
 		std::string string;
 		std::vector<int> parameters;
 	};
