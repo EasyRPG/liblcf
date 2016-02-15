@@ -47,7 +47,7 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 
 	if (codepage == 932) {
 #ifdef LCF_SUPPORT_ICU
-		return "ibm-943_P130-1999";
+		return "ibm-943_P15A-2003";
 #else
 		return "SHIFT_JIS";
 #endif
@@ -134,7 +134,7 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 		// Fixes to ensure proper Windows encodings
 		if (encoding == "Shift_JIS")
 		{
-			encoding = "ibm-943_P130-1999"; // Japanese with Yen as backslash
+			encoding = "ibm-943_P15A-2003"; // Japanese with \ as backslash
 		}
 		else if (encoding == "EUC-KR")
 		{
