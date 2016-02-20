@@ -23,7 +23,7 @@
     </ClCompile>
     <ClCompile>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-	  <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;UNICODE;XML_STATIC;LCF_SUPPORT_ICU;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	  <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;UNICODE;XML_STATIC;LCF_SUPPORT_XML;LCF_SUPPORT_ICU;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
 	  <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
