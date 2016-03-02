@@ -47,16 +47,16 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 
 	if (codepage == 932) {
 #ifdef LCF_SUPPORT_ICU
-		return "ibm-943_P130-1999";
+		return "ibm-943_P15A-2003";
 #else
 		return "SHIFT_JIS";
 #endif
 	}
 	if (codepage == 949) {
 #ifdef LCF_SUPPORT_ICU
-		return "ibm-949_P110-1999";
+		return "windows-949-2000";
 #else
-		return "cp1361";
+		return "cp949";
 #endif
 	}
 	std::ostringstream out;
@@ -134,11 +134,11 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 		// Fixes to ensure proper Windows encodings
 		if (encoding == "Shift_JIS")
 		{
-			encoding = "ibm-943_P130-1999"; // Japanese with Yen backslash
+			encoding = "ibm-943_P15A-2003"; // Japanese with \ as backslash
 		}
 		else if (encoding == "EUC-KR")
 		{
-			encoding = "ibm-949_P110-1999"; // Korean with Won backslash
+			encoding = "windows-949-2000"; // Korean with \ as backlash
 		}
 		else if (encoding == "ISO-8859-1" || encoding == "windows-1252")
 		{
