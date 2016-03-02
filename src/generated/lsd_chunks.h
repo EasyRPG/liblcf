@@ -155,8 +155,8 @@ namespace LSD_Reader {
 			save_count					= 0x83,
 			/**  */
 			save_slot					= 0x84,
-			/** Maybe ATB mode active / wait in 2k3 but not sure FIXME */
-			unknown_8c_active_wait_atb	= 0x8C 
+			/** ATB mode of RPG 2003 battle system. */
+			atb_mode					= 0x8C 
 		};
 	};
 	struct ChunkSaveScreen {
