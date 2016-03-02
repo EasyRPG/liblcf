@@ -22,6 +22,11 @@
 namespace RPG {
 	class SaveSystem {
 	public:
+		enum AtbMode {
+			AtbMode_atb_active = 0,
+			AtbMode_atb_wait = 1
+		};
+
 		void Setup();
 		void Fixup();
 
@@ -81,7 +86,7 @@ namespace RPG {
 		std::string background;
 		int save_count = 0;
 		int save_slot = 1;
-		int unknown_8c_active_wait_atb = 0;
+		int atb_mode = 0;
 	};
 }
 

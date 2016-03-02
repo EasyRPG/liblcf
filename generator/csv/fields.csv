@@ -758,7 +758,7 @@ SaveSystem,menu_allowed,f,Boolean,0x7C,True,
 SaveSystem,background,f,String,0x7D,,string
 SaveSystem,save_count,f,Integer,0x83,0,
 SaveSystem,save_slot,f,Integer,0x84,1,
-SaveSystem,unknown_8c_active_wait_atb,f,Integer,0x8C,0,Maybe ATB mode active / wait in 2k3 but not sure FIXME
+SaveSystem,atb_mode,f,Enum<SaveSystem_AtbMode>,0x8C,0,ATB mode of RPG 2003 battle system. 
 SaveScreen,tint_finish_red,f,Integer,0x01,100,int
 SaveScreen,tint_finish_green,f,Integer,0x02,100,int
 SaveScreen,tint_finish_blue,f,Integer,0x03,100,int

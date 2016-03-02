@@ -73,7 +73,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, background),
 	LCF_STRUCT_TYPED_FIELD(int, save_count),
 	LCF_STRUCT_TYPED_FIELD(int, save_slot),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_8c_active_wait_atb),
+	LCF_STRUCT_TYPED_FIELD(int, atb_mode),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT
