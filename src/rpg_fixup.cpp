@@ -62,6 +62,15 @@ void RPG::SaveSystem::Fixup() {
 	if (variables.size() < Data::variables.size()) {
 		variables.resize(Data::variables.size());
 	}
+	if (battle_music.name.empty()) {
+		battle_music.name = system.battle_music.name;
+	}
+	if (battle_end_music.name.empty()) {
+		battle_end_music.name = system.battle_end_music.name;
+	}
+	if (inn_music.name.empty()) {
+		inn_music.name = system.inn_music.name;
+	}
 	if (title_music.name.empty()) {
 		title_music.name = system.title_music.name;
 	}
