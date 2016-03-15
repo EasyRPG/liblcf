@@ -759,7 +759,7 @@ namespace LSD_Reader {
 			running						= 0x65,
 			/** Index of custom move route */
 			original_move_route_index	= 0x66,
-			/** If true; this event will run after the current running event stops running */
+			/** If true; this event will run after the current running event stops running. FIXME: See issue #174 */
 			pending						= 0x67,
 			/** chunks */
 			event_data					= 0x6C 

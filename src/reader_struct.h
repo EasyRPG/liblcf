@@ -136,9 +136,20 @@ struct LcfSizeT<bool> {
 template <class T>
 struct Primitive {
 	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
-		assert(length == LcfSizeT<T>::value);
+		int dif = 0;
+		// FIXME: Bug #174
+		if (length != LcfSizeT<T>::value) {
+			dif = length - LcfSizeT<T>::value;
+			fprintf(stderr, "Reading Primitive of incorrect size %d (expected %d) at %X\n",
+				length, LcfSizeT<T>::value, stream.Tell());
+		}
 
 		stream.Read(ref);
+
+		if (dif != 0) {
+			// Fix incorrect read pointer position
+			stream.Seek(dif, LcfReader::FromCurrent);
+		}
 	}
 	static void WriteLcf(const T& ref, LcfWriter& stream) {
 		stream.Write(ref);
