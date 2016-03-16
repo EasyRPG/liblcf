@@ -1040,7 +1040,7 @@ SaveMapEvent,flash_current_level,f,Double,0x54,0.0,double
 SaveMapEvent,flash_time_left,f,Integer,0x55,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,?
 SaveMapEvent,original_move_route_index,f,Integer,0x66,0,Index of custom move route
-SaveMapEvent,pending,f,Boolean,0x67,False,If true; this event will run after the current running event stops running
+SaveMapEvent,pending,f,Boolean,0x67,False,If true; this event will run after the current running event stops running. FIXME: See issue #174
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,chunks
 SaveMapInfo,position_x,f,Integer,0x01,0,int
 SaveMapInfo,position_y,f,Integer,0x02,0,int

@@ -12,8 +12,10 @@
 #include "rpg_savemapinfo.h"
 #include "data.h"
 
-void RPG::SaveActor::Fixup() {
-	const RPG::Actor& actor = Data::actors[ID - 1];
+void RPG::SaveActor::Fixup(int actor_id) {
+	ID = actor_id;
+
+	const RPG::Actor& actor = Data::actors[actor_id - 1];
 
 	if (name == "\x1") {
 		name = actor.name;

@@ -21,7 +21,7 @@ namespace RPG {
 	class SaveActor {
 	public:
 		void Setup(int actor_id);
-		void Fixup();
+		void Fixup(int actor_id);
 
 		int ID = 0;
 		std::string name;
