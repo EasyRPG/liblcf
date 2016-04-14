@@ -36,7 +36,7 @@ namespace LSD_Reader {
 	/**
 	 * Loads Savegame.
 	 */
-	std::auto_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);
+	std::unique_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);
 
 	/**
 	 * Saves Savegame.
@@ -51,7 +51,7 @@ namespace LSD_Reader {
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::auto_ptr<RPG::Save> LoadXml(const std::string& filename);
+	std::unique_ptr<RPG::Save> LoadXml(const std::string& filename);
 }
 
 #endif
