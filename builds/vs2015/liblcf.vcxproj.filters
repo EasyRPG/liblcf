@@ -389,54 +389,6 @@
     <ClCompile Include="..\..\src\generated\lsd_savevehiclelocation.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_battlecommands.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_saveactor.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savecommonevent.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_saveeventcommands.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_saveeventdata.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_saveevents.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_saveinventory.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savemapevent.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savemapinfo.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savepartylocation.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savepicture.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savescreen.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savesystem.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savetarget.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savetitle.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_savevehiclelocation.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\rpg_setup.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
