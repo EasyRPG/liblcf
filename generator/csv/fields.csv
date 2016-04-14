@@ -980,9 +980,10 @@ SaveEventCommands,event_id,f,Integer,0x0C,0,0 if it's common event or in other m
 SaveEventCommands,actioned,f,Boolean,0x0D,False,Event was triggered by the Action Key
 SaveEventCommands,unknown_15_subcommand_path_size,f,Integer,0x15,-1,size of the 0x16 vector: an array which stores the to be brought into an event code path FIXME
 SaveEventCommands,unknown_16_subcommand_path,f,Vector<UInt8>,0x16,,byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is '3' (or maybe 2? not tested) stored there. When a 'Case XXX' is achieved command; it is checked whether the value is stored there; the value of the 'Case'-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME
-SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array FIXME what is the difference between SaveEvents and SaveEventData?
+SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,array
 SaveEventData,show_message,f,Boolean,0x04,False,Show Message command has been executed in the current move route
-SaveEventData,unknown_0d_move_waiting,f,Integer,0x0D,-1,flag which is set when the event is waiting for a move event. FIXME
+SaveEventData,unknown_0b_escape,f,Integer,0x0B,0,Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME
+SaveEventData,wait_movement,f,Boolean,0x0D,False,Whether Wait for all movement is in effect
 SaveEventData,keyinput_wait,f,Boolean,0x15,False,
 SaveEventData,keyinput_variable,f,UInt8,0x16,0,
 SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,
@@ -993,13 +994,14 @@ SaveEventData,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
 SaveEventData,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
 SaveEventData,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
 SaveEventData,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
-SaveEventData,time_left,f,Integer,0x1F,-1,int
+SaveEventData,wait_time,f,Integer,0x1F,0,int
 SaveEventData,keyinput_time_variable,f,Integer,0x20,-1,
 SaveEventData,keyinput_down,f,Boolean,0x23,False,
 SaveEventData,keyinput_left,f,Boolean,0x24,False,
 SaveEventData,keyinput_right,f,Boolean,0x25,False,
 SaveEventData,keyinput_up,f,Boolean,0x26,False,
 SaveEventData,keyinput_timed,f,Boolean,0x29,False,
+SaveEventData,unknown_2a_time_left,f,Integer,0x2a,0,number of frames have to wait until the event continues. FIXME difference with 0x1F?
 SaveMapEvent,active,f,Boolean,0x01,True,Flag
 SaveMapEvent,map_id,f,Integer,0x0B,-1,?
 SaveMapEvent,position_x,f,Integer,0x0C,-1,?
@@ -1056,28 +1058,6 @@ SaveMapInfo,parallax_horz_auto,f,Boolean,0x23,False,bool
 SaveMapInfo,parallax_horz_speed,f,Integer,0x24,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,bool
 SaveMapInfo,parallax_vert_speed,f,Integer,0x26,0,int
-SaveEvents,events,f,Array<SaveEventCommands>,0x01,,array FIXME what is the difference between SaveEvents and SaveEventData?
-SaveEvents,events_size,f,Integer,0x04,0,int
-SaveEvents,unknown_0b_escape,f,Integer,0x0B,0,Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME
-SaveEvents,unknown_0d_move_waiting,f,Integer,0x0D,0,Flag which is set when the event is waiting for a move event. FIXME
-SaveEvents,keyinput_wait,f,Boolean,0x15,False,
-SaveEvents,keyinput_variable,f,UInt8,0x16,0,
-SaveEvents,keyinput_all_directions,f,Boolean,0x17,False,
-SaveEvents,keyinput_decision,f,Boolean,0x18,False,
-SaveEvents,keyinput_cancel,f,Boolean,0x19,False,
-SaveEvents,keyinput_numbers,f,Boolean,0x1A,False,In RM2k Value this is keyinput_shift
-SaveEvents,keyinput_operators,f,Boolean,0x1B,False,In Value keyinput_down
-SaveEvents,keyinput_shift,f,Boolean,0x1C,False,In Value keyinput_left
-SaveEvents,keyinput_value_right,f,Boolean,0x1D,False,Only in Value
-SaveEvents,keyinput_value_up,f,Boolean,0x1E,False,Only in Value
-SaveEvents,time_left,f,Integer,0x1F,0,Number of frames to wait
-SaveEvents,keyinput_time_variable,f,Integer,0x20,-1,
-SaveEvents,keyinput_down,f,Boolean,0x23,False,
-SaveEvents,keyinput_left,f,Boolean,0x24,False,
-SaveEvents,keyinput_right,f,Boolean,0x25,False,
-SaveEvents,keyinput_up,f,Boolean,0x26,False,
-SaveEvents,keyinput_timed,f,Boolean,0x29,False,
-SaveEvents,unknown_2a_time_left,f,Integer,0x2a,0,number of frames have to wait until the event continues. FIXME difference with 0x1F?
 SaveCommonEvent,event_data,f,SaveEventData,0x01,,chunks
 Save,title,f,SaveTitle,0x64,,RPG::SaveTitle
 Save,system,f,SaveSystem,0x65,,RPG::SaveSystem
@@ -1092,7 +1072,7 @@ Save,inventory,f,SaveInventory,0x6D,,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,array of RPG::SaveTarget
 Save,map_info,f,SaveMapInfo,0x6F,,RPG::SaveMapInfo
 Save,panorama_data,f,Integer,0x70,-1,Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object.
-Save,events,f,SaveEvents,0x71,,RPG::SaveEvents
+Save,events,f,SaveEventData,0x71,,RPG::SaveEventData
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,
 Equipment,shield_id,,Ref<Item:Int16>,,0,

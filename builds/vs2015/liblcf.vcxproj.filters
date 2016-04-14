@@ -359,9 +359,6 @@
     <ClCompile Include="..\..\src\generated\lsd_saveeventdata.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\lsd_saveevents.cpp">
-      <Filter>Source Files\LSD</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\generated\lsd_saveinventory.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
@@ -644,9 +641,6 @@
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\generated\rpg_saveeventdata.h">
-      <Filter>Header Files\RPG</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\generated\rpg_saveevents.h">
       <Filter>Header Files\RPG</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\generated\rpg_saveinventory.h">

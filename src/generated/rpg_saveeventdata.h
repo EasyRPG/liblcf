@@ -22,7 +22,8 @@ namespace RPG {
 	public:
 		std::vector<SaveEventCommands> commands;
 		bool show_message = false;
-		int unknown_0d_move_waiting = -1;
+		int unknown_0b_escape = 0;
+		bool wait_movement = false;
 		bool keyinput_wait = false;
 		uint8_t keyinput_variable = 0;
 		bool keyinput_all_directions = false;
@@ -33,13 +34,14 @@ namespace RPG {
 		bool keyinput_shift = false;
 		bool keyinput_value_right = false;
 		bool keyinput_value_up = false;
-		int time_left = -1;
+		int wait_time = 0;
 		int keyinput_time_variable = -1;
 		bool keyinput_down = false;
 		bool keyinput_left = false;
 		bool keyinput_right = false;
 		bool keyinput_up = false;
 		bool keyinput_timed = false;
+		int unknown_2a_time_left = 0;
 	};
 }
 
