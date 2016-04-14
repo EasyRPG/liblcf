@@ -23,8 +23,8 @@ Actor,exp_correction,f,Integer,0x2B,0,Integer
 Actor,initial_equipment,f,Equipment,0x33,,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,Integer
 Actor,class_id,f,Ref<Class>,0x39,0,Integer - RPG2003
-Actor,battle_x,f,Integer,0x3B,0,Integer - RPG2003
-Actor,battle_y,f,Integer,0x3C,0,Integer - RPG2003
+Actor,battle_x,f,Integer,0x3B,220,Integer - RPG2003
+Actor,battle_y,f,Integer,0x3C,120,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,Integer - RPG2003
 Actor,skills,f,Array<Learning>,0x3F,,Array - RPG::Learning
 Actor,rename_skill,f,Boolean,0x42,False,Flag
