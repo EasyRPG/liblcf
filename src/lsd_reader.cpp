@@ -26,24 +26,24 @@ double LSD_Reader::GenerateTimestamp(std::time_t const t) {
 	return ToTDateTime(t);
 }
 
-std::auto_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string &encoding) {
+std::unique_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string &encoding) {
 	LcfReader reader(filename, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return std::auto_ptr<RPG::Save>(NULL);
+		return std::unique_ptr<RPG::Save>();
 	}
 	std::string header;
 	reader.ReadString(header, reader.ReadInt());
 	if (header.length() != 11) {
 		LcfReader::SetError("%s is not a valid RPG2000 save.\n", filename.c_str());
-		return std::auto_ptr<RPG::Save>(NULL);
+		return std::unique_ptr<RPG::Save>();
 	}
 	if (header != "LcfSaveData") {
 		fprintf(stderr, "Warning: %s header is not LcfSaveData and might not be a valid RPG2000 save.\n", filename.c_str());
 	}
 	RPG::Save* save = new RPG::Save();
 	Struct<RPG::Save>::ReadLcf(*save, reader);
-	return std::auto_ptr<RPG::Save>(save);
+	return std::unique_ptr<RPG::Save>(save);
 }
 
 bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const std::string &encoding) {
@@ -75,15 +75,15 @@ bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	return true;
 }
 
-std::auto_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
+std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
 	XmlReader reader(filename);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't find %s save file.\n", filename.c_str());
-		return std::auto_ptr<RPG::Save>(NULL);
+		return std::unique_ptr<RPG::Save>();
 	}
 
 	RPG::Save* save = new RPG::Save();
 	reader.SetHandler(new RootXmlHandler<RPG::Save>(*save, "LSD"));
 	reader.Parse();
-	return std::auto_ptr<RPG::Save>(save);
+	return std::unique_ptr<RPG::Save>(save);
 }

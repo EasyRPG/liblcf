@@ -19,7 +19,7 @@ namespace LMU_Reader {
 	/**
 	 * Loads map.
 	 */
-	std::auto_ptr<RPG::Map> Load(const std::string& filename, const std::string& encoding);
+	std::unique_ptr<RPG::Map> Load(const std::string& filename, const std::string& encoding);
 
 	/**
 	 * Saves map.
@@ -34,7 +34,7 @@ namespace LMU_Reader {
 	/**
 	 * Loads map as XML.
 	 */
-	std::auto_ptr<RPG::Map> LoadXml(const std::string& filename);
+	std::unique_ptr<RPG::Map> LoadXml(const std::string& filename);
 }
 
 #endif

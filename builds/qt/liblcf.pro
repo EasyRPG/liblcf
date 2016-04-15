@@ -84,7 +84,6 @@ SOURCES += \
     ../../src/generated/lsd_savecommonevent.cpp \
     ../../src/generated/lsd_saveeventcommands.cpp \
     ../../src/generated/lsd_saveeventdata.cpp \
-    ../../src/generated/lsd_saveevents.cpp \
     ../../src/generated/lsd_saveinventory.cpp \
     ../../src/generated/lsd_savemapevent.cpp \
     ../../src/generated/lsd_savemapinfo.cpp \

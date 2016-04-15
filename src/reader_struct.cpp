@@ -279,7 +279,6 @@ template class Struct<RPG::SaveActor>;
 template class Struct<RPG::SaveCommonEvent>;
 template class Struct<RPG::SaveEventCommands>;
 template class Struct<RPG::SaveEventData>;
-template class Struct<RPG::SaveEvents>;
 template class Struct<RPG::SaveInventory>;
 template class Struct<RPG::SaveMapEvent>;
 template class Struct<RPG::SaveMapInfo>;

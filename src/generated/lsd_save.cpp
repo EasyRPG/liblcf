@@ -30,7 +30,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveTarget>, targets),
 	LCF_STRUCT_TYPED_FIELD(RPG::SaveMapInfo, map_info),
 	LCF_STRUCT_TYPED_FIELD(int, panorama_data),
-	LCF_STRUCT_TYPED_FIELD(RPG::SaveEvents, events),
+	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, events),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveCommonEvent>, common_events),
 LCF_STRUCT_FIELDS_END()
 

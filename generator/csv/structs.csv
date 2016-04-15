@@ -55,7 +55,6 @@ lsd,SaveEventCommands,1
 lsd,SaveEventData,0
 lsd,SaveMapEvent,1
 lsd,SaveMapInfo,0
-lsd,SaveEvents,0
 lsd,SaveCommonEvent,1
 lsd,Save,0
 lmt,Rect,

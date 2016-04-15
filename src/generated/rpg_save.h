@@ -13,7 +13,7 @@
 #include <vector>
 #include "rpg_saveactor.h"
 #include "rpg_savecommonevent.h"
-#include "rpg_saveevents.h"
+#include "rpg_saveeventdata.h"
 #include "rpg_saveinventory.h"
 #include "rpg_savemapinfo.h"
 #include "rpg_savepartylocation.h"
@@ -45,7 +45,7 @@ namespace RPG {
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
 		int panorama_data = -1;
-		SaveEvents events;
+		SaveEventData events;
 		std::vector<SaveCommonEvent> common_events;
 	};
 }

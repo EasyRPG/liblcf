@@ -635,12 +635,14 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveEventData {
 		enum Index {
-			/** array FIXME what is the difference between SaveEvents and SaveEventData? */
+			/** array */
 			commands				= 0x01,
 			/** Show Message command has been executed in the current move route */
 			show_message			= 0x04,
-			/** flag which is set when the event is waiting for a move event. FIXME */
-			unknown_0d_move_waiting	= 0x0D,
+			/** Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME */
+			unknown_0b_escape		= 0x0B,
+			/** Whether Wait for all movement is in effect */
+			wait_movement			= 0x0D,
 			/**  */
 			keyinput_wait			= 0x15,
 			/**  */
@@ -662,7 +664,7 @@ namespace LSD_Reader {
 			/** Only in Value */
 			keyinput_value_up		= 0x1E,
 			/** int */
-			time_left				= 0x1F,
+			wait_time				= 0x1F,
 			/**  */
 			keyinput_time_variable	= 0x20,
 			/**  */
@@ -674,7 +676,9 @@ namespace LSD_Reader {
 			/**  */
 			keyinput_up				= 0x26,
 			/**  */
-			keyinput_timed			= 0x29 
+			keyinput_timed			= 0x29,
+			/** number of frames have to wait until the event continues. FIXME difference with 0x1F? */
+			unknown_2a_time_left	= 0x2A 
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -797,54 +801,6 @@ namespace LSD_Reader {
 			parallax_vert_speed	= 0x26 
 		};
 	};
-	struct ChunkSaveEvents {
-		enum Index {
-			/** array FIXME what is the difference between SaveEvents and SaveEventData? */
-			events					= 0x01,
-			/** int */
-			events_size				= 0x04,
-			/** Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME */
-			unknown_0b_escape		= 0x0B,
-			/** Flag which is set when the event is waiting for a move event. FIXME */
-			unknown_0d_move_waiting	= 0x0D,
-			/**  */
-			keyinput_wait			= 0x15,
-			/**  */
-			keyinput_variable		= 0x16,
-			/**  */
-			keyinput_all_directions	= 0x17,
-			/**  */
-			keyinput_decision		= 0x18,
-			/**  */
-			keyinput_cancel			= 0x19,
-			/** In RM2k Value this is keyinput_shift */
-			keyinput_numbers		= 0x1A,
-			/** In Value keyinput_down */
-			keyinput_operators		= 0x1B,
-			/** In Value keyinput_left */
-			keyinput_shift			= 0x1C,
-			/** Only in Value */
-			keyinput_value_right	= 0x1D,
-			/** Only in Value */
-			keyinput_value_up		= 0x1E,
-			/** Number of frames to wait */
-			time_left				= 0x1F,
-			/**  */
-			keyinput_time_variable	= 0x20,
-			/**  */
-			keyinput_down			= 0x23,
-			/**  */
-			keyinput_left			= 0x24,
-			/**  */
-			keyinput_right			= 0x25,
-			/**  */
-			keyinput_up				= 0x26,
-			/**  */
-			keyinput_timed			= 0x29,
-			/** number of frames have to wait until the event continues. FIXME difference with 0x1F? */
-			unknown_2a_time_left	= 0x2A 
-		};
-	};
 	struct ChunkSaveCommonEvent {
 		enum Index {
 			/** chunks */
@@ -879,7 +835,7 @@ namespace LSD_Reader {
 			map_info			= 0x6F,
 			/** Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object. */
 			panorama_data		= 0x70,
-			/** RPG::SaveEvents */
+			/** RPG::SaveEventData */
 			events				= 0x71,
 			/** array of RPG::SaveCommonEvent */
 			common_events		= 0x72 

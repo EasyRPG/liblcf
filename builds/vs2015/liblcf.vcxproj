@@ -252,7 +252,6 @@
     <ClCompile Include="..\..\src\generated\lsd_savecommonevent.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_saveeventcommands.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_saveeventdata.cpp" />
-    <ClCompile Include="..\..\src\generated\lsd_saveevents.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_saveinventory.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savemapevent.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savemapinfo.cpp" />
@@ -325,7 +324,6 @@
     <ClInclude Include="..\..\src\generated\rpg_savecommonevent.h" />
     <ClInclude Include="..\..\src\generated\rpg_saveeventcommands.h" />
     <ClInclude Include="..\..\src\generated\rpg_saveeventdata.h" />
-    <ClInclude Include="..\..\src\generated\rpg_saveevents.h" />
     <ClInclude Include="..\..\src\generated\rpg_saveinventory.h" />
     <ClInclude Include="..\..\src\generated\rpg_savemapevent.h" />
     <ClInclude Include="..\..\src\generated\rpg_savemapinfo.h" />

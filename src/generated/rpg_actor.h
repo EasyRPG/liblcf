@@ -48,8 +48,8 @@ namespace RPG {
 		Equipment initial_equipment;
 		int unarmed_animation = 1;
 		int class_id = 0;
-		int battle_x = 0;
-		int battle_y = 0;
+		int battle_x = 220;
+		int battle_y = 120;
 		int battler_animation = 1;
 		std::vector<Learning> skills;
 		bool rename_skill = false;
