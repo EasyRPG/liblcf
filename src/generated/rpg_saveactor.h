@@ -54,7 +54,7 @@ namespace RPG {
 		bool lock_equipment = false;
 		bool auto_battle = false;
 		bool mighty_guard = false;
-		int unknown_60 = 0;
+		int battler_animation = 0;
 	};
 }
 
