@@ -116,7 +116,7 @@ Class,parameters,f,Parameters,0x1F,,Array x 6 - Short
 Class,exp_base,f,Integer,0x29,300,Integer
 Class,exp_inflation,f,Integer,0x2A,300,Integer
 Class,exp_correction,f,Integer,0x2B,0,Integer
-Class,unarmed_animation,f,Ref<Animation>,0x3E,0,Integer
+Class,battler_animation,f,Ref<Animation>,0x3E,0,Integer
 Class,skills,f,Array<Learning>,0x3F,,Array - RPG::Learning
 Class,state_ranks,t,UInt8,0x47,,Integer
 Class,state_ranks,f,Vector<UInt8>,0x48,,Array - Short

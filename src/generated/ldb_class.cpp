@@ -26,7 +26,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int, exp_base),
 	LCF_STRUCT_TYPED_FIELD(int, exp_inflation),
 	LCF_STRUCT_TYPED_FIELD(int, exp_correction),
-	LCF_STRUCT_TYPED_FIELD(int, unarmed_animation),
+	LCF_STRUCT_TYPED_FIELD(int, battler_animation),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Learning>, skills),
 	LCF_STRUCT_SIZE_FIELD(uint8_t, state_ranks),
 	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, state_ranks),

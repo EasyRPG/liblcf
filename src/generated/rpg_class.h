@@ -32,7 +32,7 @@ namespace RPG {
 		int exp_base = 300;
 		int exp_inflation = 300;
 		int exp_correction = 0;
-		int unarmed_animation = 0;
+		int battler_animation = 0;
 		std::vector<Learning> skills;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
