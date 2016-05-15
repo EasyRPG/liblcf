@@ -492,67 +492,67 @@ namespace LSD_Reader {
 	struct ChunkSaveActor {
 		enum Index {
 			/** string; ''\x01'' for default!?!? */
-			name			= 0x01,
+			name				= 0x01,
 			/** string; ''\x01'' for default!?!? */
-			title			= 0x02,
+			title				= 0x02,
 			/** string */
-			sprite_name		= 0x0B,
+			sprite_name			= 0x0B,
 			/** int */
-			sprite_id		= 0x0C,
+			sprite_id			= 0x0C,
 			/** int */
-			sprite_flags	= 0x0D,
+			sprite_flags		= 0x0D,
 			/** string */
-			face_name		= 0x15,
+			face_name			= 0x15,
 			/** int */
-			face_id			= 0x16,
+			face_id				= 0x16,
 			/** int */
-			level			= 0x1F,
+			level				= 0x1F,
 			/** int */
-			exp				= 0x20,
+			exp					= 0x20,
 			/** ? */
-			hp_mod			= 0x21,
+			hp_mod				= 0x21,
 			/** ? */
-			sp_mod			= 0x22,
+			sp_mod				= 0x22,
 			/** int */
-			attack_mod		= 0x29,
+			attack_mod			= 0x29,
 			/** int */
-			defense_mod		= 0x2A,
+			defense_mod			= 0x2A,
 			/** int */
-			spirit_mod		= 0x2B,
+			spirit_mod			= 0x2B,
 			/** int */
-			agility_mod		= 0x2C,
+			agility_mod			= 0x2C,
 			/** ? */
-			skills_size		= 0x33,
+			skills_size			= 0x33,
 			/** short[] */
-			skills			= 0x34,
+			skills				= 0x34,
 			/** short[5] */
-			equipped		= 0x3D,
+			equipped			= 0x3D,
 			/** int */
-			current_hp		= 0x47,
+			current_hp			= 0x47,
 			/** int */
-			current_sp		= 0x48,
+			current_sp			= 0x48,
 			/** array of (uncompressed) int32 */
-			battle_commands	= 0x50,
+			battle_commands		= 0x50,
 			/** ? */
-			status_size		= 0x51,
+			status_size			= 0x51,
 			/** array of short */
-			status			= 0x52,
+			status				= 0x52,
 			/** bool */
-			changed_class	= 0x53,
+			changed_class		= 0x53,
 			/** int class-id */
-			class_id		= 0x5A,
+			class_id			= 0x5A,
 			/** RPG2003 Battle row (-1 Back; 1 Front) */
-			row				= 0x5B,
+			row					= 0x5B,
 			/** bool */
-			two_weapon		= 0x5C,
+			two_weapon			= 0x5C,
 			/** bool */
-			lock_equipment	= 0x5D,
+			lock_equipment		= 0x5D,
 			/** bool */
-			auto_battle		= 0x5E,
+			auto_battle			= 0x5E,
 			/** bool */
-			mighty_guard	= 0x5F,
-			/** ? */
-			unknown_60		= 0x60 
+			mighty_guard		= 0x5F,
+			/** Integer - RPG2003 */
+			battler_animation	= 0x60 
 		};
 	};
 	struct ChunkSaveInventory {

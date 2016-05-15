@@ -306,7 +306,7 @@ namespace LDB_Reader {
 			/** Integer */
 			exp_correction			= 0x2B,
 			/** Integer */
-			unarmed_animation		= 0x3E,
+			battler_animation		= 0x3E,
 			/** Array - RPG::Learning */
 			skills					= 0x3F,
 			/** Integer */

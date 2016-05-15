@@ -53,7 +53,6 @@ void RPG::SaveActor::Setup(int actor_id) {
 	lock_equipment = actor.fix_equipment;
 	auto_battle = actor.auto_battle;
 	mighty_guard = actor.super_guard;
-	unknown_60 = -1;
 }
 
 void RPG::SaveInventory::Setup() {
