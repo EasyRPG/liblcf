@@ -76,7 +76,7 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 #ifdef LCF_SUPPORT_ICU
 	std::ostringstream text;
 
-	//Populate Data::terms or will empty by default even if load fails
+	//Populate Data::terms and Data::system or will empty by default even if load fails
 	LDB_Reader::Load(database_file, "");
 
 	text <<
@@ -113,10 +113,19 @@ std::string ReaderUtil::DetectEncoding(const std::string& database_file) {
 	Data::terms.file << " " <<
 	Data::terms.exit_game_message << " " <<
 	Data::terms.yes << " " <<
-	Data::terms.no;
+	Data::terms.no << " " <<
+	Data::system.boat_name << " " <<
+	Data::system.ship_name << " " <<
+	Data::system.airship_name << " " <<
+	Data::system.title_name << " " <<
+	Data::system.gameover_name << " " <<
+	Data::system.system_name << " " <<
+	Data::system.system2_name << " " <<
+	Data::system.battletest_background << " " <<
+	Data::system.frame_name;
 
-	// Checks if there are more than the above 33 spaces (no data)
-	if (text.str().size() > 33)
+	// Checks if there are more than the above 42 spaces (no data)
+	if (text.str().size() > 42)
 	{
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
