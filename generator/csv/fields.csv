@@ -279,7 +279,7 @@ TroopPageCondition,turn_a,f,Integer,0x06,0,Integer
 TroopPageCondition,turn_b,f,Integer,0x07,0,Integer
 TroopPageCondition,fatigue_min,f,Integer,0x08,0,Integer
 TroopPageCondition,fatigue_max,f,Integer,0x09,100,Integer
-TroopPageCondition,enemy_id,f,Integer,0x0A,1,Integer
+TroopPageCondition,enemy_id,f,Integer,0x0A,0,Integer
 TroopPageCondition,enemy_hp_min,f,Integer,0x0B,0,Integer
 TroopPageCondition,enemy_hp_max,f,Integer,0x0C,100,Integer
 TroopPageCondition,actor_id,f,Ref<Actor>,0x0D,1,Integer

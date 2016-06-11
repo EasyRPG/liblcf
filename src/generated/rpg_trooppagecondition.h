@@ -35,7 +35,7 @@ namespace RPG {
 		int turn_b = 0;
 		int fatigue_min = 0;
 		int fatigue_max = 100;
-		int enemy_id = 1;
+		int enemy_id = 0;
 		int enemy_hp_min = 0;
 		int enemy_hp_max = 100;
 		int actor_id = 1;
