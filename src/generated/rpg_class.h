@@ -24,8 +24,8 @@ namespace RPG {
 	public:
 		int ID = 0;
 		std::string name;
-		bool two_swords_style = false;
-		bool fix_equipment = false;
+		bool two_weapon = false;
+		bool lock_equipment = false;
 		bool auto_battle = false;
 		bool super_guard = false;
 		Parameters parameters;

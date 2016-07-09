@@ -37,8 +37,8 @@ namespace RPG {
 		int critical_hit_chance = 30;
 		std::string face_name;
 		int face_index = 0;
-		bool two_swords_style = false;
-		bool fix_equipment = false;
+		bool two_weapon = false;
+		bool lock_equipment = false;
 		bool auto_battle = false;
 		bool super_guard = false;
 		Parameters parameters;

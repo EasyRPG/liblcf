@@ -550,7 +550,7 @@ namespace LSD_Reader {
 			/** bool */
 			auto_battle			= 0x5E,
 			/** bool */
-			mighty_guard		= 0x5F,
+			super_guard			= 0x5F,
 			/** Integer - RPG2003 */
 			battler_animation	= 0x60 
 		};

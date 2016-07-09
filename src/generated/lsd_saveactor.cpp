@@ -46,7 +46,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, two_weapon),
 	LCF_STRUCT_TYPED_FIELD(bool, lock_equipment),
 	LCF_STRUCT_TYPED_FIELD(bool, auto_battle),
-	LCF_STRUCT_TYPED_FIELD(bool, mighty_guard),
+	LCF_STRUCT_TYPED_FIELD(bool, super_guard),
 	LCF_STRUCT_TYPED_FIELD(int, battler_animation),
 LCF_STRUCT_FIELDS_END()
 
