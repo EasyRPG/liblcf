@@ -12,8 +12,8 @@ Actor,critical_hit,f,Boolean,0x09,True,Flag
 Actor,critical_hit_chance,f,Integer,0x0A,30,Integer
 Actor,face_name,f,String,0x0F,,String
 Actor,face_index,f,Integer,0x10,0,Integer
-Actor,two_swords_style,f,Boolean,0x15,False,Flag
-Actor,fix_equipment,f,Boolean,0x16,False,Flag
+Actor,two_weapon,f,Boolean,0x15,False,Flag
+Actor,lock_equipment,f,Boolean,0x16,False,Flag
 Actor,auto_battle,f,Boolean,0x17,False,Flag
 Actor,super_guard,f,Boolean,0x18,False,Flag
 Actor,parameters,f,Parameters,0x1F,,Array x 6 - Short
@@ -108,8 +108,8 @@ Chipset,passable_data_upper,f,Vector<UInt8>,0x05,[31]+[15]*143,Array - Bitflag x
 Chipset,animation_type,f,Enum<Chipset_AnimType>,0x0B,0,Integer
 Chipset,animation_speed,f,Integer,0x0C,0,Integer
 Class,name,f,String,0x01,'',String
-Class,two_swords_style,f,Boolean,0x15,False,Flag
-Class,fix_equipment,f,Boolean,0x16,False,Flag
+Class,two_weapon,f,Boolean,0x15,False,Flag
+Class,lock_equipment,f,Boolean,0x16,False,Flag
 Class,auto_battle,f,Boolean,0x17,False,Flag
 Class,super_guard,f,Boolean,0x18,False,Flag
 Class,parameters,f,Parameters,0x1F,,Array x 6 - Short
@@ -945,7 +945,7 @@ SaveActor,row,f,Integer,0x5B,0,RPG2003 Battle row (-1 Back; 1 Front)
 SaveActor,two_weapon,f,Boolean,0x5C,False,bool
 SaveActor,lock_equipment,f,Boolean,0x5D,False,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,bool
-SaveActor,mighty_guard,f,Boolean,0x5F,False,bool
+SaveActor,super_guard,f,Boolean,0x5F,False,bool
 SaveActor,battler_animation,f,Ref<BattlerAnimation>,0x60,0,Integer - RPG2003
 SaveInventory,party_size,f,Integer,0x01,-1,?
 SaveInventory,party,f,Vector<Int16>,0x02,,?

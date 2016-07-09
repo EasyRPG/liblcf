@@ -53,7 +53,7 @@ namespace RPG {
 		bool two_weapon = false;
 		bool lock_equipment = false;
 		bool auto_battle = false;
-		bool mighty_guard = false;
+		bool super_guard = false;
 		int battler_animation = 0;
 	};
 }

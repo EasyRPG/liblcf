@@ -49,10 +49,10 @@ void RPG::SaveActor::Setup(int actor_id) {
 	changed_class = false;
 	class_id = actor.class_id;
 	row = -1;
-	two_weapon = actor.two_swords_style;
-	lock_equipment = actor.fix_equipment;
+	two_weapon = actor.two_weapon;
+	lock_equipment = actor.lock_equipment;
 	auto_battle = actor.auto_battle;
-	mighty_guard = actor.super_guard;
+	super_guard = actor.super_guard;
 }
 
 void RPG::SaveInventory::Setup() {

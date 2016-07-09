@@ -46,9 +46,9 @@ namespace LDB_Reader {
 			/** Integer */
 			face_index				= 0x10,
 			/** Flag */
-			two_swords_style		= 0x15,
+			two_weapon				= 0x15,
 			/** Flag */
-			fix_equipment			= 0x16,
+			lock_equipment			= 0x16,
 			/** Flag */
 			auto_battle				= 0x17,
 			/** Flag */
@@ -290,9 +290,9 @@ namespace LDB_Reader {
 			/** String */
 			name					= 0x01,
 			/** Flag */
-			two_swords_style		= 0x15,
+			two_weapon				= 0x15,
 			/** Flag */
-			fix_equipment			= 0x16,
+			lock_equipment			= 0x16,
 			/** Flag */
 			auto_battle				= 0x17,
 			/** Flag */
