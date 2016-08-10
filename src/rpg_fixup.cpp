@@ -127,7 +127,7 @@ void RPG::SaveSystem::Fixup() {
 }
 
 void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
-	if (chipset_id == -1) {
+	if (chipset_id <= 0) {
 		chipset_id = map.chipset_id;
 	}
 }
