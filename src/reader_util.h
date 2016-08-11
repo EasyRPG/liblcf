@@ -31,6 +31,16 @@ namespace ReaderUtil {
 	std::string DetectEncoding(const std::string& database_file);
 
 	/**
+	 * Detects the encoding based on text analysis and returns a vector with
+	 * possible candidates, highest candidate being at the beginning.
+	 *
+	 * @param text a string with few hundred of words to analyze.
+	 *
+	 * @return list of encodings or empty if not detected
+	 */
+	std::vector<std::string> DetectEncodings(const std::string& database_file);
+
+	/**
 	 * Returns the encoding set in the ini file.
 	 *
 	 * @param ini_file The ini file to parse.
