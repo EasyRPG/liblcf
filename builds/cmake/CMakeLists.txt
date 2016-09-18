@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 project(liblcf C CXX)
-set(VERSION 0.4.1)
+set(PACKAGE_VERSION 0.5.0)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR}/lib)
@@ -97,7 +97,6 @@ install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION ${LIB_INSTALL_DIR})
 
 # pkg-config file generation
 set(PACKAGE_TARNAME ${PROJECT_NAME})
-set(PACKAGE_VERSION ${VERSION})
 set(prefix "${CMAKE_INSTALL_PREFIX}")
 set(exec_prefix "\${prefix}")
 set(libdir "\${exec_prefix}/${LIB_INSTALL_DIR}")

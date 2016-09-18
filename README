@@ -7,7 +7,7 @@ It can read and write LCF and XML files.
 liblcf is part of the EasyRPG Project. More information is available
 at the project website:
 
-  https://easy-rpg.org/
+  https://easyrpg.org/
 
 
 Documentation
@@ -15,7 +15,7 @@ Documentation
 
 Documentation is available at the documentation wiki:
 
-  https://easy-rpg.org/wiki/
+  https://wiki.easyrpg.org/
 
 
 Requirements
@@ -46,11 +46,11 @@ Building
 
   1. Unpack the tarball with:
 
-    tar xf liblcf-0.4.1.tar.xz
+    tar xf liblcf-0.5.0.tar.xz
 
   2. Enter in the package directory with:
 
-    cd liblcf-0.4.1
+    cd liblcf-0.5.0
 
   3. Compile and install with:
 
@@ -74,8 +74,8 @@ Building
 
   Read more detailed instructions at:
 
-  https://easy-rpg.org/wiki/development/compiling/liblcf/autotools
-  https://easy-rpg.org/wiki/development/compiling/liblcf/cmake
+  https://wiki.easyrpg.org/development/compiling/liblcf/autotools
+  https://wiki.easyrpg.org/development/compiling/liblcf/cmake
 
 
 Bug reporting
@@ -85,7 +85,7 @@ Available options:
 
 * File an issue at https://github.com/EasyRPG/liblcf/issues
 
-* Open a thread at https://easy-rpg.org/forums/
+* Open a thread at https://community.easyrpg.org/
 
 * Chat with us via IRC: #easyrpg at irc.freenode.net
 
