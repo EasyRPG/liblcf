@@ -387,8 +387,8 @@ Terms,gold_recieved_a,f,String,0x08,'',String
 Terms,gold_recieved_b,f,String,0x09,'',String
 Terms,item_recieved,f,String,0x0A,'',String
 Terms,attacking,f,String,0x0B,'',String
-Terms,actor_critical,f,String,0x0C,'',String
-Terms,enemy_critical,f,String,0x0D,'',String
+Terms,enemy_critical,f,String,0x0C,'',String
+Terms,actor_critical,f,String,0x0D,'',String
 Terms,defending,f,String,0x0E,'',String
 Terms,observing,f,String,0x0F,'',String
 Terms,focus,f,String,0x10,'',String
@@ -407,8 +407,8 @@ Terms,use_item,f,String,0x1C,'',String
 Terms,hp_recovery,f,String,0x1D,'',String
 Terms,parameter_increase,f,String,0x1E,'',String
 Terms,parameter_decrease,f,String,0x1F,'',String
-Terms,actor_hp_absorbed,f,String,0x20,'',String
-Terms,enemy_hp_absorbed,f,String,0x21,'',String
+Terms,enemy_hp_absorbed,f,String,0x20,'',String
+Terms,actor_hp_absorbed,f,String,0x21,'',String
 Terms,resistance_increase,f,String,0x22,'',String
 Terms,resistance_decrease,f,String,0x23,'',String
 Terms,level_up,f,String,0x24,'',String

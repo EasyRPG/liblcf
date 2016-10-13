@@ -29,8 +29,8 @@ namespace RPG {
 		std::string gold_recieved_b;
 		std::string item_recieved;
 		std::string attacking;
-		std::string actor_critical;
 		std::string enemy_critical;
+		std::string actor_critical;
 		std::string defending;
 		std::string observing;
 		std::string focus;
@@ -49,8 +49,8 @@ namespace RPG {
 		std::string hp_recovery;
 		std::string parameter_increase;
 		std::string parameter_decrease;
-		std::string actor_hp_absorbed;
 		std::string enemy_hp_absorbed;
+		std::string actor_hp_absorbed;
 		std::string resistance_increase;
 		std::string resistance_decrease;
 		std::string level_up;

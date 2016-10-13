@@ -900,9 +900,9 @@ namespace LDB_Reader {
 			/** String */
 			attacking			= 0x0B,
 			/** String */
-			actor_critical		= 0x0C,
+			enemy_critical		= 0x0C,
 			/** String */
-			enemy_critical		= 0x0D,
+			actor_critical		= 0x0D,
 			/** String */
 			defending			= 0x0E,
 			/** String */
@@ -940,9 +940,9 @@ namespace LDB_Reader {
 			/** String */
 			parameter_decrease	= 0x1F,
 			/** String */
-			actor_hp_absorbed	= 0x20,
+			enemy_hp_absorbed	= 0x20,
 			/** String */
-			enemy_hp_absorbed	= 0x21,
+			actor_hp_absorbed	= 0x21,
 			/** String */
 			resistance_increase	= 0x22,
 			/** String */
