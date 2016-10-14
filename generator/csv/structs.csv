@@ -41,7 +41,7 @@ lmu,EventPageCondition,0
 lmu,MoveRoute,0
 lmu,EventPage,1
 lmu,Event,1
-lmu,Map,1
+lmu,Map,0
 lsd,SaveTitle,0
 lsd,SaveSystem,0
 lsd,SaveScreen,0
