@@ -38,7 +38,6 @@ namespace RPG {
 			GeneratorTiles_two = 1
 		};
 
-		int ID = 0;
 		int chipset_id = 1;
 		int width = 20;
 		int height = 15;
