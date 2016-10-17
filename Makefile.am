@@ -199,6 +199,7 @@ time_stamp_CPPFLAGS = \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
 time_stamp_CXXFLAGS = \
+	-std=c++11 \
 	$(EXPAT_CXXFLAGS) \
 	$(ICU_CXXFLAGS)
 time_stamp_LDADD = \
