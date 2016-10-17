@@ -154,6 +154,8 @@ std::vector<std::string> ReaderUtil::DetectEncodings(const std::string& database
 					encodings.push_back("ibm-943_P15A-2003"); // Japanese with \ as backslash
 				} else if (encoding == "EUC-KR") {
 					encodings.push_back("windows-949-2000"); // Korean with \ as backlash
+				} else if (encoding == "GB18030") {
+					encodings.push_back("windows-936-2000"); // Simplified Chinese
 				} else if (encoding == "ISO-8859-1" || encoding == "windows-1252") {
 					encodings.push_back("ibm-5348_P100-1997"); // Occidental with Euro
 				} else if (encoding == "ISO-8859-2" || encoding == "windows-1250") {
