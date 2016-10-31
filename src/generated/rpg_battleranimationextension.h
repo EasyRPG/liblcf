@@ -28,7 +28,7 @@ namespace RPG {
 		std::string battler_name;
 		int battler_index = 0;
 		int animation_type = 0;
-		int animation_id = 0;
+		int animation_id = 1;
 	};
 }
 
