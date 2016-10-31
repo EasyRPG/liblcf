@@ -92,7 +92,7 @@ BattlerAnimationExtension,name,f,String,0x01,'',String
 BattlerAnimationExtension,battler_name,f,String,0x02,'',String
 BattlerAnimationExtension,battler_index,f,Integer,0x03,0,Integer
 BattlerAnimationExtension,animation_type,f,Enum<BattlerAnimationExtension_AnimType>,0x04,0,Integer
-BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,0,Integer
+BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,1,Integer
 BattlerAnimation,name,f,String,0x01,'',String
 BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,0,Integer
 BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,Array - RPG::BattlerAnimationExtension
