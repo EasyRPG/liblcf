@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
+#include <fstream>
 #include "ini.h"
 #include "inireader.h"
 
@@ -40,6 +41,13 @@ using std::string;
 INIReader::INIReader(const string& filename)
 {
 	_error = ini_parse(filename.c_str(), ValueHandler, this);
+}
+
+INIReader::INIReader(std::istream& filestream)
+{
+	std::ifstream filestream(filename, std::ios::ios_base::in);
+	_error = ini_parse(filestream, ValueHandler, this);
+	filestream.close();
 }
 
 int INIReader::ParseError() const
