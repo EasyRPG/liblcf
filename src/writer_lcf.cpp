@@ -8,18 +8,26 @@
  */
 
 #include "writer_lcf.h"
+#include <fstream>
+
+LcfWriter::LcfWriter(std::unique_ptr<std::ostream> filestream, std::string encoding) :
+	filename(""),
+	encoding(encoding),
+	stream(std::move(filestream))
+{
+}
 
 LcfWriter::LcfWriter(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
-	stream(fopen(filename, "wb"))
+	stream(new std::ofstream(filename, std::ios::ios_base::binary | std::ios::ios_base::out))
 {
 }
 
 LcfWriter::LcfWriter(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
-	stream(fopen(filename.c_str(), "wb"))
+	stream(new std::ofstream(filename, std::ios::ios_base::binary | std::ios::ios_base::out))
 {
 }
 
@@ -28,16 +36,14 @@ LcfWriter::~LcfWriter() {
 }
 
 void LcfWriter::Close() {
-	if (stream != NULL)
-		fclose(stream);
-	stream = NULL;
+	stream.reset();
 }
 
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
-	fwrite(ptr, size, nmemb, stream);
+	stream->write(reinterpret_cast<const char*>(ptr), size*nmemb);
 #else
-	assert(fwrite(ptr, size, nmemb, stream) == nmemb);
+	assert(stream->write(reinterpret_cast<const char*>(ptr), size*nmemb).good());
 #endif
 }
 
@@ -118,7 +124,7 @@ void LcfWriter::Write(const std::string& _str) {
 }
 
 bool LcfWriter::IsOk() const {
-	return (stream != NULL && !ferror(stream));
+	return (stream && stream->good());
 }
 
 std::string LcfWriter::Decode(const std::string& str_to_encode) {

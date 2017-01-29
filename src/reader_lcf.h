@@ -14,8 +14,8 @@
 #include <vector>
 #include <iosfwd>
 #include <cstring>
-#include <cstdio>
 #include <cassert>
+#include <memory>
 #include "reader_types.h"
 #include "lcf_options.h"
 #include "reader_util.h"
@@ -32,6 +32,14 @@
  */
 class LcfReader {
 public:
+	/**
+	 * Constructs a new File Reader.
+	 *
+	 * @param filestream already opened filestream.
+	 * @param encoding name of the encoding.
+	 */
+	LcfReader(std::unique_ptr<std::istream> filestream, std::string encoding = "");
+
 	/**
 	 * Constructs a new File Reader.
 	 *
@@ -233,7 +241,7 @@ private:
 	/** Name of the encoding. */
 	std::string encoding;
 	/** File-stream managed by this Reader. */
-	FILE* stream;
+	std::unique_ptr<std::istream> stream;
 	/** Contains the last set error. */
 	static std::string error_str;
 

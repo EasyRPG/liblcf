@@ -9,7 +9,7 @@
 
 #include <cstdarg>
 #include "reader_lcf.h"
-
+#include <fstream>
 #ifdef NDEBUG
 #  include <stdio.h>
 #endif
@@ -18,17 +18,24 @@
 
 std::string LcfReader::error_str;
 
+LcfReader::LcfReader(std::unique_ptr<std::istream> filestream, std::string encoding) :
+	filename(""),
+	encoding(encoding),
+	stream(std::move(filestream))
+{
+}
+
 LcfReader::LcfReader(const char* filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
-	stream(fopen(filename, "rb"))
+	stream(new std::ifstream(filename, std::ios::ios_base::binary | std::ios::ios_base::in))
 {
 }
 
 LcfReader::LcfReader(const std::string& filename, std::string encoding) :
 	filename(filename),
 	encoding(encoding),
-	stream(fopen(filename.c_str(), "rb"))
+	stream(new std::ifstream(filename, std::ios::ios_base::binary | std::ios::ios_base::in))
 {
 }
 
@@ -37,13 +44,15 @@ LcfReader::~LcfReader() {
 }
 
 void LcfReader::Close() {
-	if (stream != NULL)
-		fclose(stream);
-	stream = NULL;
+	stream.reset();
 }
 
 size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
-	size_t result = fread(ptr, size, nmemb, stream);
+	if (size == 0) { //avoid division by 0
+		return 0;
+	}
+	//Read nmemb elements of size and return the number of read elements
+	size_t result = stream->read(reinterpret_cast<char*>(ptr), size*nmemb).gcount() / size;
 #ifdef NDEBUG
 	if (result != nmemb && !Eof()) {
 		perror("Reading error: ");
@@ -178,23 +187,23 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 }
 
 bool LcfReader::IsOk() const {
-	return (stream != NULL && !ferror(stream));
+	return (stream && stream->good());
 }
 
 bool LcfReader::Eof() const {
-	return feof(stream) != 0;
+	return stream->eof();
 }
 
 void LcfReader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
 	case LcfReader::FromStart:
-		fseek(stream, pos, SEEK_SET);
+		stream->seekg(pos, std::ios::ios_base::beg);
 		break;
 	case LcfReader::FromCurrent:
-		fseek(stream, pos, SEEK_CUR);
+		stream->seekg(pos, std::ios::ios_base::cur);
 		break;
 	case LcfReader::FromEnd:
-		fseek(stream, pos, SEEK_END);
+		stream->seekg(pos, std::ios::ios_base::end);
 		break;
 	default:
 		assert(false && "Invalid SeekMode");
@@ -202,11 +211,11 @@ void LcfReader::Seek(size_t pos, SeekMode mode) {
 }
 
 uint32_t LcfReader::Tell() {
-	return (uint32_t)ftell(stream);
+	return (uint32_t)stream->tellg();
 }
 
 bool LcfReader::Ungetch(uint8_t ch) {
-	return (ungetc(ch, stream) == ch);
+	return stream->putback(ch).good();
 }
 
 #ifdef _DEBUG
