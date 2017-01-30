@@ -27,21 +27,7 @@ public:
 	 *
 	 * @param filestream already opened filestream.
 	 */
-	XmlWriter(std::unique_ptr<std::ostream> filestream);
-
-	/**
-	 * Constructs a new XML File Writer.
-	 *
-	 * @param filename file to open.
-	 */
-	XmlWriter(const char* filename);
-
-	/**
-	 * Constructs a new XML File Writer.
-	 *
-	 * @param filename file to open.
-	 */
-	XmlWriter(const std::string& filename);
+	XmlWriter(std::ostream& filestream);
 
 	/**
 	 * Destructor. Closes the opened file.
@@ -114,15 +100,8 @@ public:
 	bool IsOk() const;
 
 protected:
-	/**
-	 * Opens the file.
-	 */
-	void Open();
-
-	/** Name of the file that is associated with the stream. */
-	std::string filename;
 	/** File-stream managed by this Writer. */
-	std::unique_ptr<std::ostream> stream;
+	std::ostream& stream;
 	/** Stores indentation level. */
 	int indent;
 	/** Indicates if writer cursor is at the beginning of the line. */

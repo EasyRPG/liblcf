@@ -32,33 +32,12 @@ public:
 	 * @param filestream already opened filestream.
 	 * @param encoding name of the encoding.
 	 */
-	LcfWriter(std::unique_ptr<std::ostream> filestream, std::string encoding = "");
-
-	/**
-	 * Constructs a new File Writer.
-	 *
-	 * @param filename file to open.
-	 * @param encoding name of the encoding.
-	 */
-	LcfWriter(const char* filename, std::string encoding = "");
-
-	/**
-	 * Constructs a new File Writer.
-	 *
-	 * @param filename file to open.
-	 * @param encoding name of the encoding.
-	 */
-	LcfWriter(const std::string& filename, std::string encoding = "");
+	LcfWriter(std::ostream& filestream, std::string encoding = "");
 
 	/**
 	 * Destructor. Closes the opened file.
 	 */
 	~LcfWriter();
-
-	/**
-	 * Closes the opened file.
-	 */
-	void Close();
 
 	/**
 	 * Writes raw data to the stream (fwrite() wrapper).
@@ -117,12 +96,10 @@ public:
 	std::string Decode(const std::string& str_to_encode);
 
 private:
-	/** Name of the file that is associated with the stream. */
-	std::string filename;
 	/** Name of the encoding. */
 	std::string encoding;
 	/** File-stream managed by this Writer. */
-	std::unique_ptr<std::ostream> stream;
+	std::ostream& stream;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.

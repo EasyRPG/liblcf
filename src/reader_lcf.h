@@ -38,33 +38,12 @@ public:
 	 * @param filestream already opened filestream.
 	 * @param encoding name of the encoding.
 	 */
-	LcfReader(std::unique_ptr<std::istream> filestream, std::string encoding = "");
-
-	/**
-	 * Constructs a new File Reader.
-	 *
-	 * @param filename file to open.
-	 * @param encoding name of the encoding.
-	 */
-	LcfReader(const char* filename, std::string encoding = "");
-
-	/**
-	 * Constructs a new File Reader.
-	 *
-	 * @param filename file to open.
-	 * @param encoding name of the encoding.
-	 */
-	LcfReader(const std::string& filename, std::string encoding = "");
+	LcfReader(std::istream& filestream, std::string encoding = "");
 
 	/**
 	 * Destructor. Closes the opened file.
 	 */
 	~LcfReader();
-
-	/**
-	 * Closes the opened file.
-	 */
-	void Close();
 
 	/**
 	 * Returns the last set error.
@@ -236,12 +215,10 @@ public:
 	static int IntSize(unsigned int x);
 
 private:
-	/** Name of the file that is associated with the stream. */
-	std::string filename;
 	/** Name of the encoding. */
 	std::string encoding;
 	/** File-stream managed by this Reader. */
-	std::unique_ptr<std::istream> stream;
+	std::istream& stream;
 	/** Contains the last set error. */
 	static std::string error_str;
 

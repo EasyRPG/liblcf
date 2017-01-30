@@ -8,8 +8,9 @@
  */
 
 #include <cstdarg>
+#include <istream>
+
 #include "reader_lcf.h"
-#include <fstream>
 #ifdef NDEBUG
 #  include <stdio.h>
 #endif
@@ -18,33 +19,13 @@
 
 std::string LcfReader::error_str;
 
-LcfReader::LcfReader(std::unique_ptr<std::istream> filestream, std::string encoding) :
-	filename(""),
+LcfReader::LcfReader(std::istream& filestream, std::string encoding) :
 	encoding(encoding),
-	stream(std::move(filestream))
-{
-}
-
-LcfReader::LcfReader(const char* filename, std::string encoding) :
-	filename(filename),
-	encoding(encoding),
-	stream(new std::ifstream(filename, std::ios::ios_base::binary | std::ios::ios_base::in))
-{
-}
-
-LcfReader::LcfReader(const std::string& filename, std::string encoding) :
-	filename(filename),
-	encoding(encoding),
-	stream(new std::ifstream(filename, std::ios::ios_base::binary | std::ios::ios_base::in))
+	stream(filestream)
 {
 }
 
 LcfReader::~LcfReader() {
-	Close();
-}
-
-void LcfReader::Close() {
-	stream.reset();
 }
 
 size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
@@ -52,7 +33,8 @@ size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 		return 0;
 	}
 	//Read nmemb elements of size and return the number of read elements
-	size_t result = stream->read(reinterpret_cast<char*>(ptr), size*nmemb).gcount() / size;
+	stream.read(reinterpret_cast<char*>(ptr), size*nmemb);
+	size_t result = stream.gcount() / size;
 #ifdef NDEBUG
 	if (result != nmemb && !Eof()) {
 		perror("Reading error: ");
@@ -187,23 +169,23 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 }
 
 bool LcfReader::IsOk() const {
-	return (stream && stream->good());
+	return (stream.good());
 }
 
 bool LcfReader::Eof() const {
-	return stream->eof();
+	return stream.eof();
 }
 
 void LcfReader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
 	case LcfReader::FromStart:
-		stream->seekg(pos, std::ios::ios_base::beg);
+		stream.seekg(pos, std::ios::ios_base::beg);
 		break;
 	case LcfReader::FromCurrent:
-		stream->seekg(pos, std::ios::ios_base::cur);
+		stream.seekg(pos, std::ios::ios_base::cur);
 		break;
 	case LcfReader::FromEnd:
-		stream->seekg(pos, std::ios::ios_base::end);
+		stream.seekg(pos, std::ios::ios_base::end);
 		break;
 	default:
 		assert(false && "Invalid SeekMode");
@@ -211,11 +193,11 @@ void LcfReader::Seek(size_t pos, SeekMode mode) {
 }
 
 uint32_t LcfReader::Tell() {
-	return (uint32_t)stream->tellg();
+	return (uint32_t)stream.tellg();
 }
 
 bool LcfReader::Ungetch(uint8_t ch) {
-	return stream->putback(ch).good();
+	return stream.putback(ch).good();
 }
 
 #ifdef _DEBUG
@@ -231,8 +213,8 @@ void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char*
 	} else {
 		srcfilename++;
 	}
-	fprintf(stderr, "Skipped Chunk %02X (%d byte) in %s at %X (%s)\n",
-			chunk_info.ID, chunk_info.length, filename.c_str(), Tell(),
+	fprintf(stderr, "Skipped Chunk %02X (%d byte) in lcf at %X (%s)\n",
+			chunk_info.ID, chunk_info.length,  Tell(),
 			srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
 		uint8_t byte;

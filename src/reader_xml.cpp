@@ -9,8 +9,6 @@
 
 #include <sstream>
 #include <cstdarg>
-#include <cstdio>
-#include <fstream>
 #include "reader_lcf.h"
 #include "reader_xml.h"
 
@@ -31,27 +29,10 @@ static void CharacterDataHandler(void* closure, const XML_Char* s, int len) {
 }
 #endif
 
-XmlReader::XmlReader(std::unique_ptr<std::istream> filestream) :
-	filename(""),
-	stream(std::move(filestream)),
+XmlReader::XmlReader(std::istream& filestream) :
+	stream(filestream),
 	parser(NULL)
 {
-	Open();
-}
-
-XmlReader::XmlReader(const std::string& filename) :
-	filename(filename),
-	stream(new std::ifstream(filename, std::ios::ios_base::in)),
-	parser(NULL)
-{
-	Open();
-}
-
-XmlReader::~XmlReader() {
-	Close();
-}
-
-void XmlReader::Open() {
 #if defined(LCF_SUPPORT_XML)
 	parser = XML_ParserCreate("UTF-8");
 
@@ -63,10 +44,8 @@ void XmlReader::Open() {
 #endif
 }
 
-void XmlReader::Close() {
+XmlReader::~XmlReader() {
 #if defined(LCF_SUPPORT_XML)
-	stream.reset();
-
 	if (parser != NULL)
 		XML_ParserFree(parser);
 	parser = NULL;
@@ -74,7 +53,7 @@ void XmlReader::Close() {
 }
 
 bool XmlReader::IsOk() const {
-	return (stream && stream->good() && parser != NULL);
+	return (stream.good() && parser != NULL);
 }
 
 void XmlReader::Error(const char* fmt, ...) {
@@ -88,9 +67,9 @@ void XmlReader::Error(const char* fmt, ...) {
 void XmlReader::Parse() {
 #if defined(LCF_SUPPORT_XML)
 	static const int bufsize = 4096;
-	while (IsOk() && !stream->eof()) {
+	while (IsOk() && !stream.eof()) {
 		void* buffer = XML_GetBuffer(parser, bufsize);
-		int len = stream->read(reinterpret_cast<char*>(buffer),bufsize).gcount();
+		int len = stream.read(reinterpret_cast<char*>(buffer),bufsize).gcount();
 		int result = XML_ParseBuffer(parser, len, len <= 0);
 		if (result == 0)
 			Error("%s", XML_ErrorString(XML_GetErrorCode(parser)));
