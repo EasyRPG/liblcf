@@ -34,6 +34,15 @@ namespace ReaderUtil {
 	std::string DetectEncoding(std::istream& filestream);
 
 	/**
+	 * Detects the encoding based on text analysis.
+	 *
+	 * @param filestream stream containing the database file
+	 *
+	 * @return encoding or empty string if not detected.
+	 */
+	std::string DetectEncoding(const std::string& data);
+
+	/**
 	 * Detects the encoding based on text analysis and returns a vector with
 	 * possible candidates, highest candidate being at the beginning.
 	 *
@@ -42,6 +51,16 @@ namespace ReaderUtil {
 	 * @return list of encodings or empty if not detected
 	 */
 	std::vector<std::string> DetectEncodings(std::istream& filestream);
+
+	/**
+	 * Detects the encoding based on text analysis and returns a vector with
+	 * possible candidates, highest candidate being at the beginning.
+	 *
+	 * @param string encoded data of a few hundred bytes
+	 *
+	 * @return list of encodings or empty if not detected
+	 */
+	std::vector<std::string> DetectEncodings(const std::string& data);
 
 	/**
 	 * Returns the encoding set in the ini file.
