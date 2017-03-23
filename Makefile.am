@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
-EXTRA_DIST = builds generator
+EXTRA_DIST = AUTHORS.md README.md builds generator
 pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
