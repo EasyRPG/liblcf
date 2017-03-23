@@ -14,7 +14,7 @@
 #  include <expat.h>
 #endif
 #include "reader_types.h"
-#include "reader_options.h"
+#include "lcf_options.h"
 #include "reader_util.h"
 
 /**

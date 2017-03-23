@@ -4,7 +4,7 @@
  * http://opensource.org/licenses/MIT
  */
 
-#include "reader_options.h"
+#include "lcf_options.h"
 
 #ifdef LCF_SUPPORT_ICU
 #   include <unicode/ucsdet.h>
