@@ -38,10 +38,6 @@ CMakeFiles/
 !/builds/cmake/Modules/Find*.cmake
 /builds/cmake/lib/
 
-# qt build method
-/builds/qt/
-!/builds/qt/liblcf.pro
-
 # doxygen generated files
 /doc/
 
