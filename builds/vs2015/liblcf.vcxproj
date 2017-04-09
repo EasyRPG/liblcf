@@ -270,12 +270,12 @@
     <ClInclude Include="..\..\src\data.h" />
     <ClInclude Include="..\..\src\ini.h" />
     <ClInclude Include="..\..\src\inireader.h" />
+    <ClInclude Include="..\..\src\lcf_options.h" />
     <ClInclude Include="..\..\src\ldb_reader.h" />
     <ClInclude Include="..\..\src\lmt_reader.h" />
     <ClInclude Include="..\..\src\lmu_reader.h" />
     <ClInclude Include="..\..\src\lsd_reader.h" />
     <ClInclude Include="..\..\src\reader_lcf.h" />
-    <ClInclude Include="..\..\src\reader_options.h" />
     <ClInclude Include="..\..\src\reader_struct.h" />
     <ClInclude Include="..\..\src\reader_types.h" />
     <ClInclude Include="..\..\src\reader_util.h" />

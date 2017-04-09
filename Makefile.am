@@ -1,5 +1,5 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
-EXTRA_DIST = builds generator
+EXTRA_DIST = AUTHORS.md README.md builds generator
 pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
@@ -112,12 +112,12 @@ pkginclude_HEADERS = \
 	src/data.h \
 	src/ini.h \
 	src/inireader.h \
+	src/lcf_options.h \
 	src/ldb_reader.h \
 	src/lmt_reader.h \
 	src/lmu_reader.h \
 	src/lsd_reader.h \
 	src/reader_lcf.h \
-	src/reader_options.h \
 	src/reader_struct.h \
 	src/reader_types.h \
 	src/reader_util.h \
