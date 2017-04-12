@@ -56,7 +56,9 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
 	Read0(ptr, size, nmemb);
 #else
-	assert(Read0(ptr, size, nmemb) == nmemb);
+	if (Read0(ptr, size, nmemb) != nmemb) {
+		fprintf(stderr, "Read error at %d. The file is probably corrupted\n", Tell());
+	}
 #endif
 }
 
