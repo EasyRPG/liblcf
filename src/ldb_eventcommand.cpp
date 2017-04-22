@@ -48,7 +48,7 @@ void RawStruct<RPG::EventCommand>::WriteLcf(const RPG::EventCommand& event_comma
 	stream.Write(event_command.code);
 	stream.Write(event_command.indent);
 	stream.WriteInt(stream.Decode(event_command.string).size());
-	stream.Write(stream.Decode(event_command.string));
+	stream.Write(event_command.string);
 	int count = event_command.parameters.size();
 	stream.Write(count);
 	for (int i = 0; i < count; i++)
@@ -139,6 +139,7 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 	// Has no size information. Is terminated by 4 times 0x00.
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;
+
 	for (;;) {
 		uint8_t ch;
 		stream.Read(ch);
@@ -146,12 +147,34 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 			stream.Seek(3, LcfReader::FromCurrent);
 			break;
 		}
+
+		if (stream.Tell() >= endpos) {
+			stream.Seek(endpos, LcfReader::FromStart);
+			fprintf(stderr, "Event command corrupted at %d\n", stream.Tell());
+			for (;;) {
+				// Try finding the real end of the event command (4 0-bytes)
+				int i = 0;
+				for (; i < 4; ++i) {
+					stream.Read(ch);
+
+					if (ch != 0) {
+						break;
+					}
+				}
+
+				if (i == 4 || stream.Eof()) {
+					break;
+				}
+			}
+
+			break;
+		}
+
 		stream.Ungetch(ch);
 		RPG::EventCommand command;
 		RawStruct<RPG::EventCommand>::ReadLcf(command, stream, 0);
 		event_commands.push_back(command);
 	}
-	assert(stream.Tell() == endpos);
 }
 
 void RawStruct<std::vector<RPG::EventCommand> >::WriteLcf(const std::vector<RPG::EventCommand>& event_commands, LcfWriter& stream) {

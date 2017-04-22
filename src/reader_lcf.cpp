@@ -56,7 +56,9 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
 	Read0(ptr, size, nmemb);
 #else
-	assert(Read0(ptr, size, nmemb) == nmemb);
+	if (Read0(ptr, size, nmemb) != nmemb) {
+		fprintf(stderr, "Read error at %d. The file is probably corrupted\n", Tell());
+	}
 #endif
 }
 
@@ -85,7 +87,7 @@ void LcfReader::Read<uint32_t>(uint32_t& ref) {
 int LcfReader::ReadInt() {
 	int value = 0;
 	unsigned char temp = 0;
-
+	int loops = 0;
 	do {
 		value <<= 7;
 		if (Read0(&temp, 1, 1) == 0) {
@@ -93,8 +95,14 @@ int LcfReader::ReadInt() {
 			return 0;
 		}
 		value |= temp & 0x7F;
+
+		if (loops > 5) {
+			fprintf(stderr, "Invalid compressed integer at %d\n", Tell());
+		}
+		++loops;
 	} while (temp & 0x80);
-	return value;
+
+	return loops > 5 ? 0 : value;
 }
 
 template <>
@@ -223,6 +231,9 @@ void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char*
 		fprintf(stderr, "%02X ", byte);
 		if ((i+1) % 16 == 0) {
 			fprintf(stderr, "\n");
+		}
+		if (Eof()) {
+			break;
 		}
 	}
 	fprintf(stderr, "\n");
