@@ -143,6 +143,7 @@ void RPG::SaveSystem::Setup() {
 	battle_end_fadeout = system.battle_end_fadeout;
 	battle_end_fadein = system.battle_end_fadein;
 	message_stretch = system.message_stretch;
+	font_id = system.font_id;
 	teleport_allowed = true;
 	escape_allowed = true;
 	save_allowed = true;
