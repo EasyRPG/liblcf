@@ -718,6 +718,8 @@ namespace LDB_Reader {
 			terrain_set_size	= 0x04,
 			/** Array - Flag */
 			terrain_set			= 0x05,
+			/** Flag */
+			appear_randomly		= 0x06,
 			/** Array - RPG::TroopPage */
 			pages				= 0x0B 
 		};

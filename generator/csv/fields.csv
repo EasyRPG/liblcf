@@ -301,6 +301,7 @@ Troop,members,f,Array<TroopMember>,0x02,,Array - RPG::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,Flag
 Troop,terrain_set,t,Boolean,0x04,,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,Array - Flag
+Troop,appear_randomly,f,Boolean,0x06,False,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,Array - RPG::TroopPage
 Terrain,name,f,String,0x01,'',String
 Terrain,damage,f,Integer,0x02,0,Integer

@@ -29,6 +29,7 @@ namespace RPG {
 		std::vector<TroopMember> members;
 		bool auto_alignment = false;
 		std::vector<bool> terrain_set;
+		bool appear_randomly = false;
 		std::vector<TroopPage> pages;
 	};
 }
