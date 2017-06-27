@@ -41,8 +41,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.5.1.tar.xz # unpack the tarball
-    cd liblcf-0.5.1            # enter in the package directory
+    tar xf liblcf-0.5.2.tar.xz # unpack the tarball
+    cd liblcf-0.5.2            # enter in the package directory
     ./configure --prefix /usr  # find libraries, set options
     make                       # compile the library
     sudo make install          # install system-wide
