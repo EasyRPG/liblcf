@@ -22,7 +22,7 @@
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, name),
 	LCF_STRUCT_TYPED_FIELD(std::string, animation_name),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_03),
+	LCF_STRUCT_TYPED_FIELD(bool, large),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings),
 	LCF_STRUCT_TYPED_FIELD(int, scope),
 	LCF_STRUCT_TYPED_FIELD(int, position),
