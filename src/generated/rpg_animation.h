@@ -37,7 +37,7 @@ namespace RPG {
 		int ID = 0;
 		std::string name;
 		std::string animation_name;
-		int unknown_03 = -1;
+		bool large = false;
 		std::vector<AnimationTiming> timings;
 		int scope = 0;
 		int position = 2;
