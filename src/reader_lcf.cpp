@@ -179,13 +179,13 @@ bool LcfReader::Eof() const {
 void LcfReader::Seek(size_t pos, SeekMode mode) {
 	switch (mode) {
 	case LcfReader::FromStart:
-		stream.seekg(pos, std::ios::ios_base::beg);
+		stream.seekg(pos, std::ios_base::beg);
 		break;
 	case LcfReader::FromCurrent:
-		stream.seekg(pos, std::ios::ios_base::cur);
+		stream.seekg(pos, std::ios_base::cur);
 		break;
 	case LcfReader::FromEnd:
-		stream.seekg(pos, std::ios::ios_base::end);
+		stream.seekg(pos, std::ios_base::end);
 		break;
 	default:
 		assert(false && "Invalid SeekMode");
@@ -196,8 +196,8 @@ uint32_t LcfReader::Tell() {
 	return (uint32_t)stream.tellg();
 }
 
-bool LcfReader::Ungetch(uint8_t ch) {
-	return stream.putback(ch).good();
+int LcfReader::Peek() {
+	return stream.peek();
 }
 
 #ifdef _DEBUG

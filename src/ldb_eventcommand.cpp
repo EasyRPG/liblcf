@@ -141,10 +141,9 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 	unsigned long endpos = startpos + length;
 
 	for (;;) {
-		uint8_t ch;
-		stream.Read(ch);
+		uint8_t ch = (uint8_t)stream.Peek();
 		if (ch == 0) {
-			stream.Seek(3, LcfReader::FromCurrent);
+			stream.Seek(4, LcfReader::FromCurrent);
 			break;
 		}
 
@@ -170,7 +169,6 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 			break;
 		}
 
-		stream.Ungetch(ch);
 		RPG::EventCommand command;
 		RawStruct<RPG::EventCommand>::ReadLcf(command, stream, 0);
 		event_commands.push_back(command);

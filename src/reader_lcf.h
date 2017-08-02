@@ -167,13 +167,11 @@ public:
 	uint32_t Tell();
 
 	/**
-	 * Puts a character (ch) back into the stream.
-	 * This should usually be the last read one.
+	 * Returns the next char in the stream and doesn't advance the position.
 	 *
-	 * @param ch char that will be readded to the stream.
-	 * @return true if the operation was successful.
+	 * @return next char in the buffer or EOF
 	 */
-	bool Ungetch(uint8_t ch);
+	int Peek();
 
 #ifdef _DEBUG
 	/**
