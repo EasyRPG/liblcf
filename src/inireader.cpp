@@ -45,9 +45,19 @@ INIReader::INIReader(const string& filename)
 
 INIReader::INIReader(std::istream& filestream)
 {
-	std::ifstream filestream(filename, std::ios::ios_base::in);
-	_error = ini_parse(filestream, ValueHandler, this);
-	filestream.close();
+	_error = ini_parse_stream([](char* str, int num, void* stream) {
+		std::istream* s = reinterpret_cast<std::istream*>(stream);
+		if (num > 0) {
+			s->read(str, num - 1);
+			std::streamsize bytes_read = s->gcount();
+			if (bytes_read > 0) {
+				str[s->gcount()] = '\0';
+				return str;
+			}
+		}
+
+		return (char*)NULL;
+	}, &filestream, ValueHandler, this);
 }
 
 int INIReader::ParseError() const
