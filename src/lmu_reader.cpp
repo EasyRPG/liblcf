@@ -35,7 +35,7 @@ std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
 	return LMU_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::Load(std::istream & filestream, const std::string& encoding) {
+std::unique_ptr<RPG::Map> LMU_Reader::Load(std::istream& filestream, const std::string& encoding) {
 	LcfReader reader(filestream, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
@@ -56,7 +56,7 @@ std::unique_ptr<RPG::Map> LMU_Reader::Load(std::istream & filestream, const std:
 	return std::unique_ptr<RPG::Map>(map);
 }
 
-bool LMU_Reader::Save(std::ostream & filestream, const RPG::Map& map, const std::string& encoding) {
+bool LMU_Reader::Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
@@ -70,7 +70,7 @@ bool LMU_Reader::Save(std::ostream & filestream, const RPG::Map& map, const std:
 	return true;
 }
 
-bool LMU_Reader::SaveXml(std::ostream & filestream, const RPG::Map& map) {
+bool LMU_Reader::SaveXml(std::ostream& filestream, const RPG::Map& map) {
 	XmlWriter writer(filestream);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
@@ -82,7 +82,7 @@ bool LMU_Reader::SaveXml(std::ostream & filestream, const RPG::Map& map) {
 	return true;
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(std::istream & filestream) {
+std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");

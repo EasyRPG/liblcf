@@ -35,7 +35,7 @@ bool LDB_Reader::LoadXml(const std::string& filename) {
 	return LDB_Reader::LoadXml(stream);
 }
 
-bool LDB_Reader::Load(std::istream & filestream, const std::string& encoding) {
+bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 	LcfReader reader(filestream, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
@@ -62,7 +62,7 @@ bool LDB_Reader::Load(std::istream & filestream, const std::string& encoding) {
 	return true;
 }
 
-bool LDB_Reader::Save(std::ostream & filestream, const std::string& encoding) {
+bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
@@ -75,7 +75,7 @@ bool LDB_Reader::Save(std::ostream & filestream, const std::string& encoding) {
 	return true;
 }
 
-bool LDB_Reader::SaveXml(std::ostream & filestream) {
+bool LDB_Reader::SaveXml(std::ostream& filestream) {
 	XmlWriter writer(filestream);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
@@ -87,7 +87,7 @@ bool LDB_Reader::SaveXml(std::ostream & filestream) {
 	return true;
 }
 
-bool LDB_Reader::LoadXml(std::istream & filestream) {
+bool LDB_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");

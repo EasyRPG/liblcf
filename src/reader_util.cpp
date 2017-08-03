@@ -1,7 +1,10 @@
 /*
- * Copyright (c) 2016 liblcf authors
- * This file is released under the MIT License
- * http://opensource.org/licenses/MIT
+ * This file is part of liblcf. Copyright (c) 2017 liblcf authors.
+ * https://github.com/EasyRPG/liblcf - https://easyrpg.org
+ *
+ * liblcf is Free/Libre Open Source Software, released under the MIT License.
+ * For the full copyright and license information, please view the COPYING
+ * file that was distributed with this source code.
  */
 
 #include "lcf_options.h"
@@ -70,7 +73,7 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	return outs;
 }
 
-std::string ReaderUtil::DetectEncoding(std::istream & filestream) {
+std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
 	std::vector<std::string> encodings = DetectEncodings(filestream);
 
 	if (encodings.empty()) {
@@ -90,7 +93,7 @@ std::string ReaderUtil::DetectEncoding(std::string const & data) {
 	return encodings.front();
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(std::istream & filestream) {
+std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #ifdef LCF_SUPPORT_ICU
 	std::ostringstream text;
 
@@ -169,32 +172,23 @@ std::vector<std::string> encodings;
 				// Fixes to ensure proper Windows encodings
 				if (encoding == "Shift_JIS") {
 					encodings.push_back("ibm-943_P15A-2003"); // Japanese with \ as backslash
-				}
-				else if (encoding == "EUC-KR") {
+				} else if (encoding == "EUC-KR") {
 					encodings.push_back("windows-949-2000"); // Korean with \ as backlash
-				}
-				else if (encoding == "GB18030") {
+				} else if (encoding == "GB18030") {
 					encodings.push_back("windows-936-2000"); // Simplified Chinese
-				}
-				else if (encoding == "ISO-8859-1" || encoding == "windows-1252") {
+				} else if (encoding == "ISO-8859-1" || encoding == "windows-1252") {
 					encodings.push_back("ibm-5348_P100-1997"); // Occidental with Euro
-				}
-				else if (encoding == "ISO-8859-2" || encoding == "windows-1250") {
+				} else if (encoding == "ISO-8859-2" || encoding == "windows-1250") {
 					encodings.push_back("ibm-5346_P100-1998"); // Central Europe with Euro
-				}
-				else if (encoding == "ISO-8859-5" || encoding == "windows-1251") {
+				} else if (encoding == "ISO-8859-5" || encoding == "windows-1251") {
 					encodings.push_back("ibm-5347_P100-1998"); // Cyrillic with Euro
-				}
-				else if (encoding == "ISO-8859-6" || encoding == "windows-1256") {
+				} else if (encoding == "ISO-8859-6" || encoding == "windows-1256") {
 					encodings.push_back("ibm-9448_X100-2005"); // Arabic with Euro + 8 chars
-				}
-				else if (encoding == "ISO-8859-7" || encoding == "windows-1253") {
+				} else if (encoding == "ISO-8859-7" || encoding == "windows-1253") {
 					encodings.push_back("ibm-5349_P100-1998"); // Greek with Euro
-				}
-				else if (encoding == "ISO-8859-8" || encoding == "windows-1255") {
+				} else if (encoding == "ISO-8859-8" || encoding == "windows-1255") {
 					encodings.push_back("ibm-9447_P100-2002"); // Hebrew with Euro
-				}
-				else {
+				} else {
 					encodings.push_back(encoding);
 				}
 			}
@@ -313,7 +307,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	std::string result_str;
 
 	conv = ucnv_open(src_enc_str.c_str(), &status);
-	
+
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
 		fprintf(stderr, "liblcf:  ucnv_open() error for source encoding \"%s\": %s\n", src_enc_str.c_str(), u_errorName(status));
 		return std::string();

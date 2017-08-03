@@ -35,7 +35,7 @@ bool LMT_Reader::LoadXml(const std::string& filename) {
 	return LMT_Reader::LoadXml(stream);
 }
 
-bool LMT_Reader::Load(std::istream & filestream, const std::string &encoding) {
+bool LMT_Reader::Load(std::istream& filestream, const std::string &encoding) {
 	LcfReader reader(filestream, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
@@ -54,7 +54,7 @@ bool LMT_Reader::Load(std::istream & filestream, const std::string &encoding) {
 	return true;
 }
 
-bool LMT_Reader::Save(std::ostream & filestream, const std::string &encoding) {
+bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
@@ -67,7 +67,7 @@ bool LMT_Reader::Save(std::ostream & filestream, const std::string &encoding) {
 	return true;
 }
 
-bool LMT_Reader::SaveXml(std::ostream & filestream) {
+bool LMT_Reader::SaveXml(std::ostream& filestream) {
 	XmlWriter writer(filestream);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
@@ -79,7 +79,7 @@ bool LMT_Reader::SaveXml(std::ostream & filestream) {
 	return true;
 }
 
-bool LMT_Reader::LoadXml(std::istream & filestream) {
+bool LMT_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");

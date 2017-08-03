@@ -50,7 +50,7 @@ std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
 	return LSD_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<RPG::Save> LSD_Reader::Load(std::istream & filestream, const std::string &encoding) {
+std::unique_ptr<RPG::Save> LSD_Reader::Load(std::istream& filestream, const std::string &encoding) {
 	LcfReader reader(filestream, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
@@ -70,7 +70,7 @@ std::unique_ptr<RPG::Save> LSD_Reader::Load(std::istream & filestream, const std
 	return std::unique_ptr<RPG::Save>(save);
 }
 
-bool LSD_Reader::Save(std::ostream & filestream, const RPG::Save& save, const std::string &encoding) {
+bool LSD_Reader::Save(std::ostream& filestream, const RPG::Save& save, const std::string &encoding) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
@@ -84,7 +84,7 @@ bool LSD_Reader::Save(std::ostream & filestream, const RPG::Save& save, const st
 	return true;
 }
 
-bool LSD_Reader::SaveXml(std::ostream & filestream, const RPG::Save& save) {
+bool LSD_Reader::SaveXml(std::ostream& filestream, const RPG::Save& save) {
 	XmlWriter writer(filestream);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
@@ -97,7 +97,7 @@ bool LSD_Reader::SaveXml(std::ostream & filestream, const RPG::Save& save) {
 	return true;
 }
 
-std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(std::istream & filestream) {
+std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
