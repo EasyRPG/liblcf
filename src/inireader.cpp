@@ -32,7 +32,8 @@
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
-#include <fstream>
+#include <cstring>
+#include <istream>
 #include "ini.h"
 #include "inireader.h"
 
@@ -46,14 +47,54 @@ INIReader::INIReader(const string& filename)
 INIReader::INIReader(std::istream& filestream)
 {
 	_error = ini_parse_stream([](char* str, int num, void* stream) {
-		std::istream* s = reinterpret_cast<std::istream*>(stream);
+		std::istream* is = reinterpret_cast<std::istream*>(stream);
 		if (num > 0) {
-			s->read(str, num - 1);
-			std::streamsize bytes_read = s->gcount();
-			if (bytes_read > 0) {
-				str[s->gcount()] = '\0';
-				return str;
+			// via https://stackoverflow.com/questions/6089231/
+			std::string out;
+
+			std::istream::sentry se(*is, true);
+			std::streambuf* sb = is->rdbuf();
+
+			bool loop = true;
+
+			do {
+				int c = sb->sbumpc();
+				switch (c) {
+					case '\n':
+						loop = false;
+						break;
+					case '\r':
+						if (sb->sgetc() == '\n') {
+							sb->sbumpc();
+						}
+						loop = false;
+						break;
+					case EOF:
+						// Also handle the case when the last line has no line ending
+						if (out.empty()) {
+							is->setstate(std::ios::eofbit);
+						}
+						loop = false;
+						break;
+					default:
+						out += (char)c;
+				}
+			} while (loop);
+
+			if (out.empty() && (is->fail() || is->eof())) {
+				return (char*)NULL;
 			}
+
+			int to_copy = num - 1;
+
+			if (out.size() < num) {
+				to_copy = (int)out.size();
+			}
+
+			memcpy(str, out.data(), to_copy);
+			str[to_copy + 1] = '\0';
+
+			return str;
 		}
 
 		return (char*)NULL;
