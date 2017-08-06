@@ -31,34 +31,8 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   endif()
 endif()
 
-find_package(PythonInterp)
 set(GENERATED_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src/generated)
-if(PYTHONINTERP_FOUND)
-  set(GENERATE_PY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator/generate.py")
-
-  file(GLOB tmpl "${CMAKE_CURRENT_SOURC_DIR}/../../generator/templates/*.tmpl")
-  file(GLOB csv "${CMAKE_CURRENT_SOURC_DIR}/../../generator/csv/*.csv")
-
-  execute_process(
-    COMMAND "${PYTHON_EXECUTABLE}" "${GENERATE_PY}" "-l"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator"
-    OUTPUT_VARIABLE gen_list)
-  string(REPLACE "\n" ";" gen_list "${gen_list}")
-  foreach(i ${gen_list})
-    if(${i} MATCHES "\\.cpp")
-      list(APPEND GEN_SRCS ${GENERATED_OUTPUT_DIR}/${i})
-    endif()
-  endforeach()
-
-  add_custom_command(
-    OUTPUT ${GEN_SRCS}
-    COMMAND ${PYTHON_EXECUTABLE} ${GENERATE_PY}
-    MAIN_DEPENDENCT ${GENERATE_PY}
-    DEPENDS ${GENERATE_PY} ${tmpl} ${csv}
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../../generator")
-else()
-  aux_source_directory(${GENERATED_OUTPUT_DIR} GEN_SRCS)
-endif()
+aux_source_directory(${GENERATED_OUTPUT_DIR} GEN_SRCS)
 
 aux_source_directory("${CMAKE_CURRENT_SOURCE_DIR}/../../src" SRCS)
 add_library(${PROJECT_NAME} STATIC ${GEN_SRCS} ${SRCS})

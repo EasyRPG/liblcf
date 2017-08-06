@@ -314,34 +314,6 @@ def generate():
         os.remove(tmp_path)
     os.rmdir(tmp_dir)
 
-def list_files_struct(filetype, filename, struct_name, hasid):
-    if struct_name not in sfields:
-        return
-    print('%s_%s.cpp' % (filetype, filename))
-    if needs_ctor(struct_name):
-        print('rpg_%s.cpp' % filename)
-    print('rpg_%s.h' % filename)
-
-def list_files_rawstruct(filename, struct_name):
-    if needs_ctor(struct_name):
-        print('rpg_%s.cpp' % filename)
-    print('rpg_%s.h' % filename)
-
-def list_files_flags(filetype, filename, struct_name):
-    print('%s_%s_flags.cpp' % (filetype, filename))
-
-def list_files():
-    for filetype in ['ldb','lmt','lmu','lsd']:
-        print('%s_chunks.h' % filetype)
-
-    for filetype, filename, struct_name, hasid in structs:
-        if hasid is not None:
-            list_files_struct(filetype, filename, struct_name, hasid)
-        else:
-            list_files_rawstruct(filename, struct_name)
-        if struct_name in flags:
-            list_files_flags(filetype, filename, struct_name)
-
 def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
@@ -379,10 +351,7 @@ def main(argv):
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
 
-    if argv[1:] == ['-l']:
-        list_files()
-    else:
-        generate()
+    generate()
 
 if __name__ == '__main__':
     main(sys.argv)
