@@ -23,6 +23,11 @@
 namespace RPG {
 	class TreeMap {
 	public:
+		enum MapType {
+			MapType_map = 1,
+			MapType_area = 2
+		};
+
 		std::vector<MapInfo> maps;
 		std::vector<int> tree_order;
 		int active_node = 0;
