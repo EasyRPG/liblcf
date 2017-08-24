@@ -14,7 +14,7 @@
 #include <vector>
 #include <iosfwd>
 #include <cstring>
-#include <cstdio>
+#include <memory>
 #include <cassert>
 #include "reader_types.h"
 #include "lcf_options.h"
@@ -29,28 +29,15 @@ public:
 	/**
 	 * Constructs a new File Writer.
 	 *
-	 * @param filename file to open.
+	 * @param filestream already opened filestream.
 	 * @param encoding name of the encoding.
 	 */
-	LcfWriter(const char* filename, std::string encoding = "");
-
-	/**
-	 * Constructs a new File Writer.
-	 *
-	 * @param filename file to open.
-	 * @param encoding name of the encoding.
-	 */
-	LcfWriter(const std::string& filename, std::string encoding = "");
+	LcfWriter(std::ostream& filestream, std::string encoding = "");
 
 	/**
 	 * Destructor. Closes the opened file.
 	 */
 	~LcfWriter();
-
-	/**
-	 * Closes the opened file.
-	 */
-	void Close();
 
 	/**
 	 * Writes raw data to the stream (fwrite() wrapper).
@@ -109,12 +96,10 @@ public:
 	std::string Decode(const std::string& str_to_encode);
 
 private:
-	/** Name of the file that is associated with the stream. */
-	std::string filename;
 	/** Name of the encoding. */
 	std::string encoding;
 	/** File-stream managed by this Writer. */
-	FILE* stream;
+	std::ostream& stream;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.

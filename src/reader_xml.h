@@ -34,24 +34,14 @@ public:
 	/**
 	 * Constructs a new File Reader.
 	 *
-	 * @param filename file to open.
+	 * @param filestream already opened filestream.
 	 */
-	XmlReader(const std::string& filename);
+	XmlReader(std::istream& filestream);
 
 	/**
 	 * Destructor. Closes the opened file.
 	 */
 	~XmlReader();
-
-	/*
-	 * Opens the file.
-	 */
-	void Open();
-
-	/**
-	 * Closes the opened file.
-	 */
-	void Close();
 
 	/**
 	 * Checks if the file is readable and if no error occured.
@@ -103,10 +93,8 @@ public:
 	void EndElement(const char* name);
 
 protected:
-	/** Name of the file that is associated with the stream. */
-	std::string filename;
 	/** File-stream managed by this Reader. */
-	FILE* stream;
+	std::istream& stream;
 	/** Expat XML parser object. */
 #if defined(LCF_SUPPORT_XML)
 	XML_Parser parser;

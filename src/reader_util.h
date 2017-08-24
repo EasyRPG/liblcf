@@ -27,21 +27,40 @@ namespace ReaderUtil {
 	/**
 	 * Detects the encoding based on text analysis.
 	 *
-	 * @param text a string with few hundred of words to analyze.
+	 * @param filestream stream containing the database file
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(const std::string& database_file);
+	std::string DetectEncoding(std::istream& filestream);
+
+	/**
+	 * Detects the encoding based on text analysis.
+	 *
+	 * @param filestream stream containing the database file
+	 *
+	 * @return encoding or empty string if not detected.
+	 */
+	std::string DetectEncoding(const std::string& data);
 
 	/**
 	 * Detects the encoding based on text analysis and returns a vector with
 	 * possible candidates, highest candidate being at the beginning.
 	 *
-	 * @param text a string with few hundred of words to analyze.
+	 * @param filestream stream containing the database file
 	 *
 	 * @return list of encodings or empty if not detected
 	 */
-	std::vector<std::string> DetectEncodings(const std::string& database_file);
+	std::vector<std::string> DetectEncodings(std::istream& filestream);
+
+	/**
+	 * Detects the encoding based on text analysis and returns a vector with
+	 * possible candidates, highest candidate being at the beginning.
+	 *
+	 * @param string encoded data of a few hundred bytes
+	 *
+	 * @return list of encodings or empty if not detected
+	 */
+	std::vector<std::string> DetectEncodings(const std::string& data);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -51,6 +70,15 @@ namespace ReaderUtil {
 	 * @return encoding or empty string if not found.
 	 */
 	std::string GetEncoding(const std::string& ini_file);
+
+	/**
+	 * Returns the encoding set in the ini file.
+	 *
+	 * @param filestream The ini file to parse.
+	 *
+	 * @return encoding or empty string if not found.
+	 */
+	std::string GetEncoding(std::istream& filestream);
 
 	/**
 	 * Returns the system encoding based on current locale settings.

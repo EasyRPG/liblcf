@@ -40,6 +40,26 @@ namespace LMT_Reader {
 	 * Loads Map Tree as XML.
 	 */
 	bool LoadXml(const std::string& filename);
+
+	/**
+	 * Loads Map Tree.
+	 */
+	bool Load(std::istream& filestream, const std::string &encoding);
+
+	/**
+	 * Saves Map Tree.
+	 */
+	bool Save(std::ostream& filestream, const std::string &encoding);
+
+	/**
+	 * Saves Map Tree as XML.
+	 */
+	bool SaveXml(std::ostream& filestream);
+
+	/**
+	 * Loads Map Tree as XML.
+	 */
+	bool LoadXml(std::istream& filestream);
 }
 
 #endif

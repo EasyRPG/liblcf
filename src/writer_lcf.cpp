@@ -7,37 +7,25 @@
  * file that was distributed with this source code.
  */
 
+#include <ostream>
+
 #include "writer_lcf.h"
 
-LcfWriter::LcfWriter(const char* filename, std::string encoding) :
-	filename(filename),
+LcfWriter::LcfWriter(std::ostream& filestream, std::string encoding) :
 	encoding(encoding),
-	stream(fopen(filename, "wb"))
-{
-}
-
-LcfWriter::LcfWriter(const std::string& filename, std::string encoding) :
-	filename(filename),
-	encoding(encoding),
-	stream(fopen(filename.c_str(), "wb"))
+	stream(filestream)
 {
 }
 
 LcfWriter::~LcfWriter() {
-	Close();
-}
 
-void LcfWriter::Close() {
-	if (stream != NULL)
-		fclose(stream);
-	stream = NULL;
 }
 
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 #ifdef NDEBUG
-	fwrite(ptr, size, nmemb, stream);
+	stream.write(reinterpret_cast<const char*>(ptr), size*nmemb);
 #else
-	assert(fwrite(ptr, size, nmemb, stream) == nmemb);
+	assert(stream.write(reinterpret_cast<const char*>(ptr), size*nmemb).good());
 #endif
 }
 
@@ -118,7 +106,7 @@ void LcfWriter::Write(const std::string& _str) {
 }
 
 bool LcfWriter::IsOk() const {
-	return (stream != NULL && !ferror(stream));
+	return (stream.good());
 }
 
 std::string LcfWriter::Decode(const std::string& str_to_encode) {

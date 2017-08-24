@@ -7,50 +7,32 @@
  * file that was distributed with this source code.
  */
 
+#include <ostream>
 #include <vector>
 #include "writer_xml.h"
 
-XmlWriter::XmlWriter(const char* filename) :
-	filename(filename),
+XmlWriter::XmlWriter(std::ostream& filestream) :
 	indent(0),
+	stream(filestream),
 	at_bol(true)
 {
-	Open();
+	stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }
 
-XmlWriter::XmlWriter(const std::string& filename) :
-	filename(filename),
-	indent(0),
-	at_bol(true)
-{
-	Open();
-}
 
 XmlWriter::~XmlWriter() {
-	Close();
-}
-
-void XmlWriter::Open() {
-	stream = fopen(filename.c_str(), "w");
-	fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", stream);
-}
-
-void XmlWriter::Close() {
-	if (stream != NULL)
-		fclose(stream);
-	stream = NULL;
 }
 
 template <>
 void XmlWriter::Write<bool>(const bool& val) {
 	Indent();
-	fputs(val ? "T" : "F", stream);
+	stream << (val ? "T" : "F");
 }
 
 template <>
 void XmlWriter::Write<int>(const int& val) {
 	Indent();
-	fprintf(stream, "%d", val);
+	stream << val;
 }
 
 template <>
@@ -66,13 +48,13 @@ void XmlWriter::Write<int16_t>(const int16_t& val) {
 template <>
 void XmlWriter::Write<uint32_t>(const uint32_t& val) {
 	Indent();
-	fprintf(stream, "%u", val);
+	stream << val;
 }
 
 template <>
 void XmlWriter::Write<double>(const double& val) {
 	Indent();
-	fprintf(stream, "%g", val);
+	stream << val;
 }
 
 template <>
@@ -83,27 +65,30 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 		int c = (int) *it;
 		switch (c) {
 			case '<':
-				fputs("&lt;", stream);
+				stream << "&lt;";
 				break;
 			case '>':
-				fputs("&gt;", stream);
+				stream << "&gt;";
 				break;
 			case '&':
-				fputs("&amp;", stream);
+				stream << "&amp;";
 				break;
 			case '\n':
-				fputc(c, stream);
+				stream.put(c);
 				at_bol = true;
 				Indent();
 			case '\r':
 			case '\t':
-				fputc(c, stream);
+				stream.put(c);
 				break;
 			default:
-				if (c >= 0 && c < 32)
-					fprintf(stream, "&#x%04x;", 0xE000 + c);
+				if (c >= 0 && c < 32) {
+					char temp[10];
+					snprintf(temp,10, "&#x%04x;", 0xE000 + c);
+					stream << temp;
+				}
 				else
-					fputc(c, stream);
+					stream.put(c);
 				break;
 		}
 	}
@@ -150,7 +135,7 @@ void XmlWriter::WriteVector(const std::vector<T>& val) {
 	bool first = true;
 	for (it = val.begin(); it != val.end(); it++) {
 		if (!first)
-			fputc(' ', stream);
+			stream.put(' ');
 		first = false;
 		Write<T>(*it);
 	}
@@ -166,28 +151,30 @@ void XmlWriter::WriteNode(const std::string& name, const T& val) {
 void XmlWriter::BeginElement(const std::string& name) {
 	NewLine();
 	Indent();
-	fprintf(stream, "<%s>", name.c_str());
+	stream << "<" << name << ">";
 	indent++;
 }
 
 void XmlWriter::BeginElement(const std::string& name, int ID) {
 	NewLine();
 	Indent();
-	fprintf(stream, "<%s id=\"%04d\">", name.c_str(), ID);
+	char temp[6];
+	snprintf(temp, 6, "%04d", ID);
+	stream << "<" << name << " id=\"" << temp << "\">";
 	indent++;
 }
 
 void XmlWriter::EndElement(const std::string& name) {
 	indent--;
 	Indent();
-	fprintf(stream, "</%s>", name.c_str());
+	stream << "</" << name << ">";
 	NewLine();
 }
 
 void XmlWriter::NewLine() {
 	if (at_bol)
 		return;
-	fputc('\n', stream);
+	stream.put('\n');
 	at_bol = true;
 }
 
@@ -195,12 +182,12 @@ void XmlWriter::Indent() {
 	if (!at_bol)
 		return;
 	for (int i = 0; i < indent; i++)
-		fputc(' ', stream);
+		stream.put(' ');
 	at_bol = false;
 }
 
 bool XmlWriter::IsOk() const {
-	return (stream != NULL && !ferror(stream));
+	return (stream.good());
 }
 
 template void XmlWriter::WriteNode<int>(const std::string& name, const int& val);

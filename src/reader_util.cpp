@@ -32,7 +32,6 @@
 #endif
 
 #include <cstdlib>
-#include <cstdio>
 #include <sstream>
 #include <vector>
 
@@ -74,8 +73,8 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	return outs;
 }
 
-std::string ReaderUtil::DetectEncoding(const std::string &database_file) {
-	std::vector<std::string> encodings = DetectEncodings(database_file);
+std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
+	std::vector<std::string> encodings = DetectEncodings(filestream);
 
 	if (encodings.empty()) {
 		return "";
@@ -84,13 +83,22 @@ std::string ReaderUtil::DetectEncoding(const std::string &database_file) {
 	return encodings.front();
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(const std::string& database_file) {
-	std::vector<std::string> encodings;
+std::string ReaderUtil::DetectEncoding(std::string const & data) {
+	std::vector<std::string> encodings = DetectEncodings(data);
+
+	if (encodings.empty()) {
+		return "";
+	}
+
+	return encodings.front();
+}
+
+std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #ifdef LCF_SUPPORT_ICU
 	std::ostringstream text;
 
 	// Populate Data::terms and Data::system or will empty by default even if load fails
-	LDB_Reader::Load(database_file, "");
+	LDB_Reader::Load(filestream, "");
 
 	text <<
 	Data::terms.menu_save <<
@@ -137,11 +145,20 @@ std::vector<std::string> ReaderUtil::DetectEncodings(const std::string& database
 	Data::system.battletest_background <<
 	Data::system.frame_name;
 
-	if (!text.str().empty()) {
+	return ReaderUtil::DetectEncodings(text.str());
+#else
+	return std::vector<std::string>();
+#endif
+}
+
+std::vector<std::string> ReaderUtil::DetectEncodings(std::string const & data) {
+std::vector<std::string> encodings;
+#ifdef LCF_SUPPORT_ICU
+	if (!data.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		std::string s = text.str();
+		std::string s = data;
 		ucsdet_setText(detector, s.c_str(), s.length(), &status);
 
 		int32_t matches_count;
@@ -185,6 +202,17 @@ std::vector<std::string> ReaderUtil::DetectEncodings(const std::string& database
 
 std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
 	INIReader ini(ini_file);
+	if (ini.ParseError() != -1) {
+		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
+		if (!encoding.empty()) {
+			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
+		}
+	}
+	return std::string();
+}
+
+std::string ReaderUtil::GetEncoding(std::istream& filestream) {
+	INIReader ini(filestream);
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
@@ -279,7 +307,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	std::string result_str;
 
 	conv = ucnv_open(src_enc_str.c_str(), &status);
-	
+
 	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
 		fprintf(stderr, "liblcf:  ucnv_open() error for source encoding \"%s\": %s\n", src_enc_str.c_str(), u_errorName(status));
 		return std::string();

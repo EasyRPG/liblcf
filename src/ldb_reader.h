@@ -60,6 +60,26 @@ namespace LDB_Reader {
 	 * Load Database as XML.
 	 */
 	bool LoadXml(const std::string& filename);
+
+	/**
+	 * Loads Database.
+	 */
+	bool Load(std::istream& filestream, const std::string& encoding);
+
+	/**
+	 * Saves Database.
+	 */
+	bool Save(std::ostream& filestream, const std::string& encoding);
+
+	/**
+	 * Saves Database as XML.
+	 */
+	bool SaveXml(std::ostream& filestream);
+
+	/**
+	 * Load Database as XML.
+	 */
+	bool LoadXml(std::istream& filestream);
 }
 
 #endif

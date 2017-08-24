@@ -44,6 +44,11 @@ public:
 	// about the parsing.
 	INIReader(const std::string& filename);
 
+	// Construct INIReader and parse given stream. See ini.h for more info
+	// about the parsing.
+	// Custom function for liblcf.
+	INIReader(std::istream& filestream);
+
 	// Return the result of ini_parse(), i.e., 0 on success, line number of
 	// first error on parse error, or -1 on file open error.
 	int ParseError() const;
