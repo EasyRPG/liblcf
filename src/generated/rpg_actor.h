@@ -27,7 +27,6 @@ namespace RPG {
 	class Actor {
 	public:
 		void Setup();
-
 		int ID = 0;
 		std::string name;
 		std::string title;

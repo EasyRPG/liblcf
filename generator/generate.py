@@ -7,40 +7,22 @@ import os
 import re
 import shutil
 import filecmp
+from collections import namedtuple, OrderedDict
+from itertools import groupby
+import operator
+
+from jinja2 import Environment, PackageLoader, select_autoescape
+env = Environment(
+    loader=PackageLoader('templates', ''),
+    autoescape=select_autoescape([]),
+    keep_trailing_newline=True,
+    lstrip_blocks=True
+)
 
 gen_dir = os.path.dirname(os.path.abspath(__file__))
 csv_dir = os.path.join(gen_dir, "csv")
-tmpl_dir = os.path.join(gen_dir, "templates")
 dest_dir = os.path.abspath(os.path.join(gen_dir, "..", "src", "generated"))
 tmp_dir = os.path.join(dest_dir, "tmp")
-
-class Template(object):
-    def __init__(self, filename):
-        with open(os.path.join(tmpl_dir, filename), 'r') as f:
-            name = None
-            value = None
-            for line in f:
-                if line[0] == '@':
-                    if name is not None:
-                        setattr(self, name, value)
-                    name = line[1:].rstrip('\r\n')
-                    value = ''
-                else:
-                    value += line
-            if name is not None:
-                setattr(self, name, value)
-
-copy = Template('copyright.tmpl')
-reader = Template('reader.tmpl')
-ctor = Template('constructor.tmpl')
-decl = Template('declaration.tmpl')
-decl2 = Template('declaration.tmpl')
-chunk = Template('chunks.tmpl')
-freader = Template('flag_reader.tmpl')
-
-decl2.enum_header = decl.enum2_header
-decl2.enum_tmpl = decl.enum2_tmpl
-decl2.enum_footer = decl.enum2_footer
 
 cpp_types = {
     'Boolean': 'bool',
@@ -53,25 +35,22 @@ cpp_types = {
     'String': 'std::string',
     }
 
-def flags_def(struct_name):
-    f = ['\t\t\tbool %s;\n' % name for name in flags[struct_name]]
-    return 'struct Flags {\n' + ''.join(f) + '\t\t}'
-
-def cpp_type(ty, prefix = True, expand_flags = None):
+# Additional Jinja 2 functions
+def cpp_type(ty, prefix=True):
     if ty in cpp_types:
         return cpp_types[ty]
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
-        return 'std::vector<%s>' % cpp_type(m.group(1), prefix, expand_flags)
+        return 'std::vector<%s>' % cpp_type(m.group(1), prefix)
 
     m = re.match(r'(Vector|Array)<(.*)>', ty)
     if m:
-        return 'std::vector<%s>' % cpp_type(m.group(2), prefix, expand_flags)
+        return 'std::vector<%s>' % cpp_type(m.group(2), prefix)
 
     m = re.match(r'Ref<(.*):(.*)>', ty)
     if m:
-        return cpp_type(m.group(2), prefix, expand_flags)
+        return cpp_type(m.group(2), prefix)
 
     m = re.match(r'Ref<(.*)>', ty)
     if m:
@@ -83,18 +62,46 @@ def cpp_type(ty, prefix = True, expand_flags = None):
 
     m = re.match(r'(.*)_Flags$', ty)
     if m:
-        if expand_flags:
-            return flags_def(expand_flags)
-        else:
-            ty = m.expand(r'\1::Flags')
-            if prefix:
-                ty = 'RPG::' + ty
-            return ty
+        ty = m.expand(r'\1::Flags')
+        if prefix:
+            ty = 'RPG::' + ty
+        return ty
 
     if prefix:
         ty = 'RPG::' + ty
 
     return ty
+
+def pod_default(field):
+    dfl = field.default
+    ftype = field.type
+
+    # Not a POD, no default
+    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array'):
+        return ""
+
+    if ftype == 'Boolean':
+        dfl = dfl.lower()
+    elif ftype == 'String':
+        dfl = '"' + dfl[1:-1] + '"'
+    if '|' in dfl:
+        dfl = -1
+
+    return " = " + str(dfl)
+
+def flag_size(flag):
+    return (len(flag) + 7) // 8
+
+def filter_structs_without_codes(structs):
+    for struct in structs:
+        if all(f.code for f in sfields[struct.name]):
+            yield struct
+
+def filter_unused_fields(fields):
+    for field in fields:
+        if field.type:
+            yield field
+# End of Jinja 2 functions
 
 int_types = {
     'UInt8': 'uint8_t',
@@ -143,328 +150,161 @@ def struct_headers(ty, header_map):
 
     return []
 
-def get_structs(filename = 'structs.csv'):
-    result = []
+def process_file(filename, namedtup):
+    # Mapping is: All elements of the line grouped by the first column
+
+    result = OrderedDict()
+
     with open(os.path.join(csv_dir, filename), 'r') as f:
+        lines = []
         for line in f:
             sline = line.strip()
             if not sline:
                 continue
             if sline.startswith("#"):
                 continue
-            data = sline.split(',')
-            filetype, structname, hasid = data
-            hasid = bool(int(hasid)) if hasid else None
-            filename = structname.lower()
-            result.append((filetype, filename, structname, hasid))
+            lines.append(sline.split(','))
+
+        for k, g in groupby(lines, operator.itemgetter(0)):
+            result[k] = list(map(lambda x: namedtup(*x[1:]), list(g)))
+
     return result
 
-def get_fields(filename = 'fields.csv'):
-    result = {}
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            data = sline.split(',', 6)
-            struct, fname, issize, ftype, code, dfl, comment = data
-            issize = issize.lower() == 't'
-            code = int(code, 16) if code else None
-            if struct not in result:
-                result[struct] = []
-            result[struct].append((fname, issize, ftype, code, dfl, comment))
-    return result
+def get_structs(filename='structs.csv'):
+    Struct = namedtuple("Struct", "name hasid")
 
-def get_enums(filename = 'enums.csv'):
-    enums = {}
-    fields = {}
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            data = sline.split(',')
-            sname, ename, name, num = data
-            num = int(num)
-            if (sname, ename) not in fields:
-                if sname not in enums:
-                    enums[sname] = []
-                enums[sname].append(ename)
-                fields[sname, ename] = []
-            fields[sname, ename].append((name, num))
-    return enums, fields
+    result = process_file(filename, Struct)
 
-def get_flags(filename = 'flags.csv'):
-    result = {}
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            data = sline.split(',')
-            struct, fname = data
-            if struct not in result:
-                result[struct] = []
-            result[struct].append(fname)
-    return result
+    processed_result = OrderedDict()
 
-def get_setup(filename = 'setup.csv'):
-    result = {}
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            data = sline.split(',')
-            struct, method, headers = data
-            headers = headers.split(' ') if headers else []
-            if struct not in result:
-                result[struct] = []
-            result[struct].append((method, headers))
-    return result
+    for k, struct in result.items():
+        processed_result[k] = []
 
-def get_headers(structs, sfields, setup):
-    header_map = dict([(struct_name, filename)
-                       for filetype, filename, struct_name, hasid in structs])
+        for elem in struct:
+            elem = Struct(elem.name, bool(int(elem.hasid)) if elem.hasid else None)
+            processed_result[k].append(elem)
+
+    return processed_result
+
+def get_fields(filename='fields.csv'):
+    Field = namedtuple("Field", "name size type code default comment")
+
+    result = process_file(filename, Field)
+
+    processed_result = OrderedDict()
+
+    for k, field in result.items():
+        processed_result[k] = []
+        for elem in field:
+            elem = Field(
+                elem.name,
+                True if elem.size == 't' else False,
+                elem.type,
+                0 if elem.code == '' else int(elem.code, 0),
+                elem.default,
+                elem.comment)
+            processed_result[k].append(elem)
+
+    return processed_result
+
+def get_enums(filename='enums.csv'):
+    result = process_file(filename, namedtuple("Enum", "entry value index"))
+    new_result = OrderedDict()
+
+    # Additional processing to group by the Enum Entry
+    # Results in e.g. EventCommand -> Code -> List of (Name, Index)
+    for k, v in result.items():
+        new_result[k] = OrderedDict()
+        for kk, gg in groupby(v, operator.attrgetter("entry")):
+            new_result[k][kk] = list(map(lambda x: (x.value, x.index), gg))
+
+    return new_result
+
+def get_flags(filename='flags.csv'):
+    return process_file(filename, namedtuple("Flag", "field"))
+
+def get_setup(filename='setup.csv'):
+    return process_file(filename, namedtuple("Setup", "method headers"))
+
+def get_headers():
+    header_map = dict()
+
+    structs_flat = []
+    for filetype, struct in structs.items():
+        for elem in struct:
+            structs_flat.append(elem)
+            header_map[elem.name] = elem.name.lower()
+
     result = {}
-    for filetype, filename, struct_name, hasid in structs:
+    for struct in structs_flat:
+        struct_name = struct.name
         if struct_name not in sfields:
             continue
         headers = set()
         for field in sfields[struct_name]:
-            fname, issize, ftype, code, dfl, comment = field
+            ftype = field.type
             if not ftype:
                 continue
             headers.update(struct_headers(ftype, header_map))
         if struct_name in setup:
-            for method, hdrs in setup[struct_name]:
-                headers.update(hdrs)
+            for s in setup[struct_name]:
+                if s.headers:
+                    headers.update([s.headers])
         result[struct_name] = sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
     return result
-
-def write_enums(sname, f):
-    for ename in enums[sname]:
-        dcl = decl2 if (sname, ename) in [('MoveCommand','Code'),('EventCommand','Code')] else decl
-        evars = dict(ename = ename)
-        f.write(dcl.enum_header % evars)
-        ef = efields[sname, ename]
-        n = len(ef)
-        for i, (name, num) in enumerate(ef):
-            comma = '' if i == n - 1 else ','
-            vars = dict(ename = ename,
-                        name = name,
-                        num = num,
-                        comma = comma)
-            f.write(dcl.enum_tmpl % vars)
-        f.write(dcl.enum_footer % evars)
-    f.write('\n')
-
-def write_setup(sname, f):
-    for method, headers in setup[sname]:
-        f.write('\t\t%s;\n' % method)
-
-def generate_reader(f, struct_name, vars):
-    f.write(copy.header)
-    f.write(reader.header % vars)
-    for field in sfields[struct_name]:
-        fname, issize, ftype, code, dfl, comment = field
-        if not ftype:
-            continue
-        fvars = dict(
-            ftype = cpp_type(ftype),
-            fname = fname)
-        if issize:
-            f.write(reader.size_tmpl % fvars)
-        else:
-            f.write(reader.typed_tmpl % fvars)
-    f.write(reader.footer % vars)
-
-def write_flags(f, sname, fname):
-    for name in flags[sname]:
-        fvars = dict(
-            fname = fname,
-            name = name)
-        f.write(ctor.flags % fvars)
-
-def generate_ctor(f, vars):
-    f.write(copy.header)
-    f.write(ctor.ctor % vars)
 
 def needs_ctor(struct_name):
     return struct_name in setup and any('Init()' in method
                                     for method, hdrs in setup[struct_name])
 
-def generate_header(f, struct_name, hasid, vars):
-    f.write(copy.header)
-    f.write(decl.header1 % vars)
-    if headers[struct_name]:
-        f.write(decl.header2)
-        for header in headers[struct_name]:
-            f.write(decl.header_tmpl % dict(header = header))
-    f.write(decl.header3 % vars)
-    if struct_name in enums:
-        write_enums(struct_name, f)
-    needs_blank = False
-    if needs_ctor(struct_name):
-        f.write(decl.ctor % vars)
-        needs_blank = True
-    if struct_name in setup:
-        write_setup(struct_name, f)
-        needs_blank = True
-    if needs_blank:
-        f.write('\n')
-    if hasid:
-        f.write(decl.pod % dict(ftype = 'int', fname = 'ID', default = 0))
-    for field in sfields[struct_name]:
-        fname, issize, ftype, code, dfl, comment = field
-        if not ftype:
-            continue
-        if issize:
-            continue
-        if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array'):
-            fvars = dict(
-                ftype = cpp_type(ftype, False, struct_name),
-                fname = fname)
-            f.write(decl.non_pod % fvars)
-        else:
-            if ftype == 'Boolean':
-                dfl = dfl.lower()
-            elif ftype == 'String':
-                dfl = '"' + dfl[1:-1] + '"'
-            if '|' in dfl:
-                # dfl = re.sub(r'(.*)\|(.*)', r'\1', dfl)
-                dfl = -1
-            fvars =  dict(
-                ftype = cpp_type(ftype, False, struct_name),
-                fname = fname,
-                default = dfl)
-            f.write(decl.pod % fvars)
-    f.write(decl.footer % vars)
-
-def generate_chunks(f, struct_name, vars):
-    f.write(chunk.header % vars)
-    mwidth = max(len(field[0] + ('_size' if field[1] else '')) for field in sfields[struct_name]) + 1
-    mwidth = (mwidth + 3) // 4 * 4
-    # print struct_name, mwidth
-    sf = sfields[struct_name]
-    n = len(sf)
-    for i, field in enumerate(sf):
-        fname, issize, ftype, code, dfl, comment = field
-        if issize:
-            fname += '_size'
-        pad = mwidth - len(fname)
-        ntabs = (pad + 3) // 4
-        tabs = '\t' * ntabs
-        comma = ' ' if i == n - 1 else ','
-        fvars = dict(
-            fname = fname,
-            tabs = tabs,
-            code = code,
-            comma = comma,
-            comment = comment)
-        f.write(chunk.tmpl % fvars)
-    f.write(chunk.footer % vars)
-
-def generate_struct(filetype, filename, struct_name, hasid):
-    if struct_name not in sfields:
-        return
-
-    vars = dict(
-        filetype = filetype,
-        filename = filename,
-        typeupper = filetype.upper(),
-        structname = struct_name,
-        structupper = struct_name.upper(),
-        idtype = ['NoID','WithID'][hasid])
-
-    filepath = os.path.join(tmp_dir, '%s_%s.cpp' % (filetype, filename))
-    with open(filepath, 'w') as f:
-        generate_reader(f, struct_name, vars)
-
-    if needs_ctor(struct_name):
-        filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
-        with open(filepath, 'w') as f:
-            generate_ctor(f, vars)
-
-    filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
-    with open(filepath, 'w') as f:
-        generate_header(f, struct_name, hasid, vars)
-
-    filepath = os.path.join(tmp_dir, '%s_chunks.h' % filetype)
-    with open(filepath, 'a') as f:
-        generate_chunks(f, struct_name, vars)
-
-def generate_rawstruct(filename, struct_name):
-    vars = dict(
-        filename = filename,
-        structname = struct_name,
-        structupper = struct_name.upper())
-
-    filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
-    with open(filepath, 'w') as f:
-        generate_header(f, struct_name, False, vars)
-
-def generate_flags(filetype, filename, struct_name):
-    maxsize = (len(flags[struct_name]) + 7) // 8
-    maxwidth = max(len(fname) for fname in flags[struct_name])
-    maxwidth = (maxwidth + 2 + 3) // 4 * 4
-    vars = dict(
-        filetype = filetype,
-        filename = filename,
-        structname = struct_name,
-        structupper = struct_name.upper(),
-        maxsize = maxsize
-        )
-
-    filepath = os.path.join(tmp_dir, '%s_%s_flags.cpp' % (filetype, filename))
-    with open(filepath, 'w') as f:
-        f.write(copy.header)
-        f.write(freader.header % vars)
-        for fname in flags[struct_name]:
-            width = len(fname)
-            pad1 = maxwidth - width - 2
-            tabs1 = (pad1 + 3) // 4
-            pad2 = maxwidth - width - 2
-            tabs2 = (pad2 + 3) // 4
-            fvars = dict(
-                fname = fname,
-                pad1 = '\t' * tabs1,
-                pad2 = '\t' * tabs2)
-            f.write(freader.tmpl % fvars)
-        f.write(freader.footer % vars)
-
 def generate():
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     for filetype in ['ldb','lmt','lmu','lsd']:
-        vars = dict(
-            filetype = filetype,
-            typeupper = filetype.upper())
         filepath = os.path.join(tmp_dir, '%s_chunks.h' % filetype)
+
         with open(filepath, 'w') as f:
-            f.write(copy.header)
-            f.write(chunk.file_header % vars)
+            f.write(chunk_tmpl.render(
+                type=filetype
+            ))
 
-    for filetype, filename, struct_name, hasid in structs:
-        if hasid is not None:
-            generate_struct(filetype, filename, struct_name, hasid)
-        else:
-            generate_rawstruct(filename, struct_name)
-        if struct_name in flags:
-            generate_flags(filetype, filename, struct_name)
+    for filetype, structlist in structs.items():
+        for struct in structlist:
+            filename = struct.name.lower()
 
-    for filetype in ['ldb','lmt','lmu','lsd']:
-        filepath = os.path.join(tmp_dir, '%s_chunks.h' % filetype)
-        with open(filepath, 'a') as f:
-            f.write(chunk.file_footer)
+            if struct.hasid is not None:
+                if struct.name not in sfields:
+                    continue
+
+                filepath = os.path.join(tmp_dir, '%s_%s.cpp' % (filetype, filename))
+                with open(filepath, 'w') as f:
+                    f.write(lcf_struct_tmpl.render(
+                        struct_name=struct.name,
+                        type=filetype
+                    ))
+
+                if needs_ctor(struct.name):
+                    filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
+                    with open(filepath, 'w') as f:
+                        f.write(rpg_source_tmpl.render(
+                            struct_name=struct.name,
+                            filename=filename
+                        ))
+
+            filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
+            with open(filepath, 'w') as f:
+                f.write(rpg_header_tmpl.render(
+                    struct_name=struct.name,
+                    has_id=struct.hasid
+                ))
+
+            if struct.name in flags:
+                filepath = os.path.join(tmp_dir, '%s_%s_flags.cpp' % (filetype, filename))
+                with open(filepath, 'w') as f:
+                    f.write(flags_tmpl.render(
+                        struct_name=struct.name,
+                        type=filetype
+                    ))
 
     for tmp_file in os.listdir(tmp_dir):
         tmp_path = os.path.join(tmp_dir, tmp_file)
@@ -506,14 +346,38 @@ def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
 
-    global structs, sfields, enums, efields, flags, setup, headers
+    global structs, sfields, enums, flags, setup, headers
+    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl
 
     structs = get_structs()
     sfields = get_fields()
-    enums, efields = get_enums()
+    enums = get_enums()
     flags = get_flags()
     setup = get_setup()
-    headers = get_headers(structs, sfields, setup)
+    headers = get_headers()
+
+    # Setup Jinja
+    env.filters["cpp_type"] = cpp_type
+    env.filters["pod_default"] = pod_default
+    env.filters["struct_has_code"] = filter_structs_without_codes
+    env.filters["field_is_used"] = filter_unused_fields
+    env.filters["flag_size"] = flag_size
+    env.tests['needs_ctor'] = needs_ctor
+
+    globals = dict(
+        structs=structs,
+        fields=sfields,
+        flags=flags,
+        enums=enums,
+        setup=setup,
+        headers=headers
+    )
+
+    chunk_tmpl = env.get_template('chunks.tmpl', globals=globals)
+    lcf_struct_tmpl = env.get_template('reader.tmpl', globals=globals)
+    rpg_header_tmpl = env.get_template('rpg_header.tmpl', globals=globals)
+    rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
+    flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
 
     if argv[1:] == ['-l']:
         list_files()

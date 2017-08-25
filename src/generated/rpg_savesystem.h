@@ -32,7 +32,6 @@ namespace RPG {
 
 		void Setup();
 		void Fixup();
-
 		int screen = 1;
 		int frame_count = 0;
 		std::string graphics_name;
