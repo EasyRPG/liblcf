@@ -30,7 +30,7 @@ namespace LMT_Reader {
 			parent_map		= 0x02,
 			/** Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl */
 			indentation		= 0x03,
-			/** Integer. 0=lmt root (can be ignored); 1=map; 2=area */
+			/** Integer */
 			type			= 0x04,
 			/** Integer. Editor only */
 			scrollbar_x		= 0x05,
