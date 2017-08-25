@@ -10,6 +10,7 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+#include <type_traits>
 #include "ldb_reader.h"
 #include "lmt_reader.h"
 #include "lmu_reader.h"
@@ -62,6 +63,20 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 	}
 }
 
+template<typename T>
+typename std::enable_if<std::is_same<T, RPG::Save>::value ||
+		std::is_same<T, RPG::Database>::value>::type
+conditional_zero_writer(LcfWriter&) {
+	// no-op
+};
+
+template<typename T>
+typename std::enable_if<!std::is_same<T, RPG::Save>::value &&
+		!std::is_same<T, RPG::Database>::value>::type
+conditional_zero_writer(LcfWriter& stream) {
+	stream.WriteInt(0);
+};
+
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 	S ref = S();
@@ -73,39 +88,15 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		//printf("\n%s", field->name);
 		if (field->IsDefault(obj, ref)) {
-			//printf(" -> default");
 			continue;
 		}
 		stream.WriteInt(field->id);
 		stream.WriteInt(field->LcfSize(obj, stream));
 		field->WriteLcf(obj, stream);
 	}
-	stream.WriteInt(0);
-}
-
-template <>
-void Struct<RPG::Save>::WriteLcf(const RPG::Save& obj, LcfWriter& stream) {
-	RPG::Save ref = RPG::Save();
-	int last = -1;
-	for (int i = 0; fields[i] != NULL; i++) {
-		const Field<RPG::Save>* field = fields[i];
-		if (field->id < last)
-			std::cerr << "field order mismatch: " << field->id
-					  << " after " << last
-					  << " in struct " << name
-					  << std::endl;
-		//printf("\n%s", field->name);
-		if (field->IsDefault(obj, ref)) {
-			//printf(" -> default");
-			continue;
-		}
-		stream.WriteInt(field->id);
-		stream.WriteInt(field->LcfSize(obj, stream));
-		field->WriteLcf(obj, stream);
-	}
-	// stream.WriteInt(0); // This last byte broke savegames
+	// Writing a 0-byte after RPG::Database or RPG::Save breaks the parser in RPG_RT
+	conditional_zero_writer<S>(stream);
 }
 
 template <class S>
