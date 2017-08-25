@@ -600,7 +600,7 @@ Encounter,troop_id,f,Ref<Troop>,0x01,0,Integer
 MapInfo,name,f,String,0x01,'',String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,Integer. Used to inherit parent map properties
 MapInfo,indentation,f,Integer,0x03,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
-MapInfo,type,f,Integer,0x04,-1,Integer. 0=lmt root (can be ignored); 1=map; 2=area
+MapInfo,type,f,Enum<TreeMap_MapType>,0x04,-1,Integer
 MapInfo,scrollbar_x,f,Integer,0x05,0,Integer. Editor only
 MapInfo,scrollbar_y,f,Integer,0x06,0,Integer. Editor only
 MapInfo,expanded_node,f,Boolean,0x07,False,Flag. Editor only

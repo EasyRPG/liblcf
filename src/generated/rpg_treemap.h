@@ -24,6 +24,7 @@ namespace RPG {
 	class TreeMap {
 	public:
 		enum MapType {
+			MapType_root = 0,
 			MapType_map = 1,
 			MapType_area = 2
 		};

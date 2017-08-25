@@ -247,6 +247,7 @@ Map,GeneratorMode,maze_passage,2
 Map,GeneratorMode,open_room,3
 Map,GeneratorTiles,one,0
 Map,GeneratorTiles,two,1
+TreeMap,MapType,root,0
 TreeMap,MapType,map,1
 TreeMap,MapType,area,2
 MoveCommand,Code,move_up,0
