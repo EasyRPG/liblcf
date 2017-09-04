@@ -11,6 +11,7 @@
 #define LCF_READER_UTIL_H
 
 #include <string>
+#include <vector>
 
 /**
  * ReaderUtil namespace.
@@ -108,6 +109,40 @@ namespace ReaderUtil {
 	std::string Recode(const std::string& str_to_encode,
 					   const std::string& src_enc,
 					   const std::string& dst_enc);
+
+	/**
+	 * Helper function that returns an element from a vector using a 1-based
+	 * index as usually used by LCF data structures.
+	 *
+	 * @param vec Vector to return element from
+	 * @param one_based_index index to access vector at "index - 1"
+	 * @return element or nullptr when "index - 1" is out of bounds
+	 */
+	template<typename T>
+	T* GetElement(std::vector<T>& vec, int one_based_index) {
+		if (one_based_index < 1 || one_based_index > vec.size()) {
+			return nullptr;
+		}
+
+		return &vec[one_based_index - 1];
+	}
+
+	/**
+	 * Helper function that returns an element from a vector using a 1-based
+	 * index as usually used by LCF data structures.
+	 *
+	 * @param vec Vector to return element from
+	 * @param one_based_index index to access vector at "index - 1"
+	 * @return element or nullptr when "index - 1" is out of bounds
+	 */
+	template<typename T>
+	const T* GetElement(const std::vector<T>& vec, int one_based_index) {
+		if (one_based_index < 1 || one_based_index > vec.size()) {
+			return nullptr;
+		}
+
+		return &vec[one_based_index - 1];
+	}
 }
 
 #endif
