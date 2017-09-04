@@ -85,6 +85,9 @@ target_link_libraries(${PROJECT_NAME} ${ICU_LIBRARIES})
 find_package(Expat)
 include_directories(${EXPAT_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${EXPAT_LIBRARY})
+if (${EXPAT_FOUND})
+  add_definitions(-DLCF_SUPPORT_XML)
+endif()
 
 # installation
 set(LIB_INSTALL_DIR "lib" CACHE STRING "The install directory for libraries")
