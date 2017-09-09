@@ -23,7 +23,6 @@ namespace RPG {
 	class Parameters {
 	public:
 		void Setup(int final_level);
-
 		std::vector<int16_t> maxhp;
 		std::vector<int16_t> maxsp;
 		std::vector<int16_t> attack;

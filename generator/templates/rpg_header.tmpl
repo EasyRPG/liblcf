@@ -1,0 +1,63 @@
+{% include "copyright.tmpl" %}
+#ifndef LCF_RPG_{{ struct_name|upper }}_H
+#define LCF_RPG_{{ struct_name|upper }}_H
+
+{%- for header in headers[struct_name] %}
+{%- if loop.first %}
+
+// Headers
+{%- endif %}
+#include {{ header }}
+{%- endfor %}
+
+/**
+ * RPG::{{ struct_name }} class.
+ */
+namespace RPG {
+	class {{ struct_name }} {
+	public:
+	{%- if struct_name in enums %}
+	{%- for name, enum in enums[struct_name].items() %}
+		{%- if name == "Code" %}
+		struct {{ name }} {
+			enum Index {
+			{%- for field in enum %}
+				{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
+			{%- endfor %}
+			};
+		};
+		{%- else %}
+		enum {{ name }} {
+		{%- for field in enum %}
+			{{ name }}_{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
+		{%- endfor %}
+		};
+		{%- endif %}
+	{%- endfor %}
+	{% endif %}
+	{%- if struct_name is needs_ctor %}
+		{{ struct_name }}();
+	{%- endif %}
+	{%- for setu in setup[struct_name] %}
+		{{ setu.method }};
+	{%- endfor %}
+	{%- if has_id %}
+		int ID = 0;
+	{%- endif %}
+	{%- for field in fields[struct_name]|field_is_used %}
+	{%- if not field.size %}
+		{%- if field.type.endswith("_Flags") %}
+		struct Flags {
+		{%- for flag in flags[struct_name] %}
+			bool {{ flag.field }};
+		{%- endfor %}
+		} {{ field.name }};
+		{%- else %}
+		{{ field.type|cpp_type(prefix=False) }} {{ field.name }}{{ field|pod_default }};
+		{%- endif %}
+	{%- endif %}
+	{%- endfor %}
+	};
+}
+
+#endif

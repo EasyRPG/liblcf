@@ -1,21 +1,22 @@
-@file_header
-#ifndef LCF_%(typeupper)s_CHUNKS_H
-#define LCF_%(typeupper)s_CHUNKS_H
+{% include "copyright.tmpl" %}
+#ifndef LCF_{{ type|upper }}_CHUNKS_H
+#define LCF_{{ type|upper }}_CHUNKS_H
 
 /**
- * %(typeupper)s Reader namespace.
+ * {{ type|upper }} Reader namespace.
  */
-namespace %(typeupper)s_Reader {
-@header
-	struct Chunk%(structname)s {
+namespace {{ type|upper }}_Reader {
+
+{%- for struct in structs[type]|struct_has_code %}
+	struct Chunk{{ struct.name }} {
 		enum Index {
-@tmpl
-			/** %(comment)s */
-			%(fname)s%(tabs)s= 0x%(code)02X%(comma)s
-@footer
+		{%- for field in fields[struct.name] %}
+			/** {{ field.comment }} */
+			{{ field.name }}{% if field.size %}_size{% endif %} = 0x{{ "%02X"|format(field.code) }}{%- if not loop.last %},{% endif %}
+		{%- endfor %}
 		};
 	};
-@file_footer
+{%- endfor %}
 }
 
 #endif

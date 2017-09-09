@@ -1,27 +1,30 @@
-@header
+{% include "copyright.tmpl" %}
 /*
  * Headers
  */
-#include "%(filetype)s_reader.h"
-#include "%(filetype)s_chunks.h"
+#include "{{ type }}_reader.h"
+#include "{{ type }}_chunks.h"
 #include "reader_struct.h"
 
 
-// Read %(structname)s.
+// Read {{ struct_name }}.
 
-typedef RPG::%(structname)s::Flags flags_type;
+typedef RPG::{{ struct_name }}::Flags flags_type;
 
 template <>
-char const* const Flags<flags_type>::name("%(structname)s_Flags");
+char const* const Flags<flags_type>::name("{{ struct_name }}_Flags");
 
 template <>
 const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-@tmpl
-	new Flags<flags_type>::Flag(&flags_type::%(fname)s,%(pad1)s"%(fname)s"%(pad2)s),
-@footer
+{%- for flag in flags[struct_name] %}
+	new Flags<flags_type>::Flag(&flags_type::{{ flag.field }}, "{{ flag.field }}"),
+{%- if loop.last %}
 	NULL
+{%- endif %}
+
+{%- endfor %}
 };
 
 template <>
-const uint32_t Flags<flags_type>::max_size = %(maxsize)d;
+const uint32_t Flags<flags_type>::max_size = {{ flags[struct_name]|flag_size }};
 

@@ -30,7 +30,6 @@ namespace RPG {
 		void Setup(const RPG::Map& map);
 		void Setup(const RPG::MapInfo& map_info);
 		void Fixup(const RPG::Map& map);
-
 		int position_x = 0;
 		int position_y = 0;
 		int encounter_rate = -1;

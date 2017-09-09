@@ -34,7 +34,6 @@ namespace RPG {
 	class Save {
 	public:
 		void Setup();
-
 		SaveTitle title;
 		SaveSystem system;
 		SaveScreen screen;

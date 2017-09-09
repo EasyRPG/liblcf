@@ -23,7 +23,6 @@ namespace RPG {
 	class SaveInventory {
 	public:
 		void Setup();
-
 		int party_size = -1;
 		std::vector<int16_t> party;
 		int items_size = -1;

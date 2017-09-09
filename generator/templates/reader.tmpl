@@ -1,20 +1,18 @@
-@header
+{% include "copyright.tmpl" %}
 // Headers
-#include "%(filetype)s_reader.h"
-#include "%(filetype)s_chunks.h"
+#include "{{ type }}_reader.h"
+#include "{{ type }}_chunks.h"
 #include "reader_struct.h"
 
-// Read %(structname)s.
+// Read {{ struct_name }}.
 
-#define LCF_CHUNK_SUFFIX %(typeupper)s_Reader
-#define LCF_CURRENT_STRUCT %(structname)s
+#define LCF_CHUNK_SUFFIX {{ type|upper }}_Reader
+#define LCF_CURRENT_STRUCT {{ struct_name }}
 
 LCF_STRUCT_FIELDS_BEGIN()
-@size_tmpl
-	LCF_STRUCT_SIZE_FIELD(%(ftype)s, %(fname)s),
-@typed_tmpl
-	LCF_STRUCT_TYPED_FIELD(%(ftype)s, %(fname)s),
-@footer
+{%- for field in fields[struct_name]|field_is_used %}
+	LCF_STRUCT_{% if field.size %}SIZE{% else %}TYPED{% endif %}_FIELD({{ field.type|cpp_type }}, {{ field.name }}),
+{%- endfor %}
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

@@ -43,7 +43,6 @@ namespace RPG {
 
 		MapInfo();
 		void Init();
-
 		int ID = 0;
 		std::string name;
 		int parent_map = 0;
