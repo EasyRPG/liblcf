@@ -12,8 +12,8 @@
 #include "writer_xml.h"
 
 XmlWriter::XmlWriter(std::ostream& filestream) :
-	indent(0),
 	stream(filestream),
+	indent(0),
 	at_bol(true)
 {
 	stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -77,6 +77,7 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 				stream.put(c);
 				at_bol = true;
 				Indent();
+				break;
 			case '\r':
 			case '\t':
 				stream.put(c);
