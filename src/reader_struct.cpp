@@ -68,14 +68,14 @@ typename std::enable_if<std::is_same<T, RPG::Save>::value ||
 		std::is_same<T, RPG::Database>::value>::type
 conditional_zero_writer(LcfWriter&) {
 	// no-op
-};
+}
 
 template<typename T>
 typename std::enable_if<!std::is_same<T, RPG::Save>::value &&
 		!std::is_same<T, RPG::Database>::value>::type
 conditional_zero_writer(LcfWriter& stream) {
 	stream.WriteInt(0);
-};
+}
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
