@@ -87,7 +87,7 @@ INIReader::INIReader(std::istream& filestream)
 
 			int to_copy = num - 1;
 
-			if (out.size() < num) {
+			if (out.size() < (size_t)num) {
 				to_copy = (int)out.size();
 			}
 

@@ -120,7 +120,12 @@ namespace ReaderUtil {
 	 */
 	template<typename T>
 	T* GetElement(std::vector<T>& vec, int one_based_index) {
-		if (one_based_index < 1 || one_based_index > vec.size()) {
+		if (one_based_index < 1) {
+			return nullptr;
+		}
+
+		// index is nonnegative, safe to cast
+		if (static_cast<typename std::vector<T>::size_type>(one_based_index) > vec.size()) {
 			return nullptr;
 		}
 
@@ -137,7 +142,12 @@ namespace ReaderUtil {
 	 */
 	template<typename T>
 	const T* GetElement(const std::vector<T>& vec, int one_based_index) {
-		if (one_based_index < 1 || one_based_index > vec.size()) {
+		if (one_based_index < 1) {
+			return nullptr;
+		}
+
+		// index is nonnegative, safe to cast
+		if (static_cast<typename std::vector<T>::size_type>(one_based_index) > vec.size()) {
 			return nullptr;
 		}
 
