@@ -16,22 +16,22 @@
 #include "reader_struct.h"
 
 bool LMT_Reader::Load(const std::string& filename, const std::string& encoding) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LMT_Reader::Load(stream, encoding);
 }
 
 bool LMT_Reader::Save(const std::string& filename, const std::string& encoding) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LMT_Reader::Save(stream, encoding);
 }
 
 bool LMT_Reader::SaveXml(const std::string& filename) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LMT_Reader::SaveXml(stream);
 }
 
 bool LMT_Reader::LoadXml(const std::string& filename) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LMT_Reader::LoadXml(stream);
 }
 
