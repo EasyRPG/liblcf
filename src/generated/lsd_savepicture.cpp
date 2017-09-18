@@ -44,7 +44,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, spritesheet_play_once),
 	LCF_STRUCT_TYPED_FIELD(int, map_layer),
 	LCF_STRUCT_TYPED_FIELD(int, battle_layer),
-	LCF_STRUCT_TYPED_FIELD(RPG::SavePicture::Flags, effect_flags),
+	LCF_STRUCT_TYPED_FIELD(RPG::SavePicture::Flags, flags),
 	LCF_STRUCT_TYPED_FIELD(double, finish_x),
 	LCF_STRUCT_TYPED_FIELD(double, finish_y),
 	LCF_STRUCT_TYPED_FIELD(int, finish_magnify),

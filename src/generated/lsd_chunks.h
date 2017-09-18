@@ -277,7 +277,7 @@ namespace LSD_Reader {
 			/** Layer to show picture on in battle */
 			battle_layer = 0x1A,
 			/** Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint */
-			effect_flags = 0x1B,
+			flags = 0x1B,
 			/** double */
 			finish_x = 0x1F,
 			/** double */

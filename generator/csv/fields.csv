@@ -814,7 +814,7 @@ SavePicture,frames,f,Integer,0x17,0,Frames since ShowPicture
 SavePicture,spritesheet_play_once,f,Boolean,0x18,False,True: Play once and destroy; False: Loop spritesheet
 SavePicture,map_layer,f,Enum<MapLayer>,0x19,7,Layer to show picture on at the map
 SavePicture,battle_layer,f,Enum<BattleLayer>,0x1A,0,Layer to show picture on in battle
-SavePicture,effect_flags,f,SavePicture_Flags,0x1B,97,Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint
+SavePicture,flags,f,SavePicture_Flags,0x1B,97,Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint
 SavePicture,finish_x,f,Double,0x1F,0.0,double
 SavePicture,finish_y,f,Double,0x20,0.0,double
 SavePicture,finish_magnify,f,Integer,0x21,100,int

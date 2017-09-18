@@ -76,7 +76,7 @@ namespace RPG {
 			bool affect_tint = false;
 			bool affect_flash = true;
 			bool affect_shake = true;
-		} effect_flags;
+		} flags;
 		double finish_x = 0.0;
 		double finish_y = 0.0;
 		int finish_magnify = 100;
