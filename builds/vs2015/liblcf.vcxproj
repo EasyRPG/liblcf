@@ -257,6 +257,7 @@
     <ClCompile Include="..\..\src\generated\lsd_savemapinfo.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savepartylocation.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savepicture.cpp" />
+    <ClCompile Include="..\..\src\generated\lsd_savepicture_flags.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savescreen.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savesystem.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savetarget.cpp" />

@@ -11,6 +11,7 @@
 #include "rpg_trooppagecondition.h"
 #include "rpg_eventpagecondition.h"
 #include "rpg_terrain.h"
+#include "rpg_savepicture.h"
 
 // Templates
 
@@ -120,3 +121,4 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 template class Flags<RPG::TroopPageCondition::Flags>;
 template class Flags<RPG::EventPageCondition::Flags>;
 template class Flags<RPG::Terrain::Flags>;
+template class Flags<RPG::SavePicture::Flags>;

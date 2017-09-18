@@ -374,6 +374,9 @@
     <ClCompile Include="..\..\src\generated\lsd_savepicture.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\generated\lsd_savepicture_flags.cpp">
+      <Filter>Source Files\LSD</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\generated\lsd_savescreen.cpp">
       <Filter>Source Files\LSD</Filter>
     </ClCompile>

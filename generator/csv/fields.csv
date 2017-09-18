@@ -759,7 +759,7 @@ SaveSystem,menu_allowed,f,Boolean,0x7C,True,
 SaveSystem,background,f,String,0x7D,,string
 SaveSystem,save_count,f,Integer,0x83,0,
 SaveSystem,save_slot,f,Integer,0x84,1,
-SaveSystem,atb_mode,f,Enum<SaveSystem_AtbMode>,0x8C,0,ATB mode of RPG 2003 battle system. 
+SaveSystem,atb_mode,f,Enum<SaveSystem_AtbMode>,0x8C,0,ATB mode of RPG 2003 battle system.
 SaveScreen,tint_finish_red,f,Integer,0x01,100,int
 SaveScreen,tint_finish_green,f,Integer,0x02,100,int
 SaveScreen,tint_finish_blue,f,Integer,0x03,100,int
@@ -806,6 +806,15 @@ SavePicture,current_sat,f,Double,0x0E,-1.0,double
 SavePicture,effect_mode,f,Integer,0x0F,0,int
 SavePicture,current_effect,f,Double,0x10,0.0,double
 SavePicture,current_bot_trans,f,Double,0x12,0.0,double
+SavePicture,spritesheet_cols,f,Integer,0x13,1,Spritesheet columns
+SavePicture,spritesheet_rows,f,Integer,0x14,1,Spritesheet rows
+SavePicture,spritesheet_frame,f,Integer,0x15,0,Current spritesheet frame
+SavePicture,spritesheet_speed,f,Integer,0x16,0,Spritesheet speed (X frames per second)
+SavePicture,frames,f,Integer,0x17,0,Frames since ShowPicture
+SavePicture,spritesheet_play_once,f,Boolean,0x18,False,True: Play once and destroy; False: Loop spritesheet
+SavePicture,map_layer,f,Enum<MapLayer>,0x19,7,Layer to show picture on at the map
+SavePicture,battle_layer,f,Enum<BattleLayer>,0x1A,0,Layer to show picture on in battle
+SavePicture,effect_flags,f,SavePicture_Flags,0x1B,97,Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint
 SavePicture,finish_x,f,Double,0x1F,0.0,double
 SavePicture,finish_y,f,Double,0x20,0.0,double
 SavePicture,finish_magnify,f,Integer,0x21,100,int

@@ -97,6 +97,7 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_savemapinfo.cpp \
 	src/generated/lsd_savepartylocation.cpp \
 	src/generated/lsd_savepicture.cpp \
+	src/generated/lsd_savepicture_flags.cpp \
 	src/generated/lsd_savescreen.cpp \
 	src/generated/lsd_savesystem.cpp \
 	src/generated/lsd_savetarget.cpp \

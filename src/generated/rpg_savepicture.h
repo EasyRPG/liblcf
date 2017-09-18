@@ -21,6 +21,28 @@
 namespace RPG {
 	class SavePicture {
 	public:
+		enum MapLayer {
+			MapLayer_none = 0,
+			MapLayer_parallax = 1,
+			MapLayer_tilemap_below = 2,
+			MapLayer_events_below = 3,
+			MapLayer_events_same_as_player = 4,
+			MapLayer_tilemap_above = 5,
+			MapLayer_events_above = 6,
+			MapLayer_weather = 7,
+			MapLayer_animations = 8,
+			MapLayer_windows = 9,
+			MapLayer_timers = 10
+		};
+		enum BattleLayer {
+			BattleLayer_none = 0,
+			BattleLayer_background = 1,
+			BattleLayer_battlers_and_animations = 2,
+			BattleLayer_weather = 3,
+			BattleLayer_windows_and_status = 4,
+			BattleLayer_timers = 5
+		};
+
 		int ID = 0;
 		std::string name;
 		double start_x = 0.0;
@@ -38,6 +60,23 @@ namespace RPG {
 		int effect_mode = 0;
 		double current_effect = 0.0;
 		double current_bot_trans = 0.0;
+		int spritesheet_cols = 1;
+		int spritesheet_rows = 1;
+		int spritesheet_frame = 0;
+		int spritesheet_speed = 0;
+		int frames = 0;
+		bool spritesheet_play_once = false;
+		int map_layer = 7;
+		int battle_layer = 0;
+		struct Flags {
+			bool persist_map;
+			bool persist_battle;
+			bool unused_bit;
+			bool unused_bit2;
+			bool affect_tint;
+			bool affect_flash;
+			bool affect_shake;
+		} effect_flags;
 		double finish_x = 0.0;
 		double finish_y = 0.0;
 		int finish_magnify = 100;

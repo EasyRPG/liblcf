@@ -31,6 +31,7 @@
 #include "rpg_movecommand.h"
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
+#include "rpg_savepicture.h"
 
 // Forward declarations
 
@@ -55,7 +56,8 @@ struct TypeCategory {
 
 template <> struct TypeCategory<RPG::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
 template <> struct TypeCategory<RPG::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::Terrain::Flags>			{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<RPG::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<RPG::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
 
 template <> struct TypeCategory<RPG::Equipment>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
@@ -216,7 +218,7 @@ struct Primitive<int> {
 #endif
 			stream.Seek(length, LcfReader::FromCurrent);
 		}
-		
+
 	}
 	static void WriteLcf(const int& ref, LcfWriter& stream) {
 		stream.WriteInt(ref);

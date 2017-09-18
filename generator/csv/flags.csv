@@ -20,3 +20,10 @@ EventPageCondition,item
 EventPageCondition,actor
 EventPageCondition,timer
 EventPageCondition,timer2
+SavePicture,persist_map
+SavePicture,persist_battle
+SavePicture,unused_bit
+SavePicture,unused_bit2
+SavePicture,affect_tint
+SavePicture,affect_flash
+SavePicture,affect_shake

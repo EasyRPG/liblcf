@@ -37,9 +37,17 @@ CMakeFiles/
 *.cmake
 !/builds/cmake/Modules/Find*.cmake
 /builds/cmake/lib/
+/builds/cmake/*.in
+
+# IntelliJ / CLion
+.idea/
 
 # doxygen generated files
 /doc/
+
+# Python generated files
+*.pyc
+__pycache__/
 
 # other generated files
 Makefile
