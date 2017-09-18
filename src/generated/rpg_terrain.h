@@ -58,10 +58,10 @@ namespace RPG {
 		int background_b_scrollh_speed = 0;
 		int background_b_scrollv_speed = 0;
 		struct Flags {
-			bool back_party;
-			bool back_enemies;
-			bool lateral_party;
-			bool lateral_enemies;
+			bool back_party = false;
+			bool back_enemies = false;
+			bool lateral_party = false;
+			bool lateral_enemies = false;
 		} special_flags;
 		int special_back_party = 15;
 		int special_back_enemies = 10;

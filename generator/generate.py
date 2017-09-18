@@ -92,6 +92,16 @@ def pod_default(field):
 def flag_size(flag):
     return (len(flag) + 7) // 8
 
+def flag_set(field, bit):
+    bit -= 1
+    try:
+        res = bool(int(field.default) & (1 << bit))
+    except ValueError:
+        # Default was not an int
+        res = False
+
+    return str(res).lower()
+
 def filter_structs_without_codes(structs):
     for struct in structs:
         if all(f.code for f in sfields[struct.name]):
@@ -334,6 +344,7 @@ def main(argv):
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
     env.filters["flag_size"] = flag_size
+    env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor
 
     globals = dict(

@@ -49,7 +49,7 @@ namespace RPG {
 		{%- if field.type.endswith("_Flags") %}
 		struct Flags {
 		{%- for flag in flags[struct_name] %}
-			bool {{ flag.field }};
+			bool {{ flag.field }} = {{ field|flag_set(loop.index) }};
 		{%- endfor %}
 		} {{ field.name }};
 		{%- else %}
