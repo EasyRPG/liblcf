@@ -31,22 +31,22 @@ double LSD_Reader::GenerateTimestamp(std::time_t const t) {
 }
 
 std::unique_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string& encoding) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LSD_Reader::Load(stream, encoding);
 }
 
 bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const std::string& encoding) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LSD_Reader::Save(stream, save, encoding);
 }
 
 bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LSD_Reader::SaveXml(stream, save);
 }
 
 std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LSD_Reader::LoadXml(stream);
 }
 

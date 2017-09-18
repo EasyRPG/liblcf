@@ -23,7 +23,19 @@ struct RawStruct<RPG::Equipment> {
 /**
  * Reads Equipment.
  */
-void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t /* length */) {
+void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
+	if (length != 10) {
+		fprintf(stderr, "Equipment has incorrect size %d (expected 10)\n", length);
+
+		LcfReader::Chunk chunk_info;
+		chunk_info.ID = 0x33;
+		chunk_info.length = length;
+
+		stream.Skip(chunk_info);
+
+		return;
+	}
+
 	stream.Read(ref.weapon_id);
 	stream.Read(ref.shield_id);
 	stream.Read(ref.armor_id);

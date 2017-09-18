@@ -16,22 +16,22 @@
 #include "reader_struct.h"
 
 std::unique_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const std::string& encoding) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LMU_Reader::Load(stream, encoding);
 }
 
 bool LMU_Reader::Save(const std::string& filename, const RPG::Map& save, const std::string& encoding) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LMU_Reader::Save(stream, save, encoding);
 }
 
 bool LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& save) {
-	std::ofstream stream(filename.c_str());
+	std::ofstream stream(filename.c_str(), std::ios::binary);
 	return LMU_Reader::SaveXml(stream, save);
 }
 
 std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
-	std::ifstream stream(filename.c_str());
+	std::ifstream stream(filename.c_str(), std::ios::binary);
 	return LMU_Reader::LoadXml(stream);
 }
 
