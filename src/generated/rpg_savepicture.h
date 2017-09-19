@@ -69,13 +69,13 @@ namespace RPG {
 		int map_layer = 7;
 		int battle_layer = 0;
 		struct Flags {
-			bool persist_map = true;
-			bool persist_battle = false;
+			bool erase_on_map_change = true;
+			bool erase_on_battle_end = false;
 			bool unused_bit = false;
 			bool unused_bit2 = false;
-			bool affect_tint = false;
-			bool affect_flash = true;
-			bool affect_shake = true;
+			bool affected_by_tint = false;
+			bool affected_by_flash = true;
+			bool affected_by_shake = true;
 		} flags;
 		double finish_x = 0.0;
 		double finish_y = 0.0;

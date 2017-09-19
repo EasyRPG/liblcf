@@ -26,13 +26,13 @@ char const* const Flags<flags_type>::name("SavePicture_Flags");
 
 template <>
 const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::persist_map, "persist_map"),
-	new Flags<flags_type>::Flag(&flags_type::persist_battle, "persist_battle"),
+	new Flags<flags_type>::Flag(&flags_type::erase_on_map_change, "erase_on_map_change"),
+	new Flags<flags_type>::Flag(&flags_type::erase_on_battle_end, "erase_on_battle_end"),
 	new Flags<flags_type>::Flag(&flags_type::unused_bit, "unused_bit"),
 	new Flags<flags_type>::Flag(&flags_type::unused_bit2, "unused_bit2"),
-	new Flags<flags_type>::Flag(&flags_type::affect_tint, "affect_tint"),
-	new Flags<flags_type>::Flag(&flags_type::affect_flash, "affect_flash"),
-	new Flags<flags_type>::Flag(&flags_type::affect_shake, "affect_shake"),
+	new Flags<flags_type>::Flag(&flags_type::affected_by_tint, "affected_by_tint"),
+	new Flags<flags_type>::Flag(&flags_type::affected_by_flash, "affected_by_flash"),
+	new Flags<flags_type>::Flag(&flags_type::affected_by_shake, "affected_by_shake"),
 	NULL
 };
 
