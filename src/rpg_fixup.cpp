@@ -127,6 +127,9 @@ void RPG::SaveSystem::Fixup() {
 	if (item_se.name.empty()) {
 		item_se.name = system.item_se.name;
 	}
+	if (message_stretch == -1) {
+		message_stretch = system.message_stretch;
+	}
 }
 
 void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {

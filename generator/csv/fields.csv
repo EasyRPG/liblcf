@@ -706,7 +706,7 @@ SaveTitle,face4_id,f,Integer,0x1C,0,int: face id
 SaveSystem,screen,f,Integer,0x01,1,
 SaveSystem,frame_count,f,Integer,0x0B,0,
 SaveSystem,graphics_name,f,String,0x15,'',string
-SaveSystem,message_stretch,f,Integer,0x16,0,Integer
+SaveSystem,message_stretch,f,Integer,0x16,-1,Integer
 SaveSystem,font_id,f,Integer,0x17,0,Integer
 SaveSystem,switches_size,f,Integer,0x1F,0,
 SaveSystem,switches,f,Vector<Boolean>,0x20,,
