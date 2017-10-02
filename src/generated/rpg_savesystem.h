@@ -35,7 +35,7 @@ namespace RPG {
 		int screen = 1;
 		int frame_count = 0;
 		std::string graphics_name;
-		int message_stretch = 0;
+		int message_stretch = -1;
 		int font_id = 0;
 		int switches_size = 0;
 		std::vector<bool> switches;
