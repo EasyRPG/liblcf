@@ -19,16 +19,16 @@ namespace RPG {
 	class TroopPageCondition {
 	public:
 		struct Flags {
-			bool switch_a;
-			bool switch_b;
-			bool variable;
-			bool turn;
-			bool fatigue;
-			bool enemy_hp;
-			bool actor_hp;
-			bool turn_enemy;
-			bool turn_actor;
-			bool command_actor;
+			bool switch_a = false;
+			bool switch_b = false;
+			bool variable = false;
+			bool turn = false;
+			bool fatigue = false;
+			bool enemy_hp = false;
+			bool actor_hp = false;
+			bool turn_enemy = false;
+			bool turn_actor = false;
+			bool command_actor = false;
 		} flags;
 		int switch_a_id = 1;
 		int switch_b_id = 1;

@@ -260,6 +260,24 @@ namespace LSD_Reader {
 			current_effect = 0x10,
 			/** double */
 			current_bot_trans = 0x12,
+			/** Spritesheet columns */
+			spritesheet_cols = 0x13,
+			/** Spritesheet rows */
+			spritesheet_rows = 0x14,
+			/** Current spritesheet frame */
+			spritesheet_frame = 0x15,
+			/** Spritesheet speed (X frames per second) */
+			spritesheet_speed = 0x16,
+			/** Frames since ShowPicture */
+			frames = 0x17,
+			/** True: Play once and destroy; False: Loop spritesheet */
+			spritesheet_play_once = 0x18,
+			/** Layer to show picture on at the map */
+			map_layer = 0x19,
+			/** Layer to show picture on in battle */
+			battle_layer = 0x1A,
+			/** Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint */
+			flags = 0x1B,
 			/** double */
 			finish_x = 0x1F,
 			/** double */

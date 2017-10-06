@@ -28,13 +28,13 @@ namespace RPG {
 		};
 
 		struct Flags {
-			bool switch_a;
-			bool switch_b;
-			bool variable;
-			bool item;
-			bool actor;
-			bool timer;
-			bool timer2;
+			bool switch_a = false;
+			bool switch_b = false;
+			bool variable = false;
+			bool item = false;
+			bool actor = false;
+			bool timer = false;
+			bool timer2 = false;
 		} flags;
 		int switch_a_id = 1;
 		int switch_b_id = 1;
