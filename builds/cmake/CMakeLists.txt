@@ -83,22 +83,10 @@ install(FILES ${CMAKE_BINARY_DIR}/liblcf.pc
   DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
 
 # test
-enable_testing()
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../src)
 
-function(CXX_TEST target libs)
-  get_filename_component(name ${target} NAME_WE)
-  add_executable(test_${name} ${target})
-  target_link_libraries(test_${name} ${PROJECT_NAME} ${libs})
-  add_test(
-    NAME test_${name}
-    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH}
-    COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_${name})
-  add_dependencies(test_${name} ${PROJECT_NAME})
-endfunction()
-
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../tests/*.cpp)
-foreach(i ${TEST_FILES})
-  cxx_test(${i} ${ICU_LIBRARIES} ${EXPAT_LIBRARY})
-endforeach()
+add_executable(test_runner EXCLUDE_FROM_ALL ${TEST_FILES})
+target_link_libraries(test_runner ${PROJECT_NAME} ${ICU_LIBRARIES} ${EXPAT_LIBRARY})
+add_custom_target(check COMMAND ${EXECUTABLE_OUTPUT_PATH}/test_runner)
+add_dependencies(check test_runner)

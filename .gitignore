@@ -4,9 +4,7 @@
 /builds/autoconf/
 !/builds/autoconf/m4/m4_ax_pkg_check_modules.m4
 /liblcf-*/
-/tests/*.log
-/tests/*.trs
-/time_stamp*
+/test_runner*
 .deps/
 .libs/
 .dirstamp
@@ -20,7 +18,6 @@ configure
 liblcf-*.tar.gz
 libtool
 stamp-h1
-test-suite.log
 *.la
 *.lo
 
@@ -57,5 +54,4 @@ Makefile
 *.pc
 
 # tests
-/tests/time_stamp*
-!/tests/time_stamp.cpp
+/tests/test_runner*

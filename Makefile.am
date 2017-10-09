@@ -193,18 +193,22 @@ pkginclude_HEADERS = \
 	src/generated/rpg_trooppage.h \
 	src/generated/rpg_variable.h
 
-check_PROGRAMS = time_stamp
-TESTS = time_stamp
-time_stamp_SOURCES = tests/time_stamp.cpp
-time_stamp_CPPFLAGS = \
+check_PROGRAMS = test_runner
+test_runner_SOURCES = \
+	tests/time_stamp.cpp \
+	tests/test_main.cpp
+test_runner_CPPFLAGS = \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
-time_stamp_CXXFLAGS = \
+test_runner_CXXFLAGS = \
 	-std=c++11 \
 	$(EXPAT_CXXFLAGS) \
 	$(ICU_CXXFLAGS)
-time_stamp_LDADD = \
+test_runner_LDADD = \
 	liblcf.la \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
-time_stamp_LDFLAGS = -no-install
+test_runner_LDFLAGS = -no-install
+
+check-local:
+	$(AM_V_at)./test_runner
