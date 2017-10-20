@@ -5,7 +5,7 @@ AC_PREREQ([2.69])
 AC_INIT([liblcf],[0.5.2],[https://github.com/EasyRPG/liblcf/issues],[liblcf],[https://easyrpg.org/])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
-AM_INIT_AUTOMAKE([1.11.4 foreign subdir-objects -Wall -Werror])
+AM_INIT_AUTOMAKE([1.11.4 foreign subdir-objects -Wall dist-xz])
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 

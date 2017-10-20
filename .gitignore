@@ -4,7 +4,6 @@
 /builds/autoconf/
 !/builds/autoconf/m4/m4_ax_pkg_check_modules.m4
 /liblcf-*/
-/test_runner*
 .deps/
 .libs/
 .dirstamp
@@ -15,7 +14,7 @@ config.h.in
 config.log
 config.status
 configure
-liblcf-*.tar.gz
+liblcf-*.tar.*
 libtool
 stamp-h1
 *.la
@@ -54,4 +53,4 @@ Makefile
 *.pc
 
 # tests
-/tests/test_runner*
+test_runner*

@@ -15,7 +15,7 @@ Documentation is available at the documentation wiki: https://wiki.easyrpg.org
 ## Requirements
 
 Expat for XML reading support.
-ICU for character encoding detection and conversion.
+ICU for character encoding detection and conversion (recommended).
 
 
 ## Source code
