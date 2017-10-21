@@ -15,7 +15,7 @@ Documentation is available at the documentation wiki: https://wiki.easyrpg.org
 ## Requirements
 
 Expat for XML reading support.
-ICU for character encoding detection and conversion.
+ICU for character encoding detection and conversion (recommended).
 
 
 ## Source code
@@ -41,8 +41,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.5.2.tar.xz # unpack the tarball
-    cd liblcf-0.5.2            # enter in the package directory
+    tar xf liblcf-0.5.3.tar.xz # unpack the tarball
+    cd liblcf-0.5.3            # enter in the package directory
     ./configure --prefix /usr  # find libraries, set options
     make                       # compile the library
     sudo make install          # install system-wide

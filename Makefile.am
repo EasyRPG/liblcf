@@ -1,5 +1,6 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
-EXTRA_DIST = AUTHORS.md README.md builds generator
+EXTRA_DIST = AUTHORS.md README.md generator \
+	builds/cmake builds/vs2015 builds/Doxyfile
 pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
@@ -195,6 +196,7 @@ pkginclude_HEADERS = \
 
 check_PROGRAMS = test_runner
 test_runner_SOURCES = \
+	tests/doctest.h \
 	tests/time_stamp.cpp \
 	tests/test_main.cpp
 test_runner_CPPFLAGS = \
