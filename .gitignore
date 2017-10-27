@@ -31,9 +31,10 @@ bin/
 CMakeCache.txt
 CMakeFiles/
 *.cmake
-!/builds/cmake/Modules/Find*.cmake
-/builds/cmake/lib/
-/builds/cmake/*.in
+!/builds/cmake/Modules/*.cmake
+CMakeDoxyfile.in
+install_manifest.txt
+Testing/
 
 # IntelliJ / CLion
 .idea/
