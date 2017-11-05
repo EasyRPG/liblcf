@@ -46,7 +46,7 @@ namespace RPG {
 		std::vector<int16_t> equipped;
 		int current_hp = -1;
 		int current_sp = -1;
-		std::vector<uint32_t> battle_commands;
+		std::vector<int32_t> battle_commands;
 		int status_size = 0;
 		std::vector<int16_t> status;
 		bool changed_class = false;

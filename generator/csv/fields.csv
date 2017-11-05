@@ -33,7 +33,7 @@ Actor,state_ranks,t,UInt8,0x47,,Integer
 Actor,state_ranks,f,Vector<UInt8>,0x48,,Array - Short
 Actor,attribute_ranks,t,UInt8,0x49,,Integer
 Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,Array - Short
-Actor,battle_commands,f,Vector<Ref<BattleCommand:UInt32>>,0x50,,Array - RPG::BattleCommand - RPG2003
+Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,Array - RPG::BattleCommand - RPG2003
 Sound,name,f,String,0x01,'',String
 Sound,volume,f,Integer,0x03,100,Integer
 Sound,tempo,f,Integer,0x04,100,Integer
@@ -122,7 +122,7 @@ Class,state_ranks,t,UInt8,0x47,,Integer
 Class,state_ranks,f,Vector<UInt8>,0x48,,Array - Short
 Class,attribute_ranks,t,UInt8,0x49,,Integer
 Class,attribute_ranks,f,Vector<UInt8>,0x4A,,Array - Short
-Class,battle_commands,f,Vector<Ref<BattleCommand:UInt32>>,0x50,,Array - Uint32
+Class,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,Array - Uint32
 CommonEvent,name,f,String,0x01,'',String
 CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,Flag
@@ -946,7 +946,7 @@ SaveActor,skills,f,Vector<Int16>,0x34,,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,short[5]
 SaveActor,current_hp,f,Integer,0x47,-1,int
 SaveActor,current_sp,f,Integer,0x48,-1,int
-SaveActor,battle_commands,f,Vector<Ref<BattleCommand:UInt32>>,0x50,,array of (uncompressed) int32
+SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,array of (uncompressed) int32
 SaveActor,status_size,f,Integer,0x51,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,array of short
 SaveActor,changed_class,f,Boolean,0x53,False,bool

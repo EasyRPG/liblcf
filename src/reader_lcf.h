@@ -235,6 +235,13 @@ private:
 	static void SwapByteOrder(uint16_t &us);
 
 	/**
+	 * Converts a 32bit signed integer to/from little-endian.
+	 *
+	 * @param us integer to convert.
+	 */
+	static void SwapByteOrder(int32_t &us);
+
+	/**
 	 * Converts a 32bit unsigned integer to/from little-endian.
 	 *
 	 * @param ui integer to convert.

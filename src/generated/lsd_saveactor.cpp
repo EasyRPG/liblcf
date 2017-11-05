@@ -40,7 +40,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, equipped),
 	LCF_STRUCT_TYPED_FIELD(int, current_hp),
 	LCF_STRUCT_TYPED_FIELD(int, current_sp),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint32_t>, battle_commands),
+	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands),
 	LCF_STRUCT_TYPED_FIELD(int, status_size),
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, status),
 	LCF_STRUCT_TYPED_FIELD(bool, changed_class),
