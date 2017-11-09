@@ -49,7 +49,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	battle_commands.resize(7, -1);
 	status_size = 0;
 	status.clear();
-	changed_class = false;
+	changed_battle_commands = false;
 	class_id = -1;
 	row = -1;
 	two_weapon = actor.two_weapon;

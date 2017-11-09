@@ -49,7 +49,7 @@ namespace RPG {
 		std::vector<int32_t> battle_commands;
 		int status_size = 0;
 		std::vector<int16_t> status;
-		bool changed_class = false;
+		bool changed_battle_commands = false;
 		int class_id = -1;
 		int row = 0;
 		bool two_weapon = false;
