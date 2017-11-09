@@ -559,7 +559,7 @@ namespace LSD_Reader {
 			/** array of short */
 			status = 0x52,
 			/** bool */
-			changed_class = 0x53,
+			changed_battle_commands = 0x53,
 			/** int class-id */
 			class_id = 0x5A,
 			/** RPG2003 Battle row (-1 Back; 1 Front) */

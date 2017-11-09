@@ -92,6 +92,17 @@ void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
 }
 
 template <>
+void LcfWriter::Write<int32_t>(const std::vector<int32_t>& buffer) {
+	std::vector<int32_t>::const_iterator it;
+	for (it = buffer.begin(); it != buffer.end(); it++) {
+		int32_t val = *it;
+		SwapByteOrder(val);
+		// Write<int> writes a compressed integer
+		Write(&val, 4, 1);
+	}
+}
+
+template <>
 void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
 	std::vector<uint32_t>::const_iterator it;
 	for (it = buffer.begin(); it != buffer.end(); it++)
@@ -146,4 +157,9 @@ void LcfWriter::SwapByteOrder(double& /* d */) {}
 void LcfWriter::SwapByteOrder(int16_t& s)
 {
 	SwapByteOrder((uint16_t&) s);
+}
+
+void LcfWriter::SwapByteOrder(int32_t& s)
+{
+	SwapByteOrder((uint32_t&) s);
 }

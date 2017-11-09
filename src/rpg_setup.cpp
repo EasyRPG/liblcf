@@ -46,11 +46,11 @@ void RPG::SaveActor::Setup(int actor_id) {
 	equipped.push_back(actor.initial_equipment.accessory_id);
 	current_hp = 0;
 	current_sp = 0;
-	battle_commands = actor.battle_commands;
+	battle_commands.resize(7, -1);
 	status_size = 0;
 	status.clear();
-	changed_class = false;
-	class_id = actor.class_id;
+	changed_battle_commands = false;
+	class_id = -1;
 	row = -1;
 	two_weapon = actor.two_weapon;
 	lock_equipment = actor.lock_equipment;

@@ -146,6 +146,22 @@ void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 }
 
 template <>
+void LcfReader::Read<int32_t>(std::vector<int32_t> &buffer, size_t size) {
+	buffer.clear();
+	size_t items = size / 4;
+	for (unsigned int i = 0; i < items; ++i) {
+		int32_t val;
+		Read(&val, 4, 1);
+		SwapByteOrder(val);
+		buffer.push_back(val);
+	}
+	if (size % 4 != 0) {
+		Seek(size % 4, FromCurrent);
+		buffer.push_back(0);
+	}
+}
+
+template <>
 void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	buffer.clear();
 	size_t items = size / 4;
@@ -298,4 +314,9 @@ void LcfReader::SwapByteOrder(double& /* d */) {}
 void LcfReader::SwapByteOrder(int16_t& s)
 {
 	SwapByteOrder((uint16_t&) s);
+}
+
+void LcfReader::SwapByteOrder(int32_t& s)
+{
+	SwapByteOrder((uint32_t&) s);
 }

@@ -32,8 +32,9 @@ cpp_types = {
     'UInt16': 'uint16_t',
     'UInt32': 'uint32_t',
     'Int16': 'int16_t',
+    'Int32': 'int32_t',
     'String': 'std::string',
-    }
+}
 
 # Additional Jinja 2 functions
 def cpp_type(ty, prefix=True):
