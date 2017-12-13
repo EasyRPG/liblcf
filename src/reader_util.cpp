@@ -31,6 +31,7 @@
 #   include <locale>
 #endif
 
+#include <cstdio>
 #include <cstdlib>
 #include <sstream>
 #include <vector>
