@@ -16,7 +16,7 @@
 #include <cstring>
 #include <cassert>
 #include <memory>
-#include "reader_types.h"
+#include <stdint.h>
 #include "lcf_options.h"
 #include "reader_util.h"
 

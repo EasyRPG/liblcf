@@ -13,6 +13,7 @@
 #define LCF_RPG_MUSIC_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 
 /**
@@ -22,10 +23,10 @@ namespace RPG {
 	class Music {
 	public:
 		std::string name;
-		int fadein = 0;
-		int volume = 100;
-		int tempo = 100;
-		int balance = 50;
+		int32_t fadein = 0;
+		int32_t volume = 100;
+		int32_t tempo = 100;
+		int32_t balance = 50;
 	};
 }
 

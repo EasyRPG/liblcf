@@ -13,6 +13,7 @@
 #define LCF_RPG_ANIMATIONTIMING_H
 
 // Headers
+#include <stdint.h>
 #include "rpg_sound.h"
 
 /**
@@ -33,14 +34,14 @@ namespace RPG {
 		};
 
 		int ID = 0;
-		int frame = 0;
+		int32_t frame = 0;
 		Sound se;
-		int flash_scope = 0;
-		int flash_red = 31;
-		int flash_green = 31;
-		int flash_blue = 31;
-		int flash_power = 31;
-		int screen_shake = 0;
+		int32_t flash_scope = 0;
+		int32_t flash_red = 31;
+		int32_t flash_green = 31;
+		int32_t flash_blue = 31;
+		int32_t flash_power = 31;
+		int32_t screen_shake = 0;
 	};
 }
 

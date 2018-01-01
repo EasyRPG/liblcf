@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_TROOPMEMBER_H
 #define LCF_RPG_TROOPMEMBER_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::TroopMember class.
  */
@@ -19,9 +22,9 @@ namespace RPG {
 	class TroopMember {
 	public:
 		int ID = 0;
-		int enemy_id = 1;
-		int x = 0;
-		int y = 0;
+		int32_t enemy_id = 1;
+		int32_t x = 0;
+		int32_t y = 0;
 		bool invisible = false;
 	};
 }

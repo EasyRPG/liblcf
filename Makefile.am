@@ -121,7 +121,6 @@ pkginclude_HEADERS = \
 	src/lsd_reader.h \
 	src/reader_lcf.h \
 	src/reader_struct.h \
-	src/reader_types.h \
 	src/reader_util.h \
 	src/reader_xml.h \
 	src/writer_lcf.h \

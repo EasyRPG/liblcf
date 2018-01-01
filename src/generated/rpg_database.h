@@ -13,6 +13,7 @@
 #define LCF_RPG_DATABASE_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
 #include "rpg_actor.h"
 #include "rpg_animation.h"
@@ -54,7 +55,7 @@ namespace RPG {
 		std::vector<Switch> switches;
 		std::vector<Variable> variables;
 		std::vector<CommonEvent> commonevents;
-		int version = 0;
+		int32_t version = 0;
 		BattleCommands battlecommands;
 		std::vector<Class> classes;
 		std::vector<BattlerAnimation> battleranimations;

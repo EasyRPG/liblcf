@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_BATTLERANIMATIONDATA_H
 #define LCF_RPG_BATTLERANIMATIONDATA_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::BattlerAnimationData class.
  */
@@ -30,9 +33,9 @@ namespace RPG {
 		};
 
 		int ID = 0;
-		int move = 0;
-		int after_image = 0;
-		int pose = 0;
+		int32_t move = 0;
+		int32_t after_image = 0;
+		int32_t pose = 0;
 	};
 }
 

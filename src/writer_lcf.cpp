@@ -54,7 +54,7 @@ void LcfWriter::WriteInt(int val) {
 }
 
 template <>
-void LcfWriter::Write<int>(int val) {
+void LcfWriter::Write<int32_t>(int32_t val) {
 	WriteInt(val);
 }
 
@@ -97,7 +97,7 @@ void LcfWriter::Write<int32_t>(const std::vector<int32_t>& buffer) {
 	for (it = buffer.begin(); it != buffer.end(); it++) {
 		int32_t val = *it;
 		SwapByteOrder(val);
-		// Write<int> writes a compressed integer
+		// Write<int32_t> writes a compressed integer
 		Write(&val, 4, 1);
 	}
 }

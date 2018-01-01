@@ -20,15 +20,15 @@
 #define LCF_CURRENT_STRUCT ItemAnimation
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, type),
-	LCF_STRUCT_TYPED_FIELD(int, weapon_anim),
-	LCF_STRUCT_TYPED_FIELD(int, movement),
-	LCF_STRUCT_TYPED_FIELD(int, after_image),
-	LCF_STRUCT_TYPED_FIELD(int, attacks),
+	LCF_STRUCT_TYPED_FIELD(int32_t, type),
+	LCF_STRUCT_TYPED_FIELD(int32_t, weapon_anim),
+	LCF_STRUCT_TYPED_FIELD(int32_t, movement),
+	LCF_STRUCT_TYPED_FIELD(int32_t, after_image),
+	LCF_STRUCT_TYPED_FIELD(int32_t, attacks),
 	LCF_STRUCT_TYPED_FIELD(bool, ranged),
-	LCF_STRUCT_TYPED_FIELD(int, ranged_anim),
-	LCF_STRUCT_TYPED_FIELD(int, ranged_speed),
-	LCF_STRUCT_TYPED_FIELD(int, battle_anim),
+	LCF_STRUCT_TYPED_FIELD(int32_t, ranged_anim),
+	LCF_STRUCT_TYPED_FIELD(int32_t, ranged_speed),
+	LCF_STRUCT_TYPED_FIELD(int32_t, battle_anim),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

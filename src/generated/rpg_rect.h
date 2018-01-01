@@ -13,7 +13,7 @@
 #define LCF_RPG_RECT_H
 
 // Headers
-#include "reader_types.h"
+#include <stdint.h>
 
 /**
  * RPG::Rect class.

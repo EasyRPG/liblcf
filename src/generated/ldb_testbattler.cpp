@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT TestBattler
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, actor_id),
-	LCF_STRUCT_TYPED_FIELD(int, level),
-	LCF_STRUCT_TYPED_FIELD(int, weapon_id),
-	LCF_STRUCT_TYPED_FIELD(int, shield_id),
-	LCF_STRUCT_TYPED_FIELD(int, armor_id),
-	LCF_STRUCT_TYPED_FIELD(int, helmet_id),
-	LCF_STRUCT_TYPED_FIELD(int, accessory_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, actor_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, level),
+	LCF_STRUCT_TYPED_FIELD(int32_t, weapon_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, shield_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, armor_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, helmet_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, accessory_id),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

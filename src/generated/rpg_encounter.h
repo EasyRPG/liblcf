@@ -19,7 +19,7 @@ namespace RPG {
 	class Encounter {
 	public:
 		int ID = 0;
-		int troop_id = 0;
+		int32_t troop_id = 0;
 	};
 }
 

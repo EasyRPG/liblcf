@@ -31,9 +31,9 @@ namespace RPG {
 
 		int ID = 0;
 		std::string name;
-		int trigger = 0;
+		int32_t trigger = 0;
 		bool switch_flag = false;
-		int switch_id = 1;
+		int32_t switch_id = 1;
 		std::vector<EventCommand> event_commands;
 	};
 }

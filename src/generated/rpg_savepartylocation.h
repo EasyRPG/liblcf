@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEPARTYLOCATION_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include "rpg_moveroute.h"
 
@@ -30,60 +31,60 @@ namespace RPG {
 		};
 
 		bool active = true;
-		int map_id = -1;
-		int position_x = -1;
-		int position_y = -1;
-		int direction = 2;
-		int sprite_direction = 2;
-		int anim_frame = 1;
-		int transparency = 0;
-		int remaining_step = 0;
-		int move_frequency = 2;
-		int layer = 1;
+		int32_t map_id = -1;
+		int32_t position_x = -1;
+		int32_t position_y = -1;
+		int32_t direction = 2;
+		int32_t sprite_direction = 2;
+		int32_t anim_frame = 1;
+		int32_t transparency = 0;
+		int32_t remaining_step = 0;
+		int32_t move_frequency = 2;
+		int32_t layer = 1;
 		bool overlap_forbidden = false;
-		int animation_type = 1;
+		int32_t animation_type = 1;
 		bool lock_facing = false;
-		int move_speed = 4;
+		int32_t move_speed = 4;
 		MoveRoute move_route;
 		bool move_route_overwrite = false;
-		int move_route_index = 0;
+		int32_t move_route_index = 0;
 		bool move_route_repeated = false;
 		bool sprite_transparent = false;
-		int unknown_2f_overlap = 0;
-		int anim_paused = 0;
+		int32_t unknown_2f_overlap = 0;
+		int32_t anim_paused = 0;
 		bool through = false;
-		int stop_count = 0;
-		int anim_count = 0;
-		int max_stop_count = 0;
+		int32_t stop_count = 0;
+		int32_t anim_count = 0;
+		int32_t max_stop_count = 0;
 		bool jumping = false;
-		int begin_jump_x = 0;
-		int begin_jump_y = 0;
-		int unknown_47_pause = 0;
+		int32_t begin_jump_x = 0;
+		int32_t begin_jump_y = 0;
+		int32_t unknown_47_pause = 0;
 		bool flying = false;
 		std::string sprite_name;
-		int sprite_id = 0;
-		int unknown_4b_sprite_move = 0;
-		int flash_red = 100;
-		int flash_green = 100;
-		int flash_blue = 100;
+		int32_t sprite_id = 0;
+		int32_t unknown_4b_sprite_move = 0;
+		int32_t flash_red = 100;
+		int32_t flash_green = 100;
+		int32_t flash_blue = 100;
 		double flash_current_level = 0.0;
-		int flash_time_left = 0;
+		int32_t flash_time_left = 0;
 		bool boarding = false;
 		bool aboard = false;
-		int vehicle = 0;
+		int32_t vehicle = 0;
 		bool unboarding = false;
-		int preboard_move_speed = 4;
-		int unknown_6c_menu_calling = 0;
-		int pan_state = 1;
-		int pan_current_x = 2304;
-		int pan_current_y = 1792;
-		int pan_finish_x = 2304;
-		int pan_finish_y = 1792;
-		int pan_speed = 16;
-		int encounter_steps = 0;
+		int32_t preboard_move_speed = 4;
+		int32_t unknown_6c_menu_calling = 0;
+		int32_t pan_state = 1;
+		int32_t pan_current_x = 2304;
+		int32_t pan_current_y = 1792;
+		int32_t pan_finish_x = 2304;
+		int32_t pan_finish_y = 1792;
+		int32_t pan_speed = 16;
+		int32_t encounter_steps = 0;
 		bool unknown_7d_encounter_calling = false;
-		int map_save_count = 0;
-		int database_save_count = 0;
+		int32_t map_save_count = 0;
+		int32_t database_save_count = 0;
 	};
 }
 

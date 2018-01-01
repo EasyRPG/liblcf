@@ -13,6 +13,7 @@
 #define LCF_RPG_ATTRIBUTE_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 
 /**
@@ -28,12 +29,12 @@ namespace RPG {
 
 		int ID = 0;
 		std::string name;
-		int type = 0;
-		int a_rate = 300;
-		int b_rate = 200;
-		int c_rate = 100;
-		int d_rate = 50;
-		int e_rate = 0;
+		int32_t type = 0;
+		int32_t a_rate = 300;
+		int32_t b_rate = 200;
+		int32_t c_rate = 100;
+		int32_t d_rate = 50;
+		int32_t e_rate = 0;
 	};
 }
 

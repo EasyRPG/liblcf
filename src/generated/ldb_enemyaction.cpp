@@ -20,19 +20,19 @@
 #define LCF_CURRENT_STRUCT EnemyAction
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, kind),
-	LCF_STRUCT_TYPED_FIELD(int, basic),
-	LCF_STRUCT_TYPED_FIELD(int, skill_id),
-	LCF_STRUCT_TYPED_FIELD(int, enemy_id),
-	LCF_STRUCT_TYPED_FIELD(int, condition_type),
-	LCF_STRUCT_TYPED_FIELD(int, condition_param1),
-	LCF_STRUCT_TYPED_FIELD(int, condition_param2),
-	LCF_STRUCT_TYPED_FIELD(int, switch_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, kind),
+	LCF_STRUCT_TYPED_FIELD(int32_t, basic),
+	LCF_STRUCT_TYPED_FIELD(int32_t, skill_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, enemy_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, condition_type),
+	LCF_STRUCT_TYPED_FIELD(int32_t, condition_param1),
+	LCF_STRUCT_TYPED_FIELD(int32_t, condition_param2),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id),
 	LCF_STRUCT_TYPED_FIELD(bool, switch_on),
-	LCF_STRUCT_TYPED_FIELD(int, switch_on_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_on_id),
 	LCF_STRUCT_TYPED_FIELD(bool, switch_off),
-	LCF_STRUCT_TYPED_FIELD(int, switch_off_id),
-	LCF_STRUCT_TYPED_FIELD(int, rating),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_off_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, rating),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

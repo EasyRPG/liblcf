@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_TROOPPAGECONDITION_H
 #define LCF_RPG_TROOPPAGECONDITION_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::TroopPageCondition class.
  */
@@ -30,28 +33,28 @@ namespace RPG {
 			bool turn_actor = false;
 			bool command_actor = false;
 		} flags;
-		int switch_a_id = 1;
-		int switch_b_id = 1;
-		int variable_id = 1;
-		int variable_value = 0;
-		int turn_a = 0;
-		int turn_b = 0;
-		int fatigue_min = 0;
-		int fatigue_max = 100;
-		int enemy_id = 0;
-		int enemy_hp_min = 0;
-		int enemy_hp_max = 100;
-		int actor_id = 1;
-		int actor_hp_min = 0;
-		int actor_hp_max = 100;
-		int turn_enemy_id = 0;
-		int turn_enemy_a = 0;
-		int turn_enemy_b = 0;
-		int turn_actor_id = 1;
-		int turn_actor_a = 0;
-		int turn_actor_b = 0;
-		int command_actor_id = 1;
-		int command_id = 1;
+		int32_t switch_a_id = 1;
+		int32_t switch_b_id = 1;
+		int32_t variable_id = 1;
+		int32_t variable_value = 0;
+		int32_t turn_a = 0;
+		int32_t turn_b = 0;
+		int32_t fatigue_min = 0;
+		int32_t fatigue_max = 100;
+		int32_t enemy_id = 0;
+		int32_t enemy_hp_min = 0;
+		int32_t enemy_hp_max = 100;
+		int32_t actor_id = 1;
+		int32_t actor_hp_min = 0;
+		int32_t actor_hp_max = 100;
+		int32_t turn_enemy_id = 0;
+		int32_t turn_enemy_a = 0;
+		int32_t turn_enemy_b = 0;
+		int32_t turn_actor_id = 1;
+		int32_t turn_actor_a = 0;
+		int32_t turn_actor_b = 0;
+		int32_t command_actor_id = 1;
+		int32_t command_id = 1;
 	};
 }
 

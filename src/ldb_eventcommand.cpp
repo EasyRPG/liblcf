@@ -49,7 +49,7 @@ void RawStruct<RPG::EventCommand>::WriteLcf(const RPG::EventCommand& event_comma
 	stream.Write(event_command.indent);
 	stream.WriteInt(stream.Decode(event_command.string).size());
 	stream.Write(event_command.string);
-	int count = event_command.parameters.size();
+	int32_t count = (int32_t)event_command.parameters.size();
 	stream.Write(count);
 	for (int i = 0; i < count; i++)
 		stream.Write(event_command.parameters[i]);
@@ -70,10 +70,10 @@ int RawStruct<RPG::EventCommand>::LcfSize(const RPG::EventCommand& event_command
 
 void RawStruct<RPG::EventCommand>::WriteXml(const RPG::EventCommand& event_command, XmlWriter& stream) {
 	stream.BeginElement("EventCommand");
-	stream.WriteNode<int>("code", event_command.code);
-	stream.WriteNode<int>("indent", event_command.indent);
+	stream.WriteNode<int32_t>("code", event_command.code);
+	stream.WriteNode<int32_t>("indent", event_command.indent);
 	stream.WriteNode<std::string>("string", event_command.string);
-	stream.WriteNode<std::vector<int> >("parameters", event_command.parameters);
+	stream.WriteNode<std::vector<int32_t>>("parameters", event_command.parameters);
 	stream.EndElement("EventCommand");
 }
 
@@ -111,16 +111,16 @@ public:
 			case None:
 				break;
 			case Code:
-				XmlReader::Read<int>(ref.code, data);
+				XmlReader::Read<int32_t>(ref.code, data);
 				break;
 			case Indent:
-				XmlReader::Read<int>(ref.indent, data);
+				XmlReader::Read<int32_t>(ref.indent, data);
 				break;
 			case String:
 				XmlReader::Read<std::string>(ref.string, data);
 				break;
 			case Parameters:
-				XmlReader::Read<std::vector<int> >(ref.parameters, data);
+				XmlReader::Read<std::vector<int32_t>>(ref.parameters, data);
 				break;
 		}
 	}

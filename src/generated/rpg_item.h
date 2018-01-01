@@ -13,6 +13,7 @@
 #define LCF_RPG_ITEM_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include "rpg_itemanimation.h"
@@ -50,18 +51,18 @@ namespace RPG {
 		int ID = 0;
 		std::string name;
 		std::string description;
-		int type = 0;
-		int price = 0;
-		int uses = 1;
-		int atk_points1 = 0;
-		int def_points1 = 0;
-		int spi_points1 = 0;
-		int agi_points1 = 0;
+		int32_t type = 0;
+		int32_t price = 0;
+		int32_t uses = 1;
+		int32_t atk_points1 = 0;
+		int32_t def_points1 = 0;
+		int32_t spi_points1 = 0;
+		int32_t agi_points1 = 0;
 		bool two_handed = false;
-		int sp_cost = 0;
-		int hit = 90;
-		int critical_hit = 0;
-		int animation_id = 1;
+		int32_t sp_cost = 0;
+		int32_t hit = 90;
+		int32_t critical_hit = 0;
+		int32_t animation_id = 1;
 		bool preemptive = false;
 		bool dual_attack = false;
 		bool attack_all = false;
@@ -72,34 +73,34 @@ namespace RPG {
 		bool no_terrain_damage = false;
 		bool cursed = false;
 		bool entire_party = false;
-		int recover_hp_rate = 0;
-		int recover_hp = 0;
-		int recover_sp_rate = 0;
-		int recover_sp = 0;
+		int32_t recover_hp_rate = 0;
+		int32_t recover_hp = 0;
+		int32_t recover_sp_rate = 0;
+		int32_t recover_sp = 0;
 		bool occasion_field1 = false;
 		bool ko_only = false;
-		int max_hp_points = 0;
-		int max_sp_points = 0;
-		int atk_points2 = 0;
-		int def_points2 = 0;
-		int spi_points2 = 0;
-		int agi_points2 = 0;
-		int using_message = 0;
-		int skill_id = 1;
-		int switch_id = 1;
+		int32_t max_hp_points = 0;
+		int32_t max_sp_points = 0;
+		int32_t atk_points2 = 0;
+		int32_t def_points2 = 0;
+		int32_t spi_points2 = 0;
+		int32_t agi_points2 = 0;
+		int32_t using_message = 0;
+		int32_t skill_id = 1;
+		int32_t switch_id = 1;
 		bool occasion_field2 = true;
 		bool occasion_battle = false;
 		std::vector<bool> actor_set;
 		std::vector<bool> state_set;
 		std::vector<bool> attribute_set;
-		int state_chance = 0;
+		int32_t state_chance = 0;
 		bool state_effect = false;
-		int weapon_animation = 1;
+		int32_t weapon_animation = 1;
 		std::vector<ItemAnimation> animation_data;
 		bool use_skill = false;
 		std::vector<bool> class_set;
-		int ranged_trajectory = 0;
-		int ranged_target = 0;
+		int32_t ranged_trajectory = 0;
+		int32_t ranged_target = 0;
 	};
 }
 

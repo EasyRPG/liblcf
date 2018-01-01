@@ -13,8 +13,8 @@
 #define LCF_RPG_PARAMETERS_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
-#include "reader_types.h"
 
 /**
  * RPG::Parameters class.

@@ -13,6 +13,7 @@
 #define LCF_RPG_BATTLERANIMATIONEXTENSION_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 
 /**
@@ -29,9 +30,9 @@ namespace RPG {
 		int ID = 0;
 		std::string name;
 		std::string battler_name;
-		int battler_index = 0;
-		int animation_type = 0;
-		int animation_id = 1;
+		int32_t battler_index = 0;
+		int32_t animation_type = 0;
+		int32_t animation_id = 1;
 	};
 }
 

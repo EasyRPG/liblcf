@@ -25,8 +25,8 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, terrain_data),
 	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_lower),
 	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_upper),
-	LCF_STRUCT_TYPED_FIELD(int, animation_type),
-	LCF_STRUCT_TYPED_FIELD(int, animation_speed),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_speed),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

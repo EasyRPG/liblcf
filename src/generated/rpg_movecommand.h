@@ -13,6 +13,7 @@
 #define LCF_RPG_MOVECOMMAND_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 
 /**
@@ -68,11 +69,11 @@ namespace RPG {
 			};
 		};
 
-		int command_id = 0;
+		int32_t command_id = 0;
 		std::string parameter_string;
-		int parameter_a = 0;
-		int parameter_b = 0;
-		int parameter_c = 0;
+		int32_t parameter_a = 0;
+		int32_t parameter_b = 0;
+		int32_t parameter_c = 0;
 	};
 }
 

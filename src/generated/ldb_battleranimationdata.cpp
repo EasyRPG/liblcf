@@ -20,9 +20,9 @@
 #define LCF_CURRENT_STRUCT BattlerAnimationData
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, move),
-	LCF_STRUCT_TYPED_FIELD(int, after_image),
-	LCF_STRUCT_TYPED_FIELD(int, pose),
+	LCF_STRUCT_TYPED_FIELD(int32_t, move),
+	LCF_STRUCT_TYPED_FIELD(int32_t, after_image),
+	LCF_STRUCT_TYPED_FIELD(int32_t, pose),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

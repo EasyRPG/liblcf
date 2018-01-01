@@ -44,10 +44,10 @@ int RawStruct<RPG::Rect>::LcfSize(const RPG::Rect& /* ref */, LcfWriter& /* stre
 
 void RawStruct<RPG::Rect>::WriteXml(const RPG::Rect& ref, XmlWriter& stream) {
 	stream.BeginElement("Rect");
-	stream.WriteNode<int>("l", ref.l);
-	stream.WriteNode<int>("t", ref.t);
-	stream.WriteNode<int>("r", ref.r);
-	stream.WriteNode<int>("b", ref.b);
+	stream.WriteNode<int32_t>("l", ref.l);
+	stream.WriteNode<int32_t>("t", ref.t);
+	stream.WriteNode<int32_t>("r", ref.r);
+	stream.WriteNode<int32_t>("b", ref.b);
 	stream.EndElement("Rect");
 }
 

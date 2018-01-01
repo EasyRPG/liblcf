@@ -30,7 +30,7 @@ void XmlWriter::Write<bool>(const bool& val) {
 }
 
 template <>
-void XmlWriter::Write<int>(const int& val) {
+void XmlWriter::Write<int32_t>(const int32_t& val) {
 	Indent();
 	stream << val;
 }
@@ -96,37 +96,37 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 }
 
 template <>
-void XmlWriter::Write<std::vector<int> >(const std::vector<int>& val) {
-	WriteVector<int>(val);
+void XmlWriter::Write<std::vector<int32_t>>(const std::vector<int32_t>& val) {
+	WriteVector<int32_t>(val);
 }
 
 template <>
-void XmlWriter::Write<std::vector<bool> >(const std::vector<bool>& val) {
+void XmlWriter::Write<std::vector<bool>>(const std::vector<bool>& val) {
 	WriteVector<bool>(val);
 }
 
 template <>
-void XmlWriter::Write<std::vector<uint8_t> >(const std::vector<uint8_t>& val) {
+void XmlWriter::Write<std::vector<uint8_t>>(const std::vector<uint8_t>& val) {
 	WriteVector<uint8_t>(val);
 }
 
 template <>
-void XmlWriter::Write<std::vector<int16_t> >(const std::vector<int16_t>& val) {
+void XmlWriter::Write<std::vector<int16_t>>(const std::vector<int16_t>& val) {
 	WriteVector<int16_t>(val);
 }
 
 template <>
-void XmlWriter::Write<std::vector<uint32_t> >(const std::vector<uint32_t>& val) {
+void XmlWriter::Write<std::vector<uint32_t>>(const std::vector<uint32_t>& val) {
 	WriteVector<uint32_t>(val);
 }
 
 template <>
-void XmlWriter::Write<std::vector<double> >(const std::vector<double>& val) {
+void XmlWriter::Write<std::vector<double>>(const std::vector<double>& val) {
 	WriteVector<double>(val);
 }
 
 void XmlWriter::WriteInt(int val) {
-	Write<int>(val);
+	Write<int32_t>(val);
 }
 
 template <class T>
@@ -191,16 +191,16 @@ bool XmlWriter::IsOk() const {
 	return (stream.good());
 }
 
-template void XmlWriter::WriteNode<int>(const std::string& name, const int& val);
 template void XmlWriter::WriteNode<bool>(const std::string& name, const bool& val);
 template void XmlWriter::WriteNode<uint8_t>(const std::string& name, const uint8_t& val);
 template void XmlWriter::WriteNode<int16_t>(const std::string& name, const int16_t& val);
 template void XmlWriter::WriteNode<uint32_t>(const std::string& name, const uint32_t& val);
+template void XmlWriter::WriteNode<int32_t>(const std::string& name, const int32_t& val);
 template void XmlWriter::WriteNode<double>(const std::string& name, const double& val);
 template void XmlWriter::WriteNode<std::string>(const std::string& name, const std::string& val);
 
-template void XmlWriter::WriteNode<std::vector<int> >(const std::string& name, const std::vector<int>& val);
-template void XmlWriter::WriteNode<std::vector<bool> >(const std::string& name, const std::vector<bool>& val);
-template void XmlWriter::WriteNode<std::vector<uint8_t> >(const std::string& name, const std::vector<uint8_t>& val);
-template void XmlWriter::WriteNode<std::vector<int16_t> >(const std::string& name, const std::vector<int16_t>& val);
-template void XmlWriter::WriteNode<std::vector<uint32_t> >(const std::string& name, const std::vector<uint32_t>& val);
+template void XmlWriter::WriteNode<std::vector<bool>>(const std::string& name, const std::vector<bool>& val);
+template void XmlWriter::WriteNode<std::vector<uint8_t>>(const std::string& name, const std::vector<uint8_t>& val);
+template void XmlWriter::WriteNode<std::vector<int16_t>>(const std::string& name, const std::vector<int16_t>& val);
+template void XmlWriter::WriteNode<std::vector<uint32_t>>(const std::string& name, const std::vector<uint32_t>& val);
+template void XmlWriter::WriteNode<std::vector<int32_t>>(const std::string& name, const std::vector<int32_t>& val);

@@ -112,7 +112,7 @@ void XmlReader::Read<bool>(bool& val, const std::string& data) {
 }
 
 template <>
-void XmlReader::Read<int>(int& val, const std::string& data) {
+void XmlReader::Read<int32_t>(int32_t& val, const std::string& data) {
 	std::istringstream s(data);
 	s >> val;
 }
@@ -188,31 +188,31 @@ void XmlReader::ReadVector(std::vector<T>& val, const std::string& data) {
 }
 
 template <>
-void XmlReader::Read<std::vector<int> >(std::vector<int>& val, const std::string& data) {
-	ReadVector<int>(val, data);
+void XmlReader::Read<std::vector<int32_t>>(std::vector<int32_t>& val, const std::string& data) {
+	ReadVector<int32_t>(val, data);
 }
 
 template <>
-void XmlReader::Read<std::vector<bool> >(std::vector<bool>& val, const std::string& data) {
+void XmlReader::Read<std::vector<bool>>(std::vector<bool>& val, const std::string& data) {
 	ReadVector<bool>(val, data);
 }
 
 template <>
-void XmlReader::Read<std::vector<uint8_t> >(std::vector<uint8_t>& val, const std::string& data) {
+void XmlReader::Read<std::vector<uint8_t>>(std::vector<uint8_t>& val, const std::string& data) {
 	ReadVector<uint8_t>(val, data);
 }
 
 template <>
-void XmlReader::Read<std::vector<int16_t> >(std::vector<int16_t>& val, const std::string& data) {
+void XmlReader::Read<std::vector<int16_t>>(std::vector<int16_t>& val, const std::string& data) {
 	ReadVector<int16_t>(val, data);
 }
 
 template <>
-void XmlReader::Read<std::vector<uint32_t> >(std::vector<uint32_t>& val, const std::string& data) {
+void XmlReader::Read<std::vector<uint32_t>>(std::vector<uint32_t>& val, const std::string& data) {
 	ReadVector<uint32_t>(val, data);
 }
 
 template <>
-void XmlReader::Read<std::vector<double> >(std::vector<double>& val, const std::string& data) {
+void XmlReader::Read<std::vector<double>>(std::vector<double>& val, const std::string& data) {
 	ReadVector<double>(val, data);
 }

@@ -21,9 +21,9 @@
 
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(int, trigger),
+	LCF_STRUCT_TYPED_FIELD(int32_t, trigger),
 	LCF_STRUCT_TYPED_FIELD(bool, switch_flag),
-	LCF_STRUCT_TYPED_FIELD(int, switch_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id),
 	LCF_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
 LCF_STRUCT_FIELDS_END()

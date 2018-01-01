@@ -33,7 +33,7 @@ namespace RPG {
 
 		int ID = 0;
 		std::string name;
-		int type = 0;
+		int32_t type = 0;
 	};
 }
 

@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_ITEMANIMATION_H
 #define LCF_RPG_ITEMANIMATION_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::ItemAnimation class.
  */
@@ -35,15 +38,15 @@ namespace RPG {
 		};
 
 		int ID = 0;
-		int type = 0;
-		int weapon_anim = 0;
-		int movement = 0;
-		int after_image = 0;
-		int attacks = 0;
+		int32_t type = 0;
+		int32_t weapon_anim = 0;
+		int32_t movement = 0;
+		int32_t after_image = 0;
+		int32_t attacks = 0;
 		bool ranged = false;
-		int ranged_anim = 0;
-		int ranged_speed = 0;
-		int battle_anim = 0;
+		int32_t ranged_anim = 0;
+		int32_t ranged_speed = 0;
+		int32_t battle_anim = 0;
 	};
 }
 

@@ -13,8 +13,8 @@
 #define LCF_RPG_SAVEEVENTDATA_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_saveeventcommands.h"
 
 /**
@@ -25,7 +25,7 @@ namespace RPG {
 	public:
 		std::vector<SaveEventCommands> commands;
 		bool show_message = false;
-		int unknown_0b_escape = 0;
+		int32_t unknown_0b_escape = 0;
 		bool wait_movement = false;
 		bool keyinput_wait = false;
 		uint8_t keyinput_variable = 0;
@@ -37,14 +37,14 @@ namespace RPG {
 		bool keyinput_shift = false;
 		bool keyinput_value_right = false;
 		bool keyinput_value_up = false;
-		int wait_time = 0;
-		int keyinput_time_variable = -1;
+		int32_t wait_time = 0;
+		int32_t keyinput_time_variable = -1;
 		bool keyinput_down = false;
 		bool keyinput_left = false;
 		bool keyinput_right = false;
 		bool keyinput_up = false;
 		bool keyinput_timed = false;
-		int unknown_2a_time_left = 0;
+		int32_t unknown_2a_time_left = 0;
 	};
 }
 
