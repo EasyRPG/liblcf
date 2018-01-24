@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_EVENTPAGECONDITION_H
 #define LCF_RPG_EVENTPAGECONDITION_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::EventPageCondition class.
  */
@@ -36,15 +39,15 @@ namespace RPG {
 			bool timer = false;
 			bool timer2 = false;
 		} flags;
-		int switch_a_id = 1;
-		int switch_b_id = 1;
-		int variable_id = 1;
-		int variable_value = 0;
-		int item_id = 1;
-		int actor_id = 1;
-		int timer_sec = 0;
-		int timer2_sec = 0;
-		int compare_operator = 1;
+		int32_t switch_a_id = 1;
+		int32_t switch_b_id = 1;
+		int32_t variable_id = 1;
+		int32_t variable_value = 0;
+		int32_t item_id = 1;
+		int32_t actor_id = 1;
+		int32_t timer_sec = 0;
+		int32_t timer2_sec = 0;
+		int32_t compare_operator = 1;
 	};
 }
 

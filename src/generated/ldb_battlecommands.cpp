@@ -20,21 +20,21 @@
 #define LCF_CURRENT_STRUCT BattleCommands
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int, placement),
-	LCF_STRUCT_TYPED_FIELD(int, death_handler1),
-	LCF_STRUCT_TYPED_FIELD(int, row),
-	LCF_STRUCT_TYPED_FIELD(int, battle_type),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_09),
+	LCF_STRUCT_TYPED_FIELD(int32_t, placement),
+	LCF_STRUCT_TYPED_FIELD(int32_t, death_handler1),
+	LCF_STRUCT_TYPED_FIELD(int32_t, row),
+	LCF_STRUCT_TYPED_FIELD(int32_t, battle_type),
+	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_09),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattleCommand>, commands),
-	LCF_STRUCT_TYPED_FIELD(int, death_handler2),
-	LCF_STRUCT_TYPED_FIELD(int, death_event),
-	LCF_STRUCT_TYPED_FIELD(int, window_size),
-	LCF_STRUCT_TYPED_FIELD(int, transparency),
+	LCF_STRUCT_TYPED_FIELD(int32_t, death_handler2),
+	LCF_STRUCT_TYPED_FIELD(int32_t, death_event),
+	LCF_STRUCT_TYPED_FIELD(int32_t, window_size),
+	LCF_STRUCT_TYPED_FIELD(int32_t, transparency),
 	LCF_STRUCT_TYPED_FIELD(bool, teleport),
-	LCF_STRUCT_TYPED_FIELD(int, teleport_id),
-	LCF_STRUCT_TYPED_FIELD(int, teleport_x),
-	LCF_STRUCT_TYPED_FIELD(int, teleport_y),
-	LCF_STRUCT_TYPED_FIELD(int, teleport_face),
+	LCF_STRUCT_TYPED_FIELD(int32_t, teleport_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, teleport_x),
+	LCF_STRUCT_TYPED_FIELD(int32_t, teleport_y),
+	LCF_STRUCT_TYPED_FIELD(int32_t, teleport_face),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

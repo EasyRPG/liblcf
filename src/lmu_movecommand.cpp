@@ -105,23 +105,23 @@ int RawStruct<RPG::MoveCommand>::LcfSize(const RPG::MoveCommand& ref, LcfWriter&
 
 void RawStruct<RPG::MoveCommand>::WriteXml(const RPG::MoveCommand& ref, XmlWriter& stream) {
 	stream.BeginElement("MoveCommand");
-	stream.WriteNode<int>("command_id", ref.command_id);
+	stream.WriteNode<int32_t>("command_id", ref.command_id);
 	switch (ref.command_id) {
 		case RPG::MoveCommand::Code::switch_on:
-			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::switch_off:
-			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::change_graphic:
 			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
-			stream.WriteNode<int>("parameter_a", ref.parameter_a);
+			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
 		case RPG::MoveCommand::Code::play_sound_effect:
 			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
-			stream.WriteNode<int>("parameter_a", ref.parameter_a);
-			stream.WriteNode<int>("parameter_b", ref.parameter_b);
-			stream.WriteNode<int>("parameter_c", ref.parameter_c);
+			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
+			stream.WriteNode<int32_t>("parameter_b", ref.parameter_b);
+			stream.WriteNode<int32_t>("parameter_c", ref.parameter_c);
 			break;
 	}
 	stream.EndElement("MoveCommand");
@@ -130,7 +130,7 @@ void RawStruct<RPG::MoveCommand>::WriteXml(const RPG::MoveCommand& ref, XmlWrite
 class MoveCommandXmlHandler : public XmlHandler {
 private:
 	RPG::MoveCommand& ref;
-	int* field;
+	int32_t* field;
 	bool parameter_string;
 public:
 	MoveCommandXmlHandler(RPG::MoveCommand& ref) :
@@ -158,7 +158,7 @@ public:
 	}
 	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
-			XmlReader::Read<int>(*field, data);
+			XmlReader::Read<int32_t>(*field, data);
 		else if (parameter_string)
 			XmlReader::Read<std::string>(ref.parameter_string, data);
 	}

@@ -31,7 +31,7 @@ namespace RPG {
 
 		int ID = 0;
 		std::string name;
-		int speed = 0;
+		int32_t speed = 0;
 		std::vector<BattlerAnimationExtension> base_data;
 		std::vector<BattlerAnimationExtension> weapon_data;
 	};

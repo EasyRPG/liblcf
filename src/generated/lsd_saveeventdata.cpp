@@ -22,7 +22,7 @@
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, commands),
 	LCF_STRUCT_TYPED_FIELD(bool, show_message),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_0b_escape),
+	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_0b_escape),
 	LCF_STRUCT_TYPED_FIELD(bool, wait_movement),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_wait),
 	LCF_STRUCT_TYPED_FIELD(uint8_t, keyinput_variable),
@@ -34,14 +34,14 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_shift),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_value_right),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_value_up),
-	LCF_STRUCT_TYPED_FIELD(int, wait_time),
-	LCF_STRUCT_TYPED_FIELD(int, keyinput_time_variable),
+	LCF_STRUCT_TYPED_FIELD(int32_t, wait_time),
+	LCF_STRUCT_TYPED_FIELD(int32_t, keyinput_time_variable),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_down),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_left),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_right),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_up),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_timed),
-	LCF_STRUCT_TYPED_FIELD(int, unknown_2a_time_left),
+	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_2a_time_left),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

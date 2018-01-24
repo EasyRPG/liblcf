@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_ENEMYACTION_H
 #define LCF_RPG_ENEMYACTION_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::EnemyAction class.
  */
@@ -45,19 +48,19 @@ namespace RPG {
 		};
 
 		int ID = 0;
-		int kind = 0;
-		int basic = 1;
-		int skill_id = 1;
-		int enemy_id = 1;
-		int condition_type = 0;
-		int condition_param1 = 0;
-		int condition_param2 = 0;
-		int switch_id = 1;
+		int32_t kind = 0;
+		int32_t basic = 1;
+		int32_t skill_id = 1;
+		int32_t enemy_id = 1;
+		int32_t condition_type = 0;
+		int32_t condition_param1 = 0;
+		int32_t condition_param2 = 0;
+		int32_t switch_id = 1;
 		bool switch_on = false;
-		int switch_on_id = 1;
+		int32_t switch_on_id = 1;
 		bool switch_off = false;
-		int switch_off_id = 1;
-		int rating = 50;
+		int32_t switch_off_id = 1;
+		int32_t rating = 50;
 	};
 }
 

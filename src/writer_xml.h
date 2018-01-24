@@ -14,7 +14,7 @@
 #include <vector>
 #include <memory>
 #include <cstdio>
-#include "reader_types.h"
+#include <stdint.h>
 
 /**
  * XmlWriter class.

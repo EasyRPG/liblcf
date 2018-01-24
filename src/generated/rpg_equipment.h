@@ -13,7 +13,7 @@
 #define LCF_RPG_EQUIPMENT_H
 
 // Headers
-#include "reader_types.h"
+#include <stdint.h>
 
 /**
  * RPG::Equipment class.

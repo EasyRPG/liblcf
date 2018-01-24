@@ -97,7 +97,7 @@ int LcfReader::ReadInt() {
 }
 
 template <>
-void LcfReader::Read<int>(int& ref) {
+void LcfReader::Read<int32_t>(int32_t& ref) {
 	ref = ReadInt();
 }
 

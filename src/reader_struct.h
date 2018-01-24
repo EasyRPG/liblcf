@@ -62,20 +62,20 @@ template <> struct TypeCategory<RPG::SavePicture::Flags>			{ static const Catego
 template <> struct TypeCategory<RPG::Equipment>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::MoveCommand>				{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::Parameters>				{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<RPG::Parameters>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::Rect>						{ static const Category::Index value = Category::RawStruct; };
 
 template <>	struct TypeCategory<uint8_t>						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<int16_t>						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<uint32_t>						{ static const Category::Index value = Category::Primitive; };
-template <>	struct TypeCategory<int>							{ static const Category::Index value = Category::Primitive; };
+template <>	struct TypeCategory<int32_t>						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<bool>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<double>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<std::string>					{ static const Category::Index value = Category::Primitive; };
 
 template <class T>
-struct TypeCategory<std::vector<T> > {
+struct TypeCategory<std::vector<T>> {
 	static const Category::Index value = TypeCategory<T>::value;
 };
 
@@ -174,7 +174,7 @@ struct Primitive {
  * Vector specialization.
  */
 template <class T>
-struct Primitive<std::vector<T> > {
+struct Primitive<std::vector<T>> {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
 		stream.Read(ref, length);
 #ifdef LCF_DEBUG_TRACE
@@ -204,8 +204,8 @@ struct Primitive<std::vector<T> > {
  * Int specialization.
  */
 template <>
-struct Primitive<int> {
-	static void ReadLcf(int& ref, LcfReader& stream, uint32_t length) {
+struct Primitive<int32_t> {
+	static void ReadLcf(int32_t& ref, LcfReader& stream, uint32_t length) {
 		if (length >= 1 && length <= 5) {
 			ref = stream.ReadInt();
 #ifdef LCF_DEBUG_TRACE
@@ -220,16 +220,16 @@ struct Primitive<int> {
 		}
 
 	}
-	static void WriteLcf(const int& ref, LcfWriter& stream) {
+	static void WriteLcf(const int32_t& ref, LcfWriter& stream) {
 		stream.WriteInt(ref);
 	}
-	static int LcfSize(const int& ref, LcfWriter& /* stream */) {
+	static int LcfSize(const int32_t& ref, LcfWriter& /* stream */) {
 		return LcfReader::IntSize(ref);
 	}
-	static void WriteXml(const int& ref, XmlWriter& stream) {
+	static void WriteXml(const int32_t& ref, XmlWriter& stream) {
 		stream.WriteInt(ref);
 	}
-	static void ParseXml(int& ref, const std::string& data) {
+	static void ParseXml(int32_t& ref, const std::string& data) {
 		XmlReader::Read(ref, data);
 	}
 };
@@ -327,7 +327,7 @@ struct Compare_Test {
 };
 
 template <class T>
-struct Compare_Test<std::vector<T> > {
+struct Compare_Test<std::vector<T>> {
 	static const bool value = Compare_Test<T>::value;
 };
 
@@ -411,15 +411,15 @@ struct SizeField : public Field<S> {
 	const std::vector<T> S::*ref;
 
 	void ReadLcf(S& /* obj */, LcfReader& stream, uint32_t length) const {
-		int dummy;
-		TypeReader<int>::ReadLcf(dummy, stream, length);
+		int32_t dummy;
+		TypeReader<int32_t>::ReadLcf(dummy, stream, length);
 	}
 	void WriteLcf(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T> >::LcfSize(obj.*ref, stream);
-		TypeReader<int>::WriteLcf(size, stream);
+		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
+		TypeReader<int32_t>::WriteLcf(size, stream);
 	}
 	int LcfSize(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T> >::LcfSize(obj.*ref, stream);
+		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
 		return LcfReader::IntSize(size);
 	}
 	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const {

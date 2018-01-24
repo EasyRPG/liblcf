@@ -13,9 +13,9 @@
 #define LCF_RPG_SAVESYSTEM_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_music.h"
 #include "rpg_sound.h"
 
@@ -32,25 +32,25 @@ namespace RPG {
 
 		void Setup();
 		void Fixup();
-		int screen = 1;
-		int frame_count = 0;
+		int32_t screen = 1;
+		int32_t frame_count = 0;
 		std::string graphics_name;
-		int message_stretch = -1;
-		int font_id = 0;
-		int switches_size = 0;
+		int32_t message_stretch = -1;
+		int32_t font_id = 0;
+		int32_t switches_size = 0;
 		std::vector<bool> switches;
-		int variables_size = 0;
+		int32_t variables_size = 0;
 		std::vector<uint32_t> variables;
-		int message_transparent = 0;
-		int message_position = 2;
-		int message_prevent_overlap = 1;
-		int message_continue_events = 0;
+		int32_t message_transparent = 0;
+		int32_t message_position = 2;
+		int32_t message_prevent_overlap = 1;
+		int32_t message_continue_events = 0;
 		std::string face_name;
-		int face_id = 0;
+		int32_t face_id = 0;
 		bool face_right = false;
 		bool face_flip = false;
 		bool transparent = false;
-		int unknown_3d_music_fadeout = 0;
+		int32_t unknown_3d_music_fadeout = 0;
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;
@@ -86,9 +86,9 @@ namespace RPG {
 		bool save_allowed = true;
 		bool menu_allowed = true;
 		std::string background;
-		int save_count = 0;
-		int save_slot = 1;
-		int atb_mode = 0;
+		int32_t save_count = 0;
+		int32_t save_slot = 1;
+		int32_t atb_mode = 0;
 	};
 }
 

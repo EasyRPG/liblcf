@@ -12,24 +12,27 @@
 #ifndef LCF_RPG_START_H
 #define LCF_RPG_START_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::Start class.
  */
 namespace RPG {
 	class Start {
 	public:
-		int party_map_id = 0;
-		int party_x = 0;
-		int party_y = 0;
-		int boat_map_id = 0;
-		int boat_x = 0;
-		int boat_y = 0;
-		int ship_map_id = 0;
-		int ship_x = 0;
-		int ship_y = 0;
-		int airship_map_id = 0;
-		int airship_x = 0;
-		int airship_y = 0;
+		int32_t party_map_id = 0;
+		int32_t party_x = 0;
+		int32_t party_y = 0;
+		int32_t boat_map_id = 0;
+		int32_t boat_x = 0;
+		int32_t boat_y = 0;
+		int32_t ship_map_id = 0;
+		int32_t ship_x = 0;
+		int32_t ship_y = 0;
+		int32_t airship_map_id = 0;
+		int32_t airship_x = 0;
+		int32_t airship_y = 0;
 	};
 }
 

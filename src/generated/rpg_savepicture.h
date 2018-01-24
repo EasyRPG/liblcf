@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEPICTURE_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 
 /**
@@ -57,17 +58,17 @@ namespace RPG {
 		double current_green = -1.0;
 		double current_blue = -1.0;
 		double current_sat = -1.0;
-		int effect_mode = 0;
+		int32_t effect_mode = 0;
 		double current_effect = 0.0;
 		double current_bot_trans = 0.0;
-		int spritesheet_cols = 1;
-		int spritesheet_rows = 1;
-		int spritesheet_frame = 0;
-		int spritesheet_speed = 0;
-		int frames = 0;
+		int32_t spritesheet_cols = 1;
+		int32_t spritesheet_rows = 1;
+		int32_t spritesheet_frame = 0;
+		int32_t spritesheet_speed = 0;
+		int32_t frames = 0;
 		bool spritesheet_play_once = false;
-		int map_layer = 7;
-		int battle_layer = 0;
+		int32_t map_layer = 7;
+		int32_t battle_layer = 0;
 		struct Flags {
 			bool erase_on_map_change = true;
 			bool erase_on_battle_end = false;
@@ -79,17 +80,17 @@ namespace RPG {
 		} flags;
 		double finish_x = 0.0;
 		double finish_y = 0.0;
-		int finish_magnify = 100;
-		int finish_top_trans = 0;
-		int finish_bot_trans = 0;
-		int finish_red = 100;
-		int finish_green = 100;
-		int finish_blue = 100;
-		int finish_sat = 100;
-		int finish_effect = 0;
-		int time_left = 0;
+		int32_t finish_magnify = 100;
+		int32_t finish_top_trans = 0;
+		int32_t finish_bot_trans = 0;
+		int32_t finish_red = 100;
+		int32_t finish_green = 100;
+		int32_t finish_blue = 100;
+		int32_t finish_sat = 100;
+		int32_t finish_effect = 0;
+		int32_t time_left = 0;
 		double current_rotation = 0.0;
-		int current_waver = 0;
+		int32_t current_waver = 0;
 	};
 }
 

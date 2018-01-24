@@ -13,9 +13,9 @@
 #define LCF_RPG_CLASS_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_learning.h"
 #include "rpg_parameters.h"
 
@@ -32,10 +32,10 @@ namespace RPG {
 		bool auto_battle = false;
 		bool super_guard = false;
 		Parameters parameters;
-		int exp_base = 300;
-		int exp_inflation = 300;
-		int exp_correction = 0;
-		int battler_animation = 0;
+		int32_t exp_base = 300;
+		int32_t exp_inflation = 300;
+		int32_t exp_correction = 0;
+		int32_t battler_animation = 0;
 		std::vector<Learning> skills;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;

@@ -13,6 +13,7 @@
 #define LCF_RPG_MAPINFO_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include "rpg_encounter.h"
@@ -45,21 +46,21 @@ namespace RPG {
 		void Init();
 		int ID = 0;
 		std::string name;
-		int parent_map = 0;
-		int indentation = 0;
-		int type = -1;
-		int scrollbar_x = 0;
-		int scrollbar_y = 0;
+		int32_t parent_map = 0;
+		int32_t indentation = 0;
+		int32_t type = -1;
+		int32_t scrollbar_x = 0;
+		int32_t scrollbar_y = 0;
 		bool expanded_node = false;
-		int music_type = 0;
+		int32_t music_type = 0;
 		Music music;
-		int background_type = 0;
+		int32_t background_type = 0;
 		std::string background_name;
-		int teleport = 0;
-		int escape = 0;
-		int save = 0;
+		int32_t teleport = 0;
+		int32_t escape = 0;
+		int32_t save = 0;
 		std::vector<Encounter> encounters;
-		int encounter_steps = 25;
+		int32_t encounter_steps = 25;
 		Rect area_rect;
 	};
 }

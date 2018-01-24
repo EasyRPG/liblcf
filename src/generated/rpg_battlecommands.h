@@ -13,6 +13,7 @@
 #define LCF_RPG_BATTLECOMMANDS_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
 #include "rpg_battlecommand.h"
 
@@ -51,21 +52,21 @@ namespace RPG {
 			Facing_left = 4
 		};
 
-		int placement = 0;
-		int death_handler1 = 0;
-		int row = 0;
-		int battle_type = 0;
-		int unknown_09 = 0;
+		int32_t placement = 0;
+		int32_t death_handler1 = 0;
+		int32_t row = 0;
+		int32_t battle_type = 0;
+		int32_t unknown_09 = 0;
 		std::vector<BattleCommand> commands;
-		int death_handler2 = 0;
-		int death_event = 0;
-		int window_size = 0;
-		int transparency = 0;
+		int32_t death_handler2 = 0;
+		int32_t death_event = 0;
+		int32_t window_size = 0;
+		int32_t transparency = 0;
 		bool teleport = false;
-		int teleport_id = 0;
-		int teleport_x = 0;
-		int teleport_y = 0;
-		int teleport_face = 0;
+		int32_t teleport_id = 0;
+		int32_t teleport_x = 0;
+		int32_t teleport_y = 0;
+		int32_t teleport_face = 0;
 	};
 }
 

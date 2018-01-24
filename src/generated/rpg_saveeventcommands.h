@@ -13,8 +13,8 @@
 #define LCF_RPG_SAVEEVENTCOMMANDS_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_eventcommand.h"
 
 /**
@@ -24,12 +24,12 @@ namespace RPG {
 	class SaveEventCommands {
 	public:
 		int ID = 0;
-		int commands_size = 0;
+		int32_t commands_size = 0;
 		std::vector<EventCommand> commands;
-		int current_command = 0;
-		int event_id = 0;
+		int32_t current_command = 0;
+		int32_t event_id = 0;
 		bool actioned = false;
-		int unknown_15_subcommand_path_size = -1;
+		int32_t unknown_15_subcommand_path_size = -1;
 		std::vector<uint8_t> unknown_16_subcommand_path;
 	};
 }

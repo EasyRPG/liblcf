@@ -13,9 +13,9 @@
 #define LCF_RPG_ACTOR_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_equipment.h"
 #include "rpg_learning.h"
 #include "rpg_parameters.h"
@@ -31,28 +31,28 @@ namespace RPG {
 		std::string name;
 		std::string title;
 		std::string character_name;
-		int character_index = 0;
+		int32_t character_index = 0;
 		bool transparent = false;
-		int initial_level = 1;
-		int final_level = -1;
+		int32_t initial_level = 1;
+		int32_t final_level = -1;
 		bool critical_hit = true;
-		int critical_hit_chance = 30;
+		int32_t critical_hit_chance = 30;
 		std::string face_name;
-		int face_index = 0;
+		int32_t face_index = 0;
 		bool two_weapon = false;
 		bool lock_equipment = false;
 		bool auto_battle = false;
 		bool super_guard = false;
 		Parameters parameters;
-		int exp_base = -1;
-		int exp_inflation = -1;
-		int exp_correction = 0;
+		int32_t exp_base = -1;
+		int32_t exp_inflation = -1;
+		int32_t exp_correction = 0;
 		Equipment initial_equipment;
-		int unarmed_animation = 1;
-		int class_id = 0;
-		int battle_x = 220;
-		int battle_y = 120;
-		int battler_animation = 1;
+		int32_t unarmed_animation = 1;
+		int32_t class_id = 0;
+		int32_t battle_x = 220;
+		int32_t battle_y = 120;
+		int32_t battler_animation = 1;
 		std::vector<Learning> skills;
 		bool rename_skill = false;
 		std::string skill_name;

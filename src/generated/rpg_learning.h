@@ -12,6 +12,9 @@
 #ifndef LCF_RPG_LEARNING_H
 #define LCF_RPG_LEARNING_H
 
+// Headers
+#include <stdint.h>
+
 /**
  * RPG::Learning class.
  */
@@ -19,8 +22,8 @@ namespace RPG {
 	class Learning {
 	public:
 		int ID = 0;
-		int level = 1;
-		int skill_id = 1;
+		int32_t level = 1;
+		int32_t skill_id = 1;
 	};
 }
 

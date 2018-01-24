@@ -13,6 +13,7 @@
 #define LCF_RPG_TREEMAP_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
 #include "rpg_mapinfo.h"
 #include "rpg_start.h"
@@ -30,8 +31,8 @@ namespace RPG {
 		};
 
 		std::vector<MapInfo> maps;
-		std::vector<int> tree_order;
-		int active_node = 0;
+		std::vector<int32_t> tree_order;
+		int32_t active_node = 0;
 		Start start;
 	};
 }

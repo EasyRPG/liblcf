@@ -13,6 +13,7 @@
 #define LCF_RPG_EVENTPAGE_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include "rpg_eventcommand.h"
@@ -77,17 +78,17 @@ namespace RPG {
 		int ID = 0;
 		EventPageCondition condition;
 		std::string character_name;
-		int character_index = 0;
-		int character_direction = 2;
-		int character_pattern = 1;
+		int32_t character_index = 0;
+		int32_t character_direction = 2;
+		int32_t character_pattern = 1;
 		bool translucent = false;
-		int move_type = 1;
-		int move_frequency = 3;
-		int trigger = 0;
-		int layer = 0;
+		int32_t move_type = 1;
+		int32_t move_frequency = 3;
+		int32_t trigger = 0;
+		int32_t layer = 0;
 		bool overlap_forbidden = false;
-		int animation_type = 0;
-		int move_speed = 3;
+		int32_t animation_type = 0;
+		int32_t move_speed = 3;
 		MoveRoute move_route;
 		std::vector<EventCommand> event_commands;
 	};

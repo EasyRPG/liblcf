@@ -13,9 +13,9 @@
 #define LCF_RPG_SAVEACTOR_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 
 /**
  * RPG::SaveActor class.
@@ -29,34 +29,34 @@ namespace RPG {
 		std::string name;
 		std::string title;
 		std::string sprite_name;
-		int sprite_id = 0;
-		int sprite_flags = 0;
+		int32_t sprite_id = 0;
+		int32_t sprite_flags = 0;
 		std::string face_name;
-		int face_id = 0;
-		int level = -1;
-		int exp = -1;
-		int hp_mod = -1;
-		int sp_mod = -1;
-		int attack_mod = 0;
-		int defense_mod = 0;
-		int spirit_mod = 0;
-		int agility_mod = 0;
-		int skills_size = -1;
+		int32_t face_id = 0;
+		int32_t level = -1;
+		int32_t exp = -1;
+		int32_t hp_mod = -1;
+		int32_t sp_mod = -1;
+		int32_t attack_mod = 0;
+		int32_t defense_mod = 0;
+		int32_t spirit_mod = 0;
+		int32_t agility_mod = 0;
+		int32_t skills_size = -1;
 		std::vector<int16_t> skills;
 		std::vector<int16_t> equipped;
-		int current_hp = -1;
-		int current_sp = -1;
+		int32_t current_hp = -1;
+		int32_t current_sp = -1;
 		std::vector<int32_t> battle_commands;
-		int status_size = 0;
+		int32_t status_size = 0;
 		std::vector<int16_t> status;
 		bool changed_battle_commands = false;
-		int class_id = -1;
-		int row = 0;
+		int32_t class_id = -1;
+		int32_t row = 0;
 		bool two_weapon = false;
 		bool lock_equipment = false;
 		bool auto_battle = false;
 		bool super_guard = false;
-		int battler_animation = 0;
+		int32_t battler_animation = 0;
 	};
 }
 

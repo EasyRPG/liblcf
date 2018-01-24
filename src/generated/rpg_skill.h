@@ -13,6 +13,7 @@
 #define LCF_RPG_SKILL_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include "rpg_battleranimationdata.h"
@@ -48,23 +49,23 @@ namespace RPG {
 		std::string description;
 		std::string using_message1;
 		std::string using_message2;
-		int failure_message = 0;
-		int type = 0;
-		int sp_type = 0;
-		int sp_percent = 1;
-		int sp_cost = 0;
-		int scope = 0;
-		int switch_id = 1;
-		int animation_id = 0;
+		int32_t failure_message = 0;
+		int32_t type = 0;
+		int32_t sp_type = 0;
+		int32_t sp_percent = 1;
+		int32_t sp_cost = 0;
+		int32_t scope = 0;
+		int32_t switch_id = 1;
+		int32_t animation_id = 0;
 		Sound sound_effect;
 		bool occasion_field = true;
 		bool occasion_battle = false;
 		bool state_effect = false;
-		int physical_rate = 0;
-		int magical_rate = 3;
-		int variance = 4;
-		int power = 0;
-		int hit = 100;
+		int32_t physical_rate = 0;
+		int32_t magical_rate = 3;
+		int32_t variance = 4;
+		int32_t power = 0;
+		int32_t hit = 100;
 		bool affect_hp = false;
 		bool affect_sp = false;
 		bool affect_attack = false;
@@ -76,7 +77,7 @@ namespace RPG {
 		std::vector<bool> state_effects;
 		std::vector<bool> attribute_effects;
 		bool affect_attr_defence = false;
-		int battler_animation = 1;
+		int32_t battler_animation = 1;
 		std::vector<BattlerAnimationData> battler_animation_data;
 	};
 }

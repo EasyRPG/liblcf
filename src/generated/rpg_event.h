@@ -13,6 +13,7 @@
 #define LCF_RPG_EVENT_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include "rpg_eventpage.h"
@@ -25,8 +26,8 @@ namespace RPG {
 	public:
 		int ID = 0;
 		std::string name;
-		int x = 0;
-		int y = 0;
+		int32_t x = 0;
+		int32_t y = 0;
 		std::vector<EventPage> pages;
 	};
 }

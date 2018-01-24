@@ -457,9 +457,6 @@
     <ClInclude Include="..\..\src\reader_struct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reader_types.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\reader_util.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -16,7 +16,7 @@
 #if defined(LCF_SUPPORT_XML)
 #  include <expat.h>
 #endif
-#include "reader_types.h"
+#include <stdint.h>
 #include "lcf_options.h"
 #include "reader_util.h"
 

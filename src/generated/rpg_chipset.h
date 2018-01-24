@@ -13,9 +13,9 @@
 #define LCF_RPG_CHIPSET_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 
 /**
  * RPG::Chipset class.
@@ -36,8 +36,8 @@ namespace RPG {
 		std::vector<int16_t> terrain_data;
 		std::vector<uint8_t> passable_data_lower;
 		std::vector<uint8_t> passable_data_upper;
-		int animation_type = 0;
-		int animation_speed = 0;
+		int32_t animation_type = 0;
+		int32_t animation_speed = 0;
 	};
 }
 

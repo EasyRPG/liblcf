@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVE_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
 #include "rpg_saveactor.h"
 #include "rpg_savecommonevent.h"
@@ -46,7 +47,7 @@ namespace RPG {
 		SaveInventory inventory;
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
-		int panorama_data = -1;
+		int32_t panorama_data = -1;
 		SaveEventData events;
 		std::vector<SaveCommonEvent> common_events;
 	};

@@ -13,9 +13,9 @@
 #define LCF_RPG_SYSTEM_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
-#include "reader_types.h"
 #include "rpg_music.h"
 #include "rpg_sound.h"
 #include "rpg_testbattler.h"
@@ -95,13 +95,13 @@ namespace RPG {
 			BattleCondition_pincers = 4
 		};
 
-		int ldb_id = 0;
+		int32_t ldb_id = 0;
 		std::string boat_name;
 		std::string ship_name;
 		std::string airship_name;
-		int boat_index = 0;
-		int ship_index = 0;
-		int airship_index = 0;
+		int32_t boat_index = 0;
+		int32_t ship_index = 0;
+		int32_t airship_index = 0;
 		std::string title_name;
 		std::string gameover_name;
 		std::string system_name;
@@ -128,23 +128,23 @@ namespace RPG {
 		Sound dodge_se;
 		Sound enemy_death_se;
 		Sound item_se;
-		int transition_out = 0;
-		int transition_in = 0;
-		int battle_start_fadeout = 0;
-		int battle_start_fadein = 0;
-		int battle_end_fadeout = 0;
-		int battle_end_fadein = 0;
-		int message_stretch = 0;
-		int font_id = 0;
-		int selected_condition = 0;
-		int selected_hero = 0;
+		int32_t transition_out = 0;
+		int32_t transition_in = 0;
+		int32_t battle_start_fadeout = 0;
+		int32_t battle_start_fadein = 0;
+		int32_t battle_end_fadeout = 0;
+		int32_t battle_end_fadein = 0;
+		int32_t message_stretch = 0;
+		int32_t font_id = 0;
+		int32_t selected_condition = 0;
+		int32_t selected_hero = 0;
 		std::string battletest_background;
 		std::vector<TestBattler> battletest_data;
-		int save_count = 0;
-		int battletest_terrain = 0;
-		int battletest_formation = 0;
-		int battletest_condition = 0;
-		int unknown_61 = -1;
+		int32_t save_count = 0;
+		int32_t battletest_terrain = 0;
+		int32_t battletest_formation = 0;
+		int32_t battletest_condition = 0;
+		int32_t unknown_61 = -1;
 		bool show_frame = false;
 		std::string frame_name;
 		bool invert_animations = false;

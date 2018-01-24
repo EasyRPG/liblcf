@@ -39,8 +39,8 @@ namespace RPG {
 		std::string animation_name;
 		bool large = false;
 		std::vector<AnimationTiming> timings;
-		int scope = 0;
-		int position = 2;
+		int32_t scope = 0;
+		int32_t position = 2;
 		std::vector<AnimationFrame> frames;
 	};
 }

@@ -54,10 +54,10 @@ void RawStruct<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& strea
 	stream.EndElement("maps");
 
 	stream.BeginElement("tree_order");
-	stream.Write<std::vector<int> >(ref.tree_order);
+	stream.Write<std::vector<int32_t>>(ref.tree_order);
 	stream.EndElement("tree_order");
 
-	stream.WriteNode<int>("active_node", ref.active_node);
+	stream.WriteNode<int32_t>("active_node", ref.active_node);
 
 	stream.BeginElement("start");
 	Struct<RPG::Start>::WriteXml(ref.start, stream);
@@ -96,9 +96,9 @@ public:
 	}
 	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (active_node)
-			XmlReader::Read<int>(ref.active_node, data);
+			XmlReader::Read<int32_t>(ref.active_node, data);
 		if (tree_order)
-			XmlReader::Read<std::vector<int> >(ref.tree_order, data);
+			XmlReader::Read<std::vector<int32_t>>(ref.tree_order, data);
 	}
 };
 

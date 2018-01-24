@@ -27,7 +27,6 @@ tmp_dir = os.path.join(dest_dir, "tmp")
 cpp_types = {
     'Boolean': 'bool',
     'Double': 'double',
-    'Integer': 'int',
     'UInt8': 'uint8_t',
     'UInt16': 'uint16_t',
     'UInt32': 'uint32_t',
@@ -55,11 +54,11 @@ def cpp_type(ty, prefix=True):
 
     m = re.match(r'Ref<(.*)>', ty)
     if m:
-        return 'int'
+        return 'int32_t'
 
     m = re.match(r'Enum<(.*)>', ty)
     if m:
-        return 'int'
+        return 'int32_t'
 
     m = re.match(r'(.*)_Flags$', ty)
     if m:
@@ -119,14 +118,15 @@ int_types = {
     'UInt16': 'uint16_t',
     'UInt32': 'uint32_t',
     'Int16': 'int16_t',
-    }
+    'Int32': 'int32_t'
+}
 
 def struct_headers(ty, header_map):
     if ty == 'String':
         return ['<string>']
 
     if ty in int_types:
-        return ['"reader_types.h"']
+        return ['<stdint.h>']
 
     if ty in cpp_types:
         return []

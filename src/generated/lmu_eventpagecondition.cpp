@@ -21,15 +21,15 @@
 
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags),
-	LCF_STRUCT_TYPED_FIELD(int, switch_a_id),
-	LCF_STRUCT_TYPED_FIELD(int, switch_b_id),
-	LCF_STRUCT_TYPED_FIELD(int, variable_id),
-	LCF_STRUCT_TYPED_FIELD(int, variable_value),
-	LCF_STRUCT_TYPED_FIELD(int, item_id),
-	LCF_STRUCT_TYPED_FIELD(int, actor_id),
-	LCF_STRUCT_TYPED_FIELD(int, timer_sec),
-	LCF_STRUCT_TYPED_FIELD(int, timer2_sec),
-	LCF_STRUCT_TYPED_FIELD(int, compare_operator),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_a_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_b_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, variable_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, variable_value),
+	LCF_STRUCT_TYPED_FIELD(int32_t, item_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, actor_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, timer_sec),
+	LCF_STRUCT_TYPED_FIELD(int32_t, timer2_sec),
+	LCF_STRUCT_TYPED_FIELD(int32_t, compare_operator),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

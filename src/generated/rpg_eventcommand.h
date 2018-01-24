@@ -13,6 +13,7 @@
 #define LCF_RPG_EVENTCOMMAND_H
 
 // Headers
+#include <stdint.h>
 #include <string>
 #include <vector>
 
@@ -155,10 +156,10 @@ namespace RPG {
 			};
 		};
 
-		int code = 0;
-		int indent = 0;
+		int32_t code = 0;
+		int32_t indent = 0;
 		std::string string;
-		std::vector<int> parameters;
+		std::vector<int32_t> parameters;
 	};
 }
 
