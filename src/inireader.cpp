@@ -82,22 +82,16 @@ INIReader::INIReader(std::istream& filestream)
 			} while (loop);
 
 			if (out.empty() && (is->fail() || is->eof())) {
-				return (char*)NULL;
+				return (char*)nullptr;
 			}
 
-			int to_copy = num - 1;
-
-			if (out.size() < (size_t)num) {
-				to_copy = (int)out.size();
-			}
-
-			memcpy(str, out.data(), to_copy);
-			str[to_copy + 1] = '\0';
+			strncpy(str, out.c_str(), num);
+			str[num - 1] = '\0';
 
 			return str;
 		}
 
-		return (char*)NULL;
+		return (char*)nullptr;
 	}, &filestream, ValueHandler, this);
 }
 
