@@ -1,0 +1,84 @@
+#.rst:
+# FindLCF
+# -------
+#
+# Find the native liblcf headers and library.
+#
+# Imported Targets
+# ^^^^^^^^^^^^^^^^
+#
+# This module defines the following :prop_tgt:`IMPORTED` targets:
+#
+# ``liblcf::liblcf``
+#   The ``liblcf`` library, if found.
+#
+# Result Variables
+# ^^^^^^^^^^^^^^^^
+#
+# This module will set the following variables in your project:
+#
+# ``LIBLCF_INCLUDE_DIRS``
+#   where to find liblcf headers.
+# ``LIBLCF_LIBRARIES``
+#   the libraries to link against to use liblcf.
+# ``LIBLCF_FOUND``
+#   true if the liblcf headers and libraries were found.
+# ``LIBLCF_VERSION_STRING``
+#   version of liblcf
+
+find_package(PkgConfig QUIET)
+
+pkg_check_modules(PC_LIBLCF QUIET lcf)
+
+# Look for the header file.
+find_path(LIBLCF_INCLUDE_DIR
+	NAMES lcf_options.h
+	PATH_SUFFIXES liblcf lcf
+	HINTS ${PC_LIBLCF_INCLUDE_DIRS})
+
+# Look for the library.
+find_library(LIBLCF_LIBRARY
+	NAMES lcf liblcf
+	HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+
+set(LIBLCF_VERSION_STRING @PACKAGE_VERSION@)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(liblcf
+	REQUIRED_VARS LIBLCF_LIBRARY LIBLCF_INCLUDE_DIR
+	VERSION_VAR LIBLCF_VERSION_STRING)
+
+if(LIBLCF_FOUND)
+	set(LIBLCF_LIBRARIES ${LIBLCF_LIBRARY})
+	set(LIBLCF_LINK_LIBRARIES "")
+	set(LIBLCF_INCLUDE_DIRS ${LIBLCF_INCLUDE_DIR})
+	
+	if(NOT TARGET liblcf::liblcf)
+		add_library(liblcf::liblcf UNKNOWN IMPORTED)
+		
+		set(LIBLCF_LIBRARY_DEPS "icu-i18n expat")
+		string(REPLACE " " ";" LIBLCF_LIBRARY_DEPS "${LIBLCF_LIBRARY_DEPS}")
+		
+		foreach(dep ${LIBLCF_LIBRARY_DEPS})
+			if(dep STREQUAL "icu-i18n")
+				find_package(ICU COMPONENTS i18n uc data REQUIRED QUIET)
+				list(APPEND LIBLCF_LIBRARIES ${ICU_LIBRARIES})
+				list(APPEND LIBLCF_LINK_LIBRARIES ICU::i18n ICU::uc ICU::data)
+			elseif(dep STREQUAL "expat")
+				find_package(EXPAT REQUIRED QUIET)
+				list(APPEND LIBLCF_LIBRARIES ${EXPAT_LIBRARIES})
+				list(APPEND LIBLCF_LINK_LIBRARIES EXPAT::EXPAT)
+			endif()
+		endforeach()
+
+		set_target_properties(liblcf::liblcf PROPERTIES
+			IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
+			IMPORTED_LOCATION "${LIBLCF_LIBRARY}"
+			INTERFACE_INCLUDE_DIRECTORIES "${LIBLCF_INCLUDE_DIRS}"
+			INTERFACE_LINK_LIBRARIES "${LIBLCF_LINK_LIBRARIES}")
+
+			mark_as_advanced(LIBLCF_LIBRARY_DEPS LIBLCF_LINK_LIBRARIES)
+	endif()
+endif()
+
+mark_as_advanced(LIBLCF_INCLUDE_DIR LIBLCF_LIBRARY)

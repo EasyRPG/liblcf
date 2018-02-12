@@ -54,6 +54,7 @@ AC_SUBST([AM_LDFLAGS])
 
 # Files to generate
 AC_CONFIG_FILES([Makefile
-                 builds/liblcf.pc])
+                 builds/liblcf.pc
+                 builds/liblcf-config.cmake])
 
 AC_OUTPUT
