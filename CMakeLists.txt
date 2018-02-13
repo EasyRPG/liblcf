@@ -5,6 +5,15 @@ project(liblcf VERSION 0.5.3 LANGUAGES CXX)
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv)" OFF)
 option(DISABLE_XML "Disable XML reading support (expat)" OFF)
 
+if(MSVC)
+	set(DEBUG_POSTFIX "d")
+else()
+	set(DEBUG_POSTFIX "")
+endif()
+mark_as_advanced(DEBUG_POSTFIX)
+
+set(CMAKE_DEBUG_POSTFIX ${DEBUG_POSTFIX} CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
 
 # Doxygen
@@ -126,23 +135,28 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 	endif()
 endif()
 
-# icu
+# Add optional library name postfix
+set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
+
+if(MSVC)
+	# Exception handling
+	set_property(TARGET lcf PROPERTY COMPILE_FLAGS "/EHsc")
+endif()
+
+# icu or fallback to iconv
 if(DISABLE_ICU)
 	find_package(Iconv REQUIRED)
 	target_link_libraries(lcf Iconv::Iconv)
-	if(NOT Iconv_IS_BUILT_IN)
-		list(APPEND LIBLCF_DEPS "iconv")
-	endif()
 else()
-	find_package(ICU COMPONENTS uc data REQUIRED)
-	target_link_libraries(lcf ICU::uc ICU::data)
+	find_package(ICU COMPONENTS i18n uc data REQUIRED)
+	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
 	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_ICU=1)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
 endif()
 
 # expat
 if(NOT DISABLE_XML)
-	find_package(EXPAT REQUIRED)
+	find_package(EXPAT)
 	target_link_libraries(lcf EXPAT::EXPAT)
 	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_XML=1)
 	list(APPEND LIBLCF_DEPS "expat")
@@ -150,6 +164,7 @@ endif()
 
 # pkg-config file generation
 set(PACKAGE_TARNAME ${PROJECT_NAME})
+set(PACKAGE_VERSION ${PROJECT_VERSION})
 set(prefix "${CMAKE_INSTALL_PREFIX}")
 set(exec_prefix "\${prefix}")
 set(libdir "\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}")
@@ -169,15 +184,13 @@ install(
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-# installation
 file(GLOB includefiles "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/generated/*.h")
 
 install(
 	FILES ${includefiles}
 	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblcf)
-	
-# pkg-config file generation
+
 install(
 	FILES builds/${PROJECT_NAME}.pc
 	DESTINATION lib/pkgconfig

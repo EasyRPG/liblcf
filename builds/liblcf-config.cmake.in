@@ -37,9 +37,19 @@ find_path(LIBLCF_INCLUDE_DIR
 	HINTS ${PC_LIBLCF_INCLUDE_DIRS})
 
 # Look for the library.
-find_library(LIBLCF_LIBRARY
-	NAMES lcf liblcf
-	HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+# Allow LIBLCF_LIBRARY to be set manually, as the location of the liblcf library
+if(NOT LIBLCF_LIBRARY)
+	find_library(LIBLCF_LIBRARY_RELEASE
+		NAMES lcf liblcf
+		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+
+	find_library(LIBLCF_LIBRARY_DEBUG
+		NAMES lcfd liblcfd
+		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+
+	include(SelectLibraryConfigurations)
+	select_library_configurations(LIBLCF)
+endif()
 
 set(LIBLCF_VERSION_STRING @PACKAGE_VERSION@)
 
@@ -52,13 +62,13 @@ if(LIBLCF_FOUND)
 	set(LIBLCF_LIBRARIES ${LIBLCF_LIBRARY})
 	set(LIBLCF_LINK_LIBRARIES "")
 	set(LIBLCF_INCLUDE_DIRS ${LIBLCF_INCLUDE_DIR})
-	
+
 	if(NOT TARGET liblcf::liblcf)
 		add_library(liblcf::liblcf UNKNOWN IMPORTED)
-		
-		set(LIBLCF_LIBRARY_DEPS "icu-i18n expat")
+
+		set(LIBLCF_LIBRARY_DEPS "@AX_PACKAGE_REQUIRES_PRIVATE@")
 		string(REPLACE " " ";" LIBLCF_LIBRARY_DEPS "${LIBLCF_LIBRARY_DEPS}")
-		
+
 		foreach(dep ${LIBLCF_LIBRARY_DEPS})
 			if(dep STREQUAL "icu-i18n")
 				find_package(ICU COMPONENTS i18n uc data REQUIRED QUIET)
@@ -73,11 +83,29 @@ if(LIBLCF_FOUND)
 
 		set_target_properties(liblcf::liblcf PROPERTIES
 			IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
-			IMPORTED_LOCATION "${LIBLCF_LIBRARY}"
 			INTERFACE_INCLUDE_DIRECTORIES "${LIBLCF_INCLUDE_DIRS}"
 			INTERFACE_LINK_LIBRARIES "${LIBLCF_LINK_LIBRARIES}")
 
-			mark_as_advanced(LIBLCF_LIBRARY_DEPS LIBLCF_LINK_LIBRARIES)
+		if(LIBLCF_LIBRARY_RELEASE)
+			set_property(TARGET liblcf::liblcf APPEND PROPERTY
+				IMPORTED_CONFIGURATIONS RELEASE)
+			set_target_properties(liblcf::liblcf PROPERTIES
+				IMPORTED_LOCATION_RELEASE "${LIBLCF_LIBRARY_RELEASE}")
+		endif()
+
+		if(LIBLCF_LIBRARY_DEBUG)
+			set_property(TARGET liblcf::liblcf APPEND PROPERTY
+				IMPORTED_CONFIGURATIONS DEBUG)
+			set_target_properties(liblcf::liblcf PROPERTIES
+				IMPORTED_LOCATION_DEBUG "${LIBLCF_LIBRARY_DEBUG}")
+		endif()
+
+		if(NOT LIBLCF_LIBRARY_RELEASE AND NOT LIBLCF_LIBRARY_DEBUG)
+			set_property(TARGET liblcf::liblcf APPEND PROPERTY
+				IMPORTED_LOCATION "${LIBLCF_LIBRARY}")
+		endif()
+
+		mark_as_advanced(LIBLCF_LIBRARY_DEPS LIBLCF_LINK_LIBRARIES)
 	endif()
 endif()
 
