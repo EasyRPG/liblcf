@@ -5,16 +5,14 @@ project(liblcf VERSION 0.5.3 LANGUAGES CXX)
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv)" OFF)
 option(DISABLE_XML "Disable XML reading support (expat)" OFF)
 
-if(MSVC)
-	set(DEBUG_POSTFIX "d")
-else()
-	set(DEBUG_POSTFIX "")
-endif()
+set(DEBUG_POSTFIX "d")
 mark_as_advanced(DEBUG_POSTFIX)
 
 set(CMAKE_DEBUG_POSTFIX ${DEBUG_POSTFIX} CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
+
+include(ConfigureWindows)
 
 # Doxygen
 find_package(Doxygen)
@@ -139,8 +137,8 @@ endif()
 set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
 
 if(MSVC)
-	# Exception handling
-	set_property(TARGET lcf PROPERTY COMPILE_FLAGS "/EHsc")
+	# bigobj for reader_struct
+	set_property(TARGET lcf PROPERTY COMPILE_FLAGS "/bigobj")
 endif()
 
 # icu or fallback to iconv
@@ -192,13 +190,16 @@ install(
 	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblcf)
 
 install(
-	FILES builds/${PROJECT_NAME}.pc
-	DESTINATION lib/pkgconfig
+	FILES ${CMAKE_BINARY_DIR}/builds/${PROJECT_NAME}.pc
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
 install(
-	FILES builds/liblcf-config.cmake
-	DESTINATION lib/cmake/liblcf)
+	FILES
+	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/liblcf-config.cmake
+	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindEXPAT.cmake
+	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindICU.cmake
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf)
 
 # tests
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)

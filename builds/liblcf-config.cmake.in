@@ -44,7 +44,7 @@ if(NOT LIBLCF_LIBRARY)
 		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
 
 	find_library(LIBLCF_LIBRARY_DEBUG
-		NAMES lcfd liblcfd
+		NAMES lcf@CMAKE_DEBUG_POSTFIX@ liblcf@CMAKE_DEBUG_POSTFIX@
 		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
 
 	include(SelectLibraryConfigurations)
