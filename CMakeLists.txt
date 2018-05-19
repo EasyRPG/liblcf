@@ -20,7 +20,7 @@ find_package(Doxygen)
 if(DOXYGEN_FOUND)
 	add_custom_target(liblcf_doc
 		${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/builds/Doxyfile
-		DEPENDS ${SRCS}
+		DEPENDS lcf
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/builds
 		COMMENT "Generating API documentation with Doxygen" VERBATIM)
 endif()
