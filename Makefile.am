@@ -4,6 +4,9 @@ EXTRA_DIST = AUTHORS.md README.md generator \
 pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
+cmakeconfigdir = $(libdir)/cmake/liblcf
+cmakeconfig_DATA = builds/liblcf-config.cmake
+
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \

@@ -1,655 +1,413 @@
-# Module for locating ICU.
+# Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
+# file Copyright.txt or https://cmake.org/licensing for details.
+
+#.rst:
+# FindICU
+# -------
 #
-# Customizable variables:
-#   ICU_ROOT_DIR
-#     This variable points to the ICU root directory. On Windows the
-#     library location typically will have to be provided explicitly using the
-#     -D command-line option. Alternatively, the ICUROOT environment variable
-#     can be set.
+# Find the International Components for Unicode (ICU) libraries and
+# programs.
 #
-# Read-only variables:
-#   ICU_FOUND
-#     Indicates whether the library has been found.
+# This module supports multiple components.
+# Components can include any of: ``data``, ``i18n``, ``io``, ``le``,
+# ``lx``, ``test``, ``tu`` and ``uc``.
 #
-#   ICU_INCLUDE_DIRS
-#     Points to the ICU include directory.
+# Note that on Windows ``data`` is named ``dt`` and ``i18n`` is named
+# ``in``; any of the names may be used, and the appropriate
+# platform-specific library name will be automatically selected.
 #
-#   ICU_LIBRARIES
-#     Points to the ICU libraries that should be passed to
-#     target_link_libararies.
+# This module reports information about the ICU installation in
+# several variables.  General variables::
 #
-#   ICU_C_FLAGS, ICU_C_FLAGS_SHARED
-#     Required C compile flags when building against ICU.
+#   ICU_VERSION - ICU release version
+#   ICU_FOUND - true if the main programs and libraries were found
+#   ICU_LIBRARIES - component libraries to be linked
+#   ICU_INCLUDE_DIRS - the directories containing the ICU headers
 #
-#   ICU_CXX_FLAGS, ICU_CXX_FLAGS_SHARED
-#     Required C++ compile flags when building against ICU.
+# Imported targets::
 #
-#   ICU_<COMPONENT>_FOUND
-#     Indicates whether the specified <COMPONENT> has been found.
+#   ICU::<C>
 #
-#   ICU_<PROGRAM>_EXECUTABLE
-#     The path to the specified ICU <PROGRAM>.
+# Where ``<C>`` is the name of an ICU component, for example
+# ``ICU::i18n``.
 #
-# Building resource bundles:
+# ICU programs are reported in::
 #
-#   CREATE_ICU_RESOURCE_BUNDLE (TARGET target NAME name
-#     FILES file1 [file2 ...] [COMMON | STATIC | SHARED] [VERBOSE]
-#     [C_FLAGS VAR] [CXX_FLAGS VAR] [GENRB_ARGS arg1 [arg2 ...]
-#     [PKGDATA_ARGS arg1 [arg2 ...]] [RESOURCE_LOCATION VAR] [REVISION rev]
-#     [IMPORT_DIRECTORY dir])
+#   ICU_GENCNVAL_EXECUTABLE - path to gencnval executable
+#   ICU_ICUINFO_EXECUTABLE - path to icuinfo executable
+#   ICU_GENBRK_EXECUTABLE - path to genbrk executable
+#   ICU_ICU-CONFIG_EXECUTABLE - path to icu-config executable
+#   ICU_GENRB_EXECUTABLE - path to genrb executable
+#   ICU_GENDICT_EXECUTABLE - path to gendict executable
+#   ICU_DERB_EXECUTABLE - path to derb executable
+#   ICU_PKGDATA_EXECUTABLE - path to pkgdata executable
+#   ICU_UCONV_EXECUTABLE - path to uconv executable
+#   ICU_GENCFU_EXECUTABLE - path to gencfu executable
+#   ICU_MAKECONV_EXECUTABLE - path to makeconv executable
+#   ICU_GENNORM2_EXECUTABLE - path to gennorm2 executable
+#   ICU_GENCCODE_EXECUTABLE - path to genccode executable
+#   ICU_GENSPREP_EXECUTABLE - path to gensprep executable
+#   ICU_ICUPKG_EXECUTABLE - path to icupkg executable
+#   ICU_GENCMN_EXECUTABLE - path to gencmn executable
 #
-#   This function wraps the functionality provided by ICU's genrb and pkgdata
-#   tools. These tools allow to create a resource bundle from a set of text
-#   files. The module adds the executables as a custom command to the specified
-#   `target'. The name of the resource bundle is determined by the `name'
-#   argument, the input files by `file1', `file2' etc. Resource bundles can be
-#   created either as an endian-specific but portable common data file or as a
-#   static/shared library. Unless explicitly specified, a common data resource
-#   bundle will be created. When creating a static or a shared resource bundle,
-#   an imported library target will be added, which can be referenced by
-#   bundle's `name'. In some situations it may be necessary to specify
-#   additional genrb or pkgdata command-line arguments. This can be achieved by
-#   setting the optional GENRB_ARGS or PKGDATA_ARGS argument respectively. The
-#   standard output of both tools is suppressed by default. To prevent this
-#   behavior, the VERBOSE option can be used. The location of the resource can
-#   be determined using the RESOURCE_LOCATION option together with a variable
-#   name VAR that will store that path. When creating a shared library bundle on
-#   Unix-like system, library's revision has to be set. This can be done by
-#   supplying the appropriate version to the REVISION option. If the option is
-#   omitted, the revision will be set to 1.0. The option IMPORT_DIRECTORY can be
-#   used to specify the directory that contains the resources which are imported
-#   by the resource bundle.
+# ICU component libraries are reported in::
 #
+#   ICU_<C>_FOUND - ON if component was found
+#   ICU_<C>_LIBRARIES - libraries for component
 #
-# Copyright (c) 2012 Sergiu Dotenco
+# ICU datafiles are reported in::
 #
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
+#   ICU_MAKEFILE_INC - Makefile.inc
+#   ICU_PKGDATA_INC - pkgdata.inc
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# Note that ``<C>`` is the uppercased name of the component.
 #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-INCLUDE (CMakeParseArguments)
-INCLUDE (FindPackageHandleStandardArgs)
-
-IF (CMAKE_VERSION VERSION_GREATER 2.8.7)
-  SET (_ICU_CHECK_COMPONENTS FALSE)
-ELSE (CMAKE_VERSION VERSION_GREATER 2.8.7)
-  SET (_ICU_CHECK_COMPONENTS TRUE)
-ENDIF (CMAKE_VERSION VERSION_GREATER 2.8.7)
-
-SET (_ICU_POSSIBLE_INCLUDE_SUFFIXES include)
-
-IF (CMAKE_SIZEOF_VOID_P EQUAL 8)
-  SET (_ICU_POSSIBLE_LIB_SUFFIXES lib64)
-  SET (_ICU_POSSIBLE_BIN_SUFFIXES bin64)
-
-  IF (NOT WIN32)
-    LIST (APPEND _ICU_POSSIBLE_LIB_SUFFIXES lib)
-    LIST (APPEND _ICU_POSSIBLE_BIN_SUFFIXES bin)
-  ENDIF (NOT WIN32)
-ELSE (CMAKE_SIZEOF_VOID_P EQUAL 8)
-  SET (_ICU_POSSIBLE_LIB_SUFFIXES lib)
-  SET (_ICU_POSSIBLE_BIN_SUFFIXES bin)
-ENDIF (CMAKE_SIZEOF_VOID_P EQUAL 8)
-
-IF (WIN32)
-  # Allow to store binaries and libraries in a sub-directory
-  IF (MSVC11)
-    SET (_COMPILER vc11)
-  ELSEIF (MSVC10)
-    SET (_COMPILER vc10)
-  ELSEIF (MSVC90)
-    SET (_COMPILER vc9)
-  ELSEIF (MSVC80)
-    SET (_COMPILER vc8)
-  ELSEIF (MSVC71)
-    SET (_COMPILER vc71)
-  ELSEIF (MSVC70)
-    SET (_COMPILER vc7)
-  ELSEIF (MSVC60)
-    SET (_COMPILER vc6)
-  ELSEIF (MSVC OR MSVC_IDE)
-    SET (_COMPILER vc)
-  ELSEIF (CMAKE_C_COMPILER MATCHES icl OR CMAKE_CXX_COMPILER MATCHES icl)
-    SET (_COMPILER icl) # Intel
-  ELSEIF (MINGW)
-    SET (_COMPILER mingw)
-  ENDIF (MSVC11)
-
-  # User-defined
-  IF (ICU_COMPILER)
-    SET (_SUFFIXES ${_ICU_POSSIBLE_BIN_SUFFIXES})
-
-    FOREACH (_SUFFIX ${_SUFFIXES})
-      LIST (APPEND _ICU_POSSIBLE_BIN_SUFFIXES ${_SUFFIX}/${ICU_COMPILER})
-    ENDFOREACH (_SUFFIX)
-
-    SET (_SUFFIXES ${_ICU_POSSIBLE_LIB_SUFFIXES})
-
-    FOREACH (_SUFFIX ${_SUFFIXES})
-      LIST (APPEND _ICU_POSSIBLE_LIB_SUFFIXES ${_SUFFIX}/${ICU_COMPILER})
-    ENDFOREACH (_SUFFIX)
-  ENDIF (ICU_COMPILER)
-
-  IF (_COMPILER)
-    SET (_SUFFIXES ${_ICU_POSSIBLE_BIN_SUFFIXES})
-
-    FOREACH (_SUFFIX ${_SUFFIXES})
-      LIST (APPEND _ICU_POSSIBLE_BIN_SUFFIXES ${_SUFFIX}/${_COMPILER})
-    ENDFOREACH (_SUFFIX)
-
-    SET (_SUFFIXES ${_ICU_POSSIBLE_LIB_SUFFIXES})
-
-    FOREACH (_SUFFIX ${_SUFFIXES})
-      LIST (APPEND _ICU_POSSIBLE_LIB_SUFFIXES ${_SUFFIX}/${_COMPILER})
-    ENDFOREACH (_SUFFIX)
-  ENDIF (_COMPILER)
-ENDIF (WIN32)
-
-FIND_PATH (ICU_ROOT_DIR
-  NAMES include/unicode/utypes.h
-  PATHS ENV ICUROOT
-  DOC "ICU root directory")
-
-# Re-use the previous path:
-FIND_PATH (ICU_INCLUDE_DIR
-  NAMES unicode/utypes.h
-  HINTS ${ICU_ROOT_DIR}
-  PATH_SUFFIXES ${_ICU_POSSIBLE_INCLUDE_SUFFIXES}
-  DOC "ICU include directory")
-
-IF (NOT DEFINED ICU_BINARY_DIR)
-  # Binary directory hasn't been located yet: extract directory from icuinfo's
-  # path after invoking find_program
-  SET (_ICU_FIND_BINARY_DIR TRUE)
-ELSE (NOT DEFINED ICU_BINARY_DIR)
-  SET (_ICU_FIND_BINARY_DIR FALSE)
-ENDIF (NOT DEFINED ICU_BINARY_DIR)
-
-FIND_PROGRAM (ICU_BINARY_DIR
-  NAMES icuinfo
-  HINTS ${ICU_ROOT_DIR}
-  PATH_SUFFIXES ${_ICU_POSSIBLE_BIN_SUFFIXES})
-
-IF (_ICU_FIND_BINARY_DIR AND ICU_BINARY_DIR)
-  GET_FILENAME_COMPONENT (ICU_BINARY_DIR ${ICU_BINARY_DIR} PATH)
-  SET (ICU_BINARY_DIR ${ICU_BINARY_DIR} CACHE PATH "ICU binary directory" FORCE)
-ENDIF (_ICU_FIND_BINARY_DIR AND ICU_BINARY_DIR)
-
-SET (_ICU_EXECUTABLES derb genbrk genccode gencfu gencmn gencnval genctd
-  gennorm2 genrb gensprep icuinfo icupkg makeconv pkgdata uconv)
-
-FOREACH (_ICU_EXECUTABLE ${_ICU_EXECUTABLES})
-  STRING (TOUPPER ${_ICU_EXECUTABLE} _ICU_EXECUTABLE_UPPER)
-
-  FIND_PROGRAM (ICU_${_ICU_EXECUTABLE_UPPER}_EXECUTABLE
-    NAMES ${_ICU_EXECUTABLE}
-    HINTS ${ICU_BINARY_DIR}
-    DOC "ICU ${_ICU_EXECUTABLE} path")
-
-  MARK_AS_ADVANCED (ICU_${_ICU_EXECUTABLE_UPPER}_EXECUTABLE)
-ENDFOREACH (_ICU_EXECUTABLE ${_ICU_EXECUTABLES})
-
-# Search for all libraries if not specified otherwise
-IF (NOT ICU_FIND_COMPONENTS)
-  SET (ICU_FIND_COMPONENTS dt in io le lx tu uc)
-ENDIF (NOT ICU_FIND_COMPONENTS)
-
-IF (NOT DEFINED ICU_CONFIG_EXECUTABLE)
-  FIND_PROGRAM (ICU_CONFIG_EXECUTABLE icu-config PATH ${ICU_ROOT_DIR})
-
-  IF (ICU_CONFIG_EXECUTABLE)
-    EXEC_PROGRAM (${ICU_CONFIG_EXECUTABLE} ARGS --cflags OUTPUT_VARIABLE
-      _ICU_C_FLAGS)
-    EXEC_PROGRAM (${ICU_CONFIG_EXECUTABLE} ARGS --cxxflags OUTPUT_VARIABLE
-      _ICU_CXX_FLAGS)
-    EXEC_PROGRAM (${ICU_CONFIG_EXECUTABLE} ARGS --cflags-dynamic
-      OUTPUT_VARIABLE _ICU_C_FLAGS_SHARED)
-    EXEC_PROGRAM (${ICU_CONFIG_EXECUTABLE} ARGS --cxxflags-dynamic
-      OUTPUT_VARIABLE _ICU_CXX_FLAGS_SHARED)
-
-    IF (APPLE)
-      # Both are set to -dynamic which results in compilation errors: set to
-      # empty
-      SET (_ICU_C_FLAGS_SHARED "")
-      SET (_ICU_CXX_FLAGS_SHARED "")
-    ENDIF (APPLE)
-  ENDIF (ICU_CONFIG_EXECUTABLE)
-ENDIF (NOT DEFINED ICU_CONFIG_EXECUTABLE)
-
-SET (ICU_C_FLAGS "${_ICU_C_FLAGS}" CACHE STRING
-  "Required C compile flags when building against ICU")
-SET (ICU_CXX_FLAGS "${_ICU_CXX_FLAGS}" CACHE STRING
-  "Required C++ compile flags when building against ICU")
-SET (ICU_C_FLAGS_SHARED "${_ICU_C_FLAGS_SHARED}" CACHE STRING
-  "Required dynamic C compile flags when building against ICU")
-SET (ICU_CXX_FLAGS_SHARED "${_ICU_CXX_FLAGS_SHARED}" CACHE STRING
-  "Required dynamic C++ compile flags when building against ICU")
-
-MARK_AS_ADVANCED (ICU_CONFIG_EXECUTABLE ICU_C_FLAGS ICU_C_FLAGS_SHARED
-  ICU_CXX_FLAGS ICU_CXX_FLAGS_SHARED)
-
-SET (_ICU_REQUIRED_VARS ICU_ROOT_DIR ICU_INCLUDE_DIR)
-
-IF (ICU_INCLUDE_DIR)
-  # ICU 4 version numbers header
-  SET (_ICU_VERSION_HEADER ${ICU_INCLUDE_DIR}/unicode/uvernum.h)
-
-  IF (NOT EXISTS ${_ICU_VERSION_HEADER})
-    # ICU 3 stores the version numbers in uversion.h
-    SET (_ICU_VERSION_HEADER ${ICU_INCLUDE_DIR}/unicode/uversion.h)
-  ENDIF (NOT EXISTS ${_ICU_VERSION_HEADER})
-
-  IF (EXISTS ${_ICU_VERSION_HEADER})
-    FILE (STRINGS ${_ICU_VERSION_HEADER}
-      _ICU_VERSION_TMP REGEX "^#define U_ICU_VERSION_MAJOR_NUM[ \t]+[0-9]+$")
-
-    STRING (REGEX REPLACE
-      "^#define U_ICU_VERSION_MAJOR_NUM[ \t]+([0-9]+)" "\\1" ICU_VERSION_MAJOR
-      ${_ICU_VERSION_TMP})
-
-    FILE (STRINGS ${_ICU_VERSION_HEADER}
-      _ICU_VERSION_TMP REGEX "^#define U_ICU_VERSION_MINOR_NUM[ \t]+[0-9]+$")
-
-    STRING (REGEX REPLACE
-      "^#define U_ICU_VERSION_MINOR_NUM[ \t]+([0-9]+)" "\\1" ICU_VERSION_MINOR
-      ${_ICU_VERSION_TMP})
-
-    FILE (STRINGS ${_ICU_VERSION_HEADER} _ICU_VERSION_TMP REGEX
-      "^#define U_ICU_VERSION_PATCHLEVEL_NUM[ \t]+[0-9]+$")
-
-    STRING (REGEX REPLACE
-      "^#define U_ICU_VERSION_PATCHLEVEL_NUM[ \t]+([0-9]+)" "\\1"
-      ICU_VERSION_PATCH ${_ICU_VERSION_TMP})
-
-    FILE (STRINGS ${_ICU_VERSION_HEADER} _ICU_VERSION_TMP REGEX
-      "^#define U_ICU_VERSION_BUILDLEVEL_NUM[ \t]+[0-9]+$")
-
-    STRING (REGEX REPLACE
-      "^#define U_ICU_VERSION_BUILDLEVEL_NUM[ \t]+([0-9]+)" "\\1"
-      ICU_VERSION_TWEAK ${_ICU_VERSION_TMP})
-
-    SET (ICU_VERSION_COUNT 4)
-    SET (_ICU_VERSION ${ICU_VERSION_MAJOR}.${ICU_VERSION_MINOR})
-
-    IF (ICU_VERSION_PATCH GREATER 0 OR ICU_VERSION_TWEAK GREATER 0)
-      SET (_ICU_VERSION "${_ICU_VERSION}.${ICU_VERSION_PATCH}")
-    ENDIF (ICU_VERSION_PATCH GREATER 0 OR ICU_VERSION_TWEAK GREATER 0)
-
-    IF (ICU_VERSION_TWEAK GREATER 0)
-      SET (_ICU_VERSION "${_ICU_VERSION}.${ICU_VERSION_TWEAK}")
-    ENDIF (ICU_VERSION_TWEAK GREATER 0)
-  ENDIF (EXISTS ${_ICU_VERSION_HEADER})
-
-  SET (_ICU_VERSION_PATTERN "[0-9]+\\.[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?")
-
-  # Version sanity check
-  IF ("${_ICU_VERSION}" MATCHES "${_ICU_VERSION_PATTERN}")
-    SET (ICU_VERSION ${_ICU_VERSION})
-  ELSE ("${_ICU_VERSION}" MATCHES "${_ICU_VERSION_PATTERN}")
-    MESSAGE (WARNING "Cannot determine ICU's version")
-  ENDIF ("${_ICU_VERSION}" MATCHES "${_ICU_VERSION_PATTERN}")
-
-  SET (_ICU_DETECTED_SUFFIX ${ICU_VERSION_MAJOR}${ICU_VERSION_MINOR})
-
-  # Loop over each components
-  FOREACH (_ICU_COMPONENT ${ICU_FIND_COMPONENTS})
-    SET (_ICU_COMPONENT_BASE icu${_ICU_COMPONENT})
-
-    SET (_ICU_COMPONENT_POSSIBLE_DEBUG_NAMES
-         ${_ICU_COMPONENT_BASE}d
-         ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d
-         ${_ICU_COMPONENT_BASE}d
-         ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d)
-    SET (_ICU_COMPONENT_POSSIBLE_RELEASE_NAMES
-         ${_ICU_COMPONENT_BASE}
-         ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}
-         ${_ICU_COMPONENT_BASE}
-         ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX})
-
-    # On Unix-like systems the `icudt' component is called `icudata' and `icuin'
-    # `icui18n': map the names accordingly and search for both variants
-    IF (${_ICU_COMPONENT} STREQUAL "dt")
-        SET (_ICU_COMPONENT_BASE icudata)
-        LIST (APPEND _ICU_COMPONENT_POSSIBLE_DEBUG_NAMES
-             ${_ICU_COMPONENT_BASE}d
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d
-             ${_ICU_COMPONENT_BASE}d
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d)
-        LIST (APPEND _ICU_COMPONENT_POSSIBLE_RELEASE_NAMES
-             ${_ICU_COMPONENT_BASE}
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}
-             ${_ICU_COMPONENT_BASE}
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX})
-    ELSEIF (${_ICU_COMPONENT} STREQUAL "in")
-        SET (_ICU_COMPONENT_BASE icui18n)
-        LIST (APPEND _ICU_COMPONENT_POSSIBLE_DEBUG_NAMES
-             ${_ICU_COMPONENT_BASE}d
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d
-             ${_ICU_COMPONENT_BASE}d
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}d)
-        LIST (APPEND _ICU_COMPONENT_POSSIBLE_RELEASE_NAMES
-             ${_ICU_COMPONENT_BASE}
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX}
-             ${_ICU_COMPONENT_BASE}
-             ${_ICU_COMPONENT_BASE}${_ICU_DETECTED_SUFFIX})
-    ENDIF (${_ICU_COMPONENT} STREQUAL "dt")
-
-    STRING (TOUPPER ${_ICU_COMPONENT} _ICU_COMPONENT_UPPER)
-    SET (_ICU_LIBRARY_BASE ICU_${_ICU_COMPONENT_UPPER}_LIBRARY)
-
-    FIND_LIBRARY (${_ICU_LIBRARY_BASE}_DEBUG
-      NAMES ${_ICU_COMPONENT_POSSIBLE_DEBUG_NAMES}
-      HINTS ${ICU_ROOT_DIR} PATH_SUFFIXES ${_ICU_POSSIBLE_LIB_SUFFIXES}
-      DOC "ICU ${_ICU_COMPONENT} debug library")
-
-    FIND_LIBRARY (${_ICU_LIBRARY_BASE}_RELEASE
-      NAMES ${_ICU_COMPONENT_POSSIBLE_RELEASE_NAMES}
-      HINTS ${ICU_ROOT_DIR} PATH_SUFFIXES ${_ICU_POSSIBLE_LIB_SUFFIXES}
-      DOC "ICU ${_ICU_COMPONENT} release library")
-
-    SET (ICU_${_ICU_COMPONENT_UPPER}_FOUND TRUE)
-
-    # Debug and release
-    IF (${_ICU_LIBRARY_BASE}_DEBUG AND ${_ICU_LIBRARY_BASE}_RELEASE)
-      SET (${_ICU_LIBRARY_BASE}
-        debug ${${_ICU_LIBRARY_BASE}_DEBUG}
-        optimized ${${_ICU_LIBRARY_BASE}_RELEASE} CACHE DOC
-        "ICU ${_ICU_COMPONENT} library")
-      # Debug only
-    ELSEIF (${_ICU_LIBRARY_BASE}_DEBUG)
-      SET (${_ICU_LIBRARY_BASE} ${${_ICU_LIBRARY_BASE}_DEBUG} CACHE DOC
-        "ICU ${_ICU_COMPONENT} library")
-      # Release only
-    ELSEIF (${_ICU_LIBRARY_BASE}_RELEASE)
-      SET (${_ICU_LIBRARY_BASE} ${${_ICU_LIBRARY_BASE}_RELEASE} CACHE DOC
-        "ICU ${_ICU_COMPONENT} library")
-    ELSE (${_ICU_LIBRARY_BASE}_DEBUG AND ${_ICU_LIBRARY_BASE}_RELEASE)
-      # Component missing: record it for a later report
-      LIST (APPEND _ICU_MISSING_COMPONENTS ${_ICU_COMPONENT})
-      LIST (APPEND _ICU_MISSING_LIBRARIES ${_ICU_LIBRARY_BASE})
-      SET (ICU_${_ICU_COMPONENT_UPPER}_FOUND FALSE)
-    ENDIF (${_ICU_LIBRARY_BASE}_DEBUG AND ${_ICU_LIBRARY_BASE}_RELEASE)
-
-    MARK_AS_ADVANCED (${_ICU_LIBRARY_BASE} ${_ICU_LIBRARY_BASE}_DEBUG
-      ${_ICU_LIBRARY_BASE}_RELEASE)
-
-    SET (ICU_${_ICU_COMPONENT}_FOUND ${ICU_${_ICU_COMPONENT_UPPER}_FOUND})
-
-    # Make sure only libraries that have been actually found are registered
-    IF (${_ICU_LIBRARY_BASE})
-      LIST (APPEND _ICU_LIBRARIES ${${_ICU_LIBRARY_BASE}})
-    ENDIF (${_ICU_LIBRARY_BASE})
-  ENDFOREACH (_ICU_COMPONENT)
-
-  IF (NOT DEFINED _ICU_MISSING_COMPONENTS)
-    # Success: all components were found
-    LIST (APPEND ICU_LIBRARIES ${_ICU_LIBRARIES})
-  ELSE (NOT DEFINED _ICU_MISSING_COMPONENTS AND _ICU_CHECK_COMPONENTS)
-    LIST (APPEND _ICU_REQUIRED_VARS ${_ICU_MISSING_LIBRARIES})
-
-    IF (NOT ICU_FIND_QUIETLY)
-      MESSAGE (STATUS "One or more ICU components were not found:")
-
-      # Display missing components indented, each on a separate line
-      FOREACH (_ICU_MISSING_COMPONENT ${_ICU_MISSING_COMPONENTS})
-        MESSAGE (STATUS "  " ${_ICU_MISSING_COMPONENT})
-      ENDFOREACH (_ICU_MISSING_COMPONENT ${_ICU_MISSING_COMPONENTS})
-    ENDIF (NOT ICU_FIND_QUIETLY)
-  ENDIF (NOT DEFINED _ICU_MISSING_COMPONENTS)
-
-  SET (ICU_INCLUDE_DIRS ${ICU_INCLUDE_DIR})
-ENDIF (ICU_INCLUDE_DIR)
-
-MARK_AS_ADVANCED (ICU_INCLUDE_DIR ICU_BINARY_DIR)
-
-IF (NOT _ICU_CHECK_COMPONENTS)
- SET (_ICU_FPHSA_ADDITIONAL_ARGS HANDLE_COMPONENTS)
-ENDIF (NOT _ICU_CHECK_COMPONENTS)
-
-FIND_PACKAGE_HANDLE_STANDARD_ARGS (ICU REQUIRED_VARS ${_ICU_REQUIRED_VARS}
-  VERSION_VAR ICU_VERSION ${_ICU_FPHSA_ADDITIONAL_ARGS})
-
-# Functions
-
-FUNCTION (CREATE_ICU_RESOURCE_BUNDLE ARGS)
-  IF (NOT ICU_GENRB_EXECUTABLE)
-    MESSAGE (FATAL_ERROR
-      "CREATE_ICU_RESOURCE_BUNDLE requires genrb which is missing")
-  ENDIF (NOT ICU_GENRB_EXECUTABLE)
-
-  IF (NOT ICU_PKGDATA_EXECUTABLE)
-    MESSAGE (FATAL_ERROR
-      "CREATE_ICU_RESOURCE_BUNDLE requires pkgdata which is missing")
-  ENDIF (NOT ICU_PKGDATA_EXECUTABLE)
-
-  SET (_ICU_CRB_OPTIONS COMMON STATIC SHARED VERBOSE)
-  SET (_ICU_CRB_SINGLE TARGET NAME RESOURCE_LOCATION REVISION C_FLAGS CXX_FLAGS
-    IMPORT_DIRECTORY)
-  SET (_ICU_CRB_MULTI FILES GENRB_ARGS PKGDATA_ARGS)
-
-  CMAKE_PARSE_ARGUMENTS (_ICU_CRB_ARGS "${_ICU_CRB_OPTIONS}"
-    "${_ICU_CRB_SINGLE}" "${_ICU_CRB_MULTI}" ${ARGS} ${ARGN})
-
-  # Error checking
-
-  IF ("${_ICU_CRB_ARGS_TARGET}" STREQUAL "")
-    MESSAGE (FATAL_ERROR "Missing resource bundle TARGET name")
-  ENDIF ("${_ICU_CRB_ARGS_TARGET}" STREQUAL "")
-
-  IF (NOT TARGET ${_ICU_CRB_ARGS_TARGET})
-    MESSAGE (FATAL_ERROR "Resource bundle cannot be added to a non-exisiting "
-      "target ${_ICU_CRB_ARGS_TARGET}")
-  ENDIF (NOT TARGET ${_ICU_CRB_ARGS_TARGET})
-
-  IF ("${_ICU_CRB_ARGS_NAME}" STREQUAL "")
-    MESSAGE (FATAL_ERROR "Missing resource bundle NAME")
-  ENDIF ("${_ICU_CRB_ARGS_NAME}" STREQUAL "")
-
-  LIST (LENGTH _ICU_CRB_ARGS_FILES _ICU_CRB_FILE_COUNT)
-
-  IF (${_ICU_CRB_FILE_COUNT} LESS 1)
-    MESSAGE (FATAL_ERROR "At least one resource file has to be specified")
-  ENDIF (${_ICU_CRB_FILE_COUNT} LESS 1)
-
-  # Parameter construction
-
-  SET (_ICU_CRB_BUNDLE_DIR
-    ${CMAKE_CURRENT_BINARY_DIR}/icudata/${CMAKE_CFG_INTDIR})
-  # Strip the . after the slash
-  GET_FILENAME_COMPONENT (_ICU_CRB_BUNDLE_DIR ${_ICU_CRB_BUNDLE_DIR} ABSOLUTE)
-  SET (_ICU_CRB_BUNDLE_NAME ${_ICU_CRB_ARGS_NAME})
-
-  SET (_ICU_CRB_BUNDLE_TYPE common)
-  SET (_ICU_CRB_BUNDLE_EXT "dat")
-
-  IF (${_ICU_CRB_ARGS_STATIC})
-    SET (_ICU_CRB_BUNDLE_TYPE static)
-    SET (_ICU_CRB_LIB_TYPE STATIC)
-
-    IF (WIN32)
-      SET (_ICU_CRB_BUNDLE_EXT "lib")
-    ELSE (WIN32)
-      SET (_ICU_CRB_BUNDLE_EXT "a")
-    ENDIF (WIN32)
-  ELSEIF (${_ICU_CRB_ARGS_SHARED})
-    SET (_ICU_CRB_BUNDLE_TYPE dll)
-    SET (_ICU_CRB_LIB_TYPE SHARED)
-
-    IF (WIN32)
-      SET (_ICU_CRB_BUNDLE_EXT "lib")
-    ELSEIF (APPLE)
-      SET (_ICU_CRB_BUNDLE_EXT "dylib")
-    ELSE (WIN32)
-      SET (_ICU_CRB_BUNDLE_EXT "so")
-    ENDIF (WIN32)
-
-    IF (NOT "${_ICU_CRB_ARGS_C_FLAGS}" STREQUAL "")
-      SET (${_ICU_CRB_ARGS_C_FLAGS} ${ICU_C_FLAGS_SHARED} PARENT_SCOPE)
-    ENDIF (NOT "${_ICU_CRB_ARGS_C_FLAGS}" STREQUAL "")
-
-    IF (NOT "${_ICU_CRB_ARGS_CXX_FLAGS}" STREQUAL "")
-      SET (${_ICU_CRB_ARGS_CXX_FLAGS} ${ICU_CXX_FLAGS_SHARED} PARENT_SCOPE)
-    ENDIF (NOT "${_ICU_CRB_ARGS_CXX_FLAGS}" STREQUAL "")
-  ENDIF (${_ICU_CRB_ARGS_STATIC})
-
-  IF (${_ICU_CRB_BUNDLE_TYPE} STREQUAL "common")
-    SET (_ICU_CRB_CREATE_LIBRARY FALSE)
-  ELSE (${_ICU_CRB_BUNDLE_TYPE} STREQUAL "common")
-    SET (_ICU_CRB_CREATE_LIBRARY TRUE)
-  ENDIF (${_ICU_CRB_BUNDLE_TYPE} STREQUAL "common")
-
-  # The file containg the list of all *.res files
-  SET (_ICU_RES_LIST "list.txt")
-  # The absolute path to the previous file
-  SET (_ICU_RES_PATH ${_ICU_CRB_BUNDLE_DIR}/${_ICU_RES_LIST})
-
-  IF (WIN32)
-    SET (_ICU_CRB_CREATE_LIST dir /b "*.res" > "${_ICU_RES_PATH}")
-  ELSE (WIN32)
-    SET (_ICU_CRB_CREATE_LIST find . -maxdepth 1 -name '*.res' |
-      xargs -I {} basename {} > "${_ICU_RES_PATH}")
-  ENDIF (WIN32)
-
-  SET (_ICU_CRB_LIB_NAME ${_ICU_CRB_BUNDLE_NAME})
-
-  IF (_ICU_CRB_CREATE_LIBRARY AND NOT WIN32)
-    SET (_ICU_CRB_LIB_NAME "lib${_ICU_CRB_BUNDLE_NAME}")
-  ENDIF (_ICU_CRB_CREATE_LIBRARY AND NOT WIN32)
-
-  SET (_ICU_CRB_BUNDLE_LOCATION
-    ${_ICU_CRB_BUNDLE_DIR}/${_ICU_CRB_LIB_NAME}.${_ICU_CRB_BUNDLE_EXT})
-
-  IF (_ICU_CRB_CREATE_LIBRARY)
-    IF (${CMAKE_GENERATOR} MATCHES ".*Makefiles.*")
-      # HACK: Create a dummy library, otherwise make will complain about a
-      # missing rule
-      EXECUTE_PROCESS (COMMAND ${CMAKE_COMMAND} -E make_directory
-        ${_ICU_CRB_BUNDLE_DIR})
-      EXECUTE_PROCESS (COMMAND ${CMAKE_COMMAND} -E touch
-        ${_ICU_CRB_BUNDLE_LOCATION})
-    ENDIF (${CMAKE_GENERATOR} MATCHES ".*Makefiles.*")
-  ENDIF (_ICU_CRB_CREATE_LIBRARY)
-
-  IF (NOT ${_ICU_CRB_ARGS_RESOURCE_LOCATION} STREQUAL "")
-    SET (${_ICU_CRB_ARGS_RESOURCE_LOCATION} ${_ICU_CRB_BUNDLE_LOCATION}
-      PARENT_SCOPE)
-  ENDIF (NOT ${_ICU_CRB_ARGS_RESOURCE_LOCATION} STREQUAL "")
-
-  ADD_CUSTOM_COMMAND (TARGET ${_ICU_CRB_ARGS_TARGET} PRE_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${_ICU_CRB_BUNDLE_DIR}
-    COMMAND ${CMAKE_COMMAND} -E remove ${_ICU_CRB_BUNDLE_LOCATION})
-
-  SET (_ICU_CRB_BUNDLE_TMP_DIR ${_ICU_CRB_BUNDLE_DIR})
-  SET (_ICU_CRB_BUNDLE_TMP_ARGS)
-
-  IF (NOT _ICU_CRB_CREATE_LIBRARY)
-    # Output .dat to a temporary directory, otherwise pkgdata will complain
-    # about not being able to move the file because the output location and the
-    # destination are the same
-    SET (_ICU_CRB_BUNDLE_TMP_DIR "${_ICU_CRB_BUNDLE_TMP_DIR}/tmp")
-    SET (_ICU_CRB_BUNDLE_TMP_ARGS -T ${_ICU_CRB_BUNDLE_TMP_DIR})
-  ENDIF (NOT _ICU_CRB_CREATE_LIBRARY)
-
-  SET (_ICU_CRB_BUNDLE_REVISION_ARG)
-
-  IF (${_ICU_CRB_ARGS_SHARED} AND NOT WIN32)
-    IF ("${_ICU_CRB_ARGS_REVISION}" STREQUAL "")
-      SET (_ICU_CRB_ARGS_REVISION 1.0)
-    ELSEIF (NOT "${_ICU_CRB_ARGS_REVISION}" MATCHES
-        "[0-9]+(\\.[0-9]+(\\.[0-9]+)?)?")
-      MESSAGE (FATAL_ERROR "Invalid revision format. "
-        "The revision has to match the major.minor.patchlevel pattern.")
-    ENDIF ("${_ICU_CRB_ARGS_REVISION}" STREQUAL "")
-
-    SET (_ICU_CRB_BUNDLE_REVISION_ARG -r ${_ICU_CRB_ARGS_REVISION})
-  ENDIF (${_ICU_CRB_ARGS_SHARED} AND NOT WIN32)
-
-  IF (NOT ${_ICU_CRB_ARGS_VERBOSE})
-    IF (WIN32)
-      SET (_ICU_CRB_STDOUT_REDIRECT >NUL)
-    ELSE (WIN32)
-      SET (_ICU_CRB_STDOUT_REDIRECT >/dev/null)
-    ENDIF (WIN32)
-  ELSE (NOT ${_ICU_CRB_ARGS_VERBOSE})
-    SET (_ICU_CRB_STDOUT_REDIRECT)
-  ENDIF (NOT ${_ICU_CRB_ARGS_VERBOSE})
-
-  IF (WIN32)
-    SET (_ICU_CRB_REMOVE_RES del /q *.res 2>NUL)
-  ELSE (WIN32)
-    SET (_ICU_CRB_REMOVE_RES rm -f *.res)
-  ENDIF (WIN32)
-
-  IF (NOT ${_ICU_CRB_ARGS_IMPORT_DIRECTORY} STREQUAL "")
-    SET (_ICU_CRB_SOURCE_DIRECTORY ${_ICU_CRB_ARGS_IMPORT_DIRECTORY})
-  ELSE (NOT ${_ICU_CRB_ARGS_IMPORT_DIRECTORY} STREQUAL "")
-    SET (_ICU_CRB_SOURCE_DIRECTORY ${_ICU_CRB_BUNDLE_DIR})
-  ENDIF (NOT ${_ICU_CRB_ARGS_IMPORT_DIRECTORY} STREQUAL "")
-
-  IF (_ICU_CRB_CREATE_LIBRARY AND CMAKE_GENERATOR MATCHES "NMake")
-    # Workaround for NMake error U1095 caused by too long command-line argument
-    # list: execute genrb for one resource file at a time by using file's
-    # relative path
-    FOREACH (_FILE ${_ICU_CRB_ARGS_FILES})
-      FILE (RELATIVE_PATH _RELATIVE_FILE_PATH ${_ICU_CRB_SOURCE_DIRECTORY}
-        ${_FILE})
-      STRING (LENGTH ${_FILE} _PATH_LENGTH)
-      STRING (LENGTH ${_RELATIVE_FILE_PATH} _RELATIVE_PATH_LENGTH)
-
-      IF (_PATH_LENGTH LESS _RELATIVE_PATH_LENGTH)
-        # Absolute path is shorter than the relative; use the absolute path
-        SET (_RELATIVE_FILE_PATH ${_FILE})
-      ENDIF (_PATH_LENGTH LESS _RELATIVE_PATH_LENGTH)
-
-      LIST (APPEND _ICU_CRB_GENERATE
-        COMMAND ${CMAKE_COMMAND} -E chdir ${_ICU_CRB_SOURCE_DIRECTORY}
-        ${ICU_GENRB_EXECUTABLE} ${_RELATIVE_FILE_PATH} -d
-              ${_ICU_CRB_BUNDLE_DIR} ${_ICU_CRB_ARGS_GENRB_ARGS}
-              ${_ICU_CRB_STDOUT_REDIRECT})
-    ENDFOREACH (_FILE)
-  ELSE (_ICU_CRB_CREATE_LIBRARY AND CMAKE_GENERATOR MATCHES "NMake")
-    SET (_ICU_CRB_GENERATE
-      COMMAND ${CMAKE_COMMAND} -E chdir ${_ICU_CRB_SOURCE_DIRECTORY}
-            ${ICU_GENRB_EXECUTABLE} ${_ICU_CRB_ARGS_FILES} -d
-            ${_ICU_CRB_BUNDLE_DIR} ${_ICU_CRB_ARGS_GENRB_ARGS}
-            ${_ICU_CRB_STDOUT_REDIRECT})
-  ENDIF (_ICU_CRB_CREATE_LIBRARY AND CMAKE_GENERATOR MATCHES "NMake")
-
-  ADD_CUSTOM_COMMAND (TARGET ${_ICU_CRB_ARGS_TARGET} PRE_LINK
-    # Remove previous .res files
-    COMMAND ${_ICU_CRB_REMOVE_RES} ${_ICU_CRB_STDOUT_REDIRECT}
-    # Generate the resource bundle
-    ${_ICU_CRB_GENERATE}
-    # Package the resource bundle
-    COMMAND ${_ICU_CRB_CREATE_LIST}
-    COMMAND ${CMAKE_COMMAND} -E make_directory ${_ICU_CRB_BUNDLE_TMP_DIR}
-    COMMAND ${ICU_PKGDATA_EXECUTABLE} -m ${_ICU_CRB_BUNDLE_TYPE} -p
-            ${_ICU_CRB_BUNDLE_NAME} "${_ICU_RES_PATH}"
-            -s ${_ICU_CRB_BUNDLE_DIR} ${_ICU_CRB_BUNDLE_REVISION_ARG}
-            -d ${_ICU_CRB_BUNDLE_DIR} ${_ICU_CRB_BUNDLE_TMP_ARGS}
-            ${_ICU_CRB_ARGS_PKGDATA_ARGS} ${_ICU_CRB_STDOUT_REDIRECT}
-    WORKING_DIRECTORY ${_ICU_CRB_BUNDLE_DIR}
-    COMMENT "Creating resource bundle ${_ICU_CRB_BUNDLE_NAME}")
-
-  IF (_ICU_CRB_CREATE_LIBRARY)
-    ADD_LIBRARY (${_ICU_CRB_BUNDLE_NAME} ${_ICU_CRB_LIB_TYPE} IMPORTED)
-    SET_TARGET_PROPERTIES (${_ICU_CRB_BUNDLE_NAME} PROPERTIES
-      IMPORTED_LOCATION ${_ICU_CRB_BUNDLE_LOCATION}
-      IMPORTED_IMPLIB ${_ICU_CRB_BUNDLE_LOCATION})
-  ENDIF (_ICU_CRB_CREATE_LIBRARY)
-ENDFUNCTION (CREATE_ICU_RESOURCE_BUNDLE)
-
+# This module reads hints about search results from::
+#
+#   ICU_ROOT - the root of the ICU installation
+#
+# The environment variable ``ICU_ROOT`` may also be used; the
+# ICU_ROOT variable takes precedence.
+#
+# The following cache variables may also be set::
+#
+#   ICU_<P>_EXECUTABLE - the path to executable <P>
+#   ICU_INCLUDE_DIR - the directory containing the ICU headers
+#   ICU_<C>_LIBRARY - the library for component <C>
+#
+# .. note::
+#
+#   In most cases none of the above variables will require setting,
+#   unless multiple ICU versions are available and a specific version
+#   is required.
+#
+# Other variables one may set to control this module are::
+#
+#   ICU_DEBUG - Set to ON to enable debug output from FindICU.
+
+# Written by Roger Leigh <rleigh@codelibre.net>
+
+set(icu_programs
+  gencnval
+  icuinfo
+  genbrk
+  icu-config
+  genrb
+  gendict
+  derb
+  pkgdata
+  uconv
+  gencfu
+  makeconv
+  gennorm2
+  genccode
+  gensprep
+  icupkg
+  gencmn)
+
+set(icu_data
+  Makefile.inc
+  pkgdata.inc)
+
+# The ICU checks are contained in a function due to the large number
+# of temporary variables needed.
+function(_ICU_FIND)
+  # Set up search paths, taking compiler into account.  Search ICU_ROOT,
+  # with ICU_ROOT in the environment as a fallback if unset.
+  if(ICU_ROOT)
+    list(APPEND icu_roots "${ICU_ROOT}")
+  else()
+    if(NOT "$ENV{ICU_ROOT}" STREQUAL "")
+      file(TO_CMAKE_PATH "$ENV{ICU_ROOT}" NATIVE_PATH)
+      list(APPEND icu_roots "${NATIVE_PATH}")
+      set(ICU_ROOT "${NATIVE_PATH}"
+          CACHE PATH "Location of the ICU installation" FORCE)
+    endif()
+  endif()
+
+  # Find include directory
+  list(APPEND icu_include_suffixes "include")
+  find_path(ICU_INCLUDE_DIR
+            NAMES "unicode/utypes.h"
+            HINTS ${icu_roots}
+            PATH_SUFFIXES ${icu_include_suffixes}
+            DOC "ICU include directory")
+  set(ICU_INCLUDE_DIR "${ICU_INCLUDE_DIR}" PARENT_SCOPE)
+
+  # Get version
+  if(ICU_INCLUDE_DIR AND EXISTS "${ICU_INCLUDE_DIR}/unicode/uvernum.h")
+    file(STRINGS "${ICU_INCLUDE_DIR}/unicode/uvernum.h" icu_header_str
+      REGEX "^#define[\t ]+U_ICU_VERSION[\t ]+\".*\".*")
+
+    string(REGEX REPLACE "^#define[\t ]+U_ICU_VERSION[\t ]+\"([^ \\n]*)\".*"
+      "\\1" icu_version_string "${icu_header_str}")
+    set(ICU_VERSION "${icu_version_string}")
+    set(ICU_VERSION "${icu_version_string}" PARENT_SCOPE)
+    unset(icu_header_str)
+    unset(icu_version_string)
+  endif()
+
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    # 64-bit binary directory
+    set(_bin64 "bin64")
+    # 64-bit library directory
+    set(_lib64 "lib64")
+  endif()
+
+
+  # Find all ICU programs
+  list(APPEND icu_binary_suffixes "${_bin64}" "bin" "sbin")
+  foreach(program ${icu_programs})
+    string(TOUPPER "${program}" program_upcase)
+    set(cache_var "ICU_${program_upcase}_EXECUTABLE")
+    set(program_var "ICU_${program_upcase}_EXECUTABLE")
+    find_program("${cache_var}" "${program}"
+      HINTS ${icu_roots}
+      PATH_SUFFIXES ${icu_binary_suffixes}
+      DOC "ICU ${program} executable")
+    mark_as_advanced(cache_var)
+    set("${program_var}" "${${cache_var}}" PARENT_SCOPE)
+  endforeach()
+
+  # Find all ICU libraries
+  list(APPEND icu_library_suffixes "${_lib64}" "lib")
+  set(ICU_REQUIRED_LIBS_FOUND ON)
+  set(static_prefix )
+  # static icu libraries compiled with MSVC have the prefix 's'
+  if(MSVC)
+    set(static_prefix "s")
+  endif()
+  foreach(component ${ICU_FIND_COMPONENTS})
+    string(TOUPPER "${component}" component_upcase)
+    set(component_cache "ICU_${component_upcase}_LIBRARY")
+    set(component_cache_release "${component_cache}_RELEASE")
+    set(component_cache_debug "${component_cache}_DEBUG")
+    set(component_found "${component_upcase}_FOUND")
+    set(component_libnames "icu${component}")
+    set(component_debug_libnames "icu${component}d")
+
+    # Special case deliberate library naming mismatches between Unix
+    # and Windows builds
+    unset(component_libnames)
+    unset(component_debug_libnames)
+    list(APPEND component_libnames "icu${component}")
+    list(APPEND component_debug_libnames "icu${component}d")
+    if(component STREQUAL "data")
+      list(APPEND component_libnames "icudt")
+      # Note there is no debug variant at present
+      list(APPEND component_debug_libnames "icudtd")
+    endif()
+    if(component STREQUAL "dt")
+      list(APPEND component_libnames "icudata")
+      # Note there is no debug variant at present
+      list(APPEND component_debug_libnames "icudatad")
+    endif()
+    if(component STREQUAL "i18n")
+      list(APPEND component_libnames "icuin")
+      list(APPEND component_debug_libnames "icuind")
+    endif()
+    if(component STREQUAL "in")
+      list(APPEND component_libnames "icui18n")
+      list(APPEND component_debug_libnames "icui18nd")
+    endif()
+
+    if(static_prefix)
+      unset(static_component_libnames)
+      unset(static_component_debug_libnames)
+      foreach(component_libname ${component_libnames})
+        list(APPEND static_component_libnames
+          ${static_prefix}${component_libname})
+      endforeach()
+      foreach(component_libname ${component_debug_libnames})
+        list(APPEND static_component_debug_libnames
+          ${static_prefix}${component_libname})
+      endforeach()
+      list(APPEND component_libnames ${static_component_libnames})
+      list(APPEND component_debug_libnames ${static_component_debug_libnames})
+    endif()
+    find_library("${component_cache_release}" ${component_libnames}
+      HINTS ${icu_roots}
+      PATH_SUFFIXES ${icu_library_suffixes}
+      DOC "ICU ${component} library (release)")
+    find_library("${component_cache_debug}" ${component_debug_libnames}
+      HINTS ${icu_roots}
+      PATH_SUFFIXES ${icu_library_suffixes}
+      DOC "ICU ${component} library (debug)")
+    include(SelectLibraryConfigurations)
+    select_library_configurations(ICU_${component_upcase})
+    mark_as_advanced("${component_cache_release}" "${component_cache_debug}")
+    if(${component_cache})
+      set("${component_found}" ON)
+      list(APPEND ICU_LIBRARY "${${component_cache}}")
+    endif()
+    mark_as_advanced("${component_found}")
+    set("${component_cache}" "${${component_cache}}" PARENT_SCOPE)
+    set("${component_found}" "${${component_found}}" PARENT_SCOPE)
+    if(${component_found})
+      if (ICU_FIND_REQUIRED_${component})
+        list(APPEND ICU_LIBS_FOUND "${component} (required)")
+      else()
+        list(APPEND ICU_LIBS_FOUND "${component} (optional)")
+      endif()
+    else()
+      if (ICU_FIND_REQUIRED_${component})
+        set(ICU_REQUIRED_LIBS_FOUND OFF)
+        list(APPEND ICU_LIBS_NOTFOUND "${component} (required)")
+      else()
+        list(APPEND ICU_LIBS_NOTFOUND "${component} (optional)")
+      endif()
+    endif()
+  endforeach()
+  set(_ICU_REQUIRED_LIBS_FOUND "${ICU_REQUIRED_LIBS_FOUND}" PARENT_SCOPE)
+  set(ICU_LIBRARY "${ICU_LIBRARY}" PARENT_SCOPE)
+
+  # Find all ICU data files
+  if(CMAKE_LIBRARY_ARCHITECTURE)
+    list(APPEND icu_data_suffixes
+      "${_lib64}/${CMAKE_LIBRARY_ARCHITECTURE}/icu/${ICU_VERSION}"
+      "lib/${CMAKE_LIBRARY_ARCHITECTURE}/icu/${ICU_VERSION}"
+      "${_lib64}/${CMAKE_LIBRARY_ARCHITECTURE}/icu"
+      "lib/${CMAKE_LIBRARY_ARCHITECTURE}/icu")
+  endif()
+  list(APPEND icu_data_suffixes
+    "${_lib64}/icu/${ICU_VERSION}"
+    "lib/icu/${ICU_VERSION}"
+    "${_lib64}/icu"
+    "lib/icu")
+  foreach(data ${icu_data})
+    string(TOUPPER "${data}" data_upcase)
+    string(REPLACE "." "_" data_upcase "${data_upcase}")
+    set(cache_var "ICU_${data_upcase}")
+    set(data_var "ICU_${data_upcase}")
+    find_file("${cache_var}" "${data}"
+      HINTS ${icu_roots}
+      PATH_SUFFIXES ${icu_data_suffixes}
+      DOC "ICU ${data} data file")
+    mark_as_advanced(cache_var)
+    set("${data_var}" "${${cache_var}}" PARENT_SCOPE)
+  endforeach()
+
+  if(NOT ICU_FIND_QUIETLY)
+    if(ICU_LIBS_FOUND)
+      message(STATUS "Found the following ICU libraries:")
+      foreach(found ${ICU_LIBS_FOUND})
+        message(STATUS "  ${found}")
+      endforeach()
+    endif()
+    if(ICU_LIBS_NOTFOUND)
+      message(STATUS "The following ICU libraries were not found:")
+      foreach(notfound ${ICU_LIBS_NOTFOUND})
+        message(STATUS "  ${notfound}")
+      endforeach()
+    endif()
+  endif()
+
+  if(ICU_DEBUG)
+    message(STATUS "--------FindICU.cmake search debug--------")
+    message(STATUS "ICU binary path search order: ${icu_roots}")
+    message(STATUS "ICU include path search order: ${icu_roots}")
+    message(STATUS "ICU library path search order: ${icu_roots}")
+    message(STATUS "----------------")
+  endif()
+endfunction()
+
+_ICU_FIND()
+
+include(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(ICU
+                                  FOUND_VAR ICU_FOUND
+                                  REQUIRED_VARS ICU_INCLUDE_DIR
+                                                ICU_LIBRARY
+                                                _ICU_REQUIRED_LIBS_FOUND
+                                  VERSION_VAR ICU_VERSION
+                                  FAIL_MESSAGE "Failed to find all ICU components")
+
+unset(_ICU_REQUIRED_LIBS_FOUND)
+
+if(ICU_FOUND)
+  set(ICU_INCLUDE_DIRS "${ICU_INCLUDE_DIR}")
+  set(ICU_LIBRARIES "${ICU_LIBRARY}")
+  foreach(_ICU_component ${ICU_FIND_COMPONENTS})
+    string(TOUPPER "${_ICU_component}" _ICU_component_upcase)
+    set(_ICU_component_cache "ICU_${_ICU_component_upcase}_LIBRARY")
+    set(_ICU_component_cache_release "ICU_${_ICU_component_upcase}_LIBRARY_RELEASE")
+    set(_ICU_component_cache_debug "ICU_${_ICU_component_upcase}_LIBRARY_DEBUG")
+    set(_ICU_component_lib "ICU_${_ICU_component_upcase}_LIBRARIES")
+    set(_ICU_component_found "${_ICU_component_upcase}_FOUND")
+    set(_ICU_imported_target "ICU::${_ICU_component}")
+    if(${_ICU_component_found})
+      set("${_ICU_component_lib}" "${${_ICU_component_cache}}")
+      if(NOT TARGET ${_ICU_imported_target})
+        add_library(${_ICU_imported_target} UNKNOWN IMPORTED)
+        if(ICU_INCLUDE_DIR)
+          set_target_properties(${_ICU_imported_target} PROPERTIES
+            INTERFACE_INCLUDE_DIRECTORIES "${ICU_INCLUDE_DIR}")
+        endif()
+        if(EXISTS "${${_ICU_component_cache}}")
+          set_target_properties(${_ICU_imported_target} PROPERTIES
+            IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
+            IMPORTED_LOCATION "${${_ICU_component_cache}}")
+        endif()
+        if(EXISTS "${${_ICU_component_cache_release}}")
+          set_property(TARGET ${_ICU_imported_target} APPEND PROPERTY
+            IMPORTED_CONFIGURATIONS RELEASE)
+          set_target_properties(${_ICU_imported_target} PROPERTIES
+            IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
+            IMPORTED_LOCATION_RELEASE "${${_ICU_component_cache_release}}")
+        endif()
+        if(EXISTS "${${_ICU_component_cache_debug}}")
+          set_property(TARGET ${_ICU_imported_target} APPEND PROPERTY
+            IMPORTED_CONFIGURATIONS DEBUG)
+          set_target_properties(${_ICU_imported_target} PROPERTIES
+            IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+            IMPORTED_LOCATION_DEBUG "${${_ICU_component_cache_debug}}")
+        endif()
+      endif()
+    endif()
+    unset(_ICU_component_upcase)
+    unset(_ICU_component_cache)
+    unset(_ICU_component_lib)
+    unset(_ICU_component_found)
+    unset(_ICU_imported_target)
+  endforeach()
+endif()
+
+if(ICU_DEBUG)
+  message(STATUS "--------FindICU.cmake results debug--------")
+  message(STATUS "ICU found: ${ICU_FOUND}")
+  message(STATUS "ICU_VERSION number: ${ICU_VERSION}")
+  message(STATUS "ICU_ROOT directory: ${ICU_ROOT}")
+  message(STATUS "ICU_INCLUDE_DIR directory: ${ICU_INCLUDE_DIR}")
+  message(STATUS "ICU_LIBRARIES: ${ICU_LIBRARIES}")
+
+  foreach(program IN LISTS icu_programs)
+    string(TOUPPER "${program}" program_upcase)
+    set(program_lib "ICU_${program_upcase}_EXECUTABLE")
+    message(STATUS "${program} program: ${${program_lib}}")
+    unset(program_upcase)
+    unset(program_lib)
+  endforeach()
+
+  foreach(data IN LISTS icu_data)
+    string(TOUPPER "${data}" data_upcase)
+    string(REPLACE "." "_" data_upcase "${data_upcase}")
+    set(data_lib "ICU_${data_upcase}")
+    message(STATUS "${data} data: ${${data_lib}}")
+    unset(data_upcase)
+    unset(data_lib)
+  endforeach()
+
+  foreach(component IN LISTS ICU_FIND_COMPONENTS)
+    string(TOUPPER "${component}" component_upcase)
+    set(component_lib "ICU_${component_upcase}_LIBRARIES")
+    set(component_found "${component_upcase}_FOUND")
+    message(STATUS "${component} library found: ${${component_found}}")
+    message(STATUS "${component} library: ${${component_lib}}")
+    unset(component_upcase)
+    unset(component_lib)
+    unset(component_found)
+  endforeach()
+  message(STATUS "----------------")
+endif()
+
+unset(icu_programs)

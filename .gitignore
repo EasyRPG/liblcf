@@ -28,6 +28,7 @@ stamp-h1
 
 # cmake build method
 bin/
+builds/liblcf-config.cmake
 CMakeCache.txt
 CMakeFiles/
 *.cmake

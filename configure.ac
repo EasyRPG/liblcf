@@ -52,8 +52,12 @@ AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
+# liblcf-config.cmake (use empty postfix)
+AC_SUBST([CMAKE_DEBUG_POSTFIX])
+
 # Files to generate
 AC_CONFIG_FILES([Makefile
-                 builds/liblcf.pc])
+                 builds/liblcf.pc
+                 builds/liblcf-config.cmake])
 
 AC_OUTPUT
