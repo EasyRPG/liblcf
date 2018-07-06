@@ -371,12 +371,12 @@ State,message_affected,f,String,0x36,'',String
 State,message_recovery,f,String,0x37,'',String
 State,hp_change_max,f,Int32,0x3D,0,Integer
 State,hp_change_val,f,Int32,0x3E,0,Integer
-State,hp_change_map_val,f,Int32,0x3F,0,Integer
-State,hp_change_map_steps,f,Int32,0x40,0,Integer
+State,hp_change_map_steps,f,Int32,0x3F,0,Integer
+State,hp_change_map_val,f,Int32,0x40,0,Integer
 State,sp_change_max,f,Int32,0x41,0,Integer
 State,sp_change_val,f,Int32,0x42,0,Integer
-State,sp_change_map_val,f,Int32,0x43,0,Integer
-State,sp_change_map_steps,f,Int32,0x44,0,Integer
+State,sp_change_map_steps,f,Int32,0x43,0,Integer
+State,sp_change_map_val,f,Int32,0x44,0,Integer
 Terms,encounter,f,String,0x01,'',String
 Terms,special_combat,f,String,0x02,'',String
 Terms,escape_success,f,String,0x03,'',String
