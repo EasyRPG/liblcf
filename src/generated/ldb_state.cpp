@@ -56,12 +56,12 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::string, message_recovery),
 	LCF_STRUCT_TYPED_FIELD(int32_t, hp_change_max),
 	LCF_STRUCT_TYPED_FIELD(int32_t, hp_change_val),
-	LCF_STRUCT_TYPED_FIELD(int32_t, hp_change_map_val),
 	LCF_STRUCT_TYPED_FIELD(int32_t, hp_change_map_steps),
+	LCF_STRUCT_TYPED_FIELD(int32_t, hp_change_map_val),
 	LCF_STRUCT_TYPED_FIELD(int32_t, sp_change_max),
 	LCF_STRUCT_TYPED_FIELD(int32_t, sp_change_val),
-	LCF_STRUCT_TYPED_FIELD(int32_t, sp_change_map_val),
 	LCF_STRUCT_TYPED_FIELD(int32_t, sp_change_map_steps),
+	LCF_STRUCT_TYPED_FIELD(int32_t, sp_change_map_val),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

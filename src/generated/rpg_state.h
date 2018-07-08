@@ -80,12 +80,12 @@ namespace RPG {
 		std::string message_recovery;
 		int32_t hp_change_max = 0;
 		int32_t hp_change_val = 0;
-		int32_t hp_change_map_val = 0;
 		int32_t hp_change_map_steps = 0;
+		int32_t hp_change_map_val = 0;
 		int32_t sp_change_max = 0;
 		int32_t sp_change_val = 0;
-		int32_t sp_change_map_val = 0;
 		int32_t sp_change_map_steps = 0;
+		int32_t sp_change_map_val = 0;
 	};
 }
 

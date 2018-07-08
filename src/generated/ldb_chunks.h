@@ -867,17 +867,17 @@ namespace LDB_Reader {
 			/** Integer */
 			hp_change_val = 0x3E,
 			/** Integer */
-			hp_change_map_val = 0x3F,
+			hp_change_map_steps = 0x3F,
 			/** Integer */
-			hp_change_map_steps = 0x40,
+			hp_change_map_val = 0x40,
 			/** Integer */
 			sp_change_max = 0x41,
 			/** Integer */
 			sp_change_val = 0x42,
 			/** Integer */
-			sp_change_map_val = 0x43,
+			sp_change_map_steps = 0x43,
 			/** Integer */
-			sp_change_map_steps = 0x44
+			sp_change_map_val = 0x44
 		};
 	};
 	struct ChunkTerms {
