@@ -8,12 +8,10 @@
  */
 
 #include <cstdarg>
+#include <cstdio>
 #include <istream>
 
 #include "reader_lcf.h"
-#ifndef NDEBUG
-#  include <stdio.h>
-#endif
 
 // Statics
 
@@ -35,7 +33,7 @@ size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 	//Read nmemb elements of size and return the number of read elements
 	stream.read(reinterpret_cast<char*>(ptr), size*nmemb);
 	size_t result = stream.gcount() / size;
-#ifndef NDEBUG
+#ifdef NDEBUG
 	if (result != nmemb && !Eof()) {
 		perror("Reading error: ");
 	}
