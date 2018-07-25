@@ -11,7 +11,7 @@
 #include <istream>
 
 #include "reader_lcf.h"
-#ifdef NDEBUG
+#ifndef NDEBUG
 #  include <stdio.h>
 #endif
 
@@ -35,7 +35,7 @@ size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 	//Read nmemb elements of size and return the number of read elements
 	stream.read(reinterpret_cast<char*>(ptr), size*nmemb);
 	size_t result = stream.gcount() / size;
-#ifdef NDEBUG
+#ifndef NDEBUG
 	if (result != nmemb && !Eof()) {
 		perror("Reading error: ");
 	}
