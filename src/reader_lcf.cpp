@@ -8,12 +8,10 @@
  */
 
 #include <cstdarg>
+#include <cstdio>
 #include <istream>
 
 #include "reader_lcf.h"
-#ifdef NDEBUG
-#  include <stdio.h>
-#endif
 
 // Statics
 
