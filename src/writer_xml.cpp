@@ -9,6 +9,10 @@
 
 #include <ostream>
 #include <vector>
+#if defined(__amigaos4__) && defined(__NEWLIB__) && defined(__STRICT_ANSI__)
+#define snprintf(str, size, format, ...) sprintf((str), (format), __VA_ARGS__)
+#endif
+
 #include "writer_xml.h"
 
 XmlWriter::XmlWriter(std::ostream& filestream) :

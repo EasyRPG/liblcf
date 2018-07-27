@@ -31,6 +31,10 @@
 #   include <locale>
 #endif
 
+#if defined(__MORPHOS__) || defined(__amigaos4__)
+#define ICONV_CONST const
+#endif
+
 #include <cstdio>
 #include <cstdlib>
 #include <sstream>
