@@ -35,9 +35,6 @@ void RPG::SaveActor::Fixup(int actor_id) {
 		face_name = actor.face_name;
 		face_id = actor.face_index;
 	}
-	if (class_id == -1) {
-		class_id = actor.class_id;
-	}
 }
 
 void RPG::SaveMapEvent::Fixup(const RPG::EventPage& page) {
