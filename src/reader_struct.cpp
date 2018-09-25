@@ -15,6 +15,7 @@
 #include "lmt_reader.h"
 #include "lmu_reader.h"
 #include "lsd_reader.h"
+#include "ldb_chunks.h"
 #include "reader_struct.h"
 #include "rpg_save.h"
 
@@ -35,6 +36,42 @@ void Struct<S>::MakeTagMap() {
 	for (int i = 0; fields[i] != NULL; i++)
 		tag_map[fields[i]->name] = fields[i];
 }
+
+template <typename T>
+struct StructDefault {
+    static T make() {
+        return T();
+    }
+};
+
+template <>
+struct StructDefault<RPG::Actor> {
+    static RPG::Actor make() {
+        auto actor = RPG::Actor();
+        actor.Setup();
+        return actor;
+    }
+};
+
+template <typename S>
+struct FieldDefaultWriter {
+    static void write(const Field<S>* field, LcfWriter& stream) {}
+};
+
+template <>
+struct FieldDefaultWriter<RPG::Actor> {
+    static void write(const Field<RPG::Actor>* field, LcfWriter& stream) {
+        if (field->id == LDB_Reader::ChunkActor::skills) {
+            stream.WriteInt(field->id);
+            stream.WriteInt(1);
+            stream.WriteInt(0);
+        }
+        if (field->id == LDB_Reader::ChunkActor::state_ranks || field->id == LDB_Reader::ChunkActor::attribute_ranks) {
+            stream.WriteInt(field->id);
+            stream.WriteInt(0);
+        }
+    }
+};
 
 template <class S>
 void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
@@ -79,7 +116,7 @@ conditional_zero_writer(LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	S ref = S();
+	auto ref = StructDefault<S>::make();
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
@@ -89,6 +126,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " in struct " << name
 					  << std::endl;
 		if (field->IsDefault(obj, ref)) {
+			FieldDefaultWriter<S>::write(field, stream);
 			continue;
 		}
 		stream.WriteInt(field->id);
@@ -102,7 +140,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 	int result = 0;
-	S ref = S();
+	auto ref = StructDefault<S>::make();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		//printf("%s\n", field->name);
