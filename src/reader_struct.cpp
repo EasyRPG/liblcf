@@ -36,6 +36,22 @@ void Struct<S>::MakeTagMap() {
 		tag_map[fields[i]->name] = fields[i];
 }
 
+template <typename T>
+struct StructDefault {
+	static T make() {
+		return T();
+	}
+};
+
+template <>
+struct StructDefault<RPG::Actor> {
+	static RPG::Actor make() {
+		auto actor = RPG::Actor();
+		actor.Setup();
+		return actor;
+	}
+};
+
 template <class S>
 void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 	MakeFieldMap();
@@ -79,7 +95,7 @@ conditional_zero_writer(LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	S ref = S();
+	auto ref = StructDefault<S>::make();
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
@@ -102,7 +118,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 	int result = 0;
-	S ref = S();
+	auto ref = StructDefault<S>::make();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		//printf("%s\n", field->name);
