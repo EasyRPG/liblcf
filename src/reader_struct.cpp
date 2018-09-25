@@ -15,6 +15,7 @@
 #include "lmt_reader.h"
 #include "lmu_reader.h"
 #include "lsd_reader.h"
+#include "ldb_chunks.h"
 #include "reader_struct.h"
 #include "rpg_save.h"
 
@@ -49,6 +50,26 @@ struct StructDefault<RPG::Actor> {
         auto actor = RPG::Actor();
         actor.Setup();
         return actor;
+    }
+};
+
+template <typename S>
+struct FieldDefaultWriter {
+    static void write(const Field<S>* field, LcfWriter& stream) {}
+};
+
+template <>
+struct FieldDefaultWriter<RPG::Actor> {
+    static void write(const Field<RPG::Actor>* field, LcfWriter& stream) {
+        if (field->id == LDB_Reader::ChunkActor::skills) {
+            stream.WriteInt(field->id);
+            stream.WriteInt(1);
+            stream.WriteInt(0);
+        }
+        if (field->id == LDB_Reader::ChunkActor::state_ranks || field->id == LDB_Reader::ChunkActor::attribute_ranks) {
+            stream.WriteInt(field->id);
+            stream.WriteInt(0);
+        }
     }
 };
 
@@ -105,6 +126,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " in struct " << name
 					  << std::endl;
 		if (field->IsDefault(obj, ref)) {
+			FieldDefaultWriter<S>::write(field, stream);
 			continue;
 		}
 		stream.WriteInt(field->id);
