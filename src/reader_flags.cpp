@@ -12,6 +12,7 @@
 #include "rpg_eventpagecondition.h"
 #include "rpg_terrain.h"
 #include "rpg_savepicture.h"
+#include "data.h"
 
 // Templates
 
@@ -40,31 +41,45 @@ void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
 
 template <class S>
 void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	uint8_t bitflag = 0;
+	const bool is2k3 = (Data::system.ldb_id == 2003);
+	uint8_t buffer[max_size] = {};
+
+	int bitidx = 0;
+	int byteidx = 0;
 	for (int i = 0; flags[i] != NULL; i++) {
-		if (i % 8 == 0) {
-			if (i > 0)
-				stream.Write(bitflag);
-			bitflag = 0;
+		if (!is2k3 && flags[i]->is2k3) {
+			continue;
 		}
-		bool S::*ref = flags[i]->ref;
-		if (obj.*ref)
-			bitflag |= (1 << (i % 8));
+		auto ref = flags[i]->ref;
+		auto& byteflag = buffer[byteidx];
+		auto value = obj.*ref;
+		byteflag |= (value << bitidx);
+
+		++bitidx;
+		if (bitidx == 8) {
+			stream.Write(byteflag);
+			++byteidx;
+			bitidx = 0;
+		}
 	}
 
-	if (bitflag != 0 || max_size == 1)
-		stream.Write(bitflag);
+	if (bitidx != 0) {
+		stream.Write(buffer[max_size-1]);
+	}
 }
 
 template <class S>
 int Flags<S>::LcfSize(const S& obj, LcfWriter& /* stream */) {
-	int result = 0;
+	const bool is2k3 = (Data::system.ldb_id == 2003);
+	int num_bits = 0;
 	for (int i = 0; flags[i] != NULL; i++) {
-		bool S::*ref = flags[i]->ref;
-		if (obj.*ref)
-			result = i / 8;
+		if (!is2k3 && flags[i]->is2k3) {
+			continue;
+		}
+		++num_bits;
 	}
-	return result + 1;
+	auto num_bytes = (num_bits - 1) / 8 + 1;
+	return num_bytes;
 }
 
 template <class S>

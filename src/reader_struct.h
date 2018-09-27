@@ -595,9 +595,10 @@ template <class S>
 class Flags {
 public:
 	struct Flag {
-		Flag(bool S::*ref, const char* const name) : ref(ref), name(name) {}
+		Flag(bool S::*ref, const char* const name, bool is2k2) : ref(ref), name(name), is2k3(is2k3) {}
 		bool S::*ref;
 		const char* const name;
+		bool is2k3;
 	};
 
 private:

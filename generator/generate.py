@@ -232,7 +232,7 @@ def get_enums(filename='enums.csv'):
     return new_result
 
 def get_flags(filename='flags.csv'):
-    return process_file(filename, namedtuple("Flag", "field"))
+    return process_file(filename, namedtuple("Flag", "field is2k3"))
 
 def get_setup(filename='setup.csv'):
     return process_file(filename, namedtuple("Setup", "method headers"))

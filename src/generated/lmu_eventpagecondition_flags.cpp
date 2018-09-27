@@ -26,13 +26,13 @@ char const* const Flags<flags_type>::name("EventPageCondition_Flags");
 
 template <>
 const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::switch_a, "switch_a"),
-	new Flags<flags_type>::Flag(&flags_type::switch_b, "switch_b"),
-	new Flags<flags_type>::Flag(&flags_type::variable, "variable"),
-	new Flags<flags_type>::Flag(&flags_type::item, "item"),
-	new Flags<flags_type>::Flag(&flags_type::actor, "actor"),
-	new Flags<flags_type>::Flag(&flags_type::timer, "timer"),
-	new Flags<flags_type>::Flag(&flags_type::timer2, "timer2"),
+	new Flags<flags_type>::Flag(&flags_type::switch_a, "switch_a", 0),
+	new Flags<flags_type>::Flag(&flags_type::switch_b, "switch_b", 0),
+	new Flags<flags_type>::Flag(&flags_type::variable, "variable", 0),
+	new Flags<flags_type>::Flag(&flags_type::item, "item", 0),
+	new Flags<flags_type>::Flag(&flags_type::actor, "actor", 0),
+	new Flags<flags_type>::Flag(&flags_type::timer, "timer", 0),
+	new Flags<flags_type>::Flag(&flags_type::timer2, "timer2", 1),
 	NULL
 };
 

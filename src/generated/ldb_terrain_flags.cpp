@@ -26,10 +26,10 @@ char const* const Flags<flags_type>::name("Terrain_Flags");
 
 template <>
 const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::back_party, "back_party"),
-	new Flags<flags_type>::Flag(&flags_type::back_enemies, "back_enemies"),
-	new Flags<flags_type>::Flag(&flags_type::lateral_party, "lateral_party"),
-	new Flags<flags_type>::Flag(&flags_type::lateral_enemies, "lateral_enemies"),
+	new Flags<flags_type>::Flag(&flags_type::back_party, "back_party", 1),
+	new Flags<flags_type>::Flag(&flags_type::back_enemies, "back_enemies", 1),
+	new Flags<flags_type>::Flag(&flags_type::lateral_party, "lateral_party", 1),
+	new Flags<flags_type>::Flag(&flags_type::lateral_enemies, "lateral_enemies", 1),
 	NULL
 };
 

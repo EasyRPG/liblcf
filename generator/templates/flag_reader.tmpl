@@ -17,7 +17,7 @@ char const* const Flags<flags_type>::name("{{ struct_name }}_Flags");
 template <>
 const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
 {%- for flag in flags[struct_name] %}
-	new Flags<flags_type>::Flag(&flags_type::{{ flag.field }}, "{{ flag.field }}"),
+	new Flags<flags_type>::Flag(&flags_type::{{ flag.field }}, "{{ flag.field }}", {{ flag.is2k3 }}),
 {%- if loop.last %}
 	NULL
 {%- endif %}
