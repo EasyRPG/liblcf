@@ -19,23 +19,30 @@
 
 // Read SavePicture.
 
-typedef RPG::SavePicture::Flags flags_type;
+using flags_type = RPG::SavePicture::Flags;
 
 template <>
-char const* const Flags<flags_type>::name("SavePicture_Flags");
+char const* const Flags<flags_type>::name = "SavePicture_Flags";
 
 template <>
-const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::erase_on_map_change, "erase_on_map_change", 1),
-	new Flags<flags_type>::Flag(&flags_type::erase_on_battle_end, "erase_on_battle_end", 1),
-	new Flags<flags_type>::Flag(&flags_type::unused_bit, "unused_bit", 1),
-	new Flags<flags_type>::Flag(&flags_type::unused_bit2, "unused_bit2", 1),
-	new Flags<flags_type>::Flag(&flags_type::affected_by_tint, "affected_by_tint", 1),
-	new Flags<flags_type>::Flag(&flags_type::affected_by_flash, "affected_by_flash", 1),
-	new Flags<flags_type>::Flag(&flags_type::affected_by_shake, "affected_by_shake", 1),
-	NULL
+decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
+	"erase_on_map_change",
+	"erase_on_battle_end",
+	"unused_bit",
+	"unused_bit2",
+	"affected_by_tint",
+	"affected_by_flash",
+	"affected_by_shake"
 };
 
 template <>
-const uint32_t Flags<flags_type>::max_size = 1;
+decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1
+};
 

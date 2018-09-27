@@ -17,78 +17,77 @@
 // Templates
 
 template <class S>
-void Flags<S>::MakeTagMap() {
-	if (!tag_map.empty())
-		return;
-	for (int i = 0; flags[i] != NULL; i++)
-		tag_map[flags[i]->name] = flags[i];
-}
-
-template <class S>
 void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
-	assert(length >= 1 && length <= max_size);
-	uint8_t bitflag;
-	for (int i = 0; flags[i] != NULL; i++) {
-		if (i % 8 == 0) {
-			if (i / 8 >= (int) length)
+	uint8_t byte;
+	int bitidx = 0;
+	int byteidx = 0;
+	stream.Read(byte);
+	for (size_t i = 0; i < num_flags; ++i) {
+		if (bitidx == 8) {
+			++byteidx;
+			if (byteidx >= int(length)) {
 				break;
-			stream.Read(bitflag);
+			}
+			stream.Read(byte);
+			bitidx = 0;
 		}
-		bool S::*ref = flags[i]->ref;
-		obj.*ref = ((bitflag >> (i % 8)) & 0x1) != 0;
+		obj.flags[i] |= (byte >> bitidx) & 1;
+		++bitidx;
 	}
 }
 
 template <class S>
 void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	const bool is2k3 = (Data::system.ldb_id == 2003);
-	uint8_t buffer[max_size] = {};
+	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 
+	uint8_t byte = 0;
 	int bitidx = 0;
-	int byteidx = 0;
-	for (int i = 0; flags[i] != NULL; i++) {
-		if (!is2k3 && flags[i]->is2k3) {
+	for (size_t i = 0; i < num_flags; ++i) {
+		const auto flag_is2k3 = flags_is2k3[i];
+		if (!db_is2k3 && flag_is2k3) {
 			continue;
 		}
-		auto ref = flags[i]->ref;
-		auto& byteflag = buffer[byteidx];
-		auto value = obj.*ref;
-		byteflag |= (value << bitidx);
+		byte |= (obj.flags[i] << bitidx);
 
 		++bitidx;
 		if (bitidx == 8) {
-			stream.Write(byteflag);
-			++byteidx;
+			stream.Write(byte);
 			bitidx = 0;
+			byte = 0;
 		}
 	}
 
 	if (bitidx != 0) {
-		stream.Write(buffer[max_size-1]);
+		stream.Write(byte);
 	}
 }
 
 template <class S>
 int Flags<S>::LcfSize(const S& obj, LcfWriter& /* stream */) {
-	const bool is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 	int num_bits = 0;
-	for (int i = 0; flags[i] != NULL; i++) {
-		if (!is2k3 && flags[i]->is2k3) {
+	for (size_t i = 0; i < num_flags; ++i) {
+		const auto flag_is2k3 = flags_is2k3[i];
+		if (!db_is2k3 && flag_is2k3) {
 			continue;
 		}
 		++num_bits;
 	}
-	auto num_bytes = (num_bits - 1) / 8 + 1;
+	auto num_bytes = (num_bits + 7) / 8;
 	return num_bytes;
 }
 
 template <class S>
 void Flags<S>::WriteXml(const S& obj, XmlWriter& stream) {
+	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 	stream.BeginElement(name);
-	for (int i = 0; flags[i] != NULL; i++) {
-		const Flag* flag = flags[i];
-		bool S::*ref = flag->ref;
-		stream.WriteNode<bool>(flag->name, obj.*ref);
+	for (size_t i = 0; i < num_flags; ++i) {
+		const auto flag_is2k3 = flags_is2k3[i];
+		if (!db_is2k3 && flag_is2k3) {
+			continue;
+		}
+		const auto* flag_name = flag_names[i];
+		stream.WriteNode<bool>(flag_name, obj.flags[i]);
 	}
 	stream.EndElement(name);
 }
@@ -100,19 +99,16 @@ private:
 	bool* field;
 public:
 	FlagsXmlHandler(S& obj) : obj(obj), field(NULL) {
-		Flags<S>::MakeTagMap();
 	}
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
-		const typename Flags<S>::Flag* flag = Flags<S>::tag_map[name];
-		if (flag != NULL) {
-			bool S::*ref = flag->ref;
-			field = &(obj.*ref);
-		}
-		else {
+		const auto idx = Flags<S>::idx(name);
+		if (idx < 0) {
 			stream.Error("Unrecognized field '%s'", name);
 			field = NULL;
+			return;
 		}
+		field = &obj.flags[idx];
 	}
 	void EndElement(XmlReader& /* stream */, const char* /* name */) {
 		field = NULL;

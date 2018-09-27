@@ -13,6 +13,7 @@
 #define LCF_RPG_EVENTPAGECONDITION_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 
 /**
@@ -31,13 +32,21 @@ namespace RPG {
 		};
 
 		struct Flags {
-			bool switch_a = false;
-			bool switch_b = false;
-			bool variable = false;
-			bool item = false;
-			bool actor = false;
-			bool timer = false;
-			bool timer2 = false;
+			union {
+				struct {
+					bool switch_a;
+					bool switch_b;
+					bool variable;
+					bool item;
+					bool actor;
+					bool timer;
+					bool timer2;
+				};
+				std::array<bool, 7> flags;
+			};
+			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
+			Flags() noexcept: switch_a(false), switch_b(false), variable(false), item(false), actor(false), timer(false), timer2(false)
+			{}
 		} flags;
 		int32_t switch_a_id = 1;
 		int32_t switch_b_id = 1;

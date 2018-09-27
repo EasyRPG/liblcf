@@ -588,27 +588,21 @@ struct TypeReader<std::vector<T>, Category::Struct> {
 	}
 };
 
+
+
 /**
  * Flags class template.
  */
 template <class S>
 class Flags {
-public:
-	struct Flag {
-		Flag(bool S::*ref, const char* const name, bool is2k2) : ref(ref), name(name), is2k3(is2k3) {}
-		bool S::*ref;
-		const char* const name;
-		bool is2k3;
-	};
-
 private:
-	static const uint32_t max_size;
-	typedef std::map<const char* const, const Flag*, StringComparator> tag_map_type;
-	static const Flag* flags[];
-	static tag_map_type tag_map;
 	static const char* const name;
+	static constexpr size_t num_flags = std::tuple_size<decltype(S::flags)>::value;
+	static const std::array<const char* const, num_flags> flag_names;
+	static const std::array<bool, num_flags> flags_is2k3;
 
-	static void MakeTagMap();
+	static const char* tag(int idx);
+	static int idx(const char* tag);
 
 	template <class T> friend class FlagsXmlHandler;
 
@@ -621,7 +615,19 @@ public:
 };
 
 template <class S>
-std::map<const char* const, const typename Flags<S>::Flag*, StringComparator> Flags<S>::tag_map;
+inline const char* Flags<S>::tag(int idx) {
+	return Flags<S>::flag_names[idx];
+}
+
+template <class S>
+inline int Flags<S>::idx(const char* tag) {
+	for (size_t i = 0; i < flag_names.size(); ++i) {
+		if (std::strcmp(flag_names[i], tag) == 0) {
+			return i;
+		}
+	}
+	return -1;
+}
 
 /**
  * Wrapper XML handler struct.

@@ -89,6 +89,9 @@ def pod_default(field):
 
     return " = " + str(dfl)
 
+def num_flags(flag):
+    return len(flag)
+
 def flag_size(flag):
     return (len(flag) + 7) // 8
 
@@ -142,7 +145,7 @@ def struct_headers(ty, header_map):
         return []
 
     if re.match(r'(.*)_Flags$', ty):
-        return []
+        return ['<array>']
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
@@ -344,6 +347,7 @@ def main(argv):
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
+    env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor

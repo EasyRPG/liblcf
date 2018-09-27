@@ -19,26 +19,36 @@
 
 // Read TroopPageCondition.
 
-typedef RPG::TroopPageCondition::Flags flags_type;
+using flags_type = RPG::TroopPageCondition::Flags;
 
 template <>
-char const* const Flags<flags_type>::name("TroopPageCondition_Flags");
+char const* const Flags<flags_type>::name = "TroopPageCondition_Flags";
 
 template <>
-const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::switch_a, "switch_a", 0),
-	new Flags<flags_type>::Flag(&flags_type::switch_b, "switch_b", 0),
-	new Flags<flags_type>::Flag(&flags_type::variable, "variable", 0),
-	new Flags<flags_type>::Flag(&flags_type::turn, "turn", 0),
-	new Flags<flags_type>::Flag(&flags_type::fatigue, "fatigue", 0),
-	new Flags<flags_type>::Flag(&flags_type::enemy_hp, "enemy_hp", 0),
-	new Flags<flags_type>::Flag(&flags_type::actor_hp, "actor_hp", 0),
-	new Flags<flags_type>::Flag(&flags_type::turn_enemy, "turn_enemy", 1),
-	new Flags<flags_type>::Flag(&flags_type::turn_actor, "turn_actor", 1),
-	new Flags<flags_type>::Flag(&flags_type::command_actor, "command_actor", 1),
-	NULL
+decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
+	"switch_a",
+	"switch_b",
+	"variable",
+	"turn",
+	"fatigue",
+	"enemy_hp",
+	"actor_hp",
+	"turn_enemy",
+	"turn_actor",
+	"command_actor"
 };
 
 template <>
-const uint32_t Flags<flags_type>::max_size = 2;
+decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	1,
+	1,
+	1
+};
 

@@ -13,6 +13,7 @@
 #define LCF_RPG_TERRAIN_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <string>
 #include "rpg_sound.h"
@@ -59,10 +60,18 @@ namespace RPG {
 		int32_t background_b_scrollh_speed = 0;
 		int32_t background_b_scrollv_speed = 0;
 		struct Flags {
-			bool back_party = false;
-			bool back_enemies = false;
-			bool lateral_party = false;
-			bool lateral_enemies = false;
+			union {
+				struct {
+					bool back_party;
+					bool back_enemies;
+					bool lateral_party;
+					bool lateral_enemies;
+				};
+				std::array<bool, 4> flags;
+			};
+			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
+			Flags() noexcept: back_party(false), back_enemies(false), lateral_party(false), lateral_enemies(false)
+			{}
 		} special_flags;
 		int32_t special_back_party = 15;
 		int32_t special_back_enemies = 10;

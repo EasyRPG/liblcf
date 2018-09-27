@@ -9,22 +9,22 @@
 
 // Read {{ struct_name }}.
 
-typedef RPG::{{ struct_name }}::Flags flags_type;
+using flags_type = RPG::{{ struct_name }}::Flags;
 
 template <>
-char const* const Flags<flags_type>::name("{{ struct_name }}_Flags");
+char const* const Flags<flags_type>::name = "{{ struct_name }}_Flags";
 
 template <>
-const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
+decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
 {%- for flag in flags[struct_name] %}
-	new Flags<flags_type>::Flag(&flags_type::{{ flag.field }}, "{{ flag.field }}", {{ flag.is2k3 }}),
-{%- if loop.last %}
-	NULL
-{%- endif %}
-
+	"{{ flag.field }}"{%- if not loop.last %}, {%- endif %}
 {%- endfor %}
 };
 
 template <>
-const uint32_t Flags<flags_type>::max_size = {{ flags[struct_name]|flag_size }};
+decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
+{%- for flag in flags[struct_name] %}
+	{{ flag.is2k3 }}{%- if not loop.last %}, {%- endif %}
+{%- endfor %}
+};
 

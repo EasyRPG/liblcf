@@ -48,9 +48,20 @@ namespace RPG {
 	{%- if not field.size %}
 		{%- if field.type.endswith("_Flags") %}
 		struct Flags {
-		{%- for flag in flags[struct_name] %}
-			bool {{ flag.field }} = {{ field|flag_set(loop.index) }};
-		{%- endfor %}
+			union {
+				struct {
+				{%- for flag in flags[struct_name] %}
+					bool {{ flag.field }};
+				{%- endfor %}
+				};
+				std::array<bool, {{ flags[struct_name]|num_flags }}> flags;
+			};
+			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
+			Flags() noexcept
+			{%- for flag in flags[struct_name] %}
+				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})
+			{%- endfor %}
+			{}
 		} {{ field.name }};
 		{%- else %}
 		{{ field.type|cpp_type(prefix=False) }} {{ field.name }}{{ field|pod_default }};

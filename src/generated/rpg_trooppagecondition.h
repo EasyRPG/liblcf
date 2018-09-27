@@ -13,6 +13,7 @@
 #define LCF_RPG_TROOPPAGECONDITION_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 
 /**
@@ -22,16 +23,24 @@ namespace RPG {
 	class TroopPageCondition {
 	public:
 		struct Flags {
-			bool switch_a = false;
-			bool switch_b = false;
-			bool variable = false;
-			bool turn = false;
-			bool fatigue = false;
-			bool enemy_hp = false;
-			bool actor_hp = false;
-			bool turn_enemy = false;
-			bool turn_actor = false;
-			bool command_actor = false;
+			union {
+				struct {
+					bool switch_a;
+					bool switch_b;
+					bool variable;
+					bool turn;
+					bool fatigue;
+					bool enemy_hp;
+					bool actor_hp;
+					bool turn_enemy;
+					bool turn_actor;
+					bool command_actor;
+				};
+				std::array<bool, 10> flags;
+			};
+			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
+			Flags() noexcept: switch_a(false), switch_b(false), variable(false), turn(false), fatigue(false), enemy_hp(false), actor_hp(false), turn_enemy(false), turn_actor(false), command_actor(false)
+			{}
 		} flags;
 		int32_t switch_a_id = 1;
 		int32_t switch_b_id = 1;

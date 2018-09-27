@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEPICTURE_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <string>
 
@@ -70,13 +71,21 @@ namespace RPG {
 		int32_t map_layer = 7;
 		int32_t battle_layer = 0;
 		struct Flags {
-			bool erase_on_map_change = true;
-			bool erase_on_battle_end = false;
-			bool unused_bit = false;
-			bool unused_bit2 = false;
-			bool affected_by_tint = false;
-			bool affected_by_flash = true;
-			bool affected_by_shake = true;
+			union {
+				struct {
+					bool erase_on_map_change;
+					bool erase_on_battle_end;
+					bool unused_bit;
+					bool unused_bit2;
+					bool affected_by_tint;
+					bool affected_by_flash;
+					bool affected_by_shake;
+				};
+				std::array<bool, 7> flags;
+			};
+			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
+			Flags() noexcept: erase_on_map_change(true), erase_on_battle_end(false), unused_bit(false), unused_bit2(false), affected_by_tint(false), affected_by_flash(true), affected_by_shake(true)
+			{}
 		} flags;
 		double finish_x = 0.0;
 		double finish_y = 0.0;
