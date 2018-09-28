@@ -17,6 +17,7 @@
 #include "lsd_reader.h"
 #include "reader_struct.h"
 #include "rpg_save.h"
+#include "data.h"
 
 // Read/Write Struct
 
@@ -95,10 +96,15 @@ conditional_zero_writer(LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
+	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+
 	auto ref = StructDefault<S>::make();
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		if (!db_is2k3 && field->is2k3) {
+			continue;
+		}
 		if (field->id < last)
 			std::cerr << "field order mismatch: " << field->id
 					  << " after " << last
@@ -117,10 +123,14 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
+	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 	int result = 0;
 	auto ref = StructDefault<S>::make();
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
+		if (!db_is2k3 && field->is2k3) {
+			continue;
+		}
 		//printf("%s\n", field->name);
 		if (field->IsDefault(obj, ref))
 			continue;
