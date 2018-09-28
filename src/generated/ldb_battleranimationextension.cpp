@@ -20,11 +20,11 @@
 #define LCF_CURRENT_STRUCT BattlerAnimationExtension
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(std::string, battler_name),
-	LCF_STRUCT_TYPED_FIELD(int32_t, battler_index),
-	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type),
-	LCF_STRUCT_TYPED_FIELD(int32_t, animation_id),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, battler_name, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, battler_index, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_id, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

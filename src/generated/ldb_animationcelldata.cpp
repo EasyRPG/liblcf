@@ -20,16 +20,16 @@
 #define LCF_CURRENT_STRUCT AnimationCellData
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, valid),
-	LCF_STRUCT_TYPED_FIELD(int32_t, cell_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, y),
-	LCF_STRUCT_TYPED_FIELD(int32_t, zoom),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_red),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_green),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_blue),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_gray),
-	LCF_STRUCT_TYPED_FIELD(int32_t, transparency),
+	LCF_STRUCT_TYPED_FIELD(int32_t, valid, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, cell_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, y, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, zoom, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, tone_red, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, tone_green, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, tone_blue, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, tone_gray, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, transparency, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

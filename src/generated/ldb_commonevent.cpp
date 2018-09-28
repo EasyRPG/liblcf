@@ -20,12 +20,12 @@
 #define LCF_CURRENT_STRUCT CommonEvent
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(int32_t, trigger),
-	LCF_STRUCT_TYPED_FIELD(bool, switch_flag),
-	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id),
-	LCF_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, trigger, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, switch_flag, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id, 0),
+	LCF_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

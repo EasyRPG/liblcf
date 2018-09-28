@@ -87,6 +87,9 @@ def pod_default(field):
     if '|' in dfl:
         dfl = -1
 
+    if ftype == 'Double':
+        dfl = float(dfl)
+
     return " = " + str(dfl)
 
 def num_flags(flag):
@@ -201,7 +204,7 @@ def get_structs(filename='structs.csv'):
     return processed_result
 
 def get_fields(filename='fields.csv'):
-    Field = namedtuple("Field", "name size type code default comment")
+    Field = namedtuple("Field", "name size type code default is2k3 comment")
 
     result = process_file(filename, Field)
 
@@ -216,6 +219,7 @@ def get_fields(filename='fields.csv'):
                 elem.type,
                 0 if elem.code == '' else int(elem.code, 0),
                 elem.default,
+                elem.is2k3,
                 elem.comment)
             processed_result[k].append(elem)
 

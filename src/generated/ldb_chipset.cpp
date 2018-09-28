@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT Chipset
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(std::string, chipset_name),
-	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, terrain_data),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_lower),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_upper),
-	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type),
-	LCF_STRUCT_TYPED_FIELD(int32_t, animation_speed),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, chipset_name, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, terrain_data, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_lower, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, passable_data_upper, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, animation_speed, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

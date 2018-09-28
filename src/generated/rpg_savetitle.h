@@ -22,7 +22,7 @@
 namespace RPG {
 	class SaveTitle {
 	public:
-		double timestamp = 0;
+		double timestamp = 0.0;
 		std::string hero_name;
 		int32_t hero_level = 0;
 		int32_t hero_hp = 0;

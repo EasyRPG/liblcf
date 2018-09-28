@@ -20,9 +20,9 @@
 #define LCF_CURRENT_STRUCT TroopPage
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(RPG::TroopPageCondition, condition),
-	LCF_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands),
+	LCF_STRUCT_TYPED_FIELD(RPG::TroopPageCondition, condition, 0),
+	LCF_STRUCT_SIZE_FIELD(RPG::EventCommand, event_commands, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, event_commands, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT
