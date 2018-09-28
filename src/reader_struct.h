@@ -181,7 +181,7 @@ struct Primitive<std::vector<T>> {
 		typename std::vector<T>::iterator it;
 		printf("  ");
 		for (it = ref.begin(); it != ref.end(); ++it) {
-			printf("%d, ", *it);
+			printf("%d, ", static_cast<int>(*it));
 		}
 		printf("\n");
 #endif
