@@ -14,6 +14,7 @@
 
 // Headers
 #include <string>
+#include "enum_tags.h"
 
 /**
  * RPG::BattleCommand class.
@@ -30,6 +31,15 @@ namespace RPG {
 			Type_escape = 5,
 			Type_special = 6
 		};
+		static constexpr auto kTypeTags = makeEnumTags<Type>(
+			"attack",
+			"skill",
+			"subskill",
+			"defense",
+			"item",
+			"escape",
+			"special"
+		);
 
 		int ID = 0;
 		std::string name;

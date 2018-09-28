@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "enum_tags.h"
 #include "rpg_sound.h"
 
 /**
@@ -27,11 +28,21 @@ namespace RPG {
 			FlashScope_target = 1,
 			FlashScope_screen = 2
 		};
+		static constexpr auto kFlashScopeTags = makeEnumTags<FlashScope>(
+			"nothing",
+			"target",
+			"screen"
+		);
 		enum ScreenShake {
 			ScreenShake_nothing = 0,
 			ScreenShake_target = 1,
 			ScreenShake_screen = 2
 		};
+		static constexpr auto kScreenShakeTags = makeEnumTags<ScreenShake>(
+			"nothing",
+			"target",
+			"screen"
+		);
 
 		int ID = 0;
 		int32_t frame = 0;

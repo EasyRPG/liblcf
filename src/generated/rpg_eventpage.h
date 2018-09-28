@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_eventcommand.h"
 #include "rpg_eventpagecondition.h"
 #include "rpg_moveroute.h"
@@ -32,11 +33,22 @@ namespace RPG {
 			Direction_down = 2,
 			Direction_left = 3
 		};
+		static constexpr auto kDirectionTags = makeEnumTags<Direction>(
+			"up",
+			"right",
+			"down",
+			"left"
+		);
 		enum Frame {
 			Frame_left = 0,
 			Frame_middle = 1,
 			Frame_right = 2
 		};
+		static constexpr auto kFrameTags = makeEnumTags<Frame>(
+			"left",
+			"middle",
+			"right"
+		);
 		enum MoveType {
 			MoveType_stationary = 0,
 			MoveType_random = 1,
@@ -46,6 +58,15 @@ namespace RPG {
 			MoveType_away = 5,
 			MoveType_custom = 6
 		};
+		static constexpr auto kMoveTypeTags = makeEnumTags<MoveType>(
+			"stationary",
+			"random",
+			"vertical",
+			"horizontal",
+			"toward",
+			"away",
+			"custom"
+		);
 		enum Trigger {
 			Trigger_action = 0,
 			Trigger_touched = 1,
@@ -53,11 +74,23 @@ namespace RPG {
 			Trigger_auto_start = 3,
 			Trigger_parallel = 4
 		};
+		static constexpr auto kTriggerTags = makeEnumTags<Trigger>(
+			"action",
+			"touched",
+			"collision",
+			"auto_start",
+			"parallel"
+		);
 		enum Layers {
 			Layers_below = 0,
 			Layers_same = 1,
 			Layers_above = 2
 		};
+		static constexpr auto kLayersTags = makeEnumTags<Layers>(
+			"below",
+			"same",
+			"above"
+		);
 		enum AnimType {
 			AnimType_non_continuous = 0,
 			AnimType_continuous = 1,
@@ -66,6 +99,14 @@ namespace RPG {
 			AnimType_fixed_graphic = 4,
 			AnimType_spin = 5
 		};
+		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+			"non_continuous",
+			"continuous",
+			"fixed_non_continuous",
+			"fixed_continuous",
+			"fixed_graphic",
+			"spin"
+		);
 		enum MoveSpeed {
 			MoveSpeed_eighth = 1,
 			MoveSpeed_quarter = 2,
@@ -74,6 +115,14 @@ namespace RPG {
 			MoveSpeed_double = 5,
 			MoveSpeed_fourfold = 6
 		};
+		static constexpr auto kMoveSpeedTags = makeEnumTags<MoveSpeed>(
+			"eighth",
+			"quarter",
+			"half",
+			"normal",
+			"double",
+			"fourfold"
+		);
 
 		int ID = 0;
 		EventPageCondition condition;

@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "enum_tags.h"
 
 /**
  * RPG::ItemAnimation class.
@@ -27,15 +28,30 @@ namespace RPG {
 			Movement_jump = 2,
 			Movement_move = 3
 		};
+		static constexpr auto kMovementTags = makeEnumTags<Movement>(
+			"none",
+			"step",
+			"jump",
+			"move"
+		);
 		enum AfterImage {
 			AfterImage_none = 0,
 			AfterImage_add = 1
 		};
+		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
+			"none",
+			"add"
+		);
 		enum Speed {
 			Speed_fast = 0,
 			Speed_medium = 1,
 			Speed_slow = 2
 		};
+		static constexpr auto kSpeedTags = makeEnumTags<Speed>(
+			"fast",
+			"medium",
+			"slow"
+		);
 
 		int ID = 0;
 		int32_t type = 0;

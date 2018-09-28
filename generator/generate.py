@@ -139,7 +139,7 @@ def struct_headers(ty, header_map):
         return []
 
     if re.match(r'Enum<(.*)>', ty):
-        return []
+        return ['"enum_tags.h"']
 
     if re.match(r'(.*)_Flags$', ty):
         return []

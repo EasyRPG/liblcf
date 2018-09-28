@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 
 /**
  * RPG::Chipset class.
@@ -27,6 +28,10 @@ namespace RPG {
 			AnimType_reciprocating = 0,
 			AnimType_cyclic = 1
 		};
+		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+			"reciprocating",
+			"cyclic"
+		);
 
 		Chipset();
 		void Init();

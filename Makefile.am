@@ -128,6 +128,7 @@ pkginclude_HEADERS = \
 	src/reader_xml.h \
 	src/writer_lcf.h \
 	src/writer_xml.h \
+	src/enum_tags.h \
 	src/generated/ldb_chunks.h \
 	src/generated/lmt_chunks.h \
 	src/generated/lmu_chunks.h \

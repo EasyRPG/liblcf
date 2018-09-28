@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 
 /**
  * RPG::BattlerAnimationExtension class.
@@ -26,6 +27,10 @@ namespace RPG {
 			AnimType_graphic = 0,
 			AnimType_animation = 1
 		};
+		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+			"graphic",
+			"animation"
+		);
 
 		int ID = 0;
 		std::string name;

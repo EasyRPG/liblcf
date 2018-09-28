@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_encounter.h"
 #include "rpg_music.h"
 #include "rpg_rect.h"
@@ -31,16 +32,31 @@ namespace RPG {
 			MusicType_event = 1,
 			MusicType_specific = 2
 		};
+		static constexpr auto kMusicTypeTags = makeEnumTags<MusicType>(
+			"parent",
+			"event",
+			"specific"
+		);
 		enum BGMType {
 			BGMType_parent = 0,
 			BGMType_terrain = 1,
 			BGMType_specific = 2
 		};
+		static constexpr auto kBGMTypeTags = makeEnumTags<BGMType>(
+			"parent",
+			"terrain",
+			"specific"
+		);
 		enum TriState {
 			TriState_parent = 0,
 			TriState_allow = 1,
 			TriState_forbid = 2
 		};
+		static constexpr auto kTriStateTags = makeEnumTags<TriState>(
+			"parent",
+			"allow",
+			"forbid"
+		);
 
 		MapInfo();
 		void Init();

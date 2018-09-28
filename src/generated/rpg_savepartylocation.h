@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 #include "rpg_moveroute.h"
 
 /**
@@ -29,6 +30,12 @@ namespace RPG {
 			VehicleType_ship = 2,
 			VehicleType_airship = 3
 		};
+		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
+			"none",
+			"skiff",
+			"ship",
+			"airship"
+		);
 
 		bool active = true;
 		int32_t map_id = -1;

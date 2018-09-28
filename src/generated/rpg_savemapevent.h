@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 #include "rpg_event.h"
 #include "rpg_moveroute.h"
 #include "rpg_saveeventdata.h"

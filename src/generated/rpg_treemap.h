@@ -29,6 +29,11 @@ namespace RPG {
 			MapType_map = 1,
 			MapType_area = 2
 		};
+		static constexpr auto kMapTypeTags = makeEnumTags<MapType>(
+			"root",
+			"map",
+			"area"
+		);
 
 		std::vector<MapInfo> maps;
 		std::vector<int32_t> tree_order;

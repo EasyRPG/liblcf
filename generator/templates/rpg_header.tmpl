@@ -32,6 +32,11 @@ namespace RPG {
 			{{ name }}_{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
 		{%- endfor %}
 		};
+		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}>(
+		{%- for field in enum %}
+			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
+		{%- endfor %}
+		);
 		{%- endif %}
 	{%- endfor %}
 	{% endif %}
