@@ -122,8 +122,11 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 			continue;
 		}
 		stream.WriteInt(field->id);
-		stream.WriteInt(field->LcfSize(obj, stream));
-		field->WriteLcf(obj, stream);
+		auto len = field->LcfSize(obj, stream);
+		stream.WriteInt(len);
+		if (len > 0) {
+			field->WriteLcf(obj, stream);
+		}
 	}
 	// Writing a 0-byte after RPG::Database or RPG::Save breaks the parser in RPG_RT
 	conditional_zero_writer<S>(stream);
