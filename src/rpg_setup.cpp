@@ -193,6 +193,11 @@ void RPG::Chipset::Init() {
 	passable_data_upper.front() = 31;
 }
 
+void RPG::System::Init() {
+	party.resize(1, 1);
+	menu_commands.resize(1, 1);
+}
+
 void RPG::Parameters::Setup(int final_level) {
 	maxhp.resize(final_level, 1);
 	maxsp.resize(final_level, 0);

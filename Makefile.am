@@ -106,6 +106,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_chipset.cpp \
 	src/generated/rpg_mapinfo.cpp \
 	src/generated/rpg_enums.cpp \
+	src/generated/rpg_system.cpp \
 	src/boost/preprocessor/cat.hpp \
 	src/boost/preprocessor/stringize.hpp \
 	src/boost/preprocessor/config/config.hpp
