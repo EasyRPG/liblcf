@@ -32,6 +32,7 @@
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
 #include "rpg_savepicture.h"
+#include "data.h"
 
 // Forward declarations
 
@@ -428,6 +429,32 @@ struct TypedField : public Field<S> {
 };
 
 /**
+ * DatabaseVersionField class template.
+ */
+
+template <typename S, typename T>
+struct DatabaseVersionField : public TypedField<S,T> {
+
+	using TypedField<S,T>::TypedField;
+
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		//If db version is 0, it's like a "version block" is not present.
+		if ((obj.*(this->ref)) == 0) {
+			return 0;
+		}
+		return TypedField<S,T>::LcfSize(obj, stream);
+	}
+	bool IsDefault(const S& a, const S& b) const {
+		if (Data::system.ldb_id == 2003) {
+			//DB Version always present in 2k3 db
+			return false;
+		}
+		//Only present if not 0 in 2k db.
+		return TypedField<S,T>::IsDefault(a, b);
+	}
+};
+
+/**
  * SizeField class template.
  */
 template <class S, class T>
@@ -738,6 +765,15 @@ private:
 
 #define LCF_STRUCT_TYPED_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
+		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_DATABASE_VERSION_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new DatabaseVersionField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \

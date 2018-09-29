@@ -590,7 +590,7 @@ Database,system,f,System,0x16,,1,0,RPG::System
 Database,switches,f,Array<Switch>,0x17,,1,0,RPG::Switchs
 Database,variables,f,Array<Variable>,0x18,,1,0,RPG::Variables
 Database,commonevents,f,Array<CommonEvent>,0x19,,1,0,RPG::CommonEvent
-Database,version,f,Int32,0x1A,0,0,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61
+Database,version,f,DatabaseVersion,0x1A,0,0,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61
 Database,commoneventD2,f,,0x1B,,0,1,Duplicated? - Not used - RPG2003
 Database,commoneventD3,f,,0x1C,,0,1,Duplicated? - Not used - RPG2003
 Database,battlecommands,f,BattleCommands,0x1D,,1,1,RPG::BattleCommand - RPG2003

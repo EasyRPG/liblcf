@@ -36,9 +36,19 @@ cpp_types = {
 }
 
 # Additional Jinja 2 functions
+def lcf_type(field, prefix=True):
+    if field.size == True:
+        return "SIZE"
+    if field.type == "DatabaseVersion":
+        return "DATABASE_VERSION"
+    return "TYPED"
+
 def cpp_type(ty, prefix=True):
     if ty in cpp_types:
         return cpp_types[ty]
+
+    if ty == "DatabaseVersion":
+        return 'int32_t'
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
@@ -131,7 +141,7 @@ def struct_headers(ty, header_map):
     if ty == 'String':
         return ['<string>']
 
-    if ty in int_types:
+    if ty in int_types or ty == "DatabaseVersion":
         return ['<stdint.h>']
 
     if ty in cpp_types:
@@ -353,6 +363,7 @@ def main(argv):
     headers = get_headers()
 
     # Setup Jinja
+    env.filters["lcf_type"] = lcf_type
     env.filters["cpp_type"] = cpp_type
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
