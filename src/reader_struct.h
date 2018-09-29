@@ -293,6 +293,7 @@ struct Field {
 
 	const char* const name;
 	int id;
+	bool present_if_default;
 	bool is2k3;
 
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
@@ -303,8 +304,8 @@ struct Field {
 	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
-	Field(int id, const char* name, bool is2k3) :
-		name(name), id(id), is2k3(is2k3) {}
+	Field(int id, const char* name, bool present_if_default, bool is2k3) :
+		name(name), id(id), present_if_default(present_if_default), is2k3(is2k3) {}
 };
 
 // Equivalence traits
@@ -337,6 +338,11 @@ struct Compare_Test<std::string> {
 	static const bool value = true;
 };
 
+template <>
+struct Compare_Test<RPG::Terrain::Flags> {
+	static const bool value = true;
+};
+
 template <class T, bool comparable>
 struct Compare_Traits_Impl {};
 
@@ -361,11 +367,25 @@ struct Compare_Traits_Impl<std::vector<T>, false> {
 	}
 };
 
+template <>
+struct Compare_Traits_Impl<RPG::Terrain::Flags, true> {
+	static bool IsEqual(const RPG::Terrain::Flags& l, const RPG::Terrain::Flags& r) {
+		return l.flags == r.flags;
+	}
+};
+
 template <class T>
 struct Compare_Traits {
 	typedef Compare_Traits_Impl<T, Compare_Test<T>::value> impl_type;
 	static bool IsEqual(const T& a, const T& b) {
 		return impl_type::IsEqual(a, b);
+	}
+};
+
+template <>
+struct Compare_Traits<RPG::Terrain::Flags> {
+	static bool IsEqual(const RPG::Terrain::Flags& a, const RPG::Terrain::Flags& b) {
+		return a.flags == b.flags;
 	}
 };
 
@@ -397,11 +417,14 @@ struct TypedField : public Field<S> {
 		TypeReader<T>::ParseXml(obj.*ref, data);
 	}
 	bool IsDefault(const S& a, const S& b) const {
+		if (this->present_if_default) {
+			return false;
+		}
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
 	}
 
-	TypedField(T S::*ref, int id, const char* name, bool is2k3) :
-		Field<S>(id, name, is2k3), ref(ref) {}
+	TypedField(T S::*ref, int id, const char* name, bool present_if_default, bool is2k3) :
+		Field<S>(id, name, present_if_default, is2k3), ref(ref) {}
 };
 
 /**
@@ -433,11 +456,14 @@ struct SizeField : public Field<S> {
 		// no-op
 	}
 	bool IsDefault(const S& a, const S& b) const {
-		return (a.*ref).empty() && (b.*ref).empty();
+		if (this->present_if_default) {
+			return false;
+		}
+		return (a.*ref).size() == (b.*ref).size();
 	}
 
-	SizeField(const std::vector<T> S::*ref, int id, bool is2k3) :
-		Field<S>(id, "", is2k3), ref(ref) {}
+	SizeField(const std::vector<T> S::*ref, int id, bool present_if_default, bool is2k3) :
+		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
 };
 
 /**
@@ -710,18 +736,20 @@ private:
 #define LCF_STRUCT_FIELDS_END() \
 	NULL }; \
 
-#define LCF_STRUCT_TYPED_FIELD(T, REF, IS2K3) \
+#define LCF_STRUCT_TYPED_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
 		, IS2K3 \
 	) \
 
-#define LCF_STRUCT_SIZE_FIELD(T, REF, IS2K3) \
+#define LCF_STRUCT_SIZE_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+		, PRESENTIFDEFAULT \
 		, IS2K3 \
 	) \
 

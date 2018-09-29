@@ -20,14 +20,14 @@
 #define LCF_CURRENT_STRUCT AnimationTiming
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, frame, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::Sound, se, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_scope, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_red, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_green, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_blue, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_power, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, screen_shake, 1),
+	LCF_STRUCT_TYPED_FIELD(int32_t, frame, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, se, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, flash_scope, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, flash_red, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, flash_green, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, flash_blue, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, flash_power, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, screen_shake, 0, 1),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

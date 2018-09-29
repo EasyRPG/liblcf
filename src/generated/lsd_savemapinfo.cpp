@@ -20,20 +20,20 @@
 #define LCF_CURRENT_STRUCT SaveMapInfo
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, position_x, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, position_y, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, encounter_rate, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, chipset_id, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent>, events, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, lower_tiles, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, upper_tiles, 0),
-	LCF_STRUCT_TYPED_FIELD(std::string, parallax_name, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, parallax_horz, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, parallax_vert, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, parallax_horz_auto, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, parallax_horz_speed, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, parallax_vert_auto, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, parallax_vert_speed, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, position_x, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, position_y, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, encounter_rate, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, chipset_id, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveMapEvent>, events, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, lower_tiles, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, upper_tiles, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, parallax_name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, parallax_horz, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, parallax_vert, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, parallax_horz_auto, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, parallax_horz_speed, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, parallax_vert_auto, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, parallax_vert_speed, 0, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

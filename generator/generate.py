@@ -204,7 +204,7 @@ def get_structs(filename='structs.csv'):
     return processed_result
 
 def get_fields(filename='fields.csv'):
-    Field = namedtuple("Field", "name size type code default is2k3 comment")
+    Field = namedtuple("Field", "name size type code default presentifdefault is2k3 comment")
 
     result = process_file(filename, Field)
 
@@ -219,6 +219,7 @@ def get_fields(filename='fields.csv'):
                 elem.type,
                 0 if elem.code == '' else int(elem.code, 0),
                 elem.default,
+                elem.presentifdefault,
                 elem.is2k3,
                 elem.comment)
             processed_result[k].append(elem)

@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT SaveEventCommands
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, commands_size, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, commands, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, current_command, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, event_id, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, actioned, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_15_subcommand_path_size, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16_subcommand_path, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, commands_size, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, commands, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, current_command, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, event_id, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, actioned, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_15_subcommand_path_size, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, unknown_16_subcommand_path, 1, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

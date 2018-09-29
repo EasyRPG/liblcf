@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT SaveCommonEvent
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data, 0, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

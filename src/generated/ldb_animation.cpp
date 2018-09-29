@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT Animation
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
-	LCF_STRUCT_TYPED_FIELD(std::string, animation_name, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, large, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, scope, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, position, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame>, frames, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, animation_name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, large, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, scope, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, position, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame>, frames, 1, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT
