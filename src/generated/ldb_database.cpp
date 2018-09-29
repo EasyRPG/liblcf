@@ -36,8 +36,11 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Variable>, variables, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::CommonEvent>, commonevents, 1, 0),
 	LCF_STRUCT_DATABASE_VERSION_FIELD(int32_t, version, 0, 0),
+	LCF_STRUCT_EMPTY_FIELD(void, commoneventD2, 1, 1),
+	LCF_STRUCT_EMPTY_FIELD(void, commoneventD3, 1, 1),
 	LCF_STRUCT_TYPED_FIELD(RPG::BattleCommands, battlecommands, 1, 1),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Class>, classes, 1, 1),
+	LCF_STRUCT_EMPTY_FIELD(void, classD1, 1, 1),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimation>, battleranimations, 1, 1),
 LCF_STRUCT_FIELDS_END()
 

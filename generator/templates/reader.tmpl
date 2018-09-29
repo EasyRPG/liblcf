@@ -10,7 +10,7 @@
 #define LCF_CURRENT_STRUCT {{ struct_name }}
 
 LCF_STRUCT_FIELDS_BEGIN()
-{%- for field in fields[struct_name]|field_is_used %}
+{%- for field in fields[struct_name]|field_is_written %}
 	LCF_STRUCT_{{ field|lcf_type }}_FIELD({{ field.type|cpp_type }}, {{ field.name }}, {{field.presentifdefault}}, {{field.is2k3}}),
 {%- endfor %}
 LCF_STRUCT_FIELDS_END()

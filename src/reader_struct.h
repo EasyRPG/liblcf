@@ -455,6 +455,36 @@ struct DatabaseVersionField : public TypedField<S,T> {
 };
 
 /**
+ * EmptyField class template.
+ */
+
+template <typename S>
+struct EmptyField : public Field<S> {
+
+	using Field<S>::Field;
+
+	void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const { }
+	void WriteLcf(const S& obj, LcfWriter& stream) const { }
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		//This is always an "empty block"
+		return 0;
+	}
+	void WriteXml(const S& obj, XmlWriter& stream) const { }
+	void BeginXml(S& obj, XmlReader& stream) const { }
+	void ParseXml(S& obj, const std::string& data) const { }
+
+	bool IsDefault(const S& a, const S& b) const {
+		if (this->present_if_default) {
+			return false;
+		}
+		return true;
+	}
+
+};
+
+
+
+/**
  * SizeField class template.
  */
 template <class S, class T>
@@ -776,6 +806,14 @@ private:
 	new DatabaseVersionField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
+		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_EMPTY_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new EmptyField<RPG::LCF_CURRENT_STRUCT>( \
+		  LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \
 		, PRESENTIFDEFAULT \
 		, IS2K3 \

@@ -591,11 +591,11 @@ Database,switches,f,Array<Switch>,0x17,,1,0,RPG::Switchs
 Database,variables,f,Array<Variable>,0x18,,1,0,RPG::Variables
 Database,commonevents,f,Array<CommonEvent>,0x19,,1,0,RPG::CommonEvent
 Database,version,f,DatabaseVersion,0x1A,0,0,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61
-Database,commoneventD2,f,,0x1B,,0,1,Duplicated? - Not used - RPG2003
-Database,commoneventD3,f,,0x1C,,0,1,Duplicated? - Not used - RPG2003
+Database,commoneventD2,f,EmptyBlock,0x1B,,1,1,Duplicated? - Not used - RPG2003
+Database,commoneventD3,f,EmptyBlock,0x1C,,1,1,Duplicated? - Not used - RPG2003
 Database,battlecommands,f,BattleCommands,0x1D,,1,1,RPG::BattleCommand - RPG2003
 Database,classes,f,Array<Class>,0x1E,,1,1,RPG::Class - RPG2003
-Database,classD1,f,,0x1F,,0,1,Duplicated? - Not used - RPG2003
+Database,classD1,f,EmptyBlock,0x1F,,1,1,Duplicated? - Not used - RPG2003
 Database,battleranimations,f,Array<BattlerAnimation>,0x20,,1,1,RPG::BattlerAnimation - RPG2003
 Encounter,troop_id,f,Ref<Troop>,0x01,0,0,0,Integer
 MapInfo,name,f,String,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead

@@ -41,6 +41,8 @@ def lcf_type(field, prefix=True):
         return "SIZE"
     if field.type == "DatabaseVersion":
         return "DATABASE_VERSION"
+    if field.type == "EmptyBlock":
+        return "EMPTY"
     return "TYPED"
 
 def cpp_type(ty, prefix=True):
@@ -49,6 +51,9 @@ def cpp_type(ty, prefix=True):
 
     if ty == "DatabaseVersion":
         return 'int32_t'
+
+    if ty == "EmptyBlock":
+        return 'void'
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
@@ -124,6 +129,11 @@ def filter_structs_without_codes(structs):
             yield struct
 
 def filter_unused_fields(fields):
+    for field in fields:
+        if field.type and field.type != "EmptyBlock":
+            yield field
+
+def filter_unwritten_fields(fields):
     for field in fields:
         if field.type:
             yield field
@@ -368,6 +378,7 @@ def main(argv):
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
+    env.filters["field_is_written"] = filter_unwritten_fields
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
