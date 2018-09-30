@@ -169,17 +169,24 @@ void RPG::Save::Setup() {
 }
 
 void RPG::Actor::Setup() {
+	int max_final_level = 0;
 	if (Data::system.ldb_id == 2003) {
-		final_level = final_level == -1 ? 99 : final_level;
+		max_final_level = 99;
+		if (final_level == -1) {
+			final_level = max_final_level;
+		}
 		exp_base = exp_base == -1 ? 300 : exp_base;
 		exp_inflation = exp_inflation == -1 ? 300 : exp_inflation;
 	}
 	else {
-		final_level = final_level == -1 ? 50 : final_level;
+		max_final_level = 50;
+		if (final_level == -1) {
+			final_level = max_final_level;
+		}
 		exp_base = exp_base == -1 ? 30 : exp_base;
 		exp_inflation = exp_inflation == -1 ? 30 : exp_inflation;
 	}
-	parameters.Setup(final_level);
+	parameters.Setup(max_final_level);
 }
 
 void RPG::MapInfo::Init() {
@@ -199,10 +206,10 @@ void RPG::System::Init() {
 }
 
 void RPG::Parameters::Setup(int final_level) {
-	maxhp.resize(final_level, 1);
-	maxsp.resize(final_level, 0);
-	attack.resize(final_level, 1);
-	defense.resize(final_level, 1);
-	spirit.resize(final_level, 1);
-	agility.resize(final_level, 1);
+	if (maxhp.size() < final_level) maxhp.resize(final_level, 1);
+	if (maxsp.size() < final_level) maxsp.resize(final_level, 0);
+	if (attack.size() < final_level) attack.resize(final_level, 1);
+	if (defense.size() < final_level) defense.resize(final_level, 1);
+	if (spirit.size() < final_level) spirit.resize(final_level, 1);
+	if (agility.size() < final_level) agility.resize(final_level, 1);
 }
