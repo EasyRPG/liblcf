@@ -223,7 +223,7 @@ Item,attribute_set,t,Boolean,0x41,,0,0,Integer
 Item,attribute_set,f,Vector<Boolean>,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
 Item,state_effect,f,Boolean,0x44,False,0,0,Flag
-Item,weapon_animation,f,Ref<Actor>,0x45,1,0,1,Integer - RPG2003
+Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
 Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003
 Item,class_set,t,Boolean,0x48,,0,1,Integer - RPG2003
