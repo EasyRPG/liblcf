@@ -96,7 +96,7 @@ namespace RPG {
 		std::vector<bool> state_effects;
 		std::vector<bool> attribute_effects;
 		bool affect_attr_defence = false;
-		int32_t battler_animation = 1;
+		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
 	};
 }

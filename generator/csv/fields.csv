@@ -163,7 +163,7 @@ Skill,state_effects,f,Vector<Boolean>,0x2A,,1,0,Array - Flag
 Skill,attribute_effects,t,Boolean,0x2B,,0,0,Integer
 Skill,attribute_effects,f,Vector<Boolean>,0x2C,,1,0,Array - Flag
 Skill,affect_attr_defence,f,Boolean,0x2D,False,0,0,Flag
-Skill,battler_animation,f,Ref<Actor>,0x31,1,0,1,Integer - RPG2003
+Skill,battler_animation,f,Ref<Actor>,0x31,-1,0,1,Integer - RPG2003
 Skill,battler_animation_data,f,Array<BattlerAnimationData:Ref<Actor>>,0x32,,1,1,? - RPG2003
 ItemAnimation,type,f,Int32,0x03,0,0,0,
 ItemAnimation,weapon_anim,f,Int32,0x04,0,0,0,
