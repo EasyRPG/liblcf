@@ -77,7 +77,7 @@ BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,0,0,Integer
 BattleCommands,death_handler1,f,Int32,0x04,0,0,0,Integer
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,0,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,0,0,Integer
-BattleCommands,unknown_09,f,Int32,0x09,0,1,0,Integer
+BattleCommands,unknown_09,f,Int32,0x09,-1,0,0,Integer
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,1,0,Array - RPG::BattleCommand
 BattleCommands,death_handler2,f,Int32,0x0F,0,0,0,Integer
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,0,0,0,Integer

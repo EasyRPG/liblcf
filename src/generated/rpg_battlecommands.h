@@ -85,7 +85,7 @@ namespace RPG {
 		int32_t death_handler1 = 0;
 		int32_t row = 0;
 		int32_t battle_type = 0;
-		int32_t unknown_09 = 0;
+		int32_t unknown_09 = -1;
 		std::vector<BattleCommand> commands;
 		int32_t death_handler2 = 0;
 		int32_t death_event = 0;
