@@ -118,7 +118,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		if (field->IsDefault(obj, ref)) {
+		if (!field->present_if_default && field->IsDefault(obj, ref)) {
 			continue;
 		}
 		stream.WriteInt(field->id);
@@ -143,8 +143,9 @@ int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 			continue;
 		}
 		//printf("%s\n", field->name);
-		if (field->IsDefault(obj, ref))
+		if (!field->present_if_default && field->IsDefault(obj, ref)) {
 			continue;
+		}
 		result += LcfReader::IntSize(field->id);
 		int size = field->LcfSize(obj, stream);
 		result += LcfReader::IntSize(size);

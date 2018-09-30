@@ -418,9 +418,6 @@ struct TypedField : public Field<S> {
 		TypeReader<T>::ParseXml(obj.*ref, data);
 	}
 	bool IsDefault(const S& a, const S& b) const {
-		if (this->present_if_default) {
-			return false;
-		}
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
 	}
 
@@ -474,9 +471,6 @@ struct EmptyField : public Field<S> {
 	void ParseXml(S& obj, const std::string& data) const { }
 
 	bool IsDefault(const S& a, const S& b) const {
-		if (this->present_if_default) {
-			return false;
-		}
 		return true;
 	}
 
@@ -513,9 +507,6 @@ struct SizeField : public Field<S> {
 		// no-op
 	}
 	bool IsDefault(const S& a, const S& b) const {
-		if (this->present_if_default) {
-			return false;
-		}
 		return (a.*ref).size() == (b.*ref).size();
 	}
 
