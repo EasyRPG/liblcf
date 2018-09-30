@@ -32,6 +32,7 @@
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
 #include "rpg_savepicture.h"
+#include "rpg_terms.h"
 #include "data.h"
 
 // Forward declarations
@@ -304,6 +305,15 @@ struct Field {
 	virtual void WriteXml(const S& obj, XmlWriter& stream) const = 0;
 	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
+
+	bool isPresentIfDefault(bool db_is2k3) const {
+		if (std::is_same<S,RPG::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
+			//Special case - only known fields that are 2k specific and not
+			//written to a 2k3 db if defaulted.
+			return false;
+		}
+		return present_if_default;
+	}
 
 	Field(int id, const char* name, bool present_if_default, bool is2k3) :
 		name(name), id(id), present_if_default(present_if_default), is2k3(is2k3) {}

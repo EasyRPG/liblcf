@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT Terms
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, encounter, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, encounter, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, special_combat, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, escape_success, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, escape_failure, 1, 0),
