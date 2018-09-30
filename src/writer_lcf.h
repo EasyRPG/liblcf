@@ -80,6 +80,14 @@ public:
 	void Write(const std::vector<T>& buffer);
 
 	/**
+	 * Returns the current position of the read pointer in
+	 * the stream.
+	 *
+	 * @return current location in the stream.
+	 */
+	uint32_t Tell();
+
+	/**
 	 * Checks if the file is writable and if no error occurred.
 	 *
 	 * @return true the stream is okay.
