@@ -527,9 +527,9 @@ System,title_name,f,String,0x11,'',0,0,String
 System,gameover_name,f,String,0x12,'',0,0,String
 System,system_name,f,String,0x13,'',0,0,String
 System,system2_name,f,String,0x14,'',0,1,String - RPG2003
-System,party,t,Int16,0x15,,0,0,Integer
+System,party,t,Count<Int16>,0x15,,0,0,Integer
 System,party,f,Vector<Int16>,0x16,,1,0,Array - Short
-System,menu_commands,t,Int16,0x1A,,0,1,Integer - RPG2003
+System,menu_commands,t,Count<Int16>,0x1A,,0,1,Integer - RPG2003
 System,menu_commands,f,Vector<Int16>,0x1B,,1,1,Array - Short - RPG2003
 System,title_music,f,Music,0x1F,,0,0,RPG::Music
 System,battle_music,f,Music,0x20,,0,0,RPG::Music

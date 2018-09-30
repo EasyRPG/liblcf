@@ -38,7 +38,10 @@ cpp_types = {
 # Additional Jinja 2 functions
 def lcf_type(field, prefix=True):
     if field.size == True:
-        return "SIZE"
+        if re.match(r'Count<(.*)>', field.type):
+            return "COUNT"
+        else:
+            return "SIZE"
     if field.type == "DatabaseVersion":
         return "DATABASE_VERSION"
     if field.type == "EmptyBlock":
@@ -54,6 +57,10 @@ def cpp_type(ty, prefix=True):
 
     if ty == "EmptyBlock":
         return 'void'
+
+    m = re.match(r'Count<(.*)>', ty)
+    if m:
+        return cpp_type(m.group(1), prefix)
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:

@@ -523,6 +523,25 @@ struct SizeField : public Field<S> {
 		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
 };
 
+
+/**
+ * CountField class template.
+ */
+template <class S, class T>
+struct CountField : public SizeField<S,T> {
+
+	using SizeField<S,T>::SizeField;
+
+	void WriteLcf(const S& obj, LcfWriter& stream) const {
+		int size = (obj.*(this->ref)).size();
+		TypeReader<int32_t>::WriteLcf(size, stream);
+	}
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		int size = (obj.*(this->ref)).size();
+		return LcfReader::IntSize(size);
+	}
+};
+
 /**
  * ID handling for Struct class.
  */
@@ -821,6 +840,14 @@ private:
 
 #define LCF_STRUCT_SIZE_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_COUNT_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new CountField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
 		, PRESENTIFDEFAULT \
