@@ -69,6 +69,50 @@ namespace RPG {
 				decrease_transp = 41
 			};
 		};
+		static constexpr auto kCodeTags = makeEnumTags<Code::Index>(
+			"move_up",
+			"move_right",
+			"move_down",
+			"move_left",
+			"move_upright",
+			"move_downright",
+			"move_downleft",
+			"move_upleft",
+			"move_random",
+			"move_towards_hero",
+			"move_away_from_hero",
+			"move_forward",
+			"face_up",
+			"face_right",
+			"face_down",
+			"face_left",
+			"turn_90_degree_right",
+			"turn_90_degree_left",
+			"turn_180_degree",
+			"turn_90_degree_random",
+			"face_random_direction",
+			"face_hero",
+			"face_away_from_hero",
+			"wait",
+			"begin_jump",
+			"end_jump",
+			"lock_facing",
+			"unlock_facing",
+			"increase_movement_speed",
+			"decrease_movement_speed",
+			"increase_movement_frequence",
+			"decrease_movement_frequence",
+			"switch_on",
+			"switch_off",
+			"change_graphic",
+			"play_sound_effect",
+			"walk_everywhere_on",
+			"walk_everywhere_off",
+			"stop_animation",
+			"start_animation",
+			"increase_transp",
+			"decrease_transp"
+		);
 
 		int32_t command_id = 0;
 		std::string parameter_string;
