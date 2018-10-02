@@ -128,140 +128,20 @@
     <ClCompile Include="..\..\src\data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_actor.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_animation.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_animationcelldata.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_animationframe.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_animationtiming.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_attribute.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_battlecommand.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_battleranimation.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_battleranimationextension.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\generated\rpg_chipset.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_class.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_commonevent.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_database.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_encounter.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_enemy.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_enemyaction.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_event.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_eventcommand.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_eventpage.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_eventpagecondition.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_item.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_learning.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_map.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\generated\rpg_mapinfo.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_movecommand.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_moveroute.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_music.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_skill.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_sound.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_state.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_system.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_terms.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_terrain.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_testbattler.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_treemap.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_troop.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_troopmember.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_trooppage.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_trooppagecondition.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\generated\ldb_battleranimationdata.cpp">
       <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_battleranimationdata.cpp">
-      <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\generated\ldb_itemanimation.cpp">
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_itemanimation.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\lsd_reader.cpp">
       <Filter>Source Files\LSD</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_save.cpp">
-      <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader_util.cpp">
       <Filter>Source Files</Filter>
@@ -280,12 +160,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\generated\ldb_battlecommands.cpp">
       <Filter>Source Files\LDB</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_variable.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_switch.cpp">
-      <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader_flags.cpp">
       <Filter>Source Files</Filter>
@@ -313,15 +187,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\lmu_movecommand.cpp">
       <Filter>Source Files\LMU</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_equipment.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_rect.cpp">
-      <Filter>Source Files\RPG</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\generated\rpg_start.cpp">
-      <Filter>Source Files\RPG</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\writer_lcf.cpp">
       <Filter>Source Files</Filter>
@@ -420,6 +285,9 @@
       <Filter>Source Files\LDB</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\rpg_fixup.cpp">
+      <Filter>Source Files\RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\generated\rpg_enums.cpp">
       <Filter>Source Files\RPG</Filter>
     </ClCompile>
   </ItemGroup>
