@@ -46,7 +46,7 @@ namespace RPG {
 		int ID = 0;
 		int32_t move = 0;
 		int32_t after_image = 0;
-		int32_t pose = 0;
+		int32_t pose = -1;
 	};
 }
 

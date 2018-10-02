@@ -99,7 +99,7 @@ BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - 
 BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - RPG::BattlerAnimationExtension
 BattlerAnimationData,move,f,Enum<BattlerAnimationData_Movement>,0x05,0,0,0,Integer
 BattlerAnimationData,after_image,f,Enum<BattlerAnimationData_AfterImage>,0x06,0,0,0,Integer
-BattlerAnimationData,pose,f,Int32,0x0E,0,0,0,Integer
+BattlerAnimationData,pose,f,Int32,0x0E,-1,0,0,Integer
 Chipset,name,f,String,0x01,'',0,0,String
 Chipset,chipset_name,f,String,0x02,'',0,0,String
 Chipset,terrain_data,f,Vector<Int16>,0x03,[1]*162,0,0,Array - Short x 162
