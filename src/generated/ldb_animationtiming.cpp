@@ -27,7 +27,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_green, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_blue, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_power, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, screen_shake, 0, 1),
+	LCF_STRUCT_TYPED_FIELD(int32_t, screen_shake, 0, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

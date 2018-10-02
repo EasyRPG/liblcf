@@ -45,7 +45,7 @@ AnimationTiming,flash_red,f,Int32,0x04,31,0,0,Integer
 AnimationTiming,flash_green,f,Int32,0x05,31,0,0,Integer
 AnimationTiming,flash_blue,f,Int32,0x06,31,0,0,Integer
 AnimationTiming,flash_power,f,Int32,0x07,31,0,0,Integer
-AnimationTiming,screen_shake,f,Enum<AnimationTiming_ScreenShake>,0x08,0,0,1,Integer - RPG2003 - TODO: Get chunk ID
+AnimationTiming,screen_shake,f,Enum<AnimationTiming_ScreenShake>,0x08,0,0,0,Integer - This field RPG2003 only but commonly found in some 2k LDB's. We disable the is2k3 field on purpose because if its defaulted in 2k it won't be written anyway.
 AnimationCellData,valid,f,Int32,0x01,1,0,0,Bool
 AnimationCellData,cell_id,f,Int32,0x02,0,0,0,Integer
 AnimationCellData,x,f,Int32,0x03,0,0,0,Integer
