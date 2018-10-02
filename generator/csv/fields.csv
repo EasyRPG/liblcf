@@ -332,9 +332,9 @@ Terrain,special_back_enemies,f,Int32,0x2A,10,Integer - RPG2003
 Terrain,special_lateral_party,f,Int32,0x2B,10,Integer - RPG2003
 Terrain,special_lateral_enemies,f,Int32,0x2C,5,Integer - RPG2003
 Terrain,grid_location,f,Int32,0x2D,0,Integer - RPG2003
-Terrain,grid_a,f,Int32,0x2E,0,Integer - RPG2003
-Terrain,grid_b,f,Int32,0x2F,0,Integer - RPG2003
-Terrain,grid_c,f,Int32,0x30,0,Integer - RPG2003
+Terrain,grid_a,f,Int32,0x2E,120,Integer - RPG2003
+Terrain,grid_b,f,Int32,0x2F,392,Integer - RPG2003
+Terrain,grid_c,f,Int32,0x30,16000,Integer - RPG2003
 State,name,f,String,0x01,'',String
 State,type,f,Enum<State_Persistence>,0x02,0,Integer
 State,color,f,Int32,0x03,6,Integer
