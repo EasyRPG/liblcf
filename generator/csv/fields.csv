@@ -136,7 +136,7 @@ Skill,using_message2,f,String,0x04,'',0,0,String - RPG2000
 Skill,failure_message,f,Int32,0x07,0,0,0,Integer - RPG2000
 Skill,type,f,Enum<Skill_Type>,0x08,0,1,0,Integer
 Skill,sp_type,f,Enum<Skill_SpType>,0x09,0,0,1,Integer - RPG2003
-Skill,sp_percent,f,Int32,0x0A,1,0,1,Integer - RPG2003
+Skill,sp_percent,f,Int32,0x0A,0,0,1,Integer - RPG2003
 Skill,sp_cost,f,Int32,0x0B,0,0,0,Integer
 Skill,scope,f,Enum<Skill_Scope>,0x0C,0,1,0,Integer
 Skill,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
