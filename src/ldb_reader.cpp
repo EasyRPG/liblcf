@@ -20,9 +20,9 @@ bool LDB_Reader::Load(const std::string& filename, const std::string& encoding) 
 	return LDB_Reader::Load(stream, encoding);
 }
 
-bool LDB_Reader::Save(const std::string& filename, const std::string& encoding) {
+bool LDB_Reader::Save(const std::string& filename, const std::string& encoding, SaveOpt opt) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
-	return LDB_Reader::Save(stream, encoding);
+	return LDB_Reader::Save(stream, encoding, opt);
 }
 
 bool LDB_Reader::SaveXml(const std::string& filename) {
@@ -50,6 +50,7 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 	if (header != "LcfDataBase") {
 		fprintf(stderr, "Warning: This header is not LcfDataBase and might not be a valid RPG2000 database.\n");
 	}
+	Data::data.ldb_header = header;
 	TypeReader<RPG::Database>::ReadLcf(Data::data, reader, 0);
 
 	// Delayed initialization of some actor fields because they are engine
@@ -62,13 +63,18 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 	return true;
 }
 
-bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding) {
+bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, SaveOpt opt) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
 	}
-	const std::string header("LcfDataBase");
+	std::string header;
+	if ( Data::data.ldb_header.empty() || !bool(opt & SaveOpt::ePreserveHeader)) {
+		header = "LcfDataBase";
+	} else {
+		header= Data::data.ldb_header;
+	}
 	writer.WriteInt(header.size());
 	writer.Write(header);
 	TypeReader<RPG::Database>::WriteLcf(Data::data, writer);
