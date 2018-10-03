@@ -69,9 +69,9 @@ namespace RPG {
 		int32_t special_lateral_party = 10;
 		int32_t special_lateral_enemies = 5;
 		int32_t grid_location = 0;
-		int32_t grid_a = 0;
-		int32_t grid_b = 0;
-		int32_t grid_c = 0;
+		int32_t grid_a = 120;
+		int32_t grid_b = 392;
+		int32_t grid_c = 16000;
 	};
 }
 
