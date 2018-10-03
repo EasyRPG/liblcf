@@ -78,12 +78,10 @@ add_library(lcf
 	src/generated/ldb_system.cpp
 	src/generated/ldb_terms.cpp
 	src/generated/ldb_terrain.cpp
-	src/generated/ldb_terrain_flags.cpp
 	src/generated/ldb_testbattler.cpp
 	src/generated/ldb_troop.cpp
 	src/generated/ldb_troopmember.cpp
 	src/generated/ldb_trooppagecondition.cpp
-	src/generated/ldb_trooppagecondition_flags.cpp
 	src/generated/ldb_trooppage.cpp
 	src/generated/ldb_variable.cpp
 	src/generated/lmt_encounter.cpp
@@ -91,7 +89,6 @@ add_library(lcf
 	src/generated/lmt_start.cpp
 	src/generated/lmu_event.cpp
 	src/generated/lmu_eventpagecondition.cpp
-	src/generated/lmu_eventpagecondition_flags.cpp
 	src/generated/lmu_eventpage.cpp
 	src/generated/lmu_map.cpp
 	src/generated/lmu_moveroute.cpp
@@ -105,7 +102,6 @@ add_library(lcf
 	src/generated/lsd_savemapinfo.cpp
 	src/generated/lsd_savepartylocation.cpp
 	src/generated/lsd_savepicture.cpp
-	src/generated/lsd_savepicture_flags.cpp
 	src/generated/lsd_savescreen.cpp
 	src/generated/lsd_savesystem.cpp
 	src/generated/lsd_savetarget.cpp

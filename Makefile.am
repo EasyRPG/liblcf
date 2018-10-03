@@ -74,12 +74,10 @@ liblcf_la_SOURCES = \
 	src/generated/ldb_system.cpp \
 	src/generated/ldb_terms.cpp \
 	src/generated/ldb_terrain.cpp \
-	src/generated/ldb_terrain_flags.cpp \
 	src/generated/ldb_testbattler.cpp \
 	src/generated/ldb_troop.cpp \
 	src/generated/ldb_troopmember.cpp \
 	src/generated/ldb_trooppagecondition.cpp \
-	src/generated/ldb_trooppagecondition_flags.cpp \
 	src/generated/ldb_trooppage.cpp \
 	src/generated/ldb_variable.cpp \
 	src/generated/lmt_encounter.cpp \
@@ -87,7 +85,6 @@ liblcf_la_SOURCES = \
 	src/generated/lmt_start.cpp \
 	src/generated/lmu_event.cpp \
 	src/generated/lmu_eventpagecondition.cpp \
-	src/generated/lmu_eventpagecondition_flags.cpp \
 	src/generated/lmu_eventpage.cpp \
 	src/generated/lmu_map.cpp \
 	src/generated/lmu_moveroute.cpp \
@@ -101,7 +98,6 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_savemapinfo.cpp \
 	src/generated/lsd_savepartylocation.cpp \
 	src/generated/lsd_savepicture.cpp \
-	src/generated/lsd_savepicture_flags.cpp \
 	src/generated/lsd_savescreen.cpp \
 	src/generated/lsd_savesystem.cpp \
 	src/generated/lsd_savetarget.cpp \
@@ -154,6 +150,7 @@ pkginclude_HEADERS = \
 	src/generated/rpg_eventcommand.h \
 	src/generated/rpg_event.h \
 	src/generated/rpg_eventpagecondition.h \
+	src/generated/lmu_eventpagecondition_flags.h \
 	src/generated/rpg_eventpage.h \
 	src/generated/rpg_itemanimation.h \
 	src/generated/rpg_item.h \
@@ -175,6 +172,7 @@ pkginclude_HEADERS = \
 	src/generated/rpg_savemapinfo.h \
 	src/generated/rpg_savepartylocation.h \
 	src/generated/rpg_savepicture.h \
+	src/generated/lsd_savepicture_flags.h \
 	src/generated/rpg_savescreen.h \
 	src/generated/rpg_savesystem.h \
 	src/generated/rpg_savetarget.h \
@@ -188,11 +186,13 @@ pkginclude_HEADERS = \
 	src/generated/rpg_system.h \
 	src/generated/rpg_terms.h \
 	src/generated/rpg_terrain.h \
+	src/generated/ldb_terrain_flags.h \
 	src/generated/rpg_testbattler.h \
 	src/generated/rpg_treemap.h \
 	src/generated/rpg_troop.h \
 	src/generated/rpg_troopmember.h \
 	src/generated/rpg_trooppagecondition.h \
+	src/generated/ldb_trooppagecondition_flags.h \
 	src/generated/rpg_trooppage.h \
 	src/generated/rpg_variable.h
 

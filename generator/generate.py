@@ -313,7 +313,7 @@ def generate():
                 ))
 
             if struct.name in flags:
-                filepath = os.path.join(tmp_dir, '%s_%s_flags.cpp' % (filetype, filename))
+                filepath = os.path.join(tmp_dir, '%s_%s_flags.h' % (filetype, filename))
                 with open(filepath, 'w') as f:
                     f.write(flags_tmpl.render(
                         struct_name=struct.name,

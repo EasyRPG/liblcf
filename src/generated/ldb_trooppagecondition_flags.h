@@ -19,13 +19,11 @@
 
 // Read TroopPageCondition.
 
-using flags_type = RPG::TroopPageCondition::Flags;
+template <>
+char const* const Flags<RPG::TroopPageCondition::Flags>::name = "TroopPageCondition_Flags";
 
 template <>
-char const* const Flags<flags_type>::name = "TroopPageCondition_Flags";
-
-template <>
-decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
+decltype(Flags<RPG::TroopPageCondition::Flags>::flag_names) Flags<RPG::TroopPageCondition::Flags>::flag_names = {
 	"switch_a",
 	"switch_b",
 	"variable",
@@ -39,7 +37,7 @@ decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
 };
 
 template <>
-decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
+decltype(Flags<RPG::TroopPageCondition::Flags>::flags_is2k3) Flags<RPG::TroopPageCondition::Flags>::flags_is2k3 = {
 	0,
 	0,
 	0,

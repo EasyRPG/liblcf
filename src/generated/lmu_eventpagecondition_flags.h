@@ -12,37 +12,35 @@
 /*
  * Headers
  */
-#include "lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lmu_reader.h"
+#include "lmu_chunks.h"
 #include "reader_struct.h"
 
 
-// Read SavePicture.
-
-using flags_type = RPG::SavePicture::Flags;
+// Read EventPageCondition.
 
 template <>
-char const* const Flags<flags_type>::name = "SavePicture_Flags";
+char const* const Flags<RPG::EventPageCondition::Flags>::name = "EventPageCondition_Flags";
 
 template <>
-decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
-	"erase_on_map_change",
-	"erase_on_battle_end",
-	"unused_bit",
-	"unused_bit2",
-	"affected_by_tint",
-	"affected_by_flash",
-	"affected_by_shake"
+decltype(Flags<RPG::EventPageCondition::Flags>::flag_names) Flags<RPG::EventPageCondition::Flags>::flag_names = {
+	"switch_a",
+	"switch_b",
+	"variable",
+	"item",
+	"actor",
+	"timer",
+	"timer2"
 };
 
 template <>
-decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
+decltype(Flags<RPG::EventPageCondition::Flags>::flags_is2k3) Flags<RPG::EventPageCondition::Flags>::flags_is2k3 = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
 	1
 };
 

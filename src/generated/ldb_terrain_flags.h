@@ -19,13 +19,11 @@
 
 // Read Terrain.
 
-using flags_type = RPG::Terrain::Flags;
+template <>
+char const* const Flags<RPG::Terrain::Flags>::name = "Terrain_Flags";
 
 template <>
-char const* const Flags<flags_type>::name = "Terrain_Flags";
-
-template <>
-decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
+decltype(Flags<RPG::Terrain::Flags>::flag_names) Flags<RPG::Terrain::Flags>::flag_names = {
 	"back_party",
 	"back_enemies",
 	"lateral_party",
@@ -33,7 +31,7 @@ decltype(Flags<flags_type>::flag_names) Flags<flags_type>::flag_names = {
 };
 
 template <>
-decltype(Flags<flags_type>::flags_is2k3) Flags<flags_type>::flags_is2k3 = {
+decltype(Flags<RPG::Terrain::Flags>::flags_is2k3) Flags<RPG::Terrain::Flags>::flags_is2k3 = {
 	1,
 	1,
 	1,

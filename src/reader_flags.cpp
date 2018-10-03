@@ -14,6 +14,11 @@
 #include "rpg_savepicture.h"
 #include "data.h"
 
+#include "ldb_trooppagecondition_flags.h"
+#include "ldb_terrain_flags.h"
+#include "lmu_eventpagecondition_flags.h"
+#include "lsd_savepicture_flags.h"
+
 // Templates
 
 template <class S>
