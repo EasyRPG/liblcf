@@ -205,6 +205,8 @@ System,BattleCondition,initiative,1
 System,BattleCondition,back,2
 System,BattleCondition,surround,3
 System,BattleCondition,pincers,4
+System,EquipmentSetting,actor,0
+System,EquipmentSetting,class,1
 MapInfo,MusicType,parent,0
 MapInfo,MusicType,event,1
 MapInfo,MusicType,specific,2

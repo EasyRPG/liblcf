@@ -567,7 +567,8 @@ System,save_count,f,Int32,0x5B,0,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,0,Integer
 System,battletest_formation,f,Enum<System_BattleFormation>,0x5F,0,0,Integer
 System,battletest_condition,f,Enum<System_BattleCondition>,0x60,0,0,Integer
-System,unknown_61,f,Int32,0x61,-1,0,?
+System,equipment_setting,f,Enum<System_EquipmentSetting>,0x61,0,1,Integer RPG2003 - Whether equipment usage is by Actor or by Class. This is a global setting in RM2k3!
+System,battletest_alt_terrain,f,Ref<Terrain>,0x62,0,1,Integer RPG2003 (EDITOR ONLY) - Double click on Terrain in Troops changes this setting and 0x54. Affects only the RM2k3 editor.
 System,show_frame,f,Boolean,0x63,False,1,Flag - RPG2003
 System,frame_name,f,String,0x64,'',1,String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,1,Flag - RPG2003

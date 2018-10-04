@@ -82,6 +82,7 @@ constexpr decltype(System::kStretchTags) System::kStretchTags;
 constexpr decltype(System::kFontTags) System::kFontTags;
 constexpr decltype(System::kBattleFormationTags) System::kBattleFormationTags;
 constexpr decltype(System::kBattleConditionTags) System::kBattleConditionTags;
+constexpr decltype(System::kEquipmentSettingTags) System::kEquipmentSettingTags;
 constexpr decltype(EventPageCondition::kComparisonTags) EventPageCondition::kComparisonTags;
 constexpr decltype(EventPage::kDirectionTags) EventPage::kDirectionTags;
 constexpr decltype(EventPage::kFrameTags) EventPage::kFrameTags;

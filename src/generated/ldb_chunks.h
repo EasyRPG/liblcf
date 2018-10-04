@@ -1274,8 +1274,10 @@ namespace LDB_Reader {
 			battletest_formation = 0x5F,
 			/** Integer */
 			battletest_condition = 0x60,
-			/** ? */
-			unknown_61 = 0x61,
+			/** Integer RPG2003 - Whether equipment usage is by Actor or by Class. This is a global setting in RM2k3! */
+			equipment_setting = 0x61,
+			/** Integer RPG2003 (EDITOR ONLY) - Double click on Terrain in Troops changes this setting and 0x54. Affects only the RM2k3 editor. */
+			battletest_alt_terrain = 0x62,
 			/** Flag - RPG2003 */
 			show_frame = 0x63,
 			/** String - RPG2003 */
