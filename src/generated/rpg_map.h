@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_event.h"
 
 /**
@@ -30,16 +31,32 @@ namespace RPG {
 			ScrollType_horizontal = 2,
 			ScrollType_both = 3
 		};
+		static constexpr auto kScrollTypeTags = makeEnumTags<ScrollType>(
+			"none",
+			"vertical",
+			"horizontal",
+			"both"
+		);
 		enum GeneratorMode {
 			GeneratorMode_single_passage = 0,
 			GeneratorMode_linked_rooms = 1,
 			GeneratorMode_maze_passage = 2,
 			GeneratorMode_open_room = 3
 		};
+		static constexpr auto kGeneratorModeTags = makeEnumTags<GeneratorMode>(
+			"single_passage",
+			"linked_rooms",
+			"maze_passage",
+			"open_room"
+		);
 		enum GeneratorTiles {
 			GeneratorTiles_one = 0,
 			GeneratorTiles_two = 1
 		};
+		static constexpr auto kGeneratorTilesTags = makeEnumTags<GeneratorTiles>(
+			"one",
+			"two"
+		);
 
 		int32_t chipset_id = 1;
 		int32_t width = 20;

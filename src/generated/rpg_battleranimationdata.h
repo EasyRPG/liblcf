@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "enum_tags.h"
 
 /**
  * RPG::BattlerAnimationData class.
@@ -27,10 +28,20 @@ namespace RPG {
 			Movement_jump = 2,
 			Movement_move = 3
 		};
+		static constexpr auto kMovementTags = makeEnumTags<Movement>(
+			"none",
+			"step",
+			"jump",
+			"move"
+		);
 		enum AfterImage {
 			AfterImage_none = 0,
 			AfterImage_add = 1
 		};
+		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
+			"none",
+			"add"
+		);
 
 		int ID = 0;
 		int32_t move = 0;

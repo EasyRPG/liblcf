@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 #include "rpg_sound.h"
 
 /**
@@ -29,10 +30,20 @@ namespace RPG {
 			BushDepth_half = 2,
 			BushDepth_full = 3
 		};
+		static constexpr auto kBushDepthTags = makeEnumTags<BushDepth>(
+			"normal",
+			"third",
+			"half",
+			"full"
+		);
 		enum BGAssociation {
 			BGAssociation_background = 0,
 			BGAssociation_frame = 1
 		};
+		static constexpr auto kBGAssociationTags = makeEnumTags<BGAssociation>(
+			"background",
+			"frame"
+		);
 
 		int ID = 0;
 		std::string name;

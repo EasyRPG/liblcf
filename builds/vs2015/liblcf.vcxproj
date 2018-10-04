@@ -180,6 +180,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\generated\rpg_enums.cpp" />
     <ClCompile Include="..\..\src\reader_struct.cpp" />
     <ClCompile Include="..\..\src\data.cpp" />
     <ClCompile Include="..\..\src\ini.cpp" />

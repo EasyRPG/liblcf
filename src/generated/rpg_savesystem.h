@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_music.h"
 #include "rpg_sound.h"
 
@@ -29,6 +30,10 @@ namespace RPG {
 			AtbMode_atb_active = 0,
 			AtbMode_atb_wait = 1
 		};
+		static constexpr auto kAtbModeTags = makeEnumTags<AtbMode>(
+			"atb_active",
+			"atb_wait"
+		);
 
 		void Setup();
 		void Fixup();

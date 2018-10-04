@@ -15,6 +15,7 @@
 // Headers
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_eventcommand.h"
 
 /**
@@ -28,6 +29,11 @@ namespace RPG {
 			Trigger_parallel = 4,
 			Trigger_call = 5
 		};
+		static constexpr auto kTriggerTags = makeEnumTags<Trigger>(
+			"automatic",
+			"parallel",
+			"call"
+		);
 
 		int ID = 0;
 		std::string name;

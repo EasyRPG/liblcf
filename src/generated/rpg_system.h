@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_music.h"
 #include "rpg_sound.h"
 #include "rpg_testbattler.h"
@@ -50,6 +51,30 @@ namespace RPG {
 			FadeOut_instantaneous = 20,
 			FadeOut_none = 21
 		};
+		static constexpr auto kFadeOutTags = makeEnumTags<FadeOut>(
+			"default",
+			"fade_out",
+			"remove_blocks",
+			"wipe_downward",
+			"wipe_upward",
+			"venetian_blinds",
+			"vertical_blinds",
+			"horizontal_blinds",
+			"receding_square",
+			"expanding_square",
+			"screen_moves_up",
+			"screen_moves_down",
+			"screen_moves_left",
+			"screen_moves_right",
+			"vertical_div",
+			"horizontal_div",
+			"quadrasection",
+			"zoom_in",
+			"mosaic",
+			"waver_screen",
+			"instantaneous",
+			"none"
+		);
 		enum FadeIn {
 			FadeIn_default = 0,
 			FadeIn_fade_in = 1,
@@ -74,19 +99,56 @@ namespace RPG {
 			FadeIn_instantaneous = 20,
 			FadeIn_none = 21
 		};
+		static constexpr auto kFadeInTags = makeEnumTags<FadeIn>(
+			"default",
+			"fade_in",
+			"reconstitute_blocks",
+			"unwipe_downward",
+			"unwipe_upward",
+			"venetian_blinds",
+			"vertical_blinds",
+			"horizontal_blinds",
+			"receding_square",
+			"expanding_square",
+			"screen_moves_down",
+			"screen_moves_up",
+			"screen_moves_right",
+			"screen_moves_left",
+			"vertical_unify",
+			"horizontal_unify",
+			"unify_quadrants",
+			"zoom_out",
+			"mosaic",
+			"waver_screen",
+			"instantaneous",
+			"none"
+		);
 		enum Stretch {
 			Stretch_stretch = 0,
 			Stretch_tiled = 1
 		};
+		static constexpr auto kStretchTags = makeEnumTags<Stretch>(
+			"stretch",
+			"tiled"
+		);
 		enum Font {
 			Font_gothic = 0,
 			Font_mincho = 1
 		};
+		static constexpr auto kFontTags = makeEnumTags<Font>(
+			"gothic",
+			"mincho"
+		);
 		enum BattleFormation {
 			BattleFormation_terrain = 0,
 			BattleFormation_loose = 1,
 			BattleFormation_tight = 2
 		};
+		static constexpr auto kBattleFormationTags = makeEnumTags<BattleFormation>(
+			"terrain",
+			"loose",
+			"tight"
+		);
 		enum BattleCondition {
 			BattleCondition_none = 0,
 			BattleCondition_initiative = 1,
@@ -94,6 +156,13 @@ namespace RPG {
 			BattleCondition_surround = 3,
 			BattleCondition_pincers = 4
 		};
+		static constexpr auto kBattleConditionTags = makeEnumTags<BattleCondition>(
+			"none",
+			"initiative",
+			"back",
+			"surround",
+			"pincers"
+		);
 
 		int32_t ldb_id = 0;
 		std::string boat_name;

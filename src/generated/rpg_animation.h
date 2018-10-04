@@ -15,6 +15,7 @@
 // Headers
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_animationframe.h"
 #include "rpg_animationtiming.h"
 
@@ -28,11 +29,20 @@ namespace RPG {
 			Scope_target = 0,
 			Scope_screen = 1
 		};
+		static constexpr auto kScopeTags = makeEnumTags<Scope>(
+			"target",
+			"screen"
+		);
 		enum Position {
 			Position_up = 0,
 			Position_middle = 1,
 			Position_down = 2
 		};
+		static constexpr auto kPositionTags = makeEnumTags<Position>(
+			"up",
+			"middle",
+			"down"
+		);
 
 		int ID = 0;
 		std::string name;

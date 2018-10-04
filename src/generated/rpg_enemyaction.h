@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "enum_tags.h"
 
 /**
  * RPG::EnemyAction class.
@@ -26,6 +27,11 @@ namespace RPG {
 			Kind_skill = 1,
 			Kind_transformation = 2
 		};
+		static constexpr auto kKindTags = makeEnumTags<Kind>(
+			"basic",
+			"skill",
+			"transformation"
+		);
 		enum Basic {
 			Basic_attack = 0,
 			Basic_dual_attack = 1,
@@ -36,6 +42,16 @@ namespace RPG {
 			Basic_escape = 6,
 			Basic_nothing = 7
 		};
+		static constexpr auto kBasicTags = makeEnumTags<Basic>(
+			"attack",
+			"dual_attack",
+			"defense",
+			"observe",
+			"charge",
+			"autodestruction",
+			"escape",
+			"nothing"
+		);
 		enum ConditionType {
 			ConditionType_always = 0,
 			ConditionType_switch = 1,
@@ -46,6 +62,16 @@ namespace RPG {
 			ConditionType_party_lvl = 6,
 			ConditionType_party_fatigue = 7
 		};
+		static constexpr auto kConditionTypeTags = makeEnumTags<ConditionType>(
+			"always",
+			"switch",
+			"turn",
+			"actors",
+			"hp",
+			"sp",
+			"party_lvl",
+			"party_fatigue"
+		);
 
 		int ID = 0;
 		int32_t kind = 0;

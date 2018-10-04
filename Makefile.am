@@ -109,6 +109,7 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_savevehiclelocation.cpp \
 	src/generated/rpg_chipset.cpp \
 	src/generated/rpg_mapinfo.cpp \
+	src/generated/rpg_enums.cpp \
 	src/boost/preprocessor/cat.hpp \
 	src/boost/preprocessor/stringize.hpp \
 	src/boost/preprocessor/config/config.hpp
@@ -128,6 +129,7 @@ pkginclude_HEADERS = \
 	src/reader_xml.h \
 	src/writer_lcf.h \
 	src/writer_xml.h \
+	src/enum_tags.h \
 	src/generated/ldb_chunks.h \
 	src/generated/lmt_chunks.h \
 	src/generated/lmu_chunks.h \

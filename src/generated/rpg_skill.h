@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_battleranimationdata.h"
 #include "rpg_sound.h"
 
@@ -32,10 +33,21 @@ namespace RPG {
 			Type_switch = 3,
 			Type_subskill = 4
 		};
+		static constexpr auto kTypeTags = makeEnumTags<Type>(
+			"normal",
+			"teleport",
+			"escape",
+			"switch",
+			"subskill"
+		);
 		enum SpType {
 			SpType_cost = 0,
 			SpType_percent = 1
 		};
+		static constexpr auto kSpTypeTags = makeEnumTags<SpType>(
+			"cost",
+			"percent"
+		);
 		enum Scope {
 			Scope_enemy = 0,
 			Scope_enemies = 1,
@@ -43,6 +55,13 @@ namespace RPG {
 			Scope_ally = 3,
 			Scope_party = 4
 		};
+		static constexpr auto kScopeTags = makeEnumTags<Scope>(
+			"enemy",
+			"enemies",
+			"self",
+			"ally",
+			"party"
+		);
 
 		int ID = 0;
 		std::string name;

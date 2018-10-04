@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 
 /**
  * RPG::Attribute class.
@@ -26,6 +27,10 @@ namespace RPG {
 			Type_physical = 0,
 			Type_magical = 1
 		};
+		static constexpr auto kTypeTags = makeEnumTags<Type>(
+			"physical",
+			"magical"
+		);
 
 		int ID = 0;
 		std::string name;

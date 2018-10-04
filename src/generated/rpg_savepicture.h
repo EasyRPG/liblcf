@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 
 /**
  * RPG::SavePicture class.
@@ -35,6 +36,19 @@ namespace RPG {
 			MapLayer_windows = 9,
 			MapLayer_timers = 10
 		};
+		static constexpr auto kMapLayerTags = makeEnumTags<MapLayer>(
+			"none",
+			"parallax",
+			"tilemap_below",
+			"events_below",
+			"events_same_as_player",
+			"tilemap_above",
+			"events_above",
+			"weather",
+			"animations",
+			"windows",
+			"timers"
+		);
 		enum BattleLayer {
 			BattleLayer_none = 0,
 			BattleLayer_background = 1,
@@ -43,6 +57,14 @@ namespace RPG {
 			BattleLayer_windows_and_status = 4,
 			BattleLayer_timers = 5
 		};
+		static constexpr auto kBattleLayerTags = makeEnumTags<BattleLayer>(
+			"none",
+			"background",
+			"battlers_and_animations",
+			"weather",
+			"windows_and_status",
+			"timers"
+		);
 
 		int ID = 0;
 		std::string name;

@@ -33,6 +33,11 @@ namespace RPG {
 		{%- endfor %}
 		};
 		{%- endif %}
+		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}{%- if name == "Code" %}::Index{%- endif %}>(
+		{%- for field in enum %}
+			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
+		{%- endfor %}
+		);
 	{%- endfor %}
 	{% endif %}
 	{%- if struct_name is needs_ctor %}

@@ -15,6 +15,7 @@
 // Headers
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_battleranimationextension.h"
 
 /**
@@ -28,6 +29,11 @@ namespace RPG {
 			Speed_normal = 8,
 			Speed_fast = 14
 		};
+		static constexpr auto kSpeedTags = makeEnumTags<Speed>(
+			"slow",
+			"normal",
+			"fast"
+		);
 
 		int ID = 0;
 		std::string name;

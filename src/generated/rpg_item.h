@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 #include "rpg_itemanimation.h"
 
 /**
@@ -37,16 +38,39 @@ namespace RPG {
 			Type_special = 9,
 			Type_switch = 10
 		};
+		static constexpr auto kTypeTags = makeEnumTags<Type>(
+			"normal",
+			"weapon",
+			"shield",
+			"armor",
+			"helmet",
+			"accessory",
+			"medicine",
+			"book",
+			"material",
+			"special",
+			"switch"
+		);
 		enum Trajectory {
 			Trajectory_straight = 0,
 			Trajectory_return = 1
 		};
+		static constexpr auto kTrajectoryTags = makeEnumTags<Trajectory>(
+			"straight",
+			"return"
+		);
 		enum Target {
 			Target_single = 0,
 			Target_center = 1,
 			Target_simultaneous = 2,
 			Target_sequential = 3
 		};
+		static constexpr auto kTargetTags = makeEnumTags<Target>(
+			"single",
+			"center",
+			"simultaneous",
+			"sequential"
+		);
 
 		int ID = 0;
 		std::string name;

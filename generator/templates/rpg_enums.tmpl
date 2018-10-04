@@ -1,0 +1,20 @@
+{% include "copyright.tmpl" %}
+{%- for ftype, structlist in structs.items() %}
+	{%- for struct in structlist %}
+		{%- if enums[struct.name] %}
+#include "rpg_{{ struct.name|lower }}.h"
+		{%- endif %}
+	{%- endfor %}
+{%- endfor %}
+
+namespace RPG {
+
+{%- for ftype, structlist in structs.items() %}
+	{%- for struct in structlist %}
+		{%- for enum_name in enums[struct.name] %}
+constexpr decltype({{ struct.name }}::k{{ enum_name }}Tags) {{ struct.name }}::k{{ enum_name }}Tags;
+		{%- endfor %}
+	{%- endfor %}
+{%- endfor %}
+
+}

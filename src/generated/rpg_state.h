@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include "enum_tags.h"
 
 /**
  * RPG::State class.
@@ -26,22 +27,42 @@ namespace RPG {
 			Persistence_ends = 0,
 			Persistence_persists = 1
 		};
+		static constexpr auto kPersistenceTags = makeEnumTags<Persistence>(
+			"ends",
+			"persists"
+		);
 		enum Restriction {
 			Restriction_normal = 0,
 			Restriction_do_nothing = 1,
 			Restriction_attack_enemy = 2,
 			Restriction_attack_ally = 3
 		};
+		static constexpr auto kRestrictionTags = makeEnumTags<Restriction>(
+			"normal",
+			"do_nothing",
+			"attack_enemy",
+			"attack_ally"
+		);
 		enum AffectType {
 			AffectType_half = 0,
 			AffectType_double = 1,
 			AffectType_nothing = 2
 		};
+		static constexpr auto kAffectTypeTags = makeEnumTags<AffectType>(
+			"half",
+			"double",
+			"nothing"
+		);
 		enum ChangeType {
 			ChangeType_lose = 0,
 			ChangeType_gain = 1,
 			ChangeType_nothing = 2
 		};
+		static constexpr auto kChangeTypeTags = makeEnumTags<ChangeType>(
+			"lose",
+			"gain",
+			"nothing"
+		);
 
 		int ID = 0;
 		std::string name;

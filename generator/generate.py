@@ -139,7 +139,7 @@ def struct_headers(ty, header_map):
         return []
 
     if re.match(r'Enum<(.*)>', ty):
-        return []
+        return ['"enum_tags.h"']
 
     if re.match(r'(.*)_Flags$', ty):
         return []
@@ -317,6 +317,11 @@ def generate():
                         type=filetype
                     ))
 
+    filepath = os.path.join(tmp_dir, 'rpg_enums.cpp')
+
+    with open(filepath, 'w') as f:
+        f.write(enums_tmpl.render())
+
     for tmp_file in os.listdir(tmp_dir):
         tmp_path = os.path.join(tmp_dir, tmp_file)
         dest_path = os.path.join(dest_dir, tmp_file)
@@ -330,7 +335,7 @@ def main(argv):
         os.mkdir(dest_dir)
 
     global structs, sfields, enums, flags, setup, headers
-    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl
+    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl
 
     structs = get_structs()
     sfields = get_fields()
@@ -362,6 +367,7 @@ def main(argv):
     rpg_header_tmpl = env.get_template('rpg_header.tmpl', globals=globals)
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
+    enums_tmpl = env.get_template('rpg_enums.tmpl', globals=globals)
 
     generate()
 
