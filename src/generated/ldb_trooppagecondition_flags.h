@@ -17,22 +17,36 @@
 #include "reader_struct.h"
 
 
-// Read Terrain.
-
-typedef RPG::Terrain::Flags flags_type;
+// Read TroopPageCondition.
 
 template <>
-char const* const Flags<flags_type>::name("Terrain_Flags");
+char const* const Flags<RPG::TroopPageCondition::Flags>::name = "TroopPageCondition_Flags";
 
 template <>
-const Flags<flags_type>::Flag* Flags<flags_type>::flags[] = {
-	new Flags<flags_type>::Flag(&flags_type::back_party, "back_party"),
-	new Flags<flags_type>::Flag(&flags_type::back_enemies, "back_enemies"),
-	new Flags<flags_type>::Flag(&flags_type::lateral_party, "lateral_party"),
-	new Flags<flags_type>::Flag(&flags_type::lateral_enemies, "lateral_enemies"),
-	NULL
+decltype(Flags<RPG::TroopPageCondition::Flags>::flag_names) Flags<RPG::TroopPageCondition::Flags>::flag_names = {
+	"switch_a",
+	"switch_b",
+	"variable",
+	"turn",
+	"fatigue",
+	"enemy_hp",
+	"actor_hp",
+	"turn_enemy",
+	"turn_actor",
+	"command_actor"
 };
 
 template <>
-const uint32_t Flags<flags_type>::max_size = 1;
+decltype(Flags<RPG::TroopPageCondition::Flags>::flags_is2k3) Flags<RPG::TroopPageCondition::Flags>::flags_is2k3 = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	1,
+	1,
+	1
+};
 

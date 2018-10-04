@@ -89,6 +89,9 @@ def pod_default(field):
 
     return " = " + str(dfl)
 
+def num_flags(flag):
+    return len(flag)
+
 def flag_size(flag):
     return (len(flag) + 7) // 8
 
@@ -142,7 +145,7 @@ def struct_headers(ty, header_map):
         return ['"enum_tags.h"']
 
     if re.match(r'(.*)_Flags$', ty):
-        return []
+        return ['<array>']
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
@@ -232,7 +235,7 @@ def get_enums(filename='enums.csv'):
     return new_result
 
 def get_flags(filename='flags.csv'):
-    return process_file(filename, namedtuple("Flag", "field"))
+    return process_file(filename, namedtuple("Flag", "field is2k3"))
 
 def get_setup(filename='setup.csv'):
     return process_file(filename, namedtuple("Setup", "method headers"))
@@ -310,7 +313,7 @@ def generate():
                 ))
 
             if struct.name in flags:
-                filepath = os.path.join(tmp_dir, '%s_%s_flags.cpp' % (filetype, filename))
+                filepath = os.path.join(tmp_dir, '%s_%s_flags.h' % (filetype, filename))
                 with open(filepath, 'w') as f:
                     f.write(flags_tmpl.render(
                         struct_name=struct.name,
@@ -349,6 +352,7 @@ def main(argv):
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
+    env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor

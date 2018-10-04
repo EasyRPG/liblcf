@@ -231,13 +231,11 @@
     <ClCompile Include="..\..\src\generated\ldb_system.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_terms.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_terrain.cpp" />
-    <ClCompile Include="..\..\src\generated\ldb_terrain_flags.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_testbattler.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_troop.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_troopmember.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_trooppage.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_trooppagecondition.cpp" />
-    <ClCompile Include="..\..\src\generated\ldb_trooppagecondition_flags.cpp" />
     <ClCompile Include="..\..\src\generated\ldb_variable.cpp" />
     <ClCompile Include="..\..\src\generated\lmt_encounter.cpp" />
     <ClCompile Include="..\..\src\generated\lmt_mapinfo.cpp" />
@@ -245,7 +243,6 @@
     <ClCompile Include="..\..\src\generated\lmu_event.cpp" />
     <ClCompile Include="..\..\src\generated\lmu_eventpage.cpp" />
     <ClCompile Include="..\..\src\generated\lmu_eventpagecondition.cpp" />
-    <ClCompile Include="..\..\src\generated\lmu_eventpagecondition_flags.cpp" />
     <ClCompile Include="..\..\src\generated\lmu_map.cpp" />
     <ClCompile Include="..\..\src\generated\lmu_moveroute.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_save.cpp" />
@@ -258,7 +255,6 @@
     <ClCompile Include="..\..\src\generated\lsd_savemapinfo.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savepartylocation.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savepicture.cpp" />
-    <ClCompile Include="..\..\src\generated\lsd_savepicture_flags.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savescreen.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savesystem.cpp" />
     <ClCompile Include="..\..\src\generated\lsd_savetarget.cpp" />
@@ -284,9 +280,13 @@
     <ClInclude Include="..\..\src\writer_lcf.h" />
     <ClInclude Include="..\..\src\writer_xml.h" />
     <ClInclude Include="..\..\src\generated\ldb_chunks.h" />
+    <ClCompile Include="..\..\src\generated\ldb_terrain_flags.h" />
+    <ClCompile Include="..\..\src\generated\ldb_trooppagecondition_flags.h" />
     <ClInclude Include="..\..\src\generated\lmt_chunks.h" />
+    <ClCompile Include="..\..\src\generated\lmu_eventpagecondition_flags.h" />
     <ClInclude Include="..\..\src\generated\lmu_chunks.h" />
     <ClInclude Include="..\..\src\generated\lsd_chunks.h" />
+    <ClCompile Include="..\..\src\generated\lsd_savepicture_flags.h" />
     <ClInclude Include="..\..\src\generated\rpg_actor.h" />
     <ClInclude Include="..\..\src\generated\rpg_animation.h" />
     <ClInclude Include="..\..\src\generated\rpg_animationcelldata.h" />
