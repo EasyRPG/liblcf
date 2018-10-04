@@ -68,7 +68,7 @@ void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 }
 
 template <class S>
-int Flags<S>::LcfSize(const S& obj, LcfWriter& /* stream */) {
+int Flags<S>::LcfSize(const S& /* obj */, LcfWriter& /* stream */) {
 	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 	int num_bits = 0;
 	for (size_t i = 0; i < num_flags; ++i) {
