@@ -8,6 +8,8 @@
  */
 
 #include <fstream>
+#include <cerrno>
+#include <cstring>
 
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
@@ -17,21 +19,37 @@
 
 bool LDB_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LDB file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LDB_Reader::Load(stream, encoding);
 }
 
 bool LDB_Reader::Save(const std::string& filename, const std::string& encoding, SaveOpt opt) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LDB file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LDB_Reader::Save(stream, encoding, opt);
 }
 
 bool LDB_Reader::SaveXml(const std::string& filename) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LDB XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LDB_Reader::SaveXml(stream);
 }
 
 bool LDB_Reader::LoadXml(const std::string& filename) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LDB XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LDB_Reader::LoadXml(stream);
 }
 

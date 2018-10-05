@@ -8,6 +8,8 @@
  */
 
 #include <fstream>
+#include <cerrno>
+#include <cstring>
 
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
@@ -17,21 +19,37 @@
 
 std::unique_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMU file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return nullptr;
+	}
 	return LMU_Reader::Load(stream, encoding);
 }
 
 bool LMU_Reader::Save(const std::string& filename, const RPG::Map& save, const std::string& encoding) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMU file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMU_Reader::Save(stream, save, encoding);
 }
 
 bool LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& save) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMU XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMU_Reader::SaveXml(stream, save);
 }
 
 std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMU XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return nullptr;
+	}
 	return LMU_Reader::LoadXml(stream);
 }
 

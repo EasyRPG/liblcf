@@ -8,6 +8,8 @@
  */
 
 #include <fstream>
+#include <cerrno>
+#include <cstring>
 
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
@@ -17,21 +19,37 @@
 
 bool LMT_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMT file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMT_Reader::Load(stream, encoding);
 }
 
 bool LMT_Reader::Save(const std::string& filename, const std::string& encoding) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMT file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMT_Reader::Save(stream, encoding);
 }
 
 bool LMT_Reader::SaveXml(const std::string& filename) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMT XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMT_Reader::SaveXml(stream);
 }
 
 bool LMT_Reader::LoadXml(const std::string& filename) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LMT XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LMT_Reader::LoadXml(stream);
 }
 
