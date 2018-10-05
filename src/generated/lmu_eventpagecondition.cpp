@@ -26,7 +26,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, variable_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, variable_value, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, item_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, actor_id, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, actor_id, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, timer_sec, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, timer2_sec, 0, 1),
 	LCF_STRUCT_TYPED_FIELD(int32_t, compare_operator, 0, 1),

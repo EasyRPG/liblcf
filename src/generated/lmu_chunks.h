@@ -150,11 +150,11 @@ namespace LMU_Reader {
 			generator_extra_b = 0x37,
 			/** Flag */
 			generator_extra_c = 0x38,
-			/** Uint32 x 9 */
+			/** Uint32 x 9 RPG2003 */
 			generator_x = 0x3C,
-			/** Uint32 x 9 */
+			/** Uint32 x 9 RPG2003 */
 			generator_y = 0x3D,
-			/** Array - Short */
+			/** Array - Short RPG2003 */
 			generator_tile_ids = 0x3E,
 			/** Array - Short */
 			lower_layer = 0x47,
