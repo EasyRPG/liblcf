@@ -51,9 +51,9 @@ std::unique_ptr<RPG::Map> LMU_Reader::Load(std::istream& filestream, const std::
 		fprintf(stderr, "Warning: This header is not LcfMapUnit and might not be a valid RPG2000 map.\n");
 	}
 
-	RPG::Map* map = new RPG::Map();
+	auto map = std::unique_ptr<RPG::Map>(new RPG::Map());
 	Struct<RPG::Map>::ReadLcf(*map, reader);
-	return std::unique_ptr<RPG::Map>(map);
+	return map;
 }
 
 bool LMU_Reader::Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding) {
@@ -89,9 +89,9 @@ std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(std::istream& filestream) {
 		return std::unique_ptr<RPG::Map>();
 	}
 
-	RPG::Map* map = new RPG::Map();
+	auto map = std::unique_ptr<RPG::Map>(new RPG::Map());
 	reader.SetHandler(new RootXmlHandler<RPG::Map>(*map, "LMU"));
 	reader.Parse();
-	return std::unique_ptr<RPG::Map>(map);
+	return map;
 }
 
