@@ -15,6 +15,7 @@
 #include "writer_lcf.h"
 #include "writer_xml.h"
 #include "rpg_treemap.h"
+#include "lcf_saveopt.h"
 
 /**
  * LMT Reader namespace.
@@ -29,7 +30,7 @@ namespace LMT_Reader {
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(const std::string& filename, const std::string &encoding);
+	bool Save(const std::string& filename, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.
@@ -49,7 +50,7 @@ namespace LMT_Reader {
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(std::ostream& filestream, const std::string &encoding);
+	bool Save(std::ostream& filestream, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.

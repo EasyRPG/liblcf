@@ -24,6 +24,7 @@
 namespace RPG {
 	class TreeMap {
 	public:
+		std::string lmt_header;
 		enum MapType {
 			MapType_root = 0,
 			MapType_map = 1,

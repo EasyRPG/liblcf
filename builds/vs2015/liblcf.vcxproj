@@ -274,6 +274,7 @@
     <ClInclude Include="..\..\src\lmt_reader.h" />
     <ClInclude Include="..\..\src\lmu_reader.h" />
     <ClInclude Include="..\..\src\lsd_reader.h" />
+    <ClInclude Include="..\..\src\lcf_saveopt.h" />
     <ClInclude Include="..\..\src\reader_lcf.h" />
     <ClInclude Include="..\..\src\reader_struct.h" />
     <ClInclude Include="..\..\src\reader_util.h" />

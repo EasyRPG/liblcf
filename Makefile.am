@@ -116,6 +116,7 @@ pkginclude_HEADERS = \
 	src/ini.h \
 	src/inireader.h \
 	src/lcf_options.h \
+	src/lcf_saveopt.h \
 	src/ldb_reader.h \
 	src/lmt_reader.h \
 	src/lmu_reader.h \

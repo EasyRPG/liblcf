@@ -13,6 +13,7 @@
 #include <string>
 #include <memory>
 #include "rpg_map.h"
+#include "lcf_saveopt.h"
 
 /**
  * LMU Reader namespace.
@@ -27,7 +28,7 @@ namespace LMU_Reader {
 	/**
 	 * Saves map.
 	 */
-	bool Save(const std::string& filename, const RPG::Map& map, const std::string& encoding);
+	bool Save(const std::string& filename, const RPG::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
@@ -47,7 +48,7 @@ namespace LMU_Reader {
 	/**
 	 * Saves map.
 	 */
-	bool Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding);
+	bool Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.

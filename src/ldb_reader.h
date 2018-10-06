@@ -35,24 +35,12 @@
 #include "rpg_parameters.h"
 #include "rpg_equipment.h"
 #include "rpg_database.h"
+#include "lcf_saveopt.h"
 
 /**
  * LDB Reader namespace.
  */
 namespace LDB_Reader {
-	/**
-	 * Options to configure how LDB file is saved
-	 */
-	enum class SaveOpt {
-		eNone = 0,
-		ePreserveHeader = 1
-	};
-
-	constexpr SaveOpt operator|(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) | int(r)); }
-	constexpr SaveOpt operator&(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) & int(r)); }
-	constexpr SaveOpt operator^(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) ^ int(r)); }
-	constexpr SaveOpt operator~(SaveOpt l) { return SaveOpt(~int(l)); }
-
 	/**
 	 * Loads Database.
 	 */

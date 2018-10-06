@@ -26,13 +26,13 @@ bool LMT_Reader::Load(const std::string& filename, const std::string& encoding) 
 	return LMT_Reader::Load(stream, encoding);
 }
 
-bool LMT_Reader::Save(const std::string& filename, const std::string& encoding) {
+bool LMT_Reader::Save(const std::string& filename, const std::string& encoding, SaveOpt opt) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMT file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
 		return false;
 	}
-	return LMT_Reader::Save(stream, encoding);
+	return LMT_Reader::Save(stream, encoding, opt);
 }
 
 bool LMT_Reader::SaveXml(const std::string& filename) {
@@ -68,17 +68,23 @@ bool LMT_Reader::Load(std::istream& filestream, const std::string &encoding) {
 	if (header != "LcfMapTree") {
 		fprintf(stderr, "Warning: This header is not LcfMapTree and might not be a valid RPG2000 map tree.\n");
 	}
+	Data::treemap.lmt_header = std::move(header);
 	TypeReader<RPG::TreeMap>::ReadLcf(Data::treemap, reader, 0);
 	return true;
 }
 
-bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding) {
+bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding, SaveOpt opt) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;
 	}
-	const std::string header("LcfMapTree");
+	std::string header;
+	if ( Data::treemap.lmt_header.empty() || !bool(opt & SaveOpt::ePreserveHeader)) {
+		header = "LcfMapTree";
+	} else {
+		header= Data::treemap.lmt_header;
+	}
 	writer.WriteInt(header.size());
 	writer.Write(header);
 	TypeReader<RPG::TreeMap>::WriteLcf(Data::treemap, writer);
