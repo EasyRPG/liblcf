@@ -163,6 +163,14 @@ namespace RPG {
 			"surround",
 			"pincers"
 		);
+		enum EquipmentSetting {
+			EquipmentSetting_actor = 0,
+			EquipmentSetting_class = 1
+		};
+		static constexpr auto kEquipmentSettingTags = makeEnumTags<EquipmentSetting>(
+			"actor",
+			"class"
+		);
 
 		int32_t ldb_id = 0;
 		std::string boat_name;
@@ -213,7 +221,8 @@ namespace RPG {
 		int32_t battletest_terrain = 0;
 		int32_t battletest_formation = 0;
 		int32_t battletest_condition = 0;
-		int32_t unknown_61 = -1;
+		int32_t equipment_setting = 0;
+		int32_t battletest_alt_terrain = 0;
 		bool show_frame = false;
 		std::string frame_name;
 		bool invert_animations = false;
