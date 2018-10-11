@@ -262,6 +262,7 @@
     <ClCompile Include="..\..\src\generated\lsd_savevehiclelocation.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_chipset.cpp" />
     <ClCompile Include="..\..\src\generated\rpg_mapinfo.cpp" />
+    <ClCompile Include="..\..\src\generated\rpg_system.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\command_codes.h" />
