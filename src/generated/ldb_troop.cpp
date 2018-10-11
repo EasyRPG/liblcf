@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT Troop
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members),
-	LCF_STRUCT_TYPED_FIELD(bool, auto_alignment),
-	LCF_STRUCT_SIZE_FIELD(bool, terrain_set),
-	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, terrain_set),
-	LCF_STRUCT_TYPED_FIELD(bool, appear_randomly),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage>, pages),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, auto_alignment, 0),
+	LCF_STRUCT_SIZE_FIELD(bool, terrain_set, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, terrain_set, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, appear_randomly, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage>, pages, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

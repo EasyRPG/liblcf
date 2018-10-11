@@ -291,8 +291,9 @@ template <class S>
 struct Field {
 	typedef S struct_type;
 
-	int id;
 	const char* const name;
+	int id;
+	bool is2k3;
 
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
 	virtual void WriteLcf(const S& obj, LcfWriter& stream) const = 0;
@@ -302,8 +303,8 @@ struct Field {
 	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
-	Field(int id, const char* name) :
-		id(id), name(name) {}
+	Field(int id, const char* name, bool is2k3) :
+		name(name), id(id), is2k3(is2k3) {}
 };
 
 // Equivalence traits
@@ -399,8 +400,8 @@ struct TypedField : public Field<S> {
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
 	}
 
-	TypedField(T S::*ref, int id, const char* name) :
-		Field<S>(id, name), ref(ref) {}
+	TypedField(T S::*ref, int id, const char* name, bool is2k3) :
+		Field<S>(id, name, is2k3), ref(ref) {}
 };
 
 /**
@@ -435,8 +436,8 @@ struct SizeField : public Field<S> {
 		return (a.*ref).empty() && (b.*ref).empty();
 	}
 
-	SizeField(const std::vector<T> S::*ref, int id) :
-		Field<S>(id, ""), ref(ref) {}
+	SizeField(const std::vector<T> S::*ref, int id, bool is2k3) :
+		Field<S>(id, "", is2k3), ref(ref) {}
 };
 
 /**
@@ -709,17 +710,19 @@ private:
 #define LCF_STRUCT_FIELDS_END() \
 	NULL }; \
 
-#define LCF_STRUCT_TYPED_FIELD(T, REF) \
+#define LCF_STRUCT_TYPED_FIELD(T, REF, IS2K3) \
 	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \
+		, IS2K3 \
 	) \
 
-#define LCF_STRUCT_SIZE_FIELD(T, REF) \
+#define LCF_STRUCT_SIZE_FIELD(T, REF, IS2K3) \
 	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+		, IS2K3 \
 	) \
 
 #endif

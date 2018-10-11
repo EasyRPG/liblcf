@@ -20,18 +20,18 @@
 #define LCF_CURRENT_STRUCT Start
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, party_map_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, party_x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, party_y),
-	LCF_STRUCT_TYPED_FIELD(int32_t, boat_map_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, boat_x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, boat_y),
-	LCF_STRUCT_TYPED_FIELD(int32_t, ship_map_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, ship_x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, ship_y),
-	LCF_STRUCT_TYPED_FIELD(int32_t, airship_map_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, airship_x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, airship_y),
+	LCF_STRUCT_TYPED_FIELD(int32_t, party_map_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, party_x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, party_y, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, boat_map_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, boat_x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, boat_y, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, ship_map_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, ship_x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, ship_y, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, airship_map_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, airship_x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, airship_y, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

@@ -20,22 +20,22 @@
 #define LCF_CURRENT_STRUCT Class
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(bool, two_weapon),
-	LCF_STRUCT_TYPED_FIELD(bool, lock_equipment),
-	LCF_STRUCT_TYPED_FIELD(bool, auto_battle),
-	LCF_STRUCT_TYPED_FIELD(bool, super_guard),
-	LCF_STRUCT_TYPED_FIELD(RPG::Parameters, parameters),
-	LCF_STRUCT_TYPED_FIELD(int32_t, exp_base),
-	LCF_STRUCT_TYPED_FIELD(int32_t, exp_inflation),
-	LCF_STRUCT_TYPED_FIELD(int32_t, exp_correction),
-	LCF_STRUCT_TYPED_FIELD(int32_t, battler_animation),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Learning>, skills),
-	LCF_STRUCT_SIZE_FIELD(uint8_t, state_ranks),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, state_ranks),
-	LCF_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, attribute_ranks),
-	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, two_weapon, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, lock_equipment, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, auto_battle, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, super_guard, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::Parameters, parameters, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, exp_base, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, exp_inflation, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, exp_correction, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, battler_animation, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Learning>, skills, 0),
+	LCF_STRUCT_SIZE_FIELD(uint8_t, state_ranks, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, state_ranks, 0),
+	LCF_STRUCT_SIZE_FIELD(uint8_t, attribute_ranks, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, attribute_ranks, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

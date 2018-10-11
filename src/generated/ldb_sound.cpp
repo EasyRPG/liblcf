@@ -20,10 +20,10 @@
 #define LCF_CURRENT_STRUCT Sound
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(int32_t, volume),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tempo),
-	LCF_STRUCT_TYPED_FIELD(int32_t, balance),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, volume, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, tempo, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, balance, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

@@ -20,10 +20,10 @@
 #define LCF_CURRENT_STRUCT BattlerAnimation
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name),
-	LCF_STRUCT_TYPED_FIELD(int32_t, speed),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, base_data),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, weapon_data),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, speed, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, base_data, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::BattlerAnimationExtension>, weapon_data, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

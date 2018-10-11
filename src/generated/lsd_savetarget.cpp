@@ -20,11 +20,11 @@
 #define LCF_CURRENT_STRUCT SaveTarget
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_id),
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_x),
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_y),
-	LCF_STRUCT_TYPED_FIELD(bool, switch_on),
-	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id),
+	LCF_STRUCT_TYPED_FIELD(int32_t, map_id, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, map_x, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, map_y, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, switch_on, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

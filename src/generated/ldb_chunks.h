@@ -514,7 +514,7 @@ namespace LDB_Reader {
 			agi_points2 = 0x2E,
 			/** Integer */
 			using_message = 0x33,
-			/** Integer - RPG2003 */
+			/** Integer */
 			skill_id = 0x35,
 			/** Integer */
 			switch_id = 0x37,
