@@ -50,6 +50,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, lower_layer, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, upper_layer, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::Event>, events, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, save_count_2k3e, 1),
 	LCF_STRUCT_TYPED_FIELD(int32_t, save_count, 0),
 LCF_STRUCT_FIELDS_END()
 

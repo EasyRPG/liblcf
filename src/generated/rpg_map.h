@@ -88,6 +88,7 @@ namespace RPG {
 		std::vector<int16_t> lower_layer;
 		std::vector<int16_t> upper_layer;
 		std::vector<Event> events;
+		int32_t save_count_2k3e = 0;
 		int32_t save_count = 0;
 	};
 }
