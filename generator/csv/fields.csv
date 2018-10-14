@@ -691,6 +691,7 @@ Map,generator_tile_ids,f,Vector<Int16>,0x3E,,0,Array - Short
 Map,lower_layer,f,Vector<Int16>,0x47,,0,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,0,Array - Short
 Map,events,f,Array<Event>,0x51,,0,Array - RPG::Event
+Map,save_count_2k3e,f,Int32,0x5A,0,1,Integer - Used by steam version of rm2k3 instead of 0x5B.
 Map,save_count,f,Int32,0x5B,0,0,Integer
 SaveTitle,timestamp,f,Double,0x01,0.0,0,double - timestamp in Delphi's TDateTime format
 SaveTitle,hero_name,f,String,0x0B,,0,char[]: hero name

@@ -162,6 +162,8 @@ namespace LMU_Reader {
 			upper_layer = 0x48,
 			/** Array - RPG::Event */
 			events = 0x51,
+			/** Integer - Used by steam version of rm2k3 instead of 0x5B. */
+			save_count_2k3e = 0x5A,
 			/** Integer */
 			save_count = 0x5B
 		};
