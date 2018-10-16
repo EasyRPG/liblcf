@@ -210,8 +210,8 @@ namespace LDB_Reader {
 			row = 0x06,
 			/** Integer */
 			battle_type = 0x07,
-			/** Integer */
-			unknown_09 = 0x09,
+			/** Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab */
+			unused_display_normal_parameters = 0x09,
 			/** Array - RPG::BattleCommand */
 			commands = 0x0A,
 			/** Integer */
