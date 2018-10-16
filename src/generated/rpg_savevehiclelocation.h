@@ -51,11 +51,11 @@ namespace RPG {
 		bool jumping = false;
 		int32_t begin_jump_x = 0;
 		int32_t begin_jump_y = 0;
-		int32_t unknown_47_pause = 0;
+		bool pause = false;
 		bool flying = false;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
-		int32_t unknown_4b_sprite_move = 0;
+		bool processed = false;
 		int32_t flash_red = 100;
 		int32_t flash_green = 100;
 		int32_t flash_blue = 100;

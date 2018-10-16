@@ -47,7 +47,7 @@ namespace RPG {
 		int32_t battleanim_id = 0;
 		int32_t battleanim_target = 0;
 		int32_t battleanim_frame = 0;
-		int32_t unknown_2e_battleanim_active = 0;
+		bool battleanim_active = false;
 		bool battleanim_global = false;
 		int32_t weather = 0;
 		int32_t weather_strength = 0;

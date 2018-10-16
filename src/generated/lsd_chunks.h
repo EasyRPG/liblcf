@@ -82,8 +82,8 @@ namespace LSD_Reader {
 			face_flip = 0x36,
 			/**  */
 			transparent = 0x37,
-			/** music fade out? FIXME */
-			unknown_3d_music_fadeout = 0x3D,
+			/** Music is being faded out or had been stopped (Play music with the same music as currently playing will restart the music when this flag is set) */
+			music_stopping = 0x3D,
 			/**  */
 			title_music = 0x47,
 			/**  */
@@ -216,8 +216,8 @@ namespace LSD_Reader {
 			battleanim_target = 0x2C,
 			/** int - frame count - Ref<Animation>? FIXME */
 			battleanim_frame = 0x2D,
-			/** int - unsure FIXME */
-			unknown_2e_battleanim_active = 0x2E,
+			/** There is currently a battle animation playing */
+			battleanim_active = 0x2E,
 			/** int - battle animation global scope */
 			battleanim_global = 0x2F,
 			/** int */
@@ -348,8 +348,8 @@ namespace LSD_Reader {
 			move_route_repeated = 0x2C,
 			/** bool */
 			sprite_transparent = 0x2E,
-			/** Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME */
-			unknown_2f_overlap = 0x2F,
+			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
+			route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */
@@ -366,16 +366,16 @@ namespace LSD_Reader {
 			begin_jump_x = 0x3E,
 			/** ? */
 			begin_jump_y = 0x3F,
-			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
-			unknown_47_pause = 0x47,
+			/** Indicates paused movement for an event; set while the player is talking to the event so that it won't run away (not relevant for hero themselves) */
+			pause = 0x47,
 			/** Flag */
 			flying = 0x48,
 			/** ? */
 			sprite_name = 0x49,
 			/** ? */
 			sprite_id = 0x4A,
-			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
-			unknown_4b_sprite_move = 0x4B,
+			/** Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation. */
+			processed = 0x4B,
 			/** int */
 			flash_red = 0x51,
 			/** int */
@@ -396,8 +396,8 @@ namespace LSD_Reader {
 			unboarding = 0x68,
 			/** Move speed before the party boarded the vehicle */
 			preboard_move_speed = 0x69,
-			/** flag which briefly is true if the player presses ESC and another place in the code is set to false when subsequently calls the menu. */
-			unknown_6c_menu_calling = 0x6C,
+			/** Flag which briefly is true if the player presses ESC. At the right place in handling each frame's activities for the player; the code checks whether this flag is set and calls the menu; however there are several conditions which would cancel this flag and instead process another higher-priority action; such as when an encounter takes place during the same frame. */
+			menu_calling = 0x6C,
 			/**  */
 			pan_state = 0x6F,
 			/** int */
@@ -412,8 +412,8 @@ namespace LSD_Reader {
 			pan_speed = 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
 			encounter_steps = 0x7C,
-			/** Similar to 0x6C - is used to signal a different piece of code that an Encounter to be triggered. */
-			unknown_7d_encounter_calling = 0x7D,
+			/** Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame. */
+			encounter_calling = 0x7D,
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
 			map_save_count = 0x83,
 			/** ? */
@@ -476,16 +476,16 @@ namespace LSD_Reader {
 			begin_jump_x = 0x3E,
 			/** ? */
 			begin_jump_y = 0x3F,
-			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
-			unknown_47_pause = 0x47,
+			/** Indicates paused movement for an event; set while the player is talking to the event so that it won't run away (not relevant for vehicles themselves) */
+			pause = 0x47,
 			/** Flag */
 			flying = 0x48,
 			/** ? */
 			sprite_name = 0x49,
 			/** ? */
 			sprite_id = 0x4A,
-			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
-			unknown_4b_sprite_move = 0x4B,
+			/** Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation. */
+			processed = 0x4B,
 			/** int */
 			flash_red = 0x51,
 			/** int */
@@ -648,10 +648,10 @@ namespace LSD_Reader {
 			event_id = 0x0C,
 			/** Event was triggered by the Action Key */
 			actioned = 0x0D,
-			/** size of the 0x16 vector: an array which stores the to be brought into an event code path FIXME */
-			unknown_15_subcommand_path_size = 0x15,
-			/** byte Each indentation in the event code corresponds to an entry in the array. When a command such as e.g. Show Choice is achieved; stored in the array entry of the current level; which code path must accept the event. For example: if the player chooses the third entry is '3' (or maybe 2? not tested) stored there. When a 'Case XXX' is achieved command; it is checked whether the value is stored there; the value of the 'Case'-subcommand corresponds. Otherwise the block is skipped. If so then the block is executed and the stored value is set to 255 (probably a double protection if times; although that should never be more Case subcommands are with the same ID. FIXME */
-			unknown_16_subcommand_path = 0x16
+			/** size of the 0x16 vector - indention level */
+			subcommand_path_size = 0x15,
+			/** byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID). */
+			subcommand_path = 0x16
 		};
 	};
 	struct ChunkSaveEventData {
@@ -660,8 +660,8 @@ namespace LSD_Reader {
 			commands = 0x01,
 			/** Show Message command has been executed in the current move route */
 			show_message = 0x04,
-			/** Flag which is set before a fight if the event is canceled by the struggle for escape. FIXME */
-			unknown_0b_escape = 0x0B,
+			/** Flag which is set before a fight if the EnemyEncounter event command had battle_escape_mode set to 1 (abort event on escape). After the fight; the interpreter checks if the battle result was an escape and this flag was set and abort the event in that case. */
+			abort_on_escape = 0x0B,
 			/** Whether Wait for all movement is in effect */
 			wait_movement = 0x0D,
 			/**  */
@@ -698,8 +698,8 @@ namespace LSD_Reader {
 			keyinput_up = 0x26,
 			/**  */
 			keyinput_timed = 0x29,
-			/** number of frames have to wait until the event continues. FIXME difference with 0x1F? */
-			unknown_2a_time_left = 0x2A
+			/** If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead). */
+			unused_wait_for_key_or_enter = 0x2A
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -742,8 +742,8 @@ namespace LSD_Reader {
 			move_route_index = 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
 			move_route_repeated = 0x2C,
-			/** Boolean - Overlap? Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated. 0x33 represents whether the event is permeable straight and no matter which. This is actually only relevant events (not the hero) for example which can be set by an empty event page on translucent (0x33 = true) without having been set by a MoveEvent so (0x2F = false). FIXME */
-			unknown_2f_overlap = 0x2F,
+			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
+			route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */
@@ -760,16 +760,16 @@ namespace LSD_Reader {
 			begin_jump_x = 0x3E,
 			/** ? */
 			begin_jump_y = 0x3F,
-			/** used as a kind of pause flag during the event processing. Not quite sure what causes it. FIXME */
-			unknown_47_pause = 0x47,
+			/** Indicates paused movement for an event; set while the player is talking to the event so that it won't run away */
+			pause = 0x47,
 			/** Flag */
 			flying = 0x48,
 			/** ? */
 			sprite_name = 0x49,
 			/** ? */
 			sprite_id = 0x4A,
-			/** Flag whether an event (the hero is also an event) in the current frame have any movement action has made. */
-			unknown_4b_sprite_move = 0x4B,
+			/** Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation. */
+			processed = 0x4B,
 			/** int */
 			flash_red = 0x51,
 			/** int */

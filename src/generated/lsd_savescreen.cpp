@@ -46,7 +46,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, battleanim_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, battleanim_target, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, battleanim_frame, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_2e_battleanim_active, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, battleanim_active, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, battleanim_global, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, weather, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, weather_strength, 0, 0),

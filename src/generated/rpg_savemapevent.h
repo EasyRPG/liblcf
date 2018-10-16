@@ -48,7 +48,7 @@ namespace RPG {
 		bool move_route_overwrite = false;
 		int32_t move_route_index = 0;
 		bool move_route_repeated = false;
-		int32_t unknown_2f_overlap = -1;
+		bool route_through = false;
 		int32_t anim_paused = 0;
 		bool through = false;
 		int32_t stop_count = 0;
@@ -57,11 +57,11 @@ namespace RPG {
 		bool jumping = false;
 		int32_t begin_jump_x = 0;
 		int32_t begin_jump_y = 0;
-		int32_t unknown_47_pause = 0;
+		bool pause = false;
 		bool flying = false;
 		std::string sprite_name;
 		int32_t sprite_id = -1;
-		int32_t unknown_4b_sprite_move = -1;
+		bool processed = false;
 		int32_t flash_red = 100;
 		int32_t flash_green = 100;
 		int32_t flash_blue = 100;
