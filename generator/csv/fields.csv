@@ -922,7 +922,7 @@ SaveVehicleLocation,flash_green,f,Int32,0x52,100,0,0,int
 SaveVehicleLocation,flash_blue,f,Int32,0x53,100,0,0,int
 SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,0,0,double
 SaveVehicleLocation,flash_time_left,f,Int32,0x55,0,0,0,int
-SaveVehicleLocation,vehicle,f,Int32,0x65,0,0,0,Ship ID: 1 = boat; 2 = Ship; 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME
+SaveVehicleLocation,vehicle,f,Enum<SaveVehicleLocation_VehicleType>,0x65,0,0,0,Which vehicle
 SaveVehicleLocation,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
 SaveVehicleLocation,remaining_descent,f,Int32,0x6B,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to descend

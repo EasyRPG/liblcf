@@ -24,6 +24,19 @@
 namespace RPG {
 	class SaveVehicleLocation {
 	public:
+		enum VehicleType {
+			VehicleType_none = 0,
+			VehicleType_skiff = 1,
+			VehicleType_ship = 2,
+			VehicleType_airship = 3
+		};
+		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
+			"none",
+			"skiff",
+			"ship",
+			"airship"
+		);
+
 		bool active = true;
 		int32_t map_id = -1;
 		int32_t position_x = -1;

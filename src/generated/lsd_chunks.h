@@ -496,7 +496,7 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
-			/** Ship ID: 1 = boat; 2 = Ship; 3 = Airship - Maybe the same as Enum<SavePartyLocation_VehicleType>? FIXME */
+			/** Which vehicle */
 			vehicle = 0x65,
 			/** Index of custom move route */
 			original_move_route_index = 0x66,
