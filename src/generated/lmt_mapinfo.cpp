@@ -28,7 +28,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, scrollbar_y, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, expanded_node, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, music_type, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::Music, music, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::Music, music, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, background_type, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, background_name, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, teleport, 1, 0),

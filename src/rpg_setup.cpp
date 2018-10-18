@@ -189,10 +189,6 @@ void RPG::Actor::Setup() {
 	parameters.Setup(max_final_level);
 }
 
-void RPG::MapInfo::Init() {
-	music.name = "(OFF)";
-}
-
 void RPG::Chipset::Init() {
 	terrain_data.resize(162, 1);
 	passable_data_lower.resize(162, 15);
