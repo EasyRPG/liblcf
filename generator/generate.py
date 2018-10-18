@@ -215,7 +215,7 @@ def process_file(filename, namedtup):
     return result
 
 def get_structs(filename='structs.csv'):
-    Struct = namedtuple("Struct", "name hasid")
+    Struct = namedtuple("Struct", "name hasid iscomparable")
 
     result = process_file(filename, Struct)
 
@@ -225,7 +225,7 @@ def get_structs(filename='structs.csv'):
         processed_result[k] = []
 
         for elem in struct:
-            elem = Struct(elem.name, bool(int(elem.hasid)) if elem.hasid else None)
+            elem = Struct(elem.name, bool(int(elem.hasid)) if elem.hasid else None, bool(int(elem.iscomparable)))
             processed_result[k].append(elem)
 
     return processed_result
@@ -341,7 +341,8 @@ def generate():
             with open(filepath, 'w') as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,
-                    has_id=struct.hasid
+                    has_id=struct.hasid,
+                    is_comparable=struct.iscomparable
                 ))
 
             if struct.name in flags:
