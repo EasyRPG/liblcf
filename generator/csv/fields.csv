@@ -748,8 +748,8 @@ SaveSystem,actor_damaged_se,f,Sound,0x63,,1,0,
 SaveSystem,dodge_se,f,Sound,0x64,,1,0,
 SaveSystem,enemy_death_se,f,Sound,0x65,,1,0,
 SaveSystem,item_se,f,Sound,0x66,,1,0,
-SaveSystem,transition_out,f,UInt8,0x6F,1,0,0,
-SaveSystem,transition_in,f,UInt8,0x70,1,0,0,
+SaveSystem,transition_out,f,UInt8,0x6F,1,1,0,
+SaveSystem,transition_in,f,UInt8,0x70,1,1,0,
 SaveSystem,battle_start_fadeout,f,UInt8,0x71,1,0,0,
 SaveSystem,battle_start_fadein,f,UInt8,0x72,1,0,0,
 SaveSystem,battle_end_fadeout,f,UInt8,0x73,1,0,0,
@@ -834,17 +834,17 @@ SavePartyLocation,active,f,Boolean,0x01,True,0,0,Flag
 SavePartyLocation,map_id,f,Int32,0x0B,-1,0,0,?
 SavePartyLocation,position_x,f,Int32,0x0C,-1,0,0,?
 SavePartyLocation,position_y,f,Int32,0x0D,-1,0,0,?
-SavePartyLocation,direction,f,Int32,0x15,2,0,0,Facing direction
-SavePartyLocation,sprite_direction,f,Int32,0x16,2,0,0,Sprite direction
+SavePartyLocation,direction,f,Int32,0x15,2,1,0,Facing direction
+SavePartyLocation,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
 SavePartyLocation,anim_frame,f,Int32,0x17,1,0,0,?
 SavePartyLocation,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the main party member
 SavePartyLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
 SavePartyLocation,move_frequency,f,Int32,0x20,2,0,0,?
-SavePartyLocation,layer,f,Int32,0x21,1,0,0,?
+SavePartyLocation,layer,f,Int32,0x21,1,1,0,?
 SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,0,0,Integer
+SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,Integer
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
-SavePartyLocation,move_speed,f,Int32,0x25,4,0,0,
+SavePartyLocation,move_speed,f,Int32,0x25,4,1,0,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
 SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SavePartyLocation,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
@@ -889,15 +889,15 @@ SaveVehicleLocation,active,f,Boolean,0x01,True,0,0,Flag
 SaveVehicleLocation,map_id,f,Int32,0x0B,-1,0,0,?
 SaveVehicleLocation,position_x,f,Int32,0x0C,-1,0,0,?
 SaveVehicleLocation,position_y,f,Int32,0x0D,-1,0,0,?
-SaveVehicleLocation,direction,f,Int32,0x15,2,0,0,Facing direction
-SaveVehicleLocation,sprite_direction,f,Int32,0x16,2,0,0,Sprite direction
+SaveVehicleLocation,direction,f,Int32,0x15,2,1,0,Facing direction
+SaveVehicleLocation,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
 SaveVehicleLocation,anim_frame,f,Int32,0x17,1,0,0,?
 SaveVehicleLocation,transparency,f,Int32,0x18,0,0,0,always 0
 SaveVehicleLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
 SaveVehicleLocation,move_frequency,f,Int32,0x20,2,0,0,?
-SaveVehicleLocation,layer,f,Int32,0x21,1,0,0,?
+SaveVehicleLocation,layer,f,Int32,0x21,1,1,0,?
 SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,0,0,
+SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
 SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveVehicleLocation,move_speed,f,Int32,0x25,-1,0,0,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
@@ -928,8 +928,8 @@ SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flyin
 SaveVehicleLocation,remaining_descent,f,Int32,0x6B,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to descend
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',0,0,string
 SaveVehicleLocation,sprite2_id,f,Int32,0x70,0,0,0,int
-SaveActor,name,f,String,0x01,'',0,0,string; ''\x01'' for default!?!?
-SaveActor,title,f,String,0x02,'',0,0,string; ''\x01'' for default!?!?
+SaveActor,name,f,String,0x01,'',1,0,string
+SaveActor,title,f,String,0x02,'',1,0,string
 SaveActor,sprite_name,f,String,0x0B,'',0,0,string
 SaveActor,sprite_id,f,Int32,0x0C,0,0,0,int
 SaveActor,sprite_flags,f,Int32,0x0D,0,0,0,int
@@ -948,7 +948,7 @@ SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
 SaveActor,current_sp,f,Int32,0x48,-1,0,0,int
-SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,0,array of (uncompressed) int32
+SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,0,1,array of (uncompressed) int32
 SaveActor,status_size,f,Int32,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
@@ -1018,15 +1018,15 @@ SaveMapEvent,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEvent,map_id,f,Int32,0x0B,-1,0,0,?
 SaveMapEvent,position_x,f,Int32,0x0C,-1,0,0,?
 SaveMapEvent,position_y,f,Int32,0x0D,-1,0,0,?
-SaveMapEvent,direction,f,Int32,0x15,2,0,0,Facing direction
-SaveMapEvent,sprite_direction,f,Int32,0x16,2,0,0,Sprite direction
+SaveMapEvent,direction,f,Int32,0x15,2,1,0,Facing direction
+SaveMapEvent,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
 SaveMapEvent,anim_frame,f,Int32,0x17,1,0,0,?
 SaveMapEvent,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the current event page
 SaveMapEvent,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
 SaveMapEvent,move_frequency,f,Int32,0x20,2,0,0,?
-SaveMapEvent,layer,f,Int32,0x21,1,0,0,?
+SaveMapEvent,layer,f,Int32,0x21,1,1,0,?
 SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,0,0,
+SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
 SaveMapEvent,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveMapEvent,move_speed,f,Int32,0x25,-1,0,0,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
