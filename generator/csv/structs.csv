@@ -5,7 +5,7 @@ ldb,EventCommand,,0
 ldb,MoveCommand,,0
 ldb,Learning,1,0
 ldb,Actor,1,0
-ldb,Sound,0,0
+ldb,Sound,0,1
 ldb,AnimationTiming,1,0
 ldb,AnimationCellData,1,0
 ldb,AnimationFrame,1,0
@@ -31,7 +31,7 @@ ldb,Troop,1,0
 ldb,Terrain,1,0
 ldb,State,1,0
 ldb,Terms,0,0
-ldb,Music,0,0
+ldb,Music,0,1
 ldb,TestBattler,1,0
 ldb,System,0,0
 ldb,Switch,1,0

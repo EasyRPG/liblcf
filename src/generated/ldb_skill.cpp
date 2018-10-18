@@ -32,7 +32,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, scope, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, animation_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::Sound, sound_effect, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, sound_effect, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, occasion_field, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, occasion_battle, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, state_effect, 0, 1),

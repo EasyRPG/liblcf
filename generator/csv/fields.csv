@@ -34,12 +34,12 @@ Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Actor,attribute_ranks,t,UInt8,0x49,,0,0,Integer
 Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - RPG::BattleCommand - RPG2003
-Sound,name,f,String,0x01,'',1,0,String
+Sound,name,f,String,0x01,"(OFF)",1,0,String
 Sound,volume,f,Int32,0x03,100,0,0,Integer
 Sound,tempo,f,Int32,0x04,100,0,0,Integer
 Sound,balance,f,Int32,0x05,50,0,0,Integer
 AnimationTiming,frame,f,Int32,0x01,0,0,0,Integer
-AnimationTiming,se,f,Sound,0x02,,0,0,RPG::Sound
+AnimationTiming,se,f,Sound,0x02,,1,0,RPG::Sound
 AnimationTiming,flash_scope,f,Enum<AnimationTiming_FlashScope>,0x03,0,1,0,Integer
 AnimationTiming,flash_red,f,Int32,0x04,31,0,0,Integer
 AnimationTiming,flash_green,f,Int32,0x05,31,0,0,Integer
@@ -141,7 +141,7 @@ Skill,sp_cost,f,Int32,0x0B,0,0,0,Integer
 Skill,scope,f,Enum<Skill_Scope>,0x0C,0,1,0,Integer
 Skill,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
 Skill,animation_id,f,Ref<Animation>,0x0E,0,0,0,Integer
-Skill,sound_effect,f,Sound,0x10,,0,0,RPG::Sound
+Skill,sound_effect,f,Sound,0x10,,1,0,RPG::Sound
 Skill,occasion_field,f,Boolean,0x12,True,0,0,Flag
 Skill,occasion_battle,f,Boolean,0x13,False,0,0,Flag
 Skill,state_effect,f,Boolean,0x14,False,0,1,Flag - RPG2003
@@ -312,7 +312,7 @@ Terrain,ship_pass,f,Boolean,0x06,False,0,0,Flag
 Terrain,airship_pass,f,Boolean,0x07,True,0,0,Flag
 Terrain,airship_land,f,Boolean,0x09,True,0,0,Flag
 Terrain,bush_depth,f,Enum<Terrain_BushDepth>,0x0B,0,1,0,Integer
-Terrain,footstep,f,Sound,0x0F,,0,1,RPG::Sound - RPG2003
+Terrain,footstep,f,Sound,0x0F,,1,1,RPG::Sound - RPG2003
 Terrain,on_damage_se,f,Boolean,0x10,False,0,1,Flag - RPG2003
 Terrain,background_type,f,Enum<Terrain_BGAssociation>,0x11,0,0,1,Integer - RPG2003
 Terrain,background_a_name,f,String,0x15,'',0,1,String - RPG2003
@@ -504,7 +504,7 @@ Terms,file,f,String,0x94,'',1,0,String
 Terms,exit_game_message,f,String,0x97,'',1,0,String
 Terms,yes,f,String,0x98,'',1,0,String
 Terms,no,f,String,0x99,'',1,0,String
-Music,name,f,String,0x01,'',0,0,String
+Music,name,f,String,0x01,"(OFF)",1,0,String
 Music,fadein,f,Int32,0x02,0,0,0,Integer
 Music,volume,f,Int32,0x03,100,0,0,Integer
 Music,tempo,f,Int32,0x04,100,0,0,Integer
@@ -531,26 +531,26 @@ System,party,t,Count<Int16>,0x15,,0,0,Integer
 System,party,f,Vector<Int16>,0x16,,1,0,Array - Short
 System,menu_commands,t,Count<Int16>,0x1A,,0,1,Integer - RPG2003
 System,menu_commands,f,Vector<Int16>,0x1B,,1,1,Array - Short - RPG2003
-System,title_music,f,Music,0x1F,,0,0,RPG::Music
-System,battle_music,f,Music,0x20,,0,0,RPG::Music
-System,battle_end_music,f,Music,0x21,,0,0,RPG::Music
-System,inn_music,f,Music,0x22,,0,0,RPG::Music
-System,boat_music,f,Music,0x23,,0,0,RPG::Music
-System,ship_music,f,Music,0x24,,0,0,RPG::Music
-System,airship_music,f,Music,0x25,,0,0,RPG::Music
-System,gameover_music,f,Music,0x26,,0,0,RPG::Music
-System,cursor_se,f,Sound,0x29,,0,0,RPG::Sound
-System,decision_se,f,Sound,0x2A,,0,0,RPG::Sound
-System,cancel_se,f,Sound,0x2B,,0,0,RPG::Sound
-System,buzzer_se,f,Sound,0x2C,,0,0,RPG::Sound
-System,battle_se,f,Sound,0x2D,,0,0,RPG::Sound
-System,escape_se,f,Sound,0x2E,,0,0,RPG::Sound
-System,enemy_attack_se,f,Sound,0x2F,,0,0,RPG::Sound
-System,enemy_damaged_se,f,Sound,0x30,,0,0,RPG::Sound
-System,actor_damaged_se,f,Sound,0x31,,0,0,RPG::Sound
-System,dodge_se,f,Sound,0x32,,0,0,RPG::Sound
-System,enemy_death_se,f,Sound,0x33,,0,0,RPG::Sound
-System,item_se,f,Sound,0x34,,0,0,RPG::Sound
+System,title_music,f,Music,0x1F,,1,0,RPG::Music
+System,battle_music,f,Music,0x20,,1,0,RPG::Music
+System,battle_end_music,f,Music,0x21,,1,0,RPG::Music
+System,inn_music,f,Music,0x22,,1,0,RPG::Music
+System,boat_music,f,Music,0x23,,1,0,RPG::Music
+System,ship_music,f,Music,0x24,,1,0,RPG::Music
+System,airship_music,f,Music,0x25,,1,0,RPG::Music
+System,gameover_music,f,Music,0x26,,1,0,RPG::Music
+System,cursor_se,f,Sound,0x29,,1,0,RPG::Sound
+System,decision_se,f,Sound,0x2A,,1,0,RPG::Sound
+System,cancel_se,f,Sound,0x2B,,1,0,RPG::Sound
+System,buzzer_se,f,Sound,0x2C,,1,0,RPG::Sound
+System,battle_se,f,Sound,0x2D,,1,0,RPG::Sound
+System,escape_se,f,Sound,0x2E,,1,0,RPG::Sound
+System,enemy_attack_se,f,Sound,0x2F,,1,0,RPG::Sound
+System,enemy_damaged_se,f,Sound,0x30,,1,0,RPG::Sound
+System,actor_damaged_se,f,Sound,0x31,,1,0,RPG::Sound
+System,dodge_se,f,Sound,0x32,,1,0,RPG::Sound
+System,enemy_death_se,f,Sound,0x33,,1,0,RPG::Sound
+System,item_se,f,Sound,0x34,,1,0,RPG::Sound
 System,transition_out,f,Enum<System_FadeOut>,0x3D,0,1,0,Integer
 System,transition_in,f,Enum<System_FadeIn>,0x3E,0,1,0,Integer
 System,battle_start_fadeout,f,Enum<System_FadeOut>,0x3F,0,1,0,Integer
@@ -606,7 +606,7 @@ MapInfo,scrollbar_x,f,Int32,0x05,0,0,0,Integer. Editor only
 MapInfo,scrollbar_y,f,Int32,0x06,0,0,0,Integer. Editor only
 MapInfo,expanded_node,f,Boolean,0x07,False,0,0,Flag. Editor only
 MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,1,0,Integer. 0=inherit; 1=from event; 2=specified in 0x0C
-MapInfo,music,f,Music,0x0C,,0,0,Array - RPG::Music
+MapInfo,music,f,Music,0x0C,,1,0,Array - RPG::Music
 MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,1,0,Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
 MapInfo,background_name,f,String,0x16,'',0,0,String
 MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
@@ -724,30 +724,30 @@ SaveSystem,face_right,f,Boolean,0x35,False,0,0,bool
 SaveSystem,face_flip,f,Boolean,0x36,False,0,0,bool
 SaveSystem,transparent,f,Boolean,0x37,False,0,0,
 SaveSystem,music_stopping,f,Boolean,0x3D,False,0,0,Music is being faded out or had been stopped (Play music with the same music as currently playing will restart the music when this flag is set)
-SaveSystem,title_music,f,Music,0x47,,0,0,
-SaveSystem,battle_music,f,Music,0x48,,0,0,
-SaveSystem,battle_end_music,f,Music,0x49,,0,0,
-SaveSystem,inn_music,f,Music,0x4A,,0,0,
-SaveSystem,current_music,f,Music,0x4B,,0,0,
-SaveSystem,before_vehicle_music,f,Music,0x4C,,0,0,
-SaveSystem,before_battle_music,f,Music,0x4D,,0,0,
-SaveSystem,stored_music,f,Music,0x4E,,0,0,
-SaveSystem,boat_music,f,Music,0x4F,,0,0,
-SaveSystem,ship_music,f,Music,0x50,,0,0,
-SaveSystem,airship_music,f,Music,0x51,,0,0,
-SaveSystem,gameover_music,f,Music,0x52,,0,0,
-SaveSystem,cursor_se,f,Sound,0x5B,,0,0,
-SaveSystem,decision_se,f,Sound,0x5C,,0,0,
-SaveSystem,cancel_se,f,Sound,0x5D,,0,0,
-SaveSystem,buzzer_se,f,Sound,0x5E,,0,0,
-SaveSystem,battle_se,f,Sound,0x5F,,0,0,
-SaveSystem,escape_se,f,Sound,0x60,,0,0,
-SaveSystem,enemy_attack_se,f,Sound,0x61,,0,0,
-SaveSystem,enemy_damaged_se,f,Sound,0x62,,0,0,
-SaveSystem,actor_damaged_se,f,Sound,0x63,,0,0,
-SaveSystem,dodge_se,f,Sound,0x64,,0,0,
-SaveSystem,enemy_death_se,f,Sound,0x65,,0,0,
-SaveSystem,item_se,f,Sound,0x66,,0,0,
+SaveSystem,title_music,f,Music,0x47,,1,0,
+SaveSystem,battle_music,f,Music,0x48,,1,0,
+SaveSystem,battle_end_music,f,Music,0x49,,1,0,
+SaveSystem,inn_music,f,Music,0x4A,,1,0,
+SaveSystem,current_music,f,Music,0x4B,,1,0,
+SaveSystem,before_vehicle_music,f,Music,0x4C,,1,0,
+SaveSystem,before_battle_music,f,Music,0x4D,,1,0,
+SaveSystem,stored_music,f,Music,0x4E,,1,0,
+SaveSystem,boat_music,f,Music,0x4F,,1,0,
+SaveSystem,ship_music,f,Music,0x50,,1,0,
+SaveSystem,airship_music,f,Music,0x51,,1,0,
+SaveSystem,gameover_music,f,Music,0x52,,1,0,
+SaveSystem,cursor_se,f,Sound,0x5B,,1,0,
+SaveSystem,decision_se,f,Sound,0x5C,,1,0,
+SaveSystem,cancel_se,f,Sound,0x5D,,1,0,
+SaveSystem,buzzer_se,f,Sound,0x5E,,1,0,
+SaveSystem,battle_se,f,Sound,0x5F,,1,0,
+SaveSystem,escape_se,f,Sound,0x60,,1,0,
+SaveSystem,enemy_attack_se,f,Sound,0x61,,1,0,
+SaveSystem,enemy_damaged_se,f,Sound,0x62,,1,0,
+SaveSystem,actor_damaged_se,f,Sound,0x63,,1,0,
+SaveSystem,dodge_se,f,Sound,0x64,,1,0,
+SaveSystem,enemy_death_se,f,Sound,0x65,,1,0,
+SaveSystem,item_se,f,Sound,0x66,,1,0,
 SaveSystem,transition_out,f,UInt8,0x6F,1,0,0,
 SaveSystem,transition_in,f,UInt8,0x70,1,0,0,
 SaveSystem,battle_start_fadeout,f,UInt8,0x71,1,0,0,

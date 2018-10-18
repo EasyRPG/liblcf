@@ -21,7 +21,7 @@
 
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, frame, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::Sound, se, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, se, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_scope, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_red, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, flash_green, 0, 0),

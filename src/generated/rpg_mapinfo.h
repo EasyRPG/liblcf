@@ -58,8 +58,6 @@ namespace RPG {
 			"forbid"
 		);
 
-		MapInfo();
-		void Init();
 		int ID = 0;
 		std::string name;
 		int32_t parent_map = 0;

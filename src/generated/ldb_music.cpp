@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT Music
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, fadein, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, volume, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, tempo, 0, 0),

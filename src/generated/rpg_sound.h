@@ -22,11 +22,22 @@
 namespace RPG {
 	class Sound {
 	public:
-		std::string name;
+		std::string name = "(OFF)";
 		int32_t volume = 100;
 		int32_t tempo = 100;
 		int32_t balance = 50;
 	};
+
+	inline bool operator==(const Sound& l, const Sound& r) {
+		return l.name == r.name
+		&& l.volume == r.volume
+		&& l.tempo == r.tempo
+		&& l.balance == r.balance;
+	}
+
+	inline bool operator!=(const Sound& l, const Sound& r) {
+		return !(l == r);
+	}
 }
 
 #endif
