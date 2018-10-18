@@ -67,6 +67,14 @@ namespace RPG {
 		int32_t timer2_sec = 0;
 		int32_t compare_operator = 1;
 	};
+
+	inline bool operator==(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -627,7 +627,7 @@ Start,ship_y,f,Int32,0x17,0,0,0,Integer
 Start,airship_map_id,f,Ref<Map>,0x1F,0,0,0,Integer
 Start,airship_x,f,Int32,0x20,0,0,0,Integer
 Start,airship_y,f,Int32,0x21,0,0,0,Integer
-EventPageCondition,flags,f,EventPageCondition_Flags,0x01,,0,0,Bitflag
+EventPageCondition,flags,f,EventPageCondition_Flags,0x01,,1,0,Bitflag
 EventPageCondition,switch_a_id,f,Ref<Switch>,0x02,1,0,0,Integer
 EventPageCondition,switch_b_id,f,Ref<Switch>,0x03,1,0,0,Integer
 EventPageCondition,variable_id,f,Ref<Variable>,0x04,1,0,0,Integer
