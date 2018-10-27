@@ -65,64 +65,64 @@ void RPG::SaveSystem::Fixup() {
 		variables.resize(Data::variables.size());
 	}
 	if (battle_music.name.empty()) {
-		battle_music.name = system.battle_music.name;
+		battle_music = system.battle_music;
 	}
 	if (battle_end_music.name.empty()) {
-		battle_end_music.name = system.battle_end_music.name;
+		battle_end_music = system.battle_end_music;
 	}
 	if (inn_music.name.empty()) {
-		inn_music.name = system.inn_music.name;
+		inn_music = system.inn_music;
 	}
 	if (title_music.name.empty()) {
-		title_music.name = system.title_music.name;
+		title_music = system.title_music;
 	}
 	if (boat_music.name.empty()) {
-		boat_music.name = system.boat_music.name;
+		boat_music = system.boat_music;
 	}
 	if (ship_music.name.empty()) {
-		ship_music.name = system.ship_music.name;
+		ship_music = system.ship_music;
 	}
 	if (airship_music.name.empty()) {
-		airship_music.name = system.airship_music.name;
+		airship_music = system.airship_music;
 	}
 	if (gameover_music.name.empty()) {
-		gameover_music.name = system.gameover_music.name;
+		gameover_music = system.gameover_music;
 	}
 	if (cursor_se.name.empty()) {
-		cursor_se.name = system.cursor_se.name;
+		cursor_se = system.cursor_se;
 	}
 	if (decision_se.name.empty()) {
-		decision_se.name = system.decision_se.name;
+		decision_se = system.decision_se;
 	}
 	if (cancel_se.name.empty()) {
-		cancel_se.name = system.cancel_se.name;
+		cancel_se = system.cancel_se;
 	}
 	if (buzzer_se.name.empty()) {
-		buzzer_se.name = system.buzzer_se.name;
+		buzzer_se = system.buzzer_se;
 	}
 	if (battle_se.name.empty()) {
-		battle_se.name = system.battle_se.name;
+		battle_se = system.battle_se;
 	}
 	if (escape_se.name.empty()) {
-		escape_se.name = system.escape_se.name;
+		escape_se = system.escape_se;
 	}
 	if (enemy_attack_se.name.empty()) {
-		enemy_attack_se.name = system.enemy_attack_se.name;
+		enemy_attack_se = system.enemy_attack_se;
 	}
 	if (enemy_damaged_se.name.empty()) {
-		enemy_damaged_se.name = system.enemy_damaged_se.name;
+		enemy_damaged_se = system.enemy_damaged_se;
 	}
 	if (actor_damaged_se.name.empty()) {
-		actor_damaged_se.name = system.actor_damaged_se.name;
+		actor_damaged_se = system.actor_damaged_se;
 	}
 	if (dodge_se.name.empty()) {
-		dodge_se.name = system.dodge_se.name;
+		dodge_se = system.dodge_se;
 	}
 	if (enemy_death_se.name.empty()) {
-		enemy_death_se.name = system.enemy_death_se.name;
+		enemy_death_se = system.enemy_death_se;
 	}
 	if (item_se.name.empty()) {
-		item_se.name = system.item_se.name;
+		item_se = system.item_se;
 	}
 	if (message_stretch == -1) {
 		message_stretch = system.message_stretch;
