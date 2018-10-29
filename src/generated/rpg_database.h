@@ -40,6 +40,7 @@
 namespace RPG {
 	class Database {
 	public:
+		std::string ldb_header;
 		std::vector<Actor> actors;
 		std::vector<Skill> skills;
 		std::vector<Item> items;

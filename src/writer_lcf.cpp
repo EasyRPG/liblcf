@@ -116,6 +116,10 @@ void LcfWriter::Write(const std::string& _str) {
 	}
 }
 
+uint32_t LcfWriter::Tell() {
+	return (uint32_t)stream.tellp();
+}
+
 bool LcfWriter::IsOk() const {
 	return (stream.good());
 }

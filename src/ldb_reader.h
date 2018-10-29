@@ -35,12 +35,12 @@
 #include "rpg_parameters.h"
 #include "rpg_equipment.h"
 #include "rpg_database.h"
+#include "lcf_saveopt.h"
 
 /**
  * LDB Reader namespace.
  */
 namespace LDB_Reader {
-
 	/**
 	 * Loads Database.
 	 */
@@ -49,7 +49,7 @@ namespace LDB_Reader {
 	/**
 	 * Saves Database.
 	 */
-	bool Save(const std::string& filename, const std::string& encoding);
+	bool Save(const std::string& filename, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Database as XML.
@@ -69,7 +69,7 @@ namespace LDB_Reader {
 	/**
 	 * Saves Database.
 	 */
-	bool Save(std::ostream& filestream, const std::string& encoding);
+	bool Save(std::ostream& filestream, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Database as XML.

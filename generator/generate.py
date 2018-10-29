@@ -36,9 +36,31 @@ cpp_types = {
 }
 
 # Additional Jinja 2 functions
+def lcf_type(field, prefix=True):
+    if field.size == True:
+        if re.match(r'Count<(.*)>', field.type):
+            return "COUNT"
+        else:
+            return "SIZE"
+    if field.type == "DatabaseVersion":
+        return "DATABASE_VERSION"
+    if field.type == "EmptyBlock":
+        return "EMPTY"
+    return "TYPED"
+
 def cpp_type(ty, prefix=True):
     if ty in cpp_types:
         return cpp_types[ty]
+
+    if ty == "DatabaseVersion":
+        return 'int32_t'
+
+    if ty == "EmptyBlock":
+        return 'void'
+
+    m = re.match(r'Count<(.*)>', ty)
+    if m:
+        return cpp_type(m.group(1), prefix)
 
     m = re.match(r'Array<(.*):(.*)>', ty)
     if m:
@@ -115,6 +137,11 @@ def filter_structs_without_codes(structs):
 
 def filter_unused_fields(fields):
     for field in fields:
+        if field.type and field.type != "EmptyBlock":
+            yield field
+
+def filter_unwritten_fields(fields):
+    for field in fields:
         if field.type:
             yield field
 # End of Jinja 2 functions
@@ -131,7 +158,7 @@ def struct_headers(ty, header_map):
     if ty == 'String':
         return ['<string>']
 
-    if ty in int_types:
+    if ty in int_types or ty == "DatabaseVersion":
         return ['<stdint.h>']
 
     if ty in cpp_types:
@@ -204,7 +231,7 @@ def get_structs(filename='structs.csv'):
     return processed_result
 
 def get_fields(filename='fields.csv'):
-    Field = namedtuple("Field", "name size type code default is2k3 comment")
+    Field = namedtuple("Field", "name size type code default presentifdefault is2k3 comment")
 
     result = process_file(filename, Field)
 
@@ -219,6 +246,7 @@ def get_fields(filename='fields.csv'):
                 elem.type,
                 0 if elem.code == '' else int(elem.code, 0),
                 elem.default,
+                elem.presentifdefault,
                 elem.is2k3,
                 elem.comment)
             processed_result[k].append(elem)
@@ -352,10 +380,12 @@ def main(argv):
     headers = get_headers()
 
     # Setup Jinja
+    env.filters["lcf_type"] = lcf_type
     env.filters["cpp_type"] = cpp_type
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
+    env.filters["field_is_written"] = filter_unwritten_fields
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set

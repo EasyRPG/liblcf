@@ -20,13 +20,13 @@
 #define LCF_CURRENT_STRUCT Attribute
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, type, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, a_rate, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, b_rate, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, c_rate, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, d_rate, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, e_rate, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, type, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, a_rate, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, b_rate, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, c_rate, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, d_rate, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, e_rate, 0, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

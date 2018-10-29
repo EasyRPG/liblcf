@@ -9,6 +9,9 @@
 
 #include <cmath>
 #include <fstream>
+#include <cerrno>
+#include <cstring>
+
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
 #include "ldb_reader.h"
@@ -32,21 +35,37 @@ double LSD_Reader::GenerateTimestamp(std::time_t const t) {
 
 std::unique_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LSD file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return nullptr;
+	}
 	return LSD_Reader::Load(stream, encoding);
 }
 
 bool LSD_Reader::Save(const std::string& filename, const RPG::Save& save, const std::string& encoding) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LSD file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LSD_Reader::Save(stream, save, encoding);
 }
 
 bool LSD_Reader::SaveXml(const std::string& filename, const RPG::Save& save) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LSD XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		return false;
+	}
 	return LSD_Reader::SaveXml(stream, save);
 }
 
 std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(const std::string& filename) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
+	if (!stream.is_open()) {
+		fprintf(stderr, "Failed to open LSD XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		return nullptr;
+	}
 	return LSD_Reader::LoadXml(stream);
 }
 

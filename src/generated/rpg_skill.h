@@ -71,7 +71,7 @@ namespace RPG {
 		int32_t failure_message = 0;
 		int32_t type = 0;
 		int32_t sp_type = 0;
-		int32_t sp_percent = 1;
+		int32_t sp_percent = 0;
 		int32_t sp_cost = 0;
 		int32_t scope = 0;
 		int32_t switch_id = 1;
@@ -96,7 +96,7 @@ namespace RPG {
 		std::vector<bool> state_effects;
 		std::vector<bool> attribute_effects;
 		bool affect_attr_defence = false;
-		int32_t battler_animation = 1;
+		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
 	};
 }

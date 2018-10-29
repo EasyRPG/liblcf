@@ -65,10 +65,8 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 			break;
 
 		chunk_info.length = stream.ReadInt();
-		if (chunk_info.length == 0)
-			continue;
 
-		typename field_map_type::const_iterator it = field_map.find(chunk_info.ID);
+		auto it = field_map.find(chunk_info.ID);
 		if (it != field_map.end()) {
 #ifdef LCF_DEBUG_TRACE
 			printf("0x%02x (size: %d, pos: 0x%x): %s\n", chunk_info.ID, chunk_info.length, stream.Tell(), it->second->name);
@@ -118,12 +116,15 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		if (field->IsDefault(obj, ref)) {
+		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref)) {
 			continue;
 		}
 		stream.WriteInt(field->id);
-		stream.WriteInt(field->LcfSize(obj, stream));
-		field->WriteLcf(obj, stream);
+		auto len = field->LcfSize(obj, stream);
+		stream.WriteInt(len);
+		if (len > 0) {
+			field->WriteLcf(obj, stream);
+		}
 	}
 	// Writing a 0-byte after RPG::Database or RPG::Save breaks the parser in RPG_RT
 	conditional_zero_writer<S>(stream);
@@ -140,8 +141,9 @@ int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 			continue;
 		}
 		//printf("%s\n", field->name);
-		if (field->IsDefault(obj, ref))
+		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref)) {
 			continue;
+		}
 		result += LcfReader::IntSize(field->id);
 		int size = field->LcfSize(obj, stream);
 		result += LcfReader::IntSize(size);

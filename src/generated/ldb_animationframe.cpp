@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT AnimationFrame
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationCellData>, cells, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationCellData>, cells, 1, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

@@ -106,6 +106,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_chipset.cpp \
 	src/generated/rpg_mapinfo.cpp \
 	src/generated/rpg_enums.cpp \
+	src/generated/rpg_system.cpp \
 	src/boost/preprocessor/cat.hpp \
 	src/boost/preprocessor/stringize.hpp \
 	src/boost/preprocessor/config/config.hpp
@@ -115,6 +116,7 @@ pkginclude_HEADERS = \
 	src/ini.h \
 	src/inireader.h \
 	src/lcf_options.h \
+	src/lcf_saveopt.h \
 	src/ldb_reader.h \
 	src/lmt_reader.h \
 	src/lmu_reader.h \

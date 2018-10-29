@@ -110,6 +110,7 @@ add_library(lcf
 	src/generated/rpg_chipset.cpp
 	src/generated/rpg_mapinfo.cpp
 	src/generated/rpg_enums.cpp
+	src/generated/rpg_system.cpp
 )
 
 # C++11 is required

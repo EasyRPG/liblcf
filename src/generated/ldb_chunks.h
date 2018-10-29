@@ -122,7 +122,7 @@ namespace LDB_Reader {
 			flash_blue = 0x06,
 			/** Integer */
 			flash_power = 0x07,
-			/** Integer - RPG2003 - TODO: Get chunk ID */
+			/** Integer - This field RPG2003 only but commonly found in some 2k LDB's. We disable the is2k3 field on purpose because if its defaulted in 2k it won't be written anyway. */
 			screen_shake = 0x08
 		};
 	};
@@ -210,8 +210,8 @@ namespace LDB_Reader {
 			row = 0x06,
 			/** Integer */
 			battle_type = 0x07,
-			/** Integer */
-			unknown_09 = 0x09,
+			/** Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab */
+			unused_display_normal_parameters = 0x09,
 			/** Array - RPG::BattleCommand */
 			commands = 0x0A,
 			/** Integer */

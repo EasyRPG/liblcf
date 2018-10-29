@@ -119,7 +119,7 @@ namespace RPG {
 		std::vector<bool> attribute_set;
 		int32_t state_chance = 0;
 		bool state_effect = false;
-		int32_t weapon_animation = 1;
+		int32_t weapon_animation = -1;
 		std::vector<ItemAnimation> animation_data;
 		bool use_skill = false;
 		std::vector<bool> class_set;

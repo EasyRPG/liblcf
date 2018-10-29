@@ -9,6 +9,7 @@
 
 #include "rpg_movecommand.h"
 #include "reader_struct.h"
+#include <iostream>
 
 template <>
 struct RawStruct<RPG::MoveCommand> {
@@ -174,11 +175,11 @@ void RawStruct<RPG::MoveCommand>::BeginXml(RPG::MoveCommand& ref, XmlReader& str
 void RawStruct<std::vector<RPG::MoveCommand> >::ReadLcf(std::vector<RPG::MoveCommand>& ref, LcfReader& stream, uint32_t length) {
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;
-	do {
+	while (stream.Tell() != endpos) {
 		RPG::MoveCommand command;
 		RawStruct<RPG::MoveCommand>::ReadLcf(command, stream, 0);
 		ref.push_back(command);
-	} while (stream.Tell() != endpos);
+	}
 }
 
 void RawStruct<std::vector<RPG::MoveCommand> >::WriteLcf(const std::vector<RPG::MoveCommand>& ref, LcfWriter& stream) {

@@ -25,6 +25,7 @@
 namespace RPG {
 	class Map {
 	public:
+		std::string lmu_header;
 		enum ScrollType {
 			ScrollType_none = 0,
 			ScrollType_vertical = 1,

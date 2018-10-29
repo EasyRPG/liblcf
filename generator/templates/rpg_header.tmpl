@@ -16,6 +16,15 @@
 namespace RPG {
 	class {{ struct_name }} {
 	public:
+	{%- if struct_name == "Database" %}
+		std::string ldb_header;
+	{%- endif %}
+	{%- if struct_name == "TreeMap" %}
+		std::string lmt_header;
+	{%- endif %}
+	{%- if struct_name == "Map" %}
+		std::string lmu_header;
+	{%- endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
 		{%- if name == "Code" %}

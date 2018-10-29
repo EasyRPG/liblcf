@@ -20,10 +20,10 @@
 #define LCF_CURRENT_STRUCT Event
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, x, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, y, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventPage>, pages, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, x, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, y, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventPage>, pages, 1, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

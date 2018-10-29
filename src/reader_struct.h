@@ -32,6 +32,8 @@
 #include "rpg_treemap.h"
 #include "rpg_rect.h"
 #include "rpg_savepicture.h"
+#include "rpg_terms.h"
+#include "data.h"
 
 // Forward declarations
 
@@ -293,6 +295,7 @@ struct Field {
 
 	const char* const name;
 	int id;
+	bool present_if_default;
 	bool is2k3;
 
 	virtual void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const = 0;
@@ -303,8 +306,17 @@ struct Field {
 	virtual void BeginXml(S& obj, XmlReader& stream) const = 0;
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
-	Field(int id, const char* name, bool is2k3) :
-		name(name), id(id), is2k3(is2k3) {}
+	bool isPresentIfDefault(bool db_is2k3) const {
+		if (std::is_same<S,RPG::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
+			//Special case - only known fields that are 2k specific and not
+			//written to a 2k3 db if defaulted.
+			return false;
+		}
+		return present_if_default;
+	}
+
+	Field(int id, const char* name, bool present_if_default, bool is2k3) :
+		name(name), id(id), present_if_default(present_if_default), is2k3(is2k3) {}
 };
 
 // Equivalence traits
@@ -337,6 +349,11 @@ struct Compare_Test<std::string> {
 	static const bool value = true;
 };
 
+template <>
+struct Compare_Test<RPG::Terrain::Flags> {
+	static const bool value = true;
+};
+
 template <class T, bool comparable>
 struct Compare_Traits_Impl {};
 
@@ -361,11 +378,25 @@ struct Compare_Traits_Impl<std::vector<T>, false> {
 	}
 };
 
+template <>
+struct Compare_Traits_Impl<RPG::Terrain::Flags, true> {
+	static bool IsEqual(const RPG::Terrain::Flags& l, const RPG::Terrain::Flags& r) {
+		return l.flags == r.flags;
+	}
+};
+
 template <class T>
 struct Compare_Traits {
 	typedef Compare_Traits_Impl<T, Compare_Test<T>::value> impl_type;
 	static bool IsEqual(const T& a, const T& b) {
 		return impl_type::IsEqual(a, b);
+	}
+};
+
+template <>
+struct Compare_Traits<RPG::Terrain::Flags> {
+	static bool IsEqual(const RPG::Terrain::Flags& a, const RPG::Terrain::Flags& b) {
+		return a.flags == b.flags;
 	}
 };
 
@@ -400,9 +431,62 @@ struct TypedField : public Field<S> {
 		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
 	}
 
-	TypedField(T S::*ref, int id, const char* name, bool is2k3) :
-		Field<S>(id, name, is2k3), ref(ref) {}
+	TypedField(T S::*ref, int id, const char* name, bool present_if_default, bool is2k3) :
+		Field<S>(id, name, present_if_default, is2k3), ref(ref) {}
 };
+
+/**
+ * DatabaseVersionField class template.
+ */
+
+template <typename S, typename T>
+struct DatabaseVersionField : public TypedField<S,T> {
+
+	using TypedField<S,T>::TypedField;
+
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		//If db version is 0, it's like a "version block" is not present.
+		if ((obj.*(this->ref)) == 0) {
+			return 0;
+		}
+		return TypedField<S,T>::LcfSize(obj, stream);
+	}
+	bool IsDefault(const S& a, const S& b) const {
+		if (Data::system.ldb_id == 2003) {
+			//DB Version always present in 2k3 db
+			return false;
+		}
+		//Only present if not 0 in 2k db.
+		return TypedField<S,T>::IsDefault(a, b);
+	}
+};
+
+/**
+ * EmptyField class template.
+ */
+
+template <typename S>
+struct EmptyField : public Field<S> {
+
+	using Field<S>::Field;
+
+	void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const { }
+	void WriteLcf(const S& obj, LcfWriter& stream) const { }
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		//This is always an "empty block"
+		return 0;
+	}
+	void WriteXml(const S& obj, XmlWriter& stream) const { }
+	void BeginXml(S& obj, XmlReader& stream) const { }
+	void ParseXml(S& obj, const std::string& data) const { }
+
+	bool IsDefault(const S& a, const S& b) const {
+		return true;
+	}
+
+};
+
+
 
 /**
  * SizeField class template.
@@ -433,11 +517,30 @@ struct SizeField : public Field<S> {
 		// no-op
 	}
 	bool IsDefault(const S& a, const S& b) const {
-		return (a.*ref).empty() && (b.*ref).empty();
+		return (a.*ref).size() == (b.*ref).size();
 	}
 
-	SizeField(const std::vector<T> S::*ref, int id, bool is2k3) :
-		Field<S>(id, "", is2k3), ref(ref) {}
+	SizeField(const std::vector<T> S::*ref, int id, bool present_if_default, bool is2k3) :
+		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
+};
+
+
+/**
+ * CountField class template.
+ */
+template <class S, class T>
+struct CountField : public SizeField<S,T> {
+
+	using SizeField<S,T>::SizeField;
+
+	void WriteLcf(const S& obj, LcfWriter& stream) const {
+		int size = (obj.*(this->ref)).size();
+		TypeReader<int32_t>::WriteLcf(size, stream);
+	}
+	int LcfSize(const S& obj, LcfWriter& stream) const {
+		int size = (obj.*(this->ref)).size();
+		return LcfReader::IntSize(size);
+	}
 };
 
 /**
@@ -710,18 +813,45 @@ private:
 #define LCF_STRUCT_FIELDS_END() \
 	NULL }; \
 
-#define LCF_STRUCT_TYPED_FIELD(T, REF, IS2K3) \
+#define LCF_STRUCT_TYPED_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
 		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
 		, IS2K3 \
 	) \
 
-#define LCF_STRUCT_SIZE_FIELD(T, REF, IS2K3) \
+#define LCF_STRUCT_DATABASE_VERSION_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new DatabaseVersionField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
+		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_EMPTY_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new EmptyField<RPG::LCF_CURRENT_STRUCT>( \
+		  LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
+		, BOOST_PP_STRINGIZE(REF) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_SIZE_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
 	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
 		  &RPG::LCF_CURRENT_STRUCT::REF \
 		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+		, PRESENTIFDEFAULT \
+		, IS2K3 \
+	) \
+
+#define LCF_STRUCT_COUNT_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
+	new CountField<RPG::LCF_CURRENT_STRUCT, T>( \
+		  &RPG::LCF_CURRENT_STRUCT::REF \
+		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
+		, PRESENTIFDEFAULT \
 		, IS2K3 \
 	) \
 

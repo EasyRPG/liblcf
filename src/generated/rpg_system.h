@@ -172,6 +172,8 @@ namespace RPG {
 			"class"
 		);
 
+		System();
+		void Init();
 		int32_t ldb_id = 0;
 		std::string boat_name;
 		std::string ship_name;
@@ -222,7 +224,7 @@ namespace RPG {
 		int32_t battletest_formation = 0;
 		int32_t battletest_condition = 0;
 		int32_t equipment_setting = 0;
-		int32_t battletest_alt_terrain = 0;
+		int32_t battletest_alt_terrain = -1;
 		bool show_frame = false;
 		std::string frame_name;
 		bool invert_animations = false;
