@@ -673,21 +673,21 @@ Map,parallax_auto_loop_x,f,Boolean,0x23,False,0,0,Flag
 Map,parallax_sx,f,Int32,0x24,0,0,0,Integer
 Map,parallax_auto_loop_y,f,Boolean,0x25,False,0,0,Flag
 Map,parallax_sy,f,Int32,0x26,0,0,0,Integer
-Map,generator_flag,f,Boolean,0x28,False,0,1,Flag
-Map,generator_mode,f,Enum<Map_GeneratorMode>,0x29,0,0,1,Integer
+Map,generator_flag,f,Boolean,0x28,False,0,0,Flag
+Map,generator_mode,f,Enum<Map_GeneratorMode>,0x29,0,0,0,Integer
 Map,top_level,f,Boolean,0x2A,False,0,0,Bool
-Map,generator_tiles,f,Enum<Map_GeneratorTiles>,0x30,0,0,1,Integer
-Map,generator_width,f,Int32,0x31,4,0,1,Integer
-Map,generator_height,f,Int32,0x32,1,0,1,Integer
-Map,generator_surround,f,Boolean,0x33,True,0,1,Flag
-Map,generator_upper_wall,f,Boolean,0x34,True,0,1,Flag
-Map,generator_floor_b,f,Boolean,0x35,True,0,1,Flag
-Map,generator_floor_c,f,Boolean,0x36,True,0,1,Flag
-Map,generator_extra_b,f,Boolean,0x37,True,0,1,Flag
-Map,generator_extra_c,f,Boolean,0x38,True,0,1,Flag
-Map,generator_x,f,Vector<UInt32>,0x3C,,1,1,Uint32 x 9 RPG2003
-Map,generator_y,f,Vector<UInt32>,0x3D,,1,1,Uint32 x 9 RPG2003
-Map,generator_tile_ids,f,Vector<Int16>,0x3E,,1,1,Array - Short RPG2003
+Map,generator_tiles,f,Enum<Map_GeneratorTiles>,0x30,0,0,0,Integer
+Map,generator_width,f,Int32,0x31,4,0,0,Integer
+Map,generator_height,f,Int32,0x32,1,0,0,Integer
+Map,generator_surround,f,Boolean,0x33,True,0,0,Flag
+Map,generator_upper_wall,f,Boolean,0x34,True,0,0,Flag
+Map,generator_floor_b,f,Boolean,0x35,True,0,0,Flag
+Map,generator_floor_c,f,Boolean,0x36,True,0,0,Flag
+Map,generator_extra_b,f,Boolean,0x37,True,0,0,Flag
+Map,generator_extra_c,f,Boolean,0x38,True,0,0,Flag
+Map,generator_x,f,Vector<UInt32>,0x3C,,0,0,Uint32 x 9 RPG2003
+Map,generator_y,f,Vector<UInt32>,0x3D,,0,0,Uint32 x 9 RPG2003
+Map,generator_tile_ids,f,Vector<Int16>,0x3E,,0,0,Array - Short RPG2003
 Map,lower_layer,f,Vector<Int16>,0x47,,1,0,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,1,0,Array - Short
 Map,events,f,Array<Event>,0x51,,1,0,Array - RPG::Event
