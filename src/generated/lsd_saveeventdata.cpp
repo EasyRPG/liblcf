@@ -22,7 +22,7 @@
 LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::SaveEventCommands>, commands, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, show_message, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_0b_escape, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, abort_on_escape, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, wait_movement, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_wait, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(uint8_t, keyinput_variable, 0, 0),
@@ -41,7 +41,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_right, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_up, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, keyinput_timed, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_2a_time_left, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, unused_wait_for_key_or_enter, 0, 0),
 LCF_STRUCT_FIELDS_END()
 
 #undef LCF_CURRENT_STRUCT

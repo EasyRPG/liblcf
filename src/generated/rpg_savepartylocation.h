@@ -57,7 +57,7 @@ namespace RPG {
 		int32_t move_route_index = 0;
 		bool move_route_repeated = false;
 		bool sprite_transparent = false;
-		int32_t unknown_2f_overlap = 0;
+		bool route_through = false;
 		int32_t anim_paused = 0;
 		bool through = false;
 		int32_t stop_count = 0;
@@ -66,11 +66,11 @@ namespace RPG {
 		bool jumping = false;
 		int32_t begin_jump_x = 0;
 		int32_t begin_jump_y = 0;
-		int32_t unknown_47_pause = 0;
+		bool pause = false;
 		bool flying = false;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
-		int32_t unknown_4b_sprite_move = 0;
+		bool processed = false;
 		int32_t flash_red = 100;
 		int32_t flash_green = 100;
 		int32_t flash_blue = 100;
@@ -81,7 +81,7 @@ namespace RPG {
 		int32_t vehicle = 0;
 		bool unboarding = false;
 		int32_t preboard_move_speed = 4;
-		int32_t unknown_6c_menu_calling = 0;
+		bool menu_calling = false;
 		int32_t pan_state = 1;
 		int32_t pan_current_x = 2304;
 		int32_t pan_current_y = 1792;
@@ -89,7 +89,7 @@ namespace RPG {
 		int32_t pan_finish_y = 1792;
 		int32_t pan_speed = 16;
 		int32_t encounter_steps = 0;
-		bool unknown_7d_encounter_calling = false;
+		bool encounter_calling = false;
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
 	};

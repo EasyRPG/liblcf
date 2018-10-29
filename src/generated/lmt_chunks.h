@@ -54,7 +54,7 @@ namespace LMT_Reader {
 			save = 0x21,
 			/** Array - RPG::Encounter */
 			encounters = 0x29,
-			/** Integer. 0 inherits from parent (?) FIXME */
+			/** 0=Encounters Disabled; 1=Encounter Rate for the map */
 			encounter_steps = 0x2C,
 			/** Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0 */
 			area_rect = 0x33

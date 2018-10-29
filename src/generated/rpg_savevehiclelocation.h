@@ -24,6 +24,19 @@
 namespace RPG {
 	class SaveVehicleLocation {
 	public:
+		enum VehicleType {
+			VehicleType_none = 0,
+			VehicleType_skiff = 1,
+			VehicleType_ship = 2,
+			VehicleType_airship = 3
+		};
+		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
+			"none",
+			"skiff",
+			"ship",
+			"airship"
+		);
+
 		bool active = true;
 		int32_t map_id = -1;
 		int32_t position_x = -1;
@@ -51,11 +64,11 @@ namespace RPG {
 		bool jumping = false;
 		int32_t begin_jump_x = 0;
 		int32_t begin_jump_y = 0;
-		int32_t unknown_47_pause = 0;
+		bool pause = false;
 		bool flying = false;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
-		int32_t unknown_4b_sprite_move = 0;
+		bool processed = false;
 		int32_t flash_red = 100;
 		int32_t flash_green = 100;
 		int32_t flash_blue = 100;

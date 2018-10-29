@@ -38,7 +38,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, face_right, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, face_flip, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, transparent, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, unknown_3d_music_fadeout, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(bool, music_stopping, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, title_music, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_music, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(RPG::Music, battle_end_music, 0, 0),

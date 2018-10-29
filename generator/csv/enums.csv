@@ -137,6 +137,10 @@ SavePicture,BattleLayer,windows_and_status,4
 SavePicture,BattleLayer,timers,5
 SaveSystem,AtbMode,atb_active,0
 SaveSystem,AtbMode,atb_wait,1
+SaveVehicleLocation,VehicleType,none,0
+SaveVehicleLocation,VehicleType,skiff,1
+SaveVehicleLocation,VehicleType,ship,2
+SaveVehicleLocation,VehicleType,airship,3
 State,Persistence,ends,0
 State,Persistence,persists,1
 State,Restriction,normal,0
