@@ -42,6 +42,11 @@
  */
 namespace LDB_Reader {
 	/**
+	 * Increment the database save_count.
+	 */
+	void PrepareSave(RPG::Database& db);
+
+	/**
 	 * Loads Database.
 	 */
 	bool Load(const std::string& filename, const std::string& encoding);

@@ -21,6 +21,11 @@
 namespace LMU_Reader {
 
 	/**
+	 * Increment the map save count.
+	 */
+	void PrepareSave(RPG::Map& map);
+
+	/**
 	 * Loads map.
 	 */
 	std::unique_ptr<RPG::Map> Load(const std::string& filename, const std::string& encoding);

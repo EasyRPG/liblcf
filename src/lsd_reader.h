@@ -37,6 +37,11 @@ namespace LSD_Reader {
 	double GenerateTimestamp(std::time_t const t = std::time(NULL));
 
 	/**
+	 * Increment the save save_count and update the timestamp.
+	 */
+	void PrepareSave(RPG::Save& save);
+
+	/**
 	 * Loads Savegame.
 	 */
 	std::unique_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);

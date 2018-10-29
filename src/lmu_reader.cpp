@@ -17,6 +17,10 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+void LMU_Reader::PrepareSave(RPG::Map& map) {
+	++map.save_count;
+}
+
 std::unique_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
