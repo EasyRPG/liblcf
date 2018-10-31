@@ -181,10 +181,9 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 }
 
 void LcfReader::ReadString(std::string& ref, size_t size) {
-	char* chars = new char[size];
-	Read(chars, 1, size);
-	ref = Encode(std::string(chars, size));
-	delete[] chars;
+	ref.resize(size);
+	Read((size > 0 ? &ref.front(): nullptr), 1, size);
+	ref = Encode(ref);
 }
 
 bool LcfReader::IsOk() const {
