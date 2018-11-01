@@ -17,9 +17,9 @@
 
 std::string LcfReader::error_str;
 
-LcfReader::LcfReader(std::istream& filestream, std::string encoding) :
-	encoding(encoding),
-	stream(filestream)
+LcfReader::LcfReader(std::istream& filestream, std::string encoding)
+	: stream(filestream)
+	, encoder(std::move(encoding))
 {
 }
 
@@ -271,7 +271,11 @@ const std::string& LcfReader::GetError() {
 }
 
 std::string LcfReader::Encode(const std::string& str_to_encode) {
-	return ReaderUtil::Recode(str_to_encode, encoding, "UTF-8");
+#ifdef LCF_SUPPORT_ICU
+	return encoder.Encode(str_to_encode);
+#else
+	return ReaderUtil::Recode(str_to_encode, encoder.GetEncoding(), "UTF-8");
+#endif
 }
 
 int LcfReader::IntSize(unsigned int x) {

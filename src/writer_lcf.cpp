@@ -11,9 +11,9 @@
 
 #include "writer_lcf.h"
 
-LcfWriter::LcfWriter(std::ostream& filestream, std::string encoding) :
-	encoding(encoding),
-	stream(filestream)
+LcfWriter::LcfWriter(std::ostream& filestream, std::string encoding)
+	: stream(filestream)
+	, encoder(std::move(encoding))
 {
 }
 
@@ -130,7 +130,11 @@ bool LcfWriter::IsOk() const {
 }
 
 std::string LcfWriter::Decode(const std::string& str_to_encode) {
-	return ReaderUtil::Recode(str_to_encode, "UTF-8", encoding);
+#ifdef LCF_SUPPORT_ICU
+	return encoder.Decode(str_to_encode);
+#else
+	return ReaderUtil::Recode(str_to_encode, "UTF-8", encoder.GetEncoding());
+#endif
 }
 
 #ifdef WORDS_BIGENDIAN

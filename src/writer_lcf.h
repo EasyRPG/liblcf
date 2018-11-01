@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include "lcf_options.h"
 #include "reader_util.h"
+#include "encoder.h"
 
 /**
  * LcfWriter class.
@@ -104,10 +105,10 @@ public:
 	std::string Decode(const std::string& str_to_encode);
 
 private:
-	/** Name of the encoding. */
-	std::string encoding;
 	/** File-stream managed by this Writer. */
 	std::ostream& stream;
+	/** Encoder object */
+	Encoder encoder;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.

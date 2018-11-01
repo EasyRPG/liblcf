@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include "lcf_options.h"
 #include "reader_util.h"
+#include "encoder.h"
 
 /*
  * Calls SkipDebug() instead of Skip() for debug builds.
@@ -213,12 +214,12 @@ public:
 	static int IntSize(unsigned int x);
 
 private:
-	/** Name of the encoding. */
-	std::string encoding;
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
 	/** Contains the last set error. */
 	static std::string error_str;
+	/** The internal Encoder */
+	Encoder encoder;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
