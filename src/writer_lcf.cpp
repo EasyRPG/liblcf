@@ -22,11 +22,8 @@ LcfWriter::~LcfWriter() {
 }
 
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
-#ifdef NDEBUG
 	stream.write(reinterpret_cast<const char*>(ptr), size*nmemb);
-#else
-	assert(stream.write(reinterpret_cast<const char*>(ptr), size*nmemb).good());
-#endif
+	assert(stream.good());
 }
 
 template <>
