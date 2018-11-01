@@ -183,6 +183,7 @@
     <ClCompile Include="..\..\src\generated\rpg_enums.cpp" />
     <ClCompile Include="..\..\src\reader_struct.cpp" />
     <ClCompile Include="..\..\src\data.cpp" />
+    <ClCompile Include="..\..\src\encoder.cpp" />
     <ClCompile Include="..\..\src\ini.cpp" />
     <ClCompile Include="..\..\src\inireader.cpp" />
     <ClCompile Include="..\..\src\ldb_equipment.cpp" />
@@ -268,6 +269,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\command_codes.h" />
     <ClInclude Include="..\..\src\data.h" />
+    <ClInclude Include="..\..\src\encoder.h" />
     <ClInclude Include="..\..\src\ini.h" />
     <ClInclude Include="..\..\src\inireader.h" />
     <ClInclude Include="..\..\src\scope_guard.h" />
