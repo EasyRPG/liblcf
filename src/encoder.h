@@ -21,14 +21,14 @@ class Encoder {
 
 		~Encoder();
 
-		std::string Encode(const std::string& src);
-		std::string Decode(const std::string& src);
+		void Encode(std::string& str);
+		void Decode(std::string& str);
 
 		const std::string& GetEncoding() const;
 	private:
 		void Init();
 		void Reset();
-		std::string Convert(void* conv_dst, void* conv_src, const std::string& src);
+		void Convert(std::string& str, void* conv_dst, void* conv_src);
 	private:
 		void* _conv_storage = nullptr;
 		void* _conv_runtime = nullptr;

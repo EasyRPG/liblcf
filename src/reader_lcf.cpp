@@ -183,7 +183,7 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 void LcfReader::ReadString(std::string& ref, size_t size) {
 	ref.resize(size);
 	Read((size > 0 ? &ref.front(): nullptr), 1, size);
-	ref = Encode(ref);
+	Encode(ref);
 }
 
 bool LcfReader::IsOk() const {
@@ -270,11 +270,11 @@ const std::string& LcfReader::GetError() {
 	return error_str;
 }
 
-std::string LcfReader::Encode(const std::string& str_to_encode) {
+void LcfReader::Encode(std::string& str) {
 #ifdef LCF_SUPPORT_ICU
-	return encoder.Encode(str_to_encode);
+	encoder.Encode(str);
 #else
-	return ReaderUtil::Recode(str_to_encode, encoder.GetEncoding(), "UTF-8");
+	str = ReaderUtil::Recode(str, encoder.GetEncoding(), "UTF-8");
 #endif
 }
 

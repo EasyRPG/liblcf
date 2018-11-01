@@ -129,11 +129,13 @@ bool LcfWriter::IsOk() const {
 	return (stream.good());
 }
 
-std::string LcfWriter::Decode(const std::string& str_to_encode) {
+std::string LcfWriter::Decode(const std::string& str) {
 #ifdef LCF_SUPPORT_ICU
-	return encoder.Decode(str_to_encode);
+	auto copy = str;
+	encoder.Decode(copy);
+	return copy;
 #else
-	return ReaderUtil::Recode(str_to_encode, "UTF-8", encoder.GetEncoding());
+	return ReaderUtil::Recode(str, "UTF-8", encoder.GetEncoding());
 #endif
 }
 

@@ -39,12 +39,16 @@ Encoder::~Encoder() {
 	Reset();
 }
 
-std::string Encoder::Encode(const std::string& src) {
-	return Convert(_conv_runtime, _conv_storage, src);
+void Encoder::Encode(std::string& str) {
+	if (!_encoding.empty()) {
+		Convert(str, _conv_runtime, _conv_storage);
+	}
 }
 
-std::string Encoder::Decode(const std::string& src) {
-	return Convert(_conv_storage, _conv_runtime, src);
+void Encoder::Decode(std::string& str) {
+	if (!_encoding.empty()) {
+		Convert(str, _conv_storage, _conv_runtime);
+	}
 }
 
 void Encoder::Init() {
@@ -92,11 +96,9 @@ void Encoder::Reset() {
 }
 
 
-std::string Encoder::Convert(void* conv_dst_void, void* conv_src_void, const std::string& src) {
-	if (_encoding.empty()) {
-		return src;
-	}
+void Encoder::Convert(std::string& str, void* conv_dst_void, void* conv_src_void) {
 #ifdef LCF_SUPPORT_ICU
+	const auto& src = str;
 	auto* conv_dst = reinterpret_cast<UConverter*>(conv_dst_void);
 	auto* conv_src = reinterpret_cast<UConverter*>(conv_src_void);
 
@@ -115,10 +117,11 @@ std::string Encoder::Convert(void* conv_dst_void, void* conv_src_void, const std
 
 	if (U_FAILURE(status)) {
 		fprintf(stderr, "liblcf: ucnv_convertEx() error when encoding \"%s\": %s\n", src.c_str(), u_errorName(status));
-		return std::string();
+		_buffer.clear();
 	}
 
-	return std::string(_buffer.data(), dst_p);
+	str.assign(_buffer.data(), dst_p);
+	return;
 #endif
 }
 
