@@ -5,7 +5,10 @@ pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
 cmakeconfigdir = $(libdir)/cmake/liblcf
-cmakeconfig_DATA = builds/liblcf-config.cmake
+cmakeconfig_DATA = \
+	builds/liblcf-config.cmake \
+	builds/cmake/Modules/FindEXPAT.cmake \
+	builds/cmake/Modules/FindICU.cmake
 
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
