@@ -40,15 +40,17 @@ Encoder::~Encoder() {
 }
 
 void Encoder::Encode(std::string& str) {
-	if (!_encoding.empty()) {
-		Convert(str, _conv_runtime, _conv_storage);
+	if (_encoding.empty() || str.empty()) {
+		return;
 	}
+	Convert(str, _conv_runtime, _conv_storage);
 }
 
 void Encoder::Decode(std::string& str) {
-	if (!_encoding.empty()) {
-		Convert(str, _conv_storage, _conv_runtime);
+	if (_encoding.empty() || str.empty()) {
+		return;
 	}
+	Convert(str, _conv_storage, _conv_runtime);
 }
 
 void Encoder::Init() {
