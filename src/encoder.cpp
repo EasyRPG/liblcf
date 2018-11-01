@@ -85,6 +85,9 @@ void Encoder::Init() {
 
 	_conv_runtime = conv_runtime;
 	_conv_storage = conv_storage;
+#else
+	_conv_runtime = const_cast<char*>("UTF-8");
+	_conv_storage = const_cast<char*>(_encoding.c_str());
 #endif
 }
 
@@ -123,6 +126,33 @@ void Encoder::Convert(std::string& str, void* conv_dst_void, void* conv_src_void
 	}
 
 	str.assign(_buffer.data(), dst_p);
+	return;
+#else
+	auto* conv_dst = reinterpret_cast<const char*>(conv_dst_void);
+	auto* conv_src = reinterpret_cast<const char*>(conv_src_void);
+	iconv_t cd = iconv_open(conv_dst, conv_src);
+	if (cd == (iconv_t)-1)
+		return;
+	char *src = &str.front();
+	size_t src_left = str.size();
+	size_t dst_size = str.size() * 5 + 10;
+	_buffer.resize(dst_size);
+	char *dst = _buffer.data();
+	size_t dst_left = dst_size;
+#    ifdef ICONV_CONST
+	char ICONV_CONST *p = src;
+#    else
+	char *p = src;
+#    endif
+	char *q = dst;
+	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
+	iconv_close(cd);
+	if (status == (size_t) -1 || src_left > 0) {
+		str.clear();
+		return;
+	}
+	*q++ = '\0';
+	str.assign(dst, dst_size - dst_left);
 	return;
 #endif
 }

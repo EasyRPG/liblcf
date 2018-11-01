@@ -127,13 +127,9 @@ bool LcfWriter::IsOk() const {
 }
 
 std::string LcfWriter::Decode(const std::string& str) {
-#ifdef LCF_SUPPORT_ICU
 	auto copy = str;
 	encoder.Decode(copy);
 	return copy;
-#else
-	return ReaderUtil::Recode(str, "UTF-8", encoder.GetEncoding());
-#endif
 }
 
 #ifdef WORDS_BIGENDIAN

@@ -271,11 +271,7 @@ const std::string& LcfReader::GetError() {
 }
 
 void LcfReader::Encode(std::string& str) {
-#ifdef LCF_SUPPORT_ICU
 	encoder.Encode(str);
-#else
-	str = ReaderUtil::Recode(str, encoder.GetEncoding(), "UTF-8");
-#endif
 }
 
 int LcfReader::IntSize(unsigned int x) {
