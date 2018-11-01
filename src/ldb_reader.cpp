@@ -17,6 +17,10 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+void LDB_Reader::PrepareSave(RPG::Database& db) {
+	++db.system.save_count;
+}
+
 bool LDB_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {

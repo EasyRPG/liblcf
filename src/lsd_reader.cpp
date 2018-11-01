@@ -19,7 +19,6 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
-
 double LSD_Reader::ToTDateTime(std::time_t const t) {
 	// 25569 is UnixDateDelta: number of days between 1970-01-01 and 1900-01-01
 	return(t / 86400.0 + 25569.0);
@@ -32,6 +31,12 @@ std::time_t LSD_Reader::ToUnixTimestamp(double const ms) {
 double LSD_Reader::GenerateTimestamp(std::time_t const t) {
 	return ToTDateTime(t);
 }
+
+void LSD_Reader::PrepareSave(RPG::Save& save) {
+	++save.system.save_count;
+	save.title.timestamp = LSD_Reader::GenerateTimestamp();
+}
+
 
 std::unique_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
