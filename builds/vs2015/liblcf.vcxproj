@@ -270,6 +270,7 @@
     <ClInclude Include="..\..\src\data.h" />
     <ClInclude Include="..\..\src\ini.h" />
     <ClInclude Include="..\..\src\inireader.h" />
+    <ClInclude Include="..\..\src\scope_guard.h" />
     <ClInclude Include="..\..\src\lcf_options.h" />
     <ClInclude Include="..\..\src\ldb_reader.h" />
     <ClInclude Include="..\..\src\lmt_reader.h" />
