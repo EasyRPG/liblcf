@@ -81,12 +81,12 @@ namespace RPG {
 		Sound dodge_se;
 		Sound enemy_death_se;
 		Sound item_se;
-		uint8_t transition_out = 1;
-		uint8_t transition_in = 1;
-		uint8_t battle_start_fadeout = 1;
-		uint8_t battle_start_fadein = 1;
-		uint8_t battle_end_fadeout = 1;
-		uint8_t battle_end_fadein = 1;
+		int8_t transition_out = 1;
+		int8_t transition_in = 1;
+		int8_t battle_start_fadeout = 1;
+		int8_t battle_start_fadein = 1;
+		int8_t battle_end_fadeout = 1;
+		int8_t battle_end_fadein = 1;
 		bool teleport_allowed = true;
 		bool escape_allowed = true;
 		bool save_allowed = true;

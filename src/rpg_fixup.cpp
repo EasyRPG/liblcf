@@ -15,6 +15,21 @@
 #include "rpg_savemapinfo.h"
 #include "data.h"
 
+
+template <typename T, typename U>
+static void FixInt(T& val, U def) {
+	if (val < 0) {
+		val = def;
+	}
+};
+
+template <typename T, typename U>
+void UnFixInt(T& val, U def) {
+	if (val == def) {
+		val = -1;
+	}
+};
+
 void RPG::SaveActor::Fixup(int actor_id) {
 	ID = actor_id;
 
@@ -163,9 +178,14 @@ void RPG::SaveSystem::Fixup() {
 	if (item_se.name.empty()) {
 		item_se = system.item_se;
 	}
-	if (message_stretch == -1) {
-		message_stretch = system.message_stretch;
-	}
+
+	FixInt(message_stretch, system.message_stretch);
+	FixInt(transition_out, system.transition_out);
+	FixInt(transition_in, system.transition_in);
+	FixInt(battle_start_fadeout, system.battle_start_fadeout);
+	FixInt(battle_start_fadein, system.battle_start_fadein);
+	FixInt(battle_end_fadeout, system.battle_end_fadeout);
+	FixInt(battle_end_fadein, system.battle_end_fadein);
 }
 
 void RPG::SaveSystem::UnFixup() {
@@ -246,21 +266,22 @@ void RPG::SaveSystem::UnFixup() {
 	if (item_se == system.item_se) {
 		reset_se(item_se);
 	}
-	if (message_stretch == system.message_stretch) {
-		message_stretch = -1;
-	}
+
+	UnFixInt(message_stretch, system.message_stretch);
+	UnFixInt(transition_out, system.transition_out);
+	UnFixInt(transition_in, system.transition_in);
+	UnFixInt(battle_start_fadeout, system.battle_start_fadeout);
+	UnFixInt(battle_start_fadein, system.battle_start_fadein);
+	UnFixInt(battle_end_fadeout, system.battle_end_fadeout);
+	UnFixInt(battle_end_fadein, system.battle_end_fadein);
 }
 
 
 void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
-	if (chipset_id <= 0) {
-		chipset_id = map.chipset_id;
-	}
+	FixInt(chipset_id, map.chipset_id);
 }
 
 
 void RPG::SaveMapInfo::UnFixup(const RPG::Map& map) {
-	if (chipset_id == map.chipset_id) {
-		chipset_id = -1;
-	}
+	UnFixInt(chipset_id, map.chipset_id);
 }
