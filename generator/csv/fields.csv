@@ -979,7 +979,7 @@ SaveInventory,defeats,f,Int32,0x21,0,0,0,?
 SaveInventory,escapes,f,Int32,0x22,0,0,0,?
 SaveInventory,victories,f,Int32,0x23,0,0,0,?
 SaveInventory,turns,f,Int32,0x29,0,0,0,Number of turns passed in the latest battle fought. RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'.
-SaveInventory,steps,f,Int32,0x2A,0,0,0,?
+SaveInventory,steps,f,Int32,0x2A,0,0,0,Number of steps taken in the field.
 SaveTarget,map_id,f,Int32,0x01,0,0,0,int
 SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
