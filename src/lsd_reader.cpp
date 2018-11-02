@@ -134,7 +134,7 @@ std::unique_ptr<RPG::Save> LSD_Reader::LoadXml(std::istream& filestream) {
 	return std::unique_ptr<RPG::Save>(save);
 }
 
-RPG::Save LSD_Reader::ClearDefaults(const RPG::Save& save_in, const RPG::Map& map) {
+RPG::Save LSD_Reader::ClearDefaults(const RPG::Save& save_in, const RPG::MapInfo& map_info, const RPG::Map& map) {
 	auto save = save_in;
 
 	save.system.UnFixup();
@@ -142,6 +142,7 @@ RPG::Save LSD_Reader::ClearDefaults(const RPG::Save& save_in, const RPG::Map& ma
 		actor.UnFixup();
 	}
 	save.map_info.UnFixup(map);
+	save.map_info.UnFixup(map_info);
 
 	return save;
 }

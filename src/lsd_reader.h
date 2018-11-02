@@ -44,7 +44,7 @@ namespace LSD_Reader {
 	/**
 	 * Returns a copy of the save data with defaults cleared.
 	 */
-	RPG::Save ClearDefaults(const RPG::Save& save, const RPG::Map& map);
+	RPG::Save ClearDefaults(const RPG::Save& save, const RPG::MapInfo& map_info, const RPG::Map& map);
 
 	/**
 	 * Loads Savegame.

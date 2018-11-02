@@ -91,10 +91,6 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 	parallax_vert_speed = map.parallax_sy;
 }
 
-void RPG::SaveMapInfo::Setup(const RPG::MapInfo& map_info) {
-	encounter_rate = map_info.encounter_steps;
-}
-
 void RPG::SaveSystem::Setup() {
 	const RPG::System& system = Data::system;
 	screen = 0;

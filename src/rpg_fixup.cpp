@@ -281,7 +281,14 @@ void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
 	FixInt(chipset_id, map.chipset_id);
 }
 
+void RPG::SaveMapInfo::Fixup(const RPG::MapInfo& map) {
+	FixInt(encounter_rate, map.encounter_steps);
+}
 
 void RPG::SaveMapInfo::UnFixup(const RPG::Map& map) {
 	UnFixInt(chipset_id, map.chipset_id);
+}
+
+void RPG::SaveMapInfo::UnFixup(const RPG::MapInfo& map) {
+	UnFixInt(encounter_rate, map.encounter_steps);
 }
