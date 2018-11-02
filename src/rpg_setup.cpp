@@ -162,6 +162,10 @@ void RPG::Save::Setup() {
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
 	map_info.Setup();
+
+	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
+	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
+	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
 }
 
 void RPG::Actor::Setup() {
