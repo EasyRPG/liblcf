@@ -47,8 +47,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	current_hp = 0;
 	current_sp = 0;
 	battle_commands.resize(7, -1);
-	status_size = 0;
-	status.clear();
+	status.resize(Data::states.size());
 	changed_battle_commands = false;
 	class_id = -1;
 	row = -1;

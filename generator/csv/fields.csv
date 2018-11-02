@@ -949,7 +949,7 @@ SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
 SaveActor,current_sp,f,Int32,0x48,-1,0,0,int
 SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,0,1,array of (uncompressed) int32
-SaveActor,status_size,f,Int32,0x51,0,0,0,?
+SaveActor,status,t,Count<Int16>,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,0,0,int class-id

@@ -41,7 +41,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(int32_t, current_hp, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, current_sp, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands, 0, 1),
-	LCF_STRUCT_TYPED_FIELD(int32_t, status_size, 0, 0),
+	LCF_STRUCT_COUNT_FIELD(int16_t, status, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, status, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, changed_battle_commands, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, class_id, 0, 0),
