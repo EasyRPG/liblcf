@@ -1059,7 +1059,7 @@ SaveMapEvent,event_data,f,SaveEventData,0x6C,,0,0,chunks
 SaveMapInfo,position_x,f,Int32,0x01,0,0,0,int
 SaveMapInfo,position_y,f,Int32,0x02,0,0,0,int
 SaveMapInfo,encounter_rate,f,Int32,0x03,-1,0,0,int
-SaveMapInfo,chipset_id,f,Int32,0x05,0,0,0,int
+SaveMapInfo,chipset_id,f,Int32,0x05,-1,0,0,int
 SaveMapInfo,events,f,Array<SaveMapEvent>,0x0B,,1,0,? array
 SaveMapInfo,lower_tiles,f,Vector<UInt8>,0x15,,1,0,? [00 01 02 ... 8E 8F]
 SaveMapInfo,upper_tiles,f,Vector<UInt8>,0x16,,1,0,

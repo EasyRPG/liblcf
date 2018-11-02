@@ -35,7 +35,7 @@ namespace RPG {
 		int32_t position_x = 0;
 		int32_t position_y = 0;
 		int32_t encounter_rate = -1;
-		int32_t chipset_id = 0;
+		int32_t chipset_id = -1;
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;
