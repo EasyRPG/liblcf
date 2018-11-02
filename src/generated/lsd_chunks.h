@@ -46,8 +46,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveSystem {
 		enum Index {
-			/**  */
-			screen = 0x01,
+			/** The current Scene for RPG_RT. Legacy field only used by RPG_RT and not by EasyRPG Player. Savegames always have a scene of 5 (filemenu). */
+			scene = 0x01,
 			/**  */
 			frame_count = 0x0B,
 			/** string */

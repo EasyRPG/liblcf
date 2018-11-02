@@ -95,6 +95,7 @@ constexpr decltype(EventPage::kMoveSpeedTags) EventPage::kMoveSpeedTags;
 constexpr decltype(Map::kScrollTypeTags) Map::kScrollTypeTags;
 constexpr decltype(Map::kGeneratorModeTags) Map::kGeneratorModeTags;
 constexpr decltype(Map::kGeneratorTilesTags) Map::kGeneratorTilesTags;
+constexpr decltype(SaveSystem::kSceneTags) SaveSystem::kSceneTags;
 constexpr decltype(SaveSystem::kAtbModeTags) SaveSystem::kAtbModeTags;
 constexpr decltype(SavePicture::kMapLayerTags) SavePicture::kMapLayerTags;
 constexpr decltype(SavePicture::kBattleLayerTags) SavePicture::kBattleLayerTags;

@@ -26,6 +26,28 @@
 namespace RPG {
 	class SaveSystem {
 	public:
+		enum Scene {
+			Scene_map = 0,
+			Scene_menu = 1,
+			Scene_battle = 2,
+			Scene_shop = 3,
+			Scene_name = 4,
+			Scene_file = 5,
+			Scene_title = 6,
+			Scene_game_over = 7,
+			Scene_debug = 8
+		};
+		static constexpr auto kSceneTags = makeEnumTags<Scene>(
+			"map",
+			"menu",
+			"battle",
+			"shop",
+			"name",
+			"file",
+			"title",
+			"game_over",
+			"debug"
+		);
 		enum AtbMode {
 			AtbMode_atb_active = 0,
 			AtbMode_atb_wait = 1
@@ -38,7 +60,7 @@ namespace RPG {
 		void Setup();
 		void Fixup();
 		void UnFixup();
-		int32_t screen = 1;
+		int32_t scene = 0;
 		int32_t frame_count = 0;
 		std::string graphics_name;
 		int32_t message_stretch = -1;

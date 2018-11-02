@@ -135,6 +135,15 @@ SavePicture,BattleLayer,battlers_and_animations,2
 SavePicture,BattleLayer,weather,3
 SavePicture,BattleLayer,windows_and_status,4
 SavePicture,BattleLayer,timers,5
+SaveSystem,Scene,map,0
+SaveSystem,Scene,menu,1
+SaveSystem,Scene,battle,2
+SaveSystem,Scene,shop,3
+SaveSystem,Scene,name,4
+SaveSystem,Scene,file,5
+SaveSystem,Scene,title,6
+SaveSystem,Scene,game_over,7
+SaveSystem,Scene,debug,8
 SaveSystem,AtbMode,atb_active,0
 SaveSystem,AtbMode,atb_wait,1
 SaveVehicleLocation,VehicleType,none,0

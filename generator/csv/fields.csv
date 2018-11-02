@@ -705,7 +705,7 @@ SaveTitle,face3_name,f,String,0x19,,0,0,char[]: face filename
 SaveTitle,face3_id,f,Int32,0x1A,0,0,0,int: face id
 SaveTitle,face4_name,f,String,0x1B,,0,0,char[]: face filename
 SaveTitle,face4_id,f,Int32,0x1C,0,0,0,int: face id
-SaveSystem,screen,f,Int32,0x01,1,0,0,
+SaveSystem,scene,f,Enum<SaveSystem_Scene>,0x01,0,1,0,The current Scene for RPG_RT. Legacy field only used by RPG_RT and not by EasyRPG Player. Savegames always have a scene of 5 (filemenu).
 SaveSystem,frame_count,f,Int32,0x0B,0,0,0,
 SaveSystem,graphics_name,f,String,0x15,'',0,0,string
 SaveSystem,message_stretch,f,Int32,0x16,-1,0,0,Integer

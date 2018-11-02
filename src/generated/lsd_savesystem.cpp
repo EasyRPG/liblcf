@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT SaveSystem
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, screen, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, scene, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, frame_count, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, graphics_name, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, message_stretch, 0, 0),

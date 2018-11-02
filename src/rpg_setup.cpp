@@ -92,7 +92,6 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 
 void RPG::SaveSystem::Setup() {
 	const RPG::System& system = Data::system;
-	screen = 0;
 	frame_count = 0;
 	graphics_name = system.system_name;
 	switches_size = Data::switches.size();
