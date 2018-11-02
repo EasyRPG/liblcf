@@ -165,6 +165,10 @@ void RPG::Save::Setup() {
 	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
 	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
 	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
+
+	if (targets.empty()) {
+		targets.resize(1);
+	}
 }
 
 void RPG::Actor::Setup() {
