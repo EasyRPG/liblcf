@@ -118,6 +118,14 @@ void XmlReader::Read<int32_t>(int32_t& val, const std::string& data) {
 }
 
 template <>
+void XmlReader::Read<int8_t>(int8_t& val, const std::string& data) {
+	std::istringstream s(data);
+	int x;
+	s >> x;
+	val = x;
+}
+
+template <>
 void XmlReader::Read<uint8_t>(uint8_t& val, const std::string& data) {
 	std::istringstream s(data);
 	int x;

@@ -68,6 +68,7 @@ template <> struct TypeCategory<RPG::Parameters>					{ static const Category::In
 template <> struct TypeCategory<RPG::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<RPG::Rect>						{ static const Category::Index value = Category::RawStruct; };
 
+template <>	struct TypeCategory<int8_t> 						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<uint8_t>						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<int16_t>						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<uint32_t>						{ static const Category::Index value = Category::Primitive; };

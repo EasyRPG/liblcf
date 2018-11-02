@@ -57,6 +57,11 @@ void LcfReader::Read<bool>(bool& ref) {
 }
 
 template <>
+void LcfReader::Read<int8_t>(int8_t& ref) {
+	Read(&ref, 1, 1);
+}
+
+template <>
 void LcfReader::Read<uint8_t>(uint8_t& ref) {
 	Read(&ref, 1, 1);
 }

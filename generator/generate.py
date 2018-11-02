@@ -30,6 +30,7 @@ cpp_types = {
     'UInt8': 'uint8_t',
     'UInt16': 'uint16_t',
     'UInt32': 'uint32_t',
+    'Int8': 'int8_t',
     'Int16': 'int16_t',
     'Int32': 'int32_t',
     'String': 'std::string',

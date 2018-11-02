@@ -30,6 +30,11 @@ void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 }
 
 template <>
+void LcfWriter::Write<int8_t>(int8_t val) {
+	Write(&val, 1, 1);
+}
+
+template <>
 void LcfWriter::Write<uint8_t>(uint8_t val) {
 	Write(&val, 1, 1);
 }
