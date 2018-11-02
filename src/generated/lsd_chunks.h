@@ -828,6 +828,14 @@ namespace LSD_Reader {
 			event_data = 0x01
 		};
 	};
+	struct ChunkSavePanorama {
+		enum Index {
+			/** Panorama X position */
+			pan_x = 0x01,
+			/** Panorama Y position */
+			pan_y = 0x02
+		};
+	};
 	struct ChunkSave {
 		enum Index {
 			/** RPG::SaveTitle */
@@ -854,8 +862,8 @@ namespace LSD_Reader {
 			targets = 0x6E,
 			/** RPG::SaveMapInfo */
 			map_info = 0x6F,
-			/** Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object. */
-			panorama_data = 0x70,
+			/** Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object. */
+			panorama = 0x70,
 			/** RPG::SaveEventData */
 			events = 0x71,
 			/** array of RPG::SaveCommonEvent */

@@ -100,6 +100,7 @@ add_library(lcf
 	src/generated/lsd_saveinventory.cpp
 	src/generated/lsd_savemapevent.cpp
 	src/generated/lsd_savemapinfo.cpp
+	src/generated/lsd_savepanorama.cpp
 	src/generated/lsd_savepartylocation.cpp
 	src/generated/lsd_savepicture.cpp
 	src/generated/lsd_savescreen.cpp

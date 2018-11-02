@@ -1071,6 +1071,8 @@ SaveMapInfo,parallax_horz_speed,f,Int32,0x24,0,0,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,0,0,bool
 SaveMapInfo,parallax_vert_speed,f,Int32,0x26,0,0,0,int
 SaveCommonEvent,event_data,f,SaveEventData,0x01,,0,0,chunks
+SavePanorama,pan_x,f,Int32,0x01,0,0,0,Panorama X position
+SavePanorama,pan_y,f,Int32,0x02,0,0,0,Panorama Y position
 Save,title,f,SaveTitle,0x64,,0,0,RPG::SaveTitle
 Save,system,f,SaveSystem,0x65,,0,0,RPG::SaveSystem
 Save,screen,f,SaveScreen,0x66,,0,0,RPG::SaveScreen
@@ -1083,7 +1085,7 @@ Save,actors,f,Array<SaveActor>,0x6C,,1,0,array of RPG::SaveActor
 Save,inventory,f,SaveInventory,0x6D,,0,0,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of RPG::SaveTarget
 Save,map_info,f,SaveMapInfo,0x6F,,0,0,RPG::SaveMapInfo
-Save,panorama_data,f,Int32,0x70,-1,0,0,Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object.
+Save,panorama,f,SavePanorama,0x70,,1,0,Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object.
 Save,events,f,SaveEventData,0x71,,0,0,RPG::SaveEventData
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,0,0,

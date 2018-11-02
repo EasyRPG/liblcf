@@ -96,6 +96,7 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_saveinventory.cpp \
 	src/generated/lsd_savemapevent.cpp \
 	src/generated/lsd_savemapinfo.cpp \
+	src/generated/lsd_savepanorama.cpp \
 	src/generated/lsd_savepartylocation.cpp \
 	src/generated/lsd_savepicture.cpp \
 	src/generated/lsd_savescreen.cpp \
@@ -173,6 +174,7 @@ pkginclude_HEADERS = \
 	src/generated/rpg_saveinventory.h \
 	src/generated/rpg_savemapevent.h \
 	src/generated/rpg_savemapinfo.h \
+	src/generated/rpg_savepanorama.h \
 	src/generated/rpg_savepartylocation.h \
 	src/generated/rpg_savepicture.h \
 	src/generated/lsd_savepicture_flags.h \
