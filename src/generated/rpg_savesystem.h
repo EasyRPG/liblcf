@@ -42,10 +42,8 @@ namespace RPG {
 		std::string graphics_name;
 		int32_t message_stretch = -1;
 		int32_t font_id = 0;
-		int32_t switches_size = 0;
 		std::vector<bool> switches;
-		int32_t variables_size = 0;
-		std::vector<uint32_t> variables;
+		std::vector<int32_t> variables;
 		int32_t message_transparent = 0;
 		int32_t message_position = 2;
 		int32_t message_prevent_overlap = 1;
