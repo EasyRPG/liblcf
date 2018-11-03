@@ -29,8 +29,17 @@
 #define ICONV_CONST const
 #endif
 
+static std::string filterUtf8Compatible(std::string enc) {
+#ifdef LCF_SUPPORT_ICU
+	if (ucnv_compareNames(enc.c_str(), "UTF-8") == 0) {
+		return "";
+	}
+#endif
+	return enc;
+}
+
 Encoder::Encoder(std::string encoding)
-	: _encoding(std::move(encoding))
+	: _encoding(filterUtf8Compatible(std::move(encoding)))
 {
 	Init();
 }
