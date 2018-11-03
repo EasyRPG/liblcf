@@ -25,7 +25,7 @@ class EnumTags {
 		using reverse_iterator = std::reverse_iterator<iterator>;
 
         template <size_t... LN>
-		explicit constexpr EnumTags(const char (&...literals)[LN]) : _tags{literals...} {}
+		explicit constexpr EnumTags(const char (&...literals)[LN]) : _tags{{literals...}} {}
 
 		constexpr const char* tag(E etag) const { return tag(int_type(etag)); }
 		constexpr const char* tag(int_type idx) const { return _tags[idx]; }
