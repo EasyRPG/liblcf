@@ -20,8 +20,8 @@
 #define LCF_CURRENT_STRUCT SaveActor
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::string, title, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, name, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::string, title, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, sprite_name, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, sprite_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, sprite_flags, 0, 0),
@@ -40,7 +40,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, equipped, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, current_hp, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, current_sp, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(std::vector<int32_t>, battle_commands, 0, 1),
 	LCF_STRUCT_TYPED_FIELD(int32_t, status_size, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(std::vector<int16_t>, status, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, changed_battle_commands, 0, 0),

@@ -1,7 +1,6 @@
 #Structure,Method,Headers
 Actor,void Setup(),
 Chipset,void Init(),
-MapInfo,void Init(),
 Save,void Setup(),
 SaveActor,void Setup(int actor_id),
 SaveActor,void Fixup(int actor_id),

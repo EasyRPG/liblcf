@@ -83,6 +83,37 @@ namespace RPG {
 	{%- endif %}
 	{%- endfor %}
 	};
+	{%- if is_comparable %}
+
+	inline bool operator==(const {{ struct_name }}& l, const {{ struct_name }}& r) {
+	{%- for field in fields[struct_name]|field_is_used -%}
+		{% if loop.first %}
+		return
+		{%- else %}
+		&&
+		{%- endif %} l.{{ field.name }} == r.{{ field.name }} {%- if loop.last %};{%- endif %}
+	{%- endfor %}
+	}
+
+	inline bool operator!=(const {{ struct_name }}& l, const {{ struct_name }}& r) {
+		return !(l == r);
+	}
+	{%- endif %}
+
+	{%- for field in fields[struct_name]|field_is_used %}
+	{%- if not field.size %}
+	{%- if field.type.endswith("_Flags") %}
+
+	inline bool operator==(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+		return !(l == r);
+	}
+	{%- endif %}
+	{%- endif %}
+	{%- endfor %}
 }
 
 #endif

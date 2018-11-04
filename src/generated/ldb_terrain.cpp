@@ -29,7 +29,7 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(bool, airship_pass, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, airship_land, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, bush_depth, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::Sound, footstep, 0, 1),
+	LCF_STRUCT_TYPED_FIELD(RPG::Sound, footstep, 1, 1),
 	LCF_STRUCT_TYPED_FIELD(bool, on_damage_se, 0, 1),
 	LCF_STRUCT_TYPED_FIELD(int32_t, background_type, 0, 1),
 	LCF_STRUCT_TYPED_FIELD(std::string, background_a_name, 0, 1),

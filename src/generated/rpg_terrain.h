@@ -93,6 +93,14 @@ namespace RPG {
 		int32_t grid_b = 392;
 		int32_t grid_c = 16000;
 	};
+
+	inline bool operator==(const Terrain::Flags& l, const Terrain::Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const Terrain::Flags& l, const Terrain::Flags& r) {
+		return !(l == r);
+	}
 }
 
 #endif

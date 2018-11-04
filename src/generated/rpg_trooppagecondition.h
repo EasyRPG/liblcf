@@ -65,6 +65,14 @@ namespace RPG {
 		int32_t command_actor_id = 1;
 		int32_t command_id = 1;
 	};
+
+	inline bool operator==(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
+		return !(l == r);
+	}
 }
 
 #endif

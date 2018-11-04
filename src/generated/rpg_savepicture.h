@@ -123,6 +123,14 @@ namespace RPG {
 		double current_rotation = 0.0;
 		int32_t current_waver = 0;
 	};
+
+	inline bool operator==(const SavePicture::Flags& l, const SavePicture::Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const SavePicture::Flags& l, const SavePicture::Flags& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT EventPageCondition
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, switch_a_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, switch_b_id, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, variable_id, 0, 0),
