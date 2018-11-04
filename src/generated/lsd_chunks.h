@@ -400,13 +400,13 @@ namespace LSD_Reader {
 			menu_calling = 0x6C,
 			/**  */
 			pan_state = 0x6F,
-			/** int */
+			/** Number of 1/16 pixels to the left of player */
 			pan_current_x = 0x70,
-			/** ? */
+			/** Number of 1/16 pixels above the player */
 			pan_current_y = 0x71,
-			/** ? */
+			/** Number of 1/16 pixels to the left of player when current scroll finishes */
 			pan_finish_x = 0x72,
-			/** ? */
+			/** Number of 1/16 pixels above the player when current scroll finishes. */
 			pan_finish_y = 0x73,
 			/** speed in the scrolls of the screen - shown in sixteenth pixels. */
 			pan_speed = 0x79,
