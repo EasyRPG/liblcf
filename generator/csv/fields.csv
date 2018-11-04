@@ -710,10 +710,10 @@ SaveSystem,frame_count,f,Int32,0x0B,0,0,0,
 SaveSystem,graphics_name,f,String,0x15,'',0,0,string
 SaveSystem,message_stretch,f,Int32,0x16,-1,0,0,Integer
 SaveSystem,font_id,f,Int32,0x17,0,0,0,Integer
-SaveSystem,switches_size,f,Int32,0x1F,0,0,0,
+SaveSystem,switches,t,Count<Boolean>,0x1F,0,0,0,
 SaveSystem,switches,f,Vector<Boolean>,0x20,,1,0,
-SaveSystem,variables_size,f,Int32,0x21,0,0,0,
-SaveSystem,variables,f,Vector<UInt32>,0x22,,1,0,
+SaveSystem,variables,t,Count<Int32>,0x21,0,0,0,
+SaveSystem,variables,f,Vector<Int32>,0x22,,1,0,
 SaveSystem,message_transparent,f,Int32,0x29,0,0,0,
 SaveSystem,message_position,f,Int32,0x2A,2,0,0,
 SaveSystem,message_prevent_overlap,f,Int32,0x2B,1,0,0,

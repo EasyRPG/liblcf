@@ -100,12 +100,6 @@ void RPG::SaveSystem::Setup() {
 	screen = 0;
 	frame_count = 0;
 	graphics_name = system.system_name;
-	switches_size = Data::switches.size();
-	switches.clear();
-	switches.resize(switches_size);
-	variables_size = Data::variables.size();
-	variables.clear();
-	variables.resize(variables_size);
 	face_name = "";
 	face_id = -1;
 	face_right = false;

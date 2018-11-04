@@ -58,12 +58,8 @@ void RPG::SaveSystem::Fixup() {
 	if (graphics_name.empty()) {
 		graphics_name = system.system_name;
 	}
-	if (switches.size() < Data::switches.size()) {
-		switches.resize(Data::switches.size());
-	}
-	if (variables.size() < Data::variables.size()) {
-		variables.resize(Data::variables.size());
-	}
+	switches.reserve(Data::switches.size());
+	variables.reserve(Data::variables.size());
 	if (battle_music.name.empty()) {
 		battle_music = system.battle_music;
 	}
