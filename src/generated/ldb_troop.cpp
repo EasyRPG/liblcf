@@ -16,18 +16,58 @@
 
 // Read Troop.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT Troop
+template <>
+char const* const Struct<RPG::Troop>::name = "Troop";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopMember>, members, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, auto_alignment, 0, 0),
-	LCF_STRUCT_SIZE_FIELD(bool, terrain_set, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<bool>, terrain_set, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, appear_randomly, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::TroopPage>, pages, 1, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::Troop> const* Struct<RPG::Troop>::fields[] = {
+	new TypedField<RPG::Troop, std::string>(
+		&RPG::Troop::name,
+		LDB_Reader::ChunkTroop::name,
+		"name",
+		0,
+		0
+	),
+	new TypedField<RPG::Troop, std::vector<RPG::TroopMember>>(
+		&RPG::Troop::members,
+		LDB_Reader::ChunkTroop::members,
+		"members",
+		1,
+		0
+	),
+	new TypedField<RPG::Troop, bool>(
+		&RPG::Troop::auto_alignment,
+		LDB_Reader::ChunkTroop::auto_alignment,
+		"auto_alignment",
+		0,
+		0
+	),
+	new SizeField<RPG::Troop, bool>(
+		&RPG::Troop::terrain_set,
+		LDB_Reader::ChunkTroop::terrain_set_size,
+		0,
+		0
+	),
+	new TypedField<RPG::Troop, std::vector<bool>>(
+		&RPG::Troop::terrain_set,
+		LDB_Reader::ChunkTroop::terrain_set,
+		"terrain_set",
+		1,
+		0
+	),
+	new TypedField<RPG::Troop, bool>(
+		&RPG::Troop::appear_randomly,
+		LDB_Reader::ChunkTroop::appear_randomly,
+		"appear_randomly",
+		0,
+		0
+	),
+	new TypedField<RPG::Troop, std::vector<RPG::TroopPage>>(
+		&RPG::Troop::pages,
+		LDB_Reader::ChunkTroop::pages,
+		"pages",
+		1,
+		0
+	),
+	NULL
+};

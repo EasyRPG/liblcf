@@ -16,53 +16,304 @@
 
 // Read SaveMapEvent.
 
-#define LCF_CHUNK_SUFFIX LSD_Reader
-#define LCF_CURRENT_STRUCT SaveMapEvent
+template <>
+char const* const Struct<RPG::SaveMapEvent>::name = "SaveMapEvent";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(bool, active, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, position_x, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, position_y, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, direction, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, sprite_direction, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, anim_frame, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, transparency, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, remaining_step, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, move_frequency, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, layer, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, overlap_forbidden, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, animation_type, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, lock_facing, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, move_speed, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::MoveRoute, move_route, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, move_route_overwrite, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, move_route_index, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, move_route_repeated, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, route_through, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, anim_paused, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, through, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, stop_count, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, anim_count, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, max_stop_count, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, jumping, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, begin_jump_x, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, begin_jump_y, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, pause, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, flying, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::string, sprite_name, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, sprite_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, processed, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_red, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_green, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_blue, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(double, flash_current_level, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, flash_time_left, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, running, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, original_move_route_index, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, pending, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::active,
+		LSD_Reader::ChunkSaveMapEvent::active,
+		"active",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::map_id,
+		LSD_Reader::ChunkSaveMapEvent::map_id,
+		"map_id",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::position_x,
+		LSD_Reader::ChunkSaveMapEvent::position_x,
+		"position_x",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::position_y,
+		LSD_Reader::ChunkSaveMapEvent::position_y,
+		"position_y",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::direction,
+		LSD_Reader::ChunkSaveMapEvent::direction,
+		"direction",
+		1,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::sprite_direction,
+		LSD_Reader::ChunkSaveMapEvent::sprite_direction,
+		"sprite_direction",
+		1,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::anim_frame,
+		LSD_Reader::ChunkSaveMapEvent::anim_frame,
+		"anim_frame",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::transparency,
+		LSD_Reader::ChunkSaveMapEvent::transparency,
+		"transparency",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::remaining_step,
+		LSD_Reader::ChunkSaveMapEvent::remaining_step,
+		"remaining_step",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::move_frequency,
+		LSD_Reader::ChunkSaveMapEvent::move_frequency,
+		"move_frequency",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::layer,
+		LSD_Reader::ChunkSaveMapEvent::layer,
+		"layer",
+		1,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::overlap_forbidden,
+		LSD_Reader::ChunkSaveMapEvent::overlap_forbidden,
+		"overlap_forbidden",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::animation_type,
+		LSD_Reader::ChunkSaveMapEvent::animation_type,
+		"animation_type",
+		1,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::lock_facing,
+		LSD_Reader::ChunkSaveMapEvent::lock_facing,
+		"lock_facing",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::move_speed,
+		LSD_Reader::ChunkSaveMapEvent::move_speed,
+		"move_speed",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, RPG::MoveRoute>(
+		&RPG::SaveMapEvent::move_route,
+		LSD_Reader::ChunkSaveMapEvent::move_route,
+		"move_route",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::move_route_overwrite,
+		LSD_Reader::ChunkSaveMapEvent::move_route_overwrite,
+		"move_route_overwrite",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::move_route_index,
+		LSD_Reader::ChunkSaveMapEvent::move_route_index,
+		"move_route_index",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::move_route_repeated,
+		LSD_Reader::ChunkSaveMapEvent::move_route_repeated,
+		"move_route_repeated",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::route_through,
+		LSD_Reader::ChunkSaveMapEvent::route_through,
+		"route_through",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::anim_paused,
+		LSD_Reader::ChunkSaveMapEvent::anim_paused,
+		"anim_paused",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::through,
+		LSD_Reader::ChunkSaveMapEvent::through,
+		"through",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::stop_count,
+		LSD_Reader::ChunkSaveMapEvent::stop_count,
+		"stop_count",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::anim_count,
+		LSD_Reader::ChunkSaveMapEvent::anim_count,
+		"anim_count",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::max_stop_count,
+		LSD_Reader::ChunkSaveMapEvent::max_stop_count,
+		"max_stop_count",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::jumping,
+		LSD_Reader::ChunkSaveMapEvent::jumping,
+		"jumping",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::begin_jump_x,
+		LSD_Reader::ChunkSaveMapEvent::begin_jump_x,
+		"begin_jump_x",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::begin_jump_y,
+		LSD_Reader::ChunkSaveMapEvent::begin_jump_y,
+		"begin_jump_y",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::pause,
+		LSD_Reader::ChunkSaveMapEvent::pause,
+		"pause",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::flying,
+		LSD_Reader::ChunkSaveMapEvent::flying,
+		"flying",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, std::string>(
+		&RPG::SaveMapEvent::sprite_name,
+		LSD_Reader::ChunkSaveMapEvent::sprite_name,
+		"sprite_name",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::sprite_id,
+		LSD_Reader::ChunkSaveMapEvent::sprite_id,
+		"sprite_id",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::processed,
+		LSD_Reader::ChunkSaveMapEvent::processed,
+		"processed",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::flash_red,
+		LSD_Reader::ChunkSaveMapEvent::flash_red,
+		"flash_red",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::flash_green,
+		LSD_Reader::ChunkSaveMapEvent::flash_green,
+		"flash_green",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::flash_blue,
+		LSD_Reader::ChunkSaveMapEvent::flash_blue,
+		"flash_blue",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, double>(
+		&RPG::SaveMapEvent::flash_current_level,
+		LSD_Reader::ChunkSaveMapEvent::flash_current_level,
+		"flash_current_level",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::flash_time_left,
+		LSD_Reader::ChunkSaveMapEvent::flash_time_left,
+		"flash_time_left",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::running,
+		LSD_Reader::ChunkSaveMapEvent::running,
+		"running",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, int32_t>(
+		&RPG::SaveMapEvent::original_move_route_index,
+		LSD_Reader::ChunkSaveMapEvent::original_move_route_index,
+		"original_move_route_index",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::pending,
+		LSD_Reader::ChunkSaveMapEvent::pending,
+		"pending",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, RPG::SaveEventData>(
+		&RPG::SaveMapEvent::event_data,
+		LSD_Reader::ChunkSaveMapEvent::event_data,
+		"event_data",
+		0,
+		0
+	),
+	NULL
+};

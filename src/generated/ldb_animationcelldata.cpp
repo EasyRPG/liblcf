@@ -16,21 +16,80 @@
 
 // Read AnimationCellData.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT AnimationCellData
+template <>
+char const* const Struct<RPG::AnimationCellData>::name = "AnimationCellData";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, valid, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, cell_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, x, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, y, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, zoom, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_red, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_green, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_blue, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, tone_gray, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, transparency, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::AnimationCellData> const* Struct<RPG::AnimationCellData>::fields[] = {
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::valid,
+		LDB_Reader::ChunkAnimationCellData::valid,
+		"valid",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::cell_id,
+		LDB_Reader::ChunkAnimationCellData::cell_id,
+		"cell_id",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::x,
+		LDB_Reader::ChunkAnimationCellData::x,
+		"x",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::y,
+		LDB_Reader::ChunkAnimationCellData::y,
+		"y",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::zoom,
+		LDB_Reader::ChunkAnimationCellData::zoom,
+		"zoom",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::tone_red,
+		LDB_Reader::ChunkAnimationCellData::tone_red,
+		"tone_red",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::tone_green,
+		LDB_Reader::ChunkAnimationCellData::tone_green,
+		"tone_green",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::tone_blue,
+		LDB_Reader::ChunkAnimationCellData::tone_blue,
+		"tone_blue",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::tone_gray,
+		LDB_Reader::ChunkAnimationCellData::tone_gray,
+		"tone_gray",
+		0,
+		0
+	),
+	new TypedField<RPG::AnimationCellData, int32_t>(
+		&RPG::AnimationCellData::transparency,
+		LDB_Reader::ChunkAnimationCellData::transparency,
+		"transparency",
+		0,
+		0
+	),
+	NULL
+};

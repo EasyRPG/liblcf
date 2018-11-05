@@ -16,21 +16,80 @@
 
 // Read EventPageCondition.
 
-#define LCF_CHUNK_SUFFIX LMU_Reader
-#define LCF_CURRENT_STRUCT EventPageCondition
+template <>
+char const* const Struct<RPG::EventPageCondition>::name = "EventPageCondition";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(RPG::EventPageCondition::Flags, flags, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, switch_a_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, switch_b_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, variable_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, variable_value, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, item_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, actor_id, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, timer_sec, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, timer2_sec, 0, 1),
-	LCF_STRUCT_TYPED_FIELD(int32_t, compare_operator, 0, 1),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[] = {
+	new TypedField<RPG::EventPageCondition, RPG::EventPageCondition::Flags>(
+		&RPG::EventPageCondition::flags,
+		LMU_Reader::ChunkEventPageCondition::flags,
+		"flags",
+		1,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::switch_a_id,
+		LMU_Reader::ChunkEventPageCondition::switch_a_id,
+		"switch_a_id",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::switch_b_id,
+		LMU_Reader::ChunkEventPageCondition::switch_b_id,
+		"switch_b_id",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::variable_id,
+		LMU_Reader::ChunkEventPageCondition::variable_id,
+		"variable_id",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::variable_value,
+		LMU_Reader::ChunkEventPageCondition::variable_value,
+		"variable_value",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::item_id,
+		LMU_Reader::ChunkEventPageCondition::item_id,
+		"item_id",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::actor_id,
+		LMU_Reader::ChunkEventPageCondition::actor_id,
+		"actor_id",
+		1,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::timer_sec,
+		LMU_Reader::ChunkEventPageCondition::timer_sec,
+		"timer_sec",
+		0,
+		0
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::timer2_sec,
+		LMU_Reader::ChunkEventPageCondition::timer2_sec,
+		"timer2_sec",
+		0,
+		1
+	),
+	new TypedField<RPG::EventPageCondition, int32_t>(
+		&RPG::EventPageCondition::compare_operator,
+		LMU_Reader::ChunkEventPageCondition::compare_operator,
+		"compare_operator",
+		0,
+		1
+	),
+	NULL
+};

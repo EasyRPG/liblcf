@@ -16,15 +16,37 @@
 
 // Read MoveRoute.
 
-#define LCF_CHUNK_SUFFIX LMU_Reader
-#define LCF_CURRENT_STRUCT MoveRoute
+template <>
+char const* const Struct<RPG::MoveRoute>::name = "MoveRoute";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_SIZE_FIELD(RPG::MoveCommand, move_commands, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::MoveCommand>, move_commands, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, repeat, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, skippable, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
+	new SizeField<RPG::MoveRoute, RPG::MoveCommand>(
+		&RPG::MoveRoute::move_commands,
+		LMU_Reader::ChunkMoveRoute::move_commands_size,
+		0,
+		0
+	),
+	new TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand>>(
+		&RPG::MoveRoute::move_commands,
+		LMU_Reader::ChunkMoveRoute::move_commands,
+		"move_commands",
+		1,
+		0
+	),
+	new TypedField<RPG::MoveRoute, bool>(
+		&RPG::MoveRoute::repeat,
+		LMU_Reader::ChunkMoveRoute::repeat,
+		"repeat",
+		0,
+		0
+	),
+	new TypedField<RPG::MoveRoute, bool>(
+		&RPG::MoveRoute::skippable,
+		LMU_Reader::ChunkMoveRoute::skippable,
+		"skippable",
+		0,
+		0
+	),
+	NULL
+};

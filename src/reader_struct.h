@@ -19,8 +19,6 @@
 #include <memory>
 #include <cstring>
 #include <cstdlib>
-#include <boost/preprocessor/cat.hpp>
-#include <boost/preprocessor/stringize.hpp>
 #include "reader_lcf.h"
 #include "writer_lcf.h"
 #include "reader_xml.h"
@@ -798,62 +796,5 @@ private:
 	const char* const name;
 
 };
-
-// Macros
-
-// needs define of
-// - LCF_CHUNK_SUFFIX
-// - LCF_CURRENT_STRUCT
-
-#define LCF_STRUCT_FIELDS_BEGIN() \
-	template <> \
-	char const* const Struct<RPG::LCF_CURRENT_STRUCT>::name = BOOST_PP_STRINGIZE(LCF_CURRENT_STRUCT); \
-	template <> \
-	Field<RPG::LCF_CURRENT_STRUCT> const* Struct<RPG::LCF_CURRENT_STRUCT>::fields[] = { \
-
-#define LCF_STRUCT_FIELDS_END() \
-	NULL }; \
-
-#define LCF_STRUCT_TYPED_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
-	new TypedField<RPG::LCF_CURRENT_STRUCT, T>( \
-		  &RPG::LCF_CURRENT_STRUCT::REF \
-		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
-		, BOOST_PP_STRINGIZE(REF) \
-		, PRESENTIFDEFAULT \
-		, IS2K3 \
-	) \
-
-#define LCF_STRUCT_DATABASE_VERSION_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
-	new DatabaseVersionField<RPG::LCF_CURRENT_STRUCT, T>( \
-		  &RPG::LCF_CURRENT_STRUCT::REF \
-		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
-		, BOOST_PP_STRINGIZE(REF) \
-		, PRESENTIFDEFAULT \
-		, IS2K3 \
-	) \
-
-#define LCF_STRUCT_EMPTY_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
-	new EmptyField<RPG::LCF_CURRENT_STRUCT>( \
-		  LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::REF \
-		, BOOST_PP_STRINGIZE(REF) \
-		, PRESENTIFDEFAULT \
-		, IS2K3 \
-	) \
-
-#define LCF_STRUCT_SIZE_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
-	new SizeField<RPG::LCF_CURRENT_STRUCT, T>( \
-		  &RPG::LCF_CURRENT_STRUCT::REF \
-		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
-		, PRESENTIFDEFAULT \
-		, IS2K3 \
-	) \
-
-#define LCF_STRUCT_COUNT_FIELD(T, REF, PRESENTIFDEFAULT, IS2K3) \
-	new CountField<RPG::LCF_CURRENT_STRUCT, T>( \
-		  &RPG::LCF_CURRENT_STRUCT::REF \
-		, LCF_CHUNK_SUFFIX::BOOST_PP_CAT(Chunk, LCF_CURRENT_STRUCT)::BOOST_PP_CAT(REF, _size) \
-		, PRESENTIFDEFAULT \
-		, IS2K3 \
-	) \
 
 #endif

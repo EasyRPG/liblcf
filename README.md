@@ -79,6 +79,5 @@ See the file COPYING for copying conditions.
 
 ### 3rd party software
 
-liblcf code includes a copy of Boost Preprocessor Cat and Stringize
-(Boost Software License 1.0) and a copy of inih (New BSD license).
+liblcf code includes a copy of inih (New BSD license).
 See the source code comment headers for license details.
