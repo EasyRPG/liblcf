@@ -56,6 +56,7 @@ lsd,SaveEventData,0,0
 lsd,SaveMapEvent,1,0
 lsd,SaveMapInfo,0,0
 lsd,SaveCommonEvent,1,0
+lsd,SavePanorama,0,0
 lsd,Save,0,0
 lmt,Rect,,0
 lmt,Encounter,1,0

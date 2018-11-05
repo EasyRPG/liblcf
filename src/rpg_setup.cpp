@@ -47,8 +47,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	current_hp = 0;
 	current_sp = 0;
 	battle_commands.resize(7, -1);
-	status_size = 0;
-	status.clear();
+	status.resize(Data::states.size());
 	changed_battle_commands = false;
 	class_id = -1;
 	row = -1;
@@ -91,13 +90,8 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 	parallax_vert_speed = map.parallax_sy;
 }
 
-void RPG::SaveMapInfo::Setup(const RPG::MapInfo& map_info) {
-	encounter_rate = map_info.encounter_steps;
-}
-
 void RPG::SaveSystem::Setup() {
 	const RPG::System& system = Data::system;
-	screen = 0;
 	frame_count = 0;
 	graphics_name = system.system_name;
 	face_name = "";
@@ -160,6 +154,14 @@ void RPG::Save::Setup() {
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
 	map_info.Setup();
+
+	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
+	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
+	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
+
+	if (targets.empty()) {
+		targets.resize(1);
+	}
 }
 
 void RPG::Actor::Setup() {

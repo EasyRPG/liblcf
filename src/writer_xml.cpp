@@ -40,6 +40,11 @@ void XmlWriter::Write<int32_t>(const int32_t& val) {
 }
 
 template <>
+void XmlWriter::Write<int8_t>(const int8_t& val) {
+	WriteInt((int) val);
+}
+
+template <>
 void XmlWriter::Write<uint8_t>(const uint8_t& val) {
 	WriteInt((int) val);
 }

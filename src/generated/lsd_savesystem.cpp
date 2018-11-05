@@ -20,7 +20,7 @@
 #define LCF_CURRENT_STRUCT SaveSystem
 
 LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, screen, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int32_t, scene, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, frame_count, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(std::string, graphics_name, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(int32_t, message_stretch, 0, 0),
@@ -63,12 +63,12 @@ LCF_STRUCT_FIELDS_BEGIN()
 	LCF_STRUCT_TYPED_FIELD(RPG::Sound, dodge_se, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(RPG::Sound, enemy_death_se, 1, 0),
 	LCF_STRUCT_TYPED_FIELD(RPG::Sound, item_se, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, transition_out, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, transition_in, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadeout, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_start_fadein, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadeout, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(uint8_t, battle_end_fadein, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, transition_out, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, transition_in, 1, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, battle_start_fadeout, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, battle_start_fadein, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, battle_end_fadeout, 0, 0),
+	LCF_STRUCT_TYPED_FIELD(int8_t, battle_end_fadein, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, teleport_allowed, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, escape_allowed, 0, 0),
 	LCF_STRUCT_TYPED_FIELD(bool, save_allowed, 0, 0),

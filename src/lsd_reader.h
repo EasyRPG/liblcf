@@ -42,6 +42,11 @@ namespace LSD_Reader {
 	void PrepareSave(RPG::Save& save);
 
 	/**
+	 * Returns a copy of the save data with defaults cleared.
+	 */
+	RPG::Save ClearDefaults(const RPG::Save& save, const RPG::MapInfo& map_info, const RPG::Map& map);
+
+	/**
 	 * Loads Savegame.
 	 */
 	std::unique_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);

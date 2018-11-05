@@ -312,6 +312,7 @@ template class Struct<RPG::SaveEventData>;
 template class Struct<RPG::SaveInventory>;
 template class Struct<RPG::SaveMapEvent>;
 template class Struct<RPG::SaveMapInfo>;
+template class Struct<RPG::SavePanorama>;
 template class Struct<RPG::SavePartyLocation>;
 template class Struct<RPG::SavePicture>;
 template class Struct<RPG::SaveScreen>;

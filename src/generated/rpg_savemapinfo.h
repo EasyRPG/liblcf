@@ -28,12 +28,14 @@ namespace RPG {
 	public:
 		void Setup();
 		void Setup(const RPG::Map& map);
-		void Setup(const RPG::MapInfo& map_info);
 		void Fixup(const RPG::Map& map);
+		void Fixup(const RPG::MapInfo& map);
+		void UnFixup(const RPG::Map& map);
+		void UnFixup(const RPG::MapInfo& map);
 		int32_t position_x = 0;
 		int32_t position_y = 0;
 		int32_t encounter_rate = -1;
-		int32_t chipset_id = 0;
+		int32_t chipset_id = -1;
 		std::vector<SaveMapEvent> events;
 		std::vector<uint8_t> lower_tiles;
 		std::vector<uint8_t> upper_tiles;

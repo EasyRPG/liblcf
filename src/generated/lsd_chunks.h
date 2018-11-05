@@ -46,8 +46,8 @@ namespace LSD_Reader {
 	};
 	struct ChunkSaveSystem {
 		enum Index {
-			/**  */
-			screen = 0x01,
+			/** The current Scene for RPG_RT. Legacy field only used by RPG_RT and not by EasyRPG Player. Savegames always have a scene of 5 (filemenu). */
+			scene = 0x01,
 			/**  */
 			frame_count = 0x0B,
 			/** string */
@@ -398,15 +398,15 @@ namespace LSD_Reader {
 			preboard_move_speed = 0x69,
 			/** Flag which briefly is true if the player presses ESC. At the right place in handling each frame's activities for the player; the code checks whether this flag is set and calls the menu; however there are several conditions which would cancel this flag and instead process another higher-priority action; such as when an encounter takes place during the same frame. */
 			menu_calling = 0x6C,
-			/**  */
+			/** 0: screen is fixed; 1: screen moves with player. */
 			pan_state = 0x6F,
-			/** int */
+			/** Number of 1/16 pixels to the left of player */
 			pan_current_x = 0x70,
-			/** ? */
+			/** Number of 1/16 pixels above the player */
 			pan_current_y = 0x71,
-			/** ? */
+			/** Number of 1/16 pixels to the left of player when current scroll finishes */
 			pan_finish_x = 0x72,
-			/** ? */
+			/** Number of 1/16 pixels above the player when current scroll finishes. */
 			pan_finish_y = 0x73,
 			/** speed in the scrolls of the screen - shown in sixteenth pixels. */
 			pan_speed = 0x79,
@@ -618,7 +618,7 @@ namespace LSD_Reader {
 			victories = 0x23,
 			/** Number of turns passed in the latest battle fought. RPG2000: 'turn' passes after every character (enemies and heroes both) performed an action each. RPG2003: every time a hero or enemy performs an action that is considered a 'turn'. */
 			turns = 0x29,
-			/** ? */
+			/** Number of steps taken in the field. */
 			steps = 0x2A
 		};
 	};
@@ -828,6 +828,14 @@ namespace LSD_Reader {
 			event_data = 0x01
 		};
 	};
+	struct ChunkSavePanorama {
+		enum Index {
+			/** Panorama X position */
+			pan_x = 0x01,
+			/** Panorama Y position */
+			pan_y = 0x02
+		};
+	};
 	struct ChunkSave {
 		enum Index {
 			/** RPG::SaveTitle */
@@ -854,8 +862,8 @@ namespace LSD_Reader {
 			targets = 0x6E,
 			/** RPG::SaveMapInfo */
 			map_info = 0x6F,
-			/** Irrelevant; used in game to store panorama data but the object does not have members exported when saved. Mostly an empty object. */
-			panorama_data = 0x70,
+			/** Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object. */
+			panorama = 0x70,
 			/** RPG::SaveEventData */
 			events = 0x71,
 			/** array of RPG::SaveCommonEvent */
