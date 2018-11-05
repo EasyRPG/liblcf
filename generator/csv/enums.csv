@@ -118,6 +118,8 @@ SavePartyLocation,VehicleType,none,0
 SavePartyLocation,VehicleType,skiff,1
 SavePartyLocation,VehicleType,ship,2
 SavePartyLocation,VehicleType,airship,3
+SavePartyLocation,PanState,fixed,0
+SavePartyLocation,PanState,follow,1
 SavePicture,MapLayer,none,0
 SavePicture,MapLayer,parallax,1
 SavePicture,MapLayer,tilemap_below,2

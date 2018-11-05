@@ -398,7 +398,7 @@ namespace LSD_Reader {
 			preboard_move_speed = 0x69,
 			/** Flag which briefly is true if the player presses ESC. At the right place in handling each frame's activities for the player; the code checks whether this flag is set and calls the menu; however there are several conditions which would cancel this flag and instead process another higher-priority action; such as when an encounter takes place during the same frame. */
 			menu_calling = 0x6C,
-			/**  */
+			/** 0: screen is fixed; 1: screen moves with player. */
 			pan_state = 0x6F,
 			/** Number of 1/16 pixels to the left of player */
 			pan_current_x = 0x70,

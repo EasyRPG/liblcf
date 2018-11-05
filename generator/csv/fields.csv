@@ -875,7 +875,7 @@ SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,0,0,Vehic
 SavePartyLocation,unboarding,f,Boolean,0x68,False,0,0,
 SavePartyLocation,preboard_move_speed,f,Int32,0x69,4,0,0,Move speed before the party boarded the vehicle
 SavePartyLocation,menu_calling,f,Boolean,0x6C,False,0,0,Flag which briefly is true if the player presses ESC. At the right place in handling each frame's activities for the player; the code checks whether this flag is set and calls the menu; however there are several conditions which would cancel this flag and instead process another higher-priority action; such as when an encounter takes place during the same frame.
-SavePartyLocation,pan_state,f,Int32,0x6f,1,0,0,
+SavePartyLocation,pan_state,f,Enum<SavePartyLoction_PanState>,0x6f,1,0,0,0: screen is fixed; 1: screen moves with player.
 SavePartyLocation,pan_current_x,f,Int32,0x70,2304,0,0,Number of 1/16 pixels to the left of player
 SavePartyLocation,pan_current_y,f,Int32,0x71,1792,0,0,Number of 1/16 pixels above the player
 SavePartyLocation,pan_finish_x,f,Int32,0x72,2304,0,0,Number of 1/16 pixels to the left of player when current scroll finishes

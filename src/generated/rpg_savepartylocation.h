@@ -36,6 +36,14 @@ namespace RPG {
 			"ship",
 			"airship"
 		);
+		enum PanState {
+			PanState_fixed = 0,
+			PanState_follow = 1
+		};
+		static constexpr auto kPanStateTags = makeEnumTags<PanState>(
+			"fixed",
+			"follow"
+		);
 
 		bool active = true;
 		int32_t map_id = -1;
