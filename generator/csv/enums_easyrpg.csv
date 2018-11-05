@@ -1,0 +1,17 @@
+#Structure,Entry,Value,Index
+EventCommand,Code,Maniac_GetSaveInfo,3001
+EventCommand,Code,Maniac_Save,3002
+EventCommand,Code,Maniac_Load,3003
+EventCommand,Code,Maniac_EndLoadProcess,3004
+EventCommand,Code,Maniac_GetMousePosition,3005
+EventCommand,Code,Maniac_SetMousePosition,3006
+EventCommand,Code,Maniac_ShowStringPicture,3007
+EventCommand,Code,Maniac_GetPictureInfo,3008
+EventCommand,Code,Maniac_ControlBattle,3009
+EventCommand,Code,Maniac_ControlAtbGauge,3010
+EventCommand,Code,Maniac_ChangeBattleCommandEx,3011
+EventCommand,Code,Maniac_GetBattleInfo,3012
+EventCommand,Code,Maniac_ControlVarArray,3013
+EventCommand,Code,Maniac_KeyInputProcEx,3014
+EventCommand,Code,Maniac_RewriteMap,3015
+EventCommand,Code,Maniac_ControlGlobalSave,3016

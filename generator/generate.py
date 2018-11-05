@@ -417,7 +417,7 @@ def main(argv):
 
     structs = get_structs('structs.csv','structs_easyrpg.csv')
     sfields = get_fields('fields.csv','fields_easyrpg.csv')
-    enums = get_enums('enums.csv')
+    enums = get_enums('enums.csv','enums_easyrpg.csv')
     flags = get_flags('flags.csv')
     setup = get_setup('setup.csv')
     constants = get_constants()
