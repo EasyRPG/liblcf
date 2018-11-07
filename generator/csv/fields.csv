@@ -842,7 +842,7 @@ SavePartyLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining di
 SavePartyLocation,move_frequency,f,Int32,0x20,2,0,0,?
 SavePartyLocation,layer,f,Int32,0x21,1,1,0,?
 SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,Integer
+SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,Integer
 SavePartyLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SavePartyLocation,move_speed,f,Int32,0x25,4,1,0,
 SavePartyLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
@@ -897,7 +897,7 @@ SaveVehicleLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining 
 SaveVehicleLocation,move_frequency,f,Int32,0x20,2,0,0,?
 SaveVehicleLocation,layer,f,Int32,0x21,1,1,0,?
 SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
+SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
 SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveVehicleLocation,move_speed,f,Int32,0x25,-1,0,0,
 SaveVehicleLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
@@ -1026,7 +1026,7 @@ SaveMapEvent,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distanc
 SaveMapEvent,move_frequency,f,Int32,0x20,2,0,0,?
 SaveMapEvent,layer,f,Int32,0x21,1,1,0,?
 SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
+SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
 SaveMapEvent,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveMapEvent,move_speed,f,Int32,0x25,-1,0,0,
 SaveMapEvent,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
