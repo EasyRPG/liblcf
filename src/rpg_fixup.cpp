@@ -50,6 +50,10 @@ void RPG::SaveActor::Fixup(int actor_id) {
 		face_name = actor.face_name;
 		face_id = actor.face_index;
 	}
+
+	if (status.size() < Data::states.size()) {
+		status.resize(Data::states.size());
+	}
 }
 
 void RPG::SaveActor::UnFixup() {
