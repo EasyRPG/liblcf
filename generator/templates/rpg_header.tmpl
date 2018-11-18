@@ -14,7 +14,7 @@
  * RPG::{{ struct_name }} class.
  */
 namespace RPG {
-	class {{ struct_name }} {
+	class {{ struct_name }} {%- if struct_base %} : public {{ struct_base }} {%- endif %} {
 	public:
 	{%- if struct_name == "Database" %}
 		std::string ldb_header;

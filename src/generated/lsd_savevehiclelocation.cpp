@@ -154,6 +154,20 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		0,
 		0
 	),
+	new TypedField<RPG::SaveVehicleLocation, bool>(
+		&RPG::SaveVehicleLocation::sprite_transparent,
+		LSD_Reader::ChunkSaveVehicleLocation::sprite_transparent,
+		"sprite_transparent",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveVehicleLocation, bool>(
+		&RPG::SaveVehicleLocation::route_through,
+		LSD_Reader::ChunkSaveVehicleLocation::route_through,
+		"route_through",
+		0,
+		0
+	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
 		&RPG::SaveVehicleLocation::anim_paused,
 		LSD_Reader::ChunkSaveVehicleLocation::anim_paused,

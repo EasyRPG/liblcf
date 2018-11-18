@@ -155,6 +155,13 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::sprite_transparent,
+		LSD_Reader::ChunkSaveMapEvent::sprite_transparent,
+		"sprite_transparent",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
 		&RPG::SaveMapEvent::route_through,
 		LSD_Reader::ChunkSaveMapEvent::route_through,
 		"route_through",

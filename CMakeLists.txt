@@ -98,6 +98,7 @@ add_library(lcf
 	src/generated/lsd_saveeventcommands.cpp
 	src/generated/lsd_saveeventdata.cpp
 	src/generated/lsd_saveinventory.cpp
+	src/generated/lsd_savemapeventbase.cpp
 	src/generated/lsd_savemapevent.cpp
 	src/generated/lsd_savemapinfo.cpp
 	src/generated/lsd_savepanorama.cpp

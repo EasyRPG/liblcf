@@ -216,7 +216,7 @@ def process_file(filename, namedtup):
     return result
 
 def get_structs(filename='structs.csv'):
-    Struct = namedtuple("Struct", "name hasid iscomparable")
+    Struct = namedtuple("Struct", "name base hasid iscomparable")
 
     result = process_file(filename, Struct)
 
@@ -226,7 +226,7 @@ def get_structs(filename='structs.csv'):
         processed_result[k] = []
 
         for elem in struct:
-            elem = Struct(elem.name, bool(int(elem.hasid)) if elem.hasid else None, bool(int(elem.iscomparable)))
+            elem = Struct(elem.name, elem.base, bool(int(elem.hasid)) if elem.hasid else None, bool(int(elem.iscomparable)))
             processed_result[k].append(elem)
 
     return processed_result
@@ -287,6 +287,11 @@ def get_headers():
         struct_name = struct.name
         if struct_name not in sfields:
             continue
+        struct_result = result.setdefault(struct_name, [])
+
+        struct_base = struct.base
+        if struct_base:
+            struct_result.append('"rpg_{}.h"'.format(struct_base.lower()))
         headers = set()
         for field in sfields[struct_name]:
             ftype = field.type
@@ -297,7 +302,7 @@ def get_headers():
             for s in setup[struct_name]:
                 if s.headers:
                     headers.update([s.headers])
-        result[struct_name] = sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
+        struct_result += sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
     return result
 
 def needs_ctor(struct_name):
@@ -327,6 +332,7 @@ def generate():
                 with open(filepath, 'w') as f:
                     f.write(lcf_struct_tmpl.render(
                         struct_name=struct.name,
+                        struct_base=struct.base,
                         type=filetype
                     ))
 
@@ -335,6 +341,7 @@ def generate():
                     with open(filepath, 'w') as f:
                         f.write(rpg_source_tmpl.render(
                             struct_name=struct.name,
+                            struct_base=struct.base,
                             filename=filename
                         ))
 
@@ -342,6 +349,7 @@ def generate():
             with open(filepath, 'w') as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,
+                    struct_base=struct.base,
                     has_id=struct.hasid,
                     is_comparable=struct.iscomparable
                 ))

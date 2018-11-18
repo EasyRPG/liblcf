@@ -123,7 +123,7 @@ Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[] = 
 		&RPG::SavePartyLocation::move_speed,
 		LSD_Reader::ChunkSavePartyLocation::move_speed,
 		"move_speed",
-		1,
+		0,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, RPG::MoveRoute>(
