@@ -970,7 +970,7 @@ SaveMapEventBase,begin_jump_y,f,Int32,0x3F,0,0,0,?
 SaveMapEventBase,pause,f,Boolean,0x47,False,0,0,Indicates paused movement for an event; set while the player is talking to the event so that it won't run away
 SaveMapEventBase,flying,f,Boolean,0x48,False,0,0,Flag
 SaveMapEventBase,sprite_name,f,String,0x49,'',0,0,?
-SaveMapEventBase,sprite_id,f,Int32,0x4A,-1,0,0,?
+SaveMapEventBase,sprite_id,f,Int32,0x4A,0,0,0,?
 SaveMapEventBase,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
 SaveMapEventBase,flash_red,f,Int32,0x51,100,0,0,int
 SaveMapEventBase,flash_green,f,Int32,0x52,100,0,0,int

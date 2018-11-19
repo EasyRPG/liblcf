@@ -56,7 +56,7 @@ namespace RPG {
 		bool pause = false;
 		bool flying = false;
 		std::string sprite_name;
-		int32_t sprite_id = -1;
+		int32_t sprite_id = 0;
 		bool processed = false;
 		int32_t flash_red = 100;
 		int32_t flash_green = 100;
