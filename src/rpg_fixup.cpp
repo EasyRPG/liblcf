@@ -74,38 +74,6 @@ void RPG::SaveActor::UnFixup() {
 	}
 }
 
-
-
-void RPG::SaveMapEvent::Fixup(const RPG::EventPage& page) {
-	if (move_frequency == -1) {
-		move_frequency = page.move_frequency;
-	}
-	if (move_speed == -1) {
-		move_speed = page.move_speed;
-	}
-	if (sprite_name.empty()) {
-		sprite_name = page.character_name;
-	}
-	if (sprite_id == -1) {
-		sprite_id = page.character_index;
-	}
-}
-
-void RPG::SaveMapEvent::UnFixup(const RPG::EventPage& page) {
-	if (move_frequency == page.move_frequency) {
-		move_frequency = -1;
-	}
-	if (move_speed == page.move_speed) {
-		move_speed = -1;
-	}
-	if (sprite_name == page.character_name) {
-		sprite_name.clear();
-	}
-	if (sprite_id == page.character_index) {
-		sprite_id = -1;
-	}
-}
-
 void RPG::SaveSystem::Fixup() {
 	const RPG::System& system = Data::system;
 

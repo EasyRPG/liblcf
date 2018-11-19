@@ -25,8 +25,6 @@ namespace RPG {
 	class SaveMapEvent : public SaveMapEventBase {
 	public:
 		void Setup(const RPG::Event& event);
-		void Fixup(const RPG::EventPage& page);
-		void UnFixup(const RPG::EventPage& page);
 		int ID = 0;
 		bool running = false;
 		int32_t original_move_route_index = 0;

@@ -7,8 +7,6 @@ SaveActor,void Fixup(int actor_id),
 SaveActor,void UnFixup(),
 SaveInventory,void Setup(),
 SaveMapEvent,void Setup(const RPG::Event& event),"rpg_event.h"
-SaveMapEvent,void Fixup(const RPG::EventPage& page),
-SaveMapEvent,void UnFixup(const RPG::EventPage& page),
 SaveMapInfo,void Setup(),
 SaveMapInfo,void Setup(const RPG::Map& map),"rpg_map.h"
 SaveMapInfo,void Fixup(const RPG::Map& map),
