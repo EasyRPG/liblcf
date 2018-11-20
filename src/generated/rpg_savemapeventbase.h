@@ -25,9 +25,9 @@ namespace RPG {
 	class SaveMapEventBase {
 	public:
 		bool active = true;
-		int32_t map_id = -1;
-		int32_t position_x = -1;
-		int32_t position_y = -1;
+		int32_t map_id = 0;
+		int32_t position_x = 0;
+		int32_t position_y = 0;
 		int32_t direction = 2;
 		int32_t sprite_direction = 2;
 		int32_t anim_frame = 1;
@@ -38,7 +38,7 @@ namespace RPG {
 		bool overlap_forbidden = false;
 		int32_t animation_type = 1;
 		bool lock_facing = false;
-		int32_t move_speed = -1;
+		int32_t move_speed = 3;
 		MoveRoute move_route;
 		bool move_route_overwrite = false;
 		int32_t move_route_index = 0;

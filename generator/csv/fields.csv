@@ -939,9 +939,9 @@ SaveEventData,keyinput_up,f,Boolean,0x26,False,0,0,
 SaveEventData,keyinput_timed,f,Boolean,0x29,False,0,0,
 SaveEventData,unused_wait_for_key_or_enter,f,Boolean,0x2a,False,0,0,If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead).
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
-SaveMapEventBase,map_id,f,Int32,0x0B,-1,0,0,?
-SaveMapEventBase,position_x,f,Int32,0x0C,-1,0,0,?
-SaveMapEventBase,position_y,f,Int32,0x0D,-1,0,0,?
+SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
+SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
+SaveMapEventBase,position_y,f,Int32,0x0D,0,1,0,?
 SaveMapEventBase,direction,f,Int32,0x15,2,1,0,Facing direction
 SaveMapEventBase,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
 SaveMapEventBase,anim_frame,f,Int32,0x17,1,0,0,?
@@ -952,7 +952,7 @@ SaveMapEventBase,layer,f,Int32,0x21,1,1,0,?
 SaveMapEventBase,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
 SaveMapEventBase,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
 SaveMapEventBase,lock_facing,f,Boolean,0x24,False,0,0,facing locked
-SaveMapEventBase,move_speed,f,Int32,0x25,-1,0,0,
+SaveMapEventBase,move_speed,f,Int32,0x25,3,1,0,
 SaveMapEventBase,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
 SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route

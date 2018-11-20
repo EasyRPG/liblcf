@@ -32,21 +32,21 @@ Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[] = 
 		&RPG::SavePartyLocation::map_id,
 		LSD_Reader::ChunkSavePartyLocation::map_id,
 		"map_id",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, int32_t>(
 		&RPG::SavePartyLocation::position_x,
 		LSD_Reader::ChunkSavePartyLocation::position_x,
 		"position_x",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, int32_t>(
 		&RPG::SavePartyLocation::position_y,
 		LSD_Reader::ChunkSavePartyLocation::position_y,
 		"position_y",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, int32_t>(
@@ -123,7 +123,7 @@ Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[] = 
 		&RPG::SavePartyLocation::move_speed,
 		LSD_Reader::ChunkSavePartyLocation::move_speed,
 		"move_speed",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, RPG::MoveRoute>(

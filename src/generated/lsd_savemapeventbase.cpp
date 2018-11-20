@@ -32,21 +32,21 @@ Field<RPG::SaveMapEventBase> const* Struct<RPG::SaveMapEventBase>::fields[] = {
 		&RPG::SaveMapEventBase::map_id,
 		LSD_Reader::ChunkSaveMapEventBase::map_id,
 		"map_id",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEventBase, int32_t>(
 		&RPG::SaveMapEventBase::position_x,
 		LSD_Reader::ChunkSaveMapEventBase::position_x,
 		"position_x",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEventBase, int32_t>(
 		&RPG::SaveMapEventBase::position_y,
 		LSD_Reader::ChunkSaveMapEventBase::position_y,
 		"position_y",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEventBase, int32_t>(
@@ -123,7 +123,7 @@ Field<RPG::SaveMapEventBase> const* Struct<RPG::SaveMapEventBase>::fields[] = {
 		&RPG::SaveMapEventBase::move_speed,
 		LSD_Reader::ChunkSaveMapEventBase::move_speed,
 		"move_speed",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEventBase, RPG::MoveRoute>(
