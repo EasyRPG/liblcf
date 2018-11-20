@@ -10,6 +10,9 @@
 #ifndef LCF_READER_STRUCT_H
 #define LCF_READER_STRUCT_H
 
+#ifdef LCF_DEBUG_TRACE
+#include <iostream>
+#endif
 #include <string>
 #include <vector>
 #include <map>
@@ -153,9 +156,15 @@ struct Primitive {
 		}
 
 		stream.Read(ref);
+#ifdef LCF_DEBUG_TRACE
+		std::cout << ref << '\n';
+#endif
 
 		if (dif != 0) {
 			// Fix incorrect read pointer position
+#ifdef LCF_DEBUG_TRACE
+			printf("Invalid %s at %X\n", typeid(T).name(), stream.Tell());
+#endif
 			stream.Seek(dif, LcfReader::FromCurrent);
 		}
 	}
