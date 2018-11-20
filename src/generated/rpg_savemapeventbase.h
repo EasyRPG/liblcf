@@ -36,7 +36,7 @@ namespace RPG {
 		int32_t move_frequency = 2;
 		int32_t layer = 1;
 		bool overlap_forbidden = false;
-		int32_t animation_type = 1;
+		int32_t animation_type = 0;
 		bool lock_facing = false;
 		int32_t move_speed = 3;
 		MoveRoute move_route;
