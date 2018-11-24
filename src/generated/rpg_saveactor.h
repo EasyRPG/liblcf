@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "enum_tags.h"
 
 /**
  * RPG::SaveActor class.
@@ -23,6 +24,15 @@
 namespace RPG {
 	class SaveActor {
 	public:
+		enum RowType {
+			RowType_front = 0,
+			RowType_back = 1
+		};
+		static constexpr auto kRowTypeTags = makeEnumTags<RowType>(
+			"front",
+			"back"
+		);
+
 		void Setup(int actor_id);
 		void Fixup(int actor_id);
 		void UnFixup();

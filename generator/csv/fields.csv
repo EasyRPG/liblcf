@@ -953,7 +953,7 @@ SaveActor,status,t,Count<Int16>,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,0,0,int class-id
-SaveActor,row,f,Int32,0x5B,0,0,1,RPG2003 Battle row (-1 Back; 1 Front)
+SaveActor,row,f,Enum<SaveActor_RowType>,0x5B,0,0,1,RPG2003 Battle row
 SaveActor,two_weapon,f,Boolean,0x5C,False,0,0,bool
 SaveActor,lock_equipment,f,Boolean,0x5D,False,0,0,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,0,0,bool

@@ -50,7 +50,6 @@ void RPG::SaveActor::Setup(int actor_id) {
 	status.resize(Data::states.size());
 	changed_battle_commands = false;
 	class_id = -1;
-	row = -1;
 	two_weapon = actor.two_weapon;
 	lock_equipment = actor.lock_equipment;
 	auto_battle = actor.auto_battle;

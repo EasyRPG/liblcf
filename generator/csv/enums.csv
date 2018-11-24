@@ -114,6 +114,8 @@ Terrain,BushDepth,half,2
 Terrain,BushDepth,full,3
 Terrain,BGAssociation,background,0
 Terrain,BGAssociation,frame,1
+SaveActor,RowType,front,0
+SaveActor,RowType,back,1
 SavePartyLocation,VehicleType,none,0
 SavePartyLocation,VehicleType,skiff,1
 SavePartyLocation,VehicleType,ship,2
