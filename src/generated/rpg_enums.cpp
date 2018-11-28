@@ -35,6 +35,7 @@
 #include "rpg_savepicture.h"
 #include "rpg_savepartylocation.h"
 #include "rpg_savevehiclelocation.h"
+#include "rpg_saveactor.h"
 #include "rpg_mapinfo.h"
 #include "rpg_treemap.h"
 
@@ -102,6 +103,7 @@ constexpr decltype(SavePicture::kBattleLayerTags) SavePicture::kBattleLayerTags;
 constexpr decltype(SavePartyLocation::kVehicleTypeTags) SavePartyLocation::kVehicleTypeTags;
 constexpr decltype(SavePartyLocation::kPanStateTags) SavePartyLocation::kPanStateTags;
 constexpr decltype(SaveVehicleLocation::kVehicleTypeTags) SaveVehicleLocation::kVehicleTypeTags;
+constexpr decltype(SaveActor::kRowTypeTags) SaveActor::kRowTypeTags;
 constexpr decltype(MapInfo::kMusicTypeTags) MapInfo::kMusicTypeTags;
 constexpr decltype(MapInfo::kBGMTypeTags) MapInfo::kBGMTypeTags;
 constexpr decltype(MapInfo::kTriStateTags) MapInfo::kTriStateTags;
