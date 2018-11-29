@@ -830,45 +830,6 @@ SavePicture,finish_effect,f,Int32,0x2E,0,0,0,int
 SavePicture,time_left,f,Int32,0x33,0,0,0,int
 SavePicture,current_rotation,f,Double,0x34,0.0,0,0,double
 SavePicture,current_waver,f,Int32,0x35,0,0,0,int
-SavePartyLocation,active,f,Boolean,0x01,True,0,0,Flag
-SavePartyLocation,map_id,f,Int32,0x0B,-1,0,0,?
-SavePartyLocation,position_x,f,Int32,0x0C,-1,0,0,?
-SavePartyLocation,position_y,f,Int32,0x0D,-1,0,0,?
-SavePartyLocation,direction,f,Int32,0x15,2,1,0,Facing direction
-SavePartyLocation,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
-SavePartyLocation,anim_frame,f,Int32,0x17,1,0,0,?
-SavePartyLocation,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the main party member
-SavePartyLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
-SavePartyLocation,move_frequency,f,Int32,0x20,2,0,0,?
-SavePartyLocation,layer,f,Int32,0x21,1,1,0,?
-SavePartyLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SavePartyLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,Integer
-SavePartyLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
-SavePartyLocation,move_speed,f,Int32,0x25,4,1,0,
-SavePartyLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
-SavePartyLocation,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
-SavePartyLocation,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
-SavePartyLocation,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
-SavePartyLocation,sprite_transparent,f,Boolean,0x2E,False,0,0,bool
-SavePartyLocation,route_through,f,Boolean,0x2F,False,0,0,Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly)
-SavePartyLocation,anim_paused,f,Int32,0x30,0,0,0,?
-SavePartyLocation,through,f,Boolean,0x33,False,0,0,Can go through anything
-SavePartyLocation,stop_count,f,Int32,0x34,0,0,0,?
-SavePartyLocation,anim_count,f,Int32,0x35,0,0,0,?
-SavePartyLocation,max_stop_count,f,Int32,0x36,0,0,0,2^move_frequency - Once stop_count reaches it; the next move command is executed
-SavePartyLocation,jumping,f,Boolean,0x3D,False,0,0,?
-SavePartyLocation,begin_jump_x,f,Int32,0x3E,0,0,0,?
-SavePartyLocation,begin_jump_y,f,Int32,0x3F,0,0,0,?
-SavePartyLocation,pause,f,Boolean,0x47,False,0,0,Indicates paused movement for an event; set while the player is talking to the event so that it won't run away (not relevant for hero themselves)
-SavePartyLocation,flying,f,Boolean,0x48,False,0,0,Flag
-SavePartyLocation,sprite_name,f,String,0x49,'',0,0,?
-SavePartyLocation,sprite_id,f,Int32,0x4A,0,0,0,?
-SavePartyLocation,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
-SavePartyLocation,flash_red,f,Int32,0x51,100,0,0,int
-SavePartyLocation,flash_green,f,Int32,0x52,100,0,0,int
-SavePartyLocation,flash_blue,f,Int32,0x53,100,0,0,int
-SavePartyLocation,flash_current_level,f,Double,0x54,0.0,0,0,double
-SavePartyLocation,flash_time_left,f,Int32,0x55,0,0,0,int
 SavePartyLocation,boarding,f,Boolean,0x65,False,0,0,
 SavePartyLocation,aboard,f,Boolean,0x66,False,0,0,
 SavePartyLocation,vehicle,f,Enum<SavePartyLocation_VehicleType>,0x67,0,0,0,Vehicle in use
@@ -885,43 +846,6 @@ SavePartyLocation,encounter_steps,f,Int32,0x7C,0,0,0,int: sum of terrain.encount
 SavePartyLocation,encounter_calling,f,Boolean,0x7D,False,0,0,Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame.
 SavePartyLocation,map_save_count,f,Int32,0x83,0,0,0,Mirrors save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,database_save_count,f,Int32,0x84,0,0,0,?
-SaveVehicleLocation,active,f,Boolean,0x01,True,0,0,Flag
-SaveVehicleLocation,map_id,f,Int32,0x0B,-1,0,0,?
-SaveVehicleLocation,position_x,f,Int32,0x0C,-1,0,0,?
-SaveVehicleLocation,position_y,f,Int32,0x0D,-1,0,0,?
-SaveVehicleLocation,direction,f,Int32,0x15,2,1,0,Facing direction
-SaveVehicleLocation,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
-SaveVehicleLocation,anim_frame,f,Int32,0x17,1,0,0,?
-SaveVehicleLocation,transparency,f,Int32,0x18,0,0,0,always 0
-SaveVehicleLocation,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
-SaveVehicleLocation,move_frequency,f,Int32,0x20,2,0,0,?
-SaveVehicleLocation,layer,f,Int32,0x21,1,1,0,?
-SaveVehicleLocation,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveVehicleLocation,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
-SaveVehicleLocation,lock_facing,f,Boolean,0x24,False,0,0,facing locked
-SaveVehicleLocation,move_speed,f,Int32,0x25,-1,0,0,
-SaveVehicleLocation,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
-SaveVehicleLocation,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
-SaveVehicleLocation,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
-SaveVehicleLocation,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
-SaveVehicleLocation,anim_paused,f,Int32,0x30,0,0,0,?
-SaveVehicleLocation,through,f,Boolean,0x33,False,0,0,Can go through anything
-SaveVehicleLocation,stop_count,f,Int32,0x34,0,0,0,?
-SaveVehicleLocation,anim_count,f,Int32,0x35,0,0,0,?
-SaveVehicleLocation,max_stop_count,f,Int32,0x36,0,0,0,2^move_frequency - Once stop_count reaches it; the next move command is executed
-SaveVehicleLocation,jumping,f,Boolean,0x3D,False,0,0,?
-SaveVehicleLocation,begin_jump_x,f,Int32,0x3E,0,0,0,?
-SaveVehicleLocation,begin_jump_y,f,Int32,0x3F,0,0,0,?
-SaveVehicleLocation,pause,f,Boolean,0x47,False,0,0,Indicates paused movement for an event; set while the player is talking to the event so that it won't run away (not relevant for vehicles themselves)
-SaveVehicleLocation,flying,f,Boolean,0x48,False,0,0,Flag
-SaveVehicleLocation,sprite_name,f,String,0x49,'',0,0,?
-SaveVehicleLocation,sprite_id,f,Int32,0x4A,0,0,0,?
-SaveVehicleLocation,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
-SaveVehicleLocation,flash_red,f,Int32,0x51,100,0,0,int
-SaveVehicleLocation,flash_green,f,Int32,0x52,100,0,0,int
-SaveVehicleLocation,flash_blue,f,Int32,0x53,100,0,0,int
-SaveVehicleLocation,flash_current_level,f,Double,0x54,0.0,0,0,double
-SaveVehicleLocation,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveVehicleLocation,vehicle,f,Enum<SaveVehicleLocation_VehicleType>,0x65,0,0,0,Which vehicle
 SaveVehicleLocation,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
@@ -1014,44 +938,45 @@ SaveEventData,keyinput_right,f,Boolean,0x25,False,0,0,
 SaveEventData,keyinput_up,f,Boolean,0x26,False,0,0,
 SaveEventData,keyinput_timed,f,Boolean,0x29,False,0,0,
 SaveEventData,unused_wait_for_key_or_enter,f,Boolean,0x2a,False,0,0,If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead).
-SaveMapEvent,active,f,Boolean,0x01,True,0,0,Flag
-SaveMapEvent,map_id,f,Int32,0x0B,-1,0,0,?
-SaveMapEvent,position_x,f,Int32,0x0C,-1,0,0,?
-SaveMapEvent,position_y,f,Int32,0x0D,-1,0,0,?
-SaveMapEvent,direction,f,Int32,0x15,2,1,0,Facing direction
-SaveMapEvent,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
-SaveMapEvent,anim_frame,f,Int32,0x17,1,0,0,?
-SaveMapEvent,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the current event page
-SaveMapEvent,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
-SaveMapEvent,move_frequency,f,Int32,0x20,2,0,0,?
-SaveMapEvent,layer,f,Int32,0x21,1,1,0,?
-SaveMapEvent,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
-SaveMapEvent,animation_type,f,Enum<EventPage_AnimType>,0x23,1,1,0,
-SaveMapEvent,lock_facing,f,Boolean,0x24,False,0,0,facing locked
-SaveMapEvent,move_speed,f,Int32,0x25,-1,0,0,
-SaveMapEvent,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
-SaveMapEvent,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
-SaveMapEvent,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
-SaveMapEvent,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
-SaveMapEvent,route_through,f,Boolean,0x2F,False,0,0,Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly)
-SaveMapEvent,anim_paused,f,Int32,0x30,0,0,0,?
-SaveMapEvent,through,f,Boolean,0x33,False,0,0,Can go through anything
-SaveMapEvent,stop_count,f,Int32,0x34,0,0,0,?
-SaveMapEvent,anim_count,f,Int32,0x35,0,0,0,?
-SaveMapEvent,max_stop_count,f,Int32,0x36,0,0,0,2^move_frequency unless it's a random move route - Once stop_count reaches it; the next move command is executed
-SaveMapEvent,jumping,f,Boolean,0x3D,False,0,0,?
-SaveMapEvent,begin_jump_x,f,Int32,0x3E,0,0,0,?
-SaveMapEvent,begin_jump_y,f,Int32,0x3F,0,0,0,?
-SaveMapEvent,pause,f,Boolean,0x47,False,0,0,Indicates paused movement for an event; set while the player is talking to the event so that it won't run away
-SaveMapEvent,flying,f,Boolean,0x48,False,0,0,Flag
-SaveMapEvent,sprite_name,f,String,0x49,'',0,0,?
-SaveMapEvent,sprite_id,f,Int32,0x4A,-1,0,0,?
-SaveMapEvent,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
-SaveMapEvent,flash_red,f,Int32,0x51,100,0,0,int
-SaveMapEvent,flash_green,f,Int32,0x52,100,0,0,int
-SaveMapEvent,flash_blue,f,Int32,0x53,100,0,0,int
-SaveMapEvent,flash_current_level,f,Double,0x54,0.0,0,0,double
-SaveMapEvent,flash_time_left,f,Int32,0x55,0,0,0,int
+SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
+SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
+SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
+SaveMapEventBase,position_y,f,Int32,0x0D,0,1,0,?
+SaveMapEventBase,direction,f,Int32,0x15,2,1,0,Facing direction
+SaveMapEventBase,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
+SaveMapEventBase,anim_frame,f,Int32,0x17,1,0,0,?
+SaveMapEventBase,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the current event page
+SaveMapEventBase,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
+SaveMapEventBase,move_frequency,f,Int32,0x20,2,0,0,?
+SaveMapEventBase,layer,f,Int32,0x21,1,1,0,?
+SaveMapEventBase,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
+SaveMapEventBase,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
+SaveMapEventBase,lock_facing,f,Boolean,0x24,False,0,0,facing locked
+SaveMapEventBase,move_speed,f,Int32,0x25,3,1,0,
+SaveMapEventBase,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
+SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
+SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
+SaveMapEventBase,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
+SaveMapEventBase,sprite_transparent,f,Boolean,0x2E,False,0,0,bool
+SaveMapEventBase,route_through,f,Boolean,0x2F,False,0,0,Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly)
+SaveMapEventBase,anim_paused,f,Int32,0x30,0,0,0,?
+SaveMapEventBase,through,f,Boolean,0x33,False,0,0,Can go through anything
+SaveMapEventBase,stop_count,f,Int32,0x34,0,0,0,?
+SaveMapEventBase,anim_count,f,Int32,0x35,0,0,0,?
+SaveMapEventBase,max_stop_count,f,Int32,0x36,0,0,0,2^move_frequency unless it's a random move route - Once stop_count reaches it; the next move command is executed
+SaveMapEventBase,jumping,f,Boolean,0x3D,False,0,0,?
+SaveMapEventBase,begin_jump_x,f,Int32,0x3E,0,0,0,?
+SaveMapEventBase,begin_jump_y,f,Int32,0x3F,0,0,0,?
+SaveMapEventBase,pause,f,Boolean,0x47,False,0,0,Indicates paused movement for an event; set while the player is talking to the event so that it won't run away
+SaveMapEventBase,flying,f,Boolean,0x48,False,0,0,Flag
+SaveMapEventBase,sprite_name,f,String,0x49,'',0,0,?
+SaveMapEventBase,sprite_id,f,Int32,0x4A,0,0,0,?
+SaveMapEventBase,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
+SaveMapEventBase,flash_red,f,Int32,0x51,100,0,0,int
+SaveMapEventBase,flash_green,f,Int32,0x52,100,0,0,int
+SaveMapEventBase,flash_blue,f,Int32,0x53,100,0,0,int
+SaveMapEventBase,flash_current_level,f,Double,0x54,0.0,0,0,double
+SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,0,0,?
 SaveMapEvent,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveMapEvent,pending,f,Boolean,0x67,False,0,0,If true; this event will run after the current running event stops running. FIXME: See issue #174

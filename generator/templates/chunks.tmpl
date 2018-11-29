@@ -10,6 +10,10 @@ namespace {{ type|upper }}_Reader {
 {%- for struct in structs[type]|struct_has_code %}
 	struct Chunk{{ struct.name }} {
 		enum Index {
+		{%- for field in fields[struct.base] %}
+			/** {{ field.comment }} */
+			{{ field.name }}{% if field.size %}_size{% endif %} = 0x{{ "%02X"|format(field.code) }},
+		{%- endfor %}
 		{%- for field in fields[struct.name] %}
 			/** {{ field.comment }} */
 			{{ field.name }}{% if field.size %}_size{% endif %} = 0x{{ "%02X"|format(field.code) }}{%- if not loop.last %},{% endif %}

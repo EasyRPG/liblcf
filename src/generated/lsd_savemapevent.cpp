@@ -32,21 +32,21 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		&RPG::SaveMapEvent::map_id,
 		LSD_Reader::ChunkSaveMapEvent::map_id,
 		"map_id",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, int32_t>(
 		&RPG::SaveMapEvent::position_x,
 		LSD_Reader::ChunkSaveMapEvent::position_x,
 		"position_x",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, int32_t>(
 		&RPG::SaveMapEvent::position_y,
 		LSD_Reader::ChunkSaveMapEvent::position_y,
 		"position_y",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, int32_t>(
@@ -123,7 +123,7 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		&RPG::SaveMapEvent::move_speed,
 		LSD_Reader::ChunkSaveMapEvent::move_speed,
 		"move_speed",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, RPG::MoveRoute>(
@@ -151,6 +151,13 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		&RPG::SaveMapEvent::move_route_repeated,
 		LSD_Reader::ChunkSaveMapEvent::move_route_repeated,
 		"move_route_repeated",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveMapEvent, bool>(
+		&RPG::SaveMapEvent::sprite_transparent,
+		LSD_Reader::ChunkSaveMapEvent::sprite_transparent,
+		"sprite_transparent",
 		0,
 		0
 	),

@@ -32,21 +32,21 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		&RPG::SaveVehicleLocation::map_id,
 		LSD_Reader::ChunkSaveVehicleLocation::map_id,
 		"map_id",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
 		&RPG::SaveVehicleLocation::position_x,
 		LSD_Reader::ChunkSaveVehicleLocation::position_x,
 		"position_x",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
 		&RPG::SaveVehicleLocation::position_y,
 		LSD_Reader::ChunkSaveVehicleLocation::position_y,
 		"position_y",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
@@ -123,7 +123,7 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		&RPG::SaveVehicleLocation::move_speed,
 		LSD_Reader::ChunkSaveVehicleLocation::move_speed,
 		"move_speed",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, RPG::MoveRoute>(
@@ -151,6 +151,20 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		&RPG::SaveVehicleLocation::move_route_repeated,
 		LSD_Reader::ChunkSaveVehicleLocation::move_route_repeated,
 		"move_route_repeated",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveVehicleLocation, bool>(
+		&RPG::SaveVehicleLocation::sprite_transparent,
+		LSD_Reader::ChunkSaveVehicleLocation::sprite_transparent,
+		"sprite_transparent",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveVehicleLocation, bool>(
+		&RPG::SaveVehicleLocation::route_through,
+		LSD_Reader::ChunkSaveVehicleLocation::route_through,
+		"route_through",
 		0,
 		0
 	),

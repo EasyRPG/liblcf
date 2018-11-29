@@ -13,7 +13,7 @@ char const* const Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_
 
 template <>
 Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
-{%- for field in fields[struct_name]|field_is_written %}
+{%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
 	{%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
 	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}>(
 		&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},

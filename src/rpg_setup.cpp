@@ -154,6 +154,7 @@ void RPG::Save::Setup() {
 		actors[i - 1].Setup(i);
 	map_info.Setup();
 
+	party_location.move_speed = 4;
 	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
 	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
 	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
