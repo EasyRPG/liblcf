@@ -16,16 +16,45 @@
 
 // Read SaveTarget.
 
-#define LCF_CHUNK_SUFFIX LSD_Reader
-#define LCF_CURRENT_STRUCT SaveTarget
+template <>
+char const* const Struct<RPG::SaveTarget>::name = "SaveTarget";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_x, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, map_y, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, switch_on, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, switch_id, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::SaveTarget> const* Struct<RPG::SaveTarget>::fields[] = {
+	new TypedField<RPG::SaveTarget, int32_t>(
+		&RPG::SaveTarget::map_id,
+		LSD_Reader::ChunkSaveTarget::map_id,
+		"map_id",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveTarget, int32_t>(
+		&RPG::SaveTarget::map_x,
+		LSD_Reader::ChunkSaveTarget::map_x,
+		"map_x",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveTarget, int32_t>(
+		&RPG::SaveTarget::map_y,
+		LSD_Reader::ChunkSaveTarget::map_y,
+		"map_y",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveTarget, bool>(
+		&RPG::SaveTarget::switch_on,
+		LSD_Reader::ChunkSaveTarget::switch_on,
+		"switch_on",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveTarget, int32_t>(
+		&RPG::SaveTarget::switch_id,
+		LSD_Reader::ChunkSaveTarget::switch_id,
+		"switch_id",
+		0,
+		0
+	),
+	NULL
+};

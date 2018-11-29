@@ -16,20 +16,73 @@
 
 // Read ItemAnimation.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT ItemAnimation
+template <>
+char const* const Struct<RPG::ItemAnimation>::name = "ItemAnimation";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, type, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, weapon_anim, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, movement, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, after_image, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, attacks, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, ranged, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, ranged_anim, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, ranged_speed, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, battle_anim, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[] = {
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::type,
+		LDB_Reader::ChunkItemAnimation::type,
+		"type",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::weapon_anim,
+		LDB_Reader::ChunkItemAnimation::weapon_anim,
+		"weapon_anim",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::movement,
+		LDB_Reader::ChunkItemAnimation::movement,
+		"movement",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::after_image,
+		LDB_Reader::ChunkItemAnimation::after_image,
+		"after_image",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::attacks,
+		LDB_Reader::ChunkItemAnimation::attacks,
+		"attacks",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, bool>(
+		&RPG::ItemAnimation::ranged,
+		LDB_Reader::ChunkItemAnimation::ranged,
+		"ranged",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::ranged_anim,
+		LDB_Reader::ChunkItemAnimation::ranged_anim,
+		"ranged_anim",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::ranged_speed,
+		LDB_Reader::ChunkItemAnimation::ranged_speed,
+		"ranged_speed",
+		0,
+		0
+	),
+	new TypedField<RPG::ItemAnimation, int32_t>(
+		&RPG::ItemAnimation::battle_anim,
+		LDB_Reader::ChunkItemAnimation::battle_anim,
+		"battle_anim",
+		0,
+		0
+	),
+	NULL
+};

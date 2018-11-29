@@ -40,14 +40,14 @@ cpp_types = {
 def lcf_type(field, prefix=True):
     if field.size == True:
         if re.match(r'Count<(.*)>', field.type):
-            return "COUNT"
+            return "Count"
         else:
-            return "SIZE"
+            return "Size"
     if field.type == "DatabaseVersion":
-        return "DATABASE_VERSION"
+        return "DatabaseVersion"
     if field.type == "EmptyBlock":
-        return "EMPTY"
-    return "TYPED"
+        return "Empty"
+    return "Typed"
 
 def cpp_type(ty, prefix=True):
     if ty in cpp_types:

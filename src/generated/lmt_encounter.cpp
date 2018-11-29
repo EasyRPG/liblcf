@@ -16,12 +16,17 @@
 
 // Read Encounter.
 
-#define LCF_CHUNK_SUFFIX LMT_Reader
-#define LCF_CURRENT_STRUCT Encounter
+template <>
+char const* const Struct<RPG::Encounter>::name = "Encounter";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, troop_id, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[] = {
+	new TypedField<RPG::Encounter, int32_t>(
+		&RPG::Encounter::troop_id,
+		LMT_Reader::ChunkEncounter::troop_id,
+		"troop_id",
+		0,
+		0
+	),
+	NULL
+};

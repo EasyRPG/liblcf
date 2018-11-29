@@ -5,15 +5,38 @@
 #include "reader_struct.h"
 
 // Read {{ struct_name }}.
+{%- set LCF_CHUNK_SUFFIX = type|upper + "_Reader" %}
+{%- set LCF_CURRENT_STRUCT = struct_name %}
 
-#define LCF_CHUNK_SUFFIX {{ type|upper }}_Reader
-#define LCF_CURRENT_STRUCT {{ struct_name }}
+template <>
+char const* const Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_STRUCT }}";
 
-LCF_STRUCT_FIELDS_BEGIN()
+template <>
+Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
 {%- for field in fields[struct_name]|field_is_written %}
-	LCF_STRUCT_{{ field|lcf_type }}_FIELD({{ field.type|cpp_type }}, {{ field.name }}, {{field.presentifdefault}}, {{field.is2k3}}),
+	{%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
+	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}>(
+		&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+		"{{ field.name }}",
+		{{field.presentifdefault}},
+		{{field.is2k3}}
+	),
+	{%- elif field|lcf_type in ["Empty"] %}
+	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}>(
+		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+		"{{ field.name }}",
+		{{field.presentifdefault}},
+		{{field.is2k3}}
+	),
+	{%- elif field|lcf_type in ["Size", "Count"] %}
+	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}>(
+		&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }}_size,
+		{{field.presentifdefault}},
+		{{field.is2k3}}
+	),
+	{%- endif %}
 {%- endfor %}
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+	NULL
+};

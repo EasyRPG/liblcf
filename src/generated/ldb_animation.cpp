@@ -16,18 +16,59 @@
 
 // Read Animation.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT Animation
+template <>
+char const* const Struct<RPG::Animation>::name = "Animation";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::string, animation_name, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, large, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationTiming>, timings, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, scope, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, position, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::AnimationFrame>, frames, 1, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::Animation> const* Struct<RPG::Animation>::fields[] = {
+	new TypedField<RPG::Animation, std::string>(
+		&RPG::Animation::name,
+		LDB_Reader::ChunkAnimation::name,
+		"name",
+		0,
+		0
+	),
+	new TypedField<RPG::Animation, std::string>(
+		&RPG::Animation::animation_name,
+		LDB_Reader::ChunkAnimation::animation_name,
+		"animation_name",
+		0,
+		0
+	),
+	new TypedField<RPG::Animation, bool>(
+		&RPG::Animation::large,
+		LDB_Reader::ChunkAnimation::large,
+		"large",
+		0,
+		0
+	),
+	new TypedField<RPG::Animation, std::vector<RPG::AnimationTiming>>(
+		&RPG::Animation::timings,
+		LDB_Reader::ChunkAnimation::timings,
+		"timings",
+		1,
+		0
+	),
+	new TypedField<RPG::Animation, int32_t>(
+		&RPG::Animation::scope,
+		LDB_Reader::ChunkAnimation::scope,
+		"scope",
+		1,
+		0
+	),
+	new TypedField<RPG::Animation, int32_t>(
+		&RPG::Animation::position,
+		LDB_Reader::ChunkAnimation::position,
+		"position",
+		1,
+		0
+	),
+	new TypedField<RPG::Animation, std::vector<RPG::AnimationFrame>>(
+		&RPG::Animation::frames,
+		LDB_Reader::ChunkAnimation::frames,
+		"frames",
+		1,
+		0
+	),
+	NULL
+};

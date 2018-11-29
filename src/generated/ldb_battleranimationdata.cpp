@@ -16,14 +16,31 @@
 
 // Read BattlerAnimationData.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT BattlerAnimationData
+template <>
+char const* const Struct<RPG::BattlerAnimationData>::name = "BattlerAnimationData";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, move, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, after_image, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, pose, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::BattlerAnimationData> const* Struct<RPG::BattlerAnimationData>::fields[] = {
+	new TypedField<RPG::BattlerAnimationData, int32_t>(
+		&RPG::BattlerAnimationData::move,
+		LDB_Reader::ChunkBattlerAnimationData::move,
+		"move",
+		0,
+		0
+	),
+	new TypedField<RPG::BattlerAnimationData, int32_t>(
+		&RPG::BattlerAnimationData::after_image,
+		LDB_Reader::ChunkBattlerAnimationData::after_image,
+		"after_image",
+		0,
+		0
+	),
+	new TypedField<RPG::BattlerAnimationData, int32_t>(
+		&RPG::BattlerAnimationData::pose,
+		LDB_Reader::ChunkBattlerAnimationData::pose,
+		"pose",
+		0,
+		0
+	),
+	NULL
+};

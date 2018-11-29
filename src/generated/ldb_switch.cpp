@@ -16,12 +16,17 @@
 
 // Read Switch.
 
-#define LCF_CHUNK_SUFFIX LDB_Reader
-#define LCF_CURRENT_STRUCT Switch
+template <>
+char const* const Struct<RPG::Switch>::name = "Switch";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(std::string, name, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::Switch> const* Struct<RPG::Switch>::fields[] = {
+	new TypedField<RPG::Switch, std::string>(
+		&RPG::Switch::name,
+		LDB_Reader::ChunkSwitch::name,
+		"name",
+		0,
+		0
+	),
+	NULL
+};

@@ -16,18 +16,58 @@
 
 // Read SaveEventCommands.
 
-#define LCF_CHUNK_SUFFIX LSD_Reader
-#define LCF_CURRENT_STRUCT SaveEventCommands
+template <>
+char const* const Struct<RPG::SaveEventCommands>::name = "SaveEventCommands";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(int32_t, commands_size, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<RPG::EventCommand>, commands, 1, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, current_command, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(int32_t, event_id, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(bool, actioned, 0, 0),
-	LCF_STRUCT_SIZE_FIELD(uint8_t, subcommand_path, 0, 0),
-	LCF_STRUCT_TYPED_FIELD(std::vector<uint8_t>, subcommand_path, 1, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::SaveEventCommands> const* Struct<RPG::SaveEventCommands>::fields[] = {
+	new TypedField<RPG::SaveEventCommands, int32_t>(
+		&RPG::SaveEventCommands::commands_size,
+		LSD_Reader::ChunkSaveEventCommands::commands_size,
+		"commands_size",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveEventCommands, std::vector<RPG::EventCommand>>(
+		&RPG::SaveEventCommands::commands,
+		LSD_Reader::ChunkSaveEventCommands::commands,
+		"commands",
+		1,
+		0
+	),
+	new TypedField<RPG::SaveEventCommands, int32_t>(
+		&RPG::SaveEventCommands::current_command,
+		LSD_Reader::ChunkSaveEventCommands::current_command,
+		"current_command",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveEventCommands, int32_t>(
+		&RPG::SaveEventCommands::event_id,
+		LSD_Reader::ChunkSaveEventCommands::event_id,
+		"event_id",
+		0,
+		0
+	),
+	new TypedField<RPG::SaveEventCommands, bool>(
+		&RPG::SaveEventCommands::actioned,
+		LSD_Reader::ChunkSaveEventCommands::actioned,
+		"actioned",
+		0,
+		0
+	),
+	new SizeField<RPG::SaveEventCommands, uint8_t>(
+		&RPG::SaveEventCommands::subcommand_path,
+		LSD_Reader::ChunkSaveEventCommands::subcommand_path_size,
+		0,
+		0
+	),
+	new TypedField<RPG::SaveEventCommands, std::vector<uint8_t>>(
+		&RPG::SaveEventCommands::subcommand_path,
+		LSD_Reader::ChunkSaveEventCommands::subcommand_path,
+		"subcommand_path",
+		1,
+		0
+	),
+	NULL
+};

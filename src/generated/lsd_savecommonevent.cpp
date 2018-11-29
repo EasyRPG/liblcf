@@ -16,12 +16,17 @@
 
 // Read SaveCommonEvent.
 
-#define LCF_CHUNK_SUFFIX LSD_Reader
-#define LCF_CURRENT_STRUCT SaveCommonEvent
+template <>
+char const* const Struct<RPG::SaveCommonEvent>::name = "SaveCommonEvent";
 
-LCF_STRUCT_FIELDS_BEGIN()
-	LCF_STRUCT_TYPED_FIELD(RPG::SaveEventData, event_data, 0, 0),
-LCF_STRUCT_FIELDS_END()
-
-#undef LCF_CURRENT_STRUCT
-#undef LCF_CHUNK_SUFFIX
+template <>
+Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
+	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventData>(
+		&RPG::SaveCommonEvent::event_data,
+		LSD_Reader::ChunkSaveCommonEvent::event_data,
+		"event_data",
+		0,
+		0
+	),
+	NULL
+};
