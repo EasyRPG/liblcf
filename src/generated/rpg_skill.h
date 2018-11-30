@@ -75,7 +75,7 @@ namespace RPG {
 		int32_t sp_cost = 0;
 		int32_t scope = 0;
 		int32_t switch_id = 1;
-		int32_t animation_id = 0;
+		int32_t animation_id = 1;
 		Sound sound_effect;
 		bool occasion_field = true;
 		bool occasion_battle = false;
