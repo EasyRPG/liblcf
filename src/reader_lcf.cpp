@@ -17,9 +17,9 @@
 
 std::string LcfReader::error_str;
 
-LcfReader::LcfReader(std::istream& filestream, std::string encoding) :
-	encoding(encoding),
-	stream(filestream)
+LcfReader::LcfReader(std::istream& filestream, std::string encoding)
+	: stream(filestream)
+	, encoder(std::move(encoding))
 {
 }
 
@@ -181,10 +181,9 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 }
 
 void LcfReader::ReadString(std::string& ref, size_t size) {
-	char* chars = new char[size];
-	Read(chars, 1, size);
-	ref = Encode(std::string(chars, size));
-	delete[] chars;
+	ref.resize(size);
+	Read((size > 0 ? &ref.front(): nullptr), 1, size);
+	Encode(ref);
 }
 
 bool LcfReader::IsOk() const {
@@ -271,8 +270,8 @@ const std::string& LcfReader::GetError() {
 	return error_str;
 }
 
-std::string LcfReader::Encode(const std::string& str_to_encode) {
-	return ReaderUtil::Recode(str_to_encode, encoding, "UTF-8");
+void LcfReader::Encode(std::string& str) {
+	encoder.Encode(str);
 }
 
 int LcfReader::IntSize(unsigned int x) {

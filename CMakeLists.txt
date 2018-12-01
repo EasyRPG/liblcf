@@ -45,6 +45,7 @@ add_library(lcf
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
 	src/reader_util.cpp
+	src/encoder.cpp
 	src/reader_xml.cpp
 	src/rpg_fixup.cpp
 	src/rpg_setup.cpp

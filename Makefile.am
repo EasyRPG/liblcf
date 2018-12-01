@@ -41,6 +41,7 @@ liblcf_la_SOURCES = \
 	src/lmu_movecommand.cpp \
 	src/lmu_reader.cpp \
 	src/lsd_reader.cpp \
+	src/encoder.cpp \
 	src/reader_flags.cpp \
 	src/reader_lcf.cpp \
 	src/reader_util.cpp \
@@ -116,12 +117,14 @@ pkginclude_HEADERS = \
 	src/data.h \
 	src/ini.h \
 	src/inireader.h \
+	src/scope_guard.h \
 	src/lcf_options.h \
 	src/lcf_saveopt.h \
 	src/ldb_reader.h \
 	src/lmt_reader.h \
 	src/lmu_reader.h \
 	src/lsd_reader.h \
+	src/encoder.h \
 	src/reader_lcf.h \
 	src/reader_struct.h \
 	src/reader_util.h \
