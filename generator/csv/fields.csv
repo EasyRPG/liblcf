@@ -140,7 +140,7 @@ Skill,sp_percent,f,Int32,0x0A,0,0,1,Integer - RPG2003
 Skill,sp_cost,f,Int32,0x0B,0,0,0,Integer
 Skill,scope,f,Enum<Skill_Scope>,0x0C,0,1,0,Integer
 Skill,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
-Skill,animation_id,f,Ref<Animation>,0x0E,0,0,0,Integer
+Skill,animation_id,f,Ref<Animation>,0x0E,1,0,0,Integer
 Skill,sound_effect,f,Sound,0x10,,1,0,RPG::Sound
 Skill,occasion_field,f,Boolean,0x12,True,0,0,Flag
 Skill,occasion_battle,f,Boolean,0x13,False,0,0,Flag
