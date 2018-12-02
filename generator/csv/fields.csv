@@ -641,7 +641,7 @@ MoveRoute,move_commands,t,MoveCommand,0x0B,,0,0,Integer
 MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - RPG::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
-EventPage,condition,f,EventPageCondition,0x02,,0,0,RPG::EventPageCondition
+EventPage,condition,f,EventPageCondition,0x02,,1,0,RPG::EventPageCondition
 EventPage,character_name,f,String,0x15,'',0,0,String
 EventPage,character_index,f,Int32,0x16,0,0,0,Integer
 EventPage,character_direction,f,Enum<EventPage_Direction>,0x17,2,1,0,Integer
@@ -654,7 +654,7 @@ EventPage,layer,f,Enum<EventPage_Layers>,0x22,0,1,0,Integer
 EventPage,overlap_forbidden,f,Boolean,0x23,False,1,0,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,1,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
-EventPage,move_route,f,MoveRoute,0x29,,0,0,RPG::MoveRoute
+EventPage,move_route,f,MoveRoute,0x29,,1,0,RPG::MoveRoute
 EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
 EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - RPG::EventCommand
 Event,name,f,String,0x01,'',0,0,String
