@@ -1,10 +1,16 @@
 {% include "copyright.tmpl" %}
 // Headers
 #include "rpg_{{ filename }}.h"
-
+{% if struct_name in constants -%}
+{%- for name, type, value, comment in constants[struct_name] %}
+constexpr {{ type }} RPG::{{ struct_name }}::{{ name }};
+{%- endfor %}
+{%- endif %}
+{% if struct_name is needs_ctor -%}
 /**
  * Constructor.
  */
 RPG::{{ struct_name }}::{{ struct_name }}() {
 	Init();
 }
+{%- endif %}

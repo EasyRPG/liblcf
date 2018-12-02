@@ -339,7 +339,7 @@ def generate():
                         type=filetype
                     ))
 
-                if needs_ctor(struct.name):
+                if needs_ctor(struct.name) or struct.name in constants:
                     filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
                     with open(filepath, 'w') as f:
                         f.write(rpg_source_tmpl.render(
