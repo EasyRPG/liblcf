@@ -61,6 +61,32 @@ namespace RPG {
 		std::vector<Class> classes;
 		std::vector<BattlerAnimation> battleranimations;
 	};
+
+	inline bool operator==(const Database& l, const Database& r) {
+		return l.actors == r.actors
+		&& l.skills == r.skills
+		&& l.items == r.items
+		&& l.enemies == r.enemies
+		&& l.troops == r.troops
+		&& l.terrains == r.terrains
+		&& l.attributes == r.attributes
+		&& l.states == r.states
+		&& l.animations == r.animations
+		&& l.chipsets == r.chipsets
+		&& l.terms == r.terms
+		&& l.system == r.system
+		&& l.switches == r.switches
+		&& l.variables == r.variables
+		&& l.commonevents == r.commonevents
+		&& l.version == r.version
+		&& l.battlecommands == r.battlecommands
+		&& l.classes == r.classes
+		&& l.battleranimations == r.battleranimations;
+	}
+
+	inline bool operator!=(const Database& l, const Database& r) {
+		return !(l == r);
+	}
 }
 
 #endif

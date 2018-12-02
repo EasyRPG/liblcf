@@ -48,6 +48,16 @@ namespace RPG {
 		int32_t after_image = 0;
 		int32_t pose = -1;
 	};
+
+	inline bool operator==(const BattlerAnimationData& l, const BattlerAnimationData& r) {
+		return l.move == r.move
+		&& l.after_image == r.after_image
+		&& l.pose == r.pose;
+	}
+
+	inline bool operator!=(const BattlerAnimationData& l, const BattlerAnimationData& r) {
+		return !(l == r);
+	}
 }
 
 #endif

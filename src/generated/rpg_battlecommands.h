@@ -97,6 +97,28 @@ namespace RPG {
 		int32_t teleport_y = 0;
 		int32_t teleport_face = 0;
 	};
+
+	inline bool operator==(const BattleCommands& l, const BattleCommands& r) {
+		return l.placement == r.placement
+		&& l.death_handler1 == r.death_handler1
+		&& l.row == r.row
+		&& l.battle_type == r.battle_type
+		&& l.unused_display_normal_parameters == r.unused_display_normal_parameters
+		&& l.commands == r.commands
+		&& l.death_handler2 == r.death_handler2
+		&& l.death_event == r.death_event
+		&& l.window_size == r.window_size
+		&& l.transparency == r.transparency
+		&& l.teleport == r.teleport
+		&& l.teleport_id == r.teleport_id
+		&& l.teleport_x == r.teleport_x
+		&& l.teleport_y == r.teleport_y
+		&& l.teleport_face == r.teleport_face;
+	}
+
+	inline bool operator!=(const BattleCommands& l, const BattleCommands& r) {
+		return !(l == r);
+	}
 }
 
 #endif

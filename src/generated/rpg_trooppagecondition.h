@@ -73,6 +73,36 @@ namespace RPG {
 	inline bool operator!=(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
 		return !(l == r);
 	}
+
+	inline bool operator==(const TroopPageCondition& l, const TroopPageCondition& r) {
+		return l.flags == r.flags
+		&& l.switch_a_id == r.switch_a_id
+		&& l.switch_b_id == r.switch_b_id
+		&& l.variable_id == r.variable_id
+		&& l.variable_value == r.variable_value
+		&& l.turn_a == r.turn_a
+		&& l.turn_b == r.turn_b
+		&& l.fatigue_min == r.fatigue_min
+		&& l.fatigue_max == r.fatigue_max
+		&& l.enemy_id == r.enemy_id
+		&& l.enemy_hp_min == r.enemy_hp_min
+		&& l.enemy_hp_max == r.enemy_hp_max
+		&& l.actor_id == r.actor_id
+		&& l.actor_hp_min == r.actor_hp_min
+		&& l.actor_hp_max == r.actor_hp_max
+		&& l.turn_enemy_id == r.turn_enemy_id
+		&& l.turn_enemy_a == r.turn_enemy_a
+		&& l.turn_enemy_b == r.turn_enemy_b
+		&& l.turn_actor_id == r.turn_actor_id
+		&& l.turn_actor_a == r.turn_actor_a
+		&& l.turn_actor_b == r.turn_actor_b
+		&& l.command_actor_id == r.command_actor_id
+		&& l.command_id == r.command_id;
+	}
+
+	inline bool operator!=(const TroopPageCondition& l, const TroopPageCondition& r) {
+		return !(l == r);
+	}
 }
 
 #endif

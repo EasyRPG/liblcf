@@ -24,6 +24,14 @@ namespace RPG {
 		int ID = 0;
 		std::string name;
 	};
+
+	inline bool operator==(const Switch& l, const Switch& r) {
+		return l.name == r.name;
+	}
+
+	inline bool operator!=(const Switch& l, const Switch& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -41,6 +41,17 @@ namespace RPG {
 		std::vector<BattlerAnimationExtension> base_data;
 		std::vector<BattlerAnimationExtension> weapon_data;
 	};
+
+	inline bool operator==(const BattlerAnimation& l, const BattlerAnimation& r) {
+		return l.name == r.name
+		&& l.speed == r.speed
+		&& l.base_data == r.base_data
+		&& l.weapon_data == r.weapon_data;
+	}
+
+	inline bool operator!=(const BattlerAnimation& l, const BattlerAnimation& r) {
+		return !(l == r);
+	}
 }
 
 #endif

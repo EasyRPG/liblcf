@@ -230,6 +230,70 @@ namespace RPG {
 		bool invert_animations = false;
 		bool show_title = true;
 	};
+
+	inline bool operator==(const System& l, const System& r) {
+		return l.ldb_id == r.ldb_id
+		&& l.boat_name == r.boat_name
+		&& l.ship_name == r.ship_name
+		&& l.airship_name == r.airship_name
+		&& l.boat_index == r.boat_index
+		&& l.ship_index == r.ship_index
+		&& l.airship_index == r.airship_index
+		&& l.title_name == r.title_name
+		&& l.gameover_name == r.gameover_name
+		&& l.system_name == r.system_name
+		&& l.system2_name == r.system2_name
+		&& l.party == r.party
+		&& l.party == r.party
+		&& l.menu_commands == r.menu_commands
+		&& l.menu_commands == r.menu_commands
+		&& l.title_music == r.title_music
+		&& l.battle_music == r.battle_music
+		&& l.battle_end_music == r.battle_end_music
+		&& l.inn_music == r.inn_music
+		&& l.boat_music == r.boat_music
+		&& l.ship_music == r.ship_music
+		&& l.airship_music == r.airship_music
+		&& l.gameover_music == r.gameover_music
+		&& l.cursor_se == r.cursor_se
+		&& l.decision_se == r.decision_se
+		&& l.cancel_se == r.cancel_se
+		&& l.buzzer_se == r.buzzer_se
+		&& l.battle_se == r.battle_se
+		&& l.escape_se == r.escape_se
+		&& l.enemy_attack_se == r.enemy_attack_se
+		&& l.enemy_damaged_se == r.enemy_damaged_se
+		&& l.actor_damaged_se == r.actor_damaged_se
+		&& l.dodge_se == r.dodge_se
+		&& l.enemy_death_se == r.enemy_death_se
+		&& l.item_se == r.item_se
+		&& l.transition_out == r.transition_out
+		&& l.transition_in == r.transition_in
+		&& l.battle_start_fadeout == r.battle_start_fadeout
+		&& l.battle_start_fadein == r.battle_start_fadein
+		&& l.battle_end_fadeout == r.battle_end_fadeout
+		&& l.battle_end_fadein == r.battle_end_fadein
+		&& l.message_stretch == r.message_stretch
+		&& l.font_id == r.font_id
+		&& l.selected_condition == r.selected_condition
+		&& l.selected_hero == r.selected_hero
+		&& l.battletest_background == r.battletest_background
+		&& l.battletest_data == r.battletest_data
+		&& l.save_count == r.save_count
+		&& l.battletest_terrain == r.battletest_terrain
+		&& l.battletest_formation == r.battletest_formation
+		&& l.battletest_condition == r.battletest_condition
+		&& l.equipment_setting == r.equipment_setting
+		&& l.battletest_alt_terrain == r.battletest_alt_terrain
+		&& l.show_frame == r.show_frame
+		&& l.frame_name == r.frame_name
+		&& l.invert_animations == r.invert_animations
+		&& l.show_title == r.show_title;
+	}
+
+	inline bool operator!=(const System& l, const System& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -30,6 +30,20 @@ namespace RPG {
 		int32_t helmet_id = 0;
 		int32_t accessory_id = 0;
 	};
+
+	inline bool operator==(const TestBattler& l, const TestBattler& r) {
+		return l.actor_id == r.actor_id
+		&& l.level == r.level
+		&& l.weapon_id == r.weapon_id
+		&& l.shield_id == r.shield_id
+		&& l.armor_id == r.armor_id
+		&& l.helmet_id == r.helmet_id
+		&& l.accessory_id == r.accessory_id;
+	}
+
+	inline bool operator!=(const TestBattler& l, const TestBattler& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -33,6 +33,23 @@ namespace RPG {
 		int32_t tone_gray = 100;
 		int32_t transparency = 0;
 	};
+
+	inline bool operator==(const AnimationCellData& l, const AnimationCellData& r) {
+		return l.valid == r.valid
+		&& l.cell_id == r.cell_id
+		&& l.x == r.x
+		&& l.y == r.y
+		&& l.zoom == r.zoom
+		&& l.tone_red == r.tone_red
+		&& l.tone_green == r.tone_green
+		&& l.tone_blue == r.tone_blue
+		&& l.tone_gray == r.tone_gray
+		&& l.transparency == r.transparency;
+	}
+
+	inline bool operator!=(const AnimationCellData& l, const AnimationCellData& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -101,6 +101,45 @@ namespace RPG {
 	inline bool operator!=(const Terrain::Flags& l, const Terrain::Flags& r) {
 		return !(l == r);
 	}
+
+	inline bool operator==(const Terrain& l, const Terrain& r) {
+		return l.name == r.name
+		&& l.damage == r.damage
+		&& l.encounter_rate == r.encounter_rate
+		&& l.background_name == r.background_name
+		&& l.boat_pass == r.boat_pass
+		&& l.ship_pass == r.ship_pass
+		&& l.airship_pass == r.airship_pass
+		&& l.airship_land == r.airship_land
+		&& l.bush_depth == r.bush_depth
+		&& l.footstep == r.footstep
+		&& l.on_damage_se == r.on_damage_se
+		&& l.background_type == r.background_type
+		&& l.background_a_name == r.background_a_name
+		&& l.background_a_scrollh == r.background_a_scrollh
+		&& l.background_a_scrollv == r.background_a_scrollv
+		&& l.background_a_scrollh_speed == r.background_a_scrollh_speed
+		&& l.background_a_scrollv_speed == r.background_a_scrollv_speed
+		&& l.background_b == r.background_b
+		&& l.background_b_name == r.background_b_name
+		&& l.background_b_scrollh == r.background_b_scrollh
+		&& l.background_b_scrollv == r.background_b_scrollv
+		&& l.background_b_scrollh_speed == r.background_b_scrollh_speed
+		&& l.background_b_scrollv_speed == r.background_b_scrollv_speed
+		&& l.special_flags == r.special_flags
+		&& l.special_back_party == r.special_back_party
+		&& l.special_back_enemies == r.special_back_enemies
+		&& l.special_lateral_party == r.special_lateral_party
+		&& l.special_lateral_enemies == r.special_lateral_enemies
+		&& l.grid_location == r.grid_location
+		&& l.grid_a == r.grid_a
+		&& l.grid_b == r.grid_b
+		&& l.grid_c == r.grid_c;
+	}
+
+	inline bool operator!=(const Terrain& l, const Terrain& r) {
+		return !(l == r);
+	}
 }
 
 #endif

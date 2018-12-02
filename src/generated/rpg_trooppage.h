@@ -27,6 +27,16 @@ namespace RPG {
 		TroopPageCondition condition;
 		std::vector<EventCommand> event_commands;
 	};
+
+	inline bool operator==(const TroopPage& l, const TroopPage& r) {
+		return l.condition == r.condition
+		&& l.event_commands == r.event_commands
+		&& l.event_commands == r.event_commands;
+	}
+
+	inline bool operator!=(const TroopPage& l, const TroopPage& r) {
+		return !(l == r);
+	}
 }
 
 #endif
