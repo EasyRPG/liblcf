@@ -97,7 +97,6 @@ namespace RPG {
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}
-	{%- if is_comparable %}
 
 	inline bool operator==(const {{ struct_name }}& l, const {{ struct_name }}& r) {
 	{%- for field in fields[struct_name]|field_is_used -%}
@@ -112,7 +111,6 @@ namespace RPG {
 	inline bool operator!=(const {{ struct_name }}& l, const {{ struct_name }}& r) {
 		return !(l == r);
 	}
-	{%- endif %}
 }
 
 #endif
