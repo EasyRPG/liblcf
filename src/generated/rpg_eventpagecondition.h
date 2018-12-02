@@ -75,6 +75,23 @@ namespace RPG {
 	inline bool operator!=(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
 		return !(l == r);
 	}
+
+	inline bool operator==(const EventPageCondition& l, const EventPageCondition& r) {
+		return l.flags == r.flags
+		&& l.switch_a_id == r.switch_a_id
+		&& l.switch_b_id == r.switch_b_id
+		&& l.variable_id == r.variable_id
+		&& l.variable_value == r.variable_value
+		&& l.item_id == r.item_id
+		&& l.actor_id == r.actor_id
+		&& l.timer_sec == r.timer_sec
+		&& l.timer2_sec == r.timer2_sec
+		&& l.compare_operator == r.compare_operator;
+	}
+
+	inline bool operator!=(const EventPageCondition& l, const EventPageCondition& r) {
+		return !(l == r);
+	}
 }
 
 #endif

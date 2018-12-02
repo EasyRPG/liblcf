@@ -37,11 +37,11 @@ ldb,System,,0,1
 ldb,Switch,,1,1
 ldb,Variable,,1,1
 ldb,Database,,0,1
-lmu,EventPageCondition,,0,0
-lmu,MoveRoute,,0,0
-lmu,EventPage,,1,0
-lmu,Event,,1,0
-lmu,Map,,0,0
+lmu,EventPageCondition,,0,1
+lmu,MoveRoute,,0,1
+lmu,EventPage,,1,1
+lmu,Event,,1,1
+lmu,Map,,0,1
 lsd,SaveTitle,,0,0
 lsd,SaveSystem,,0,0
 lsd,SaveScreen,,0,0
