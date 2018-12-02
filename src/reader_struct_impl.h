@@ -271,3 +271,292 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
 
+template <>
+char const* const Struct<RPG::Actor>::name;
+template <>
+Field<RPG::Actor> const* Struct<RPG::Actor>::fields[];
+
+template <>
+char const* const Struct<RPG::Animation>::name;
+template <>
+Field<RPG::Animation> const* Struct<RPG::Animation>::fields[];
+
+template <>
+char const* const Struct<RPG::AnimationCellData>::name;
+template <>
+Field<RPG::AnimationCellData> const* Struct<RPG::AnimationCellData>::fields[];
+
+template <>
+char const* const Struct<RPG::AnimationFrame>::name;
+template <>
+Field<RPG::AnimationFrame> const* Struct<RPG::AnimationFrame>::fields[];
+
+template <>
+char const* const Struct<RPG::AnimationTiming>::name;
+template <>
+Field<RPG::AnimationTiming> const* Struct<RPG::AnimationTiming>::fields[];
+
+template <>
+char const* const Struct<RPG::Attribute>::name;
+template <>
+Field<RPG::Attribute> const* Struct<RPG::Attribute>::fields[];
+
+template <>
+char const* const Struct<RPG::BattleCommand>::name;
+template <>
+Field<RPG::BattleCommand> const* Struct<RPG::BattleCommand>::fields[];
+
+template <>
+char const* const Struct<RPG::BattleCommands>::name;
+template <>
+Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[];
+
+template <>
+char const* const Struct<RPG::BattlerAnimation>::name;
+template <>
+Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[];
+
+template <>
+char const* const Struct<RPG::BattlerAnimationData>::name;
+template <>
+Field<RPG::BattlerAnimationData> const* Struct<RPG::BattlerAnimationData>::fields[];
+
+template <>
+char const* const Struct<RPG::BattlerAnimationExtension>::name;
+template <>
+Field<RPG::BattlerAnimationExtension> const* Struct<RPG::BattlerAnimationExtension>::fields[];
+
+template <>
+char const* const Struct<RPG::Chipset>::name;
+template <>
+Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[];
+
+template <>
+char const* const Struct<RPG::Class>::name;
+template <>
+Field<RPG::Class> const* Struct<RPG::Class>::fields[];
+
+template <>
+char const* const Struct<RPG::CommonEvent>::name;
+template <>
+Field<RPG::CommonEvent> const* Struct<RPG::CommonEvent>::fields[];
+
+template <>
+char const* const Struct<RPG::Database>::name;
+template <>
+Field<RPG::Database> const* Struct<RPG::Database>::fields[];
+
+template <>
+char const* const Struct<RPG::Encounter>::name;
+template <>
+Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[];
+
+template <>
+char const* const Struct<RPG::Enemy>::name;
+template <>
+Field<RPG::Enemy> const* Struct<RPG::Enemy>::fields[];
+
+template <>
+char const* const Struct<RPG::EnemyAction>::name;
+template <>
+Field<RPG::EnemyAction> const* Struct<RPG::EnemyAction>::fields[];
+
+template <>
+char const* const Struct<RPG::Event>::name;
+template <>
+Field<RPG::Event> const* Struct<RPG::Event>::fields[];
+
+template <>
+char const* const Struct<RPG::EventPage>::name;
+template <>
+Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[];
+
+template <>
+char const* const Struct<RPG::EventPageCondition>::name;
+template <>
+Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[];
+
+template <>
+char const* const Struct<RPG::Item>::name;
+template <>
+Field<RPG::Item> const* Struct<RPG::Item>::fields[];
+
+template <>
+char const* const Struct<RPG::ItemAnimation>::name;
+template <>
+Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[];
+
+template <>
+char const* const Struct<RPG::Learning>::name;
+template <>
+Field<RPG::Learning> const* Struct<RPG::Learning>::fields[];
+
+template <>
+char const* const Struct<RPG::Map>::name;
+template <>
+Field<RPG::Map> const* Struct<RPG::Map>::fields[];
+
+template <>
+char const* const Struct<RPG::MapInfo>::name;
+template <>
+Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[];
+
+template <>
+char const* const Struct<RPG::MoveRoute>::name;
+template <>
+Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[];
+
+template <>
+char const* const Struct<RPG::Music>::name;
+template <>
+Field<RPG::Music> const* Struct<RPG::Music>::fields[];
+
+template <>
+char const* const Struct<RPG::Save>::name;
+template <>
+Field<RPG::Save> const* Struct<RPG::Save>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveActor>::name;
+template <>
+Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveCommonEvent>::name;
+template <>
+Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveEventCommands>::name;
+template <>
+Field<RPG::SaveEventCommands> const* Struct<RPG::SaveEventCommands>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveEventData>::name;
+template <>
+Field<RPG::SaveEventData> const* Struct<RPG::SaveEventData>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveInventory>::name;
+template <>
+Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveMapEvent>::name;
+template <>
+Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveMapInfo>::name;
+template <>
+Field<RPG::SaveMapInfo> const* Struct<RPG::SaveMapInfo>::fields[];
+
+template <>
+char const* const Struct<RPG::SavePanorama>::name;
+template <>
+Field<RPG::SavePanorama> const* Struct<RPG::SavePanorama>::fields[];
+
+template <>
+char const* const Struct<RPG::SavePartyLocation>::name;
+template <>
+Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[];
+
+template <>
+char const* const Struct<RPG::SavePicture>::name;
+template <>
+Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveScreen>::name;
+template <>
+Field<RPG::SaveScreen> const* Struct<RPG::SaveScreen>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveSystem>::name;
+template <>
+Field<RPG::SaveSystem> const* Struct<RPG::SaveSystem>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveTarget>::name;
+template <>
+Field<RPG::SaveTarget> const* Struct<RPG::SaveTarget>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveTitle>::name;
+template <>
+Field<RPG::SaveTitle> const* Struct<RPG::SaveTitle>::fields[];
+
+template <>
+char const* const Struct<RPG::SaveVehicleLocation>::name;
+template <>
+Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[];
+
+template <>
+char const* const Struct<RPG::Skill>::name;
+template <>
+Field<RPG::Skill> const* Struct<RPG::Skill>::fields[];
+
+template <>
+char const* const Struct<RPG::Sound>::name;
+template <>
+Field<RPG::Sound> const* Struct<RPG::Sound>::fields[];
+
+template <>
+char const* const Struct<RPG::Start>::name;
+template <>
+Field<RPG::Start> const* Struct<RPG::Start>::fields[];
+
+template <>
+char const* const Struct<RPG::State>::name;
+template <>
+Field<RPG::State> const* Struct<RPG::State>::fields[];
+
+template <>
+char const* const Struct<RPG::Switch>::name;
+template <>
+Field<RPG::Switch> const* Struct<RPG::Switch>::fields[];
+
+template <>
+char const* const Struct<RPG::System>::name;
+template <>
+Field<RPG::System> const* Struct<RPG::System>::fields[];
+
+template <>
+char const* const Struct<RPG::Terms>::name;
+template <>
+Field<RPG::Terms> const* Struct<RPG::Terms>::fields[];
+
+template <>
+char const* const Struct<RPG::Terrain>::name;
+template <>
+Field<RPG::Terrain> const* Struct<RPG::Terrain>::fields[];
+
+template <>
+char const* const Struct<RPG::TestBattler>::name;
+template <>
+Field<RPG::TestBattler> const* Struct<RPG::TestBattler>::fields[];
+
+template <>
+char const* const Struct<RPG::Troop>::name;
+template <>
+Field<RPG::Troop> const* Struct<RPG::Troop>::fields[];
+
+template <>
+char const* const Struct<RPG::TroopMember>::name;
+template <>
+Field<RPG::TroopMember> const* Struct<RPG::TroopMember>::fields[];
+
+template <>
+char const* const Struct<RPG::TroopPage>::name;
+template <>
+Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[];
+
+template <>
+char const* const Struct<RPG::TroopPageCondition>::name;
+template <>
+Field<RPG::TroopPageCondition> const* Struct<RPG::TroopPageCondition>::fields[];
+
+template <>
+char const* const Struct<RPG::Variable>::name;
+template <>
+Field<RPG::Variable> const* Struct<RPG::Variable>::fields[];
