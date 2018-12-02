@@ -23,6 +23,11 @@
 namespace RPG {
 	class SavePartyLocation : public SaveMapEventBase {
 	public:
+		// Equal to 9 tiles in 1/16th pixels
+		static constexpr int kPanXDefault = 9 * 256;
+		// Equal to 7 tiles in 1/16th pixels
+		static constexpr int kPanYDefault = 7 * 256;
+
 		enum VehicleType {
 			VehicleType_none = 0,
 			VehicleType_skiff = 1,
@@ -51,10 +56,10 @@ namespace RPG {
 		int32_t preboard_move_speed = 4;
 		bool menu_calling = false;
 		int32_t pan_state = 1;
-		int32_t pan_current_x = 2304;
-		int32_t pan_current_y = 1792;
-		int32_t pan_finish_x = 2304;
-		int32_t pan_finish_y = 1792;
+		int32_t pan_current_x = kPanXDefault;
+		int32_t pan_current_y = kPanYDefault;
+		int32_t pan_finish_x = kPanXDefault;
+		int32_t pan_finish_y = kPanYDefault;
 		int32_t pan_speed = 16;
 		int32_t encounter_steps = 0;
 		bool encounter_calling = false;

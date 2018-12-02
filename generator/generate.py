@@ -273,6 +273,9 @@ def get_flags(filename='flags.csv'):
 def get_setup(filename='setup.csv'):
     return process_file(filename, namedtuple("Setup", "method headers"))
 
+def get_constants(filename='constants.csv'):
+    return process_file(filename, namedtuple("Constant", "name type value comment"))
+
 def get_headers():
     header_map = dict()
 
@@ -379,7 +382,7 @@ def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
 
-    global structs, sfields, enums, flags, setup, headers
+    global structs, sfields, enums, flags, setup, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl
 
     structs = get_structs()
@@ -387,6 +390,7 @@ def main(argv):
     enums = get_enums()
     flags = get_flags()
     setup = get_setup()
+    constants = get_constants()
     headers = get_headers()
 
     # Setup Jinja
@@ -407,6 +411,7 @@ def main(argv):
         flags=flags,
         enums=enums,
         setup=setup,
+        constants=constants,
         headers=headers
     )
 
