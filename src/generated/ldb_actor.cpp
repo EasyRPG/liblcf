@@ -130,7 +130,7 @@ Field<RPG::Actor> const* Struct<RPG::Actor>::fields[] = {
 		&RPG::Actor::parameters,
 		LDB_Reader::ChunkActor::parameters,
 		"parameters",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Actor, int32_t>(
@@ -158,7 +158,7 @@ Field<RPG::Actor> const* Struct<RPG::Actor>::fields[] = {
 		&RPG::Actor::initial_equipment,
 		LDB_Reader::ChunkActor::initial_equipment,
 		"initial_equipment",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Actor, int32_t>(

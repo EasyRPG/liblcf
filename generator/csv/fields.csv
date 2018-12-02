@@ -16,11 +16,11 @@ Actor,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Actor,lock_equipment,f,Boolean,0x16,False,0,0,Flag
 Actor,auto_battle,f,Boolean,0x17,False,0,0,Flag
 Actor,super_guard,f,Boolean,0x18,False,0,0,Flag
-Actor,parameters,f,Parameters,0x1F,,0,0,Array x 6 - Short
+Actor,parameters,f,Parameters,0x1F,,1,0,Array x 6 - Short
 Actor,exp_base,f,Int32,0x29,30|300,0,0,Integer
 Actor,exp_inflation,f,Int32,0x2A,30|300,0,0,Integer
 Actor,exp_correction,f,Int32,0x2B,0,0,0,Integer
-Actor,initial_equipment,f,Equipment,0x33,,0,0,Integer x 5
+Actor,initial_equipment,f,Equipment,0x33,,1,0,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,0,0,Integer
 Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
@@ -293,7 +293,7 @@ TroopPageCondition,turn_actor_a,f,Int32,0x14,0,0,1,Integer - RPG2003
 TroopPageCondition,turn_actor_b,f,Int32,0x15,0,0,1,Integer - RPG2003
 TroopPageCondition,command_actor_id,f,Ref<Actor>,0x16,1,0,1,Integer - RPG2003
 TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
-TroopPage,condition,f,TroopPageCondition,0x02,,0,0,RPG::TroopPageCondition
+TroopPage,condition,f,TroopPageCondition,0x02,,1,0,RPG::TroopPageCondition
 TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - RPG::EventCommand
 Troop,name,f,String,0x01,'',0,0,String
