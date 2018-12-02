@@ -21,6 +21,14 @@ namespace RPG {
 		int ID = 0;
 		int32_t troop_id = 0;
 	};
+
+	inline bool operator==(const Encounter& l, const Encounter& r) {
+		return l.troop_id == r.troop_id;
+	}
+
+	inline bool operator!=(const Encounter& l, const Encounter& r) {
+		return !(l == r);
+	}
 }
 
 #endif

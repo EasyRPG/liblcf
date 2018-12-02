@@ -59,8 +59,8 @@ lsd,SaveMapInfo,,0,0
 lsd,SaveCommonEvent,,1,0
 lsd,SavePanorama,,0,0
 lsd,Save,,0,0
-lmt,Rect,,,0
-lmt,Encounter,,1,0
-lmt,MapInfo,,1,0
-lmt,Start,,0,0
-lmt,TreeMap,,,0
+lmt,Rect,,,1
+lmt,Encounter,,1,1
+lmt,MapInfo,,1,1
+lmt,Start,,0,1
+lmt,TreeMap,,,1

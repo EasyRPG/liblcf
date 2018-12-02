@@ -41,6 +41,17 @@ namespace RPG {
 		int32_t active_node = 0;
 		Start start;
 	};
+
+	inline bool operator==(const TreeMap& l, const TreeMap& r) {
+		return l.maps == r.maps
+		&& l.tree_order == r.tree_order
+		&& l.active_node == r.active_node
+		&& l.start == r.start;
+	}
+
+	inline bool operator!=(const TreeMap& l, const TreeMap& r) {
+		return !(l == r);
+	}
 }
 
 #endif
