@@ -123,7 +123,7 @@ uint32_t LcfWriter::Tell() {
 }
 
 bool LcfWriter::IsOk() const {
-	return (stream.good());
+	return stream.good() && encoder.IsOk();
 }
 
 std::string LcfWriter::Decode(const std::string& str) {

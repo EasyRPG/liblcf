@@ -1,3 +1,4 @@
+#include "lcf_options.h"
 #include "encoder.h"
 #include "reader_util.h"
 #include "scope_guard.h"
@@ -48,6 +49,10 @@ Encoder::~Encoder() {
 	Reset();
 }
 
+bool Encoder::IsOk() const {
+	return _encoding.empty() || (_conv_storage && _conv_runtime);
+}
+
 void Encoder::Encode(std::string& str) {
 	if (_encoding.empty() || str.empty()) {
 		return;
@@ -66,19 +71,19 @@ void Encoder::Init() {
 	if (_encoding.empty()) {
 		return;
 	}
+#ifdef LCF_SUPPORT_ICU
 	auto code_page = atoi(_encoding.c_str());
 	const auto& storage_encoding = code_page > 0
 		? ReaderUtil::CodepageToEncoding(code_page)
 		: _encoding;
 
-#ifdef LCF_SUPPORT_ICU
 	auto status = U_ZERO_ERROR;
 	constexpr auto runtime_encoding = "UTF-8";
 	auto conv_runtime = ucnv_open(runtime_encoding, &status);
 
 	if (conv_runtime == nullptr) {
 		fprintf(stderr, "liblcf:  ucnv_open() error for encoding \"%s\": %s\n", runtime_encoding, u_errorName(status));
-		throw std::runtime_error("ucnv_open() failed");
+		return;
 	}
 	status = U_ZERO_ERROR;
 	auto sg = makeScopeGuard([&]() { ucnv_close(conv_runtime); });
@@ -87,7 +92,7 @@ void Encoder::Init() {
 
 	if (conv_storage == nullptr) {
 		fprintf(stderr, "liblcf:  ucnv_open() error for dest encoding \"%s\": %s\n", storage_encoding.c_str(), u_errorName(status));
-		throw std::runtime_error("ucnv_open() failed");
+		return;
 	}
 
 	sg.Dismiss();

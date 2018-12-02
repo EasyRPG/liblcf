@@ -187,7 +187,7 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 }
 
 bool LcfReader::IsOk() const {
-	return (stream.good());
+	return stream.good() && encoder.IsOk();
 }
 
 bool LcfReader::Eof() const {

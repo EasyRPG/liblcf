@@ -24,6 +24,8 @@ class Encoder {
 		void Encode(std::string& str);
 		void Decode(std::string& str);
 
+		bool IsOk() const;
+
 		const std::string& GetEncoding() const;
 	private:
 		void Init();
