@@ -31,6 +31,17 @@ namespace RPG {
 		bool pending = false;
 		SaveEventData event_data;
 	};
+
+	inline bool operator==(const SaveMapEvent& l, const SaveMapEvent& r) {
+		return l.running == r.running
+		&& l.original_move_route_index == r.original_move_route_index
+		&& l.pending == r.pending
+		&& l.event_data == r.event_data;
+	}
+
+	inline bool operator!=(const SaveMapEvent& l, const SaveMapEvent& r) {
+		return !(l == r);
+	}
 }
 
 #endif

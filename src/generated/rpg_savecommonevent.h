@@ -24,6 +24,14 @@ namespace RPG {
 		int ID = 0;
 		SaveEventData event_data;
 	};
+
+	inline bool operator==(const SaveCommonEvent& l, const SaveCommonEvent& r) {
+		return l.event_data == r.event_data;
+	}
+
+	inline bool operator!=(const SaveCommonEvent& l, const SaveCommonEvent& r) {
+		return !(l == r);
+	}
 }
 
 #endif

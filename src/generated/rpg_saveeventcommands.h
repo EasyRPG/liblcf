@@ -31,6 +31,20 @@ namespace RPG {
 		bool actioned = false;
 		std::vector<uint8_t> subcommand_path;
 	};
+
+	inline bool operator==(const SaveEventCommands& l, const SaveEventCommands& r) {
+		return l.commands_size == r.commands_size
+		&& l.commands == r.commands
+		&& l.current_command == r.current_command
+		&& l.event_id == r.event_id
+		&& l.actioned == r.actioned
+		&& l.subcommand_path == r.subcommand_path
+		&& l.subcommand_path == r.subcommand_path;
+	}
+
+	inline bool operator!=(const SaveEventCommands& l, const SaveEventCommands& r) {
+		return !(l == r);
+	}
 }
 
 #endif

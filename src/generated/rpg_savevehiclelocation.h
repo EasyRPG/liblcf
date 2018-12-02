@@ -44,6 +44,19 @@ namespace RPG {
 		std::string sprite2_name;
 		int32_t sprite2_id = 0;
 	};
+
+	inline bool operator==(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
+		return l.vehicle == r.vehicle
+		&& l.original_move_route_index == r.original_move_route_index
+		&& l.remaining_ascent == r.remaining_ascent
+		&& l.remaining_descent == r.remaining_descent
+		&& l.sprite2_name == r.sprite2_name
+		&& l.sprite2_id == r.sprite2_id;
+	}
+
+	inline bool operator!=(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
+		return !(l == r);
+	}
 }
 
 #endif

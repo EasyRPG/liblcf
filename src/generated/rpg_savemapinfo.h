@@ -47,6 +47,27 @@ namespace RPG {
 		bool parallax_vert_auto = false;
 		int32_t parallax_vert_speed = 0;
 	};
+
+	inline bool operator==(const SaveMapInfo& l, const SaveMapInfo& r) {
+		return l.position_x == r.position_x
+		&& l.position_y == r.position_y
+		&& l.encounter_rate == r.encounter_rate
+		&& l.chipset_id == r.chipset_id
+		&& l.events == r.events
+		&& l.lower_tiles == r.lower_tiles
+		&& l.upper_tiles == r.upper_tiles
+		&& l.parallax_name == r.parallax_name
+		&& l.parallax_horz == r.parallax_horz
+		&& l.parallax_vert == r.parallax_vert
+		&& l.parallax_horz_auto == r.parallax_horz_auto
+		&& l.parallax_horz_speed == r.parallax_horz_speed
+		&& l.parallax_vert_auto == r.parallax_vert_auto
+		&& l.parallax_vert_speed == r.parallax_vert_speed;
+	}
+
+	inline bool operator!=(const SaveMapInfo& l, const SaveMapInfo& r) {
+		return !(l == r);
+	}
 }
 
 #endif

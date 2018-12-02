@@ -28,6 +28,18 @@ namespace RPG {
 		bool switch_on = false;
 		int32_t switch_id = 0;
 	};
+
+	inline bool operator==(const SaveTarget& l, const SaveTarget& r) {
+		return l.map_id == r.map_id
+		&& l.map_x == r.map_x
+		&& l.map_y == r.map_y
+		&& l.switch_on == r.switch_on
+		&& l.switch_id == r.switch_id;
+	}
+
+	inline bool operator!=(const SaveTarget& l, const SaveTarget& r) {
+		return !(l == r);
+	}
 }
 
 #endif
