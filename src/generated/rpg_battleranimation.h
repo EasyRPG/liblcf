@@ -29,11 +29,6 @@ namespace RPG {
 			Speed_normal = 8,
 			Speed_fast = 14
 		};
-		static constexpr auto kSpeedTags = makeEnumTags<Speed>(
-			"slow",
-			"normal",
-			"fast"
-		);
 
 		int ID = 0;
 		std::string name;

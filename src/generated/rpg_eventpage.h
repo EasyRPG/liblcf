@@ -115,14 +115,6 @@ namespace RPG {
 			MoveSpeed_double = 5,
 			MoveSpeed_fourfold = 6
 		};
-		static constexpr auto kMoveSpeedTags = makeEnumTags<MoveSpeed>(
-			"eighth",
-			"quarter",
-			"half",
-			"normal",
-			"double",
-			"fourfold"
-		);
 
 		int ID = 0;
 		EventPageCondition condition;
