@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Chipset.
 
@@ -72,3 +72,5 @@ Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Chipset>;

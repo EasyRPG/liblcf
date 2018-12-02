@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Music.
 
@@ -58,3 +58,5 @@ Field<RPG::Music> const* Struct<RPG::Music>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Music>;

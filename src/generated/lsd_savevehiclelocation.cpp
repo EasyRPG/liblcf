@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SaveVehicleLocation.
 
@@ -338,3 +338,5 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 	),
 	NULL
 };
+
+template class Struct<RPG::SaveVehicleLocation>;

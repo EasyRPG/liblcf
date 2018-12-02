@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SaveMapInfo.
 
@@ -121,3 +121,5 @@ Field<RPG::SaveMapInfo> const* Struct<RPG::SaveMapInfo>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::SaveMapInfo>;

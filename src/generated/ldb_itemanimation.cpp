@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read ItemAnimation.
 
@@ -86,3 +86,5 @@ Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::ItemAnimation>;

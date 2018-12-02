@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Class.
 
@@ -133,3 +133,5 @@ Field<RPG::Class> const* Struct<RPG::Class>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Class>;

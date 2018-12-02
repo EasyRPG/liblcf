@@ -181,7 +181,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\generated\rpg_enums.cpp" />
-    <ClCompile Include="..\..\src\reader_struct.cpp" />
     <ClCompile Include="..\..\src\data.cpp" />
     <ClCompile Include="..\..\src\encoder.cpp" />
     <ClCompile Include="..\..\src\ini.cpp" />
@@ -281,6 +280,7 @@
     <ClInclude Include="..\..\src\lcf_saveopt.h" />
     <ClInclude Include="..\..\src\reader_lcf.h" />
     <ClInclude Include="..\..\src\reader_struct.h" />
+    <ClInclude Include="..\..\src\reader_struct_impl.h" />
     <ClInclude Include="..\..\src\reader_util.h" />
     <ClInclude Include="..\..\src\reader_xml.h" />
     <ClInclude Include="..\..\src\writer_lcf.h" />

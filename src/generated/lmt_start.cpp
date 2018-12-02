@@ -12,7 +12,7 @@
 // Headers
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Start.
 
@@ -107,3 +107,5 @@ Field<RPG::Start> const* Struct<RPG::Start>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Start>;

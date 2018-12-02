@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SaveEventCommands.
 
@@ -71,3 +71,5 @@ Field<RPG::SaveEventCommands> const* Struct<RPG::SaveEventCommands>::fields[] = 
 	),
 	NULL
 };
+
+template class Struct<RPG::SaveEventCommands>;

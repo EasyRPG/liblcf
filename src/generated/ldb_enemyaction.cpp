@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read EnemyAction.
 
@@ -114,3 +114,5 @@ Field<RPG::EnemyAction> const* Struct<RPG::EnemyAction>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::EnemyAction>;

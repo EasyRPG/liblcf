@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read AnimationFrame.
 
@@ -30,3 +30,5 @@ Field<RPG::AnimationFrame> const* Struct<RPG::AnimationFrame>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::AnimationFrame>;

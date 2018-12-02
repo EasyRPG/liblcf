@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Variable.
 
@@ -30,3 +30,5 @@ Field<RPG::Variable> const* Struct<RPG::Variable>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Variable>;

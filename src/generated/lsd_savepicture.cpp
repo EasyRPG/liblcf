@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SavePicture.
 
@@ -289,3 +289,5 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::SavePicture>;

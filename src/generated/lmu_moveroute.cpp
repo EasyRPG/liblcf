@@ -12,7 +12,7 @@
 // Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read MoveRoute.
 
@@ -50,3 +50,5 @@ Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::MoveRoute>;

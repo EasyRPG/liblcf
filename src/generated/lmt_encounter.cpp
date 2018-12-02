@@ -12,7 +12,7 @@
 // Headers
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Encounter.
 
@@ -30,3 +30,5 @@ Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Encounter>;
