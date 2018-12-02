@@ -327,78 +327,6 @@ struct Field {
 		name(name), id(id), present_if_default(present_if_default), is2k3(is2k3) {}
 };
 
-// Equivalence traits
-
-template <class T>
-struct Class_Test {
-	typedef char yes;
-	typedef int no;
-
-	template <class C>
-	static yes& check(void(C::*)(void));
-	template <class C>
-	static no&  check(...);
-
-	static const bool value = sizeof(check<T>(0)) == sizeof(yes);
-};
-
-template <class T>
-struct Compare_Test {
-	static const bool value = !Class_Test<T>::value;
-};
-
-template <class T>
-struct Compare_Test<std::vector<T>> {
-	static const bool value = Compare_Test<T>::value;
-};
-
-template <>
-struct Compare_Test<std::string> {
-	static const bool value = true;
-};
-
-template <>
-struct Compare_Test<RPG::Terrain::Flags> {
-	static const bool value = true;
-};
-
-template <>
-struct Compare_Test<RPG::SavePicture::Flags> {
-	static const bool value = true;
-};
-
-template <class T, bool comparable>
-struct Compare_Traits_Impl {};
-
-template <class T>
-struct Compare_Traits_Impl<T, true> {
-	static bool IsEqual(const T& a, const T& b) {
-		return a == b;
-	}
-};
-
-template <class T>
-struct Compare_Traits_Impl<T, false> {
-	static bool IsEqual(const T& /* a */, const T& /* b */) {
-		return false;
-	}
-};
-
-template <class T>
-struct Compare_Traits_Impl<std::vector<T>, false> {
-	static bool IsEqual(const std::vector<T>& a, const std::vector<T>& b) {
-		return a.empty() && b.empty();
-	}
-};
-
-template <class T>
-struct Compare_Traits {
-	typedef Compare_Traits_Impl<T, Compare_Test<T>::value> impl_type;
-	static bool IsEqual(const T& a, const T& b) {
-		return impl_type::IsEqual(a, b);
-	}
-};
-
 /**
  * TypedField class template.
  */
@@ -427,7 +355,7 @@ struct TypedField : public Field<S> {
 		TypeReader<T>::ParseXml(obj.*ref, data);
 	}
 	bool IsDefault(const S& a, const S& b) const {
-		return Compare_Traits<T>::IsEqual(a.*ref, b.*ref);
+		return a.*ref == b.*ref;
 	}
 
 	TypedField(T S::*ref, int id, const char* name, bool present_if_default, bool is2k3) :
