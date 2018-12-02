@@ -25,7 +25,7 @@ Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
 		&RPG::SaveCommonEvent::event_data,
 		LSD_Reader::ChunkSaveCommonEvent::event_data,
 		"event_data",
-		0,
+		1,
 		0
 	),
 	NULL

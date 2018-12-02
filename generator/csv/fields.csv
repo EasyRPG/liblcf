@@ -953,7 +953,7 @@ SaveMapEventBase,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
 SaveMapEventBase,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
 SaveMapEventBase,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveMapEventBase,move_speed,f,Int32,0x25,3,1,0,
-SaveMapEventBase,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
+SaveMapEventBase,move_route,f,MoveRoute,0x29,,1,0,chunks: RPG::MoveRoute
 SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
 SaveMapEventBase,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
@@ -980,7 +980,7 @@ SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,0,0,?
 SaveMapEvent,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveMapEvent,pending,f,Boolean,0x67,False,0,0,If true; this event will run after the current running event stops running. FIXME: See issue #174
-SaveMapEvent,event_data,f,SaveEventData,0x6C,,0,0,chunks
+SaveMapEvent,event_data,f,SaveEventData,0x6C,,1,0,chunks
 SaveMapInfo,position_x,f,Int32,0x01,0,0,0,int
 SaveMapInfo,position_y,f,Int32,0x02,0,0,0,int
 SaveMapInfo,encounter_rate,f,Int32,0x03,-1,0,0,int
@@ -995,23 +995,23 @@ SaveMapInfo,parallax_horz_auto,f,Boolean,0x23,False,0,0,bool
 SaveMapInfo,parallax_horz_speed,f,Int32,0x24,0,0,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,0,0,bool
 SaveMapInfo,parallax_vert_speed,f,Int32,0x26,0,0,0,int
-SaveCommonEvent,event_data,f,SaveEventData,0x01,,0,0,chunks
+SaveCommonEvent,event_data,f,SaveEventData,0x01,,1,0,chunks
 SavePanorama,pan_x,f,Int32,0x01,0,0,0,Panorama X position
 SavePanorama,pan_y,f,Int32,0x02,0,0,0,Panorama Y position
 Save,title,f,SaveTitle,0x64,,0,0,RPG::SaveTitle
-Save,system,f,SaveSystem,0x65,,0,0,RPG::SaveSystem
-Save,screen,f,SaveScreen,0x66,,0,0,RPG::SaveScreen
+Save,system,f,SaveSystem,0x65,,1,0,RPG::SaveSystem
+Save,screen,f,SaveScreen,0x66,,1,0,RPG::SaveScreen
 Save,pictures,f,Array<SavePicture>,0x67,,1,0,array of RPG::SavePicture
-Save,party_location,f,SavePartyLocation,0x68,,0,0,RPG::SavePartyLocation
-Save,boat_location,f,SaveVehicleLocation,0x69,,0,0,RPG::SaveVehicleLocation
-Save,ship_location,f,SaveVehicleLocation,0x6A,,0,0,RPG::SaveVehicleLocation
-Save,airship_location,f,SaveVehicleLocation,0x6B,,0,0,RPG::SaveVehicleLocation
+Save,party_location,f,SavePartyLocation,0x68,,1,0,RPG::SavePartyLocation
+Save,boat_location,f,SaveVehicleLocation,0x69,,1,0,RPG::SaveVehicleLocation
+Save,ship_location,f,SaveVehicleLocation,0x6A,,1,0,RPG::SaveVehicleLocation
+Save,airship_location,f,SaveVehicleLocation,0x6B,,1,0,RPG::SaveVehicleLocation
 Save,actors,f,Array<SaveActor>,0x6C,,1,0,array of RPG::SaveActor
-Save,inventory,f,SaveInventory,0x6D,,0,0,RPG::SaveInventory
+Save,inventory,f,SaveInventory,0x6D,,1,0,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of RPG::SaveTarget
-Save,map_info,f,SaveMapInfo,0x6F,,0,0,RPG::SaveMapInfo
+Save,map_info,f,SaveMapInfo,0x6F,,1,0,RPG::SaveMapInfo
 Save,panorama,f,SavePanorama,0x70,,1,0,Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object.
-Save,events,f,SaveEventData,0x71,,0,0,RPG::SaveEventData
+Save,events,f,SaveEventData,0x71,,1,0,RPG::SaveEventData
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,shield_id,,Ref<Item:Int16>,,0,0,0,

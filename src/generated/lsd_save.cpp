@@ -32,14 +32,14 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		&RPG::Save::system,
 		LSD_Reader::ChunkSave::system,
 		"system",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, RPG::SaveScreen>(
 		&RPG::Save::screen,
 		LSD_Reader::ChunkSave::screen,
 		"screen",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, std::vector<RPG::SavePicture>>(
@@ -53,28 +53,28 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		&RPG::Save::party_location,
 		LSD_Reader::ChunkSave::party_location,
 		"party_location",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, RPG::SaveVehicleLocation>(
 		&RPG::Save::boat_location,
 		LSD_Reader::ChunkSave::boat_location,
 		"boat_location",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, RPG::SaveVehicleLocation>(
 		&RPG::Save::ship_location,
 		LSD_Reader::ChunkSave::ship_location,
 		"ship_location",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, RPG::SaveVehicleLocation>(
 		&RPG::Save::airship_location,
 		LSD_Reader::ChunkSave::airship_location,
 		"airship_location",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, std::vector<RPG::SaveActor>>(
@@ -88,7 +88,7 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		&RPG::Save::inventory,
 		LSD_Reader::ChunkSave::inventory,
 		"inventory",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, std::vector<RPG::SaveTarget>>(
@@ -102,7 +102,7 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		&RPG::Save::map_info,
 		LSD_Reader::ChunkSave::map_info,
 		"map_info",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, RPG::SavePanorama>(
@@ -116,7 +116,7 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		&RPG::Save::events,
 		LSD_Reader::ChunkSave::events,
 		"events",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::Save, std::vector<RPG::SaveCommonEvent>>(

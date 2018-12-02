@@ -130,7 +130,7 @@ Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[] = 
 		&RPG::SavePartyLocation::move_route,
 		LSD_Reader::ChunkSavePartyLocation::move_route,
 		"move_route",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SavePartyLocation, bool>(
