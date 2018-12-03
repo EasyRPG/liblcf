@@ -11,9 +11,13 @@ namespace RPG {
 
 {%- for ftype, structlist in structs.items() %}
 	{%- for struct in structlist %}
-		{%- for enum_name in enums[struct.name] %}
-constexpr decltype({{ struct.name }}::k{{ enum_name }}Tags) {{ struct.name }}::k{{ enum_name }}Tags;
+		{%- if struct.name in enums %}
+		{%- for name, enum in enums[struct.name].items() %}
+		{%- if enum is monotonic_from_0 %}
+constexpr decltype({{ struct.name }}::k{{ name }}Tags) {{ struct.name }}::k{{ name }}Tags;
+		{%- endif %}
 		{%- endfor %}
+		{%- endif %}
 	{%- endfor %}
 {%- endfor %}
 

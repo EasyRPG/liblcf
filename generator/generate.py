@@ -309,6 +309,14 @@ def needs_ctor(struct_name):
     return struct_name in setup and any('Init()' in method
                                     for method, hdrs in setup[struct_name])
 
+def is_monotonic_from_0(enum):
+    expected = 0
+    for (val, idx) in enum:
+        if int(idx) != expected:
+            return False
+        expected += 1
+    return True
+
 def generate():
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
@@ -400,6 +408,7 @@ def main(argv):
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor
+    env.tests['monotonic_from_0'] = is_monotonic_from_0
 
     globals = dict(
         structs=structs,

@@ -40,7 +40,6 @@
 #include "rpg_treemap.h"
 
 namespace RPG {
-constexpr decltype(EventCommand::kCodeTags) EventCommand::kCodeTags;
 constexpr decltype(MoveCommand::kCodeTags) MoveCommand::kCodeTags;
 constexpr decltype(AnimationTiming::kFlashScopeTags) AnimationTiming::kFlashScopeTags;
 constexpr decltype(AnimationTiming::kScreenShakeTags) AnimationTiming::kScreenShakeTags;
@@ -55,11 +54,9 @@ constexpr decltype(BattleCommands::kWindowSizeTags) BattleCommands::kWindowSizeT
 constexpr decltype(BattleCommands::kTransparencyTags) BattleCommands::kTransparencyTags;
 constexpr decltype(BattleCommands::kFacingTags) BattleCommands::kFacingTags;
 constexpr decltype(BattlerAnimationExtension::kAnimTypeTags) BattlerAnimationExtension::kAnimTypeTags;
-constexpr decltype(BattlerAnimation::kSpeedTags) BattlerAnimation::kSpeedTags;
 constexpr decltype(BattlerAnimationData::kMovementTags) BattlerAnimationData::kMovementTags;
 constexpr decltype(BattlerAnimationData::kAfterImageTags) BattlerAnimationData::kAfterImageTags;
 constexpr decltype(Chipset::kAnimTypeTags) Chipset::kAnimTypeTags;
-constexpr decltype(CommonEvent::kTriggerTags) CommonEvent::kTriggerTags;
 constexpr decltype(Skill::kTypeTags) Skill::kTypeTags;
 constexpr decltype(Skill::kSpTypeTags) Skill::kSpTypeTags;
 constexpr decltype(Skill::kScopeTags) Skill::kScopeTags;
@@ -92,7 +89,6 @@ constexpr decltype(EventPage::kMoveTypeTags) EventPage::kMoveTypeTags;
 constexpr decltype(EventPage::kTriggerTags) EventPage::kTriggerTags;
 constexpr decltype(EventPage::kLayersTags) EventPage::kLayersTags;
 constexpr decltype(EventPage::kAnimTypeTags) EventPage::kAnimTypeTags;
-constexpr decltype(EventPage::kMoveSpeedTags) EventPage::kMoveSpeedTags;
 constexpr decltype(Map::kScrollTypeTags) Map::kScrollTypeTags;
 constexpr decltype(Map::kGeneratorModeTags) Map::kGeneratorModeTags;
 constexpr decltype(Map::kGeneratorTilesTags) Map::kGeneratorTilesTags;
