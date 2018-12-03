@@ -12,7 +12,7 @@
 // Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Event.
 
@@ -51,3 +51,5 @@ Field<RPG::Event> const* Struct<RPG::Event>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Event>;

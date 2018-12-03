@@ -12,7 +12,7 @@
 // Headers
 #include "lmt_reader.h"
 #include "lmt_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read MapInfo.
 
@@ -142,3 +142,5 @@ Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::MapInfo>;

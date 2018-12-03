@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SaveCommonEvent.
 
@@ -30,3 +30,5 @@ Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::SaveCommonEvent>;

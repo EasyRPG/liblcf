@@ -27,7 +27,6 @@ liblcf_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-no-undefined
 liblcf_la_SOURCES = \
-	src/reader_struct.cpp \
 	src/data.cpp \
 	src/ini.cpp \
 	src/inireader.cpp \
@@ -127,6 +126,7 @@ pkginclude_HEADERS = \
 	src/encoder.h \
 	src/reader_lcf.h \
 	src/reader_struct.h \
+	src/reader_struct_impl.h \
 	src/reader_util.h \
 	src/reader_xml.h \
 	src/writer_lcf.h \

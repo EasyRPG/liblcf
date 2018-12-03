@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read BattlerAnimation.
 
@@ -51,3 +51,5 @@ Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::BattlerAnimation>;

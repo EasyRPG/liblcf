@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read AnimationCellData.
 
@@ -93,3 +93,5 @@ Field<RPG::AnimationCellData> const* Struct<RPG::AnimationCellData>::fields[] = 
 	),
 	NULL
 };
+
+template class Struct<RPG::AnimationCellData>;

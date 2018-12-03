@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read TroopPageCondition.
 
@@ -184,3 +184,5 @@ Field<RPG::TroopPageCondition> const* Struct<RPG::TroopPageCondition>::fields[] 
 	),
 	NULL
 };
+
+template class Struct<RPG::TroopPageCondition>;

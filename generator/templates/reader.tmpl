@@ -2,7 +2,7 @@
 // Headers
 #include "{{ type }}_reader.h"
 #include "{{ type }}_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read {{ struct_name }}.
 {%- set LCF_CHUNK_SUFFIX = type|upper + "_Reader" %}
@@ -40,3 +40,5 @@ Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}
 {%- endfor %}
 	NULL
 };
+
+template class Struct<RPG::{{ LCF_CURRENT_STRUCT }}>;

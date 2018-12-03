@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read BattleCommands.
 
@@ -128,3 +128,5 @@ Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::BattleCommands>;

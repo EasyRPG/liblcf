@@ -12,7 +12,7 @@
 // Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read EventPage.
 
@@ -134,3 +134,5 @@ Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::EventPage>;

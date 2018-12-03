@@ -12,7 +12,7 @@
 // Headers
 #include "lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read Map.
 
@@ -247,3 +247,5 @@ Field<RPG::Map> const* Struct<RPG::Map>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::Map>;

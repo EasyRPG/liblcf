@@ -28,7 +28,6 @@ endif()
 
 # lcf library files
 add_library(lcf
-	src/reader_struct.cpp
 	src/data.cpp
 	src/ini.cpp
 	src/inireader.cpp

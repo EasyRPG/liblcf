@@ -12,7 +12,7 @@
 // Headers
 #include "ldb_reader.h"
 #include "ldb_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read TroopMember.
 
@@ -51,3 +51,5 @@ Field<RPG::TroopMember> const* Struct<RPG::TroopMember>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::TroopMember>;

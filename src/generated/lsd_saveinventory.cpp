@@ -12,7 +12,7 @@
 // Headers
 #include "lsd_reader.h"
 #include "lsd_chunks.h"
-#include "reader_struct.h"
+#include "reader_struct_impl.h"
 
 // Read SaveInventory.
 
@@ -170,3 +170,5 @@ Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
 	),
 	NULL
 };
+
+template class Struct<RPG::SaveInventory>;
