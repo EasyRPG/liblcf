@@ -25,6 +25,12 @@ namespace RPG {
 	{%- if struct_name == "Map" %}
 		std::string lmu_header;
 	{%- endif %}
+	{%- if struct_name in constants %}
+	{%- for name, type, value, comment in constants[struct_name] %}
+		// {{ comment }}
+		static constexpr {{ type }} {{ name }} = {{ value }};
+	{%- endfor %}
+	{% endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
 		{%- if name == "Code" %}

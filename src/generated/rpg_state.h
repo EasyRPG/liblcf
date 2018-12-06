@@ -23,6 +23,9 @@
 namespace RPG {
 	class State {
 	public:
+		// The ID of the special death state
+		static constexpr int kDeathID = 1;
+
 		enum Persistence {
 			Persistence_ends = 0,
 			Persistence_persists = 1

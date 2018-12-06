@@ -837,10 +837,10 @@ SavePartyLocation,unboarding,f,Boolean,0x68,False,0,0,
 SavePartyLocation,preboard_move_speed,f,Int32,0x69,4,0,0,Move speed before the party boarded the vehicle
 SavePartyLocation,menu_calling,f,Boolean,0x6C,False,0,0,Flag which briefly is true if the player presses ESC. At the right place in handling each frame's activities for the player; the code checks whether this flag is set and calls the menu; however there are several conditions which would cancel this flag and instead process another higher-priority action; such as when an encounter takes place during the same frame.
 SavePartyLocation,pan_state,f,Enum<SavePartyLoction_PanState>,0x6f,1,0,0,0: screen is fixed; 1: screen moves with player.
-SavePartyLocation,pan_current_x,f,Int32,0x70,2304,0,0,Number of 1/16 pixels to the left of player
-SavePartyLocation,pan_current_y,f,Int32,0x71,1792,0,0,Number of 1/16 pixels above the player
-SavePartyLocation,pan_finish_x,f,Int32,0x72,2304,0,0,Number of 1/16 pixels to the left of player when current scroll finishes
-SavePartyLocation,pan_finish_y,f,Int32,0x73,1792,0,0,Number of 1/16 pixels above the player when current scroll finishes.
+SavePartyLocation,pan_current_x,f,Int32,0x70,kPanXDefault,0,0,Number of 1/16 pixels to the left of player
+SavePartyLocation,pan_current_y,f,Int32,0x71,kPanYDefault,0,0,Number of 1/16 pixels above the player
+SavePartyLocation,pan_finish_x,f,Int32,0x72,kPanXDefault,0,0,Number of 1/16 pixels to the left of player when current scroll finishes
+SavePartyLocation,pan_finish_y,f,Int32,0x73,kPanYDefault,0,0,Number of 1/16 pixels above the player when current scroll finishes.
 SavePartyLocation,pan_speed,f,Int32,0x79,16,0,0,speed in the scrolls of the screen - shown in sixteenth pixels.
 SavePartyLocation,encounter_steps,f,Int32,0x7C,0,0,0,int: sum of terrain.encounter_rate for each step
 SavePartyLocation,encounter_calling,f,Boolean,0x7D,False,0,0,Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame.
