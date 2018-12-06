@@ -13,6 +13,8 @@
 #ifdef LCF_SUPPORT_ICU
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
+#	include <unicode/normalizer2.h>
+#	include <unicode/unistr.h>
 #else
 #   ifdef _MSC_VER
 #		error MSVC builds require ICU
@@ -371,6 +373,23 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	*q++ = '\0';
 	std::string result(dst);
 	delete[] dst;
+	return result;
+#endif
+}
+
+std::string ReaderUtil::Normalize(const std::string &str) {
+#ifdef LCF_SUPPORT_ICU
+	icu::UnicodeString& uni = icu::UnicodeString(str.c_str()).toLower();
+	UErrorCode err = U_ZERO_ERROR;
+	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
+	icu::UnicodeString f = norm->normalize(uni, err);
+	std::string res;
+	f.toUTF8String(res);
+	return res;
+#else
+	// LAME
+	std::string result = str;
+	std::transform(result.begin(), result.end(), result.begin(), tolower);
 	return result;
 #endif
 }
