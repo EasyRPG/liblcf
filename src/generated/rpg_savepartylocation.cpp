@@ -14,4 +14,5 @@
 
 constexpr int RPG::SavePartyLocation::kPanXDefault;
 constexpr int RPG::SavePartyLocation::kPanYDefault;
+constexpr int RPG::SavePartyLocation::kPanSpeedDefault;
 
