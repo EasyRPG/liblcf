@@ -60,7 +60,29 @@ To generate the "configure" script, run before following the above section:
 Read more detailed instructions at:
 
 * https://wiki.easyrpg.org/development/compiling/liblcf/autotools
+
+
+### CMake method:
+
+Building requirements:
+
+- pkg-config (Not on Windows)
+- CMake
+
+Step-by-step instructions:
+
+    tar xf liblcf-0.5.4.tar.xz            # unpack the tarball
+    cd liblcf-0.5.4                       # enter in the package directory
+    cmake . -DCMAKE_BUILD_TYPE=Release    # configure project
+    cmake --build .                       # compile the library
+    sudo cmake --build . --target install # install system-wide
+
+Read more detailed instructions at:
+
 * https://wiki.easyrpg.org/development/compiling/liblcf/cmake
+
+CMake is the only supported way to build liblcf for Windows. All dependencies
+must be installed with [vcpkg](https://github.com/Microsoft/vcpkg).
 
 
 ## Bug reporting

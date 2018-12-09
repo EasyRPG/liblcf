@@ -141,11 +141,6 @@ set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
 # Export symbols for DLL
 set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-if(MSVC)
-	# bigobj for reader_struct
-	set_property(TARGET lcf PROPERTY COMPILE_FLAGS "/bigobj")
-endif()
-
 # icu or fallback to iconv
 if(DISABLE_ICU)
 	find_package(Iconv REQUIRED)

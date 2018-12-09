@@ -1,4 +1,3 @@
-
 # autotools build method
 /autom4te.cache/
 /builds/autoconf/
@@ -20,12 +19,6 @@ stamp-h1
 *.la
 *.lo
 
-# visual studio build method
-/builds/vs20*/Output/
-/builds/vs20*/*.user
-/builds/vs20*/x64/
-/lib/
-
 # cmake build method
 bin/
 builds/liblcf-config.cmake
@@ -36,6 +29,24 @@ CMakeFiles/
 CMakeDoxyfile.in
 install_manifest.txt
 Testing/
+
+# msvc / Windows
+*.vcxproj*
+*.sdf
+*.ncb
+*.psess
+*.suo
+*.user
+*.vsp*
+*.lib
+*.exe
+*.exp
+*.ilk
+*.pdb
+
+# ninja
+.ninja_*
+build.ninja
 
 # IntelliJ / CLion
 .idea/
