@@ -26,6 +26,17 @@ namespace RPG {
 		uint32_t r = 0;
 		uint32_t b = 0;
 	};
+
+	inline bool operator==(const Rect& l, const Rect& r) {
+		return l.l == r.l
+		&& l.t == r.t
+		&& l.r == r.r
+		&& l.b == r.b;
+	}
+
+	inline bool operator!=(const Rect& l, const Rect& r) {
+		return !(l == r);
+	}
 }
 
 #endif

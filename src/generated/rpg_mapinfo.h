@@ -77,6 +77,30 @@ namespace RPG {
 		int32_t encounter_steps = 25;
 		Rect area_rect;
 	};
+
+	inline bool operator==(const MapInfo& l, const MapInfo& r) {
+		return l.name == r.name
+		&& l.parent_map == r.parent_map
+		&& l.indentation == r.indentation
+		&& l.type == r.type
+		&& l.scrollbar_x == r.scrollbar_x
+		&& l.scrollbar_y == r.scrollbar_y
+		&& l.expanded_node == r.expanded_node
+		&& l.music_type == r.music_type
+		&& l.music == r.music
+		&& l.background_type == r.background_type
+		&& l.background_name == r.background_name
+		&& l.teleport == r.teleport
+		&& l.escape == r.escape
+		&& l.save == r.save
+		&& l.encounters == r.encounters
+		&& l.encounter_steps == r.encounter_steps
+		&& l.area_rect == r.area_rect;
+	}
+
+	inline bool operator!=(const MapInfo& l, const MapInfo& r) {
+		return !(l == r);
+	}
 }
 
 #endif

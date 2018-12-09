@@ -34,6 +34,25 @@ namespace RPG {
 		int32_t airship_x = 0;
 		int32_t airship_y = 0;
 	};
+
+	inline bool operator==(const Start& l, const Start& r) {
+		return l.party_map_id == r.party_map_id
+		&& l.party_x == r.party_x
+		&& l.party_y == r.party_y
+		&& l.boat_map_id == r.boat_map_id
+		&& l.boat_x == r.boat_x
+		&& l.boat_y == r.boat_y
+		&& l.ship_map_id == r.ship_map_id
+		&& l.ship_x == r.ship_x
+		&& l.ship_y == r.ship_y
+		&& l.airship_map_id == r.airship_map_id
+		&& l.airship_x == r.airship_x
+		&& l.airship_y == r.airship_y;
+	}
+
+	inline bool operator!=(const Start& l, const Start& r) {
+		return !(l == r);
+	}
 }
 
 #endif

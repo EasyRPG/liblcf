@@ -26,6 +26,17 @@ namespace RPG {
 		bool repeat = true;
 		bool skippable = false;
 	};
+
+	inline bool operator==(const MoveRoute& l, const MoveRoute& r) {
+		return l.move_commands == r.move_commands
+		&& l.move_commands == r.move_commands
+		&& l.repeat == r.repeat
+		&& l.skippable == r.skippable;
+	}
+
+	inline bool operator!=(const MoveRoute& l, const MoveRoute& r) {
+		return !(l == r);
+	}
 }
 
 #endif

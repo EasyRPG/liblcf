@@ -88,6 +88,26 @@ namespace RPG {
 		int32_t switch_off_id = 1;
 		int32_t rating = 50;
 	};
+
+	inline bool operator==(const EnemyAction& l, const EnemyAction& r) {
+		return l.kind == r.kind
+		&& l.basic == r.basic
+		&& l.skill_id == r.skill_id
+		&& l.enemy_id == r.enemy_id
+		&& l.condition_type == r.condition_type
+		&& l.condition_param1 == r.condition_param1
+		&& l.condition_param2 == r.condition_param2
+		&& l.switch_id == r.switch_id
+		&& l.switch_on == r.switch_on
+		&& l.switch_on_id == r.switch_on_id
+		&& l.switch_off == r.switch_off
+		&& l.switch_off_id == r.switch_off_id
+		&& l.rating == r.rating;
+	}
+
+	inline bool operator!=(const EnemyAction& l, const EnemyAction& r) {
+		return !(l == r);
+	}
 }
 
 #endif

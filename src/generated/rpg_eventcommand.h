@@ -162,6 +162,17 @@ namespace RPG {
 		std::string string;
 		std::vector<int32_t> parameters;
 	};
+
+	inline bool operator==(const EventCommand& l, const EventCommand& r) {
+		return l.code == r.code
+		&& l.indent == r.indent
+		&& l.string == r.string
+		&& l.parameters == r.parameters;
+	}
+
+	inline bool operator!=(const EventCommand& l, const EventCommand& r) {
+		return !(l == r);
+	}
 }
 
 #endif

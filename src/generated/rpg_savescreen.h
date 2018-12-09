@@ -52,6 +52,43 @@ namespace RPG {
 		int32_t weather = 0;
 		int32_t weather_strength = 0;
 	};
+
+	inline bool operator==(const SaveScreen& l, const SaveScreen& r) {
+		return l.tint_finish_red == r.tint_finish_red
+		&& l.tint_finish_green == r.tint_finish_green
+		&& l.tint_finish_blue == r.tint_finish_blue
+		&& l.tint_finish_sat == r.tint_finish_sat
+		&& l.tint_current_red == r.tint_current_red
+		&& l.tint_current_green == r.tint_current_green
+		&& l.tint_current_blue == r.tint_current_blue
+		&& l.tint_current_sat == r.tint_current_sat
+		&& l.tint_time_left == r.tint_time_left
+		&& l.flash_continuous == r.flash_continuous
+		&& l.flash_red == r.flash_red
+		&& l.flash_green == r.flash_green
+		&& l.flash_blue == r.flash_blue
+		&& l.flash_current_level == r.flash_current_level
+		&& l.flash_time_left == r.flash_time_left
+		&& l.shake_continuous == r.shake_continuous
+		&& l.shake_strength == r.shake_strength
+		&& l.shake_speed == r.shake_speed
+		&& l.shake_position == r.shake_position
+		&& l.shake_position_y == r.shake_position_y
+		&& l.shake_time_left == r.shake_time_left
+		&& l.pan_x == r.pan_x
+		&& l.pan_y == r.pan_y
+		&& l.battleanim_id == r.battleanim_id
+		&& l.battleanim_target == r.battleanim_target
+		&& l.battleanim_frame == r.battleanim_frame
+		&& l.battleanim_active == r.battleanim_active
+		&& l.battleanim_global == r.battleanim_global
+		&& l.weather == r.weather
+		&& l.weather_strength == r.weather_strength;
+	}
+
+	inline bool operator!=(const SaveScreen& l, const SaveScreen& r) {
+		return !(l == r);
+	}
 }
 
 #endif

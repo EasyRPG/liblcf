@@ -53,6 +53,20 @@ namespace RPG {
 		int32_t position = 2;
 		std::vector<AnimationFrame> frames;
 	};
+
+	inline bool operator==(const Animation& l, const Animation& r) {
+		return l.name == r.name
+		&& l.animation_name == r.animation_name
+		&& l.large == r.large
+		&& l.timings == r.timings
+		&& l.scope == r.scope
+		&& l.position == r.position
+		&& l.frames == r.frames;
+	}
+
+	inline bool operator!=(const Animation& l, const Animation& r) {
+		return !(l == r);
+	}
 }
 
 #endif

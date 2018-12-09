@@ -37,6 +37,19 @@ namespace RPG {
 		int32_t switch_id = 1;
 		std::vector<EventCommand> event_commands;
 	};
+
+	inline bool operator==(const CommonEvent& l, const CommonEvent& r) {
+		return l.name == r.name
+		&& l.trigger == r.trigger
+		&& l.switch_flag == r.switch_flag
+		&& l.switch_id == r.switch_id
+		&& l.event_commands == r.event_commands
+		&& l.event_commands == r.event_commands;
+	}
+
+	inline bool operator!=(const CommonEvent& l, const CommonEvent& r) {
+		return !(l == r);
+	}
 }
 
 #endif

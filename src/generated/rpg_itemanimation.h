@@ -64,6 +64,22 @@ namespace RPG {
 		int32_t ranged_speed = 0;
 		int32_t battle_anim = 0;
 	};
+
+	inline bool operator==(const ItemAnimation& l, const ItemAnimation& r) {
+		return l.type == r.type
+		&& l.weapon_anim == r.weapon_anim
+		&& l.movement == r.movement
+		&& l.after_image == r.after_image
+		&& l.attacks == r.attacks
+		&& l.ranged == r.ranged
+		&& l.ranged_anim == r.ranged_anim
+		&& l.ranged_speed == r.ranged_speed
+		&& l.battle_anim == r.battle_anim;
+	}
+
+	inline bool operator!=(const ItemAnimation& l, const ItemAnimation& r) {
+		return !(l == r);
+	}
 }
 
 #endif

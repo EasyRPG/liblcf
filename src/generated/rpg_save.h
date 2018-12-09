@@ -51,6 +51,28 @@ namespace RPG {
 		SaveEventData events;
 		std::vector<SaveCommonEvent> common_events;
 	};
+
+	inline bool operator==(const Save& l, const Save& r) {
+		return l.title == r.title
+		&& l.system == r.system
+		&& l.screen == r.screen
+		&& l.pictures == r.pictures
+		&& l.party_location == r.party_location
+		&& l.boat_location == r.boat_location
+		&& l.ship_location == r.ship_location
+		&& l.airship_location == r.airship_location
+		&& l.actors == r.actors
+		&& l.inventory == r.inventory
+		&& l.targets == r.targets
+		&& l.map_info == r.map_info
+		&& l.panorama == r.panorama
+		&& l.events == r.events
+		&& l.common_events == r.common_events;
+	}
+
+	inline bool operator!=(const Save& l, const Save& r) {
+		return !(l == r);
+	}
 }
 
 #endif

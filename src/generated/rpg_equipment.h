@@ -27,6 +27,18 @@ namespace RPG {
 		int16_t helmet_id = 0;
 		int16_t accessory_id = 0;
 	};
+
+	inline bool operator==(const Equipment& l, const Equipment& r) {
+		return l.weapon_id == r.weapon_id
+		&& l.shield_id == r.shield_id
+		&& l.armor_id == r.armor_id
+		&& l.helmet_id == r.helmet_id
+		&& l.accessory_id == r.accessory_id;
+	}
+
+	inline bool operator!=(const Equipment& l, const Equipment& r) {
+		return !(l == r);
+	}
 }
 
 #endif

@@ -24,6 +24,14 @@ namespace RPG {
 		int ID = 0;
 		std::string name;
 	};
+
+	inline bool operator==(const Variable& l, const Variable& r) {
+		return l.name == r.name;
+	}
+
+	inline bool operator!=(const Variable& l, const Variable& r) {
+		return !(l == r);
+	}
 }
 
 #endif

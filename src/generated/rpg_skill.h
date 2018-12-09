@@ -99,6 +99,49 @@ namespace RPG {
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
 	};
+
+	inline bool operator==(const Skill& l, const Skill& r) {
+		return l.name == r.name
+		&& l.description == r.description
+		&& l.using_message1 == r.using_message1
+		&& l.using_message2 == r.using_message2
+		&& l.failure_message == r.failure_message
+		&& l.type == r.type
+		&& l.sp_type == r.sp_type
+		&& l.sp_percent == r.sp_percent
+		&& l.sp_cost == r.sp_cost
+		&& l.scope == r.scope
+		&& l.switch_id == r.switch_id
+		&& l.animation_id == r.animation_id
+		&& l.sound_effect == r.sound_effect
+		&& l.occasion_field == r.occasion_field
+		&& l.occasion_battle == r.occasion_battle
+		&& l.state_effect == r.state_effect
+		&& l.physical_rate == r.physical_rate
+		&& l.magical_rate == r.magical_rate
+		&& l.variance == r.variance
+		&& l.power == r.power
+		&& l.hit == r.hit
+		&& l.affect_hp == r.affect_hp
+		&& l.affect_sp == r.affect_sp
+		&& l.affect_attack == r.affect_attack
+		&& l.affect_defense == r.affect_defense
+		&& l.affect_spirit == r.affect_spirit
+		&& l.affect_agility == r.affect_agility
+		&& l.absorb_damage == r.absorb_damage
+		&& l.ignore_defense == r.ignore_defense
+		&& l.state_effects == r.state_effects
+		&& l.state_effects == r.state_effects
+		&& l.attribute_effects == r.attribute_effects
+		&& l.attribute_effects == r.attribute_effects
+		&& l.affect_attr_defence == r.affect_attr_defence
+		&& l.battler_animation == r.battler_animation
+		&& l.battler_animation_data == r.battler_animation_data;
+	}
+
+	inline bool operator!=(const Skill& l, const Skill& r) {
+		return !(l == r);
+	}
 }
 
 #endif

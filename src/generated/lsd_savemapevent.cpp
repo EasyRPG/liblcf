@@ -130,7 +130,7 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		&RPG::SaveMapEvent::move_route,
 		LSD_Reader::ChunkSaveMapEvent::move_route,
 		"move_route",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, bool>(
@@ -319,7 +319,7 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		&RPG::SaveMapEvent::event_data,
 		LSD_Reader::ChunkSaveMapEvent::event_data,
 		"event_data",
-		0,
+		1,
 		0
 	),
 	NULL

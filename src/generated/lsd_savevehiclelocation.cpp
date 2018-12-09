@@ -130,7 +130,7 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		&RPG::SaveVehicleLocation::move_route,
 		LSD_Reader::ChunkSaveVehicleLocation::move_route,
 		"move_route",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, bool>(

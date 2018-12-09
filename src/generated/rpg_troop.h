@@ -32,6 +32,20 @@ namespace RPG {
 		bool appear_randomly = false;
 		std::vector<TroopPage> pages;
 	};
+
+	inline bool operator==(const Troop& l, const Troop& r) {
+		return l.name == r.name
+		&& l.members == r.members
+		&& l.auto_alignment == r.auto_alignment
+		&& l.terrain_set == r.terrain_set
+		&& l.terrain_set == r.terrain_set
+		&& l.appear_randomly == r.appear_randomly
+		&& l.pages == r.pages;
+	}
+
+	inline bool operator!=(const Troop& l, const Troop& r) {
+		return !(l == r);
+	}
 }
 
 #endif

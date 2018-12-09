@@ -45,6 +45,34 @@ namespace RPG {
 		int32_t turns = 0;
 		int32_t steps = 0;
 	};
+
+	inline bool operator==(const SaveInventory& l, const SaveInventory& r) {
+		return l.party_size == r.party_size
+		&& l.party == r.party
+		&& l.items_size == r.items_size
+		&& l.item_ids == r.item_ids
+		&& l.item_counts == r.item_counts
+		&& l.item_usage == r.item_usage
+		&& l.gold == r.gold
+		&& l.timer1_secs == r.timer1_secs
+		&& l.timer1_active == r.timer1_active
+		&& l.timer1_visible == r.timer1_visible
+		&& l.timer1_battle == r.timer1_battle
+		&& l.timer2_secs == r.timer2_secs
+		&& l.timer2_active == r.timer2_active
+		&& l.timer2_visible == r.timer2_visible
+		&& l.timer2_battle == r.timer2_battle
+		&& l.battles == r.battles
+		&& l.defeats == r.defeats
+		&& l.escapes == r.escapes
+		&& l.victories == r.victories
+		&& l.turns == r.turns
+		&& l.steps == r.steps;
+	}
+
+	inline bool operator!=(const SaveInventory& l, const SaveInventory& r) {
+		return !(l == r);
+	}
 }
 
 #endif

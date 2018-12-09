@@ -25,7 +25,7 @@ Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[] = {
 		&RPG::TroopPage::condition,
 		LDB_Reader::ChunkTroopPage::condition,
 		"condition",
-		0,
+		1,
 		0
 	),
 	new SizeField<RPG::TroopPage, RPG::EventCommand>(

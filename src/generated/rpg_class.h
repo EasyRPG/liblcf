@@ -41,6 +41,29 @@ namespace RPG {
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<int32_t> battle_commands;
 	};
+
+	inline bool operator==(const Class& l, const Class& r) {
+		return l.name == r.name
+		&& l.two_weapon == r.two_weapon
+		&& l.lock_equipment == r.lock_equipment
+		&& l.auto_battle == r.auto_battle
+		&& l.super_guard == r.super_guard
+		&& l.parameters == r.parameters
+		&& l.exp_base == r.exp_base
+		&& l.exp_inflation == r.exp_inflation
+		&& l.exp_correction == r.exp_correction
+		&& l.battler_animation == r.battler_animation
+		&& l.skills == r.skills
+		&& l.state_ranks == r.state_ranks
+		&& l.state_ranks == r.state_ranks
+		&& l.attribute_ranks == r.attribute_ranks
+		&& l.attribute_ranks == r.attribute_ranks
+		&& l.battle_commands == r.battle_commands;
+	}
+
+	inline bool operator!=(const Class& l, const Class& r) {
+		return !(l == r);
+	}
 }
 
 #endif

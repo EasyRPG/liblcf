@@ -30,6 +30,17 @@ namespace RPG {
 		int32_t y = 0;
 		std::vector<EventPage> pages;
 	};
+
+	inline bool operator==(const Event& l, const Event& r) {
+		return l.name == r.name
+		&& l.x == r.x
+		&& l.y == r.y
+		&& l.pages == r.pages;
+	}
+
+	inline bool operator!=(const Event& l, const Event& r) {
+		return !(l == r);
+	}
 }
 
 #endif

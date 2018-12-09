@@ -137,7 +137,7 @@ Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[] = {
 		&RPG::MapInfo::area_rect,
 		LMT_Reader::ChunkMapInfo::area_rect,
 		"area_rect",
-		0,
+		1,
 		0
 	),
 	NULL

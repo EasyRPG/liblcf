@@ -92,6 +92,45 @@ namespace RPG {
 		int32_t save_count_2k3e = 0;
 		int32_t save_count = 0;
 	};
+
+	inline bool operator==(const Map& l, const Map& r) {
+		return l.chipset_id == r.chipset_id
+		&& l.width == r.width
+		&& l.height == r.height
+		&& l.scroll_type == r.scroll_type
+		&& l.parallax_flag == r.parallax_flag
+		&& l.parallax_name == r.parallax_name
+		&& l.parallax_loop_x == r.parallax_loop_x
+		&& l.parallax_loop_y == r.parallax_loop_y
+		&& l.parallax_auto_loop_x == r.parallax_auto_loop_x
+		&& l.parallax_sx == r.parallax_sx
+		&& l.parallax_auto_loop_y == r.parallax_auto_loop_y
+		&& l.parallax_sy == r.parallax_sy
+		&& l.generator_flag == r.generator_flag
+		&& l.generator_mode == r.generator_mode
+		&& l.top_level == r.top_level
+		&& l.generator_tiles == r.generator_tiles
+		&& l.generator_width == r.generator_width
+		&& l.generator_height == r.generator_height
+		&& l.generator_surround == r.generator_surround
+		&& l.generator_upper_wall == r.generator_upper_wall
+		&& l.generator_floor_b == r.generator_floor_b
+		&& l.generator_floor_c == r.generator_floor_c
+		&& l.generator_extra_b == r.generator_extra_b
+		&& l.generator_extra_c == r.generator_extra_c
+		&& l.generator_x == r.generator_x
+		&& l.generator_y == r.generator_y
+		&& l.generator_tile_ids == r.generator_tile_ids
+		&& l.lower_layer == r.lower_layer
+		&& l.upper_layer == r.upper_layer
+		&& l.events == r.events
+		&& l.save_count_2k3e == r.save_count_2k3e
+		&& l.save_count == r.save_count;
+	}
+
+	inline bool operator!=(const Map& l, const Map& r) {
+		return !(l == r);
+	}
 }
 
 #endif

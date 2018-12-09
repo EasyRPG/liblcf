@@ -131,6 +131,51 @@ namespace RPG {
 	inline bool operator!=(const SavePicture::Flags& l, const SavePicture::Flags& r) {
 		return !(l == r);
 	}
+
+	inline bool operator==(const SavePicture& l, const SavePicture& r) {
+		return l.name == r.name
+		&& l.start_x == r.start_x
+		&& l.start_y == r.start_y
+		&& l.current_x == r.current_x
+		&& l.current_y == r.current_y
+		&& l.fixed_to_map == r.fixed_to_map
+		&& l.current_magnify == r.current_magnify
+		&& l.current_top_trans == r.current_top_trans
+		&& l.transparency == r.transparency
+		&& l.current_red == r.current_red
+		&& l.current_green == r.current_green
+		&& l.current_blue == r.current_blue
+		&& l.current_sat == r.current_sat
+		&& l.effect_mode == r.effect_mode
+		&& l.current_effect == r.current_effect
+		&& l.current_bot_trans == r.current_bot_trans
+		&& l.spritesheet_cols == r.spritesheet_cols
+		&& l.spritesheet_rows == r.spritesheet_rows
+		&& l.spritesheet_frame == r.spritesheet_frame
+		&& l.spritesheet_speed == r.spritesheet_speed
+		&& l.frames == r.frames
+		&& l.spritesheet_play_once == r.spritesheet_play_once
+		&& l.map_layer == r.map_layer
+		&& l.battle_layer == r.battle_layer
+		&& l.flags == r.flags
+		&& l.finish_x == r.finish_x
+		&& l.finish_y == r.finish_y
+		&& l.finish_magnify == r.finish_magnify
+		&& l.finish_top_trans == r.finish_top_trans
+		&& l.finish_bot_trans == r.finish_bot_trans
+		&& l.finish_red == r.finish_red
+		&& l.finish_green == r.finish_green
+		&& l.finish_blue == r.finish_blue
+		&& l.finish_sat == r.finish_sat
+		&& l.finish_effect == r.finish_effect
+		&& l.time_left == r.time_left
+		&& l.current_rotation == r.current_rotation
+		&& l.current_waver == r.current_waver;
+	}
+
+	inline bool operator!=(const SavePicture& l, const SavePicture& r) {
+		return !(l == r);
+	}
 }
 
 #endif

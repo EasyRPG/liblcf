@@ -54,6 +54,21 @@ namespace RPG {
 		int32_t flash_power = 31;
 		int32_t screen_shake = 0;
 	};
+
+	inline bool operator==(const AnimationTiming& l, const AnimationTiming& r) {
+		return l.frame == r.frame
+		&& l.se == r.se
+		&& l.flash_scope == r.flash_scope
+		&& l.flash_red == r.flash_red
+		&& l.flash_green == r.flash_green
+		&& l.flash_blue == r.flash_blue
+		&& l.flash_power == r.flash_power
+		&& l.screen_shake == r.screen_shake;
+	}
+
+	inline bool operator!=(const AnimationTiming& l, const AnimationTiming& r) {
+		return !(l == r);
+	}
 }
 
 #endif

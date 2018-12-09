@@ -16,11 +16,11 @@ Actor,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Actor,lock_equipment,f,Boolean,0x16,False,0,0,Flag
 Actor,auto_battle,f,Boolean,0x17,False,0,0,Flag
 Actor,super_guard,f,Boolean,0x18,False,0,0,Flag
-Actor,parameters,f,Parameters,0x1F,,0,0,Array x 6 - Short
+Actor,parameters,f,Parameters,0x1F,,1,0,Array x 6 - Short
 Actor,exp_base,f,Int32,0x29,30|300,0,0,Integer
 Actor,exp_inflation,f,Int32,0x2A,30|300,0,0,Integer
 Actor,exp_correction,f,Int32,0x2B,0,0,0,Integer
-Actor,initial_equipment,f,Equipment,0x33,,0,0,Integer x 5
+Actor,initial_equipment,f,Equipment,0x33,,1,0,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,0,0,Integer
 Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
@@ -293,7 +293,7 @@ TroopPageCondition,turn_actor_a,f,Int32,0x14,0,0,1,Integer - RPG2003
 TroopPageCondition,turn_actor_b,f,Int32,0x15,0,0,1,Integer - RPG2003
 TroopPageCondition,command_actor_id,f,Ref<Actor>,0x16,1,0,1,Integer - RPG2003
 TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
-TroopPage,condition,f,TroopPageCondition,0x02,,0,0,RPG::TroopPageCondition
+TroopPage,condition,f,TroopPageCondition,0x02,,1,0,RPG::TroopPageCondition
 TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - RPG::EventCommand
 Troop,name,f,String,0x01,'',0,0,String
@@ -614,7 +614,7 @@ MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,1,0,Flag. 0=inherit; 1=allow; 2=d
 MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,encounters,f,Array<Encounter>,0x29,,1,0,Array - RPG::Encounter
 MapInfo,encounter_steps,f,Int32,0x2C,25,0,0,0=Encounters Disabled; 1=Encounter Rate for the map
-MapInfo,area_rect,f,Rect,0x33,,0,0,Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0
+MapInfo,area_rect,f,Rect,0x33,,1,0,Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0
 Start,party_map_id,f,Ref<Map>,0x01,0,0,0,Integer
 Start,party_x,f,Int32,0x02,0,0,0,Integer
 Start,party_y,f,Int32,0x03,0,0,0,Integer
@@ -641,7 +641,7 @@ MoveRoute,move_commands,t,MoveCommand,0x0B,,0,0,Integer
 MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - RPG::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
-EventPage,condition,f,EventPageCondition,0x02,,0,0,RPG::EventPageCondition
+EventPage,condition,f,EventPageCondition,0x02,,1,0,RPG::EventPageCondition
 EventPage,character_name,f,String,0x15,'',0,0,String
 EventPage,character_index,f,Int32,0x16,0,0,0,Integer
 EventPage,character_direction,f,Enum<EventPage_Direction>,0x17,2,1,0,Integer
@@ -654,7 +654,7 @@ EventPage,layer,f,Enum<EventPage_Layers>,0x22,0,1,0,Integer
 EventPage,overlap_forbidden,f,Boolean,0x23,False,1,0,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,1,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
-EventPage,move_route,f,MoveRoute,0x29,,0,0,RPG::MoveRoute
+EventPage,move_route,f,MoveRoute,0x29,,1,0,RPG::MoveRoute
 EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
 EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - RPG::EventCommand
 Event,name,f,String,0x01,'',0,0,String
@@ -953,7 +953,7 @@ SaveMapEventBase,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
 SaveMapEventBase,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
 SaveMapEventBase,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveMapEventBase,move_speed,f,Int32,0x25,3,1,0,
-SaveMapEventBase,move_route,f,MoveRoute,0x29,,0,0,chunks: RPG::MoveRoute
+SaveMapEventBase,move_route,f,MoveRoute,0x29,,1,0,chunks: RPG::MoveRoute
 SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
 SaveMapEventBase,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
@@ -980,7 +980,7 @@ SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveMapEvent,running,f,Boolean,0x65,False,0,0,?
 SaveMapEvent,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveMapEvent,pending,f,Boolean,0x67,False,0,0,If true; this event will run after the current running event stops running. FIXME: See issue #174
-SaveMapEvent,event_data,f,SaveEventData,0x6C,,0,0,chunks
+SaveMapEvent,event_data,f,SaveEventData,0x6C,,1,0,chunks
 SaveMapInfo,position_x,f,Int32,0x01,0,0,0,int
 SaveMapInfo,position_y,f,Int32,0x02,0,0,0,int
 SaveMapInfo,encounter_rate,f,Int32,0x03,-1,0,0,int
@@ -995,23 +995,23 @@ SaveMapInfo,parallax_horz_auto,f,Boolean,0x23,False,0,0,bool
 SaveMapInfo,parallax_horz_speed,f,Int32,0x24,0,0,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,0,0,bool
 SaveMapInfo,parallax_vert_speed,f,Int32,0x26,0,0,0,int
-SaveCommonEvent,event_data,f,SaveEventData,0x01,,0,0,chunks
+SaveCommonEvent,event_data,f,SaveEventData,0x01,,1,0,chunks
 SavePanorama,pan_x,f,Int32,0x01,0,0,0,Panorama X position
 SavePanorama,pan_y,f,Int32,0x02,0,0,0,Panorama Y position
 Save,title,f,SaveTitle,0x64,,0,0,RPG::SaveTitle
-Save,system,f,SaveSystem,0x65,,0,0,RPG::SaveSystem
-Save,screen,f,SaveScreen,0x66,,0,0,RPG::SaveScreen
+Save,system,f,SaveSystem,0x65,,1,0,RPG::SaveSystem
+Save,screen,f,SaveScreen,0x66,,1,0,RPG::SaveScreen
 Save,pictures,f,Array<SavePicture>,0x67,,1,0,array of RPG::SavePicture
-Save,party_location,f,SavePartyLocation,0x68,,0,0,RPG::SavePartyLocation
-Save,boat_location,f,SaveVehicleLocation,0x69,,0,0,RPG::SaveVehicleLocation
-Save,ship_location,f,SaveVehicleLocation,0x6A,,0,0,RPG::SaveVehicleLocation
-Save,airship_location,f,SaveVehicleLocation,0x6B,,0,0,RPG::SaveVehicleLocation
+Save,party_location,f,SavePartyLocation,0x68,,1,0,RPG::SavePartyLocation
+Save,boat_location,f,SaveVehicleLocation,0x69,,1,0,RPG::SaveVehicleLocation
+Save,ship_location,f,SaveVehicleLocation,0x6A,,1,0,RPG::SaveVehicleLocation
+Save,airship_location,f,SaveVehicleLocation,0x6B,,1,0,RPG::SaveVehicleLocation
 Save,actors,f,Array<SaveActor>,0x6C,,1,0,array of RPG::SaveActor
-Save,inventory,f,SaveInventory,0x6D,,0,0,RPG::SaveInventory
+Save,inventory,f,SaveInventory,0x6D,,1,0,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of RPG::SaveTarget
-Save,map_info,f,SaveMapInfo,0x6F,,0,0,RPG::SaveMapInfo
+Save,map_info,f,SaveMapInfo,0x6F,,1,0,RPG::SaveMapInfo
 Save,panorama,f,SavePanorama,0x70,,1,0,Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object.
-Save,events,f,SaveEventData,0x71,,0,0,RPG::SaveEventData
+Save,events,f,SaveEventData,0x71,,1,0,RPG::SaveEventData
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,shield_id,,Ref<Item:Int16>,,0,0,0,

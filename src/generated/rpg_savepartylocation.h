@@ -66,6 +66,29 @@ namespace RPG {
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
 	};
+
+	inline bool operator==(const SavePartyLocation& l, const SavePartyLocation& r) {
+		return l.boarding == r.boarding
+		&& l.aboard == r.aboard
+		&& l.vehicle == r.vehicle
+		&& l.unboarding == r.unboarding
+		&& l.preboard_move_speed == r.preboard_move_speed
+		&& l.menu_calling == r.menu_calling
+		&& l.pan_state == r.pan_state
+		&& l.pan_current_x == r.pan_current_x
+		&& l.pan_current_y == r.pan_current_y
+		&& l.pan_finish_x == r.pan_finish_x
+		&& l.pan_finish_y == r.pan_finish_y
+		&& l.pan_speed == r.pan_speed
+		&& l.encounter_steps == r.encounter_steps
+		&& l.encounter_calling == r.encounter_calling
+		&& l.map_save_count == r.map_save_count
+		&& l.database_save_count == r.database_save_count;
+	}
+
+	inline bool operator!=(const SavePartyLocation& l, const SavePartyLocation& r) {
+		return !(l == r);
+	}
 }
 
 #endif

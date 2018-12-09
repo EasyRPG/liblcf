@@ -30,6 +30,19 @@ namespace RPG {
 		std::vector<int16_t> spirit;
 		std::vector<int16_t> agility;
 	};
+
+	inline bool operator==(const Parameters& l, const Parameters& r) {
+		return l.maxhp == r.maxhp
+		&& l.maxsp == r.maxsp
+		&& l.attack == r.attack
+		&& l.defense == r.defense
+		&& l.spirit == r.spirit
+		&& l.agility == r.agility;
+	}
+
+	inline bool operator!=(const Parameters& l, const Parameters& r) {
+		return !(l == r);
+	}
 }
 
 #endif

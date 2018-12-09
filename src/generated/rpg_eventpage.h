@@ -133,6 +133,29 @@ namespace RPG {
 		MoveRoute move_route;
 		std::vector<EventCommand> event_commands;
 	};
+
+	inline bool operator==(const EventPage& l, const EventPage& r) {
+		return l.condition == r.condition
+		&& l.character_name == r.character_name
+		&& l.character_index == r.character_index
+		&& l.character_direction == r.character_direction
+		&& l.character_pattern == r.character_pattern
+		&& l.translucent == r.translucent
+		&& l.move_type == r.move_type
+		&& l.move_frequency == r.move_frequency
+		&& l.trigger == r.trigger
+		&& l.layer == r.layer
+		&& l.overlap_forbidden == r.overlap_forbidden
+		&& l.animation_type == r.animation_type
+		&& l.move_speed == r.move_speed
+		&& l.move_route == r.move_route
+		&& l.event_commands == r.event_commands
+		&& l.event_commands == r.event_commands;
+	}
+
+	inline bool operator!=(const EventPage& l, const EventPage& r) {
+		return !(l == r);
+	}
 }
 
 #endif

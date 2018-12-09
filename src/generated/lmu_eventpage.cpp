@@ -25,7 +25,7 @@ Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[] = {
 		&RPG::EventPage::condition,
 		LMU_Reader::ChunkEventPage::condition,
 		"condition",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::EventPage, std::string>(
@@ -116,7 +116,7 @@ Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[] = {
 		&RPG::EventPage::move_route,
 		LMU_Reader::ChunkEventPage::move_route,
 		"move_route",
-		0,
+		1,
 		0
 	),
 	new SizeField<RPG::EventPage, RPG::EventCommand>(

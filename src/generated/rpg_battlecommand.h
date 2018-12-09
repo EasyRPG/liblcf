@@ -45,6 +45,15 @@ namespace RPG {
 		std::string name;
 		int32_t type = 0;
 	};
+
+	inline bool operator==(const BattleCommand& l, const BattleCommand& r) {
+		return l.name == r.name
+		&& l.type == r.type;
+	}
+
+	inline bool operator!=(const BattleCommand& l, const BattleCommand& r) {
+		return !(l == r);
+	}
 }
 
 #endif

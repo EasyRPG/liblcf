@@ -130,7 +130,7 @@ Field<RPG::SaveMapEventBase> const* Struct<RPG::SaveMapEventBase>::fields[] = {
 		&RPG::SaveMapEventBase::move_route,
 		LSD_Reader::ChunkSaveMapEventBase::move_route,
 		"move_route",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveMapEventBase, bool>(

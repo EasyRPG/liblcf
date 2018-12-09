@@ -25,6 +25,14 @@ namespace RPG {
 		int ID = 0;
 		std::vector<AnimationCellData> cells;
 	};
+
+	inline bool operator==(const AnimationFrame& l, const AnimationFrame& r) {
+		return l.cells == r.cells;
+	}
+
+	inline bool operator!=(const AnimationFrame& l, const AnimationFrame& r) {
+		return !(l == r);
+	}
 }
 
 #endif
