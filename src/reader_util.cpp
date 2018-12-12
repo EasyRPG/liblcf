@@ -379,12 +379,16 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 
 std::string ReaderUtil::Normalize(const std::string &str) {
 #ifdef LCF_SUPPORT_ICU
-	icu::UnicodeString& uni = icu::UnicodeString(str.c_str()).toLower();
+	icu::UnicodeString uni = icu::UnicodeString(str.c_str()).toLower();
 	UErrorCode err = U_ZERO_ERROR;
+	std::string res;
 	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
 	icu::UnicodeString f = norm->normalize(uni, err);
-	std::string res;
-	f.toUTF8String(res);
+	if (U_FAILURE(err)) {
+		uni.toUTF8String(res);
+	} else {
+		f.toUTF8String(res);
+	}
 	return res;
 #else
 	std::string result = str;
