@@ -111,6 +111,15 @@ namespace ReaderUtil {
 					   const std::string& dst_enc);
 
 	/**
+	 * Converts a UTF-8 string to lowercase and then decomposes it.
+	 * 
+	 * @param str the string to normalize.
+	 * @return the normalized string.
+	 */
+	std::string Normalize(const std::string &str);
+
+
+	/**
 	 * Helper function that returns an element from a vector using a 1-based
 	 * index as usually used by LCF data structures.
 	 *
