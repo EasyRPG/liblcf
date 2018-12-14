@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
 EXTRA_DIST = AUTHORS.md README.md generator \
-	builds/cmake builds/Doxyfile
+	CMakeLists.txt builds/cmake builds/Doxyfile
 pkgconfigdir = ${libdir}/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
 
