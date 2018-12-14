@@ -7,10 +7,7 @@ option(BUILD_SHARED_LIBS "Build shared library, disable for building the static 
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended)" OFF)
 option(DISABLE_XML "Disable XML reading support (expat)" OFF)
 
-set(DEBUG_POSTFIX "d")
-mark_as_advanced(DEBUG_POSTFIX)
-
-set(CMAKE_DEBUG_POSTFIX ${DEBUG_POSTFIX} CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
+set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
 
