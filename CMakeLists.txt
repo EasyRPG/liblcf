@@ -206,6 +206,15 @@ add_library(lcf
 	src/generated/rpg_variable.h
 )
 
+# IDE source grouping
+foreach(SG LDB LMT LMU LSD RPG)
+	string(TOLOWER ${SG} LSG)
+	source_group("Source Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/${LSG}_.*\\.cpp")
+	source_group("Header Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/${LSG}_.*\\.h")
+	source_group("Source Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.cpp")
+	source_group("Header Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.h")
+endforeach()
+
 # C++11 is required
 target_compile_features(lcf PUBLIC cxx_std_11)
 
