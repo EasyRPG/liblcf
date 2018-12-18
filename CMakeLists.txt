@@ -23,6 +23,11 @@ if(DOXYGEN_FOUND)
 		COMMENT "Generating API documentation with Doxygen" VERBATIM)
 endif()
 
+# C++11 is required
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 # lcf library files
 add_library(lcf
 	src/command_codes.h
@@ -214,9 +219,6 @@ foreach(SG LDB LMT LMU LSD RPG)
 	source_group("Source Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.cpp")
 	source_group("Header Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.h")
 endforeach()
-
-# C++11 is required
-target_compile_features(lcf PUBLIC cxx_std_11)
 
 # includes
 target_include_directories(
