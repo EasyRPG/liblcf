@@ -14,8 +14,8 @@ Documentation is available at the documentation wiki: https://wiki.easyrpg.org
 
 ## Requirements
 
-- Expat for XML reading support.
-- ICU for character encoding detection and conversion (recommended).
+- [Expat] for XML reading support.
+- [ICU] for character encoding detection and conversion (recommended).
 
 
 ## Source code
@@ -59,7 +59,7 @@ To generate the "configure" script, run before following the above section:
 
 Read more detailed instructions at:
 
-* https://wiki.easyrpg.org/development/compiling/liblcf/autotools
+https://wiki.easyrpg.org/development/compiling/liblcf/autotools
 
 
 ### CMake method:
@@ -79,10 +79,10 @@ Step-by-step instructions:
 
 Read more detailed instructions at:
 
-* https://wiki.easyrpg.org/development/compiling/liblcf/cmake
+https://wiki.easyrpg.org/development/compiling/liblcf/cmake
 
 CMake is the only supported way to build liblcf for Windows. All dependencies
-must be installed with [vcpkg](https://github.com/Microsoft/vcpkg).
+must be installed with [vcpkg].
 
 
 ## Bug reporting
@@ -91,15 +91,23 @@ Available options:
 
 * File an issue at https://github.com/EasyRPG/liblcf/issues
 * Open a thread at https://community.easyrpg.org/
-* Chat with us via IRC: #easyrpg at irc.freenode.net
+* Chat with us via IRC: [#easyrpg at irc.freenode.net]
 
 
 ## License
 
 liblcf is Free/Libre Open Source Software, released under the MIT License.
-See the file COPYING for copying conditions.
+See the file [COPYING] for copying conditions.
 
 ### 3rd party software
 
-liblcf code includes a copy of inih (New BSD license).
+liblcf code includes a copy of [inih] under New BSD license.
 See the source code comment headers for license details.
+
+
+[Expat]: https://libexpat.github.io
+[ICU]: http://icu-project.org
+[vcpkg]: https://github.com/Microsoft/vcpkg
+[#easyrpg at irc.freenode.net]: https://kiwiirc.com/nextclient/#ircs://irc.freenode.net/#easyrpg?nick=rpgguest??
+[COPYING]: COPYING
+[inih]: https://github.com/benhoyt/inih
