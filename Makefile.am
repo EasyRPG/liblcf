@@ -1,8 +1,13 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
+
 EXTRA_DIST = AUTHORS.md README.md generator \
-	CMakeLists.txt builds/cmake builds/Doxyfile
-pkgconfigdir = ${libdir}/pkgconfig
+	CMakeLists.txt builds/cmake mime builds/Doxyfile
+
+pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
+
+mimedbdir = $(datadir)/mime/packages
+mimedb_DATA = mime/liblcf.xml
 
 cmakeconfigdir = $(libdir)/cmake/liblcf
 cmakeconfig_DATA = \
@@ -228,3 +233,12 @@ test_runner_LDFLAGS = -no-install
 
 check-local:
 	$(AM_V_at)./test_runner
+
+install-data-hook:
+if ENABLE_UPDATE_MIMEDB
+	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(datadir)/mime"
+endif
+
+uninstall-hook:
+	rm -f "$(DESTDIR)$(datadir)/mime/application/"*.xml
+	for f in aliases generic-icons globs globs2 icons magic mime.cache subclasses treemagic types version XMLnamespaces; do rm -f "$(DESTDIR)$(datadir)/mime/$${f}"; done

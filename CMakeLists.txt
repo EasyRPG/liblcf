@@ -6,6 +6,7 @@ project(liblcf VERSION 0.5.4 LANGUAGES CXX)
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library" ON)
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended)" OFF)
 option(DISABLE_XML "Disable XML reading support (expat)" OFF)
+option(DISABLE_UPDATE_MIMEDB "Do not run update-mime-database after install" OFF)
 
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
@@ -261,6 +262,11 @@ if(NOT DISABLE_XML)
 	list(APPEND LIBLCF_DEPS "expat")
 endif()
 
+# mime types
+if(NOT DISABLE_UPDATE_MIMEDB)
+	find_program(UPDATE_MIME_DATABASE update-mime-database)
+endif()
+
 # .so version
 set_property(TARGET lcf PROPERTY SOVERSION 0)
 
@@ -304,6 +310,18 @@ install(
 	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindEXPAT.cmake
 	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindICU.cmake
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf)
+
+# mime types
+install(
+	FILES ${CMAKE_CURRENT_SOURCE_DIR}/mime/${PROJECT_NAME}.xml
+	DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
+)
+if(NOT DISABLE_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
+	install(CODE
+		"execute_process(COMMAND ${UPDATE_MIME_DATABASE}
+			\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/mime)"
+	)
+endif()
 
 # tests
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+	<mime-type type="application/x-lmu">
+		<comment>LCF Map Unit</comment>
+		<comment xml:lang="en">RPG Maker 2k(3) Map</comment>
+		<glob pattern="*.lmu"/>
+		<magic priority="50">
+			<match type="string" value="LcfMapUnit" offset="0"/>
+		</magic>
+	</mime-type>
+	<mime-type type="application/x-lmt">
+		<comment>LCF Map Tree</comment>
+		<comment xml:lang="en">RPG Maker 2k(3) Map Tree</comment>
+		<glob pattern="*.lmt"/>
+		<magic priority="50">
+			<match type="string" value="LcfMapTree" offset="0"/>
+		</magic>
+	</mime-type>
+	<mime-type type="application/x-ldb">
+		<comment>LCF Database</comment>
+		<comment xml:lang="en">RPG Maker 2k(3) Database</comment>
+		<glob pattern="*.ldb"/>
+		<magic priority="50">
+			<match type="string" value="LcfDataBase" offset="0"/>
+		</magic>
+	</mime-type>
+	<mime-type type="application/x-lsd">
+		<comment>LCF Save Data</comment>
+		<comment xml:lang="en">RPG Maker 2k(3) Savegame</comment>
+		<glob pattern="*.lsd"/>
+		<magic priority="50">
+			<match type="string" value="LcfSaveData" offset="0"/>
+		</magic>
+	</mime-type>
+</mime-info>
