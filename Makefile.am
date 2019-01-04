@@ -236,7 +236,11 @@ check-local:
 
 install-data-hook:
 if ENABLE_UPDATE_MIMEDB
+if CROSS_COMPILING
+	@echo "Cross compiling: Skipping update of mime database"
+else
 	$(UPDATE_MIME_DATABASE) "$(DESTDIR)$(datadir)/mime"
+endif
 endif
 
 uninstall-hook:

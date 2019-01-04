@@ -263,7 +263,7 @@ if(NOT DISABLE_XML)
 endif()
 
 # mime types
-if(NOT DISABLE_UPDATE_MIMEDB)
+if(NOT DISABLE_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 	find_program(UPDATE_MIME_DATABASE update-mime-database)
 endif()
 
