@@ -198,10 +198,12 @@ void RPG::System::Init() {
 }
 
 void RPG::Parameters::Setup(int final_level) {
-	if (maxhp.size() < final_level) maxhp.resize(final_level, 1);
-	if (maxsp.size() < final_level) maxsp.resize(final_level, 0);
-	if (attack.size() < final_level) attack.resize(final_level, 1);
-	if (defense.size() < final_level) defense.resize(final_level, 1);
-	if (spirit.size() < final_level) spirit.resize(final_level, 1);
-	if (agility.size() < final_level) agility.resize(final_level, 1);
+	size_t level = 0;
+	if (final_level > 0) level = final_level;
+	if (maxhp.size() < level) maxhp.resize(level, 1);
+	if (maxsp.size() < level) maxsp.resize(level, 0);
+	if (attack.size() < level) attack.resize(level, 1);
+	if (defense.size() < level) defense.resize(level, 1);
+	if (spirit.size() < level) spirit.resize(level, 1);
+	if (agility.size() < level) agility.resize(level, 1);
 }

@@ -46,7 +46,7 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 	Read0(ptr, size, nmemb);
 #else
 	if (Read0(ptr, size, nmemb) != nmemb) {
-		fprintf(stderr, "Read error at %d. The file is probably corrupted\n", Tell());
+		fprintf(stderr, "Read error at %" PRIu32 ". The file is probably corrupted\n", Tell());
 	}
 #endif
 }
@@ -91,7 +91,7 @@ int LcfReader::ReadInt() {
 		value |= temp & 0x7F;
 
 		if (loops > 5) {
-			fprintf(stderr, "Invalid compressed integer at %d\n", Tell());
+			fprintf(stderr, "Invalid compressed integer at %" PRIu32 "\n", Tell());
 		}
 		++loops;
 	} while (temp & 0x80);
@@ -231,8 +231,8 @@ void LcfReader::SkipDebug(const struct LcfReader::Chunk& chunk_info, const char*
 	} else {
 		srcfilename++;
 	}
-	fprintf(stderr, "Skipped Chunk %02X (%d byte) in lcf at %X (%s)\n",
-			chunk_info.ID, chunk_info.length,  Tell(),
+	fprintf(stderr, "Skipped Chunk %02X (%" PRIu32 " byte) in lcf at %" PRIX32 " (%s)\n",
+			chunk_info.ID, chunk_info.length, Tell(),
 			srcfilename);
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
 		uint8_t byte;

@@ -15,8 +15,9 @@
 #include <iosfwd>
 #include <cstring>
 #include <cassert>
+#include <cstdint>
+#include <cinttypes>
 #include <memory>
-#include <stdint.h>
 #include "lcf_options.h"
 #include "reader_util.h"
 #include "encoder.h"

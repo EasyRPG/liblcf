@@ -25,7 +25,7 @@ struct RawStruct<RPG::Equipment> {
  */
 void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
 	if (length != 10) {
-		fprintf(stderr, "Equipment has incorrect size %d (expected 10)\n", length);
+		fprintf(stderr, "Equipment has incorrect size %" PRIu32 " (expected 10)\n", length);
 
 		LcfReader::Chunk chunk_info;
 		chunk_info.ID = 0x33;
