@@ -46,7 +46,7 @@ Testing/
 
 # ninja
 .ninja_*
-build.ninja
+*.ninja
 
 # IntelliJ / CLion
 .idea/
