@@ -69,13 +69,13 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 		auto it = field_map.find(chunk_info.ID);
 		if (it != field_map.end()) {
 #ifdef LCF_DEBUG_TRACE
-			printf("0x%02x (size: %d, pos: 0x%x): %s\n", chunk_info.ID, chunk_info.length, stream.Tell(), it->second->name);
+			printf("0x%02x (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s\n", chunk_info.ID, chunk_info.length, stream.Tell(), it->second->name);
 #endif
-			const auto off = stream.Tell();
+			const uint32_t off = stream.Tell();
 			it->second->ReadLcf(obj, stream, chunk_info.length);
-			const auto bytes_read = stream.Tell() - off;
+			const uint32_t bytes_read = stream.Tell() - off;
 			if (bytes_read != chunk_info.length) {
-				fprintf(stderr, "Warning: Corrupted Chunk 0x%02x (size: %d, pos: 0x%x): %s : Read %d bytes! Reseting...\n",
+				fprintf(stderr, "Warning: Corrupted Chunk 0x%02" PRIx32 " (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s : Read %" PRIu32 " bytes! Reseting...\n",
 						chunk_info.ID, chunk_info.length, off, it->second->name, bytes_read);
 				stream.Seek(off + chunk_info.length);
 			}

@@ -19,6 +19,7 @@
 #include <memory>
 #include <cstring>
 #include <cstdlib>
+#include <cinttypes>
 #include "reader_lcf.h"
 #include "writer_lcf.h"
 #include "reader_xml.h"
@@ -149,7 +150,7 @@ struct Primitive {
 		// FIXME: Bug #174
 		if (length != LcfSizeT<T>::value) {
 			dif = length - LcfSizeT<T>::value;
-			fprintf(stderr, "Reading Primitive of incorrect size %d (expected %d) at %X\n",
+			fprintf(stderr, "Reading Primitive of incorrect size %" PRIu32 " (expected %" PRIu32 ") at %" PRIX32 "\n",
 				length, LcfSizeT<T>::value, stream.Tell());
 		}
 
@@ -397,17 +398,17 @@ struct EmptyField : public Field<S> {
 
 	using Field<S>::Field;
 
-	void ReadLcf(S& obj, LcfReader& stream, uint32_t length) const { }
-	void WriteLcf(const S& obj, LcfWriter& stream) const { }
-	int LcfSize(const S& obj, LcfWriter& stream) const {
+	void ReadLcf(S& /* obj */, LcfReader& /* stream */, uint32_t /* length */) const { }
+	void WriteLcf(const S& /* obj */, LcfWriter& /* stream */) const { }
+	int LcfSize(const S& /* obj */, LcfWriter& /* stream */) const {
 		//This is always an "empty block"
 		return 0;
 	}
-	void WriteXml(const S& obj, XmlWriter& stream) const { }
-	void BeginXml(S& obj, XmlReader& stream) const { }
-	void ParseXml(S& obj, const std::string& data) const { }
+	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const { }
+	void BeginXml(S& /* obj */, XmlReader& /* stream */) const { }
+	void ParseXml(S& /* obj */, const std::string& /* data */) const { }
 
-	bool IsDefault(const S& a, const S& b) const {
+	bool IsDefault(const S& /* a */, const S& /* b */) const {
 		return true;
 	}
 
@@ -464,7 +465,7 @@ struct CountField : public SizeField<S,T> {
 		int size = (obj.*(this->ref)).size();
 		TypeReader<int32_t>::WriteLcf(size, stream);
 	}
-	int LcfSize(const S& obj, LcfWriter& stream) const {
+	int LcfSize(const S& obj, LcfWriter& /* stream */) const {
 		int size = (obj.*(this->ref)).size();
 		return LcfReader::IntSize(size);
 	}

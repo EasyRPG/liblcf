@@ -149,7 +149,7 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 
 		if (stream.Tell() >= endpos) {
 			stream.Seek(endpos, LcfReader::FromStart);
-			fprintf(stderr, "Event command corrupted at %d\n", stream.Tell());
+			fprintf(stderr, "Event command corrupted at %" PRIu32 "\n", stream.Tell());
 			for (;;) {
 				// Try finding the real end of the event command (4 0-bytes)
 				int i = 0;
