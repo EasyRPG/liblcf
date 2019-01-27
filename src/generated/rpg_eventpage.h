@@ -97,7 +97,8 @@ namespace RPG {
 			AnimType_fixed_non_continuous = 2,
 			AnimType_fixed_continuous = 3,
 			AnimType_fixed_graphic = 4,
-			AnimType_spin = 5
+			AnimType_spin = 5,
+			AnimType_step_frame_fix = 6
 		};
 		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
 			"non_continuous",
@@ -105,7 +106,8 @@ namespace RPG {
 			"fixed_non_continuous",
 			"fixed_continuous",
 			"fixed_graphic",
-			"spin"
+			"spin",
+			"step_frame_fix"
 		);
 		enum MoveSpeed {
 			MoveSpeed_eighth = 1,
