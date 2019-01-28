@@ -267,6 +267,7 @@ EventPage,AnimType,fixed_non_continuous,2
 EventPage,AnimType,fixed_continuous,3
 EventPage,AnimType,fixed_graphic,4
 EventPage,AnimType,spin,5
+EventPage,AnimType,step_frame_fix,6
 EventPage,MoveSpeed,eighth,1
 EventPage,MoveSpeed,quarter,2
 EventPage,MoveSpeed,half,3
