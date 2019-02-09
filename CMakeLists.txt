@@ -41,6 +41,7 @@ add_library(lcf
 	src/ini.h
 	src/inireader.cpp
 	src/inireader.h
+	src/flag_set.h
 	src/lcf_options.h
 	src/lcf_saveopt.h
 	src/ldb_equipment.cpp
