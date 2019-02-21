@@ -127,8 +127,8 @@ add_library(lcf
 	src/generated/lsd_saveactor.cpp
 	src/generated/lsd_savecommonevent.cpp
 	src/generated/lsd_saveeasyrpgdata.cpp
-	src/generated/lsd_saveeventcommands.cpp
-	src/generated/lsd_saveeventdata.cpp
+	src/generated/lsd_saveeventexecframe.cpp
+	src/generated/lsd_saveeventexecstate.cpp
 	src/generated/lsd_saveinventory.cpp
 	src/generated/lsd_savemapevent.cpp
 	src/generated/lsd_savemapeventbase.cpp
@@ -181,8 +181,8 @@ add_library(lcf
 	src/generated/rpg_saveactor.h
 	src/generated/rpg_savecommonevent.h
 	src/generated/rpg_saveeasyrpgdata.h
-	src/generated/rpg_saveeventcommands.h
-	src/generated/rpg_saveeventdata.h
+	src/generated/rpg_saveeventexecframe.h
+	src/generated/rpg_saveeventexecstate.h
 	src/generated/rpg_saveinventory.h
 	src/generated/rpg_savemapevent.h
 	src/generated/rpg_savemapeventbase.h

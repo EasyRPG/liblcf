@@ -16,7 +16,7 @@
 #include "rpg_savemapeventbase.h"
 #include <stdint.h>
 #include "rpg_event.h"
-#include "rpg_saveeventdata.h"
+#include "rpg_saveeventexecstate.h"
 
 /**
  * RPG::SaveMapEvent class.
@@ -29,14 +29,14 @@ namespace RPG {
 		bool waiting_execution = false;
 		int32_t original_move_route_index = 0;
 		bool triggered_by_decision_key = false;
-		SaveEventData event_data;
+		SaveEventExecState parallel_event_execstate;
 	};
 
 	inline bool operator==(const SaveMapEvent& l, const SaveMapEvent& r) {
 		return l.waiting_execution == r.waiting_execution
 		&& l.original_move_route_index == r.original_move_route_index
 		&& l.triggered_by_decision_key == r.triggered_by_decision_key
-		&& l.event_data == r.event_data;
+		&& l.parallel_event_execstate == r.parallel_event_execstate;
 	}
 
 	inline bool operator!=(const SaveMapEvent& l, const SaveMapEvent& r) {

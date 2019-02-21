@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-#ifndef LCF_RPG_SAVEEVENTCOMMANDS_H
-#define LCF_RPG_SAVEEVENTCOMMANDS_H
+#ifndef LCF_RPG_SAVEEVENTRUNFRAME_H
+#define LCF_RPG_SAVEEVENTRUNFRAME_H
 
 // Headers
 #include <stdint.h>
@@ -18,31 +18,31 @@
 #include "rpg_eventcommand.h"
 
 /**
- * RPG::SaveEventCommands class.
+ * RPG::SaveEventRunFrame class.
  */
 namespace RPG {
-	class SaveEventCommands {
+	class SaveEventRunFrame {
 	public:
 		int ID = 0;
 		int32_t commands_size = 0;
 		std::vector<EventCommand> commands;
 		int32_t current_command = 0;
 		int32_t event_id = 0;
-		bool actioned = false;
+		bool triggered_by_decision_key = false;
 		std::vector<uint8_t> subcommand_path;
 	};
 
-	inline bool operator==(const SaveEventCommands& l, const SaveEventCommands& r) {
+	inline bool operator==(const SaveEventRunFrame& l, const SaveEventRunFrame& r) {
 		return l.commands_size == r.commands_size
 		&& l.commands == r.commands
 		&& l.current_command == r.current_command
 		&& l.event_id == r.event_id
-		&& l.actioned == r.actioned
+		&& l.triggered_by_decision_key == r.triggered_by_decision_key
 		&& l.subcommand_path == r.subcommand_path
 		&& l.subcommand_path == r.subcommand_path;
 	}
 
-	inline bool operator!=(const SaveEventCommands& l, const SaveEventCommands& r) {
+	inline bool operator!=(const SaveEventRunFrame& l, const SaveEventRunFrame& r) {
 		return !(l == r);
 	}
 }

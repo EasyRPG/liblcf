@@ -1,7 +1,7 @@
 /* !!!! GENERATED FILE - DO NOT EDIT !!!!
  * --------------------------------------
  *
- * This file is part of liblcf. Copyright (c) 2019 liblcf authors.
+ * This file is part of liblcf. Copyright (c) 2018 liblcf authors.
  * https://github.com/EasyRPG/liblcf - https://easyrpg.org
  *
  * liblcf is Free/Libre Open Source Software, released under the MIT License.
@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-#ifndef LCF_RPG_SAVEEVENTDATA_H
-#define LCF_RPG_SAVEEVENTDATA_H
+#ifndef LCF_RPG_SAVEEVENTEXECDATA_H
+#define LCF_RPG_SAVEEVENTEXECDATA_H
 
 // Headers
 #include <stdint.h>
 #include <vector>
-#include "rpg_saveeventcommands.h"
+#include "rpg_saveeventexecframe.h"
 
 /**
- * RPG::SaveEventData class.
+ * RPG::SaveEventExecData class.
  */
 namespace RPG {
-	class SaveEventData {
+	class SaveEventExecData {
 	public:
-		std::vector<SaveEventCommands> commands;
+		std::vector<SaveEventExecFrame> command_stack;
 		bool show_message = false;
 		bool abort_on_escape = false;
 		bool wait_movement = false;
@@ -47,8 +47,8 @@ namespace RPG {
 		bool unused_wait_for_key_or_enter = false;
 	};
 
-	inline bool operator==(const SaveEventData& l, const SaveEventData& r) {
-		return l.commands == r.commands
+	inline bool operator==(const SaveEventExecData& l, const SaveEventExecData& r) {
+		return l.command_stack == r.command_stack
 		&& l.show_message == r.show_message
 		&& l.abort_on_escape == r.abort_on_escape
 		&& l.wait_movement == r.wait_movement
@@ -72,7 +72,7 @@ namespace RPG {
 		&& l.unused_wait_for_key_or_enter == r.unused_wait_for_key_or_enter;
 	}
 
-	inline bool operator!=(const SaveEventData& l, const SaveEventData& r) {
+	inline bool operator!=(const SaveEventExecData& l, const SaveEventExecData& r) {
 		return !(l == r);
 	}
 }

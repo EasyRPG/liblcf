@@ -909,35 +909,35 @@ SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
 SaveTarget,switch_on,f,Boolean,0x04,False,0,0,bool
 SaveTarget,switch_id,f,Ref<Switch>,0x05,0,0,0,int
-SaveEventCommands,commands_size,f,Int32,0x01,0,0,0,int
-SaveEventCommands,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
-SaveEventCommands,current_command,f,Int32,0x0B,0,0,0,int
-SaveEventCommands,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
-SaveEventCommands,actioned,f,Boolean,0x0D,False,0,0,Event was triggered by the Action Key
-SaveEventCommands,subcommand_path,t,UInt8,0x15,0,0,0,size of the 0x16 vector - indention level
-SaveEventCommands,subcommand_path,f,Vector<UInt8>,0x16,,1,0,byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID).
-SaveEventData,commands,f,Array<SaveEventCommands>,0x01,,1,0,array
-SaveEventData,show_message,f,Boolean,0x04,False,0,0,Show Message command has been executed in the current move route
-SaveEventData,abort_on_escape,f,Boolean,0x0B,False,0,0,Flag which is set before a fight if the EnemyEncounter event command had battle_escape_mode set to 1 (abort event on escape). After the fight; the interpreter checks if the battle result was an escape and this flag was set and abort the event in that case.
-SaveEventData,wait_movement,f,Boolean,0x0D,False,0,0,Whether Wait for all movement is in effect
-SaveEventData,keyinput_wait,f,Boolean,0x15,False,0,0,
-SaveEventData,keyinput_variable,f,UInt8,0x16,0,0,0,
-SaveEventData,keyinput_all_directions,f,Boolean,0x17,False,0,0,
-SaveEventData,keyinput_decision,f,Boolean,0x18,False,0,0,
-SaveEventData,keyinput_cancel,f,Boolean,0x19,False,0,0,
-SaveEventData,keyinput_numbers,f,Boolean,0x1A,False,0,0,In RM2k Value this is keyinput_shift
-SaveEventData,keyinput_operators,f,Boolean,0x1B,False,0,0,In Value keyinput_down
-SaveEventData,keyinput_shift,f,Boolean,0x1C,False,0,0,In Value keyinput_left
-SaveEventData,keyinput_value_right,f,Boolean,0x1D,False,0,0,Only in Value
-SaveEventData,keyinput_value_up,f,Boolean,0x1E,False,0,0,Only in Value
-SaveEventData,wait_time,f,Int32,0x1F,0,0,0,int
-SaveEventData,keyinput_time_variable,f,Int32,0x20,-1,0,0,
-SaveEventData,keyinput_down,f,Boolean,0x23,False,0,0,
-SaveEventData,keyinput_left,f,Boolean,0x24,False,0,0,
-SaveEventData,keyinput_right,f,Boolean,0x25,False,0,0,
-SaveEventData,keyinput_up,f,Boolean,0x26,False,0,0,
-SaveEventData,keyinput_timed,f,Boolean,0x29,False,0,0,
-SaveEventData,unused_wait_for_key_or_enter,f,Boolean,0x2a,False,0,0,If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead).
+SaveEventExecFrame,commands_size,f,Int32,0x01,0,0,0,int
+SaveEventExecFrame,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
+SaveEventExecFrame,current_command,f,Int32,0x0B,0,0,0,int
+SaveEventExecFrame,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
+SaveEventExecFrame,triggered_by_decision_key,f,Boolean,0x0D,False,0,0,Event was triggered by the Action Key
+SaveEventExecFrame,subcommand_path,t,UInt8,0x15,0,0,0,size of the 0x16 vector - indention level
+SaveEventExecFrame,subcommand_path,f,Vector<UInt8>,0x16,,1,0,byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID).
+SaveEventExecState,stack,f,Array<SaveEventExecFrame>,0x01,,1,0,array
+SaveEventExecState,show_message,f,Boolean,0x04,False,0,0,Show Message command has been executed in the current move route
+SaveEventExecState,abort_on_escape,f,Boolean,0x0B,False,0,0,Flag which is set before a fight if the EnemyEncounter event command had battle_escape_mode set to 1 (abort event on escape). After the fight; the interpreter checks if the battle result was an escape and this flag was set and abort the event in that case.
+SaveEventExecState,wait_movement,f,Boolean,0x0D,False,0,0,Whether Wait for all movement is in effect
+SaveEventExecState,keyinput_wait,f,Boolean,0x15,False,0,0,
+SaveEventExecState,keyinput_variable,f,UInt8,0x16,0,0,0,
+SaveEventExecState,keyinput_all_directions,f,Boolean,0x17,False,0,0,
+SaveEventExecState,keyinput_decision,f,Boolean,0x18,False,0,0,
+SaveEventExecState,keyinput_cancel,f,Boolean,0x19,False,0,0,
+SaveEventExecState,keyinput_numbers,f,Boolean,0x1A,False,0,0,In RM2k Value this is keyinput_shift
+SaveEventExecState,keyinput_operators,f,Boolean,0x1B,False,0,0,In Value keyinput_down
+SaveEventExecState,keyinput_shift,f,Boolean,0x1C,False,0,0,In Value keyinput_left
+SaveEventExecState,keyinput_value_right,f,Boolean,0x1D,False,0,0,Only in Value
+SaveEventExecState,keyinput_value_up,f,Boolean,0x1E,False,0,0,Only in Value
+SaveEventExecState,wait_time,f,Int32,0x1F,0,0,0,int
+SaveEventExecState,keyinput_time_variable,f,Int32,0x20,-1,0,0,
+SaveEventExecState,keyinput_down,f,Boolean,0x23,False,0,0,
+SaveEventExecState,keyinput_left,f,Boolean,0x24,False,0,0,
+SaveEventExecState,keyinput_right,f,Boolean,0x25,False,0,0,
+SaveEventExecState,keyinput_up,f,Boolean,0x26,False,0,0,
+SaveEventExecState,keyinput_timed,f,Boolean,0x29,False,0,0,
+SaveEventExecState,unused_wait_for_key_or_enter,f,Boolean,0x2a,False,0,0,If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead).
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
 SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
@@ -980,7 +980,7 @@ SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveMapEvent,waiting_execution,f,Boolean,0x65,False,0,0,If true; this event is waiting for foreground execution.
 SaveMapEvent,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveMapEvent,triggered_by_decision_key,f,Boolean,0x67,False,0,0,If true; this event was started by the decision key.
-SaveMapEvent,event_data,f,SaveEventData,0x6C,,1,0,chunks
+SaveMapEvent,parallel_event_execstate,f,SaveEventExecState,0x6C,,1,0,chunks
 SaveMapInfo,position_x,f,Int32,0x01,0,0,0,int
 SaveMapInfo,position_y,f,Int32,0x02,0,0,0,int
 SaveMapInfo,encounter_rate,f,Int32,0x03,-1,0,0,int
@@ -995,7 +995,7 @@ SaveMapInfo,parallax_horz_auto,f,Boolean,0x23,False,0,0,bool
 SaveMapInfo,parallax_horz_speed,f,Int32,0x24,0,0,0,int
 SaveMapInfo,parallax_vert_auto,f,Boolean,0x25,False,0,0,bool
 SaveMapInfo,parallax_vert_speed,f,Int32,0x26,0,0,0,int
-SaveCommonEvent,event_data,f,SaveEventData,0x01,,1,0,chunks
+SaveCommonEvent,parallel_event_execstate,f,SaveEventExecState,0x01,,1,0,chunks
 SavePanorama,pan_x,f,Int32,0x01,0,0,0,Panorama X position
 SavePanorama,pan_y,f,Int32,0x02,0,0,0,Panorama Y position
 Save,title,f,SaveTitle,0x64,,0,0,RPG::SaveTitle
@@ -1011,7 +1011,7 @@ Save,inventory,f,SaveInventory,0x6D,,1,0,RPG::SaveInventory
 Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of RPG::SaveTarget
 Save,map_info,f,SaveMapInfo,0x6F,,1,0,RPG::SaveMapInfo
 Save,panorama,f,SavePanorama,0x70,,1,0,Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object.
-Save,events,f,SaveEventData,0x71,,1,0,RPG::SaveEventData
+Save,foreground_event_execstate,f,SaveEventExecState,0x71,,1,0,RPG::SaveEventExecState
 Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of RPG::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,shield_id,,Ref<Item:Int16>,,0,0,0,
