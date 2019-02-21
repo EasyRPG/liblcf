@@ -868,8 +868,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
-			/** ? */
-			running = 0x65,
+			/** If true; this event is waiting for foreground execution. */
+			waiting_execution = 0x65,
 			/** Index of custom move route */
 			original_move_route_index = 0x66,
 			/** If true; this event will run after the current running event stops running. FIXME: See issue #174 */

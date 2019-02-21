@@ -26,14 +26,14 @@ namespace RPG {
 	public:
 		void Setup(const RPG::Event& event);
 		int ID = 0;
-		bool running = false;
+		bool waiting_execution = false;
 		int32_t original_move_route_index = 0;
 		bool pending = false;
 		SaveEventData event_data;
 	};
 
 	inline bool operator==(const SaveMapEvent& l, const SaveMapEvent& r) {
-		return l.running == r.running
+		return l.waiting_execution == r.waiting_execution
 		&& l.original_move_route_index == r.original_move_route_index
 		&& l.pending == r.pending
 		&& l.event_data == r.event_data;

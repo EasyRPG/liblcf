@@ -977,7 +977,7 @@ SaveMapEventBase,flash_green,f,Int32,0x52,100,0,0,int
 SaveMapEventBase,flash_blue,f,Int32,0x53,100,0,0,int
 SaveMapEventBase,flash_current_level,f,Double,0x54,0.0,0,0,double
 SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
-SaveMapEvent,running,f,Boolean,0x65,False,0,0,?
+SaveMapEvent,waiting_execution,f,Boolean,0x65,False,0,0,If true; this event is waiting for foreground execution.
 SaveMapEvent,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveMapEvent,pending,f,Boolean,0x67,False,0,0,If true; this event will run after the current running event stops running. FIXME: See issue #174
 SaveMapEvent,event_data,f,SaveEventData,0x6C,,1,0,chunks

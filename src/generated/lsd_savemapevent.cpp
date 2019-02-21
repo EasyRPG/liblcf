@@ -295,9 +295,9 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SaveMapEvent, bool>(
-		&RPG::SaveMapEvent::running,
-		LSD_Reader::ChunkSaveMapEvent::running,
-		"running",
+		&RPG::SaveMapEvent::waiting_execution,
+		LSD_Reader::ChunkSaveMapEvent::waiting_execution,
+		"waiting_execution",
 		0,
 		0
 	),
