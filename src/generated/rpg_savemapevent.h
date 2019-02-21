@@ -28,14 +28,14 @@ namespace RPG {
 		int ID = 0;
 		bool waiting_execution = false;
 		int32_t original_move_route_index = 0;
-		bool pending = false;
+		bool triggered_by_decision_key = false;
 		SaveEventData event_data;
 	};
 
 	inline bool operator==(const SaveMapEvent& l, const SaveMapEvent& r) {
 		return l.waiting_execution == r.waiting_execution
 		&& l.original_move_route_index == r.original_move_route_index
-		&& l.pending == r.pending
+		&& l.triggered_by_decision_key == r.triggered_by_decision_key
 		&& l.event_data == r.event_data;
 	}
 
