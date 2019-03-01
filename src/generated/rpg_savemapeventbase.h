@@ -38,7 +38,7 @@ namespace RPG {
 		bool overlap_forbidden = false;
 		int32_t animation_type = 0;
 		bool lock_facing = false;
-		int32_t move_speed = 3;
+		int32_t move_speed = 4;
 		MoveRoute move_route;
 		bool move_route_overwrite = false;
 		int32_t move_route_index = 0;
