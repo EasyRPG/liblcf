@@ -1,0 +1,3 @@
+#Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
+Save,easyrpg_data,f,SaveEasyRpgData,0xc8,,0,0,Additional save data written by EasyRPG Player
+SaveEasyRpgData,version,,Int32,1,0,0,0,Savegame version

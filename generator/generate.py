@@ -195,6 +195,22 @@ def struct_headers(ty, header_map):
 
     return []
 
+def merge_dicts(dicts):
+    # Merges multiple dicts into one
+    out_dict = dicts[0]
+
+    for d in dicts[1:]:
+        for k,v in d.items():
+            if k in out_dict:
+                # Append new values
+                for vv in v:
+                    out_dict[k].append(vv)
+            else:
+                # Insert whole key
+                out_dict[k] = v
+
+    return out_dict
+
 def process_file(filename, namedtup):
     # Mapping is: All elements of the line grouped by the first column
 
@@ -215,14 +231,14 @@ def process_file(filename, namedtup):
 
     return result
 
-def get_structs(filename='structs.csv'):
+def get_structs(*filenames):
     Struct = namedtuple("Struct", "name base hasid")
 
-    result = process_file(filename, Struct)
+    results = list(map(lambda x: process_file(x, Struct), filenames))
 
     processed_result = OrderedDict()
 
-    for k, struct in result.items():
+    for k, struct in merge_dicts(results).items():
         processed_result[k] = []
 
         for elem in struct:
@@ -231,14 +247,14 @@ def get_structs(filename='structs.csv'):
 
     return processed_result
 
-def get_fields(filename='fields.csv'):
+def get_fields(*filenames):
     Field = namedtuple("Field", "name size type code default presentifdefault is2k3 comment")
 
-    result = process_file(filename, Field)
+    results = list(map(lambda x: process_file(x, Field), filenames))
 
     processed_result = OrderedDict()
 
-    for k, field in result.items():
+    for k, field in merge_dicts(results).items():
         processed_result[k] = []
         for elem in field:
             elem = Field(
@@ -254,24 +270,26 @@ def get_fields(filename='fields.csv'):
 
     return processed_result
 
-def get_enums(filename='enums.csv'):
-    result = process_file(filename, namedtuple("Enum", "entry value index"))
+def get_enums(*filenames):
+    results = list(map(lambda x: process_file(x, namedtuple("Enum", "entry value index")), filenames))
     new_result = OrderedDict()
 
     # Additional processing to group by the Enum Entry
     # Results in e.g. EventCommand -> Code -> List of (Name, Index)
-    for k, v in result.items():
+    for k, v in merge_dicts(results).items():
         new_result[k] = OrderedDict()
         for kk, gg in groupby(v, operator.attrgetter("entry")):
             new_result[k][kk] = list(map(lambda x: (x.value, x.index), gg))
 
     return new_result
 
-def get_flags(filename='flags.csv'):
-    return process_file(filename, namedtuple("Flag", "field is2k3"))
+def get_flags(*filenames):
+    results = list(map(lambda x: process_file(x, namedtuple("Flag", "field is2k3")), filenames))
+    return merge_dicts(results)
 
-def get_setup(filename='setup.csv'):
-    return process_file(filename, namedtuple("Setup", "method headers"))
+def get_setup(*filenames):
+    results = list(map(lambda x: process_file(x, namedtuple("Setup", "method headers")), filenames))
+    return merge_dicts(results)
 
 def get_constants(filename='constants.csv'):
     return process_file(filename, namedtuple("Constant", "name type value comment"))
@@ -392,11 +410,11 @@ def main(argv):
     global structs, sfields, enums, flags, setup, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl
 
-    structs = get_structs()
-    sfields = get_fields()
-    enums = get_enums()
-    flags = get_flags()
-    setup = get_setup()
+    structs = get_structs('structs.csv','structs_easyrpg.csv')
+    sfields = get_fields('fields.csv','fields_easyrpg.csv')
+    enums = get_enums('enums.csv')
+    flags = get_flags('flags.csv')
+    setup = get_setup('setup.csv')
     constants = get_constants()
     headers = get_headers()
 

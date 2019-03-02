@@ -14,6 +14,7 @@
 #include <vector>
 #include <memory>
 #include <ctime>
+#include <stdint.h>
 #include "rpg_save.h"
 
 /**
@@ -24,7 +25,6 @@ namespace LSD_Reader {
 	 * Converts from UNIX timestamp to Delphi's TDateTime format.
 	 */
 	double ToTDateTime(std::time_t const t);
-
 
 	/**
 	 * Converts from Delphi's TDateTime format to UNIX timestamp.
@@ -39,7 +39,7 @@ namespace LSD_Reader {
 	/**
 	 * Increment the save save_count and update the timestamp.
 	 */
-	void PrepareSave(RPG::Save& save);
+	void PrepareSave(RPG::Save& save, int32_t version = 0);
 
 	/**
 	 * Returns a copy of the save data with defaults cleared.

@@ -126,6 +126,13 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		1,
 		0
 	),
+	new TypedField<RPG::Save, RPG::SaveEasyRpgData>(
+		&RPG::Save::easyrpg_data,
+		LSD_Reader::ChunkSave::easyrpg_data,
+		"easyrpg_data",
+		0,
+		0
+	),
 	NULL
 };
 
