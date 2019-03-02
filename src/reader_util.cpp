@@ -379,6 +379,15 @@ std::string ReaderUtil::Normalize(const std::string &str) {
 	UErrorCode err = U_ZERO_ERROR;
 	std::string res;
 	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
+	if (U_FAILURE(err)) {
+		static bool err_reported = false;
+		if (!err_reported) {
+			fprintf(stderr, "Normalizer2::getNFKCInstance failed (%s). \"nrm\" is probably missing in the ICU data file. Unicode normalization will not work!\n", u_errorName(err));
+			err_reported = true;
+		}
+		uni.toUTF8String(res);
+		return res;
+	}
 	icu::UnicodeString f = norm->normalize(uni, err);
 	if (U_FAILURE(err)) {
 		uni.toUTF8String(res);
