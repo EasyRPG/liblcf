@@ -955,7 +955,15 @@ namespace LSD_Reader {
 			/** RPG::SaveEventData */
 			events = 0x71,
 			/** array of RPG::SaveCommonEvent */
-			common_events = 0x72
+			common_events = 0x72,
+			/** Additional save data written by EasyRPG Player */
+			easyrpg_data = 0xC8
+		};
+	};
+	struct ChunkSaveEasyRpgData {
+		enum Index {
+			/** Savegame version */
+			version = 0x01
 		};
 	};
 }

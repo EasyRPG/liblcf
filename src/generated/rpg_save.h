@@ -16,6 +16,7 @@
 #include <vector>
 #include "rpg_saveactor.h"
 #include "rpg_savecommonevent.h"
+#include "rpg_saveeasyrpgdata.h"
 #include "rpg_saveeventdata.h"
 #include "rpg_saveinventory.h"
 #include "rpg_savemapinfo.h"
@@ -50,6 +51,7 @@ namespace RPG {
 		SavePanorama panorama;
 		SaveEventData events;
 		std::vector<SaveCommonEvent> common_events;
+		SaveEasyRpgData easyrpg_data;
 	};
 
 	inline bool operator==(const Save& l, const Save& r) {
@@ -67,7 +69,8 @@ namespace RPG {
 		&& l.map_info == r.map_info
 		&& l.panorama == r.panorama
 		&& l.events == r.events
-		&& l.common_events == r.common_events;
+		&& l.common_events == r.common_events
+		&& l.easyrpg_data == r.easyrpg_data;
 	}
 
 	inline bool operator!=(const Save& l, const Save& r) {

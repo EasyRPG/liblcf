@@ -99,6 +99,7 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_save.cpp \
 	src/generated/lsd_saveactor.cpp \
 	src/generated/lsd_savecommonevent.cpp \
+	src/generated/lsd_saveeasyrpgdata.cpp \
 	src/generated/lsd_saveeventcommands.cpp \
 	src/generated/lsd_saveeventdata.cpp \
 	src/generated/lsd_saveinventory.cpp \
@@ -184,6 +185,7 @@ pkginclude_HEADERS = \
 	src/generated/rpg_save.h \
 	src/generated/rpg_saveactor.h \
 	src/generated/rpg_savecommonevent.h \
+	src/generated/rpg_saveeasyrpgdata.h \
 	src/generated/rpg_saveeventcommands.h \
 	src/generated/rpg_saveeventdata.h \
 	src/generated/rpg_saveinventory.h \

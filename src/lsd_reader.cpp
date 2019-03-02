@@ -32,11 +32,11 @@ double LSD_Reader::GenerateTimestamp(std::time_t const t) {
 	return ToTDateTime(t);
 }
 
-void LSD_Reader::PrepareSave(RPG::Save& save) {
+void LSD_Reader::PrepareSave(RPG::Save& save, int32_t version) {
 	++save.system.save_count;
 	save.title.timestamp = LSD_Reader::GenerateTimestamp();
+	save.easyrpg_data.version = version;
 }
-
 
 std::unique_ptr<RPG::Save> LSD_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);

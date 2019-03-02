@@ -37,11 +37,11 @@ add_library(lcf
 	src/encoder.cpp
 	src/encoder.h
 	src/enum_tags.h
+	src/flag_set.h
 	src/ini.cpp
 	src/ini.h
 	src/inireader.cpp
 	src/inireader.h
-	src/flag_set.h
 	src/lcf_options.h
 	src/lcf_saveopt.h
 	src/ldb_equipment.cpp
@@ -126,6 +126,7 @@ add_library(lcf
 	src/generated/lsd_save.cpp
 	src/generated/lsd_saveactor.cpp
 	src/generated/lsd_savecommonevent.cpp
+	src/generated/lsd_saveeasyrpgdata.cpp
 	src/generated/lsd_saveeventcommands.cpp
 	src/generated/lsd_saveeventdata.cpp
 	src/generated/lsd_saveinventory.cpp
@@ -179,6 +180,7 @@ add_library(lcf
 	src/generated/rpg_save.h
 	src/generated/rpg_saveactor.h
 	src/generated/rpg_savecommonevent.h
+	src/generated/rpg_saveeasyrpgdata.h
 	src/generated/rpg_saveeventcommands.h
 	src/generated/rpg_saveeventdata.h
 	src/generated/rpg_saveinventory.h
