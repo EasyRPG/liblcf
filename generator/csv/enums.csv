@@ -246,6 +246,7 @@ EventPage,Direction,left,3
 EventPage,Frame,left,0
 EventPage,Frame,middle,1
 EventPage,Frame,right,2
+EventPage,Frame,middle2,3
 EventPage,MoveType,stationary,0
 EventPage,MoveType,random,1
 EventPage,MoveType,vertical,2
