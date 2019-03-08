@@ -42,12 +42,14 @@ namespace RPG {
 		enum Frame {
 			Frame_left = 0,
 			Frame_middle = 1,
-			Frame_right = 2
+			Frame_right = 2,
+			Frame_middle2 = 3
 		};
 		static constexpr auto kFrameTags = makeEnumTags<Frame>(
 			"left",
 			"middle",
-			"right"
+			"right",
+			"middle2"
 		);
 		enum MoveType {
 			MoveType_stationary = 0,
