@@ -2,6 +2,7 @@
 #include "encoder.h"
 #include "reader_util.h"
 #include "scope_guard.h"
+#include <cstdio>
 #include <cstdlib>
 #include <exception>
 
