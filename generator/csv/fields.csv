@@ -890,14 +890,14 @@ SaveInventory,item_ids,f,Vector<Int16>,0x0C,,1,0,short[]: item list
 SaveInventory,item_counts,f,Vector<UInt8>,0x0D,,1,0,?
 SaveInventory,item_usage,f,Vector<UInt8>,0x0E,,1,0,?
 SaveInventory,gold,f,Int32,0x15,0,0,0,int
-SaveInventory,timer1_secs,f,Int32,0x17,0,0,0,int
-SaveInventory,timer1_active,f,Boolean,0x18,False,0,0,bool
-SaveInventory,timer1_visible,f,Boolean,0x19,False,0,0,bool
-SaveInventory,timer1_battle,f,Boolean,0x1A,False,0,0,bool
-SaveInventory,timer2_secs,f,Int32,0x1B,0,0,0,int
-SaveInventory,timer2_active,f,Boolean,0x1C,False,0,0,bool
-SaveInventory,timer2_visible,f,Boolean,0x1D,False,0,0,bool
-SaveInventory,timer2_battle,f,Boolean,0x1E,False,0,0,bool
+SaveInventory,timer1_frames,f,Int32,0x17,0,0,0,Number of frames remaining for timer1; When set; the value is seconds * 60 + 59.
+SaveInventory,timer1_active,f,Boolean,0x18,False,0,0,If timer1 is active
+SaveInventory,timer1_visible,f,Boolean,0x19,False,0,0,If timer1 is visible
+SaveInventory,timer1_battle,f,Boolean,0x1A,False,0,0,If timer1 will be active in battles
+SaveInventory,timer2_frames,f,Int32,0x1B,0,0,0,Number of frames remaining for timer2; When set; the value is seconds * 60 + 59.
+SaveInventory,timer2_active,f,Boolean,0x1C,False,0,0,If timer2 is active
+SaveInventory,timer2_visible,f,Boolean,0x1D,False,0,0,If timer2 is visible
+SaveInventory,timer2_battle,f,Boolean,0x1E,False,0,0,If timer2 will be active in battles
 SaveInventory,battles,f,Int32,0x20,0,0,0,?
 SaveInventory,defeats,f,Int32,0x21,0,0,0,?
 SaveInventory,escapes,f,Int32,0x22,0,0,0,?
