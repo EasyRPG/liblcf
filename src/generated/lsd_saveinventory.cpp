@@ -71,9 +71,9 @@ Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SaveInventory, int32_t>(
-		&RPG::SaveInventory::timer1_secs,
-		LSD_Reader::ChunkSaveInventory::timer1_secs,
-		"timer1_secs",
+		&RPG::SaveInventory::timer1_frames,
+		LSD_Reader::ChunkSaveInventory::timer1_frames,
+		"timer1_frames",
 		0,
 		0
 	),
@@ -99,9 +99,9 @@ Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SaveInventory, int32_t>(
-		&RPG::SaveInventory::timer2_secs,
-		LSD_Reader::ChunkSaveInventory::timer2_secs,
-		"timer2_secs",
+		&RPG::SaveInventory::timer2_frames,
+		LSD_Reader::ChunkSaveInventory::timer2_frames,
+		"timer2_frames",
 		0,
 		0
 	),

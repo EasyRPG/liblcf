@@ -30,11 +30,11 @@ namespace RPG {
 		std::vector<uint8_t> item_counts;
 		std::vector<uint8_t> item_usage;
 		int32_t gold = 0;
-		int32_t timer1_secs = 0;
+		int32_t timer1_frames = 0;
 		bool timer1_active = false;
 		bool timer1_visible = false;
 		bool timer1_battle = false;
-		int32_t timer2_secs = 0;
+		int32_t timer2_frames = 0;
 		bool timer2_active = false;
 		bool timer2_visible = false;
 		bool timer2_battle = false;
@@ -54,11 +54,11 @@ namespace RPG {
 		&& l.item_counts == r.item_counts
 		&& l.item_usage == r.item_usage
 		&& l.gold == r.gold
-		&& l.timer1_secs == r.timer1_secs
+		&& l.timer1_frames == r.timer1_frames
 		&& l.timer1_active == r.timer1_active
 		&& l.timer1_visible == r.timer1_visible
 		&& l.timer1_battle == r.timer1_battle
-		&& l.timer2_secs == r.timer2_secs
+		&& l.timer2_frames == r.timer2_frames
 		&& l.timer2_active == r.timer2_active
 		&& l.timer2_visible == r.timer2_visible
 		&& l.timer2_battle == r.timer2_battle

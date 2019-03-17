@@ -596,21 +596,21 @@ namespace LSD_Reader {
 			item_usage = 0x0E,
 			/** int */
 			gold = 0x15,
-			/** int */
-			timer1_secs = 0x17,
-			/** bool */
+			/** Number of frames remaining for timer1; When set; the value is seconds * 60 + 59. */
+			timer1_frames = 0x17,
+			/** If timer1 is active */
 			timer1_active = 0x18,
-			/** bool */
+			/** If timer1 is visible */
 			timer1_visible = 0x19,
-			/** bool */
+			/** If timer1 will be active in battles */
 			timer1_battle = 0x1A,
-			/** int */
-			timer2_secs = 0x1B,
-			/** bool */
+			/** Number of frames remaining for timer2; When set; the value is seconds * 60 + 59. */
+			timer2_frames = 0x1B,
+			/** If timer2 is active */
 			timer2_active = 0x1C,
-			/** bool */
+			/** If timer2 is visible */
 			timer2_visible = 0x1D,
-			/** bool */
+			/** If timer2 will be active in battles */
 			timer2_battle = 0x1E,
 			/** ? */
 			battles = 0x20,
