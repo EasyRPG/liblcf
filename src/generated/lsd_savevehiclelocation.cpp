@@ -302,13 +302,6 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
-		&RPG::SaveVehicleLocation::original_move_route_index,
-		LSD_Reader::ChunkSaveVehicleLocation::original_move_route_index,
-		"original_move_route_index",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveVehicleLocation, int32_t>(
 		&RPG::SaveVehicleLocation::remaining_ascent,
 		LSD_Reader::ChunkSaveVehicleLocation::remaining_ascent,
 		"remaining_ascent",

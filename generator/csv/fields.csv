@@ -847,7 +847,6 @@ SavePartyLocation,encounter_calling,f,Boolean,0x7D,False,0,0,Similar to 0x6C - i
 SavePartyLocation,map_save_count,f,Int32,0x83,0,0,0,Mirrors save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,database_save_count,f,Int32,0x84,0,0,0,?
 SaveVehicleLocation,vehicle,f,Enum<SaveVehicleLocation_VehicleType>,0x65,0,0,0,Which vehicle
-SaveVehicleLocation,original_move_route_index,f,Int32,0x66,0,0,0,Index of custom move route
 SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
 SaveVehicleLocation,remaining_descent,f,Int32,0x6B,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to descend
 SaveVehicleLocation,sprite2_name,f,String,0x6F,'',0,0,string

@@ -38,7 +38,6 @@ namespace RPG {
 		);
 
 		int32_t vehicle = 0;
-		int32_t original_move_route_index = 0;
 		int32_t remaining_ascent = 0;
 		int32_t remaining_descent = 0;
 		std::string sprite2_name;
@@ -47,7 +46,6 @@ namespace RPG {
 
 	inline bool operator==(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
 		return l.vehicle == r.vehicle
-		&& l.original_move_route_index == r.original_move_route_index
 		&& l.remaining_ascent == r.remaining_ascent
 		&& l.remaining_descent == r.remaining_descent
 		&& l.sprite2_name == r.sprite2_name
