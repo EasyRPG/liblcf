@@ -638,7 +638,7 @@ namespace LSD_Reader {
 			switch_id = 0x05
 		};
 	};
-	struct ChunkSaveEventCommands {
+	struct ChunkSaveEventExecFrame {
 		enum Index {
 			/** int */
 			commands_size = 0x01,
@@ -649,17 +649,17 @@ namespace LSD_Reader {
 			/** 0 if it's common event or in other map */
 			event_id = 0x0C,
 			/** Event was triggered by the Action Key */
-			actioned = 0x0D,
+			triggered_by_decision_key = 0x0D,
 			/** size of the 0x16 vector - indention level */
 			subcommand_path_size = 0x15,
 			/** byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID). */
 			subcommand_path = 0x16
 		};
 	};
-	struct ChunkSaveEventData {
+	struct ChunkSaveEventExecState {
 		enum Index {
 			/** array */
-			commands = 0x01,
+			stack = 0x01,
 			/** Show Message command has been executed in the current move route */
 			show_message = 0x04,
 			/** Flag which is set before a fight if the EnemyEncounter event command had battle_escape_mode set to 1 (abort event on escape). After the fight; the interpreter checks if the battle result was an escape and this flag was set and abort the event in that case. */
@@ -873,7 +873,7 @@ namespace LSD_Reader {
 			/** If true; this event was started by the decision key. */
 			triggered_by_decision_key = 0x67,
 			/** chunks */
-			event_data = 0x6C
+			parallel_event_execstate = 0x6C
 		};
 	};
 	struct ChunkSaveMapInfo {
@@ -911,7 +911,7 @@ namespace LSD_Reader {
 	struct ChunkSaveCommonEvent {
 		enum Index {
 			/** chunks */
-			event_data = 0x01
+			parallel_event_execstate = 0x01
 		};
 	};
 	struct ChunkSavePanorama {
@@ -950,8 +950,8 @@ namespace LSD_Reader {
 			map_info = 0x6F,
 			/** Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object. */
 			panorama = 0x70,
-			/** RPG::SaveEventData */
-			events = 0x71,
+			/** RPG::SaveEventExecState */
+			foreground_event_execstate = 0x71,
 			/** array of RPG::SaveCommonEvent */
 			common_events = 0x72,
 			/** Additional save data written by EasyRPG Player */

@@ -13,7 +13,7 @@
 #define LCF_RPG_SAVECOMMONEVENT_H
 
 // Headers
-#include "rpg_saveeventdata.h"
+#include "rpg_saveeventexecstate.h"
 
 /**
  * RPG::SaveCommonEvent class.
@@ -22,11 +22,11 @@ namespace RPG {
 	class SaveCommonEvent {
 	public:
 		int ID = 0;
-		SaveEventData event_data;
+		SaveEventExecState parallel_event_execstate;
 	};
 
 	inline bool operator==(const SaveCommonEvent& l, const SaveCommonEvent& r) {
-		return l.event_data == r.event_data;
+		return l.parallel_event_execstate == r.parallel_event_execstate;
 	}
 
 	inline bool operator!=(const SaveCommonEvent& l, const SaveCommonEvent& r) {

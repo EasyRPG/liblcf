@@ -315,10 +315,10 @@ Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[] = {
 		0,
 		0
 	),
-	new TypedField<RPG::SaveMapEvent, RPG::SaveEventData>(
-		&RPG::SaveMapEvent::event_data,
-		LSD_Reader::ChunkSaveMapEvent::event_data,
-		"event_data",
+	new TypedField<RPG::SaveMapEvent, RPG::SaveEventExecState>(
+		&RPG::SaveMapEvent::parallel_event_execstate,
+		LSD_Reader::ChunkSaveMapEvent::parallel_event_execstate,
+		"parallel_event_execstate",
 		1,
 		0
 	),

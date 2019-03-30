@@ -17,7 +17,7 @@
 #include "rpg_saveactor.h"
 #include "rpg_savecommonevent.h"
 #include "rpg_saveeasyrpgdata.h"
-#include "rpg_saveeventdata.h"
+#include "rpg_saveeventexecstate.h"
 #include "rpg_saveinventory.h"
 #include "rpg_savemapinfo.h"
 #include "rpg_savepanorama.h"
@@ -49,7 +49,7 @@ namespace RPG {
 		std::vector<SaveTarget> targets;
 		SaveMapInfo map_info;
 		SavePanorama panorama;
-		SaveEventData events;
+		SaveEventExecState foreground_event_execstate;
 		std::vector<SaveCommonEvent> common_events;
 		SaveEasyRpgData easyrpg_data;
 	};
@@ -68,7 +68,7 @@ namespace RPG {
 		&& l.targets == r.targets
 		&& l.map_info == r.map_info
 		&& l.panorama == r.panorama
-		&& l.events == r.events
+		&& l.foreground_event_execstate == r.foreground_event_execstate
 		&& l.common_events == r.common_events
 		&& l.easyrpg_data == r.easyrpg_data;
 	}

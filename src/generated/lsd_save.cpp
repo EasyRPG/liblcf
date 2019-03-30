@@ -112,10 +112,10 @@ Field<RPG::Save> const* Struct<RPG::Save>::fields[] = {
 		1,
 		0
 	),
-	new TypedField<RPG::Save, RPG::SaveEventData>(
-		&RPG::Save::events,
-		LSD_Reader::ChunkSave::events,
-		"events",
+	new TypedField<RPG::Save, RPG::SaveEventExecState>(
+		&RPG::Save::foreground_event_execstate,
+		LSD_Reader::ChunkSave::foreground_event_execstate,
+		"foreground_event_execstate",
 		1,
 		0
 	),

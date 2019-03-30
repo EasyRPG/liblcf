@@ -51,8 +51,8 @@ lsd,SaveVehicleLocation,SaveMapEventBase,0
 lsd,SaveActor,,1
 lsd,SaveInventory,,0
 lsd,SaveTarget,,1
-lsd,SaveEventCommands,,1
-lsd,SaveEventData,,0
+lsd,SaveEventExecFrame,,1
+lsd,SaveEventExecState,,0
 lsd,SaveMapEventBase,,0
 lsd,SaveMapEvent,SaveMapEventBase,1
 lsd,SaveMapInfo,,0
