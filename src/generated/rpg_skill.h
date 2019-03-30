@@ -79,7 +79,7 @@ namespace RPG {
 		Sound sound_effect;
 		bool occasion_field = true;
 		bool occasion_battle = false;
-		bool state_effect = false;
+		bool reverse_state_effect = false;
 		int32_t physical_rate = 0;
 		int32_t magical_rate = 3;
 		int32_t variance = 4;
@@ -116,7 +116,7 @@ namespace RPG {
 		&& l.sound_effect == r.sound_effect
 		&& l.occasion_field == r.occasion_field
 		&& l.occasion_battle == r.occasion_battle
-		&& l.state_effect == r.state_effect
+		&& l.reverse_state_effect == r.reverse_state_effect
 		&& l.physical_rate == r.physical_rate
 		&& l.magical_rate == r.magical_rate
 		&& l.variance == r.variance

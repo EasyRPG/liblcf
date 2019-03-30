@@ -373,7 +373,7 @@ namespace LDB_Reader {
 			/** Flag */
 			occasion_battle = 0x13,
 			/** Flag - RPG2003 */
-			state_effect = 0x14,
+			reverse_state_effect = 0x14,
 			/** Integer */
 			physical_rate = 0x15,
 			/** Integer */
@@ -537,7 +537,7 @@ namespace LDB_Reader {
 			/** Integer */
 			state_chance = 0x43,
 			/** Flag */
-			state_effect = 0x44,
+			reverse_state_effect = 0x44,
 			/** Integer - RPG2003 */
 			weapon_animation = 0x45,
 			/** Array - RPG2003 */

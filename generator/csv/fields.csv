@@ -144,7 +144,7 @@ Skill,animation_id,f,Ref<Animation>,0x0E,1,0,0,Integer
 Skill,sound_effect,f,Sound,0x10,,1,0,RPG::Sound
 Skill,occasion_field,f,Boolean,0x12,True,0,0,Flag
 Skill,occasion_battle,f,Boolean,0x13,False,0,0,Flag
-Skill,state_effect,f,Boolean,0x14,False,0,1,Flag - RPG2003
+Skill,reverse_state_effect,f,Boolean,0x14,False,0,1,Flag - RPG2003
 Skill,physical_rate,f,Int32,0x15,0,0,0,Integer
 Skill,magical_rate,f,Int32,0x16,3,0,0,Integer
 Skill,variance,f,Int32,0x17,4,0,0,Integer
@@ -222,7 +222,7 @@ Item,state_set,f,Vector<Boolean>,0x40,,1,0,Array - Flag
 Item,attribute_set,t,Boolean,0x41,,0,0,Integer
 Item,attribute_set,f,Vector<Boolean>,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
-Item,state_effect,f,Boolean,0x44,False,0,0,Flag
+Item,reverse_state_effect,f,Boolean,0x44,False,0,0,Flag
 Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
 Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003

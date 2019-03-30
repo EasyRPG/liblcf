@@ -355,9 +355,9 @@ Field<RPG::Item> const* Struct<RPG::Item>::fields[] = {
 		0
 	),
 	new TypedField<RPG::Item, bool>(
-		&RPG::Item::state_effect,
-		LDB_Reader::ChunkItem::state_effect,
-		"state_effect",
+		&RPG::Item::reverse_state_effect,
+		LDB_Reader::ChunkItem::reverse_state_effect,
+		"reverse_state_effect",
 		0,
 		0
 	),

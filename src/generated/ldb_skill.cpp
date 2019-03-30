@@ -127,9 +127,9 @@ Field<RPG::Skill> const* Struct<RPG::Skill>::fields[] = {
 		0
 	),
 	new TypedField<RPG::Skill, bool>(
-		&RPG::Skill::state_effect,
-		LDB_Reader::ChunkSkill::state_effect,
-		"state_effect",
+		&RPG::Skill::reverse_state_effect,
+		LDB_Reader::ChunkSkill::reverse_state_effect,
+		"reverse_state_effect",
 		0,
 		1
 	),

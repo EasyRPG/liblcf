@@ -118,7 +118,7 @@ namespace RPG {
 		std::vector<bool> state_set;
 		std::vector<bool> attribute_set;
 		int32_t state_chance = 0;
-		bool state_effect = false;
+		bool reverse_state_effect = false;
 		int32_t weapon_animation = -1;
 		std::vector<ItemAnimation> animation_data;
 		bool use_skill = false;
@@ -176,7 +176,7 @@ namespace RPG {
 		&& l.attribute_set == r.attribute_set
 		&& l.attribute_set == r.attribute_set
 		&& l.state_chance == r.state_chance
-		&& l.state_effect == r.state_effect
+		&& l.reverse_state_effect == r.reverse_state_effect
 		&& l.weapon_animation == r.weapon_animation
 		&& l.animation_data == r.animation_data
 		&& l.use_skill == r.use_skill
