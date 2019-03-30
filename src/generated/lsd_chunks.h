@@ -502,8 +502,6 @@ namespace LSD_Reader {
 			flash_time_left = 0x55,
 			/** Which vehicle */
 			vehicle = 0x65,
-			/** Index of custom move route */
-			original_move_route_index = 0x66,
 			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
 			remaining_ascent = 0x6A,
 			/** From 0 to 255 - In flying vehicles; remaining distance to descend */
