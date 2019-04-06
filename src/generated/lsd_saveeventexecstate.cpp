@@ -169,9 +169,9 @@ Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[] 
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::unused_wait_for_key_or_enter,
-		LSD_Reader::ChunkSaveEventExecState::unused_wait_for_key_or_enter,
-		"unused_wait_for_key_or_enter",
+		&RPG::SaveEventExecState::wait_key_enter,
+		LSD_Reader::ChunkSaveEventExecState::wait_key_enter,
+		"wait_key_enter",
 		0,
 		0
 	),

@@ -700,8 +700,8 @@ namespace LSD_Reader {
 			keyinput_up = 0x26,
 			/**  */
 			keyinput_timed = 0x29,
-			/** If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead). */
-			unused_wait_for_key_or_enter = 0x2A
+			/** Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press. */
+			wait_key_enter = 0x2A
 		};
 	};
 	struct ChunkSaveMapEventBase {

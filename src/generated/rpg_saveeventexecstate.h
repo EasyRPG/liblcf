@@ -44,7 +44,7 @@ namespace RPG {
 		bool keyinput_right = false;
 		bool keyinput_up = false;
 		bool keyinput_timed = false;
-		bool unused_wait_for_key_or_enter = false;
+		bool wait_key_enter = false;
 	};
 
 	inline bool operator==(const SaveEventExecState& l, const SaveEventExecState& r) {
@@ -69,7 +69,7 @@ namespace RPG {
 		&& l.keyinput_right == r.keyinput_right
 		&& l.keyinput_up == r.keyinput_up
 		&& l.keyinput_timed == r.keyinput_timed
-		&& l.unused_wait_for_key_or_enter == r.unused_wait_for_key_or_enter;
+		&& l.wait_key_enter == r.wait_key_enter;
 	}
 
 	inline bool operator!=(const SaveEventExecState& l, const SaveEventExecState& r) {
