@@ -32,17 +32,17 @@ namespace RPG {
 		bool keyinput_all_directions = false;
 		bool keyinput_decision = false;
 		bool keyinput_cancel = false;
-		bool keyinput_numbers = false;
-		bool keyinput_operators = false;
-		bool keyinput_shift = false;
-		bool keyinput_value_right = false;
-		bool keyinput_value_up = false;
+		bool keyinput_2kshift_2k3numbers = false;
+		bool keyinput_2kdown_2k3operators = false;
+		bool keyinput_2kleft_2k3shift = false;
+		bool keyinput_2kright = false;
+		bool keyinput_2kup = false;
 		int32_t wait_time = 0;
 		int32_t keyinput_time_variable = -1;
-		bool keyinput_down = false;
-		bool keyinput_left = false;
-		bool keyinput_right = false;
-		bool keyinput_up = false;
+		bool keyinput_2k3down = false;
+		bool keyinput_2k3left = false;
+		bool keyinput_2k3right = false;
+		bool keyinput_2k3up = false;
 		bool keyinput_timed = false;
 		bool wait_key_enter = false;
 	};
@@ -57,17 +57,17 @@ namespace RPG {
 		&& l.keyinput_all_directions == r.keyinput_all_directions
 		&& l.keyinput_decision == r.keyinput_decision
 		&& l.keyinput_cancel == r.keyinput_cancel
-		&& l.keyinput_numbers == r.keyinput_numbers
-		&& l.keyinput_operators == r.keyinput_operators
-		&& l.keyinput_shift == r.keyinput_shift
-		&& l.keyinput_value_right == r.keyinput_value_right
-		&& l.keyinput_value_up == r.keyinput_value_up
+		&& l.keyinput_2kshift_2k3numbers == r.keyinput_2kshift_2k3numbers
+		&& l.keyinput_2kdown_2k3operators == r.keyinput_2kdown_2k3operators
+		&& l.keyinput_2kleft_2k3shift == r.keyinput_2kleft_2k3shift
+		&& l.keyinput_2kright == r.keyinput_2kright
+		&& l.keyinput_2kup == r.keyinput_2kup
 		&& l.wait_time == r.wait_time
 		&& l.keyinput_time_variable == r.keyinput_time_variable
-		&& l.keyinput_down == r.keyinput_down
-		&& l.keyinput_left == r.keyinput_left
-		&& l.keyinput_right == r.keyinput_right
-		&& l.keyinput_up == r.keyinput_up
+		&& l.keyinput_2k3down == r.keyinput_2k3down
+		&& l.keyinput_2k3left == r.keyinput_2k3left
+		&& l.keyinput_2k3right == r.keyinput_2k3right
+		&& l.keyinput_2k3up == r.keyinput_2k3up
 		&& l.keyinput_timed == r.keyinput_timed
 		&& l.wait_key_enter == r.wait_key_enter;
 	}
