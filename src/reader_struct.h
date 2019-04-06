@@ -156,7 +156,7 @@ struct Primitive {
 
 		stream.Read(ref);
 #ifdef LCF_DEBUG_TRACE
-		std::cout << ref << '\n';
+		DebugPrint(ref);
 #endif
 
 		if (dif != 0) {
@@ -179,6 +179,19 @@ struct Primitive {
 	static void ParseXml(T& ref, const std::string& data) {
 		XmlReader::Read(ref, data);
 	}
+	private:
+#ifdef LCF_DEBUG_TRACE
+	template <typename U>
+		static void DebugPrint(U& ref) {
+			std::cout << ref << '\n';
+		}
+	static void DebugPrint(int8_t ref) {
+		std::cout << (int)ref << '\n';
+	}
+	static void DebugPrint(uint8_t ref) {
+		std::cout << (int)ref << '\n';
+	}
+#endif
 };
 
 /**
