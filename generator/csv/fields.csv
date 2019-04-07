@@ -930,7 +930,7 @@ SaveEventExecState,keyinput_2kleft_2k3shift,f,Boolean,0x1C,False,0,0,In Value ke
 SaveEventExecState,keyinput_2kright,f,Boolean,0x1D,False,0,0,Only in Value
 SaveEventExecState,keyinput_2kup,f,Boolean,0x1E,False,0,0,Only in Value
 SaveEventExecState,wait_time,f,Int32,0x1F,0,0,0,int
-SaveEventExecState,keyinput_time_variable,f,Int32,0x20,-1,0,0,
+SaveEventExecState,keyinput_time_variable,f,Int32,0x20,0,0,0,
 SaveEventExecState,keyinput_2k3down,f,Boolean,0x23,False,0,0,
 SaveEventExecState,keyinput_2k3left,f,Boolean,0x24,False,0,0,
 SaveEventExecState,keyinput_2k3right,f,Boolean,0x25,False,0,0,

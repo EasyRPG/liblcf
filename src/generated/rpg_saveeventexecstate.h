@@ -38,7 +38,7 @@ namespace RPG {
 		bool keyinput_2kright = false;
 		bool keyinput_2kup = false;
 		int32_t wait_time = 0;
-		int32_t keyinput_time_variable = -1;
+		int32_t keyinput_time_variable = 0;
 		bool keyinput_2k3down = false;
 		bool keyinput_2k3left = false;
 		bool keyinput_2k3right = false;
