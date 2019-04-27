@@ -21,10 +21,9 @@ char const* const Struct<RPG::SaveEventExecFrame>::name = "SaveEventExecFrame";
 
 template <>
 Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] = {
-	new TypedField<RPG::SaveEventExecFrame, int32_t>(
-		&RPG::SaveEventExecFrame::commands_size,
+	new SizeField<RPG::SaveEventExecFrame, RPG::EventCommand>(
+		&RPG::SaveEventExecFrame::commands,
 		LSD_Reader::ChunkSaveEventExecFrame::commands_size,
-		"commands_size",
 		0,
 		0
 	),

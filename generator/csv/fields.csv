@@ -908,7 +908,7 @@ SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
 SaveTarget,switch_on,f,Boolean,0x04,False,0,0,bool
 SaveTarget,switch_id,f,Ref<Switch>,0x05,0,0,0,int
-SaveEventExecFrame,commands_size,f,Int32,0x01,0,0,0,int
+SaveEventExecFrame,commands,t,EventCommand,0x01,0,0,0,int
 SaveEventExecFrame,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
 SaveEventExecFrame,current_command,f,Int32,0x0B,0,0,0,int
 SaveEventExecFrame,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
@@ -924,19 +924,19 @@ SaveEventExecState,keyinput_variable,f,UInt8,0x16,0,0,0,
 SaveEventExecState,keyinput_all_directions,f,Boolean,0x17,False,0,0,
 SaveEventExecState,keyinput_decision,f,Boolean,0x18,False,0,0,
 SaveEventExecState,keyinput_cancel,f,Boolean,0x19,False,0,0,
-SaveEventExecState,keyinput_numbers,f,Boolean,0x1A,False,0,0,In RM2k Value this is keyinput_shift
-SaveEventExecState,keyinput_operators,f,Boolean,0x1B,False,0,0,In Value keyinput_down
-SaveEventExecState,keyinput_shift,f,Boolean,0x1C,False,0,0,In Value keyinput_left
-SaveEventExecState,keyinput_value_right,f,Boolean,0x1D,False,0,0,Only in Value
-SaveEventExecState,keyinput_value_up,f,Boolean,0x1E,False,0,0,Only in Value
+SaveEventExecState,keyinput_2kshift_2k3numbers,f,Boolean,0x1A,False,0,0,In RM2k Value this is keyinput_shift
+SaveEventExecState,keyinput_2kdown_2k3operators,f,Boolean,0x1B,False,0,0,In Value keyinput_down
+SaveEventExecState,keyinput_2kleft_2k3shift,f,Boolean,0x1C,False,0,0,In Value keyinput_left
+SaveEventExecState,keyinput_2kright,f,Boolean,0x1D,False,0,0,Only in Value
+SaveEventExecState,keyinput_2kup,f,Boolean,0x1E,False,0,0,Only in Value
 SaveEventExecState,wait_time,f,Int32,0x1F,0,0,0,int
-SaveEventExecState,keyinput_time_variable,f,Int32,0x20,-1,0,0,
-SaveEventExecState,keyinput_down,f,Boolean,0x23,False,0,0,
-SaveEventExecState,keyinput_left,f,Boolean,0x24,False,0,0,
-SaveEventExecState,keyinput_right,f,Boolean,0x25,False,0,0,
-SaveEventExecState,keyinput_up,f,Boolean,0x26,False,0,0,
+SaveEventExecState,keyinput_time_variable,f,Int32,0x20,0,0,0,
+SaveEventExecState,keyinput_2k3down,f,Boolean,0x23,False,0,0,
+SaveEventExecState,keyinput_2k3left,f,Boolean,0x24,False,0,0,
+SaveEventExecState,keyinput_2k3right,f,Boolean,0x25,False,0,0,
+SaveEventExecState,keyinput_2k3up,f,Boolean,0x26,False,0,0,
 SaveEventExecState,keyinput_timed,f,Boolean,0x29,False,0,0,
-SaveEventExecState,unused_wait_for_key_or_enter,f,Boolean,0x2a,False,0,0,If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead).
+SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press.
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
 SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?

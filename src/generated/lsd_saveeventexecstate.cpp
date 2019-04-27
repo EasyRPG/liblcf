@@ -85,37 +85,37 @@ Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[] 
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_numbers,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_numbers,
-		"keyinput_numbers",
+		&RPG::SaveEventExecState::keyinput_2kshift_2k3numbers,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2kshift_2k3numbers,
+		"keyinput_2kshift_2k3numbers",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_operators,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_operators,
-		"keyinput_operators",
+		&RPG::SaveEventExecState::keyinput_2kdown_2k3operators,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2kdown_2k3operators,
+		"keyinput_2kdown_2k3operators",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_shift,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_shift,
-		"keyinput_shift",
+		&RPG::SaveEventExecState::keyinput_2kleft_2k3shift,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2kleft_2k3shift,
+		"keyinput_2kleft_2k3shift",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_value_right,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_value_right,
-		"keyinput_value_right",
+		&RPG::SaveEventExecState::keyinput_2kright,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2kright,
+		"keyinput_2kright",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_value_up,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_value_up,
-		"keyinput_value_up",
+		&RPG::SaveEventExecState::keyinput_2kup,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2kup,
+		"keyinput_2kup",
 		0,
 		0
 	),
@@ -134,30 +134,30 @@ Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[] 
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_down,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_down,
-		"keyinput_down",
+		&RPG::SaveEventExecState::keyinput_2k3down,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2k3down,
+		"keyinput_2k3down",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_left,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_left,
-		"keyinput_left",
+		&RPG::SaveEventExecState::keyinput_2k3left,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2k3left,
+		"keyinput_2k3left",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_right,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_right,
-		"keyinput_right",
+		&RPG::SaveEventExecState::keyinput_2k3right,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2k3right,
+		"keyinput_2k3right",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::keyinput_up,
-		LSD_Reader::ChunkSaveEventExecState::keyinput_up,
-		"keyinput_up",
+		&RPG::SaveEventExecState::keyinput_2k3up,
+		LSD_Reader::ChunkSaveEventExecState::keyinput_2k3up,
+		"keyinput_2k3up",
 		0,
 		0
 	),
@@ -169,9 +169,9 @@ Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[] 
 		0
 	),
 	new TypedField<RPG::SaveEventExecState, bool>(
-		&RPG::SaveEventExecState::unused_wait_for_key_or_enter,
-		LSD_Reader::ChunkSaveEventExecState::unused_wait_for_key_or_enter,
-		"unused_wait_for_key_or_enter",
+		&RPG::SaveEventExecState::wait_key_enter,
+		LSD_Reader::ChunkSaveEventExecState::wait_key_enter,
+		"wait_key_enter",
 		0,
 		0
 	),

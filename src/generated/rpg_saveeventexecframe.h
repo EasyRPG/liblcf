@@ -24,7 +24,6 @@ namespace RPG {
 	class SaveEventExecFrame {
 	public:
 		int ID = 0;
-		int32_t commands_size = 0;
 		std::vector<EventCommand> commands;
 		int32_t current_command = 0;
 		int32_t event_id = 0;
@@ -33,7 +32,7 @@ namespace RPG {
 	};
 
 	inline bool operator==(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {
-		return l.commands_size == r.commands_size
+		return l.commands == r.commands
 		&& l.commands == r.commands
 		&& l.current_command == r.current_command
 		&& l.event_id == r.event_id

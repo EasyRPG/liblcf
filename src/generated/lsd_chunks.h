@@ -677,31 +677,31 @@ namespace LSD_Reader {
 			/**  */
 			keyinput_cancel = 0x19,
 			/** In RM2k Value this is keyinput_shift */
-			keyinput_numbers = 0x1A,
+			keyinput_2kshift_2k3numbers = 0x1A,
 			/** In Value keyinput_down */
-			keyinput_operators = 0x1B,
+			keyinput_2kdown_2k3operators = 0x1B,
 			/** In Value keyinput_left */
-			keyinput_shift = 0x1C,
+			keyinput_2kleft_2k3shift = 0x1C,
 			/** Only in Value */
-			keyinput_value_right = 0x1D,
+			keyinput_2kright = 0x1D,
 			/** Only in Value */
-			keyinput_value_up = 0x1E,
+			keyinput_2kup = 0x1E,
 			/** int */
 			wait_time = 0x1F,
 			/**  */
 			keyinput_time_variable = 0x20,
 			/**  */
-			keyinput_down = 0x23,
+			keyinput_2k3down = 0x23,
 			/**  */
-			keyinput_left = 0x24,
+			keyinput_2k3left = 0x24,
 			/**  */
-			keyinput_right = 0x25,
+			keyinput_2k3right = 0x25,
 			/**  */
-			keyinput_up = 0x26,
+			keyinput_2k3up = 0x26,
 			/**  */
 			keyinput_timed = 0x29,
-			/** If enabled; an event waits for either the confirmation key to be pressed or one of the keys defined by KeyInputProc before continuing. This flag seems to be unused though since it is never written to (keyinput_wait is used instead). */
-			unused_wait_for_key_or_enter = 0x2A
+			/** Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press. */
+			wait_key_enter = 0x2A
 		};
 	};
 	struct ChunkSaveMapEventBase {
