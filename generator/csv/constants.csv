@@ -2,3 +2,4 @@
 State,kDeathID,int,1,The ID of the special death state
 SavePartyLocation,kPanXDefault,int,9 * 256,Equal to 9 tiles in 1/16th pixels
 SavePartyLocation,kPanYDefault,int,7 * 256,Equal to 7 tiles in 1/16th pixels
+SavePartyLocation,kPanSpeedDefault,int,2 << 3,Frame speed in 1/16th pixels

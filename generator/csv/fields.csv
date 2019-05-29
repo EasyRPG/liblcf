@@ -841,7 +841,7 @@ SavePartyLocation,pan_current_x,f,Int32,0x70,kPanXDefault,0,0,Number of 1/16 pix
 SavePartyLocation,pan_current_y,f,Int32,0x71,kPanYDefault,0,0,Number of 1/16 pixels above the player
 SavePartyLocation,pan_finish_x,f,Int32,0x72,kPanXDefault,0,0,Number of 1/16 pixels to the left of player when current scroll finishes
 SavePartyLocation,pan_finish_y,f,Int32,0x73,kPanYDefault,0,0,Number of 1/16 pixels above the player when current scroll finishes.
-SavePartyLocation,pan_speed,f,Int32,0x79,16,0,0,speed in the scrolls of the screen - shown in sixteenth pixels.
+SavePartyLocation,pan_speed,f,Int32,0x79,kPanSpeedDefault,0,0,speed in the scrolls of the screen - shown in sixteenth pixels.
 SavePartyLocation,encounter_steps,f,Int32,0x7C,0,0,0,int: sum of terrain.encounter_rate for each step
 SavePartyLocation,encounter_calling,f,Boolean,0x7D,False,0,0,Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame.
 SavePartyLocation,map_save_count,f,Int32,0x83,0,0,0,Mirrors save_count of current map. On mismatch events are not continued after load.

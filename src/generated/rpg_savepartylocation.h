@@ -27,6 +27,8 @@ namespace RPG {
 		static constexpr int kPanXDefault = 9 * 256;
 		// Equal to 7 tiles in 1/16th pixels
 		static constexpr int kPanYDefault = 7 * 256;
+		// Frame speed in 1/16th pixels
+		static constexpr int kPanSpeedDefault = 2 << 3;
 
 		enum VehicleType {
 			VehicleType_none = 0,
@@ -60,7 +62,7 @@ namespace RPG {
 		int32_t pan_current_y = kPanYDefault;
 		int32_t pan_finish_x = kPanXDefault;
 		int32_t pan_finish_y = kPanYDefault;
-		int32_t pan_speed = 16;
+		int32_t pan_speed = kPanSpeedDefault;
 		int32_t encounter_steps = 0;
 		bool encounter_calling = false;
 		int32_t map_save_count = 0;
