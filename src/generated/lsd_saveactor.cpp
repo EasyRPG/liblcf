@@ -207,28 +207,28 @@ Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[] = {
 		LSD_Reader::ChunkSaveActor::two_weapon,
 		"two_weapon",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SaveActor, bool>(
 		&RPG::SaveActor::lock_equipment,
 		LSD_Reader::ChunkSaveActor::lock_equipment,
 		"lock_equipment",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SaveActor, bool>(
 		&RPG::SaveActor::auto_battle,
 		LSD_Reader::ChunkSaveActor::auto_battle,
 		"auto_battle",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SaveActor, bool>(
 		&RPG::SaveActor::super_guard,
 		LSD_Reader::ChunkSaveActor::super_guard,
 		"super_guard",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SaveActor, int32_t>(
 		&RPG::SaveActor::battler_animation,
