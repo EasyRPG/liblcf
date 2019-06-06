@@ -884,7 +884,7 @@ SaveActor,super_guard,f,Boolean,0x5F,False,0,1,bool
 SaveActor,battler_animation,f,Ref<BattlerAnimation>,0x60,0,0,1,Integer - RPG2003
 SaveInventory,party_size,f,Int32,0x01,-1,0,0,?
 SaveInventory,party,f,Vector<Int16>,0x02,,1,0,?
-SaveInventory,items_size,f,Int32,0x0B,-1,0,0,?
+SaveInventory,item_ids,t,Count<Int16>,0x0B,0,1,0,?
 SaveInventory,item_ids,f,Vector<Int16>,0x0C,,1,0,short[]: item list
 SaveInventory,item_counts,f,Vector<UInt8>,0x0D,,1,0,?
 SaveInventory,item_usage,f,Vector<UInt8>,0x0E,,1,0,?

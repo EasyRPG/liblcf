@@ -585,7 +585,7 @@ namespace LSD_Reader {
 			/** ? */
 			party = 0x02,
 			/** ? */
-			items_size = 0x0B,
+			item_ids_size = 0x0B,
 			/** short[]: item list */
 			item_ids = 0x0C,
 			/** ? */

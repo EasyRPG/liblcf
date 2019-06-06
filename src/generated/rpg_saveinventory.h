@@ -25,7 +25,6 @@ namespace RPG {
 		void Setup();
 		int32_t party_size = -1;
 		std::vector<int16_t> party;
-		int32_t items_size = -1;
 		std::vector<int16_t> item_ids;
 		std::vector<uint8_t> item_counts;
 		std::vector<uint8_t> item_usage;
@@ -49,7 +48,7 @@ namespace RPG {
 	inline bool operator==(const SaveInventory& l, const SaveInventory& r) {
 		return l.party_size == r.party_size
 		&& l.party == r.party
-		&& l.items_size == r.items_size
+		&& l.item_ids == r.item_ids
 		&& l.item_ids == r.item_ids
 		&& l.item_counts == r.item_counts
 		&& l.item_usage == r.item_usage
