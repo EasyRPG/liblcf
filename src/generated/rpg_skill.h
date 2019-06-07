@@ -131,8 +131,6 @@ namespace RPG {
 		&& l.absorb_damage == r.absorb_damage
 		&& l.ignore_defense == r.ignore_defense
 		&& l.state_effects == r.state_effects
-		&& l.state_effects == r.state_effects
-		&& l.attribute_effects == r.attribute_effects
 		&& l.attribute_effects == r.attribute_effects
 		&& l.affect_attr_defence == r.affect_attr_defence
 		&& l.battler_animation == r.battler_animation

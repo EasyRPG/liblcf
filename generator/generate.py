@@ -145,6 +145,11 @@ def filter_unwritten_fields(fields):
     for field in fields:
         if field.type:
             yield field
+
+def filter_size_fields(fields):
+    for field in fields:
+        if not field.size:
+            yield field
 # End of Jinja 2 functions
 
 int_types = {
@@ -425,6 +430,7 @@ def main(argv):
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
     env.filters["field_is_written"] = filter_unwritten_fields
+    env.filters["field_is_not_size"] = filter_size_fields
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set

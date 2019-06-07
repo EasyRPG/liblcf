@@ -35,11 +35,10 @@ Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
 		1,
 		0
 	),
-	new TypedField<RPG::SaveInventory, int32_t>(
-		&RPG::SaveInventory::items_size,
-		LSD_Reader::ChunkSaveInventory::items_size,
-		"items_size",
-		0,
+	new CountField<RPG::SaveInventory, int16_t>(
+		&RPG::SaveInventory::item_ids,
+		LSD_Reader::ChunkSaveInventory::item_ids_size,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveInventory, std::vector<int16_t>>(

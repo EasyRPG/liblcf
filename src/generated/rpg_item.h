@@ -170,17 +170,13 @@ namespace RPG {
 		&& l.occasion_field2 == r.occasion_field2
 		&& l.occasion_battle == r.occasion_battle
 		&& l.actor_set == r.actor_set
-		&& l.actor_set == r.actor_set
 		&& l.state_set == r.state_set
-		&& l.state_set == r.state_set
-		&& l.attribute_set == r.attribute_set
 		&& l.attribute_set == r.attribute_set
 		&& l.state_chance == r.state_chance
 		&& l.reverse_state_effect == r.reverse_state_effect
 		&& l.weapon_animation == r.weapon_animation
 		&& l.animation_data == r.animation_data
 		&& l.use_skill == r.use_skill
-		&& l.class_set == r.class_set
 		&& l.class_set == r.class_set
 		&& l.ranged_trajectory == r.ranged_trajectory
 		&& l.ranged_target == r.ranged_target;

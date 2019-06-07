@@ -55,8 +55,6 @@ namespace RPG {
 		&& l.battler_animation == r.battler_animation
 		&& l.skills == r.skills
 		&& l.state_ranks == r.state_ranks
-		&& l.state_ranks == r.state_ranks
-		&& l.attribute_ranks == r.attribute_ranks
 		&& l.attribute_ranks == r.attribute_ranks
 		&& l.battle_commands == r.battle_commands;
 	}

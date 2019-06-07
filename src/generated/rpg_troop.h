@@ -38,7 +38,6 @@ namespace RPG {
 		&& l.members == r.members
 		&& l.auto_alignment == r.auto_alignment
 		&& l.terrain_set == r.terrain_set
-		&& l.terrain_set == r.terrain_set
 		&& l.appear_randomly == r.appear_randomly
 		&& l.pages == r.pages;
 	}

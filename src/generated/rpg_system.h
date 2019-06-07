@@ -244,8 +244,6 @@ namespace RPG {
 		&& l.system_name == r.system_name
 		&& l.system2_name == r.system2_name
 		&& l.party == r.party
-		&& l.party == r.party
-		&& l.menu_commands == r.menu_commands
 		&& l.menu_commands == r.menu_commands
 		&& l.title_music == r.title_music
 		&& l.battle_music == r.battle_music

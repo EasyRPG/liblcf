@@ -92,7 +92,6 @@ namespace RPG {
 		&& l.current_sp == r.current_sp
 		&& l.battle_commands == r.battle_commands
 		&& l.status == r.status
-		&& l.status == r.status
 		&& l.changed_battle_commands == r.changed_battle_commands
 		&& l.class_id == r.class_id
 		&& l.row == r.row

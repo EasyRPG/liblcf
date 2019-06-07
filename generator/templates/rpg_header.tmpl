@@ -107,7 +107,7 @@ namespace RPG {
 	{%- endfor %}
 
 	inline bool operator==(const {{ struct_name }}& l, const {{ struct_name }}& r) {
-	{%- for field in fields[struct_name]|field_is_used -%}
+	{%- for field in fields[struct_name]|field_is_used|field_is_not_size -%}
 		{% if loop.first %}
 		return
 		{%- else %}

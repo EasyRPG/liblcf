@@ -91,8 +91,6 @@ namespace RPG {
 		&& l.rename_skill == r.rename_skill
 		&& l.skill_name == r.skill_name
 		&& l.state_ranks == r.state_ranks
-		&& l.state_ranks == r.state_ranks
-		&& l.attribute_ranks == r.attribute_ranks
 		&& l.attribute_ranks == r.attribute_ranks
 		&& l.battle_commands == r.battle_commands;
 	}
