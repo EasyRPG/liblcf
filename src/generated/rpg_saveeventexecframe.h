@@ -33,11 +33,9 @@ namespace RPG {
 
 	inline bool operator==(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {
 		return l.commands == r.commands
-		&& l.commands == r.commands
 		&& l.current_command == r.current_command
 		&& l.event_id == r.event_id
 		&& l.triggered_by_decision_key == r.triggered_by_decision_key
-		&& l.subcommand_path == r.subcommand_path
 		&& l.subcommand_path == r.subcommand_path;
 	}
 

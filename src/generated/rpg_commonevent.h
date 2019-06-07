@@ -43,7 +43,6 @@ namespace RPG {
 		&& l.trigger == r.trigger
 		&& l.switch_flag == r.switch_flag
 		&& l.switch_id == r.switch_id
-		&& l.event_commands == r.event_commands
 		&& l.event_commands == r.event_commands;
 	}
 

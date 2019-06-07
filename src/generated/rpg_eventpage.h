@@ -153,7 +153,6 @@ namespace RPG {
 		&& l.animation_type == r.animation_type
 		&& l.move_speed == r.move_speed
 		&& l.move_route == r.move_route
-		&& l.event_commands == r.event_commands
 		&& l.event_commands == r.event_commands;
 	}
 

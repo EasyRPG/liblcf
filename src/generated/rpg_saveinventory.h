@@ -49,7 +49,6 @@ namespace RPG {
 		return l.party_size == r.party_size
 		&& l.party == r.party
 		&& l.item_ids == r.item_ids
-		&& l.item_ids == r.item_ids
 		&& l.item_counts == r.item_counts
 		&& l.item_usage == r.item_usage
 		&& l.gold == r.gold

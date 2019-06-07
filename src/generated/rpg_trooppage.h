@@ -30,7 +30,6 @@ namespace RPG {
 
 	inline bool operator==(const TroopPage& l, const TroopPage& r) {
 		return l.condition == r.condition
-		&& l.event_commands == r.event_commands
 		&& l.event_commands == r.event_commands;
 	}
 

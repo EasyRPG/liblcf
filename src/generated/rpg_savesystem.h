@@ -124,8 +124,6 @@ namespace RPG {
 		&& l.message_stretch == r.message_stretch
 		&& l.font_id == r.font_id
 		&& l.switches == r.switches
-		&& l.switches == r.switches
-		&& l.variables == r.variables
 		&& l.variables == r.variables
 		&& l.message_transparent == r.message_transparent
 		&& l.message_position == r.message_position
