@@ -63,7 +63,7 @@ namespace RPG {
 		int32_t scene = 0;
 		int32_t frame_count = 0;
 		std::string graphics_name;
-		int32_t message_stretch = -1;
+		int32_t message_stretch = 0;
 		int32_t font_id = 0;
 		std::vector<bool> switches;
 		std::vector<int32_t> variables;

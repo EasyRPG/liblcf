@@ -91,7 +91,6 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 void RPG::SaveSystem::Setup() {
 	const RPG::System& system = Data::system;
 	frame_count = 0;
-	graphics_name = system.system_name;
 	face_name = "";
 	face_id = -1;
 	face_right = false;
@@ -128,8 +127,6 @@ void RPG::SaveSystem::Setup() {
 	battle_start_fadein = system.battle_start_fadein;
 	battle_end_fadeout = system.battle_end_fadeout;
 	battle_end_fadein = system.battle_end_fadein;
-	message_stretch = system.message_stretch;
-	font_id = system.font_id;
 	teleport_allowed = true;
 	escape_allowed = true;
 	save_allowed = true;
