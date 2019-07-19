@@ -58,9 +58,9 @@ namespace RPG {
 		std::string sprite_name;
 		int32_t sprite_id = 0;
 		bool processed = false;
-		int32_t flash_red = 0;
-		int32_t flash_green = 0;
-		int32_t flash_blue = 0;
+		int32_t flash_red = -1;
+		int32_t flash_green = -1;
+		int32_t flash_blue = -1;
 		double flash_current_level = 0.0;
 		int32_t flash_time_left = 0;
 	};
