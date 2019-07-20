@@ -936,7 +936,7 @@ SaveEventExecState,keyinput_2k3left,f,Boolean,0x24,False,0,0,
 SaveEventExecState,keyinput_2k3right,f,Boolean,0x25,False,0,0,
 SaveEventExecState,keyinput_2k3up,f,Boolean,0x26,False,0,0,
 SaveEventExecState,keyinput_timed,f,Boolean,0x29,False,0,0,
-SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press.
+SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press.
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
 SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
