@@ -849,8 +849,8 @@ SavePartyLocation,database_save_count,f,Int32,0x84,0,0,0,?
 SaveVehicleLocation,vehicle,f,Enum<SaveVehicleLocation_VehicleType>,0x65,0,0,0,Which vehicle
 SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
 SaveVehicleLocation,remaining_descent,f,Int32,0x6B,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to descend
-SaveVehicleLocation,sprite2_name,f,String,0x6F,'',0,0,string
-SaveVehicleLocation,sprite2_id,f,Int32,0x70,0,0,0,int
+SaveVehicleLocation,orig_sprite_name,f,String,0x6F,'',0,0,Set by ChangeVehicleGraphic command
+SaveVehicleLocation,orig_sprite_id,f,Int32,0x70,0,0,0,Set by ChangeVehicleGraphic command
 SaveActor,name,f,String,0x01,'',1,0,string
 SaveActor,title,f,String,0x02,'',1,0,string
 SaveActor,sprite_name,f,String,0x0B,'',0,0,string

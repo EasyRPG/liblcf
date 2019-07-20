@@ -316,16 +316,16 @@ Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, std::string>(
-		&RPG::SaveVehicleLocation::sprite2_name,
-		LSD_Reader::ChunkSaveVehicleLocation::sprite2_name,
-		"sprite2_name",
+		&RPG::SaveVehicleLocation::orig_sprite_name,
+		LSD_Reader::ChunkSaveVehicleLocation::orig_sprite_name,
+		"orig_sprite_name",
 		0,
 		0
 	),
 	new TypedField<RPG::SaveVehicleLocation, int32_t>(
-		&RPG::SaveVehicleLocation::sprite2_id,
-		LSD_Reader::ChunkSaveVehicleLocation::sprite2_id,
-		"sprite2_id",
+		&RPG::SaveVehicleLocation::orig_sprite_id,
+		LSD_Reader::ChunkSaveVehicleLocation::orig_sprite_id,
+		"orig_sprite_id",
 		0,
 		0
 	),

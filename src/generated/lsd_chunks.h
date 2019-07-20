@@ -506,10 +506,10 @@ namespace LSD_Reader {
 			remaining_ascent = 0x6A,
 			/** From 0 to 255 - In flying vehicles; remaining distance to descend */
 			remaining_descent = 0x6B,
-			/** string */
-			sprite2_name = 0x6F,
-			/** int */
-			sprite2_id = 0x70
+			/** Set by ChangeVehicleGraphic command */
+			orig_sprite_name = 0x6F,
+			/** Set by ChangeVehicleGraphic command */
+			orig_sprite_id = 0x70
 		};
 	};
 	struct ChunkSaveActor {
