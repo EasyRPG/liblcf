@@ -58,7 +58,6 @@ void RPG::SaveActor::Setup(int actor_id) {
 
 void RPG::SaveInventory::Setup() {
 	party = Data::system.party;
-	party_size = party.size();
 }
 
 void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
