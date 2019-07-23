@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([liblcf],[0.6.0],[https://github.com/EasyRPG/liblcf/issues],[liblcf],[https://easyrpg.org/])
+AC_INIT([liblcf],[0.6.1],[https://github.com/EasyRPG/liblcf/issues],[liblcf],[https://easyrpg.org/])
 
 AC_CONFIG_AUX_DIR([builds/autoconf])
 AM_INIT_AUTOMAKE([1.11.4 foreign subdir-objects -Wall dist-xz])

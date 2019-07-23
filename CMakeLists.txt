@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 cmake_policy(SET CMP0048 NEW)
 
-project(liblcf VERSION 0.6.0 LANGUAGES CXX)
+project(liblcf VERSION 0.6.1 LANGUAGES CXX)
 
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library" ON)
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended)" OFF)
