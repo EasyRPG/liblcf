@@ -92,37 +92,37 @@ Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[] = {
 		0
 	),
 	new TypedField<RPG::BattleCommands, bool>(
-		&RPG::BattleCommands::teleport,
-		LDB_Reader::ChunkBattleCommands::teleport,
-		"teleport",
+		&RPG::BattleCommands::death_teleport,
+		LDB_Reader::ChunkBattleCommands::death_teleport,
+		"death_teleport",
 		0,
 		0
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::teleport_id,
-		LDB_Reader::ChunkBattleCommands::teleport_id,
-		"teleport_id",
+		&RPG::BattleCommands::death_teleport_id,
+		LDB_Reader::ChunkBattleCommands::death_teleport_id,
+		"death_teleport_id",
 		0,
 		0
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::teleport_x,
-		LDB_Reader::ChunkBattleCommands::teleport_x,
-		"teleport_x",
+		&RPG::BattleCommands::death_teleport_x,
+		LDB_Reader::ChunkBattleCommands::death_teleport_x,
+		"death_teleport_x",
 		0,
 		0
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::teleport_y,
-		LDB_Reader::ChunkBattleCommands::teleport_y,
-		"teleport_y",
+		&RPG::BattleCommands::death_teleport_y,
+		LDB_Reader::ChunkBattleCommands::death_teleport_y,
+		"death_teleport_y",
 		0,
 		0
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::teleport_face,
-		LDB_Reader::ChunkBattleCommands::teleport_face,
-		"teleport_face",
+		&RPG::BattleCommands::death_teleport_face,
+		LDB_Reader::ChunkBattleCommands::death_teleport_face,
+		"death_teleport_face",
 		0,
 		0
 	),
