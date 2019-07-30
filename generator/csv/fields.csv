@@ -849,8 +849,8 @@ SavePartyLocation,database_save_count,f,Int32,0x84,0,0,0,?
 SaveVehicleLocation,vehicle,f,Enum<SaveVehicleLocation_VehicleType>,0x65,0,0,0,Which vehicle
 SaveVehicleLocation,remaining_ascent,f,Int32,0x6A,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to ascend
 SaveVehicleLocation,remaining_descent,f,Int32,0x6B,0,0,0,From 0 to 255 - In flying vehicles; remaining distance to descend
-SaveVehicleLocation,sprite2_name,f,String,0x6F,'',0,0,string
-SaveVehicleLocation,sprite2_id,f,Int32,0x70,0,0,0,int
+SaveVehicleLocation,orig_sprite_name,f,String,0x6F,'',0,0,Set by ChangeVehicleGraphic command
+SaveVehicleLocation,orig_sprite_id,f,Int32,0x70,0,0,0,Set by ChangeVehicleGraphic command
 SaveActor,name,f,String,0x01,'',1,0,string
 SaveActor,title,f,String,0x02,'',1,0,string
 SaveActor,sprite_name,f,String,0x0B,'',0,0,string
@@ -936,7 +936,7 @@ SaveEventExecState,keyinput_2k3left,f,Boolean,0x24,False,0,0,
 SaveEventExecState,keyinput_2k3right,f,Boolean,0x25,False,0,0,
 SaveEventExecState,keyinput_2k3up,f,Boolean,0x26,False,0,0,
 SaveEventExecState,keyinput_timed,f,Boolean,0x29,False,0,0,
-SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press.
+SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press.
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
 SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
@@ -971,9 +971,9 @@ SaveMapEventBase,flying,f,Boolean,0x48,False,0,0,Flag
 SaveMapEventBase,sprite_name,f,String,0x49,'',0,0,?
 SaveMapEventBase,sprite_id,f,Int32,0x4A,0,0,0,?
 SaveMapEventBase,processed,f,Boolean,0x4B,False,0,0,Flag whether an event (the hero is also an event) in the current frame processed their movement actions (may also be none). This is required because events are asked every frame to initiate their next movement step if required; but not necessarily in order; because checking passability for an event trying to move onto another tile will trigger any event's movement initiation which is on the target tile (because this way the target event may move away; allowing the other event to move to that tile). This flag ensures that every event processes their possible movements only once per frame even if it was already asked to do so out of order as part of another event's movement initiation.
-SaveMapEventBase,flash_red,f,Int32,0x51,0,0,0,int
-SaveMapEventBase,flash_green,f,Int32,0x52,0,0,0,int
-SaveMapEventBase,flash_blue,f,Int32,0x53,0,0,0,int
+SaveMapEventBase,flash_red,f,Int32,0x51,-1,0,0,int
+SaveMapEventBase,flash_green,f,Int32,0x52,-1,0,0,int
+SaveMapEventBase,flash_blue,f,Int32,0x53,-1,0,0,int
 SaveMapEventBase,flash_current_level,f,Double,0x54,0.0,0,0,double
 SaveMapEventBase,flash_time_left,f,Int32,0x55,0,0,0,int
 SaveMapEvent,waiting_execution,f,Boolean,0x65,False,0,0,If true; this event is waiting for foreground execution.

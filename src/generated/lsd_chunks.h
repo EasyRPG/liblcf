@@ -506,10 +506,10 @@ namespace LSD_Reader {
 			remaining_ascent = 0x6A,
 			/** From 0 to 255 - In flying vehicles; remaining distance to descend */
 			remaining_descent = 0x6B,
-			/** string */
-			sprite2_name = 0x6F,
-			/** int */
-			sprite2_id = 0x70
+			/** Set by ChangeVehicleGraphic command */
+			orig_sprite_name = 0x6F,
+			/** Set by ChangeVehicleGraphic command */
+			orig_sprite_id = 0x70
 		};
 	};
 	struct ChunkSaveActor {
@@ -700,7 +700,7 @@ namespace LSD_Reader {
 			keyinput_2k3up = 0x26,
 			/**  */
 			keyinput_timed = 0x29,
-			/** Used for a wait command "Wait For Key Input" rm2k3 feature to wait for decision key press. */
+			/** Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press. */
 			wait_key_enter = 0x2A
 		};
 	};
