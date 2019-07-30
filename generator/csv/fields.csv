@@ -80,14 +80,14 @@ BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,0,0,Integer
 BattleCommands,unused_display_normal_parameters,f,Boolean,0x09,True,0,0,Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,1,0,Array - RPG::BattleCommand
 BattleCommands,death_handler2,f,Int32,0x0F,0,0,0,Integer
-BattleCommands,death_event,f,Ref<CommonEvent>,0x10,0,0,0,Integer
+BattleCommands,death_event,f,Ref<CommonEvent>,0x10,1,0,0,Integer
 BattleCommands,window_size,f,Enum<BattleCommands_WindowSize>,0x14,0,0,0,Integer
 BattleCommands,transparency,f,Enum<BattleCommands_Transparency>,0x18,0,0,0,Integer
-BattleCommands,teleport,f,Boolean,0x19,False,0,0,Integer
-BattleCommands,teleport_id,f,Ref<Map>,0x1A,0,0,0,Integer
-BattleCommands,teleport_x,f,Int32,0x1B,0,0,0,Integer
-BattleCommands,teleport_y,f,Int32,0x1C,0,0,0,Integer
-BattleCommands,teleport_face,f,Enum<BattleCommands_Facing>,0x1D,0,0,0,Integer
+BattleCommands,death_teleport,f,Boolean,0x19,False,0,0,Integer
+BattleCommands,death_teleport_id,f,Ref<Map>,0x1A,1,0,0,Integer
+BattleCommands,death_teleport_x,f,Int32,0x1B,0,0,0,Integer
+BattleCommands,death_teleport_y,f,Int32,0x1C,0,0,0,Integer
+BattleCommands,death_teleport_face,f,Enum<BattleCommands_Facing>,0x1D,0,0,0,Integer
 BattlerAnimationExtension,name,f,String,0x01,'',0,0,String
 BattlerAnimationExtension,battler_name,f,String,0x02,'',0,0,String
 BattlerAnimationExtension,battler_index,f,Int32,0x03,0,0,0,Integer

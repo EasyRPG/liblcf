@@ -223,15 +223,15 @@ namespace LDB_Reader {
 			/** Integer */
 			transparency = 0x18,
 			/** Integer */
-			teleport = 0x19,
+			death_teleport = 0x19,
 			/** Integer */
-			teleport_id = 0x1A,
+			death_teleport_id = 0x1A,
 			/** Integer */
-			teleport_x = 0x1B,
+			death_teleport_x = 0x1B,
 			/** Integer */
-			teleport_y = 0x1C,
+			death_teleport_y = 0x1C,
 			/** Integer */
-			teleport_face = 0x1D
+			death_teleport_face = 0x1D
 		};
 	};
 	struct ChunkBattlerAnimationExtension {
