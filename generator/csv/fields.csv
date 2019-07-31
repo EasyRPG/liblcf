@@ -882,7 +882,7 @@ SaveActor,lock_equipment,f,Boolean,0x5D,False,0,1,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,0,1,bool
 SaveActor,super_guard,f,Boolean,0x5F,False,0,1,bool
 SaveActor,battler_animation,f,Ref<BattlerAnimation>,0x60,0,0,1,Integer - RPG2003
-SaveInventory,party_size,f,Int32,0x01,-1,0,0,?
+SaveInventory,party,t,Count<Int16>,0x01,0,1,0,?
 SaveInventory,party,f,Vector<Int16>,0x02,,1,0,?
 SaveInventory,item_ids,t,Count<Int16>,0x0B,0,1,0,?
 SaveInventory,item_ids,f,Vector<Int16>,0x0C,,1,0,short[]: item list

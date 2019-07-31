@@ -21,11 +21,10 @@ char const* const Struct<RPG::SaveInventory>::name = "SaveInventory";
 
 template <>
 Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
-	new TypedField<RPG::SaveInventory, int32_t>(
-		&RPG::SaveInventory::party_size,
+	new CountField<RPG::SaveInventory, int16_t>(
+		&RPG::SaveInventory::party,
 		LSD_Reader::ChunkSaveInventory::party_size,
-		"party_size",
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveInventory, std::vector<int16_t>>(
