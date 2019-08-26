@@ -81,9 +81,6 @@ void RPG::SaveActor::UnFixup() {
 void RPG::SaveSystem::Fixup() {
 	const RPG::System& system = Data::system;
 
-	if (graphics_name.empty()) {
-		graphics_name = system.system_name;
-	}
 	switches.reserve(Data::switches.size());
 	variables.reserve(Data::variables.size());
 	if (battle_music.name.empty()) {
@@ -147,7 +144,6 @@ void RPG::SaveSystem::Fixup() {
 		item_se = system.item_se;
 	}
 
-	FixInt(message_stretch, system.message_stretch);
 	FixInt(transition_out, system.transition_out);
 	FixInt(transition_in, system.transition_in);
 	FixInt(battle_start_fadeout, system.battle_start_fadeout);
@@ -169,10 +165,6 @@ void RPG::SaveSystem::UnFixup() {
 		s = {};
 		s.name.clear();
 	};
-
-	if (graphics_name == system.system_name) {
-		graphics_name.clear();
-	}
 
 	if (battle_music == system.battle_music) {
 		reset_bgm(battle_music);
@@ -235,7 +227,6 @@ void RPG::SaveSystem::UnFixup() {
 		reset_se(item_se);
 	}
 
-	UnFixInt(message_stretch, system.message_stretch);
 	UnFixInt(transition_out, system.transition_out);
 	UnFixInt(transition_in, system.transition_in);
 	UnFixInt(battle_start_fadeout, system.battle_start_fadeout);
