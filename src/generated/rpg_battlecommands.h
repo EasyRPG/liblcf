@@ -82,12 +82,12 @@ namespace RPG {
 		);
 
 		int32_t placement = 0;
-		int32_t death_handler1 = 0;
+		bool death_handler_unused = 0;
 		int32_t row = 0;
 		int32_t battle_type = 0;
 		bool unused_display_normal_parameters = true;
 		std::vector<BattleCommand> commands;
-		int32_t death_handler2 = 0;
+		bool death_handler = 0;
 		int32_t death_event = 1;
 		int32_t window_size = 0;
 		int32_t transparency = 0;
@@ -100,12 +100,12 @@ namespace RPG {
 
 	inline bool operator==(const BattleCommands& l, const BattleCommands& r) {
 		return l.placement == r.placement
-		&& l.death_handler1 == r.death_handler1
+		&& l.death_handler_unused == r.death_handler_unused
 		&& l.row == r.row
 		&& l.battle_type == r.battle_type
 		&& l.unused_display_normal_parameters == r.unused_display_normal_parameters
 		&& l.commands == r.commands
-		&& l.death_handler2 == r.death_handler2
+		&& l.death_handler == r.death_handler
 		&& l.death_event == r.death_event
 		&& l.window_size == r.window_size
 		&& l.transparency == r.transparency

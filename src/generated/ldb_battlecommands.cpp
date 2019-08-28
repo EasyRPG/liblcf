@@ -28,12 +28,12 @@ Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[] = {
 		0,
 		0
 	),
-	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::death_handler1,
-		LDB_Reader::ChunkBattleCommands::death_handler1,
-		"death_handler1",
+	new TypedField<RPG::BattleCommands, bool>(
+		&RPG::BattleCommands::death_handler_unused,
+		LDB_Reader::ChunkBattleCommands::death_handler_unused,
+		"death_handler_unused",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
 		&RPG::BattleCommands::row,
@@ -63,12 +63,12 @@ Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[] = {
 		1,
 		0
 	),
-	new TypedField<RPG::BattleCommands, int32_t>(
-		&RPG::BattleCommands::death_handler2,
-		LDB_Reader::ChunkBattleCommands::death_handler2,
-		"death_handler2",
+	new TypedField<RPG::BattleCommands, bool>(
+		&RPG::BattleCommands::death_handler,
+		LDB_Reader::ChunkBattleCommands::death_handler,
+		"death_handler",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::BattleCommands, int32_t>(
 		&RPG::BattleCommands::death_event,
