@@ -74,12 +74,12 @@ Attribute,e_rate,f,Int32,0x0F,0,0,0,Integer
 BattleCommand,name,f,String,0x01,'',1,0,String
 BattleCommand,type,f,Enum<BattleCommand_Type>,0x02,0,0,0,Integer
 BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,0,0,Integer
-BattleCommands,death_handler1,f,Int32,0x04,0,0,0,Integer
+BattleCommands,death_handler_unused,f,Boolean,0x04,0,0,1,Set by the RM2k3 Editor when you enable death handler; but has no effect in RPG_RT.
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,0,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,0,0,Integer
 BattleCommands,unused_display_normal_parameters,f,Boolean,0x09,True,0,0,Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab
 BattleCommands,commands,f,Array<BattleCommand>,0x0A,,1,0,Array - RPG::BattleCommand
-BattleCommands,death_handler2,f,Int32,0x0F,0,0,0,Integer
+BattleCommands,death_handler,f,Boolean,0x0F,0,0,1,True if a 2k3 random encounter death handler is active
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,1,0,0,Integer
 BattleCommands,window_size,f,Enum<BattleCommands_WindowSize>,0x14,0,0,0,Integer
 BattleCommands,transparency,f,Enum<BattleCommands_Transparency>,0x18,0,0,0,Integer
