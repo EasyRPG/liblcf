@@ -216,6 +216,8 @@ public:
 private:
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
+	/** Cached file stream offset */
+	int64_t offset;
 	/** Contains the last set error. */
 	static std::string error_str;
 	/** The internal Encoder */
