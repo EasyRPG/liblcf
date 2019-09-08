@@ -33,13 +33,21 @@ struct RawStruct<std::vector<RPG::EventCommand> > {
 /**
  * Reads Event Command.
  */
-void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t /* length */) {
+void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t length) {
 	stream.Read(event_command.code);
 	if (event_command.code != 0) {
 		stream.Read(event_command.indent);
 		stream.ReadString(event_command.string, stream.ReadInt());
+
+		auto& param_buf = stream.IntBuffer();
+
+		param_buf.clear();
 		for (int i = stream.ReadInt(); i > 0; i--) {
-			event_command.parameters.push_back(stream.ReadInt());
+			param_buf.push_back(stream.ReadInt());
+		}
+		if (!param_buf.empty()) {
+			event_command.parameters.reserve(param_buf.size());
+			event_command.parameters.assign(param_buf.begin(), param_buf.end());
 		}
 	}
 }
@@ -140,6 +148,9 @@ void RawStruct<std::vector<RPG::EventCommand> >::ReadLcf(
 	unsigned long startpos = stream.Tell();
 	unsigned long endpos = startpos + length;
 
+	// Since we don't know the number of event parameters without reading, we store
+	// them all in a temporary buffer and then copy it to EventCommand::parameters.
+	// This prevents extra allocations from repeated calls to push_back().
 	for (;;) {
 		uint8_t ch = (uint8_t)stream.Peek();
 		if (ch == 0) {
