@@ -18,23 +18,26 @@
 
 template <>
 char const* const Struct<RPG::Learning>::name = "Learning";
+static TypedField<RPG::Learning, int32_t> static_level(
+	&RPG::Learning::level,
+	LDB_Reader::ChunkLearning::level,
+	"level",
+	0,
+	0
+);
+static TypedField<RPG::Learning, int32_t> static_skill_id(
+	&RPG::Learning::skill_id,
+	LDB_Reader::ChunkLearning::skill_id,
+	"skill_id",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::Learning> const* Struct<RPG::Learning>::fields[] = {
-	new TypedField<RPG::Learning, int32_t>(
-		&RPG::Learning::level,
-		LDB_Reader::ChunkLearning::level,
-		"level",
-		0,
-		0
-	),
-	new TypedField<RPG::Learning, int32_t>(
-		&RPG::Learning::skill_id,
-		LDB_Reader::ChunkLearning::skill_id,
-		"skill_id",
-		0,
-		0
-	),
+	&static_level,
+	&static_skill_id,
 	NULL
 };
 

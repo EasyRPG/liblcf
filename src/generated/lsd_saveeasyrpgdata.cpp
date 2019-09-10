@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::SaveEasyRpgData>::name = "SaveEasyRpgData";
+static TypedField<RPG::SaveEasyRpgData, int32_t> static_version(
+	&RPG::SaveEasyRpgData::version,
+	LSD_Reader::ChunkSaveEasyRpgData::version,
+	"version",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::SaveEasyRpgData> const* Struct<RPG::SaveEasyRpgData>::fields[] = {
-	new TypedField<RPG::SaveEasyRpgData, int32_t>(
-		&RPG::SaveEasyRpgData::version,
-		LSD_Reader::ChunkSaveEasyRpgData::version,
-		"version",
-		0,
-		0
-	),
+	&static_version,
 	NULL
 };
 

@@ -18,58 +18,66 @@
 
 template <>
 char const* const Struct<RPG::Animation>::name = "Animation";
+static TypedField<RPG::Animation, std::string> static_name(
+	&RPG::Animation::name,
+	LDB_Reader::ChunkAnimation::name,
+	"name",
+	0,
+	0
+);
+static TypedField<RPG::Animation, std::string> static_animation_name(
+	&RPG::Animation::animation_name,
+	LDB_Reader::ChunkAnimation::animation_name,
+	"animation_name",
+	0,
+	0
+);
+static TypedField<RPG::Animation, bool> static_large(
+	&RPG::Animation::large,
+	LDB_Reader::ChunkAnimation::large,
+	"large",
+	0,
+	0
+);
+static TypedField<RPG::Animation, std::vector<RPG::AnimationTiming>> static_timings(
+	&RPG::Animation::timings,
+	LDB_Reader::ChunkAnimation::timings,
+	"timings",
+	1,
+	0
+);
+static TypedField<RPG::Animation, int32_t> static_scope(
+	&RPG::Animation::scope,
+	LDB_Reader::ChunkAnimation::scope,
+	"scope",
+	1,
+	0
+);
+static TypedField<RPG::Animation, int32_t> static_position(
+	&RPG::Animation::position,
+	LDB_Reader::ChunkAnimation::position,
+	"position",
+	1,
+	0
+);
+static TypedField<RPG::Animation, std::vector<RPG::AnimationFrame>> static_frames(
+	&RPG::Animation::frames,
+	LDB_Reader::ChunkAnimation::frames,
+	"frames",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::Animation> const* Struct<RPG::Animation>::fields[] = {
-	new TypedField<RPG::Animation, std::string>(
-		&RPG::Animation::name,
-		LDB_Reader::ChunkAnimation::name,
-		"name",
-		0,
-		0
-	),
-	new TypedField<RPG::Animation, std::string>(
-		&RPG::Animation::animation_name,
-		LDB_Reader::ChunkAnimation::animation_name,
-		"animation_name",
-		0,
-		0
-	),
-	new TypedField<RPG::Animation, bool>(
-		&RPG::Animation::large,
-		LDB_Reader::ChunkAnimation::large,
-		"large",
-		0,
-		0
-	),
-	new TypedField<RPG::Animation, std::vector<RPG::AnimationTiming>>(
-		&RPG::Animation::timings,
-		LDB_Reader::ChunkAnimation::timings,
-		"timings",
-		1,
-		0
-	),
-	new TypedField<RPG::Animation, int32_t>(
-		&RPG::Animation::scope,
-		LDB_Reader::ChunkAnimation::scope,
-		"scope",
-		1,
-		0
-	),
-	new TypedField<RPG::Animation, int32_t>(
-		&RPG::Animation::position,
-		LDB_Reader::ChunkAnimation::position,
-		"position",
-		1,
-		0
-	),
-	new TypedField<RPG::Animation, std::vector<RPG::AnimationFrame>>(
-		&RPG::Animation::frames,
-		LDB_Reader::ChunkAnimation::frames,
-		"frames",
-		1,
-		0
-	),
+	&static_name,
+	&static_animation_name,
+	&static_large,
+	&static_timings,
+	&static_scope,
+	&static_position,
+	&static_frames,
 	NULL
 };
 

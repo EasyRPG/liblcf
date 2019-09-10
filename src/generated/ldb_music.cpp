@@ -18,44 +18,50 @@
 
 template <>
 char const* const Struct<RPG::Music>::name = "Music";
+static TypedField<RPG::Music, std::string> static_name(
+	&RPG::Music::name,
+	LDB_Reader::ChunkMusic::name,
+	"name",
+	1,
+	0
+);
+static TypedField<RPG::Music, int32_t> static_fadein(
+	&RPG::Music::fadein,
+	LDB_Reader::ChunkMusic::fadein,
+	"fadein",
+	0,
+	0
+);
+static TypedField<RPG::Music, int32_t> static_volume(
+	&RPG::Music::volume,
+	LDB_Reader::ChunkMusic::volume,
+	"volume",
+	0,
+	0
+);
+static TypedField<RPG::Music, int32_t> static_tempo(
+	&RPG::Music::tempo,
+	LDB_Reader::ChunkMusic::tempo,
+	"tempo",
+	0,
+	0
+);
+static TypedField<RPG::Music, int32_t> static_balance(
+	&RPG::Music::balance,
+	LDB_Reader::ChunkMusic::balance,
+	"balance",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::Music> const* Struct<RPG::Music>::fields[] = {
-	new TypedField<RPG::Music, std::string>(
-		&RPG::Music::name,
-		LDB_Reader::ChunkMusic::name,
-		"name",
-		1,
-		0
-	),
-	new TypedField<RPG::Music, int32_t>(
-		&RPG::Music::fadein,
-		LDB_Reader::ChunkMusic::fadein,
-		"fadein",
-		0,
-		0
-	),
-	new TypedField<RPG::Music, int32_t>(
-		&RPG::Music::volume,
-		LDB_Reader::ChunkMusic::volume,
-		"volume",
-		0,
-		0
-	),
-	new TypedField<RPG::Music, int32_t>(
-		&RPG::Music::tempo,
-		LDB_Reader::ChunkMusic::tempo,
-		"tempo",
-		0,
-		0
-	),
-	new TypedField<RPG::Music, int32_t>(
-		&RPG::Music::balance,
-		LDB_Reader::ChunkMusic::balance,
-		"balance",
-		0,
-		0
-	),
+	&static_name,
+	&static_fadein,
+	&static_volume,
+	&static_tempo,
+	&static_balance,
 	NULL
 };
 

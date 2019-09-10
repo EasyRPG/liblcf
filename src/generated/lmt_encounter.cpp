@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::Encounter>::name = "Encounter";
+static TypedField<RPG::Encounter, int32_t> static_troop_id(
+	&RPG::Encounter::troop_id,
+	LMT_Reader::ChunkEncounter::troop_id,
+	"troop_id",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[] = {
-	new TypedField<RPG::Encounter, int32_t>(
-		&RPG::Encounter::troop_id,
-		LMT_Reader::ChunkEncounter::troop_id,
-		"troop_id",
-		0,
-		0
-	),
+	&static_troop_id,
 	NULL
 };
 

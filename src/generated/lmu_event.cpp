@@ -18,37 +18,42 @@
 
 template <>
 char const* const Struct<RPG::Event>::name = "Event";
+static TypedField<RPG::Event, std::string> static_name(
+	&RPG::Event::name,
+	LMU_Reader::ChunkEvent::name,
+	"name",
+	0,
+	0
+);
+static TypedField<RPG::Event, int32_t> static_x(
+	&RPG::Event::x,
+	LMU_Reader::ChunkEvent::x,
+	"x",
+	0,
+	0
+);
+static TypedField<RPG::Event, int32_t> static_y(
+	&RPG::Event::y,
+	LMU_Reader::ChunkEvent::y,
+	"y",
+	0,
+	0
+);
+static TypedField<RPG::Event, std::vector<RPG::EventPage>> static_pages(
+	&RPG::Event::pages,
+	LMU_Reader::ChunkEvent::pages,
+	"pages",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::Event> const* Struct<RPG::Event>::fields[] = {
-	new TypedField<RPG::Event, std::string>(
-		&RPG::Event::name,
-		LMU_Reader::ChunkEvent::name,
-		"name",
-		0,
-		0
-	),
-	new TypedField<RPG::Event, int32_t>(
-		&RPG::Event::x,
-		LMU_Reader::ChunkEvent::x,
-		"x",
-		0,
-		0
-	),
-	new TypedField<RPG::Event, int32_t>(
-		&RPG::Event::y,
-		LMU_Reader::ChunkEvent::y,
-		"y",
-		0,
-		0
-	),
-	new TypedField<RPG::Event, std::vector<RPG::EventPage>>(
-		&RPG::Event::pages,
-		LMU_Reader::ChunkEvent::pages,
-		"pages",
-		1,
-		0
-	),
+	&static_name,
+	&static_x,
+	&static_y,
+	&static_pages,
 	NULL
 };
 

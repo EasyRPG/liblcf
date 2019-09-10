@@ -18,56 +18,64 @@
 
 template <>
 char const* const Struct<RPG::SaveEventExecFrame>::name = "SaveEventExecFrame";
+static SizeField<RPG::SaveEventExecFrame, RPG::EventCommand> static_size_commands(
+	&RPG::SaveEventExecFrame::commands,
+	LSD_Reader::ChunkSaveEventExecFrame::commands_size,
+	1,
+	0
+);
+static TypedField<RPG::SaveEventExecFrame, std::vector<RPG::EventCommand>> static_commands(
+	&RPG::SaveEventExecFrame::commands,
+	LSD_Reader::ChunkSaveEventExecFrame::commands,
+	"commands",
+	1,
+	0
+);
+static TypedField<RPG::SaveEventExecFrame, int32_t> static_current_command(
+	&RPG::SaveEventExecFrame::current_command,
+	LSD_Reader::ChunkSaveEventExecFrame::current_command,
+	"current_command",
+	0,
+	0
+);
+static TypedField<RPG::SaveEventExecFrame, int32_t> static_event_id(
+	&RPG::SaveEventExecFrame::event_id,
+	LSD_Reader::ChunkSaveEventExecFrame::event_id,
+	"event_id",
+	0,
+	0
+);
+static TypedField<RPG::SaveEventExecFrame, bool> static_triggered_by_decision_key(
+	&RPG::SaveEventExecFrame::triggered_by_decision_key,
+	LSD_Reader::ChunkSaveEventExecFrame::triggered_by_decision_key,
+	"triggered_by_decision_key",
+	0,
+	0
+);
+static SizeField<RPG::SaveEventExecFrame, uint8_t> static_size_subcommand_path(
+	&RPG::SaveEventExecFrame::subcommand_path,
+	LSD_Reader::ChunkSaveEventExecFrame::subcommand_path_size,
+	0,
+	0
+);
+static TypedField<RPG::SaveEventExecFrame, std::vector<uint8_t>> static_subcommand_path(
+	&RPG::SaveEventExecFrame::subcommand_path,
+	LSD_Reader::ChunkSaveEventExecFrame::subcommand_path,
+	"subcommand_path",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] = {
-	new SizeField<RPG::SaveEventExecFrame, RPG::EventCommand>(
-		&RPG::SaveEventExecFrame::commands,
-		LSD_Reader::ChunkSaveEventExecFrame::commands_size,
-		1,
-		0
-	),
-	new TypedField<RPG::SaveEventExecFrame, std::vector<RPG::EventCommand>>(
-		&RPG::SaveEventExecFrame::commands,
-		LSD_Reader::ChunkSaveEventExecFrame::commands,
-		"commands",
-		1,
-		0
-	),
-	new TypedField<RPG::SaveEventExecFrame, int32_t>(
-		&RPG::SaveEventExecFrame::current_command,
-		LSD_Reader::ChunkSaveEventExecFrame::current_command,
-		"current_command",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveEventExecFrame, int32_t>(
-		&RPG::SaveEventExecFrame::event_id,
-		LSD_Reader::ChunkSaveEventExecFrame::event_id,
-		"event_id",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveEventExecFrame, bool>(
-		&RPG::SaveEventExecFrame::triggered_by_decision_key,
-		LSD_Reader::ChunkSaveEventExecFrame::triggered_by_decision_key,
-		"triggered_by_decision_key",
-		0,
-		0
-	),
-	new SizeField<RPG::SaveEventExecFrame, uint8_t>(
-		&RPG::SaveEventExecFrame::subcommand_path,
-		LSD_Reader::ChunkSaveEventExecFrame::subcommand_path_size,
-		0,
-		0
-	),
-	new TypedField<RPG::SaveEventExecFrame, std::vector<uint8_t>>(
-		&RPG::SaveEventExecFrame::subcommand_path,
-		LSD_Reader::ChunkSaveEventExecFrame::subcommand_path,
-		"subcommand_path",
-		1,
-		0
-	),
+	&static_commands,
+	&static_commands,
+	&static_current_command,
+	&static_event_id,
+	&static_triggered_by_decision_key,
+	&static_subcommand_path,
+	&static_subcommand_path,
 	NULL
 };
 

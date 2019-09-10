@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::Switch>::name = "Switch";
+static TypedField<RPG::Switch, std::string> static_name(
+	&RPG::Switch::name,
+	LDB_Reader::ChunkSwitch::name,
+	"name",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::Switch> const* Struct<RPG::Switch>::fields[] = {
-	new TypedField<RPG::Switch, std::string>(
-		&RPG::Switch::name,
-		LDB_Reader::ChunkSwitch::name,
-		"name",
-		0,
-		0
-	),
+	&static_name,
 	NULL
 };
 
