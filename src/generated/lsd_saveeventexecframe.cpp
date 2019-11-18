@@ -24,7 +24,7 @@ Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] 
 	new SizeField<RPG::SaveEventExecFrame, RPG::EventCommand>(
 		&RPG::SaveEventExecFrame::commands,
 		LSD_Reader::ChunkSaveEventExecFrame::commands_size,
-		0,
+		1,
 		0
 	),
 	new TypedField<RPG::SaveEventExecFrame, std::vector<RPG::EventCommand>>(

@@ -908,7 +908,7 @@ SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
 SaveTarget,switch_on,f,Boolean,0x04,False,0,0,bool
 SaveTarget,switch_id,f,Ref<Switch>,0x05,0,0,0,int
-SaveEventExecFrame,commands,t,EventCommand,0x01,0,0,0,int
+SaveEventExecFrame,commands,t,EventCommand,0x01,0,1,0,int
 SaveEventExecFrame,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
 SaveEventExecFrame,current_command,f,Int32,0x0B,0,0,0,int
 SaveEventExecFrame,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
