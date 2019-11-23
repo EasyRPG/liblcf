@@ -796,7 +796,7 @@ SavePicture,name,f,String,0x01,'',0,0,string
 SavePicture,start_x,f,Double,0x02,0.0,0,0,X position where picture was originally shown
 SavePicture,start_y,f,Double,0x03,0.0,0,0,Y position where picture was originally shown
 SavePicture,current_x,f,Double,0x04,0.0,0,0,Current x position of picture
-SavePicture,current_y,f,Double,0x05,0.0,0,0,Yurrent y position of picture
+SavePicture,current_y,f,Double,0x05,0.0,0,0,Current y position of picture
 SavePicture,fixed_to_map,f,Boolean,0x06,False,0,0,If true; picture will scroll with map
 SavePicture,current_magnify,f,Double,0x07,100.0,0,0,Current zoom level of picture.
 SavePicture,current_top_trans,f,Double,0x08,0.0,0,0,Current transparency of picture. In RPG2k3 < 1.12 affects only top half of picture.
@@ -805,8 +805,8 @@ SavePicture,current_red,f,Double,0x0B,100.0,0,0,Current red tint
 SavePicture,current_green,f,Double,0x0C,100.0,0,0,Current green tint
 SavePicture,current_blue,f,Double,0x0D,100.0,0,0,Current blue tint.
 SavePicture,current_sat,f,Double,0x0E,100.0,0,0,Current saturation
-SavePicture,effect_mode,f,Int32,0x0F,0,0,0,int
-SavePicture,current_effect,f,Double,0x10,0.0,0,0,double
+SavePicture,effect_mode,f,Enum<SavePicture_Effect>,0x0F,0,0,0,Which effect is active.
+SavePicture,current_effect_power,f,Double,0x10,0.0,0,0,The current power of the active effect.
 SavePicture,current_bot_trans,f,Double,0x12,0.0,0,0,Bottom half transparency. Only has an effect in RPG2k3 < 1.12.
 SavePicture,spritesheet_cols,f,Int32,0x13,1,0,0,Spritesheet columns
 SavePicture,spritesheet_rows,f,Int32,0x14,1,0,0,Spritesheet rows
@@ -826,7 +826,7 @@ SavePicture,finish_red,f,Int32,0x29,100,0,0,Final red tint to animate picture.
 SavePicture,finish_green,f,Int32,0x2A,100,0,0,Final green tint to animate picture.
 SavePicture,finish_blue,f,Int32,0x2B,100,0,0,Final blue tint to animate picture.
 SavePicture,finish_sat,f,Int32,0x2C,100,0,0,Final saturation to animate picture.
-SavePicture,finish_effect,f,Int32,0x2E,0,0,0,Final effect level to animate picture.
+SavePicture,finish_effect_power,f,Int32,0x2E,0,0,0,Final power of the effect to animate picture.
 SavePicture,time_left,f,Int32,0x33,0,0,0,How much time left in picture move / animation effects.
 SavePicture,current_rotation,f,Double,0x34,0.0,0,0,How much the picture is currently rotated.
 SavePicture,current_waver,f,Int32,0x35,0,0,0,Current wave effect for picture.

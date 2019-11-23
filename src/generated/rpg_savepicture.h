@@ -24,6 +24,16 @@
 namespace RPG {
 	class SavePicture {
 	public:
+		enum Effect {
+			Effect_none = 0,
+			Effect_rotation = 1,
+			Effect_wave = 2
+		};
+		static constexpr auto kEffectTags = makeEnumTags<Effect>(
+			"none",
+			"rotation",
+			"wave"
+		);
 		enum MapLayer {
 			MapLayer_none = 0,
 			MapLayer_parallax = 1,
@@ -82,7 +92,7 @@ namespace RPG {
 		double current_blue = 100.0;
 		double current_sat = 100.0;
 		int32_t effect_mode = 0;
-		double current_effect = 0.0;
+		double current_effect_power = 0.0;
 		double current_bot_trans = 0.0;
 		int32_t spritesheet_cols = 1;
 		int32_t spritesheet_rows = 1;
@@ -118,7 +128,7 @@ namespace RPG {
 		int32_t finish_green = 100;
 		int32_t finish_blue = 100;
 		int32_t finish_sat = 100;
-		int32_t finish_effect = 0;
+		int32_t finish_effect_power = 0;
 		int32_t time_left = 0;
 		double current_rotation = 0.0;
 		int32_t current_waver = 0;
@@ -147,7 +157,7 @@ namespace RPG {
 		&& l.current_blue == r.current_blue
 		&& l.current_sat == r.current_sat
 		&& l.effect_mode == r.effect_mode
-		&& l.current_effect == r.current_effect
+		&& l.current_effect_power == r.current_effect_power
 		&& l.current_bot_trans == r.current_bot_trans
 		&& l.spritesheet_cols == r.spritesheet_cols
 		&& l.spritesheet_rows == r.spritesheet_rows
@@ -167,7 +177,7 @@ namespace RPG {
 		&& l.finish_green == r.finish_green
 		&& l.finish_blue == r.finish_blue
 		&& l.finish_sat == r.finish_sat
-		&& l.finish_effect == r.finish_effect
+		&& l.finish_effect_power == r.finish_effect_power
 		&& l.time_left == r.time_left
 		&& l.current_rotation == r.current_rotation
 		&& l.current_waver == r.current_waver;

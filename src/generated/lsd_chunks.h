@@ -236,7 +236,7 @@ namespace LSD_Reader {
 			start_y = 0x03,
 			/** Current x position of picture */
 			current_x = 0x04,
-			/** Yurrent y position of picture */
+			/** Current y position of picture */
 			current_y = 0x05,
 			/** If true; picture will scroll with map */
 			fixed_to_map = 0x06,
@@ -254,10 +254,10 @@ namespace LSD_Reader {
 			current_blue = 0x0D,
 			/** Current saturation */
 			current_sat = 0x0E,
-			/** int */
+			/** Which effect is active. */
 			effect_mode = 0x0F,
-			/** double */
-			current_effect = 0x10,
+			/** The current power of the active effect. */
+			current_effect_power = 0x10,
 			/** Bottom half transparency. Only has an effect in RPG2k3 < 1.12. */
 			current_bot_trans = 0x12,
 			/** Spritesheet columns */
@@ -296,8 +296,8 @@ namespace LSD_Reader {
 			finish_blue = 0x2B,
 			/** Final saturation to animate picture. */
 			finish_sat = 0x2C,
-			/** Final effect level to animate picture. */
-			finish_effect = 0x2E,
+			/** Final power of the effect to animate picture. */
+			finish_effect_power = 0x2E,
 			/** How much time left in picture move / animation effects. */
 			time_left = 0x33,
 			/** How much the picture is currently rotated. */

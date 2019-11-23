@@ -120,9 +120,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, double>(
-		&RPG::SavePicture::current_effect,
-		LSD_Reader::ChunkSavePicture::current_effect,
-		"current_effect",
+		&RPG::SavePicture::current_effect_power,
+		LSD_Reader::ChunkSavePicture::current_effect_power,
+		"current_effect_power",
 		0,
 		0
 	),
@@ -260,9 +260,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
-		&RPG::SavePicture::finish_effect,
-		LSD_Reader::ChunkSavePicture::finish_effect,
-		"finish_effect",
+		&RPG::SavePicture::finish_effect_power,
+		LSD_Reader::ChunkSavePicture::finish_effect_power,
+		"finish_effect_power",
 		0,
 		0
 	),
