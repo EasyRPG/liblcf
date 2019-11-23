@@ -78,9 +78,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, bool>(
-		&RPG::SavePicture::transparency,
-		LSD_Reader::ChunkSavePicture::transparency,
-		"transparency",
+		&RPG::SavePicture::use_transparent_color,
+		LSD_Reader::ChunkSavePicture::use_transparent_color,
+		"use_transparent_color",
 		0,
 		0
 	),

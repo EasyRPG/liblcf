@@ -76,7 +76,7 @@ namespace RPG {
 		bool fixed_to_map = false;
 		double current_magnify = 100.0;
 		double current_top_trans = 0.0;
-		bool transparency = false;
+		bool use_transparent_color = false;
 		double current_red = 100.0;
 		double current_green = 100.0;
 		double current_blue = 100.0;
@@ -141,7 +141,7 @@ namespace RPG {
 		&& l.fixed_to_map == r.fixed_to_map
 		&& l.current_magnify == r.current_magnify
 		&& l.current_top_trans == r.current_top_trans
-		&& l.transparency == r.transparency
+		&& l.use_transparent_color == r.use_transparent_color
 		&& l.current_red == r.current_red
 		&& l.current_green == r.current_green
 		&& l.current_blue == r.current_blue

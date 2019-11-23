@@ -230,35 +230,35 @@ namespace LSD_Reader {
 		enum Index {
 			/** string */
 			name = 0x01,
-			/** double */
+			/** X position where picture was originally shown */
 			start_x = 0x02,
-			/** double */
+			/** Y position where picture was originally shown */
 			start_y = 0x03,
-			/** double */
+			/** Current x position of picture */
 			current_x = 0x04,
-			/** double */
+			/** Yurrent y position of picture */
 			current_y = 0x05,
-			/** bool */
+			/** If true; picture will scroll with map */
 			fixed_to_map = 0x06,
-			/** double */
+			/** Current zoom level of picture. */
 			current_magnify = 0x07,
-			/** double */
+			/** Current transparency of picture. In RPG2k3 < 1.12 affects only top half of picture. */
 			current_top_trans = 0x08,
-			/** bool */
-			transparency = 0x09,
-			/** double */
+			/** If false; ignore the transparent color */
+			use_transparent_color = 0x09,
+			/** Current red tint */
 			current_red = 0x0B,
-			/** double */
+			/** Current green tint */
 			current_green = 0x0C,
-			/** double */
+			/** Current blue tint. */
 			current_blue = 0x0D,
-			/** double */
+			/** Current saturation */
 			current_sat = 0x0E,
 			/** int */
 			effect_mode = 0x0F,
 			/** double */
 			current_effect = 0x10,
-			/** double */
+			/** Bottom half transparency. Only has an effect in RPG2k3 < 1.12. */
 			current_bot_trans = 0x12,
 			/** Spritesheet columns */
 			spritesheet_cols = 0x13,
@@ -278,31 +278,31 @@ namespace LSD_Reader {
 			battle_layer = 0x1A,
 			/** Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint */
 			flags = 0x1B,
-			/** double */
+			/** Final X position to move picture to. */
 			finish_x = 0x1F,
-			/** double */
+			/** Final Y position to move picture to. */
 			finish_y = 0x20,
-			/** int */
+			/** Final zoom level to animate picture to. */
 			finish_magnify = 0x21,
-			/** int */
+			/** Final top_trans level to animate picture. */
 			finish_top_trans = 0x22,
-			/** int */
+			/** Final bot_trans level to animate picture. */
 			finish_bot_trans = 0x23,
-			/** int */
+			/** Final red tint to animate picture. */
 			finish_red = 0x29,
-			/** int */
+			/** Final green tint to animate picture. */
 			finish_green = 0x2A,
-			/** int */
+			/** Final blue tint to animate picture. */
 			finish_blue = 0x2B,
-			/** int */
+			/** Final saturation to animate picture. */
 			finish_sat = 0x2C,
-			/** int */
+			/** Final effect level to animate picture. */
 			finish_effect = 0x2E,
-			/** int */
+			/** How much time left in picture move / animation effects. */
 			time_left = 0x33,
-			/** double */
+			/** How much the picture is currently rotated. */
 			current_rotation = 0x34,
-			/** int */
+			/** Current wave effect for picture. */
 			current_waver = 0x35
 		};
 	};
