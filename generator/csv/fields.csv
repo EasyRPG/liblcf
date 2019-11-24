@@ -808,12 +808,12 @@ SavePicture,current_sat,f,Double,0x0E,100.0,0,0,Current saturation
 SavePicture,effect_mode,f,Enum<SavePicture_Effect>,0x0F,0,0,0,Which effect is active.
 SavePicture,current_effect_power,f,Double,0x10,0.0,0,0,The current power of the active effect.
 SavePicture,current_bot_trans,f,Double,0x12,0.0,0,0,Bottom half transparency. Only has an effect in RPG2k3 < 1.12.
-SavePicture,spritesheet_cols,f,Int32,0x13,1,0,0,Spritesheet columns
-SavePicture,spritesheet_rows,f,Int32,0x14,1,0,0,Spritesheet rows
-SavePicture,spritesheet_frame,f,Int32,0x15,0,0,0,Current spritesheet frame
-SavePicture,spritesheet_speed,f,Int32,0x16,0,0,0,Spritesheet speed (X frames per second)
-SavePicture,frames,f,Int32,0x17,0,0,0,Frames since ShowPicture
-SavePicture,spritesheet_play_once,f,Boolean,0x18,False,0,0,True: Play once and destroy; False: Loop spritesheet
+SavePicture,spritesheet_cols,f,Int32,0x13,1,0,1,Spritesheet columns
+SavePicture,spritesheet_rows,f,Int32,0x14,1,0,1,Spritesheet rows
+SavePicture,spritesheet_frame,f,Int32,0x15,0,0,1,Current spritesheet frame
+SavePicture,spritesheet_speed,f,Int32,0x16,0,0,1,Spritesheet speed (X frames per second)
+SavePicture,frames,f,Int32,0x17,0,0,1,Frames since ShowPicture
+SavePicture,spritesheet_play_once,f,Boolean,0x18,False,0,1,True: Play once and destroy; False: Loop spritesheet
 SavePicture,map_layer,f,Enum<MapLayer>,0x19,7,0,0,Layer to show picture on at the map
 SavePicture,battle_layer,f,Enum<BattleLayer>,0x1A,0,0,0,Layer to show picture on in battle
 SavePicture,flags,f,SavePicture_Flags,0x1B,97,0,0,Bitflag. Persists Map/Battle change/end; Affected by Shake/Flash/Tint

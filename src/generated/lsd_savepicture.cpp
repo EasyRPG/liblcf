@@ -138,42 +138,42 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		LSD_Reader::ChunkSavePicture::spritesheet_cols,
 		"spritesheet_cols",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_rows,
 		LSD_Reader::ChunkSavePicture::spritesheet_rows,
 		"spritesheet_rows",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_frame,
 		LSD_Reader::ChunkSavePicture::spritesheet_frame,
 		"spritesheet_frame",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_speed,
 		LSD_Reader::ChunkSavePicture::spritesheet_speed,
 		"spritesheet_speed",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::frames,
 		LSD_Reader::ChunkSavePicture::frames,
 		"frames",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, bool>(
 		&RPG::SavePicture::spritesheet_play_once,
 		LSD_Reader::ChunkSavePicture::spritesheet_play_once,
 		"spritesheet_play_once",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::map_layer,
