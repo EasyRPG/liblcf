@@ -122,6 +122,9 @@ SavePartyLocation,VehicleType,ship,2
 SavePartyLocation,VehicleType,airship,3
 SavePartyLocation,PanState,fixed,0
 SavePartyLocation,PanState,follow,1
+SavePicture,Effect,none,0
+SavePicture,Effect,rotation,1
+SavePicture,Effect,wave,2
 SavePicture,MapLayer,none,0
 SavePicture,MapLayer,parallax,1
 SavePicture,MapLayer,tilemap_below,2

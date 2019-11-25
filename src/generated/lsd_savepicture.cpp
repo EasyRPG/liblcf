@@ -78,9 +78,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, bool>(
-		&RPG::SavePicture::transparency,
-		LSD_Reader::ChunkSavePicture::transparency,
-		"transparency",
+		&RPG::SavePicture::use_transparent_color,
+		LSD_Reader::ChunkSavePicture::use_transparent_color,
+		"use_transparent_color",
 		0,
 		0
 	),
@@ -120,9 +120,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, double>(
-		&RPG::SavePicture::current_effect,
-		LSD_Reader::ChunkSavePicture::current_effect,
-		"current_effect",
+		&RPG::SavePicture::current_effect_power,
+		LSD_Reader::ChunkSavePicture::current_effect_power,
+		"current_effect_power",
 		0,
 		0
 	),
@@ -138,42 +138,42 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		LSD_Reader::ChunkSavePicture::spritesheet_cols,
 		"spritesheet_cols",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_rows,
 		LSD_Reader::ChunkSavePicture::spritesheet_rows,
 		"spritesheet_rows",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_frame,
 		LSD_Reader::ChunkSavePicture::spritesheet_frame,
 		"spritesheet_frame",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::spritesheet_speed,
 		LSD_Reader::ChunkSavePicture::spritesheet_speed,
 		"spritesheet_speed",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::frames,
 		LSD_Reader::ChunkSavePicture::frames,
 		"frames",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, bool>(
 		&RPG::SavePicture::spritesheet_play_once,
 		LSD_Reader::ChunkSavePicture::spritesheet_play_once,
 		"spritesheet_play_once",
 		0,
-		0
+		1
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
 		&RPG::SavePicture::map_layer,
@@ -260,9 +260,9 @@ Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[] = {
 		0
 	),
 	new TypedField<RPG::SavePicture, int32_t>(
-		&RPG::SavePicture::finish_effect,
-		LSD_Reader::ChunkSavePicture::finish_effect,
-		"finish_effect",
+		&RPG::SavePicture::finish_effect_power,
+		LSD_Reader::ChunkSavePicture::finish_effect_power,
+		"finish_effect_power",
 		0,
 		0
 	),

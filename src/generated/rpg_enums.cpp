@@ -94,6 +94,7 @@ constexpr decltype(Map::kGeneratorModeTags) Map::kGeneratorModeTags;
 constexpr decltype(Map::kGeneratorTilesTags) Map::kGeneratorTilesTags;
 constexpr decltype(SaveSystem::kSceneTags) SaveSystem::kSceneTags;
 constexpr decltype(SaveSystem::kAtbModeTags) SaveSystem::kAtbModeTags;
+constexpr decltype(SavePicture::kEffectTags) SavePicture::kEffectTags;
 constexpr decltype(SavePicture::kMapLayerTags) SavePicture::kMapLayerTags;
 constexpr decltype(SavePicture::kBattleLayerTags) SavePicture::kBattleLayerTags;
 constexpr decltype(SavePartyLocation::kVehicleTypeTags) SavePartyLocation::kVehicleTypeTags;
