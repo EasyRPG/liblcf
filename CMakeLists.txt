@@ -74,6 +74,7 @@ add_library(lcf
 	src/writer_lcf.h
 	src/writer_xml.cpp
 	src/writer_xml.h
+	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp
 	src/generated/ldb_animationcelldata.cpp

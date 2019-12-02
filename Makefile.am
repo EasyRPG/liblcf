@@ -141,6 +141,7 @@ pkginclude_HEADERS = \
 	src/scope_guard.h \
 	src/writer_lcf.h \
 	src/writer_xml.h \
+	src/generated/fwd_struct_impl.h \
 	src/generated/ldb_chunks.h \
 	src/generated/ldb_terrain_flags.h \
 	src/generated/ldb_trooppagecondition_flags.h \

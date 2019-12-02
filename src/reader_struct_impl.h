@@ -271,3 +271,4 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
 
+#include "fwd_struct_impl.h"
