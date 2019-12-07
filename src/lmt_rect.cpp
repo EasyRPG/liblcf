@@ -25,6 +25,7 @@ struct RawStruct<RPG::Rect> {
  */
 void RawStruct<RPG::Rect>::ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t length) {
 	assert(length == 16);
+	(void)length;
 	stream.Read(ref.l);
 	stream.Read(ref.t);
 	stream.Read(ref.r);
