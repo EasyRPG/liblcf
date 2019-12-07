@@ -10,6 +10,7 @@ structure based on the `csv` subfolder data files.
 ## Requirements
 
 * Python interpreter version 2 or 3.
+* Jinja2 template engine.
 * CSV files can be modified with any text editor or (at your option) any
   spreadsheet editor.
 
