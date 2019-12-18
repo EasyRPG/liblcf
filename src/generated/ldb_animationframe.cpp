@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::AnimationFrame>::name = "AnimationFrame";
+static TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData>> static_cells(
+	&RPG::AnimationFrame::cells,
+	LDB_Reader::ChunkAnimationFrame::cells,
+	"cells",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::AnimationFrame> const* Struct<RPG::AnimationFrame>::fields[] = {
-	new TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData>>(
-		&RPG::AnimationFrame::cells,
-		LDB_Reader::ChunkAnimationFrame::cells,
-		"cells",
-		1,
-		0
-	),
+	&static_cells,
 	NULL
 };
 

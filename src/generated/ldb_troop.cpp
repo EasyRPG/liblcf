@@ -18,57 +18,65 @@
 
 template <>
 char const* const Struct<RPG::Troop>::name = "Troop";
+static TypedField<RPG::Troop, std::string> static_name(
+	&RPG::Troop::name,
+	LDB_Reader::ChunkTroop::name,
+	"name",
+	0,
+	0
+);
+static TypedField<RPG::Troop, std::vector<RPG::TroopMember>> static_members(
+	&RPG::Troop::members,
+	LDB_Reader::ChunkTroop::members,
+	"members",
+	1,
+	0
+);
+static TypedField<RPG::Troop, bool> static_auto_alignment(
+	&RPG::Troop::auto_alignment,
+	LDB_Reader::ChunkTroop::auto_alignment,
+	"auto_alignment",
+	0,
+	0
+);
+static SizeField<RPG::Troop, bool> static_size_terrain_set(
+	&RPG::Troop::terrain_set,
+	LDB_Reader::ChunkTroop::terrain_set_size,
+	0,
+	0
+);
+static TypedField<RPG::Troop, std::vector<bool>> static_terrain_set(
+	&RPG::Troop::terrain_set,
+	LDB_Reader::ChunkTroop::terrain_set,
+	"terrain_set",
+	1,
+	0
+);
+static TypedField<RPG::Troop, bool> static_appear_randomly(
+	&RPG::Troop::appear_randomly,
+	LDB_Reader::ChunkTroop::appear_randomly,
+	"appear_randomly",
+	0,
+	0
+);
+static TypedField<RPG::Troop, std::vector<RPG::TroopPage>> static_pages(
+	&RPG::Troop::pages,
+	LDB_Reader::ChunkTroop::pages,
+	"pages",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::Troop> const* Struct<RPG::Troop>::fields[] = {
-	new TypedField<RPG::Troop, std::string>(
-		&RPG::Troop::name,
-		LDB_Reader::ChunkTroop::name,
-		"name",
-		0,
-		0
-	),
-	new TypedField<RPG::Troop, std::vector<RPG::TroopMember>>(
-		&RPG::Troop::members,
-		LDB_Reader::ChunkTroop::members,
-		"members",
-		1,
-		0
-	),
-	new TypedField<RPG::Troop, bool>(
-		&RPG::Troop::auto_alignment,
-		LDB_Reader::ChunkTroop::auto_alignment,
-		"auto_alignment",
-		0,
-		0
-	),
-	new SizeField<RPG::Troop, bool>(
-		&RPG::Troop::terrain_set,
-		LDB_Reader::ChunkTroop::terrain_set_size,
-		0,
-		0
-	),
-	new TypedField<RPG::Troop, std::vector<bool>>(
-		&RPG::Troop::terrain_set,
-		LDB_Reader::ChunkTroop::terrain_set,
-		"terrain_set",
-		1,
-		0
-	),
-	new TypedField<RPG::Troop, bool>(
-		&RPG::Troop::appear_randomly,
-		LDB_Reader::ChunkTroop::appear_randomly,
-		"appear_randomly",
-		0,
-		0
-	),
-	new TypedField<RPG::Troop, std::vector<RPG::TroopPage>>(
-		&RPG::Troop::pages,
-		LDB_Reader::ChunkTroop::pages,
-		"pages",
-		1,
-		0
-	),
+	&static_name,
+	&static_members,
+	&static_auto_alignment,
+	&static_terrain_set,
+	&static_terrain_set,
+	&static_appear_randomly,
+	&static_pages,
 	NULL
 };
 

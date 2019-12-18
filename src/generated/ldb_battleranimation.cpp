@@ -18,37 +18,42 @@
 
 template <>
 char const* const Struct<RPG::BattlerAnimation>::name = "BattlerAnimation";
+static TypedField<RPG::BattlerAnimation, std::string> static_name(
+	&RPG::BattlerAnimation::name,
+	LDB_Reader::ChunkBattlerAnimation::name,
+	"name",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimation, int32_t> static_speed(
+	&RPG::BattlerAnimation::speed,
+	LDB_Reader::ChunkBattlerAnimation::speed,
+	"speed",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>> static_base_data(
+	&RPG::BattlerAnimation::base_data,
+	LDB_Reader::ChunkBattlerAnimation::base_data,
+	"base_data",
+	1,
+	0
+);
+static TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>> static_weapon_data(
+	&RPG::BattlerAnimation::weapon_data,
+	LDB_Reader::ChunkBattlerAnimation::weapon_data,
+	"weapon_data",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[] = {
-	new TypedField<RPG::BattlerAnimation, std::string>(
-		&RPG::BattlerAnimation::name,
-		LDB_Reader::ChunkBattlerAnimation::name,
-		"name",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimation, int32_t>(
-		&RPG::BattlerAnimation::speed,
-		LDB_Reader::ChunkBattlerAnimation::speed,
-		"speed",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>>(
-		&RPG::BattlerAnimation::base_data,
-		LDB_Reader::ChunkBattlerAnimation::base_data,
-		"base_data",
-		1,
-		0
-	),
-	new TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>>(
-		&RPG::BattlerAnimation::weapon_data,
-		LDB_Reader::ChunkBattlerAnimation::weapon_data,
-		"weapon_data",
-		1,
-		0
-	),
+	&static_name,
+	&static_speed,
+	&static_base_data,
+	&static_weapon_data,
 	NULL
 };
 

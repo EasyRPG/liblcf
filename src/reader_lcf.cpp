@@ -21,6 +21,7 @@ LcfReader::LcfReader(std::istream& filestream, std::string encoding)
 	: stream(filestream)
 	, encoder(std::move(encoding))
 {
+	offset = filestream.tellg();
 }
 
 LcfReader::~LcfReader() {
@@ -32,7 +33,9 @@ size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 	}
 	//Read nmemb elements of size and return the number of read elements
 	stream.read(reinterpret_cast<char*>(ptr), size*nmemb);
-	size_t result = stream.gcount() / size;
+	auto bytes_read = stream.gcount();
+	offset += bytes_read;
+	size_t result = bytes_read / size;
 #ifdef NDEBUG
 	if (result != nmemb && !Eof()) {
 		perror("Reading error: ");
@@ -195,15 +198,27 @@ bool LcfReader::Eof() const {
 }
 
 void LcfReader::Seek(size_t pos, SeekMode mode) {
+	constexpr auto fast_seek_size = 32;
 	switch (mode) {
 	case LcfReader::FromStart:
 		stream.seekg(pos, std::ios_base::beg);
+		offset = stream.tellg();
 		break;
 	case LcfReader::FromCurrent:
-		stream.seekg(pos, std::ios_base::cur);
+		if (pos <= fast_seek_size) {
+			// seekg() always results in a system call which is slow.
+			// For small values just read and throwaway.
+			char buf[fast_seek_size];
+			stream.read(buf, pos);
+			offset += stream.gcount();
+		} else {
+			stream.seekg(pos, std::ios_base::cur);
+			offset = stream.tellg();
+		}
 		break;
 	case LcfReader::FromEnd:
 		stream.seekg(pos, std::ios_base::end);
+		offset = stream.tellg();
 		break;
 	default:
 		assert(false && "Invalid SeekMode");
@@ -211,7 +226,14 @@ void LcfReader::Seek(size_t pos, SeekMode mode) {
 }
 
 uint32_t LcfReader::Tell() {
-	return (uint32_t)stream.tellg();
+	// Calling iostream tellg() results in a system call everytime and was found
+	// to dominate the runtime of lcf reading. So we cache our own offset.
+	// The result of this was shown to have a 30-40% improvement in LDB loading times.
+	// return (uint32_t)stream.tellg();
+	// This assert can be enabled to verify this method is correct. Disabled by
+	// default as it will slow down debug loading considerably.
+	// assert(stream.tellg() == offset);
+	return offset;
 }
 
 int LcfReader::Peek() {

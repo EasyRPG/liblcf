@@ -213,13 +213,20 @@ public:
 	 */
 	static int IntSize(unsigned int x);
 
+	/** @return a buffer which can be reused for parsing */
+	std::vector<int32_t>& IntBuffer();
+
 private:
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
+	/** Cached file stream offset */
+	int64_t offset;
 	/** Contains the last set error. */
 	static std::string error_str;
 	/** The internal Encoder */
 	Encoder encoder;
+	/** A temporary buffer to be used in parsing */
+	std::vector<int32_t> buffer;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
@@ -256,5 +263,9 @@ private:
 	 */
 	static void SwapByteOrder(double &d);
 };
+
+inline std::vector<int32_t>& LcfReader::IntBuffer() {
+	return buffer;
+}
 
 #endif

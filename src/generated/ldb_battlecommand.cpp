@@ -18,23 +18,26 @@
 
 template <>
 char const* const Struct<RPG::BattleCommand>::name = "BattleCommand";
+static TypedField<RPG::BattleCommand, std::string> static_name(
+	&RPG::BattleCommand::name,
+	LDB_Reader::ChunkBattleCommand::name,
+	"name",
+	1,
+	0
+);
+static TypedField<RPG::BattleCommand, int32_t> static_type(
+	&RPG::BattleCommand::type,
+	LDB_Reader::ChunkBattleCommand::type,
+	"type",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::BattleCommand> const* Struct<RPG::BattleCommand>::fields[] = {
-	new TypedField<RPG::BattleCommand, std::string>(
-		&RPG::BattleCommand::name,
-		LDB_Reader::ChunkBattleCommand::name,
-		"name",
-		1,
-		0
-	),
-	new TypedField<RPG::BattleCommand, int32_t>(
-		&RPG::BattleCommand::type,
-		LDB_Reader::ChunkBattleCommand::type,
-		"type",
-		0,
-		0
-	),
+	&static_name,
+	&static_type,
 	NULL
 };
 

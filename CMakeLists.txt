@@ -333,3 +333,11 @@ add_executable(test_runner EXCLUDE_FROM_ALL ${TEST_FILES})
 target_link_libraries(test_runner lcf)
 add_custom_target(check COMMAND ${PROJECT_BINARY_DIR}/test_runner)
 add_dependencies(check test_runner)
+
+# benchmarks
+file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
+foreach(i ${BENCH_FILES})
+	get_filename_component(name "${i}" NAME_WE)
+	add_executable(bench_${name} ${i})
+	target_link_libraries(bench_${name} lcf)
+endforeach()

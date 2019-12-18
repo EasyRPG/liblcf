@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::Variable>::name = "Variable";
+static TypedField<RPG::Variable, std::string> static_name(
+	&RPG::Variable::name,
+	LDB_Reader::ChunkVariable::name,
+	"name",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::Variable> const* Struct<RPG::Variable>::fields[] = {
-	new TypedField<RPG::Variable, std::string>(
-		&RPG::Variable::name,
-		LDB_Reader::ChunkVariable::name,
-		"name",
-		0,
-		0
-	),
+	&static_name,
 	NULL
 };
 

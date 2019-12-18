@@ -18,16 +18,18 @@
 
 template <>
 char const* const Struct<RPG::SaveCommonEvent>::name = "SaveCommonEvent";
+static TypedField<RPG::SaveCommonEvent, RPG::SaveEventExecState> static_parallel_event_execstate(
+	&RPG::SaveCommonEvent::parallel_event_execstate,
+	LSD_Reader::ChunkSaveCommonEvent::parallel_event_execstate,
+	"parallel_event_execstate",
+	1,
+	0
+);
+
 
 template <>
 Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
-	new TypedField<RPG::SaveCommonEvent, RPG::SaveEventExecState>(
-		&RPG::SaveCommonEvent::parallel_event_execstate,
-		LSD_Reader::ChunkSaveCommonEvent::parallel_event_execstate,
-		"parallel_event_execstate",
-		1,
-		0
-	),
+	&static_parallel_event_execstate,
 	NULL
 };
 

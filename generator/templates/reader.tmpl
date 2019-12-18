@@ -11,31 +11,40 @@
 template <>
 char const* const Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_STRUCT }}";
 
+{%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
+{%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
+static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_{{ field.name }}(
+	&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+	"{{ field.name }}",
+	{{field.presentifdefault}},
+	{{field.is2k3}}
+);
+{%- elif field|lcf_type in ["Empty"] %}
+static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}> static_{{ field.name }}(
+	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+	"{{ field.name }}",
+	{{field.presentifdefault}},
+	{{field.is2k3}}
+);
+{%- elif field|lcf_type in ["Size", "Count"] %}
+static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_size_{{ field.name }}(
+	&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }}_size,
+	{{field.presentifdefault}},
+	{{field.is2k3}}
+);
+{%- endif %}
+{%- endfor %}
+
+
 template <>
 Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
 {%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
-	{%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
-	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}>(
-		&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
-		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
-		"{{ field.name }}",
-		{{field.presentifdefault}},
-		{{field.is2k3}}
-	),
-	{%- elif field|lcf_type in ["Empty"] %}
-	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}>(
-		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
-		"{{ field.name }}",
-		{{field.presentifdefault}},
-		{{field.is2k3}}
-	),
+	{%- if field|lcf_type in ["Typed", "DatabaseVersion", "Empty", "Size", "Count"] %}
+	&static_{{ field.name }},
 	{%- elif field|lcf_type in ["Size", "Count"] %}
-	new {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}>(
-		&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
-		{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }}_size,
-		{{field.presentifdefault}},
-		{{field.is2k3}}
-	),
+	&static_size_{{ field.name }},
 	{%- endif %}
 {%- endfor %}
 	NULL

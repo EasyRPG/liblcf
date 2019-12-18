@@ -18,44 +18,50 @@
 
 template <>
 char const* const Struct<RPG::BattlerAnimationExtension>::name = "BattlerAnimationExtension";
+static TypedField<RPG::BattlerAnimationExtension, std::string> static_name(
+	&RPG::BattlerAnimationExtension::name,
+	LDB_Reader::ChunkBattlerAnimationExtension::name,
+	"name",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimationExtension, std::string> static_battler_name(
+	&RPG::BattlerAnimationExtension::battler_name,
+	LDB_Reader::ChunkBattlerAnimationExtension::battler_name,
+	"battler_name",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimationExtension, int32_t> static_battler_index(
+	&RPG::BattlerAnimationExtension::battler_index,
+	LDB_Reader::ChunkBattlerAnimationExtension::battler_index,
+	"battler_index",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimationExtension, int32_t> static_animation_type(
+	&RPG::BattlerAnimationExtension::animation_type,
+	LDB_Reader::ChunkBattlerAnimationExtension::animation_type,
+	"animation_type",
+	0,
+	0
+);
+static TypedField<RPG::BattlerAnimationExtension, int32_t> static_animation_id(
+	&RPG::BattlerAnimationExtension::animation_id,
+	LDB_Reader::ChunkBattlerAnimationExtension::animation_id,
+	"animation_id",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::BattlerAnimationExtension> const* Struct<RPG::BattlerAnimationExtension>::fields[] = {
-	new TypedField<RPG::BattlerAnimationExtension, std::string>(
-		&RPG::BattlerAnimationExtension::name,
-		LDB_Reader::ChunkBattlerAnimationExtension::name,
-		"name",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimationExtension, std::string>(
-		&RPG::BattlerAnimationExtension::battler_name,
-		LDB_Reader::ChunkBattlerAnimationExtension::battler_name,
-		"battler_name",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimationExtension, int32_t>(
-		&RPG::BattlerAnimationExtension::battler_index,
-		LDB_Reader::ChunkBattlerAnimationExtension::battler_index,
-		"battler_index",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimationExtension, int32_t>(
-		&RPG::BattlerAnimationExtension::animation_type,
-		LDB_Reader::ChunkBattlerAnimationExtension::animation_type,
-		"animation_type",
-		0,
-		0
-	),
-	new TypedField<RPG::BattlerAnimationExtension, int32_t>(
-		&RPG::BattlerAnimationExtension::animation_id,
-		LDB_Reader::ChunkBattlerAnimationExtension::animation_id,
-		"animation_id",
-		0,
-		0
-	),
+	&static_name,
+	&static_battler_name,
+	&static_battler_index,
+	&static_animation_type,
+	&static_animation_id,
 	NULL
 };
 

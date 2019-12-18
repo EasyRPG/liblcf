@@ -18,44 +18,50 @@
 
 template <>
 char const* const Struct<RPG::SaveTarget>::name = "SaveTarget";
+static TypedField<RPG::SaveTarget, int32_t> static_map_id(
+	&RPG::SaveTarget::map_id,
+	LSD_Reader::ChunkSaveTarget::map_id,
+	"map_id",
+	0,
+	0
+);
+static TypedField<RPG::SaveTarget, int32_t> static_map_x(
+	&RPG::SaveTarget::map_x,
+	LSD_Reader::ChunkSaveTarget::map_x,
+	"map_x",
+	0,
+	0
+);
+static TypedField<RPG::SaveTarget, int32_t> static_map_y(
+	&RPG::SaveTarget::map_y,
+	LSD_Reader::ChunkSaveTarget::map_y,
+	"map_y",
+	0,
+	0
+);
+static TypedField<RPG::SaveTarget, bool> static_switch_on(
+	&RPG::SaveTarget::switch_on,
+	LSD_Reader::ChunkSaveTarget::switch_on,
+	"switch_on",
+	0,
+	0
+);
+static TypedField<RPG::SaveTarget, int32_t> static_switch_id(
+	&RPG::SaveTarget::switch_id,
+	LSD_Reader::ChunkSaveTarget::switch_id,
+	"switch_id",
+	0,
+	0
+);
+
 
 template <>
 Field<RPG::SaveTarget> const* Struct<RPG::SaveTarget>::fields[] = {
-	new TypedField<RPG::SaveTarget, int32_t>(
-		&RPG::SaveTarget::map_id,
-		LSD_Reader::ChunkSaveTarget::map_id,
-		"map_id",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveTarget, int32_t>(
-		&RPG::SaveTarget::map_x,
-		LSD_Reader::ChunkSaveTarget::map_x,
-		"map_x",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveTarget, int32_t>(
-		&RPG::SaveTarget::map_y,
-		LSD_Reader::ChunkSaveTarget::map_y,
-		"map_y",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveTarget, bool>(
-		&RPG::SaveTarget::switch_on,
-		LSD_Reader::ChunkSaveTarget::switch_on,
-		"switch_on",
-		0,
-		0
-	),
-	new TypedField<RPG::SaveTarget, int32_t>(
-		&RPG::SaveTarget::switch_id,
-		LSD_Reader::ChunkSaveTarget::switch_id,
-		"switch_id",
-		0,
-		0
-	),
+	&static_map_id,
+	&static_map_x,
+	&static_map_y,
+	&static_switch_on,
+	&static_switch_id,
 	NULL
 };
 
