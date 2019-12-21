@@ -329,10 +329,15 @@ endif()
 
 # tests
 file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
-add_executable(test_runner EXCLUDE_FROM_ALL ${TEST_FILES})
-target_link_libraries(test_runner lcf)
-add_custom_target(check COMMAND ${PROJECT_BINARY_DIR}/test_runner)
-add_dependencies(check test_runner)
+add_executable(test_runner_lcf EXCLUDE_FROM_ALL ${TEST_FILES})
+set_target_properties(test_runner_lcf PROPERTIES OUTPUT_NAME "test_runner")
+target_link_libraries(test_runner_lcf lcf)
+add_custom_target(check_lcf COMMAND test_runner_lcf)
+if(NOT TARGET check)
+	add_custom_target(check)
+endif()
+add_dependencies(check_lcf test_runner_lcf)
+add_dependencies(check check_lcf)
 
 # benchmarks
 file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
