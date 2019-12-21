@@ -33,7 +33,7 @@ struct RawStruct<std::vector<RPG::EventCommand> > {
 /**
  * Reads Event Command.
  */
-void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t length) {
+void RawStruct<RPG::EventCommand>::ReadLcf(RPG::EventCommand& event_command, LcfReader& stream, uint32_t /* length */) {
 	stream.Read(event_command.code);
 	if (event_command.code != 0) {
 		stream.Read(event_command.indent);
