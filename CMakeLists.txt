@@ -328,11 +328,11 @@ if(NOT DISABLE_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
 endif()
 
 # tests
-file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
-add_executable(test_runner EXCLUDE_FROM_ALL ${TEST_FILES})
-target_link_libraries(test_runner lcf)
-add_custom_target(check COMMAND ${PROJECT_BINARY_DIR}/test_runner)
-add_dependencies(check test_runner)
+enable_testing()
+file(GLOB LCF_TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
+add_executable(test_runner_lcf ${LCF_TEST_FILES})
+target_link_libraries(test_runner_lcf lcf)
+add_test(liblcf_test test_runner_lcf)
 
 # benchmarks
 file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
