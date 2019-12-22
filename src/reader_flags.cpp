@@ -39,6 +39,13 @@ void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
 		obj.flags[i] |= (byte >> bitidx) & 1;
 		++bitidx;
 	}
+#ifdef LCF_DEBUG_TRACE
+	unsigned long x = 0;
+	for (size_t i = 0; i < obj.flags.size(); ++i) {
+		x |= (obj.flags[i] << i);
+	}
+	printf("0x%lx\n", x);
+#endif
 }
 
 template <class S>
