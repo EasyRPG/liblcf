@@ -60,7 +60,9 @@ TEST_CASE("Logical Ops") {
 	REQUIRE(cs0 == (csr & csg));
 	REQUIRE(cs0 == (csb & csg));
 	REQUIRE(cs0 == (csr & csb));
+	REQUIRE(cs0 == (csrg & csb));
 	REQUIRE(cs0 == (csrb & csg));
+	REQUIRE(cs0 == (csgb & csr));
 	REQUIRE(cs0 == (csrgb & cs0));
 
 	REQUIRE(csrb == (csr | csb));
