@@ -782,8 +782,8 @@ namespace LDB_Reader {
 			special_lateral_party = 0x2B,
 			/** Integer - RPG2003 */
 			special_lateral_enemies = 0x2C,
-			/** Integer - RPG2003 */
-			grid_location = 0x2D,
+			/** Field Depth for terrain presets. */
+			field_depth = 0x2D,
 			/** Integer - RPG2003 */
 			grid_a = 0x2E,
 			/** Integer - RPG2003 */

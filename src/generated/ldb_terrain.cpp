@@ -214,10 +214,10 @@ static TypedField<RPG::Terrain, int32_t> static_special_lateral_enemies(
 	0,
 	1
 );
-static TypedField<RPG::Terrain, int32_t> static_grid_location(
-	&RPG::Terrain::grid_location,
-	LDB_Reader::ChunkTerrain::grid_location,
-	"grid_location",
+static TypedField<RPG::Terrain, int32_t> static_field_depth(
+	&RPG::Terrain::field_depth,
+	LDB_Reader::ChunkTerrain::field_depth,
+	"field_depth",
 	0,
 	1
 );
@@ -274,7 +274,7 @@ Field<RPG::Terrain> const* Struct<RPG::Terrain>::fields[] = {
 	&static_special_back_enemies,
 	&static_special_lateral_party,
 	&static_special_lateral_enemies,
-	&static_grid_location,
+	&static_field_depth,
 	&static_grid_a,
 	&static_grid_b,
 	&static_grid_c,

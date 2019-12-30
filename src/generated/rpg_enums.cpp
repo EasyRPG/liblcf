@@ -71,6 +71,7 @@ constexpr decltype(EnemyAction::kBasicTags) EnemyAction::kBasicTags;
 constexpr decltype(EnemyAction::kConditionTypeTags) EnemyAction::kConditionTypeTags;
 constexpr decltype(Terrain::kBushDepthTags) Terrain::kBushDepthTags;
 constexpr decltype(Terrain::kBGAssociationTags) Terrain::kBGAssociationTags;
+constexpr decltype(Terrain::kFieldDepthTags) Terrain::kFieldDepthTags;
 constexpr decltype(State::kPersistenceTags) State::kPersistenceTags;
 constexpr decltype(State::kRestrictionTags) State::kRestrictionTags;
 constexpr decltype(State::kAffectTypeTags) State::kAffectTypeTags;

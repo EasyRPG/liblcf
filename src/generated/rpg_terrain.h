@@ -45,6 +45,16 @@ namespace RPG {
 			"background",
 			"frame"
 		);
+		enum FieldDepth {
+			FieldDepth_custom = 0,
+			FieldDepth_shallow = 1,
+			FieldDepth_deep = 2
+		};
+		static constexpr auto kFieldDepthTags = makeEnumTags<FieldDepth>(
+			"custom",
+			"shallow",
+			"deep"
+		);
 
 		int ID = 0;
 		std::string name;
@@ -88,7 +98,7 @@ namespace RPG {
 		int32_t special_back_enemies = 10;
 		int32_t special_lateral_party = 10;
 		int32_t special_lateral_enemies = 5;
-		int32_t grid_location = 0;
+		int32_t field_depth = 0;
 		int32_t grid_a = 120;
 		int32_t grid_b = 392;
 		int32_t grid_c = 16000;
@@ -131,7 +141,7 @@ namespace RPG {
 		&& l.special_back_enemies == r.special_back_enemies
 		&& l.special_lateral_party == r.special_lateral_party
 		&& l.special_lateral_enemies == r.special_lateral_enemies
-		&& l.grid_location == r.grid_location
+		&& l.field_depth == r.field_depth
 		&& l.grid_a == r.grid_a
 		&& l.grid_b == r.grid_b
 		&& l.grid_c == r.grid_c;
