@@ -25,7 +25,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	title = actor.title;
 	sprite_name = actor.character_name;
 	sprite_id = actor.character_index;
-	sprite_flags = actor.transparent ? 3 : 0;
+	transparency = actor.transparent ? 3 : 0;
 	face_name = actor.face_name;
 	face_id = actor.face_index;
 	level = actor.initial_level;
