@@ -46,10 +46,10 @@ static TypedField<RPG::SaveActor, int32_t> static_sprite_id(
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_sprite_flags(
-	&RPG::SaveActor::sprite_flags,
-	LSD_Reader::ChunkSaveActor::sprite_flags,
-	"sprite_flags",
+static TypedField<RPG::SaveActor, int32_t> static_transparency(
+	&RPG::SaveActor::transparency,
+	LSD_Reader::ChunkSaveActor::transparency,
+	"transparency",
 	0,
 	0
 );
@@ -242,7 +242,7 @@ Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[] = {
 	&static_title,
 	&static_sprite_name,
 	&static_sprite_id,
-	&static_sprite_flags,
+	&static_transparency,
 	&static_face_name,
 	&static_face_id,
 	&static_level,

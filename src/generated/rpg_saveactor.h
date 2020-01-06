@@ -41,7 +41,7 @@ namespace RPG {
 		std::string title;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
-		int32_t sprite_flags = 0;
+		int32_t transparency = 0;
 		std::string face_name;
 		int32_t face_id = 0;
 		int32_t level = -1;
@@ -74,7 +74,7 @@ namespace RPG {
 		&& l.title == r.title
 		&& l.sprite_name == r.sprite_name
 		&& l.sprite_id == r.sprite_id
-		&& l.sprite_flags == r.sprite_flags
+		&& l.transparency == r.transparency
 		&& l.face_name == r.face_name
 		&& l.face_id == r.face_id
 		&& l.level == r.level

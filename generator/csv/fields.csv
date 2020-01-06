@@ -855,7 +855,7 @@ SaveActor,name,f,String,0x01,'',1,0,string
 SaveActor,title,f,String,0x02,'',1,0,string
 SaveActor,sprite_name,f,String,0x0B,'',0,0,string
 SaveActor,sprite_id,f,Int32,0x0C,0,0,0,int
-SaveActor,sprite_flags,f,Int32,0x0D,0,0,0,int
+SaveActor,transparency,f,Int32,0x0D,0,0,0,transparency value. 0 means opaque; 3 is the value used when actor is transparent.
 SaveActor,face_name,f,String,0x15,'',0,0,string
 SaveActor,face_id,f,Int32,0x16,0,0,0,int
 SaveActor,level,f,Int32,0x1F,-1,0,0,int

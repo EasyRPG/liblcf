@@ -522,8 +522,8 @@ namespace LSD_Reader {
 			sprite_name = 0x0B,
 			/** int */
 			sprite_id = 0x0C,
-			/** int */
-			sprite_flags = 0x0D,
+			/** transparency value. 0 means opaque; 3 is the value used when actor is transparent. */
+			transparency = 0x0D,
 			/** string */
 			face_name = 0x15,
 			/** int */
