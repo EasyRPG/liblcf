@@ -335,28 +335,28 @@ static TypedField<RPG::SaveSystem, int8_t> static_battle_start_fadeout(
 	&RPG::SaveSystem::battle_start_fadeout,
 	LSD_Reader::ChunkSaveSystem::battle_start_fadeout,
 	"battle_start_fadeout",
-	0,
+	1,
 	0
 );
 static TypedField<RPG::SaveSystem, int8_t> static_battle_start_fadein(
 	&RPG::SaveSystem::battle_start_fadein,
 	LSD_Reader::ChunkSaveSystem::battle_start_fadein,
 	"battle_start_fadein",
-	0,
+	1,
 	0
 );
 static TypedField<RPG::SaveSystem, int8_t> static_battle_end_fadeout(
 	&RPG::SaveSystem::battle_end_fadeout,
 	LSD_Reader::ChunkSaveSystem::battle_end_fadeout,
 	"battle_end_fadeout",
-	0,
+	1,
 	0
 );
 static TypedField<RPG::SaveSystem, int8_t> static_battle_end_fadein(
 	&RPG::SaveSystem::battle_end_fadein,
 	LSD_Reader::ChunkSaveSystem::battle_end_fadein,
 	"battle_end_fadein",
-	0,
+	1,
 	0
 );
 static TypedField<RPG::SaveSystem, bool> static_teleport_allowed(

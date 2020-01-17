@@ -143,13 +143,6 @@ void RPG::SaveSystem::Fixup() {
 	if (item_se.name.empty()) {
 		item_se = system.item_se;
 	}
-
-	FixInt(transition_out, system.transition_out);
-	FixInt(transition_in, system.transition_in);
-	FixInt(battle_start_fadeout, system.battle_start_fadeout);
-	FixInt(battle_start_fadein, system.battle_start_fadein);
-	FixInt(battle_end_fadeout, system.battle_end_fadeout);
-	FixInt(battle_end_fadein, system.battle_end_fadein);
 }
 
 void RPG::SaveSystem::UnFixup() {
@@ -226,13 +219,6 @@ void RPG::SaveSystem::UnFixup() {
 	if (item_se == system.item_se) {
 		reset_se(item_se);
 	}
-
-	UnFixInt(transition_out, system.transition_out);
-	UnFixInt(transition_in, system.transition_in);
-	UnFixInt(battle_start_fadeout, system.battle_start_fadeout);
-	UnFixInt(battle_start_fadein, system.battle_start_fadein);
-	UnFixInt(battle_end_fadeout, system.battle_end_fadeout);
-	UnFixInt(battle_end_fadein, system.battle_end_fadein);
 }
 
 
