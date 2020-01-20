@@ -121,12 +121,6 @@ void RPG::SaveSystem::Setup() {
 	dodge_se = system.dodge_se;
 	enemy_death_se = system.enemy_death_se;
 	item_se = system.item_se;
-	transition_out = system.transition_out;
-	transition_in = system.transition_in;
-	battle_start_fadeout = system.battle_start_fadeout;
-	battle_start_fadein = system.battle_start_fadein;
-	battle_end_fadeout = system.battle_end_fadeout;
-	battle_end_fadein = system.battle_end_fadein;
 	teleport_allowed = true;
 	escape_allowed = true;
 	save_allowed = true;
