@@ -232,6 +232,10 @@ target_include_directories(
 	${CMAKE_CURRENT_SOURCE_DIR}/src/generated
 )
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	target_compile_definitions(lcf PUBLIC _DEBUG=1)
+endif()
+
 # endianess checking
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 	include(TestBigEndian)
