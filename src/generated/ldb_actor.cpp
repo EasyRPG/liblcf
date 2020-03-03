@@ -280,8 +280,10 @@ Field<RPG::Actor> const* Struct<RPG::Actor>::fields[] = {
 	&static_rename_skill,
 	&static_skill_name,
 	&static_state_ranks,
+	&static_size_state_ranks,
 	&static_state_ranks,
 	&static_attribute_ranks,
+	&static_size_attribute_ranks,
 	&static_attribute_ranks,
 	&static_battle_commands,
 	NULL

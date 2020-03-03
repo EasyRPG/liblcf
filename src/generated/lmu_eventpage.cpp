@@ -148,6 +148,7 @@ Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[] = {
 	&static_move_speed,
 	&static_move_route,
 	&static_event_commands,
+	&static_size_event_commands,
 	&static_event_commands,
 	NULL
 };

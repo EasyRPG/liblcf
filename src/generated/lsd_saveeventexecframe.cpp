@@ -70,11 +70,13 @@ static TypedField<RPG::SaveEventExecFrame, std::vector<uint8_t>> static_subcomma
 template <>
 Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] = {
 	&static_commands,
+	&static_size_commands,
 	&static_commands,
 	&static_current_command,
 	&static_event_id,
 	&static_triggered_by_decision_key,
 	&static_subcommand_path,
+	&static_size_subcommand_path,
 	&static_subcommand_path,
 	NULL
 };

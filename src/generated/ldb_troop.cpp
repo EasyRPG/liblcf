@@ -74,6 +74,7 @@ Field<RPG::Troop> const* Struct<RPG::Troop>::fields[] = {
 	&static_members,
 	&static_auto_alignment,
 	&static_terrain_set,
+	&static_size_terrain_set,
 	&static_terrain_set,
 	&static_appear_randomly,
 	&static_pages,

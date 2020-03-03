@@ -44,6 +44,7 @@ template <>
 Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[] = {
 	&static_condition,
 	&static_event_commands,
+	&static_size_event_commands,
 	&static_event_commands,
 	NULL
 };

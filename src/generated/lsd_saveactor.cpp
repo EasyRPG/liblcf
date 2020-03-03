@@ -260,6 +260,7 @@ Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[] = {
 	&static_current_sp,
 	&static_battle_commands,
 	&static_status,
+	&static_size_status,
 	&static_status,
 	&static_changed_battle_commands,
 	&static_class_id,
