@@ -143,9 +143,9 @@ Field<RPG::Class> const* Struct<RPG::Class>::fields[] = {
 	&static_exp_correction,
 	&static_battler_animation,
 	&static_skills,
+	&static_size_state_ranks,
 	&static_state_ranks,
-	&static_state_ranks,
-	&static_attribute_ranks,
+	&static_size_attribute_ranks,
 	&static_attribute_ranks,
 	&static_battle_commands,
 	NULL

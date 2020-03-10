@@ -167,9 +167,9 @@ static TypedField<RPG::SaveInventory, int32_t> static_steps(
 
 template <>
 Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[] = {
+	&static_size_party,
 	&static_party,
-	&static_party,
-	&static_item_ids,
+	&static_size_item_ids,
 	&static_item_ids,
 	&static_item_counts,
 	&static_item_usage,

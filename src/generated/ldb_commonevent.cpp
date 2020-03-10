@@ -67,7 +67,7 @@ Field<RPG::CommonEvent> const* Struct<RPG::CommonEvent>::fields[] = {
 	&static_trigger,
 	&static_switch_flag,
 	&static_switch_id,
-	&static_event_commands,
+	&static_size_event_commands,
 	&static_event_commands,
 	NULL
 };
