@@ -49,7 +49,7 @@ static TypedField<RPG::MoveRoute, bool> static_skippable(
 
 template <>
 Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
-	&static_move_commands,
+	&static_size_move_commands,
 	&static_move_commands,
 	&static_repeat,
 	&static_skippable,

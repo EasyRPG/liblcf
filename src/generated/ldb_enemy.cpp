@@ -199,9 +199,9 @@ Field<RPG::Enemy> const* Struct<RPG::Enemy>::fields[] = {
 	&static_critical_hit_chance,
 	&static_miss,
 	&static_levitate,
+	&static_size_state_ranks,
 	&static_state_ranks,
-	&static_state_ranks,
-	&static_attribute_ranks,
+	&static_size_attribute_ranks,
 	&static_attribute_ranks,
 	&static_actions,
 	NULL

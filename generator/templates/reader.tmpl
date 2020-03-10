@@ -41,7 +41,7 @@ static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cp
 template <>
 Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
 {%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
-	{%- if field|lcf_type in ["Typed", "DatabaseVersion", "Empty", "Size", "Count"] %}
+	{%- if field|lcf_type in ["Typed", "DatabaseVersion", "Empty"] %}
 	&static_{{ field.name }},
 	{%- elif field|lcf_type in ["Size", "Count"] %}
 	&static_size_{{ field.name }},
