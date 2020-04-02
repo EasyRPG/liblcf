@@ -24,10 +24,10 @@
 namespace RPG {
 	class CommonEvent {
 	public:
-		enum Trigger {
-			Trigger_automatic = 3,
-			Trigger_parallel = 4,
-			Trigger_call = 5
+		enum class Trigger {
+			Automatic = 3,
+			Parallel = 4,
+			Call = 5
 		};
 
 		int ID = 0;
@@ -51,6 +51,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::CommonEvent::Trigger, true, Trigger_automatic, Trigger_call);
+LCF_DEFINE_ENUM_TRAITS(RPG::CommonEvent::Trigger, true, Automatic, Call);
 
 #endif

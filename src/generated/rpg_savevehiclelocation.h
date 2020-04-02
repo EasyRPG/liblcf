@@ -24,17 +24,17 @@
 namespace RPG {
 	class SaveVehicleLocation : public SaveMapEventBase {
 	public:
-		enum VehicleType {
-			VehicleType_none = 0,
-			VehicleType_skiff = 1,
-			VehicleType_ship = 2,
-			VehicleType_airship = 3
+		enum class VehicleType {
+			None = 0,
+			Skiff = 1,
+			Ship = 2,
+			Airship = 3
 		};
 		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
-			"none",
-			"skiff",
-			"ship",
-			"airship"
+			"None",
+			"Skiff",
+			"Ship",
+			"Airship"
 		);
 
 		int32_t vehicle = 0;
@@ -57,6 +57,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::SaveVehicleLocation::VehicleType, true, VehicleType_none, VehicleType_airship);
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveVehicleLocation::VehicleType, true, None, Airship);
 
 #endif

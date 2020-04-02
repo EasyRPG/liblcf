@@ -26,41 +26,41 @@
 namespace RPG {
 	class Skill {
 	public:
-		enum Type {
-			Type_normal = 0,
-			Type_teleport = 1,
-			Type_escape = 2,
-			Type_switch = 3,
-			Type_subskill = 4
+		enum class Type {
+			Normal = 0,
+			Teleport = 1,
+			Escape = 2,
+			Switch = 3,
+			Subskill = 4
 		};
 		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"normal",
-			"teleport",
-			"escape",
-			"switch",
-			"subskill"
+			"Normal",
+			"Teleport",
+			"Escape",
+			"Switch",
+			"Subskill"
 		);
-		enum SpType {
-			SpType_cost = 0,
-			SpType_percent = 1
+		enum class SpType {
+			Cost = 0,
+			Percent = 1
 		};
 		static constexpr auto kSpTypeTags = makeEnumTags<SpType>(
-			"cost",
-			"percent"
+			"Cost",
+			"Percent"
 		);
-		enum Scope {
-			Scope_enemy = 0,
-			Scope_enemies = 1,
-			Scope_self = 2,
-			Scope_ally = 3,
-			Scope_party = 4
+		enum class Scope {
+			Enemy = 0,
+			Enemies = 1,
+			Self = 2,
+			Ally = 3,
+			Party = 4
 		};
 		static constexpr auto kScopeTags = makeEnumTags<Scope>(
-			"enemy",
-			"enemies",
-			"self",
-			"ally",
-			"party"
+			"Enemy",
+			"Enemies",
+			"Self",
+			"Ally",
+			"Party"
 		);
 
 		int ID = 0;
@@ -142,8 +142,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Type, true, Type_normal, Type_subskill);
-LCF_DEFINE_ENUM_TRAITS(RPG::Skill::SpType, true, SpType_cost, SpType_percent);
-LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Scope, true, Scope_enemy, Scope_party);
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Type, true, Normal, Subskill);
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::SpType, true, Cost, Percent);
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Scope, true, Enemy, Party);
 
 #endif

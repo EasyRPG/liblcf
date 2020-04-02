@@ -27,35 +27,35 @@
 namespace RPG {
 	class MapInfo {
 	public:
-		enum MusicType {
-			MusicType_parent = 0,
-			MusicType_event = 1,
-			MusicType_specific = 2
+		enum class MusicType {
+			Parent = 0,
+			Event = 1,
+			Specific = 2
 		};
 		static constexpr auto kMusicTypeTags = makeEnumTags<MusicType>(
-			"parent",
-			"event",
-			"specific"
+			"Parent",
+			"Event",
+			"Specific"
 		);
-		enum BGMType {
-			BGMType_parent = 0,
-			BGMType_terrain = 1,
-			BGMType_specific = 2
+		enum class BGMType {
+			Parent = 0,
+			Terrain = 1,
+			Specific = 2
 		};
 		static constexpr auto kBGMTypeTags = makeEnumTags<BGMType>(
-			"parent",
-			"terrain",
-			"specific"
+			"Parent",
+			"Terrain",
+			"Specific"
 		);
-		enum TriState {
-			TriState_parent = 0,
-			TriState_allow = 1,
-			TriState_forbid = 2
+		enum class TriState {
+			Parent = 0,
+			Allow = 1,
+			Forbid = 2
 		};
 		static constexpr auto kTriStateTags = makeEnumTags<TriState>(
-			"parent",
-			"allow",
-			"forbid"
+			"Parent",
+			"Allow",
+			"Forbid"
 		);
 
 		int ID = 0;
@@ -103,8 +103,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::MusicType, true, MusicType_parent, MusicType_specific);
-LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::BGMType, true, BGMType_parent, BGMType_specific);
-LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::TriState, true, TriState_parent, TriState_forbid);
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::MusicType, true, Parent, Specific);
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::BGMType, true, Parent, Specific);
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::TriState, true, Parent, Forbid);
 
 #endif

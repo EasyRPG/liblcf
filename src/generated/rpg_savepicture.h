@@ -24,57 +24,57 @@
 namespace RPG {
 	class SavePicture {
 	public:
-		enum Effect {
-			Effect_none = 0,
-			Effect_rotation = 1,
-			Effect_wave = 2
+		enum class Effect {
+			None = 0,
+			Rotation = 1,
+			Wave = 2
 		};
 		static constexpr auto kEffectTags = makeEnumTags<Effect>(
-			"none",
-			"rotation",
-			"wave"
+			"None",
+			"Rotation",
+			"Wave"
 		);
-		enum MapLayer {
-			MapLayer_none = 0,
-			MapLayer_parallax = 1,
-			MapLayer_tilemap_below = 2,
-			MapLayer_events_below = 3,
-			MapLayer_events_same_as_player = 4,
-			MapLayer_tilemap_above = 5,
-			MapLayer_events_above = 6,
-			MapLayer_weather = 7,
-			MapLayer_animations = 8,
-			MapLayer_windows = 9,
-			MapLayer_timers = 10
+		enum class MapLayer {
+			None = 0,
+			Parallax = 1,
+			TilemapBelow = 2,
+			EventsBelow = 3,
+			EventsSameAsPlayer = 4,
+			TilemapAbove = 5,
+			EventsAbove = 6,
+			Weather = 7,
+			Animations = 8,
+			Windows = 9,
+			Timers = 10
 		};
 		static constexpr auto kMapLayerTags = makeEnumTags<MapLayer>(
-			"none",
-			"parallax",
-			"tilemap_below",
-			"events_below",
-			"events_same_as_player",
-			"tilemap_above",
-			"events_above",
-			"weather",
-			"animations",
-			"windows",
-			"timers"
+			"None",
+			"Parallax",
+			"TilemapBelow",
+			"EventsBelow",
+			"EventsSameAsPlayer",
+			"TilemapAbove",
+			"EventsAbove",
+			"Weather",
+			"Animations",
+			"Windows",
+			"Timers"
 		);
-		enum BattleLayer {
-			BattleLayer_none = 0,
-			BattleLayer_background = 1,
-			BattleLayer_battlers_and_animations = 2,
-			BattleLayer_weather = 3,
-			BattleLayer_windows_and_status = 4,
-			BattleLayer_timers = 5
+		enum class BattleLayer {
+			None = 0,
+			Background = 1,
+			BattlersAndAnimations = 2,
+			Weather = 3,
+			WindowsAndStatus = 4,
+			Timers = 5
 		};
 		static constexpr auto kBattleLayerTags = makeEnumTags<BattleLayer>(
-			"none",
-			"background",
-			"battlers_and_animations",
-			"weather",
-			"windows_and_status",
-			"timers"
+			"None",
+			"Background",
+			"BattlersAndAnimations",
+			"Weather",
+			"WindowsAndStatus",
+			"Timers"
 		);
 
 		int ID = 0;
@@ -188,8 +188,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::Effect, true, Effect_none, Effect_wave);
-LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::MapLayer, true, MapLayer_none, MapLayer_timers);
-LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::BattleLayer, true, BattleLayer_none, BattleLayer_timers);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::Effect, true, None, Wave);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::MapLayer, true, None, Timers);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::BattleLayer, true, None, Timers);
 
 #endif

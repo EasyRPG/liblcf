@@ -26,37 +26,37 @@ namespace RPG {
 	class Map {
 	public:
 		std::string lmu_header;
-		enum ScrollType {
-			ScrollType_none = 0,
-			ScrollType_vertical = 1,
-			ScrollType_horizontal = 2,
-			ScrollType_both = 3
+		enum class ScrollType {
+			None = 0,
+			Vertical = 1,
+			Horizontal = 2,
+			Both = 3
 		};
 		static constexpr auto kScrollTypeTags = makeEnumTags<ScrollType>(
-			"none",
-			"vertical",
-			"horizontal",
-			"both"
+			"None",
+			"Vertical",
+			"Horizontal",
+			"Both"
 		);
-		enum GeneratorMode {
-			GeneratorMode_single_passage = 0,
-			GeneratorMode_linked_rooms = 1,
-			GeneratorMode_maze_passage = 2,
-			GeneratorMode_open_room = 3
+		enum class GeneratorMode {
+			SinglePassage = 0,
+			LinkedRooms = 1,
+			MazePassage = 2,
+			OpenRoom = 3
 		};
 		static constexpr auto kGeneratorModeTags = makeEnumTags<GeneratorMode>(
-			"single_passage",
-			"linked_rooms",
-			"maze_passage",
-			"open_room"
+			"SinglePassage",
+			"LinkedRooms",
+			"MazePassage",
+			"OpenRoom"
 		);
-		enum GeneratorTiles {
-			GeneratorTiles_one = 0,
-			GeneratorTiles_two = 1
+		enum class GeneratorTiles {
+			One = 0,
+			Two = 1
 		};
 		static constexpr auto kGeneratorTilesTags = makeEnumTags<GeneratorTiles>(
-			"one",
-			"two"
+			"One",
+			"Two"
 		);
 
 		int32_t chipset_id = 1;
@@ -133,8 +133,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Map::ScrollType, true, ScrollType_none, ScrollType_both);
-LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorMode, true, GeneratorMode_single_passage, GeneratorMode_open_room);
-LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorTiles, true, GeneratorTiles_one, GeneratorTiles_two);
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::ScrollType, true, None, Both);
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorMode, true, SinglePassage, OpenRoom);
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorTiles, true, One, Two);
 
 #endif

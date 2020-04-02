@@ -27,149 +27,149 @@
 namespace RPG {
 	class System {
 	public:
-		enum FadeOut {
-			FadeOut_default = 0,
-			FadeOut_fade_out = 1,
-			FadeOut_remove_blocks = 2,
-			FadeOut_wipe_downward = 3,
-			FadeOut_wipe_upward = 4,
-			FadeOut_venetian_blinds = 5,
-			FadeOut_vertical_blinds = 6,
-			FadeOut_horizontal_blinds = 7,
-			FadeOut_receding_square = 8,
-			FadeOut_expanding_square = 9,
-			FadeOut_screen_moves_up = 10,
-			FadeOut_screen_moves_down = 11,
-			FadeOut_screen_moves_left = 12,
-			FadeOut_screen_moves_right = 13,
-			FadeOut_vertical_div = 14,
-			FadeOut_horizontal_div = 15,
-			FadeOut_quadrasection = 16,
-			FadeOut_zoom_in = 17,
-			FadeOut_mosaic = 18,
-			FadeOut_waver_screen = 19,
-			FadeOut_instantaneous = 20,
-			FadeOut_none = 21
+		enum class FadeOut {
+			Default = 0,
+			FadeOut = 1,
+			RemoveBlocks = 2,
+			WipeDownward = 3,
+			WipeUpward = 4,
+			VenetianBlinds = 5,
+			VerticalBlinds = 6,
+			HorizontalBlinds = 7,
+			RecedingSquare = 8,
+			ExpandingSquare = 9,
+			ScreenMovesUp = 10,
+			ScreenMovesDown = 11,
+			ScreenMovesLeft = 12,
+			ScreenMovesRight = 13,
+			VerticalDiv = 14,
+			HorizontalDiv = 15,
+			Quadrasection = 16,
+			ZoomIn = 17,
+			Mosaic = 18,
+			WaverScreen = 19,
+			Instantaneous = 20,
+			None = 21
 		};
 		static constexpr auto kFadeOutTags = makeEnumTags<FadeOut>(
-			"default",
-			"fade_out",
-			"remove_blocks",
-			"wipe_downward",
-			"wipe_upward",
-			"venetian_blinds",
-			"vertical_blinds",
-			"horizontal_blinds",
-			"receding_square",
-			"expanding_square",
-			"screen_moves_up",
-			"screen_moves_down",
-			"screen_moves_left",
-			"screen_moves_right",
-			"vertical_div",
-			"horizontal_div",
-			"quadrasection",
-			"zoom_in",
-			"mosaic",
-			"waver_screen",
-			"instantaneous",
-			"none"
+			"Default",
+			"FadeOut",
+			"RemoveBlocks",
+			"WipeDownward",
+			"WipeUpward",
+			"VenetianBlinds",
+			"VerticalBlinds",
+			"HorizontalBlinds",
+			"RecedingSquare",
+			"ExpandingSquare",
+			"ScreenMovesUp",
+			"ScreenMovesDown",
+			"ScreenMovesLeft",
+			"ScreenMovesRight",
+			"VerticalDiv",
+			"HorizontalDiv",
+			"Quadrasection",
+			"ZoomIn",
+			"Mosaic",
+			"WaverScreen",
+			"Instantaneous",
+			"None"
 		);
-		enum FadeIn {
-			FadeIn_default = 0,
-			FadeIn_fade_in = 1,
-			FadeIn_reconstitute_blocks = 2,
-			FadeIn_unwipe_downward = 3,
-			FadeIn_unwipe_upward = 4,
-			FadeIn_venetian_blinds = 5,
-			FadeIn_vertical_blinds = 6,
-			FadeIn_horizontal_blinds = 7,
-			FadeIn_receding_square = 8,
-			FadeIn_expanding_square = 9,
-			FadeIn_screen_moves_down = 10,
-			FadeIn_screen_moves_up = 11,
-			FadeIn_screen_moves_right = 12,
-			FadeIn_screen_moves_left = 13,
-			FadeIn_vertical_unify = 14,
-			FadeIn_horizontal_unify = 15,
-			FadeIn_unify_quadrants = 16,
-			FadeIn_zoom_out = 17,
-			FadeIn_mosaic = 18,
-			FadeIn_waver_screen = 19,
-			FadeIn_instantaneous = 20,
-			FadeIn_none = 21
+		enum class FadeIn {
+			Default = 0,
+			FadeIn = 1,
+			ReconstituteBlocks = 2,
+			UnwipeDownward = 3,
+			UnwipeUpward = 4,
+			VenetianBlinds = 5,
+			VerticalBlinds = 6,
+			HorizontalBlinds = 7,
+			RecedingSquare = 8,
+			ExpandingSquare = 9,
+			ScreenMovesDown = 10,
+			ScreenMovesUp = 11,
+			ScreenMovesRight = 12,
+			ScreenMovesLeft = 13,
+			VerticalUnify = 14,
+			HorizontalUnify = 15,
+			UnifyQuadrants = 16,
+			ZoomOut = 17,
+			Mosaic = 18,
+			WaverScreen = 19,
+			Instantaneous = 20,
+			None = 21
 		};
 		static constexpr auto kFadeInTags = makeEnumTags<FadeIn>(
-			"default",
-			"fade_in",
-			"reconstitute_blocks",
-			"unwipe_downward",
-			"unwipe_upward",
-			"venetian_blinds",
-			"vertical_blinds",
-			"horizontal_blinds",
-			"receding_square",
-			"expanding_square",
-			"screen_moves_down",
-			"screen_moves_up",
-			"screen_moves_right",
-			"screen_moves_left",
-			"vertical_unify",
-			"horizontal_unify",
-			"unify_quadrants",
-			"zoom_out",
-			"mosaic",
-			"waver_screen",
-			"instantaneous",
-			"none"
+			"Default",
+			"FadeIn",
+			"ReconstituteBlocks",
+			"UnwipeDownward",
+			"UnwipeUpward",
+			"VenetianBlinds",
+			"VerticalBlinds",
+			"HorizontalBlinds",
+			"RecedingSquare",
+			"ExpandingSquare",
+			"ScreenMovesDown",
+			"ScreenMovesUp",
+			"ScreenMovesRight",
+			"ScreenMovesLeft",
+			"VerticalUnify",
+			"HorizontalUnify",
+			"UnifyQuadrants",
+			"ZoomOut",
+			"Mosaic",
+			"WaverScreen",
+			"Instantaneous",
+			"None"
 		);
-		enum Stretch {
-			Stretch_stretch = 0,
-			Stretch_tiled = 1
+		enum class Stretch {
+			Stretch = 0,
+			Tiled = 1
 		};
 		static constexpr auto kStretchTags = makeEnumTags<Stretch>(
-			"stretch",
-			"tiled"
+			"Stretch",
+			"Tiled"
 		);
-		enum Font {
-			Font_gothic = 0,
-			Font_mincho = 1
+		enum class Font {
+			Gothic = 0,
+			Mincho = 1
 		};
 		static constexpr auto kFontTags = makeEnumTags<Font>(
-			"gothic",
-			"mincho"
+			"Gothic",
+			"Mincho"
 		);
-		enum BattleFormation {
-			BattleFormation_terrain = 0,
-			BattleFormation_loose = 1,
-			BattleFormation_tight = 2
+		enum class BattleFormation {
+			Terrain = 0,
+			Loose = 1,
+			Tight = 2
 		};
 		static constexpr auto kBattleFormationTags = makeEnumTags<BattleFormation>(
-			"terrain",
-			"loose",
-			"tight"
+			"Terrain",
+			"Loose",
+			"Tight"
 		);
-		enum BattleCondition {
-			BattleCondition_none = 0,
-			BattleCondition_initiative = 1,
-			BattleCondition_back = 2,
-			BattleCondition_surround = 3,
-			BattleCondition_pincers = 4
+		enum class BattleCondition {
+			None = 0,
+			Initiative = 1,
+			Back = 2,
+			Surround = 3,
+			Pincers = 4
 		};
 		static constexpr auto kBattleConditionTags = makeEnumTags<BattleCondition>(
-			"none",
-			"initiative",
-			"back",
-			"surround",
-			"pincers"
+			"None",
+			"Initiative",
+			"Back",
+			"Surround",
+			"Pincers"
 		);
-		enum EquipmentSetting {
-			EquipmentSetting_actor = 0,
-			EquipmentSetting_class = 1
+		enum class EquipmentSetting {
+			Actor = 0,
+			Class = 1
 		};
 		static constexpr auto kEquipmentSettingTags = makeEnumTags<EquipmentSetting>(
-			"actor",
-			"class"
+			"Actor",
+			"Class"
 		);
 
 		System();
@@ -294,12 +294,12 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeOut, true, FadeOut_default, FadeOut_none);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeIn, true, FadeIn_default, FadeIn_none);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::Stretch, true, Stretch_stretch, Stretch_tiled);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::Font, true, Font_gothic, Font_mincho);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleFormation, true, BattleFormation_terrain, BattleFormation_tight);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleCondition, true, BattleCondition_none, BattleCondition_pincers);
-LCF_DEFINE_ENUM_TRAITS(RPG::System::EquipmentSetting, true, EquipmentSetting_actor, EquipmentSetting_class);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeOut, true, Default, None);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeIn, true, Default, None);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::Stretch, true, Stretch, Tiled);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::Font, true, Gothic, Mincho);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleFormation, true, Terrain, Tight);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleCondition, true, None, Pincers);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::EquipmentSetting, true, Actor, Class);
 
 #endif

@@ -25,23 +25,23 @@
 namespace RPG {
 	class Animation {
 	public:
-		enum Scope {
-			Scope_target = 0,
-			Scope_screen = 1
+		enum class Scope {
+			Target = 0,
+			Screen = 1
 		};
 		static constexpr auto kScopeTags = makeEnumTags<Scope>(
-			"target",
-			"screen"
+			"Target",
+			"Screen"
 		);
-		enum Position {
-			Position_up = 0,
-			Position_middle = 1,
-			Position_down = 2
+		enum class Position {
+			Up = 0,
+			Middle = 1,
+			Down = 2
 		};
 		static constexpr auto kPositionTags = makeEnumTags<Position>(
-			"up",
-			"middle",
-			"down"
+			"Up",
+			"Middle",
+			"Down"
 		);
 
 		int ID = 0;
@@ -69,7 +69,7 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Scope, true, Scope_target, Scope_screen);
-LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Position, true, Position_up, Position_down);
+LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Scope, true, Target, Screen);
+LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Position, true, Up, Down);
 
 #endif

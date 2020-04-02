@@ -26,45 +26,45 @@ namespace RPG {
 		// The ID of the special death state
 		static constexpr int kDeathID = 1;
 
-		enum Persistence {
-			Persistence_ends = 0,
-			Persistence_persists = 1
+		enum class Persistence {
+			Ends = 0,
+			Persists = 1
 		};
 		static constexpr auto kPersistenceTags = makeEnumTags<Persistence>(
-			"ends",
-			"persists"
+			"Ends",
+			"Persists"
 		);
-		enum Restriction {
-			Restriction_normal = 0,
-			Restriction_do_nothing = 1,
-			Restriction_attack_enemy = 2,
-			Restriction_attack_ally = 3
+		enum class Restriction {
+			Normal = 0,
+			DoNothing = 1,
+			AttackEnemy = 2,
+			AttackAlly = 3
 		};
 		static constexpr auto kRestrictionTags = makeEnumTags<Restriction>(
-			"normal",
-			"do_nothing",
-			"attack_enemy",
-			"attack_ally"
+			"Normal",
+			"DoNothing",
+			"AttackEnemy",
+			"AttackAlly"
 		);
-		enum AffectType {
-			AffectType_half = 0,
-			AffectType_double = 1,
-			AffectType_nothing = 2
+		enum class AffectType {
+			Half = 0,
+			Double = 1,
+			Nothing = 2
 		};
 		static constexpr auto kAffectTypeTags = makeEnumTags<AffectType>(
-			"half",
-			"double",
-			"nothing"
+			"Half",
+			"Double",
+			"Nothing"
 		);
-		enum ChangeType {
-			ChangeType_lose = 0,
-			ChangeType_gain = 1,
-			ChangeType_nothing = 2
+		enum class ChangeType {
+			Lose = 0,
+			Gain = 1,
+			Nothing = 2
 		};
 		static constexpr auto kChangeTypeTags = makeEnumTags<ChangeType>(
-			"lose",
-			"gain",
-			"nothing"
+			"Lose",
+			"Gain",
+			"Nothing"
 		);
 
 		int ID = 0;
@@ -162,9 +162,9 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::State::Persistence, true, Persistence_ends, Persistence_persists);
-LCF_DEFINE_ENUM_TRAITS(RPG::State::Restriction, true, Restriction_normal, Restriction_attack_ally);
-LCF_DEFINE_ENUM_TRAITS(RPG::State::AffectType, true, AffectType_half, AffectType_nothing);
-LCF_DEFINE_ENUM_TRAITS(RPG::State::ChangeType, true, ChangeType_lose, ChangeType_nothing);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::Persistence, true, Ends, Persists);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::Restriction, true, Normal, AttackAlly);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::AffectType, true, Half, Nothing);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::ChangeType, true, Lose, Nothing);
 
 #endif

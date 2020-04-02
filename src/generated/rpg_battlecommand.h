@@ -22,23 +22,23 @@
 namespace RPG {
 	class BattleCommand {
 	public:
-		enum Type {
-			Type_attack = 0,
-			Type_skill = 1,
-			Type_subskill = 2,
-			Type_defense = 3,
-			Type_item = 4,
-			Type_escape = 5,
-			Type_special = 6
+		enum class Type {
+			Attack = 0,
+			Skill = 1,
+			Subskill = 2,
+			Defense = 3,
+			Item = 4,
+			Escape = 5,
+			Special = 6
 		};
 		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"attack",
-			"skill",
-			"subskill",
-			"defense",
-			"item",
-			"escape",
-			"special"
+			"Attack",
+			"Skill",
+			"Subskill",
+			"Defense",
+			"Item",
+			"Escape",
+			"Special"
 		);
 
 		int ID = 0;
@@ -56,6 +56,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommand::Type, true, Type_attack, Type_special);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommand::Type, true, Attack, Special);
 
 #endif

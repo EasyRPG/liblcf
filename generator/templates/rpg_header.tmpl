@@ -33,23 +33,13 @@ namespace RPG {
 	{% endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
-		{%- if name == "Code" %}
-		struct {{ name }} {
-			enum Index {
-			{%- for field in enum %}
-				{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
-			{%- endfor %}
-			};
-		};
-		{%- else %}
-		enum {{ name }} {
+		enum class {{ name }} {
 		{%- for field in enum %}
-			{{ name }}_{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
+			{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
 		{%- endfor %}
 		};
-		{%- endif %}
 		{%- if enum is monotonic_from_0 %}
-		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}{%- if name == "Code" %}::Index{%- endif %}>(
+		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}>(
 		{%- for field in enum %}
 			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
 		{%- endfor %}
@@ -123,10 +113,7 @@ namespace RPG {
 
 {%- if struct_name in enums %}
 {% for name, enum in enums[struct_name].items() %}
-LCF_DEFINE_ENUM_TRAITS(RPG::{{ struct_name }}::{{ name }}
-{%- if name == "Code" -%}::Index{%- endif %}, {{ enum | monotonic_enum }},
-{%- if name != "Code" %} {{ name }}_{% else %} {% endif -%}{{ enum | min_enum }},
-{%- if name != "Code" %} {{ name }}_{% else %} {% endif -%}{{ enum | max_enum }});
+LCF_DEFINE_ENUM_TRAITS(RPG::{{ struct_name }}::{{ name }}, {{ enum | monotonic_enum }}, {{ enum | min_enum }}, {{ enum | max_enum }});
 {%- endfor %}
 {%- endif %}
 

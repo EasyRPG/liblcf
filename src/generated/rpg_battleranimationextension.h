@@ -23,13 +23,13 @@
 namespace RPG {
 	class BattlerAnimationExtension {
 	public:
-		enum AnimType {
-			AnimType_graphic = 0,
-			AnimType_animation = 1
+		enum class AnimType {
+			Graphic = 0,
+			Animation = 1
 		};
 		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"graphic",
-			"animation"
+			"Graphic",
+			"Animation"
 		);
 
 		int ID = 0;
@@ -53,6 +53,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationExtension::AnimType, true, AnimType_graphic, AnimType_animation);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationExtension::AnimType, true, Graphic, Animation);
 
 #endif

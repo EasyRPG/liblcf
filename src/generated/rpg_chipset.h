@@ -24,13 +24,13 @@
 namespace RPG {
 	class Chipset {
 	public:
-		enum AnimType {
-			AnimType_reciprocating = 0,
-			AnimType_cyclic = 1
+		enum class AnimType {
+			Reciprocating = 0,
+			Cyclic = 1
 		};
 		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"reciprocating",
-			"cyclic"
+			"Reciprocating",
+			"Cyclic"
 		);
 
 		Chipset();
@@ -60,6 +60,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Chipset::AnimType, true, AnimType_reciprocating, AnimType_cyclic);
+LCF_DEFINE_ENUM_TRAITS(RPG::Chipset::AnimType, true, Reciprocating, Cyclic);
 
 #endif

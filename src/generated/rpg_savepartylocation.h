@@ -30,25 +30,25 @@ namespace RPG {
 		// Frame speed in 1/16th pixels
 		static constexpr int kPanSpeedDefault = 2 << 3;
 
-		enum VehicleType {
-			VehicleType_none = 0,
-			VehicleType_skiff = 1,
-			VehicleType_ship = 2,
-			VehicleType_airship = 3
+		enum class VehicleType {
+			None = 0,
+			Skiff = 1,
+			Ship = 2,
+			Airship = 3
 		};
 		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
-			"none",
-			"skiff",
-			"ship",
-			"airship"
+			"None",
+			"Skiff",
+			"Ship",
+			"Airship"
 		);
-		enum PanState {
-			PanState_fixed = 0,
-			PanState_follow = 1
+		enum class PanState {
+			Fixed = 0,
+			Follow = 1
 		};
 		static constexpr auto kPanStateTags = makeEnumTags<PanState>(
-			"fixed",
-			"follow"
+			"Fixed",
+			"Follow"
 		);
 
 		bool boarding = false;
@@ -93,7 +93,7 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::VehicleType, true, VehicleType_none, VehicleType_airship);
-LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::PanState, true, PanState_fixed, PanState_follow);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::VehicleType, true, None, Airship);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::PanState, true, Fixed, Follow);
 
 #endif

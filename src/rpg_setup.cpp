@@ -147,9 +147,9 @@ void RPG::Save::Setup() {
 	map_info.Setup();
 
 	party_location.move_speed = 4;
-	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
-	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
-	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
+	boat_location.vehicle = static_cast<int32_t>(RPG::SaveVehicleLocation::VehicleType::Skiff);
+	ship_location.vehicle = static_cast<int32_t>(RPG::SaveVehicleLocation::VehicleType::Ship);
+	airship_location.vehicle = static_cast<int32_t>(RPG::SaveVehicleLocation::VehicleType::Airship);
 
 	if (targets.empty()) {
 		targets.resize(1);

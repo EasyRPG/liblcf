@@ -34,46 +34,52 @@ struct RawStruct<std::vector<RPG::MoveCommand> > {
  */
 void RawStruct<RPG::MoveCommand>::ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t /* length */) {
 	ref.command_id = stream.ReadInt();
-	switch (ref.command_id) {
-		case RPG::MoveCommand::Code::switch_on:
+	auto code = static_cast<RPG::MoveCommand::Code>(ref.command_id);
+	switch (code) {
+		case RPG::MoveCommand::Code::SwitchOn:
 			stream.Read(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::switch_off:
+		case RPG::MoveCommand::Code::SwitchOff:
 			stream.Read(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::change_graphic:
+		case RPG::MoveCommand::Code::ChangeGraphic:
 			stream.ReadString(ref.parameter_string, stream.ReadInt());
 			stream.Read(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::play_sound_effect:
+		case RPG::MoveCommand::Code::PlaySoundEffect:
 			stream.ReadString(ref.parameter_string, stream.ReadInt());
 			stream.Read(ref.parameter_a);
 			stream.Read(ref.parameter_b);
 			stream.Read(ref.parameter_c);
+			break;
+		default:
 			break;
 	}
 }
 
 void RawStruct<RPG::MoveCommand>::WriteLcf(const RPG::MoveCommand& ref, LcfWriter& stream) {
 	stream.WriteInt(ref.command_id);
-	switch (ref.command_id) {
-		case RPG::MoveCommand::Code::switch_on:
+	auto code = static_cast<RPG::MoveCommand::Code>(ref.command_id);
+	switch (code) {
+		case RPG::MoveCommand::Code::SwitchOn:
 			stream.Write(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::switch_off:
+		case RPG::MoveCommand::Code::SwitchOff:
 			stream.Write(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::change_graphic:
+		case RPG::MoveCommand::Code::ChangeGraphic:
 			stream.WriteInt(stream.Decode(ref.parameter_string).size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::play_sound_effect:
+		case RPG::MoveCommand::Code::PlaySoundEffect:
 			stream.WriteInt(stream.Decode(ref.parameter_string).size());
 			stream.Write(ref.parameter_string);
 			stream.Write(ref.parameter_a);
 			stream.Write(ref.parameter_b);
 			stream.Write(ref.parameter_c);
+			break;
+		default:
 			break;
 	}
 }
@@ -81,24 +87,27 @@ void RawStruct<RPG::MoveCommand>::WriteLcf(const RPG::MoveCommand& ref, LcfWrite
 int RawStruct<RPG::MoveCommand>::LcfSize(const RPG::MoveCommand& ref, LcfWriter& stream) {
 	int result = 0;
 	result += LcfReader::IntSize(ref.command_id);
-	switch (ref.command_id) {
-		case RPG::MoveCommand::Code::switch_on:
+	auto code = static_cast<RPG::MoveCommand::Code>(ref.command_id);
+	switch (code) {
+		case RPG::MoveCommand::Code::SwitchOn:
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::switch_off:
+		case RPG::MoveCommand::Code::SwitchOff:
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::change_graphic:
+		case RPG::MoveCommand::Code::ChangeGraphic:
 			result += LcfReader::IntSize(stream.Decode(ref.parameter_string).size());
 			result += stream.Decode(ref.parameter_string).size();
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::play_sound_effect:
+		case RPG::MoveCommand::Code::PlaySoundEffect:
 			result += LcfReader::IntSize(stream.Decode(ref.parameter_string).size());
 			result += stream.Decode(ref.parameter_string).size();
 			result += LcfReader::IntSize(ref.parameter_a);
 			result += LcfReader::IntSize(ref.parameter_b);
 			result += LcfReader::IntSize(ref.parameter_c);
+			break;
+		default:
 			break;
 	}
 	return result;
@@ -107,22 +116,25 @@ int RawStruct<RPG::MoveCommand>::LcfSize(const RPG::MoveCommand& ref, LcfWriter&
 void RawStruct<RPG::MoveCommand>::WriteXml(const RPG::MoveCommand& ref, XmlWriter& stream) {
 	stream.BeginElement("MoveCommand");
 	stream.WriteNode<int32_t>("command_id", ref.command_id);
-	switch (ref.command_id) {
-		case RPG::MoveCommand::Code::switch_on:
+	auto code = static_cast<RPG::MoveCommand::Code>(ref.command_id);
+	switch (code) {
+		case RPG::MoveCommand::Code::SwitchOn:
 			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::switch_off:
+		case RPG::MoveCommand::Code::SwitchOff:
 			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::change_graphic:
+		case RPG::MoveCommand::Code::ChangeGraphic:
 			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
 			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
-		case RPG::MoveCommand::Code::play_sound_effect:
+		case RPG::MoveCommand::Code::PlaySoundEffect:
 			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
 			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			stream.WriteNode<int32_t>("parameter_b", ref.parameter_b);
 			stream.WriteNode<int32_t>("parameter_c", ref.parameter_c);
+			break;
+		default:
 			break;
 	}
 	stream.EndElement("MoveCommand");

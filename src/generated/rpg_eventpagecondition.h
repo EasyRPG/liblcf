@@ -23,21 +23,21 @@
 namespace RPG {
 	class EventPageCondition {
 	public:
-		enum Comparison {
-			Comparison_equal = 0,
-			Comparison_greater_equal = 1,
-			Comparison_less_equal = 2,
-			Comparison_greater = 3,
-			Comparison_less = 4,
-			Comparison_not_equal = 5
+		enum class Comparison {
+			Equal = 0,
+			GreaterEqual = 1,
+			LessEqual = 2,
+			Greater = 3,
+			Less = 4,
+			NotEqual = 5
 		};
 		static constexpr auto kComparisonTags = makeEnumTags<Comparison>(
-			"equal",
-			"greater_equal",
-			"less_equal",
-			"greater",
-			"less",
-			"not_equal"
+			"Equal",
+			"GreaterEqual",
+			"LessEqual",
+			"Greater",
+			"Less",
+			"NotEqual"
 		);
 
 		struct Flags {
@@ -94,6 +94,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPageCondition::Comparison, true, Comparison_equal, Comparison_not_equal);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPageCondition::Comparison, true, Equal, NotEqual);
 
 #endif

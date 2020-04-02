@@ -22,55 +22,55 @@
 namespace RPG {
 	class EnemyAction {
 	public:
-		enum Kind {
-			Kind_basic = 0,
-			Kind_skill = 1,
-			Kind_transformation = 2
+		enum class Kind {
+			Basic = 0,
+			Skill = 1,
+			Transformation = 2
 		};
 		static constexpr auto kKindTags = makeEnumTags<Kind>(
-			"basic",
-			"skill",
-			"transformation"
+			"Basic",
+			"Skill",
+			"Transformation"
 		);
-		enum Basic {
-			Basic_attack = 0,
-			Basic_dual_attack = 1,
-			Basic_defense = 2,
-			Basic_observe = 3,
-			Basic_charge = 4,
-			Basic_autodestruction = 5,
-			Basic_escape = 6,
-			Basic_nothing = 7
+		enum class Basic {
+			Attack = 0,
+			DualAttack = 1,
+			Defense = 2,
+			Observe = 3,
+			Charge = 4,
+			Autodestruction = 5,
+			Escape = 6,
+			Nothing = 7
 		};
 		static constexpr auto kBasicTags = makeEnumTags<Basic>(
-			"attack",
-			"dual_attack",
-			"defense",
-			"observe",
-			"charge",
-			"autodestruction",
-			"escape",
-			"nothing"
+			"Attack",
+			"DualAttack",
+			"Defense",
+			"Observe",
+			"Charge",
+			"Autodestruction",
+			"Escape",
+			"Nothing"
 		);
-		enum ConditionType {
-			ConditionType_always = 0,
-			ConditionType_switch = 1,
-			ConditionType_turn = 2,
-			ConditionType_actors = 3,
-			ConditionType_hp = 4,
-			ConditionType_sp = 5,
-			ConditionType_party_lvl = 6,
-			ConditionType_party_fatigue = 7
+		enum class ConditionType {
+			Always = 0,
+			Switch = 1,
+			Turn = 2,
+			Actors = 3,
+			Hp = 4,
+			Sp = 5,
+			PartyLvl = 6,
+			PartyFatigue = 7
 		};
 		static constexpr auto kConditionTypeTags = makeEnumTags<ConditionType>(
-			"always",
-			"switch",
-			"turn",
-			"actors",
-			"hp",
-			"sp",
-			"party_lvl",
-			"party_fatigue"
+			"Always",
+			"Switch",
+			"Turn",
+			"Actors",
+			"Hp",
+			"Sp",
+			"PartyLvl",
+			"PartyFatigue"
 		);
 
 		int ID = 0;
@@ -110,8 +110,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Kind, true, Kind_basic, Kind_transformation);
-LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Basic, true, Basic_attack, Basic_nothing);
-LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::ConditionType, true, ConditionType_always, ConditionType_party_fatigue);
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Kind, true, Basic, Transformation);
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Basic, true, Attack, Nothing);
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::ConditionType, true, Always, PartyFatigue);
 
 #endif

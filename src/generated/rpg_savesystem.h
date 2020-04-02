@@ -26,35 +26,35 @@
 namespace RPG {
 	class SaveSystem {
 	public:
-		enum Scene {
-			Scene_map = 0,
-			Scene_menu = 1,
-			Scene_battle = 2,
-			Scene_shop = 3,
-			Scene_name = 4,
-			Scene_file = 5,
-			Scene_title = 6,
-			Scene_game_over = 7,
-			Scene_debug = 8
+		enum class Scene {
+			Map = 0,
+			Menu = 1,
+			Battle = 2,
+			Shop = 3,
+			Name = 4,
+			File = 5,
+			Title = 6,
+			GameOver = 7,
+			Debug = 8
 		};
 		static constexpr auto kSceneTags = makeEnumTags<Scene>(
-			"map",
-			"menu",
-			"battle",
-			"shop",
-			"name",
-			"file",
-			"title",
-			"game_over",
-			"debug"
+			"Map",
+			"Menu",
+			"Battle",
+			"Shop",
+			"Name",
+			"File",
+			"Title",
+			"GameOver",
+			"Debug"
 		);
-		enum AtbMode {
-			AtbMode_atb_active = 0,
-			AtbMode_atb_wait = 1
+		enum class AtbMode {
+			AtbActive = 0,
+			AtbWait = 1
 		};
 		static constexpr auto kAtbModeTags = makeEnumTags<AtbMode>(
-			"atb_active",
-			"atb_wait"
+			"AtbActive",
+			"AtbWait"
 		);
 
 		void Setup();
@@ -180,7 +180,7 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::Scene, true, Scene_map, Scene_debug);
-LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::AtbMode, true, AtbMode_atb_active, AtbMode_atb_wait);
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::Scene, true, Map, Debug);
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::AtbMode, true, AtbActive, AtbWait);
 
 #endif

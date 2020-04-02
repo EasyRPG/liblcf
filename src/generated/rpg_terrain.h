@@ -25,25 +25,25 @@
 namespace RPG {
 	class Terrain {
 	public:
-		enum BushDepth {
-			BushDepth_normal = 0,
-			BushDepth_third = 1,
-			BushDepth_half = 2,
-			BushDepth_full = 3
+		enum class BushDepth {
+			Normal = 0,
+			Third = 1,
+			Half = 2,
+			Full = 3
 		};
 		static constexpr auto kBushDepthTags = makeEnumTags<BushDepth>(
-			"normal",
-			"third",
-			"half",
-			"full"
+			"Normal",
+			"Third",
+			"Half",
+			"Full"
 		);
-		enum BGAssociation {
-			BGAssociation_background = 0,
-			BGAssociation_frame = 1
+		enum class BGAssociation {
+			Background = 0,
+			Frame = 1
 		};
 		static constexpr auto kBGAssociationTags = makeEnumTags<BGAssociation>(
-			"background",
-			"frame"
+			"Background",
+			"Frame"
 		);
 
 		int ID = 0;
@@ -142,7 +142,7 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BushDepth, true, BushDepth_normal, BushDepth_full);
-LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BGAssociation, true, BGAssociation_background, BGAssociation_frame);
+LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BushDepth, true, Normal, Full);
+LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BGAssociation, true, Background, Frame);
 
 #endif

@@ -25,15 +25,15 @@ namespace RPG {
 	class TreeMap {
 	public:
 		std::string lmt_header;
-		enum MapType {
-			MapType_root = 0,
-			MapType_map = 1,
-			MapType_area = 2
+		enum class MapType {
+			Root = 0,
+			Map = 1,
+			Area = 2
 		};
 		static constexpr auto kMapTypeTags = makeEnumTags<MapType>(
-			"root",
-			"map",
-			"area"
+			"Root",
+			"Map",
+			"Area"
 		);
 
 		std::vector<MapInfo> maps;
@@ -54,6 +54,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::TreeMap::MapType, true, MapType_root, MapType_area);
+LCF_DEFINE_ENUM_TRAITS(RPG::TreeMap::MapType, true, Root, Area);
 
 #endif

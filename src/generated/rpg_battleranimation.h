@@ -24,10 +24,10 @@
 namespace RPG {
 	class BattlerAnimation {
 	public:
-		enum Speed {
-			Speed_slow = 0,
-			Speed_normal = 8,
-			Speed_fast = 14
+		enum class Speed {
+			Slow = 0,
+			Normal = 8,
+			Fast = 14
 		};
 
 		int ID = 0;
@@ -49,6 +49,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimation::Speed, false, Speed_slow, Speed_fast);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimation::Speed, false, Slow, Fast);
 
 #endif

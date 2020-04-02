@@ -22,25 +22,25 @@
 namespace RPG {
 	class BattlerAnimationData {
 	public:
-		enum Movement {
-			Movement_none = 0,
-			Movement_step = 1,
-			Movement_jump = 2,
-			Movement_move = 3
+		enum class Movement {
+			None = 0,
+			Step = 1,
+			Jump = 2,
+			Move = 3
 		};
 		static constexpr auto kMovementTags = makeEnumTags<Movement>(
-			"none",
-			"step",
-			"jump",
-			"move"
+			"None",
+			"Step",
+			"Jump",
+			"Move"
 		);
-		enum AfterImage {
-			AfterImage_none = 0,
-			AfterImage_add = 1
+		enum class AfterImage {
+			None = 0,
+			Add = 1
 		};
 		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
-			"none",
-			"add"
+			"None",
+			"Add"
 		);
 
 		int ID = 0;
@@ -60,7 +60,7 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::Movement, true, Movement_none, Movement_move);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::AfterImage, true, AfterImage_none, AfterImage_add);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::Movement, true, None, Move);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::AfterImage, true, None, Add);
 
 #endif

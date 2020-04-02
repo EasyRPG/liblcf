@@ -22,35 +22,35 @@
 namespace RPG {
 	class ItemAnimation {
 	public:
-		enum Movement {
-			Movement_none = 0,
-			Movement_step = 1,
-			Movement_jump = 2,
-			Movement_move = 3
+		enum class Movement {
+			None = 0,
+			Step = 1,
+			Jump = 2,
+			Move = 3
 		};
 		static constexpr auto kMovementTags = makeEnumTags<Movement>(
-			"none",
-			"step",
-			"jump",
-			"move"
+			"None",
+			"Step",
+			"Jump",
+			"Move"
 		);
-		enum AfterImage {
-			AfterImage_none = 0,
-			AfterImage_add = 1
+		enum class AfterImage {
+			None = 0,
+			Add = 1
 		};
 		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
-			"none",
-			"add"
+			"None",
+			"Add"
 		);
-		enum Speed {
-			Speed_fast = 0,
-			Speed_medium = 1,
-			Speed_slow = 2
+		enum class Speed {
+			Fast = 0,
+			Medium = 1,
+			Slow = 2
 		};
 		static constexpr auto kSpeedTags = makeEnumTags<Speed>(
-			"fast",
-			"medium",
-			"slow"
+			"Fast",
+			"Medium",
+			"Slow"
 		);
 
 		int ID = 0;
@@ -82,8 +82,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Movement, true, Movement_none, Movement_move);
-LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::AfterImage, true, AfterImage_none, AfterImage_add);
-LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Speed, true, Speed_fast, Speed_slow);
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Movement, true, None, Move);
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::AfterImage, true, None, Add);
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Speed, true, Fast, Slow);
 
 #endif

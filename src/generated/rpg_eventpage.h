@@ -27,97 +27,97 @@
 namespace RPG {
 	class EventPage {
 	public:
-		enum Direction {
-			Direction_up = 0,
-			Direction_right = 1,
-			Direction_down = 2,
-			Direction_left = 3
+		enum class Direction {
+			Up = 0,
+			Right = 1,
+			Down = 2,
+			Left = 3
 		};
 		static constexpr auto kDirectionTags = makeEnumTags<Direction>(
-			"up",
-			"right",
-			"down",
-			"left"
+			"Up",
+			"Right",
+			"Down",
+			"Left"
 		);
-		enum Frame {
-			Frame_left = 0,
-			Frame_middle = 1,
-			Frame_right = 2,
-			Frame_middle2 = 3
+		enum class Frame {
+			Left = 0,
+			Middle = 1,
+			Right = 2,
+			Middle2 = 3
 		};
 		static constexpr auto kFrameTags = makeEnumTags<Frame>(
-			"left",
-			"middle",
-			"right",
-			"middle2"
+			"Left",
+			"Middle",
+			"Right",
+			"Middle2"
 		);
-		enum MoveType {
-			MoveType_stationary = 0,
-			MoveType_random = 1,
-			MoveType_vertical = 2,
-			MoveType_horizontal = 3,
-			MoveType_toward = 4,
-			MoveType_away = 5,
-			MoveType_custom = 6
+		enum class MoveType {
+			Stationary = 0,
+			Random = 1,
+			Vertical = 2,
+			Horizontal = 3,
+			Toward = 4,
+			Away = 5,
+			Custom = 6
 		};
 		static constexpr auto kMoveTypeTags = makeEnumTags<MoveType>(
-			"stationary",
-			"random",
-			"vertical",
-			"horizontal",
-			"toward",
-			"away",
-			"custom"
+			"Stationary",
+			"Random",
+			"Vertical",
+			"Horizontal",
+			"Toward",
+			"Away",
+			"Custom"
 		);
-		enum Trigger {
-			Trigger_action = 0,
-			Trigger_touched = 1,
-			Trigger_collision = 2,
-			Trigger_auto_start = 3,
-			Trigger_parallel = 4
+		enum class Trigger {
+			Action = 0,
+			Touched = 1,
+			Collision = 2,
+			AutoStart = 3,
+			Parallel = 4
 		};
 		static constexpr auto kTriggerTags = makeEnumTags<Trigger>(
-			"action",
-			"touched",
-			"collision",
-			"auto_start",
-			"parallel"
+			"Action",
+			"Touched",
+			"Collision",
+			"AutoStart",
+			"Parallel"
 		);
-		enum Layers {
-			Layers_below = 0,
-			Layers_same = 1,
-			Layers_above = 2
+		enum class Layers {
+			Below = 0,
+			Same = 1,
+			Above = 2
 		};
 		static constexpr auto kLayersTags = makeEnumTags<Layers>(
-			"below",
-			"same",
-			"above"
+			"Below",
+			"Same",
+			"Above"
 		);
-		enum AnimType {
-			AnimType_non_continuous = 0,
-			AnimType_continuous = 1,
-			AnimType_fixed_non_continuous = 2,
-			AnimType_fixed_continuous = 3,
-			AnimType_fixed_graphic = 4,
-			AnimType_spin = 5,
-			AnimType_step_frame_fix = 6
+		enum class AnimType {
+			NonContinuous = 0,
+			Continuous = 1,
+			FixedNonContinuous = 2,
+			FixedContinuous = 3,
+			FixedGraphic = 4,
+			Spin = 5,
+			StepFrameFix = 6
 		};
 		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"non_continuous",
-			"continuous",
-			"fixed_non_continuous",
-			"fixed_continuous",
-			"fixed_graphic",
-			"spin",
-			"step_frame_fix"
+			"NonContinuous",
+			"Continuous",
+			"FixedNonContinuous",
+			"FixedContinuous",
+			"FixedGraphic",
+			"Spin",
+			"StepFrameFix"
 		);
-		enum MoveSpeed {
-			MoveSpeed_eighth = 1,
-			MoveSpeed_quarter = 2,
-			MoveSpeed_half = 3,
-			MoveSpeed_normal = 4,
-			MoveSpeed_double = 5,
-			MoveSpeed_fourfold = 6
+		enum class MoveSpeed {
+			Eighth = 1,
+			Quarter = 2,
+			Half = 3,
+			Normal = 4,
+			Double = 5,
+			Fourfold = 6
 		};
 
 		int ID = 0;
@@ -161,12 +161,12 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Direction, true, Direction_up, Direction_left);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Frame, true, Frame_left, Frame_middle2);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveType, true, MoveType_stationary, MoveType_custom);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Trigger, true, Trigger_action, Trigger_parallel);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Layers, true, Layers_below, Layers_above);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::AnimType, true, AnimType_non_continuous, AnimType_step_frame_fix);
-LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveSpeed, true, MoveSpeed_eighth, MoveSpeed_fourfold);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Direction, true, Up, Left);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Frame, true, Left, Middle2);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveType, true, Stationary, Custom);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Trigger, true, Action, Parallel);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Layers, true, Below, Above);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::AnimType, true, NonContinuous, StepFrameFix);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveSpeed, true, Eighth, Fourfold);
 
 #endif

@@ -25,51 +25,51 @@
 namespace RPG {
 	class Item {
 	public:
-		enum Type {
-			Type_normal = 0,
-			Type_weapon = 1,
-			Type_shield = 2,
-			Type_armor = 3,
-			Type_helmet = 4,
-			Type_accessory = 5,
-			Type_medicine = 6,
-			Type_book = 7,
-			Type_material = 8,
-			Type_special = 9,
-			Type_switch = 10
+		enum class Type {
+			Normal = 0,
+			Weapon = 1,
+			Shield = 2,
+			Armor = 3,
+			Helmet = 4,
+			Accessory = 5,
+			Medicine = 6,
+			Book = 7,
+			Material = 8,
+			Special = 9,
+			Switch = 10
 		};
 		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"normal",
-			"weapon",
-			"shield",
-			"armor",
-			"helmet",
-			"accessory",
-			"medicine",
-			"book",
-			"material",
-			"special",
-			"switch"
+			"Normal",
+			"Weapon",
+			"Shield",
+			"Armor",
+			"Helmet",
+			"Accessory",
+			"Medicine",
+			"Book",
+			"Material",
+			"Special",
+			"Switch"
 		);
-		enum Trajectory {
-			Trajectory_straight = 0,
-			Trajectory_return = 1
+		enum class Trajectory {
+			Straight = 0,
+			Return = 1
 		};
 		static constexpr auto kTrajectoryTags = makeEnumTags<Trajectory>(
-			"straight",
-			"return"
+			"Straight",
+			"Return"
 		);
-		enum Target {
-			Target_single = 0,
-			Target_center = 1,
-			Target_simultaneous = 2,
-			Target_sequential = 3
+		enum class Target {
+			Single = 0,
+			Center = 1,
+			Simultaneous = 2,
+			Sequential = 3
 		};
 		static constexpr auto kTargetTags = makeEnumTags<Target>(
-			"single",
-			"center",
-			"simultaneous",
-			"sequential"
+			"Single",
+			"Center",
+			"Simultaneous",
+			"Sequential"
 		);
 
 		int ID = 0;
@@ -187,8 +187,8 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Item::Type, true, Type_normal, Type_switch);
-LCF_DEFINE_ENUM_TRAITS(RPG::Item::Trajectory, true, Trajectory_straight, Trajectory_return);
-LCF_DEFINE_ENUM_TRAITS(RPG::Item::Target, true, Target_single, Target_sequential);
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Type, true, Normal, Switch);
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Trajectory, true, Straight, Return);
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Target, true, Single, Sequential);
 
 #endif

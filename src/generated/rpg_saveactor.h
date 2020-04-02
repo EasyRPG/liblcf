@@ -24,13 +24,13 @@
 namespace RPG {
 	class SaveActor {
 	public:
-		enum RowType {
-			RowType_front = 0,
-			RowType_back = 1
+		enum class RowType {
+			Front = 0,
+			Back = 1
 		};
 		static constexpr auto kRowTypeTags = makeEnumTags<RowType>(
-			"front",
-			"back"
+			"Front",
+			"Back"
 		);
 
 		void Setup(int actor_id);
@@ -107,6 +107,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::SaveActor::RowType, true, RowType_front, RowType_back);
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveActor::RowType, true, Front, Back);
 
 #endif

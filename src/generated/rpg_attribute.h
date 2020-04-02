@@ -23,13 +23,13 @@
 namespace RPG {
 	class Attribute {
 	public:
-		enum Type {
-			Type_physical = 0,
-			Type_magical = 1
+		enum class Type {
+			Physical = 0,
+			Magical = 1
 		};
 		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"physical",
-			"magical"
+			"Physical",
+			"Magical"
 		);
 
 		int ID = 0;
@@ -57,6 +57,6 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::Attribute::Type, true, Type_physical, Type_magical);
+LCF_DEFINE_ENUM_TRAITS(RPG::Attribute::Type, true, Physical, Magical);
 
 #endif

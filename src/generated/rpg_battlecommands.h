@@ -24,61 +24,61 @@
 namespace RPG {
 	class BattleCommands {
 	public:
-		enum Placement {
-			Placement_manual = 0,
-			Placement_automatic = 1
+		enum class Placement {
+			Manual = 0,
+			Automatic = 1
 		};
 		static constexpr auto kPlacementTags = makeEnumTags<Placement>(
-			"manual",
-			"automatic"
+			"Manual",
+			"Automatic"
 		);
-		enum RowShown {
-			RowShown_front = 0,
-			RowShown_back = 1
+		enum class RowShown {
+			Front = 0,
+			Back = 1
 		};
 		static constexpr auto kRowShownTags = makeEnumTags<RowShown>(
-			"front",
-			"back"
+			"Front",
+			"Back"
 		);
-		enum BattleType {
-			BattleType_traditional = 0,
-			BattleType_alternative = 1,
-			BattleType_gauge = 2
+		enum class BattleType {
+			Traditional = 0,
+			Alternative = 1,
+			Gauge = 2
 		};
 		static constexpr auto kBattleTypeTags = makeEnumTags<BattleType>(
-			"traditional",
-			"alternative",
-			"gauge"
+			"Traditional",
+			"Alternative",
+			"Gauge"
 		);
-		enum WindowSize {
-			WindowSize_large = 0,
-			WindowSize_small = 1
+		enum class WindowSize {
+			Large = 0,
+			Small = 1
 		};
 		static constexpr auto kWindowSizeTags = makeEnumTags<WindowSize>(
-			"large",
-			"small"
+			"Large",
+			"Small"
 		);
-		enum Transparency {
-			Transparency_opaque = 0,
-			Transparency_transparent = 1
+		enum class Transparency {
+			Opaque = 0,
+			Transparent = 1
 		};
 		static constexpr auto kTransparencyTags = makeEnumTags<Transparency>(
-			"opaque",
-			"transparent"
+			"Opaque",
+			"Transparent"
 		);
-		enum Facing {
-			Facing_retain = 0,
-			Facing_up = 1,
-			Facing_right = 2,
-			Facing_down = 3,
-			Facing_left = 4
+		enum class Facing {
+			Retain = 0,
+			Up = 1,
+			Right = 2,
+			Down = 3,
+			Left = 4
 		};
 		static constexpr auto kFacingTags = makeEnumTags<Facing>(
-			"retain",
-			"up",
-			"right",
-			"down",
-			"left"
+			"Retain",
+			"Up",
+			"Right",
+			"Down",
+			"Left"
 		);
 
 		int32_t placement = 0;
@@ -121,11 +121,11 @@ namespace RPG {
 	}
 }
 
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Placement, true, Placement_manual, Placement_automatic);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::RowShown, true, RowShown_front, RowShown_back);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::BattleType, true, BattleType_traditional, BattleType_gauge);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::WindowSize, true, WindowSize_large, WindowSize_small);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Transparency, true, Transparency_opaque, Transparency_transparent);
-LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Facing, true, Facing_retain, Facing_left);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Placement, true, Manual, Automatic);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::RowShown, true, Front, Back);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::BattleType, true, Traditional, Gauge);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::WindowSize, true, Large, Small);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Transparency, true, Opaque, Transparent);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Facing, true, Retain, Left);
 
 #endif
