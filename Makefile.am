@@ -123,6 +123,7 @@ pkginclude_HEADERS = \
 	src/command_codes.h \
 	src/data.h \
 	src/encoder.h \
+	src/enum.h \
 	src/enum_tags.h \
 	src/flag_set.h \
 	src/ini.h \
