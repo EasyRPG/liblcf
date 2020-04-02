@@ -121,4 +121,11 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Placement, true, Placement_manual, Placement_automatic);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::RowShown, true, RowShown_front, RowShown_back);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::BattleType, true, BattleType_traditional, BattleType_gauge);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::WindowSize, true, WindowSize_large, WindowSize_small);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Transparency, true, Transparency_opaque, Transparency_transparent);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Facing, true, Facing_retain, Facing_left);
+
 #endif

@@ -335,6 +335,27 @@ def needs_ctor(struct_name):
     return struct_name in setup and any('Init()' in method
                                     for method, hdrs in setup[struct_name])
 
+def min_enum(enum):
+    vals = [int(x[1]) for x in enum]
+    idx = vals.index(min(vals))
+    return enum[idx][0]
+
+def max_enum(enum):
+    vals = [int(x[1]) for x in enum]
+    idx = vals.index(max(vals))
+    return enum[idx][0]
+
+def is_monotonic(enum):
+    expected = int(enum[0][1])
+    for (val, idx) in enum:
+        if int(idx) != expected:
+            return False
+        expected += 1
+    return True
+
+def is_monotonic_str(enum):
+    return "true" if is_monotonic(enum) else "false"
+
 def is_monotonic_from_0(enum):
     expected = 0
     for (val, idx) in enum:
@@ -445,7 +466,11 @@ def main(argv):
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
+    env.filters["min_enum"] = min_enum
+    env.filters["max_enum"] = max_enum
+    env.filters["monotonic_enum"] = is_monotonic_str
     env.tests['needs_ctor'] = needs_ctor
+    env.tests['monotonic'] = is_monotonic
     env.tests['monotonic_from_0'] = is_monotonic_from_0
 
     globals = dict(

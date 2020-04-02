@@ -110,4 +110,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Kind, true, Kind_basic, Kind_transformation);
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Basic, true, Basic_attack, Basic_nothing);
+LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::ConditionType, true, ConditionType_always, ConditionType_party_fatigue);
+
 #endif

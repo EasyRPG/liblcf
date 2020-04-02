@@ -16,6 +16,8 @@
 #include <array>
 #include <cstring>
 
+#include "enum.h"
+
 template <typename E, size_t N>
 class EnumTags {
 	public:

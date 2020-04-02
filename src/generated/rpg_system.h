@@ -294,4 +294,12 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeOut, true, FadeOut_default, FadeOut_none);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::FadeIn, true, FadeIn_default, FadeIn_none);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::Stretch, true, Stretch_stretch, Stretch_tiled);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::Font, true, Font_gothic, Font_mincho);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleFormation, true, BattleFormation_terrain, BattleFormation_tight);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleCondition, true, BattleCondition_none, BattleCondition_pincers);
+LCF_DEFINE_ENUM_TRAITS(RPG::System::EquipmentSetting, true, EquipmentSetting_actor, EquipmentSetting_class);
+
 #endif

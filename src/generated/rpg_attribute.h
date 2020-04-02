@@ -57,4 +57,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Attribute::Type, true, Type_physical, Type_magical);
+
 #endif

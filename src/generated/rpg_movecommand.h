@@ -134,4 +134,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::MoveCommand::Code::Index, true, move_up, decrease_transp);
+
 #endif

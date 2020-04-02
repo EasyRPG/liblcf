@@ -103,4 +103,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::MusicType, true, MusicType_parent, MusicType_specific);
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::BGMType, true, BGMType_parent, BGMType_specific);
+LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::TriState, true, TriState_parent, TriState_forbid);
+
 #endif

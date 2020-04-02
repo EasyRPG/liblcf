@@ -142,4 +142,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BushDepth, true, BushDepth_normal, BushDepth_full);
+LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BGAssociation, true, BGAssociation_background, BGAssociation_frame);
+
 #endif

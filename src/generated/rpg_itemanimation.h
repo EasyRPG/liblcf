@@ -82,4 +82,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Movement, true, Movement_none, Movement_move);
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::AfterImage, true, AfterImage_none, AfterImage_add);
+LCF_DEFINE_ENUM_TRAITS(RPG::ItemAnimation::Speed, true, Speed_fast, Speed_slow);
+
 #endif

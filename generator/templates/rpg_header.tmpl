@@ -121,4 +121,13 @@ namespace RPG {
 	}
 }
 
+{%- if struct_name in enums %}
+{% for name, enum in enums[struct_name].items() %}
+LCF_DEFINE_ENUM_TRAITS(RPG::{{ struct_name }}::{{ name }}
+{%- if name == "Code" -%}::Index{%- endif %}, {{ enum | monotonic_enum }},
+{%- if name != "Code" %} {{ name }}_{% else %} {% endif -%}{{ enum | min_enum }},
+{%- if name != "Code" %} {{ name }}_{% else %} {% endif -%}{{ enum | max_enum }});
+{%- endfor %}
+{%- endif %}
+
 #endif

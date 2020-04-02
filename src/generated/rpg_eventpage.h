@@ -161,4 +161,12 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Direction, true, Direction_up, Direction_left);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Frame, true, Frame_left, Frame_middle2);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveType, true, MoveType_stationary, MoveType_custom);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Trigger, true, Trigger_action, Trigger_parallel);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Layers, true, Layers_below, Layers_above);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::AnimType, true, AnimType_non_continuous, AnimType_step_frame_fix);
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveSpeed, true, MoveSpeed_eighth, MoveSpeed_fourfold);
+
 #endif

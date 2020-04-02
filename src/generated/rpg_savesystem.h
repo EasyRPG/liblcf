@@ -180,4 +180,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::Scene, true, Scene_map, Scene_debug);
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::AtbMode, true, AtbMode_atb_active, AtbMode_atb_wait);
+
 #endif

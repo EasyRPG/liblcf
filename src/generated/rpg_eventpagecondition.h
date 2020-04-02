@@ -94,4 +94,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::EventPageCondition::Comparison, true, Comparison_equal, Comparison_not_equal);
+
 #endif

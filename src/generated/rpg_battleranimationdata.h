@@ -60,4 +60,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::Movement, true, Movement_none, Movement_move);
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::AfterImage, true, AfterImage_none, AfterImage_add);
+
 #endif

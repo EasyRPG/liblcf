@@ -69,4 +69,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Scope, true, Scope_target, Scope_screen);
+LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Position, true, Position_up, Position_down);
+
 #endif

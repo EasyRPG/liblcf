@@ -56,4 +56,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommand::Type, true, Type_attack, Type_special);
+
 #endif

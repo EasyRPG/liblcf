@@ -187,4 +187,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Type, true, Type_normal, Type_switch);
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Trajectory, true, Trajectory_straight, Trajectory_return);
+LCF_DEFINE_ENUM_TRAITS(RPG::Item::Target, true, Target_single, Target_sequential);
+
 #endif

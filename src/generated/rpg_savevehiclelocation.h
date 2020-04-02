@@ -57,4 +57,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveVehicleLocation::VehicleType, true, VehicleType_none, VehicleType_airship);
+
 #endif

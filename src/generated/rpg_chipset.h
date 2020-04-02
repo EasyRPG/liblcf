@@ -60,4 +60,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Chipset::AnimType, true, AnimType_reciprocating, AnimType_cyclic);
+
 #endif

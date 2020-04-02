@@ -93,4 +93,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::VehicleType, true, VehicleType_none, VehicleType_airship);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::PanState, true, PanState_fixed, PanState_follow);
+
 #endif

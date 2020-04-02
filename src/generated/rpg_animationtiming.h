@@ -71,4 +71,7 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::AnimationTiming::FlashScope, true, FlashScope_nothing, FlashScope_screen);
+LCF_DEFINE_ENUM_TRAITS(RPG::AnimationTiming::ScreenShake, true, ScreenShake_nothing, ScreenShake_screen);
+
 #endif

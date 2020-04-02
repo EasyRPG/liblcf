@@ -53,4 +53,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationExtension::AnimType, true, AnimType_graphic, AnimType_animation);
+
 #endif

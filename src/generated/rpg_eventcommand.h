@@ -191,4 +191,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::EventCommand::Code::Index, false, END, EndBranch_B);
+
 #endif

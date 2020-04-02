@@ -49,4 +49,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimation::Speed, false, Speed_slow, Speed_fast);
+
 #endif

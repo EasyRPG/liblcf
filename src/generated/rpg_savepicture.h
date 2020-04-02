@@ -188,4 +188,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::Effect, true, Effect_none, Effect_wave);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::MapLayer, true, MapLayer_none, MapLayer_timers);
+LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::BattleLayer, true, BattleLayer_none, BattleLayer_timers);
+
 #endif

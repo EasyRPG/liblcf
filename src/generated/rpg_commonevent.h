@@ -51,4 +51,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::CommonEvent::Trigger, true, Trigger_automatic, Trigger_call);
+
 #endif

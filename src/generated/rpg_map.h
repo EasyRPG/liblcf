@@ -133,4 +133,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::ScrollType, true, ScrollType_none, ScrollType_both);
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorMode, true, GeneratorMode_single_passage, GeneratorMode_open_room);
+LCF_DEFINE_ENUM_TRAITS(RPG::Map::GeneratorTiles, true, GeneratorTiles_one, GeneratorTiles_two);
+
 #endif

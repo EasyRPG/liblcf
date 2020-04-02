@@ -162,4 +162,9 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::State::Persistence, true, Persistence_ends, Persistence_persists);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::Restriction, true, Restriction_normal, Restriction_attack_ally);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::AffectType, true, AffectType_half, AffectType_nothing);
+LCF_DEFINE_ENUM_TRAITS(RPG::State::ChangeType, true, ChangeType_lose, ChangeType_nothing);
+
 #endif

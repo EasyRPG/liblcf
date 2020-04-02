@@ -222,6 +222,7 @@ check_PROGRAMS = test_runner
 test_runner_SOURCES = \
 	tests/doctest.h \
 	tests/time_stamp.cpp \
+	tests/enum.cpp \
 	tests/enum_set.cpp \
 	tests/test_main.cpp
 test_runner_CPPFLAGS = \

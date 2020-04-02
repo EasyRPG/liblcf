@@ -142,4 +142,8 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Type, true, Type_normal, Type_subskill);
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::SpType, true, SpType_cost, SpType_percent);
+LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Scope, true, Scope_enemy, Scope_party);
+
 #endif

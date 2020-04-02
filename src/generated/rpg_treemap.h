@@ -54,4 +54,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::TreeMap::MapType, true, MapType_root, MapType_area);
+
 #endif

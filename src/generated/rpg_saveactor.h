@@ -107,4 +107,6 @@ namespace RPG {
 	}
 }
 
+LCF_DEFINE_ENUM_TRAITS(RPG::SaveActor::RowType, true, RowType_front, RowType_back);
+
 #endif
