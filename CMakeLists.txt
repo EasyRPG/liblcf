@@ -38,7 +38,7 @@ add_library(lcf
 	src/encoder.h
 	src/enum.h
 	src/enum_tags.h
-	src/flag_set.h
+	src/enum_set.h
 	src/ini.cpp
 	src/ini.h
 	src/inireader.cpp

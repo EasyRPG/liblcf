@@ -125,7 +125,7 @@ pkginclude_HEADERS = \
 	src/encoder.h \
 	src/enum.h \
 	src/enum_tags.h \
-	src/flag_set.h \
+	src/enum_set.h \
 	src/ini.h \
 	src/inireader.h \
 	src/lcf_options.h \
@@ -222,7 +222,7 @@ check_PROGRAMS = test_runner
 test_runner_SOURCES = \
 	tests/doctest.h \
 	tests/time_stamp.cpp \
-	tests/flag_set.cpp \
+	tests/enum_set.cpp \
 	tests/test_main.cpp
 test_runner_CPPFLAGS = \
 	-I$(srcdir)/src \

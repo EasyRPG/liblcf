@@ -7,20 +7,25 @@
  * file that was distributed with this source code.
  */
 
-#include "flag_set.h"
+#include "enum.h"
+#include "enum_set.h"
 #include "doctest.h"
 
+namespace {
 enum Color {
 	Red,
 	Green,
 	Blue
 };
+}
 
-template class FlagSet<Color>;
+LCF_DEFINE_ENUM_TRAITS(Color, true, Red, Blue);
 
-using ColorSet = FlagSet<Color>;
+template class EnumSet<Color>;
 
-TEST_SUITE_BEGIN("flag_set");
+using ColorSet = EnumSet<Color>;
+
+TEST_SUITE_BEGIN("enum_set");
 
 TEST_CASE("Default Construct") {
 	ColorSet cs;
