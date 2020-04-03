@@ -30,7 +30,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 # lcf library files
-add_library(lcf
+add_library(lcf)
+
+target_sources(lcf
+	PRIVATE
 	src/data.cpp
 	src/encoder.cpp
 	src/ini.cpp
@@ -55,25 +58,6 @@ add_library(lcf
 	src/rpg_setup.cpp
 	src/writer_lcf.cpp
 	src/writer_xml.cpp
-	src/lcf/command_codes.h
-	src/lcf/data.h
-	src/lcf/encoder.h
-	src/lcf/enum_tags.h
-	src/lcf/flag_set.h
-	src/lcf/ini.h
-	src/lcf/inireader.h
-	src/lcf/lcf_options.h
-	src/lcf/lcf_saveopt.h
-	src/lcf/ldb_reader.h
-	src/lcf/lmt_reader.h
-	src/lcf/lmu_reader.h
-	src/lcf/lsd_reader.h
-	src/lcf/reader_lcf.h
-	src/lcf/reader_util.h
-	src/lcf/reader_xml.h
-	src/lcf/scope_guard.h
-	src/lcf/writer_lcf.h
-	src/lcf/writer_xml.h
 	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp
@@ -144,6 +128,28 @@ add_library(lcf
 	src/generated/rpg_savepartylocation.cpp
 	src/generated/rpg_state.cpp
 	src/generated/rpg_system.cpp
+	)
+
+set(PUBLIC_HEADERS
+	src/lcf/command_codes.h
+	src/lcf/data.h
+	src/lcf/encoder.h
+	src/lcf/enum_tags.h
+	src/lcf/flag_set.h
+	src/lcf/ini.h
+	src/lcf/inireader.h
+	src/lcf/lcf_options.h
+	src/lcf/lcf_saveopt.h
+	src/lcf/ldb_reader.h
+	src/lcf/lmt_reader.h
+	src/lcf/lmu_reader.h
+	src/lcf/lsd_reader.h
+	src/lcf/reader_lcf.h
+	src/lcf/reader_util.h
+	src/lcf/reader_xml.h
+	src/lcf/scope_guard.h
+	src/lcf/writer_lcf.h
+	src/lcf/writer_xml.h
 	src/generated/lcf/ldb_chunks.h
 	src/generated/lcf/lmt_chunks.h
 	src/generated/lcf/lmu_chunks.h
@@ -215,6 +221,9 @@ add_library(lcf
 	src/generated/lcf/rpg_trooppagecondition.h
 	src/generated/lcf/rpg_variable.h
 )
+list(TRANSFORM PUBLIC_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+
+target_sources(lcf PUBLIC ${PUBLIC_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
@@ -310,12 +319,9 @@ install(
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-file(GLOB includefiles "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/generated/*.h")
-
 install(
-	FILES ${includefiles}
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblcf)
+	FILES ${PUBLIC_HEADERS}
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
 
 install(
 	FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc

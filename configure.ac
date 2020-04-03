@@ -11,7 +11,7 @@ AM_SILENT_RULES([yes])
 
 AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
 AC_CONFIG_SRCDIR([src/data.cpp])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([src/lcf/config.h])
 AC_LANG([C++])
 
 # Checks for programs.

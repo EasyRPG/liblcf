@@ -15,6 +15,8 @@ cmakeconfig_DATA = \
 	builds/cmake/Modules/FindEXPAT.cmake \
 	builds/cmake/Modules/FindICU.cmake
 
+lcfincludedir = $(includedir)/lcf
+
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
@@ -57,6 +59,11 @@ liblcf_la_SOURCES = \
 	src/rpg_setup.cpp \
 	src/writer_lcf.cpp \
 	src/writer_xml.cpp \
+	src/generated/fwd_struct_impl.h \
+	src/generated/ldb_terrain_flags.h \
+	src/generated/ldb_trooppagecondition_flags.h \
+	src/generated/lmu_eventpagecondition_flags.h \
+	src/generated/lsd_savepicture_flags.h \
 	src/generated/ldb_actor.cpp \
 	src/generated/ldb_animation.cpp \
 	src/generated/ldb_animationcelldata.cpp \
@@ -122,8 +129,9 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_savepartylocation.cpp \
 	src/generated/rpg_state.cpp \
 	src/generated/rpg_system.cpp
-pkginclude_HEADERS = \
+lcfinclude_HEADERS = \
 	src/lcf/command_codes.h \
+	src/lcf/config.h \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
@@ -142,11 +150,6 @@ pkginclude_HEADERS = \
 	src/lcf/scope_guard.h \
 	src/lcf/writer_lcf.h \
 	src/lcf/writer_xml.h \
-	src/generated/fwd_struct_impl.h \
-	src/generated/ldb_terrain_flags.h \
-	src/generated/ldb_trooppagecondition_flags.h \
-	src/generated/lmu_eventpagecondition_flags.h \
-	src/generated/lsd_savepicture_flags.h \
 	src/generated/lcf/ldb_chunks.h \
 	src/generated/lcf/lmt_chunks.h \
 	src/generated/lcf/lmu_chunks.h \

@@ -9,4 +9,4 @@ Version: @PACKAGE_VERSION@
 URL: https://easyrpg.org/
 Requires.private: @AX_PACKAGE_REQUIRES_PRIVATE@
 Libs: -L${libdir} -llcf
-Cflags: -I${includedir}/@PACKAGE_TARNAME@
+Cflags: -I${includedir}
