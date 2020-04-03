@@ -8,7 +8,7 @@
  */
 
 #include "lcf/lmt_reader.h"
-#include "lmt_chunks.h"
+#include "lcf/lmt_chunks.h"
 #include "reader_struct.h"
 
 namespace lcf {

@@ -12,7 +12,7 @@
 #include <cstring>
 
 #include "lcf/ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb_chunks.h"
 #include "lcf/data.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"

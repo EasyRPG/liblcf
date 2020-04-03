@@ -13,7 +13,7 @@
  * Headers
  */
 #include "lcf/lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd_chunks.h"
 #include "reader_struct.h"
 
 namespace lcf {

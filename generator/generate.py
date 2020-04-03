@@ -343,13 +343,19 @@ def is_monotonic_from_0(enum):
         expected += 1
     return True
 
+def openToRender(path):
+    subdir = os.path.dirname(path)
+    if not os.path.exists(subdir):
+        os.mkdir(subdir)
+    return open(path, 'w')
+
 def generate():
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     for filetype in ['ldb','lmt','lmu','lsd']:
-        filepath = os.path.join(tmp_dir, '%s_chunks.h' % filetype)
+        filepath = os.path.join(tmp_dir, 'lcf', '%s_chunks.h' % filetype)
 
-        with open(filepath, 'w') as f:
+        with openToRender(filepath) as f:
             f.write(chunk_tmpl.render(
                 type=filetype
             ))
@@ -360,7 +366,7 @@ def generate():
             structs_flat.append(elem)
 
     filepath = os.path.join(tmp_dir, 'fwd_struct_impl.h')
-    with open(filepath, 'w') as f:
+    with openToRender(filepath) as f:
         f.write(fwd_tmpl.render(
             structs=sorted([x.name for x in structs_flat])
         ))
@@ -374,7 +380,7 @@ def generate():
                     continue
 
                 filepath = os.path.join(tmp_dir, '%s_%s.cpp' % (filetype, filename))
-                with open(filepath, 'w') as f:
+                with openToRender(filepath) as f:
                     f.write(lcf_struct_tmpl.render(
                         struct_name=struct.name,
                         struct_base=struct.base,
@@ -383,7 +389,7 @@ def generate():
 
                 if needs_ctor(struct.name) or struct.name in constants:
                     filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
-                    with open(filepath, 'w') as f:
+                    with openToRender(filepath) as f:
                         f.write(rpg_source_tmpl.render(
                             struct_name=struct.name,
                             struct_base=struct.base,
@@ -391,7 +397,7 @@ def generate():
                         ))
 
             filepath = os.path.join(tmp_dir, 'rpg_%s.h' % filename)
-            with open(filepath, 'w') as f:
+            with openToRender(filepath) as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,
                     struct_base=struct.base,
@@ -400,7 +406,7 @@ def generate():
 
             if struct.name in flags:
                 filepath = os.path.join(tmp_dir, '%s_%s_flags.h' % (filetype, filename))
-                with open(filepath, 'w') as f:
+                with openToRender(filepath) as f:
                     f.write(flags_tmpl.render(
                         struct_name=struct.name,
                         type=filetype
@@ -408,16 +414,22 @@ def generate():
 
     filepath = os.path.join(tmp_dir, 'rpg_enums.cpp')
 
-    with open(filepath, 'w') as f:
+    with openToRender(filepath) as f:
         f.write(enums_tmpl.render())
 
-    for tmp_file in os.listdir(tmp_dir):
-        tmp_path = os.path.join(tmp_dir, tmp_file)
-        dest_path = os.path.join(dest_dir, tmp_file)
-        if not (os.path.exists(dest_path) and filecmp.cmp(tmp_path, dest_path)):
-            shutil.copyfile(tmp_path, dest_path)
-        os.remove(tmp_path)
-    os.rmdir(tmp_dir)
+    for dirname, subdirlist, filelist in os.walk(tmp_dir, topdown=False):
+        subdir = os.path.relpath(dirname, tmp_dir)
+
+        for tmp_file in filelist:
+            tmp_path = os.path.join(tmp_dir, subdir, tmp_file)
+            dest_path = os.path.join(dest_dir, subdir, tmp_file)
+            dest_subdir = os.path.dirname(dest_path)
+            if not os.path.exists(dest_subdir):
+                os.mkdir(dest_subdir)
+            if not (os.path.exists(dest_path) and filecmp.cmp(tmp_path, dest_path)):
+                shutil.copyfile(tmp_path, dest_path)
+            os.remove(tmp_path)
+        os.rmdir(os.path.join(dirname))
 
 def main(argv):
     if not os.path.exists(dest_dir):

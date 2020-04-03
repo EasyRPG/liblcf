@@ -12,7 +12,7 @@
 #include <cstring>
 
 #include "lcf/lmt_reader.h"
-#include "lmt_chunks.h"
+#include "lcf/lmt_chunks.h"
 #include "lcf/data.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"

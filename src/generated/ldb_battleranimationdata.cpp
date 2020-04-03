@@ -10,8 +10,8 @@
  */
 
 // Headers
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb_reader.h"
+#include "lcf/ldb_chunks.h"
 #include "reader_struct_impl.h"
 
 namespace lcf {

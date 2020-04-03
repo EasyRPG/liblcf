@@ -8,7 +8,7 @@
  */
 
 #include "lcf/ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb_chunks.h"
 #include "reader_struct.h"
 
 namespace lcf {

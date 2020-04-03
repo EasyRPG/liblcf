@@ -87,7 +87,6 @@ add_library(lcf
 	src/generated/ldb_battleranimationdata.cpp
 	src/generated/ldb_battleranimationextension.cpp
 	src/generated/ldb_chipset.cpp
-	src/generated/ldb_chunks.h
 	src/generated/ldb_class.cpp
 	src/generated/ldb_commonevent.cpp
 	src/generated/ldb_database.cpp
@@ -112,18 +111,15 @@ add_library(lcf
 	src/generated/ldb_trooppagecondition.cpp
 	src/generated/ldb_trooppagecondition_flags.h
 	src/generated/ldb_variable.cpp
-	src/generated/lmt_chunks.h
 	src/generated/lmt_encounter.cpp
 	src/generated/lmt_mapinfo.cpp
 	src/generated/lmt_start.cpp
-	src/generated/lmu_chunks.h
 	src/generated/lmu_event.cpp
 	src/generated/lmu_eventpage.cpp
 	src/generated/lmu_eventpagecondition.cpp
 	src/generated/lmu_eventpagecondition_flags.h
 	src/generated/lmu_map.cpp
 	src/generated/lmu_moveroute.cpp
-	src/generated/lsd_chunks.h
 	src/generated/lsd_save.cpp
 	src/generated/lsd_saveactor.cpp
 	src/generated/lsd_savecommonevent.cpp
@@ -214,6 +210,10 @@ add_library(lcf
 	src/generated/rpg_trooppage.h
 	src/generated/rpg_trooppagecondition.h
 	src/generated/rpg_variable.h
+	src/generated/lcf/ldb_chunks.h
+	src/generated/lcf/lmt_chunks.h
+	src/generated/lcf/lmu_chunks.h
+	src/generated/lcf/lsd_chunks.h
 )
 
 # IDE source grouping

@@ -13,7 +13,7 @@
 #include <cstring>
 
 #include "lcf/lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd_chunks.h"
 #include "lcf/ldb_reader.h"
 #include "rpg_save.h"
 #include "lcf/reader_util.h"
