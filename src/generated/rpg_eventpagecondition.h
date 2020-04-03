@@ -31,7 +31,7 @@ namespace RPG {
 			Comparison_less = 4,
 			Comparison_not_equal = 5
 		};
-		static constexpr auto kComparisonTags = makeEnumTags<Comparison>(
+		static constexpr auto kComparisonTags = lcf::makeEnumTags<Comparison>(
 			"equal",
 			"greater_equal",
 			"less_equal",

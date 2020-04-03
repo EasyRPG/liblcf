@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Chipset.
 
 template <>
@@ -82,3 +84,5 @@ Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[] = {
 };
 
 template class Struct<RPG::Chipset>;
+
+} //namespace lcf

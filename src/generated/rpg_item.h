@@ -38,7 +38,7 @@ namespace RPG {
 			Type_special = 9,
 			Type_switch = 10
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
+		static constexpr auto kTypeTags = lcf::makeEnumTags<Type>(
 			"normal",
 			"weapon",
 			"shield",
@@ -55,7 +55,7 @@ namespace RPG {
 			Trajectory_straight = 0,
 			Trajectory_return = 1
 		};
-		static constexpr auto kTrajectoryTags = makeEnumTags<Trajectory>(
+		static constexpr auto kTrajectoryTags = lcf::makeEnumTags<Trajectory>(
 			"straight",
 			"return"
 		);
@@ -65,7 +65,7 @@ namespace RPG {
 			Target_simultaneous = 2,
 			Target_sequential = 3
 		};
-		static constexpr auto kTargetTags = makeEnumTags<Target>(
+		static constexpr auto kTargetTags = lcf::makeEnumTags<Target>(
 			"single",
 			"center",
 			"simultaneous",

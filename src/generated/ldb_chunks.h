@@ -12,6 +12,8 @@
 #ifndef LCF_LDB_CHUNKS_H
 #define LCF_LDB_CHUNKS_H
 
+namespace lcf {
+
 /**
  * LDB Reader namespace.
  */
@@ -1349,5 +1351,7 @@ namespace LDB_Reader {
 		};
 	};
 }
+
+} //namespace lcf
 
 #endif

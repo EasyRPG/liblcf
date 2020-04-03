@@ -36,7 +36,7 @@ namespace RPG {
 			VehicleType_ship = 2,
 			VehicleType_airship = 3
 		};
-		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
+		static constexpr auto kVehicleTypeTags = lcf::makeEnumTags<VehicleType>(
 			"none",
 			"skiff",
 			"ship",
@@ -46,7 +46,7 @@ namespace RPG {
 			PanState_fixed = 0,
 			PanState_follow = 1
 		};
-		static constexpr auto kPanStateTags = makeEnumTags<PanState>(
+		static constexpr auto kPanStateTags = lcf::makeEnumTags<PanState>(
 			"fixed",
 			"follow"
 		);

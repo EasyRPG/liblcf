@@ -11,6 +11,8 @@
 #define LCF_SCOPE_GUARD_H
 #include <utility>
 
+namespace lcf {
+
 template <typename F>
 class ScopeGuard {
 	public:
@@ -57,5 +59,7 @@ template <typename F>
 inline bool ScopeGuard<F>::IsActive() noexcept {
 	return _active;
 }
+
+} //namespace lcf
 
 #endif

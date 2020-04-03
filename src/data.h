@@ -34,6 +34,8 @@
 #include "rpg_treemap.h"
 #include "rpg_database.h"
 
+namespace lcf {
+
 /**
  * Data namespace
  */
@@ -69,5 +71,7 @@ namespace Data {
 	 */
 	void Clear();
 }
+
+} //namespace lcf
 
 #endif

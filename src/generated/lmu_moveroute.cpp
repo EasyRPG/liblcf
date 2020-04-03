@@ -14,6 +14,8 @@
 #include "lmu_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read MoveRoute.
 
 template <>
@@ -57,3 +59,5 @@ Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
 };
 
 template class Struct<RPG::MoveRoute>;
+
+} //namespace lcf

@@ -1,6 +1,8 @@
 #include <iostream>
 #include "ldb_reader.h"
 
+using namespace lcf;
+
 int main(int argc, char** argv) {
 	if (argc < 2) {
 		std::cerr << "Must specify a file!" << std::endl;

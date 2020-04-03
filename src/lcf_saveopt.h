@@ -10,6 +10,8 @@
 #ifndef LCF_SAVEOPT_H
 #define LCF_SAVEOPT_H
 
+namespace lcf {
+
 /**
  * Options to configure how LDB file is saved
  */
@@ -22,6 +24,8 @@ constexpr SaveOpt operator|(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) | int(
 constexpr SaveOpt operator&(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) & int(r)); }
 constexpr SaveOpt operator^(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) ^ int(r)); }
 constexpr SaveOpt operator~(SaveOpt l) { return SaveOpt(~int(l)); }
+
+} //namespace lcf
 
 #endif
 

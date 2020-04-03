@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SaveMapInfo.
 
 template <>
@@ -138,3 +140,5 @@ Field<RPG::SaveMapInfo> const* Struct<RPG::SaveMapInfo>::fields[] = {
 };
 
 template class Struct<RPG::SaveMapInfo>;
+
+} //namespace lcf

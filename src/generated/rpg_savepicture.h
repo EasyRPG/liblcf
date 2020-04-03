@@ -29,7 +29,7 @@ namespace RPG {
 			Effect_rotation = 1,
 			Effect_wave = 2
 		};
-		static constexpr auto kEffectTags = makeEnumTags<Effect>(
+		static constexpr auto kEffectTags = lcf::makeEnumTags<Effect>(
 			"none",
 			"rotation",
 			"wave"
@@ -47,7 +47,7 @@ namespace RPG {
 			MapLayer_windows = 9,
 			MapLayer_timers = 10
 		};
-		static constexpr auto kMapLayerTags = makeEnumTags<MapLayer>(
+		static constexpr auto kMapLayerTags = lcf::makeEnumTags<MapLayer>(
 			"none",
 			"parallax",
 			"tilemap_below",
@@ -68,7 +68,7 @@ namespace RPG {
 			BattleLayer_windows_and_status = 4,
 			BattleLayer_timers = 5
 		};
-		static constexpr auto kBattleLayerTags = makeEnumTags<BattleLayer>(
+		static constexpr auto kBattleLayerTags = lcf::makeEnumTags<BattleLayer>(
 			"none",
 			"background",
 			"battlers_and_animations",

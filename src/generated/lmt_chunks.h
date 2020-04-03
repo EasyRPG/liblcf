@@ -12,6 +12,8 @@
 #ifndef LCF_LMT_CHUNKS_H
 #define LCF_LMT_CHUNKS_H
 
+namespace lcf {
+
 /**
  * LMT Reader namespace.
  */
@@ -89,5 +91,7 @@ namespace LMT_Reader {
 		};
 	};
 }
+
+} //namespace lcf
 
 #endif

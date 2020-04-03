@@ -12,6 +12,8 @@
 
 #include <bitset>
 
+namespace lcf {
+
 template <typename E, size_t N=32>
 class FlagSet {
 	public:
@@ -81,15 +83,15 @@ inline FlagSet<E,N>::FlagSet(std::initializer_list<E> ilist) {
 	}
 }
 
+} //namespace lcf
+
 namespace std {
 template <typename E, size_t N>
-	struct hash<FlagSet<E,N>> {
-		size_t operator()(const FlagSet<E,N>& fs) {
-			return hash<typename FlagSet<E,N>::underlying>()(fs._bits);
+	struct hash<lcf::FlagSet<E,N>> {
+		size_t operator()(const lcf::FlagSet<E,N>& fs) {
+			return hash<typename lcf::FlagSet<E,N>::underlying>()(fs._bits);
 		}
 	};
 }
-
-
 
 #endif

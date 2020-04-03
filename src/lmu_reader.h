@@ -15,6 +15,8 @@
 #include "rpg_map.h"
 #include "lcf_saveopt.h"
 
+namespace lcf {
+
 /**
  * LMU Reader namespace.
  */
@@ -65,5 +67,7 @@ namespace LMU_Reader {
 	 */
 	std::unique_ptr<RPG::Map> LoadXml(std::istream& filestream);
 }
+
+} //namespace lcf
 
 #endif

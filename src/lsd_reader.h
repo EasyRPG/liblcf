@@ -17,6 +17,8 @@
 #include <stdint.h>
 #include "rpg_save.h"
 
+namespace lcf {
+
 /**
  * LSD Reader namespace.
  */
@@ -86,5 +88,7 @@ namespace LSD_Reader {
 	 */
 	std::unique_ptr<RPG::Save> LoadXml(std::istream& filestream);
 }
+
+} //namespace lcf
 
 #endif

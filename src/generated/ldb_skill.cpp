@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Skill.
 
 template <>
@@ -312,3 +314,5 @@ Field<RPG::Skill> const* Struct<RPG::Skill>::fields[] = {
 };
 
 template class Struct<RPG::Skill>;
+
+} //namespace lcf

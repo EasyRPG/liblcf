@@ -10,6 +10,8 @@
 #include "rpg_database.h"
 #include "data.h"
 
+namespace lcf {
+
 namespace Data {
 	RPG::Database data;
 
@@ -58,3 +60,5 @@ void Data::Clear() {
 	treemap.maps.clear();
 	treemap.tree_order.clear();
 }
+
+} //namespace lcf

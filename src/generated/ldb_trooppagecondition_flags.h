@@ -16,6 +16,7 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read TroopPageCondition.
 
@@ -50,3 +51,4 @@ decltype(Flags<RPG::TroopPageCondition::Flags>::flags_is2k3) Flags<RPG::TroopPag
 	1
 };
 
+} //namespace lcf

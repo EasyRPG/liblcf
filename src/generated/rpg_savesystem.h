@@ -37,7 +37,7 @@ namespace RPG {
 			Scene_game_over = 7,
 			Scene_debug = 8
 		};
-		static constexpr auto kSceneTags = makeEnumTags<Scene>(
+		static constexpr auto kSceneTags = lcf::makeEnumTags<Scene>(
 			"map",
 			"menu",
 			"battle",
@@ -52,7 +52,7 @@ namespace RPG {
 			AtbMode_atb_active = 0,
 			AtbMode_atb_wait = 1
 		};
-		static constexpr auto kAtbModeTags = makeEnumTags<AtbMode>(
+		static constexpr auto kAtbModeTags = lcf::makeEnumTags<AtbMode>(
 			"atb_active",
 			"atb_wait"
 		);

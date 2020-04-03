@@ -35,6 +35,8 @@
 #include <map>
 #include <string>
 
+namespace lcf {
+
 // Read an INI file into easy-to-access name/value pairs. (Note that I've gone
 // for simplicity here rather than speed, but it should be pretty decent.)
 class INIReader
@@ -85,5 +87,7 @@ private:
 	static std::string MakeKey(const std::string& section, const std::string& name);
 	static int ValueHandler(void* user, const char* section, const char* name, const char* value);
 };
+
+} //namespace lcf
 
 #endif

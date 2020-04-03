@@ -17,6 +17,8 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 void LDB_Reader::PrepareSave(RPG::Database& db) {
 	++db.system.save_count;
 }
@@ -125,3 +127,5 @@ bool LDB_Reader::LoadXml(std::istream& filestream) {
 	reader.Parse();
 	return true;
 }
+
+} // namespace lcf

@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SaveCommonEvent.
 
 template <>
@@ -34,3 +36,5 @@ Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
 };
 
 template class Struct<RPG::SaveCommonEvent>;
+
+} //namespace lcf

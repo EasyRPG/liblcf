@@ -11,6 +11,8 @@
 #include "reader_struct.h"
 #include <iostream>
 
+namespace lcf {
+
 template <>
 struct RawStruct<RPG::MoveCommand> {
 	static void ReadLcf(RPG::MoveCommand& ref, LcfReader& stream, uint32_t length);
@@ -220,3 +222,5 @@ private:
 void RawStruct<std::vector<RPG::MoveCommand> >::BeginXml(std::vector<RPG::MoveCommand>& obj, XmlReader& stream) {
 	stream.SetHandler(new MoveCommandVectorXmlHandler(obj));
 }
+
+} //namspace lcf

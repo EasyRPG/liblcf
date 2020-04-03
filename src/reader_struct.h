@@ -37,6 +37,8 @@
 #include "rpg_terms.h"
 #include "data.h"
 
+namespace lcf {
+
 // Forward declarations
 
 template <class T>
@@ -738,5 +740,7 @@ private:
 	const char* const name;
 
 };
+
+} //namespace lcf
 
 #endif

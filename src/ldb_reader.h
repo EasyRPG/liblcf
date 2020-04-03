@@ -37,6 +37,8 @@
 #include "rpg_database.h"
 #include "lcf_saveopt.h"
 
+namespace lcf {
+
 /**
  * LDB Reader namespace.
  */
@@ -86,5 +88,7 @@ namespace LDB_Reader {
 	 */
 	bool LoadXml(std::istream& filestream);
 }
+
+} // namespace lcf
 
 #endif

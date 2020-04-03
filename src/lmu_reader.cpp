@@ -17,6 +17,8 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 void LMU_Reader::PrepareSave(RPG::Map& map) {
 	++map.save_count;
 }
@@ -123,3 +125,4 @@ std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(std::istream& filestream) {
 	return map;
 }
 
+} //namespace lcf

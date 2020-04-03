@@ -33,7 +33,7 @@ namespace RPG {
 			Direction_down = 2,
 			Direction_left = 3
 		};
-		static constexpr auto kDirectionTags = makeEnumTags<Direction>(
+		static constexpr auto kDirectionTags = lcf::makeEnumTags<Direction>(
 			"up",
 			"right",
 			"down",
@@ -45,7 +45,7 @@ namespace RPG {
 			Frame_right = 2,
 			Frame_middle2 = 3
 		};
-		static constexpr auto kFrameTags = makeEnumTags<Frame>(
+		static constexpr auto kFrameTags = lcf::makeEnumTags<Frame>(
 			"left",
 			"middle",
 			"right",
@@ -60,7 +60,7 @@ namespace RPG {
 			MoveType_away = 5,
 			MoveType_custom = 6
 		};
-		static constexpr auto kMoveTypeTags = makeEnumTags<MoveType>(
+		static constexpr auto kMoveTypeTags = lcf::makeEnumTags<MoveType>(
 			"stationary",
 			"random",
 			"vertical",
@@ -76,7 +76,7 @@ namespace RPG {
 			Trigger_auto_start = 3,
 			Trigger_parallel = 4
 		};
-		static constexpr auto kTriggerTags = makeEnumTags<Trigger>(
+		static constexpr auto kTriggerTags = lcf::makeEnumTags<Trigger>(
 			"action",
 			"touched",
 			"collision",
@@ -88,7 +88,7 @@ namespace RPG {
 			Layers_same = 1,
 			Layers_above = 2
 		};
-		static constexpr auto kLayersTags = makeEnumTags<Layers>(
+		static constexpr auto kLayersTags = lcf::makeEnumTags<Layers>(
 			"below",
 			"same",
 			"above"
@@ -102,7 +102,7 @@ namespace RPG {
 			AnimType_spin = 5,
 			AnimType_step_frame_fix = 6
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+		static constexpr auto kAnimTypeTags = lcf::makeEnumTags<AnimType>(
 			"non_continuous",
 			"continuous",
 			"fixed_non_continuous",

@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Switch.
 
 template <>
@@ -34,3 +36,5 @@ Field<RPG::Switch> const* Struct<RPG::Switch>::fields[] = {
 };
 
 template class Struct<RPG::Switch>;
+
+} //namespace lcf

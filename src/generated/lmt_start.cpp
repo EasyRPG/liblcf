@@ -14,6 +14,8 @@
 #include "lmt_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Start.
 
 template <>
@@ -122,3 +124,5 @@ Field<RPG::Start> const* Struct<RPG::Start>::fields[] = {
 };
 
 template class Struct<RPG::Start>;
+
+} //namespace lcf

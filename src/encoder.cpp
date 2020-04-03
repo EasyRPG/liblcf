@@ -37,6 +37,8 @@
 #define ICONV_CONST const
 #endif
 
+namespace lcf {
+
 static std::string filterUtf8Compatible(std::string enc) {
 #ifdef LCF_SUPPORT_ICU
 	if (ucnv_compareNames(enc.c_str(), "UTF-8") == 0) {
@@ -178,4 +180,5 @@ void Encoder::Convert(std::string& str, void* conv_dst_void, void* conv_src_void
 #endif
 }
 
+} //namespace lcf
 

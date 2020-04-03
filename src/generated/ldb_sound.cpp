@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Sound.
 
 template <>
@@ -58,3 +60,5 @@ Field<RPG::Sound> const* Struct<RPG::Sound>::fields[] = {
 };
 
 template class Struct<RPG::Sound>;
+
+} //namespace lcf

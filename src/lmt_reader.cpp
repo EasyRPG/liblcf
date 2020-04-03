@@ -17,6 +17,8 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 bool LMT_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
@@ -113,3 +115,5 @@ bool LMT_Reader::LoadXml(std::istream& filestream) {
 	reader.Parse();
 	return true;
 }
+
+} //namespace lcf

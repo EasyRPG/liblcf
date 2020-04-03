@@ -51,7 +51,7 @@ namespace RPG {
 			FadeOut_instantaneous = 20,
 			FadeOut_none = 21
 		};
-		static constexpr auto kFadeOutTags = makeEnumTags<FadeOut>(
+		static constexpr auto kFadeOutTags = lcf::makeEnumTags<FadeOut>(
 			"default",
 			"fade_out",
 			"remove_blocks",
@@ -99,7 +99,7 @@ namespace RPG {
 			FadeIn_instantaneous = 20,
 			FadeIn_none = 21
 		};
-		static constexpr auto kFadeInTags = makeEnumTags<FadeIn>(
+		static constexpr auto kFadeInTags = lcf::makeEnumTags<FadeIn>(
 			"default",
 			"fade_in",
 			"reconstitute_blocks",
@@ -127,7 +127,7 @@ namespace RPG {
 			Stretch_stretch = 0,
 			Stretch_tiled = 1
 		};
-		static constexpr auto kStretchTags = makeEnumTags<Stretch>(
+		static constexpr auto kStretchTags = lcf::makeEnumTags<Stretch>(
 			"stretch",
 			"tiled"
 		);
@@ -135,7 +135,7 @@ namespace RPG {
 			Font_gothic = 0,
 			Font_mincho = 1
 		};
-		static constexpr auto kFontTags = makeEnumTags<Font>(
+		static constexpr auto kFontTags = lcf::makeEnumTags<Font>(
 			"gothic",
 			"mincho"
 		);
@@ -144,7 +144,7 @@ namespace RPG {
 			BattleFormation_loose = 1,
 			BattleFormation_tight = 2
 		};
-		static constexpr auto kBattleFormationTags = makeEnumTags<BattleFormation>(
+		static constexpr auto kBattleFormationTags = lcf::makeEnumTags<BattleFormation>(
 			"terrain",
 			"loose",
 			"tight"
@@ -156,7 +156,7 @@ namespace RPG {
 			BattleCondition_surround = 3,
 			BattleCondition_pincers = 4
 		};
-		static constexpr auto kBattleConditionTags = makeEnumTags<BattleCondition>(
+		static constexpr auto kBattleConditionTags = lcf::makeEnumTags<BattleCondition>(
 			"none",
 			"initiative",
 			"back",
@@ -167,7 +167,7 @@ namespace RPG {
 			EquipmentSetting_actor = 0,
 			EquipmentSetting_class = 1
 		};
-		static constexpr auto kEquipmentSettingTags = makeEnumTags<EquipmentSetting>(
+		static constexpr auto kEquipmentSettingTags = lcf::makeEnumTags<EquipmentSetting>(
 			"actor",
 			"class"
 		);

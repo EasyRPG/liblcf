@@ -10,6 +10,8 @@
 #include "lsd_reader.h"
 #include "doctest.h"
 
+using namespace lcf;
+
 TEST_SUITE_BEGIN("timestamps");
 
 static void CheckTime(double val, int year, int month, int day, int hour,

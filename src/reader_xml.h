@@ -20,6 +20,8 @@
 #include "lcf_options.h"
 #include "reader_util.h"
 
+namespace lcf {
+
 /**
  * XmlHandler abstract base class (forward reference).
  */
@@ -123,5 +125,7 @@ public:
 	virtual ~XmlHandler() {}
 
 };
+
+} //namespace lcf
 
 #endif

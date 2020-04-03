@@ -7,14 +7,16 @@
  * file that was distributed with this source code.
  */
 
-#ifndef LCF_ENUM_TAGS
-#define LCF_ENUM_TAGS
+#ifndef LCF_ENUM_TAGS_H
+#define LCF_ENUM_TAGS_H
 
 #include <type_traits>
 #include <iterator>
 #include <cstddef>
 #include <array>
 #include <cstring>
+
+namespace lcf {
 
 template <typename E, size_t N>
 class EnumTags {
@@ -84,5 +86,7 @@ inline E EnumTags<E, N>::etagOr(const char* tag, E other) const {
 	auto i = idx(tag);
 	return (i >= 0) ? E(i) : other;
 }
+
+} //namespace lcf
 
 #endif

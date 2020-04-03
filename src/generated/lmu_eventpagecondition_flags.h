@@ -16,6 +16,7 @@
 #include "lmu_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read EventPageCondition.
 
@@ -44,3 +45,4 @@ decltype(Flags<RPG::EventPageCondition::Flags>::flags_is2k3) Flags<RPG::EventPag
 	1
 };
 
+} //namespace lcf

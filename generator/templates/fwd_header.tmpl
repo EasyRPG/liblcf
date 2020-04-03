@@ -1,6 +1,7 @@
 {% include "copyright.tmpl" %}
 // MSVC incorrectly treats these declarations as definitions and fails.
 #ifndef _MSC_VER
+namespace lcf {
 {% for struct in structs -%}
 template <>
 const char* const Struct<RPG::{{ struct }}>::name;
@@ -8,4 +9,6 @@ template <>
 Field<RPG::{{ struct }}> const* Struct<RPG::{{ struct }}>::fields[];
 
 {% endfor -%}
+} //namespace lcf
 #endif
+

@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SavePartyLocation.
 
 template <>
@@ -466,3 +468,5 @@ Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[] = 
 };
 
 template class Struct<RPG::SavePartyLocation>;
+
+} //namespace lcf

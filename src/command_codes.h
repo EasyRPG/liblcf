@@ -16,6 +16,6 @@
  * Abbreviate RPG::EventCommand::Code to Cmd.
  */
 
-typedef RPG::EventCommand::Code Cmd;
+using Cmd = RPG::EventCommand::Code;
 
 #endif

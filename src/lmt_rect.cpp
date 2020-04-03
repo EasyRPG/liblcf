@@ -11,6 +11,8 @@
 #include "lmt_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 template <>
 struct RawStruct<RPG::Rect> {
 	static void ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t length);
@@ -84,3 +86,5 @@ public:
 void RawStruct<RPG::Rect>::BeginXml(RPG::Rect& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Rect", new RectXmlHandler(ref)));
 }
+
+} //namespace lcf

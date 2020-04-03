@@ -11,6 +11,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 template <>
 struct RawStruct<RPG::Equipment> {
 	static void ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length);
@@ -99,3 +101,5 @@ public:
 void RawStruct<RPG::Equipment>::BeginXml(RPG::Equipment& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Equipment", new EquipmentXmlHandler(ref)));
 }
+
+} //namespace lcf

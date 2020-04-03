@@ -12,6 +12,8 @@
 #include <vector>
 #include <string>
 
+namespace lcf {
+
 class Encoder {
 	public:
 		explicit Encoder(std::string encoding);
@@ -42,5 +44,7 @@ class Encoder {
 inline const std::string& Encoder::GetEncoding() const {
 	return _encoding;
 }
+
+} //namespace lcf
 
 #endif

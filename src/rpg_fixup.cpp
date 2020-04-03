@@ -15,7 +15,6 @@
 #include "rpg_savemapinfo.h"
 #include "data.h"
 
-
 template <typename T, typename U>
 static void FixInt(T& val, U def) {
 	if (val < 0) {
@@ -33,7 +32,7 @@ void UnFixInt(T& val, U def) {
 void RPG::SaveActor::Fixup(int actor_id) {
 	ID = actor_id;
 
-	const RPG::Actor& actor = Data::actors[actor_id - 1];
+	const RPG::Actor& actor = lcf::Data::actors[actor_id - 1];
 
 	if (name == "\x1") {
 		name = actor.name;
@@ -51,13 +50,13 @@ void RPG::SaveActor::Fixup(int actor_id) {
 		face_id = actor.face_index;
 	}
 
-	if (status.size() < Data::states.size()) {
-		status.resize(Data::states.size());
+	if (status.size() < lcf::Data::states.size()) {
+		status.resize(lcf::Data::states.size());
 	}
 }
 
 void RPG::SaveActor::UnFixup() {
-	const RPG::Actor& actor = Data::actors[ID - 1];
+	const RPG::Actor& actor = lcf::Data::actors[ID - 1];
 
 	if (name == actor.name) {
 		name = "\x1";
@@ -79,10 +78,10 @@ void RPG::SaveActor::UnFixup() {
 }
 
 void RPG::SaveSystem::Fixup() {
-	const RPG::System& system = Data::system;
+	const RPG::System& system = lcf::Data::system;
 
-	switches.reserve(Data::switches.size());
-	variables.reserve(Data::variables.size());
+	switches.reserve(lcf::Data::switches.size());
+	variables.reserve(lcf::Data::variables.size());
 	if (battle_music.name.empty()) {
 		battle_music = system.battle_music;
 	}
@@ -146,7 +145,7 @@ void RPG::SaveSystem::Fixup() {
 }
 
 void RPG::SaveSystem::UnFixup() {
-	const RPG::System& system = Data::system;
+	const RPG::System& system = lcf::Data::system;
 
 	//TODO: Should be a C++14 polymorphic lambda
 	auto reset_se = [](RPG::Sound& s) {

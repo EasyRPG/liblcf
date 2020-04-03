@@ -44,6 +44,8 @@
 #include "ldb_reader.h"
 #include "reader_util.h"
 
+namespace lcf {
+
 namespace ReaderUtil {
 }
 
@@ -401,3 +403,5 @@ std::string ReaderUtil::Normalize(const std::string &str) {
 	return result;
 #endif
 }
+
+} //namespace lcf

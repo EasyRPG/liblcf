@@ -17,6 +17,8 @@
 #include "rpg_treemap.h"
 #include "lcf_saveopt.h"
 
+namespace lcf {
+
 /**
  * LMT Reader namespace.
  */
@@ -62,5 +64,7 @@ namespace LMT_Reader {
 	 */
 	bool LoadXml(std::istream& filestream);
 }
+
+} //namespace lcf
 
 #endif

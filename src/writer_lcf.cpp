@@ -11,6 +11,8 @@
 
 #include "writer_lcf.h"
 
+namespace lcf {
+
 LcfWriter::LcfWriter(std::ostream& filestream, std::string encoding)
 	: stream(filestream)
 	, encoder(std::move(encoding))
@@ -171,3 +173,5 @@ void LcfWriter::SwapByteOrder(int32_t& s)
 {
 	SwapByteOrder((uint32_t&) s);
 }
+
+} //namespace lcf

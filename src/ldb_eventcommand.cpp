@@ -12,6 +12,8 @@
 #include "reader_struct.h"
 #include "rpg_eventcommand.h"
 
+namespace lcf {
+
 template <>
 struct RawStruct<RPG::EventCommand> {
 	static void ReadLcf(RPG::EventCommand& ref, LcfReader& stream, uint32_t length);
@@ -227,3 +229,5 @@ private:
 void RawStruct<std::vector<RPG::EventCommand> >::BeginXml(std::vector<RPG::EventCommand>& obj, XmlReader& stream) {
 	stream.SetHandler(new EventCommandVectorXmlHandler(obj));
 }
+
+} //namespace lcf

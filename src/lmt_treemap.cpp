@@ -11,6 +11,8 @@
 #include "lmt_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 template <>
 struct RawStruct<RPG::TreeMap> {
 	static void ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length);
@@ -105,3 +107,5 @@ public:
 void RawStruct<RPG::TreeMap>::BeginXml(RPG::TreeMap& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("TreeMap", new TreeMapXmlHandler(ref)));
 }
+
+} //namespace lcf

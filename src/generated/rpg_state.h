@@ -30,7 +30,7 @@ namespace RPG {
 			Persistence_ends = 0,
 			Persistence_persists = 1
 		};
-		static constexpr auto kPersistenceTags = makeEnumTags<Persistence>(
+		static constexpr auto kPersistenceTags = lcf::makeEnumTags<Persistence>(
 			"ends",
 			"persists"
 		);
@@ -40,7 +40,7 @@ namespace RPG {
 			Restriction_attack_enemy = 2,
 			Restriction_attack_ally = 3
 		};
-		static constexpr auto kRestrictionTags = makeEnumTags<Restriction>(
+		static constexpr auto kRestrictionTags = lcf::makeEnumTags<Restriction>(
 			"normal",
 			"do_nothing",
 			"attack_enemy",
@@ -51,7 +51,7 @@ namespace RPG {
 			AffectType_double = 1,
 			AffectType_nothing = 2
 		};
-		static constexpr auto kAffectTypeTags = makeEnumTags<AffectType>(
+		static constexpr auto kAffectTypeTags = lcf::makeEnumTags<AffectType>(
 			"half",
 			"double",
 			"nothing"
@@ -61,7 +61,7 @@ namespace RPG {
 			ChangeType_gain = 1,
 			ChangeType_nothing = 2
 		};
-		static constexpr auto kChangeTypeTags = makeEnumTags<ChangeType>(
+		static constexpr auto kChangeTypeTags = lcf::makeEnumTags<ChangeType>(
 			"lose",
 			"gain",
 			"nothing"

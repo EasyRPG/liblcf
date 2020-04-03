@@ -28,7 +28,7 @@ namespace RPG {
 			Placement_manual = 0,
 			Placement_automatic = 1
 		};
-		static constexpr auto kPlacementTags = makeEnumTags<Placement>(
+		static constexpr auto kPlacementTags = lcf::makeEnumTags<Placement>(
 			"manual",
 			"automatic"
 		);
@@ -36,7 +36,7 @@ namespace RPG {
 			RowShown_front = 0,
 			RowShown_back = 1
 		};
-		static constexpr auto kRowShownTags = makeEnumTags<RowShown>(
+		static constexpr auto kRowShownTags = lcf::makeEnumTags<RowShown>(
 			"front",
 			"back"
 		);
@@ -45,7 +45,7 @@ namespace RPG {
 			BattleType_alternative = 1,
 			BattleType_gauge = 2
 		};
-		static constexpr auto kBattleTypeTags = makeEnumTags<BattleType>(
+		static constexpr auto kBattleTypeTags = lcf::makeEnumTags<BattleType>(
 			"traditional",
 			"alternative",
 			"gauge"
@@ -54,7 +54,7 @@ namespace RPG {
 			WindowSize_large = 0,
 			WindowSize_small = 1
 		};
-		static constexpr auto kWindowSizeTags = makeEnumTags<WindowSize>(
+		static constexpr auto kWindowSizeTags = lcf::makeEnumTags<WindowSize>(
 			"large",
 			"small"
 		);
@@ -62,7 +62,7 @@ namespace RPG {
 			Transparency_opaque = 0,
 			Transparency_transparent = 1
 		};
-		static constexpr auto kTransparencyTags = makeEnumTags<Transparency>(
+		static constexpr auto kTransparencyTags = lcf::makeEnumTags<Transparency>(
 			"opaque",
 			"transparent"
 		);
@@ -73,7 +73,7 @@ namespace RPG {
 			Facing_down = 3,
 			Facing_left = 4
 		};
-		static constexpr auto kFacingTags = makeEnumTags<Facing>(
+		static constexpr auto kFacingTags = lcf::makeEnumTags<Facing>(
 			"retain",
 			"up",
 			"right",

@@ -19,6 +19,8 @@
 #include "rpg_save.h"
 #include "data.h"
 
+namespace lcf {
+
 // Read/Write Struct
 
 template <class S>
@@ -270,5 +272,7 @@ template <class S>
 void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
+
+} //namespace lcf
 
 #include "fwd_struct_impl.h"

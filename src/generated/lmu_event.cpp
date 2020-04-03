@@ -14,6 +14,8 @@
 #include "lmu_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Event.
 
 template <>
@@ -58,3 +60,5 @@ Field<RPG::Event> const* Struct<RPG::Event>::fields[] = {
 };
 
 template class Struct<RPG::Event>;
+
+} //namespace lcf

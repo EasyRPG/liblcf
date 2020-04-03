@@ -16,6 +16,7 @@
 #include "ldb_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read Terrain.
 
@@ -38,3 +39,4 @@ decltype(Flags<RPG::Terrain::Flags>::flags_is2k3) Flags<RPG::Terrain::Flags>::fl
 	1
 };
 
+} //namespace lcf

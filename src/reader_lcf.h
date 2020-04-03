@@ -29,6 +29,8 @@
 	#define Skip(x) SkipDebug(x, __FILE__)
 #endif
 
+namespace lcf {
+
 /**
  * LcfReader class.
  */
@@ -267,5 +269,7 @@ private:
 inline std::vector<int32_t>& LcfReader::IntBuffer() {
 	return buffer;
 }
+
+} //namespace lcf
 
 #endif

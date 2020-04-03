@@ -16,6 +16,7 @@
 #include "lsd_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read SavePicture.
 
@@ -44,3 +45,4 @@ decltype(Flags<RPG::SavePicture::Flags>::flags_is2k3) Flags<RPG::SavePicture::Fl
 	1
 };
 
+} //namespace lcf

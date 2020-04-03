@@ -16,18 +16,20 @@
 #if defined(LCF_SUPPORT_XML)
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
-	((XmlReader*) closure)->StartElement(name, atts);
+	((lcf::XmlReader*) closure)->StartElement(name, atts);
 }
 
 static void EndElementHandler(void* closure, const XML_Char* name) {
-	((XmlReader*) closure)->EndElement(name);
+	((lcf::XmlReader*) closure)->EndElement(name);
 }
 
 static void CharacterDataHandler(void* closure, const XML_Char* s, int len) {
-	((XmlReader*) closure)->CharacterData(s, len);
+	((lcf::XmlReader*) closure)->CharacterData(s, len);
 }
 }
 #endif
+
+namespace lcf {
 
 XmlReader::XmlReader(std::istream& filestream) :
 	stream(filestream),
@@ -224,3 +226,5 @@ template <>
 void XmlReader::Read<std::vector<double>>(std::vector<double>& val, const std::string& data) {
 	ReadVector<double>(val, data);
 }
+
+} //namespace lcf

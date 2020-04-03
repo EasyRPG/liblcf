@@ -33,7 +33,7 @@ namespace RPG {
 			Type_switch = 3,
 			Type_subskill = 4
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
+		static constexpr auto kTypeTags = lcf::makeEnumTags<Type>(
 			"normal",
 			"teleport",
 			"escape",
@@ -44,7 +44,7 @@ namespace RPG {
 			SpType_cost = 0,
 			SpType_percent = 1
 		};
-		static constexpr auto kSpTypeTags = makeEnumTags<SpType>(
+		static constexpr auto kSpTypeTags = lcf::makeEnumTags<SpType>(
 			"cost",
 			"percent"
 		);
@@ -55,7 +55,7 @@ namespace RPG {
 			Scope_ally = 3,
 			Scope_party = 4
 		};
-		static constexpr auto kScopeTags = makeEnumTags<Scope>(
+		static constexpr auto kScopeTags = lcf::makeEnumTags<Scope>(
 			"enemy",
 			"enemies",
 			"self",

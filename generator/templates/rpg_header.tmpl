@@ -49,7 +49,7 @@ namespace RPG {
 		};
 		{%- endif %}
 		{%- if enum is monotonic_from_0 %}
-		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}{%- if name == "Code" %}::Index{%- endif %}>(
+		static constexpr auto k{{ name }}Tags = lcf::makeEnumTags<{{name}}{%- if name == "Code" %}::Index{%- endif %}>(
 		{%- for field in enum %}
 			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
 		{%- endfor %}

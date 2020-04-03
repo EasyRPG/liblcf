@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read TroopPageCondition.
 
 template <>
@@ -210,3 +212,5 @@ Field<RPG::TroopPageCondition> const* Struct<RPG::TroopPageCondition>::fields[] 
 };
 
 template class Struct<RPG::TroopPageCondition>;
+
+} //namespace lcf

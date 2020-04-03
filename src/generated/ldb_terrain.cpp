@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Terrain.
 
 template <>
@@ -282,3 +284,5 @@ Field<RPG::Terrain> const* Struct<RPG::Terrain>::fields[] = {
 };
 
 template class Struct<RPG::Terrain>;
+
+} //namespace lcf

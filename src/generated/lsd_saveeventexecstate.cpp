@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SaveEventExecState.
 
 template <>
@@ -202,3 +204,5 @@ Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[] 
 };
 
 template class Struct<RPG::SaveEventExecState>;
+
+} //namespace lcf

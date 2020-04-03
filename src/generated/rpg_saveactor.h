@@ -28,7 +28,7 @@ namespace RPG {
 			RowType_front = 0,
 			RowType_back = 1
 		};
-		static constexpr auto kRowTypeTags = makeEnumTags<RowType>(
+		static constexpr auto kRowTypeTags = lcf::makeEnumTags<RowType>(
 			"front",
 			"back"
 		);

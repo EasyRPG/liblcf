@@ -21,6 +21,8 @@
 #include "reader_util.h"
 #include "encoder.h"
 
+namespace lcf {
+
 /**
  * LcfWriter class.
  */
@@ -146,5 +148,7 @@ private:
 	static void SwapByteOrder(double &d);
 
 };
+
+} //namespace lcf
 
 #endif

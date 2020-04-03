@@ -14,6 +14,8 @@
 #include "lmt_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Encounter.
 
 template <>
@@ -34,3 +36,5 @@ Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[] = {
 };
 
 template class Struct<RPG::Encounter>;
+
+} //namespace lcf

@@ -10,6 +10,8 @@
 #include "flag_set.h"
 #include "doctest.h"
 
+using namespace lcf;
+
 enum Color {
 	Red,
 	Green,

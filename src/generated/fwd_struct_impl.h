@@ -11,6 +11,7 @@
 
 // MSVC incorrectly treats these declarations as definitions and fails.
 #ifndef _MSC_VER
+namespace lcf {
 template <>
 const char* const Struct<RPG::Actor>::name;
 template <>
@@ -341,4 +342,6 @@ const char* const Struct<RPG::Variable>::name;
 template <>
 Field<RPG::Variable> const* Struct<RPG::Variable>::fields[];
 
+} //namespace lcf
 #endif
+

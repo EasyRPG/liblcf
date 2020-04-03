@@ -27,7 +27,7 @@ namespace RPG {
 			Type_physical = 0,
 			Type_magical = 1
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
+		static constexpr auto kTypeTags = lcf::makeEnumTags<Type>(
 			"physical",
 			"magical"
 		);

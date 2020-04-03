@@ -14,6 +14,8 @@
 #include "lmu_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read EventPageCondition.
 
 template <>
@@ -106,3 +108,5 @@ Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[] 
 };
 
 template class Struct<RPG::EventPageCondition>;
+
+} //namespace lcf

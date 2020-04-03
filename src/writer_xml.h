@@ -16,6 +16,8 @@
 #include <cstdio>
 #include <stdint.h>
 
+namespace lcf {
+
 /**
  * XmlWriter class.
  */
@@ -121,5 +123,7 @@ protected:
 	void WriteVector(const std::vector<T>& val);
 
 };
+
+} //namespace lcf
 
 #endif

@@ -19,7 +19,7 @@
 #include "data.h"
 
 void RPG::SaveActor::Setup(int actor_id) {
-	const RPG::Actor& actor = Data::actors[actor_id - 1];
+	const RPG::Actor& actor = lcf::Data::actors[actor_id - 1];
 	ID = actor.ID;
 	name = actor.name;
 	title = actor.title;
@@ -47,7 +47,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	current_hp = 0;
 	current_sp = 0;
 	battle_commands.resize(7, -1);
-	status.resize(Data::states.size());
+	status.resize(lcf::Data::states.size());
 	changed_battle_commands = false;
 	class_id = -1;
 	two_weapon = actor.two_weapon;
@@ -57,7 +57,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 }
 
 void RPG::SaveInventory::Setup() {
-	party = Data::system.party;
+	party = lcf::Data::system.party;
 }
 
 void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
@@ -89,7 +89,7 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 }
 
 void RPG::SaveSystem::Setup() {
-	const RPG::System& system = Data::system;
+	const RPG::System& system = lcf::Data::system;
 	frame_count = 0;
 	face_name = "";
 	face_id = -1;
@@ -135,7 +135,7 @@ void RPG::Save::Setup() {
 	screen = RPG::SaveScreen();
 	pictures.clear();
 	actors.clear();
-	actors.resize(Data::actors.size());
+	actors.resize(lcf::Data::actors.size());
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
 	map_info.Setup();
@@ -152,7 +152,7 @@ void RPG::Save::Setup() {
 
 void RPG::Actor::Setup() {
 	int max_final_level = 0;
-	if (Data::system.ldb_id == 2003) {
+	if (lcf::Data::system.ldb_id == 2003) {
 		max_final_level = 99;
 		if (final_level == -1) {
 			final_level = max_final_level;

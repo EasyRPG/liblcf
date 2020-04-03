@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SaveSystem.
 
 template <>
@@ -480,3 +482,5 @@ Field<RPG::SaveSystem> const* Struct<RPG::SaveSystem>::fields[] = {
 };
 
 template class Struct<RPG::SaveSystem>;
+
+} //namespace lcf

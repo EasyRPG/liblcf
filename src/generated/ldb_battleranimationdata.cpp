@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read BattlerAnimationData.
 
 template <>
@@ -50,3 +52,5 @@ Field<RPG::BattlerAnimationData> const* Struct<RPG::BattlerAnimationData>::field
 };
 
 template class Struct<RPG::BattlerAnimationData>;
+
+} //namespace lcf

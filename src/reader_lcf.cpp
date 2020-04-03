@@ -13,6 +13,7 @@
 
 #include "reader_lcf.h"
 
+namespace lcf {
 // Statics
 
 std::string LcfReader::error_str;
@@ -344,3 +345,5 @@ void LcfReader::SwapByteOrder(int32_t& s)
 {
 	SwapByteOrder((uint32_t&) s);
 }
+
+} //namespace lcf

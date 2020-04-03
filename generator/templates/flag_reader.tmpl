@@ -6,6 +6,7 @@
 #include "{{ type }}_chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read {{ struct_name }}.
 
@@ -26,3 +27,4 @@ decltype(Flags<RPG::{{ struct_name }}::Flags>::flags_is2k3) Flags<RPG::{{ struct
 {%- endfor %}
 };
 
+} //namespace lcf

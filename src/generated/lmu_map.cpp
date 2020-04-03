@@ -14,6 +14,8 @@
 #include "lmu_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Map.
 
 template <>
@@ -282,3 +284,5 @@ Field<RPG::Map> const* Struct<RPG::Map>::fields[] = {
 };
 
 template class Struct<RPG::Map>;
+
+} //namespace lcf

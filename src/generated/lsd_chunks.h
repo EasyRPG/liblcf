@@ -12,6 +12,8 @@
 #ifndef LCF_LSD_CHUNKS_H
 #define LCF_LSD_CHUNKS_H
 
+namespace lcf {
+
 /**
  * LSD Reader namespace.
  */
@@ -965,5 +967,7 @@ namespace LSD_Reader {
 		};
 	};
 }
+
+} //namespace lcf
 
 #endif

@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read TroopPage.
 
 template <>
@@ -49,3 +51,5 @@ Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[] = {
 };
 
 template class Struct<RPG::TroopPage>;
+
+} //namespace lcf

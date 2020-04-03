@@ -19,6 +19,8 @@
 #include "reader_util.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 double LSD_Reader::ToTDateTime(std::time_t const t) {
 	// 25569 is UnixDateDelta: number of days between 1970-01-01 and 1900-01-01
 	return(t / 86400.0 + 25569.0);
@@ -146,3 +148,5 @@ RPG::Save LSD_Reader::ClearDefaults(const RPG::Save& save_in, const RPG::MapInfo
 
 	return save;
 }
+
+} //namespace lcf

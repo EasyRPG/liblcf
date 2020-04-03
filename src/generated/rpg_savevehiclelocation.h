@@ -30,7 +30,7 @@ namespace RPG {
 			VehicleType_ship = 2,
 			VehicleType_airship = 3
 		};
-		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
+		static constexpr auto kVehicleTypeTags = lcf::makeEnumTags<VehicleType>(
 			"none",
 			"skiff",
 			"ship",

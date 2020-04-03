@@ -12,6 +12,8 @@
 #ifndef LCF_LMU_CHUNKS_H
 #define LCF_LMU_CHUNKS_H
 
+namespace lcf {
+
 /**
  * LMU Reader namespace.
  */
@@ -169,5 +171,7 @@ namespace LMU_Reader {
 		};
 	};
 }
+
+} //namespace lcf
 
 #endif

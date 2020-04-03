@@ -19,6 +19,7 @@
 #include "lmu_eventpagecondition_flags.h"
 #include "lsd_savepicture_flags.h"
 
+namespace lcf {
 // Templates
 
 template <class S>
@@ -145,3 +146,5 @@ template class Flags<RPG::TroopPageCondition::Flags>;
 template class Flags<RPG::EventPageCondition::Flags>;
 template class Flags<RPG::Terrain::Flags>;
 template class Flags<RPG::SavePicture::Flags>;
+
+} //namespace lcf

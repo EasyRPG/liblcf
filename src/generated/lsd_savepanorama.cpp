@@ -14,6 +14,8 @@
 #include "lsd_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read SavePanorama.
 
 template <>
@@ -42,3 +44,5 @@ Field<RPG::SavePanorama> const* Struct<RPG::SavePanorama>::fields[] = {
 };
 
 template class Struct<RPG::SavePanorama>;
+
+} //namespace lcf

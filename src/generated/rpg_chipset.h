@@ -28,7 +28,7 @@ namespace RPG {
 			AnimType_reciprocating = 0,
 			AnimType_cyclic = 1
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+		static constexpr auto kAnimTypeTags = lcf::makeEnumTags<AnimType>(
 			"reciprocating",
 			"cyclic"
 		);

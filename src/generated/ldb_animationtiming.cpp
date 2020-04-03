@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read AnimationTiming.
 
 template <>
@@ -90,3 +92,5 @@ Field<RPG::AnimationTiming> const* Struct<RPG::AnimationTiming>::fields[] = {
 };
 
 template class Struct<RPG::AnimationTiming>;
+
+} //namespace lcf

@@ -4,6 +4,8 @@
 #include "{{ type }}_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read {{ struct_name }}.
 {%- set LCF_CHUNK_SUFFIX = type|upper + "_Reader" %}
 {%- set LCF_CURRENT_STRUCT = struct_name %}
@@ -51,3 +53,5 @@ Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}
 };
 
 template class Struct<RPG::{{ LCF_CURRENT_STRUCT }}>;
+
+} //namespace lcf

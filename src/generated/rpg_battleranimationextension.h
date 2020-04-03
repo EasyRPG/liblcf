@@ -27,7 +27,7 @@ namespace RPG {
 			AnimType_graphic = 0,
 			AnimType_animation = 1
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
+		static constexpr auto kAnimTypeTags = lcf::makeEnumTags<AnimType>(
 			"graphic",
 			"animation"
 		);

@@ -28,7 +28,7 @@ namespace RPG {
 			Movement_jump = 2,
 			Movement_move = 3
 		};
-		static constexpr auto kMovementTags = makeEnumTags<Movement>(
+		static constexpr auto kMovementTags = lcf::makeEnumTags<Movement>(
 			"none",
 			"step",
 			"jump",
@@ -38,7 +38,7 @@ namespace RPG {
 			AfterImage_none = 0,
 			AfterImage_add = 1
 		};
-		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
+		static constexpr auto kAfterImageTags = lcf::makeEnumTags<AfterImage>(
 			"none",
 			"add"
 		);
@@ -47,7 +47,7 @@ namespace RPG {
 			Speed_medium = 1,
 			Speed_slow = 2
 		};
-		static constexpr auto kSpeedTags = makeEnumTags<Speed>(
+		static constexpr auto kSpeedTags = lcf::makeEnumTags<Speed>(
 			"fast",
 			"medium",
 			"slow"

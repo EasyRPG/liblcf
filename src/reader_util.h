@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+namespace lcf {
+
 /**
  * ReaderUtil namespace.
  */
@@ -163,5 +165,7 @@ namespace ReaderUtil {
 		return &vec[one_based_index - 1];
 	}
 }
+
+} //namespace lcf
 
 #endif

@@ -14,6 +14,8 @@
 #include "ldb_chunks.h"
 #include "reader_struct_impl.h"
 
+namespace lcf {
+
 // Read Animation.
 
 template <>
@@ -82,3 +84,5 @@ Field<RPG::Animation> const* Struct<RPG::Animation>::fields[] = {
 };
 
 template class Struct<RPG::Animation>;
+
+} //namespace lcf
