@@ -10,6 +10,8 @@
 #ifndef LCF_READER_LCF_H
 #define LCF_READER_LCF_H
 
+#include "lcf/config.h"
+
 #include <string>
 #include <vector>
 #include <iosfwd>
@@ -18,7 +20,6 @@
 #include <cstdint>
 #include <cinttypes>
 #include <memory>
-#include "lcf/lcf_options.h"
 #include "lcf/reader_util.h"
 #include "lcf/encoder.h"
 

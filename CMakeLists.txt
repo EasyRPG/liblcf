@@ -138,7 +138,6 @@ set(PUBLIC_HEADERS
 	src/lcf/flag_set.h
 	src/lcf/ini.h
 	src/lcf/inireader.h
-	src/lcf/lcf_options.h
 	src/lcf/lcf_saveopt.h
 	src/lcf/ldb_reader.h
 	src/lcf/lmt_reader.h
@@ -222,6 +221,7 @@ set(PUBLIC_HEADERS
 	src/generated/lcf/rpg_variable.h
 )
 list(TRANSFORM PUBLIC_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(APPEND PUBLIC_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
 target_sources(lcf PUBLIC ${PUBLIC_HEADERS})
 
@@ -237,6 +237,7 @@ endforeach()
 # includes
 target_include_directories(
 	lcf PUBLIC
+	${CMAKE_CURRENT_BINARY_DIR}/src
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 	${CMAKE_CURRENT_SOURCE_DIR}/src/generated
 )
@@ -268,22 +269,24 @@ if(DISABLE_ICU)
 else()
 	find_package(ICU COMPONENTS i18n uc data REQUIRED)
 	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
-	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_ICU=1)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
+	set(LCF_SUPPORT_ICU "1")
 endif()
 
 # expat
 if(NOT DISABLE_XML)
 	find_package(EXPAT)
 	target_link_libraries(lcf EXPAT::EXPAT)
-	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_XML=1)
 	list(APPEND LIBLCF_DEPS "expat")
+	set(LCF_SUPPORT_XML "1")
 endif()
 
 # mime types
 if(NOT DISABLE_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 	find_program(UPDATE_MIME_DATABASE update-mime-database)
 endif()
+
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake.config.h.in" "src/lcf/config.h" @ONLY)
 
 # .so version
 set_property(TARGET lcf PROPERTY SOVERSION 0)

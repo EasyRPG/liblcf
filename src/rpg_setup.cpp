@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf/lcf_options.h"
+#include "lcf/config.h"
 #include "lcf/rpg_actor.h"
 #include "lcf/rpg_event.h"
 #include "lcf/rpg_map.h"

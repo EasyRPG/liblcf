@@ -10,6 +10,8 @@
 #ifndef LCF_READER_XML_H
 #define LCF_READER_XML_H
 
+#include "lcf/config.h"
+
 #include <string>
 #include <vector>
 #include <cstdio>
@@ -17,7 +19,6 @@
 #  include <expat.h>
 #endif
 #include <stdint.h>
-#include "lcf/lcf_options.h"
 #include "lcf/reader_util.h"
 
 namespace lcf {

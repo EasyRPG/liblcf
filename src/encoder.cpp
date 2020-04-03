@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf/lcf_options.h"
+#include "lcf/config.h"
 #include "lcf/encoder.h"
 #include "lcf/reader_util.h"
 #include "lcf/scope_guard.h"

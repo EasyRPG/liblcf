@@ -20,6 +20,7 @@ lcfincludedir = $(includedir)/lcf
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
+	-I$(srcdir)/autogen \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
 liblcf_la_CXXFLAGS = \
@@ -130,15 +131,14 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_state.cpp \
 	src/generated/rpg_system.cpp
 lcfinclude_HEADERS = \
+	autogen/lcf/config.h \
 	src/lcf/command_codes.h \
-	src/lcf/config.h \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
 	src/lcf/flag_set.h \
 	src/lcf/ini.h \
 	src/lcf/inireader.h \
-	src/lcf/lcf_options.h \
 	src/lcf/lcf_saveopt.h \
 	src/lcf/ldb_reader.h \
 	src/lcf/lmt_reader.h \

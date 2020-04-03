@@ -10,6 +10,8 @@
 #ifndef LCF_WRITER_LCF_H
 #define LCF_WRITER_LCF_H
 
+#include "lcf/config.h"
+
 #include <string>
 #include <vector>
 #include <iosfwd>
@@ -17,7 +19,6 @@
 #include <memory>
 #include <cassert>
 #include <stdint.h>
-#include "lcf/lcf_options.h"
 #include "lcf/reader_util.h"
 #include "lcf/encoder.h"
 
