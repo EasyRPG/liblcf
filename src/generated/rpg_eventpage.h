@@ -33,24 +33,12 @@ namespace RPG {
 			Down = 2,
 			Left = 3
 		};
-		static constexpr auto kDirectionTags = makeEnumTags<Direction>(
-			"Up",
-			"Right",
-			"Down",
-			"Left"
-		);
 		enum class Frame {
 			Left = 0,
 			Middle = 1,
 			Right = 2,
 			Middle2 = 3
 		};
-		static constexpr auto kFrameTags = makeEnumTags<Frame>(
-			"Left",
-			"Middle",
-			"Right",
-			"Middle2"
-		);
 		enum class MoveType {
 			Stationary = 0,
 			Random = 1,
@@ -60,15 +48,6 @@ namespace RPG {
 			Away = 5,
 			Custom = 6
 		};
-		static constexpr auto kMoveTypeTags = makeEnumTags<MoveType>(
-			"Stationary",
-			"Random",
-			"Vertical",
-			"Horizontal",
-			"Toward",
-			"Away",
-			"Custom"
-		);
 		enum class Trigger {
 			Action = 0,
 			Touched = 1,
@@ -76,23 +55,11 @@ namespace RPG {
 			AutoStart = 3,
 			Parallel = 4
 		};
-		static constexpr auto kTriggerTags = makeEnumTags<Trigger>(
-			"Action",
-			"Touched",
-			"Collision",
-			"AutoStart",
-			"Parallel"
-		);
 		enum class Layers {
 			Below = 0,
 			Same = 1,
 			Above = 2
 		};
-		static constexpr auto kLayersTags = makeEnumTags<Layers>(
-			"Below",
-			"Same",
-			"Above"
-		);
 		enum class AnimType {
 			NonContinuous = 0,
 			Continuous = 1,
@@ -102,15 +69,6 @@ namespace RPG {
 			Spin = 5,
 			StepFrameFix = 6
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"NonContinuous",
-			"Continuous",
-			"FixedNonContinuous",
-			"FixedContinuous",
-			"FixedGraphic",
-			"Spin",
-			"StepFrameFix"
-		);
 		enum class MoveSpeed {
 			Eighth = 1,
 			Quarter = 2,
@@ -168,5 +126,63 @@ LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Trigger, true, Action, Parallel);
 LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::Layers, true, Below, Above);
 LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::AnimType, true, NonContinuous, StepFrameFix);
 LCF_DEFINE_ENUM_TRAITS(RPG::EventPage::MoveSpeed, true, Eighth, Fourfold);
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::Direction, (makeEnumTags<RPG::EventPage::Direction>({{
+	"Up",
+	"Right",
+	"Down",
+	"Left"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::Frame, (makeEnumTags<RPG::EventPage::Frame>({{
+	"Left",
+	"Middle",
+	"Right",
+	"Middle2"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::MoveType, (makeEnumTags<RPG::EventPage::MoveType>({{
+	"Stationary",
+	"Random",
+	"Vertical",
+	"Horizontal",
+	"Toward",
+	"Away",
+	"Custom"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::Trigger, (makeEnumTags<RPG::EventPage::Trigger>({{
+	"Action",
+	"Touched",
+	"Collision",
+	"AutoStart",
+	"Parallel"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::Layers, (makeEnumTags<RPG::EventPage::Layers>({{
+	"Below",
+	"Same",
+	"Above"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::AnimType, (makeEnumTags<RPG::EventPage::AnimType>({{
+	"NonContinuous",
+	"Continuous",
+	"FixedNonContinuous",
+	"FixedContinuous",
+	"FixedGraphic",
+	"Spin",
+	"StepFrameFix"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPage::MoveSpeed, (makeEnumTags<RPG::EventPage::MoveSpeed>({{
+	"Eighth",
+	"Quarter",
+	"Half",
+	"Normal",
+	"Double",
+	"Fourfold"
+	}})));
+
 
 #endif

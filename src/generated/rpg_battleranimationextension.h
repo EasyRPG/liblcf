@@ -27,10 +27,6 @@ namespace RPG {
 			Graphic = 0,
 			Animation = 1
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"Graphic",
-			"Animation"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -54,5 +50,11 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationExtension::AnimType, true, Graphic, Animation);
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattlerAnimationExtension::AnimType, (makeEnumTags<RPG::BattlerAnimationExtension::AnimType>({{
+	"Graphic",
+	"Animation"
+	}})));
+
 
 #endif

@@ -28,44 +28,23 @@ namespace RPG {
 			Manual = 0,
 			Automatic = 1
 		};
-		static constexpr auto kPlacementTags = makeEnumTags<Placement>(
-			"Manual",
-			"Automatic"
-		);
 		enum class RowShown {
 			Front = 0,
 			Back = 1
 		};
-		static constexpr auto kRowShownTags = makeEnumTags<RowShown>(
-			"Front",
-			"Back"
-		);
 		enum class BattleType {
 			Traditional = 0,
 			Alternative = 1,
 			Gauge = 2
 		};
-		static constexpr auto kBattleTypeTags = makeEnumTags<BattleType>(
-			"Traditional",
-			"Alternative",
-			"Gauge"
-		);
 		enum class WindowSize {
 			Large = 0,
 			Small = 1
 		};
-		static constexpr auto kWindowSizeTags = makeEnumTags<WindowSize>(
-			"Large",
-			"Small"
-		);
 		enum class Transparency {
 			Opaque = 0,
 			Transparent = 1
 		};
-		static constexpr auto kTransparencyTags = makeEnumTags<Transparency>(
-			"Opaque",
-			"Transparent"
-		);
 		enum class Facing {
 			Retain = 0,
 			Up = 1,
@@ -73,13 +52,6 @@ namespace RPG {
 			Down = 3,
 			Left = 4
 		};
-		static constexpr auto kFacingTags = makeEnumTags<Facing>(
-			"Retain",
-			"Up",
-			"Right",
-			"Down",
-			"Left"
-		);
 
 		int32_t placement = 0;
 		bool death_handler_unused = 0;
@@ -127,5 +99,40 @@ LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::BattleType, true, Traditional, Gauge
 LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::WindowSize, true, Large, Small);
 LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Transparency, true, Opaque, Transparent);
 LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommands::Facing, true, Retain, Left);
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::Placement, (makeEnumTags<RPG::BattleCommands::Placement>({{
+	"Manual",
+	"Automatic"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::RowShown, (makeEnumTags<RPG::BattleCommands::RowShown>({{
+	"Front",
+	"Back"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::BattleType, (makeEnumTags<RPG::BattleCommands::BattleType>({{
+	"Traditional",
+	"Alternative",
+	"Gauge"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::WindowSize, (makeEnumTags<RPG::BattleCommands::WindowSize>({{
+	"Large",
+	"Small"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::Transparency, (makeEnumTags<RPG::BattleCommands::Transparency>({{
+	"Opaque",
+	"Transparent"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommands::Facing, (makeEnumTags<RPG::BattleCommands::Facing>({{
+	"Retain",
+	"Up",
+	"Right",
+	"Down",
+	"Left"
+	}})));
+
 
 #endif

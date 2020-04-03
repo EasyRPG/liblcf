@@ -30,42 +30,22 @@ namespace RPG {
 			Ends = 0,
 			Persists = 1
 		};
-		static constexpr auto kPersistenceTags = makeEnumTags<Persistence>(
-			"Ends",
-			"Persists"
-		);
 		enum class Restriction {
 			Normal = 0,
 			DoNothing = 1,
 			AttackEnemy = 2,
 			AttackAlly = 3
 		};
-		static constexpr auto kRestrictionTags = makeEnumTags<Restriction>(
-			"Normal",
-			"DoNothing",
-			"AttackEnemy",
-			"AttackAlly"
-		);
 		enum class AffectType {
 			Half = 0,
 			Double = 1,
 			Nothing = 2
 		};
-		static constexpr auto kAffectTypeTags = makeEnumTags<AffectType>(
-			"Half",
-			"Double",
-			"Nothing"
-		);
 		enum class ChangeType {
 			Lose = 0,
 			Gain = 1,
 			Nothing = 2
 		};
-		static constexpr auto kChangeTypeTags = makeEnumTags<ChangeType>(
-			"Lose",
-			"Gain",
-			"Nothing"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -166,5 +146,30 @@ LCF_DEFINE_ENUM_TRAITS(RPG::State::Persistence, true, Ends, Persists);
 LCF_DEFINE_ENUM_TRAITS(RPG::State::Restriction, true, Normal, AttackAlly);
 LCF_DEFINE_ENUM_TRAITS(RPG::State::AffectType, true, Half, Nothing);
 LCF_DEFINE_ENUM_TRAITS(RPG::State::ChangeType, true, Lose, Nothing);
+
+LCF_DEFINE_ENUM_TAGS(RPG::State::Persistence, (makeEnumTags<RPG::State::Persistence>({{
+	"Ends",
+	"Persists"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::State::Restriction, (makeEnumTags<RPG::State::Restriction>({{
+	"Normal",
+	"DoNothing",
+	"AttackEnemy",
+	"AttackAlly"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::State::AffectType, (makeEnumTags<RPG::State::AffectType>({{
+	"Half",
+	"Double",
+	"Nothing"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::State::ChangeType, (makeEnumTags<RPG::State::ChangeType>({{
+	"Lose",
+	"Gain",
+	"Nothing"
+	}})));
+
 
 #endif

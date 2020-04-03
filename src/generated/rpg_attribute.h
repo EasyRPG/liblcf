@@ -27,10 +27,6 @@ namespace RPG {
 			Physical = 0,
 			Magical = 1
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"Physical",
-			"Magical"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -58,5 +54,11 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::Attribute::Type, true, Physical, Magical);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Attribute::Type, (makeEnumTags<RPG::Attribute::Type>({{
+	"Physical",
+	"Magical"
+	}})));
+
 
 #endif

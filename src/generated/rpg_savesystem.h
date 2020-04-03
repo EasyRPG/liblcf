@@ -37,25 +37,10 @@ namespace RPG {
 			GameOver = 7,
 			Debug = 8
 		};
-		static constexpr auto kSceneTags = makeEnumTags<Scene>(
-			"Map",
-			"Menu",
-			"Battle",
-			"Shop",
-			"Name",
-			"File",
-			"Title",
-			"GameOver",
-			"Debug"
-		);
 		enum class AtbMode {
 			AtbActive = 0,
 			AtbWait = 1
 		};
-		static constexpr auto kAtbModeTags = makeEnumTags<AtbMode>(
-			"AtbActive",
-			"AtbWait"
-		);
 
 		void Setup();
 		void Fixup();
@@ -182,5 +167,23 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::Scene, true, Map, Debug);
 LCF_DEFINE_ENUM_TRAITS(RPG::SaveSystem::AtbMode, true, AtbActive, AtbWait);
+
+LCF_DEFINE_ENUM_TAGS(RPG::SaveSystem::Scene, (makeEnumTags<RPG::SaveSystem::Scene>({{
+	"Map",
+	"Menu",
+	"Battle",
+	"Shop",
+	"Name",
+	"File",
+	"Title",
+	"GameOver",
+	"Debug"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::SaveSystem::AtbMode, (makeEnumTags<RPG::SaveSystem::AtbMode>({{
+	"AtbActive",
+	"AtbWait"
+	}})));
+
 
 #endif

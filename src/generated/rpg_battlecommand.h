@@ -31,15 +31,6 @@ namespace RPG {
 			Escape = 5,
 			Special = 6
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"Attack",
-			"Skill",
-			"Subskill",
-			"Defense",
-			"Item",
-			"Escape",
-			"Special"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -57,5 +48,16 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::BattleCommand::Type, true, Attack, Special);
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattleCommand::Type, (makeEnumTags<RPG::BattleCommand::Type>({{
+	"Attack",
+	"Skill",
+	"Subskill",
+	"Defense",
+	"Item",
+	"Escape",
+	"Special"
+	}})));
+
 
 #endif

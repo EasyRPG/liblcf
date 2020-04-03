@@ -28,21 +28,11 @@ namespace RPG {
 			Target = 1,
 			Screen = 2
 		};
-		static constexpr auto kFlashScopeTags = makeEnumTags<FlashScope>(
-			"Nothing",
-			"Target",
-			"Screen"
-		);
 		enum class ScreenShake {
 			Nothing = 0,
 			Target = 1,
 			Screen = 2
 		};
-		static constexpr auto kScreenShakeTags = makeEnumTags<ScreenShake>(
-			"Nothing",
-			"Target",
-			"Screen"
-		);
 
 		int ID = 0;
 		int32_t frame = 0;
@@ -73,5 +63,18 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::AnimationTiming::FlashScope, true, Nothing, Screen);
 LCF_DEFINE_ENUM_TRAITS(RPG::AnimationTiming::ScreenShake, true, Nothing, Screen);
+
+LCF_DEFINE_ENUM_TAGS(RPG::AnimationTiming::FlashScope, (makeEnumTags<RPG::AnimationTiming::FlashScope>({{
+	"Nothing",
+	"Target",
+	"Screen"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::AnimationTiming::ScreenShake, (makeEnumTags<RPG::AnimationTiming::ScreenShake>({{
+	"Nothing",
+	"Target",
+	"Screen"
+	}})));
+
 
 #endif

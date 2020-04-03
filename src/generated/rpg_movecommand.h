@@ -67,50 +67,6 @@ namespace RPG {
 			IncreaseTransp = 40,
 			DecreaseTransp = 41
 		};
-		static constexpr auto kCodeTags = makeEnumTags<Code>(
-			"MoveUp",
-			"MoveRight",
-			"MoveDown",
-			"MoveLeft",
-			"MoveUpright",
-			"MoveDownright",
-			"MoveDownleft",
-			"MoveUpleft",
-			"MoveRandom",
-			"MoveTowardsHero",
-			"MoveAwayFromHero",
-			"MoveForward",
-			"FaceUp",
-			"FaceRight",
-			"FaceDown",
-			"FaceLeft",
-			"Turn90DegreeRight",
-			"Turn90DegreeLeft",
-			"Turn180Degree",
-			"Turn90DegreeRandom",
-			"FaceRandomDirection",
-			"FaceHero",
-			"FaceAwayFromHero",
-			"Wait",
-			"BeginJump",
-			"EndJump",
-			"LockFacing",
-			"UnlockFacing",
-			"IncreaseMovementSpeed",
-			"DecreaseMovementSpeed",
-			"IncreaseMovementFrequence",
-			"DecreaseMovementFrequence",
-			"SwitchOn",
-			"SwitchOff",
-			"ChangeGraphic",
-			"PlaySoundEffect",
-			"WalkEverywhereOn",
-			"WalkEverywhereOff",
-			"StopAnimation",
-			"StartAnimation",
-			"IncreaseTransp",
-			"DecreaseTransp"
-		);
 
 		int32_t command_id = 0;
 		std::string parameter_string;
@@ -133,5 +89,51 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::MoveCommand::Code, true, MoveUp, DecreaseTransp);
+
+LCF_DEFINE_ENUM_TAGS(RPG::MoveCommand::Code, (makeEnumTags<RPG::MoveCommand::Code>({{
+	"MoveUp",
+	"MoveRight",
+	"MoveDown",
+	"MoveLeft",
+	"MoveUpright",
+	"MoveDownright",
+	"MoveDownleft",
+	"MoveUpleft",
+	"MoveRandom",
+	"MoveTowardsHero",
+	"MoveAwayFromHero",
+	"MoveForward",
+	"FaceUp",
+	"FaceRight",
+	"FaceDown",
+	"FaceLeft",
+	"Turn90DegreeRight",
+	"Turn90DegreeLeft",
+	"Turn180Degree",
+	"Turn90DegreeRandom",
+	"FaceRandomDirection",
+	"FaceHero",
+	"FaceAwayFromHero",
+	"Wait",
+	"BeginJump",
+	"EndJump",
+	"LockFacing",
+	"UnlockFacing",
+	"IncreaseMovementSpeed",
+	"DecreaseMovementSpeed",
+	"IncreaseMovementFrequence",
+	"DecreaseMovementFrequence",
+	"SwitchOn",
+	"SwitchOff",
+	"ChangeGraphic",
+	"PlaySoundEffect",
+	"WalkEverywhereOn",
+	"WalkEverywhereOff",
+	"StopAnimation",
+	"StartAnimation",
+	"IncreaseTransp",
+	"DecreaseTransp"
+	}})));
+
 
 #endif

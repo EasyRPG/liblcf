@@ -29,20 +29,11 @@ namespace RPG {
 			Target = 0,
 			Screen = 1
 		};
-		static constexpr auto kScopeTags = makeEnumTags<Scope>(
-			"Target",
-			"Screen"
-		);
 		enum class Position {
 			Up = 0,
 			Middle = 1,
 			Down = 2
 		};
-		static constexpr auto kPositionTags = makeEnumTags<Position>(
-			"Up",
-			"Middle",
-			"Down"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -71,5 +62,17 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Scope, true, Target, Screen);
 LCF_DEFINE_ENUM_TRAITS(RPG::Animation::Position, true, Up, Down);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Animation::Scope, (makeEnumTags<RPG::Animation::Scope>({{
+	"Target",
+	"Screen"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Animation::Position, (makeEnumTags<RPG::Animation::Position>({{
+	"Up",
+	"Middle",
+	"Down"
+	}})));
+
 
 #endif

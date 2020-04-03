@@ -29,11 +29,6 @@ namespace RPG {
 			Rotation = 1,
 			Wave = 2
 		};
-		static constexpr auto kEffectTags = makeEnumTags<Effect>(
-			"None",
-			"Rotation",
-			"Wave"
-		);
 		enum class MapLayer {
 			None = 0,
 			Parallax = 1,
@@ -47,19 +42,6 @@ namespace RPG {
 			Windows = 9,
 			Timers = 10
 		};
-		static constexpr auto kMapLayerTags = makeEnumTags<MapLayer>(
-			"None",
-			"Parallax",
-			"TilemapBelow",
-			"EventsBelow",
-			"EventsSameAsPlayer",
-			"TilemapAbove",
-			"EventsAbove",
-			"Weather",
-			"Animations",
-			"Windows",
-			"Timers"
-		);
 		enum class BattleLayer {
 			None = 0,
 			Background = 1,
@@ -68,14 +50,6 @@ namespace RPG {
 			WindowsAndStatus = 4,
 			Timers = 5
 		};
-		static constexpr auto kBattleLayerTags = makeEnumTags<BattleLayer>(
-			"None",
-			"Background",
-			"BattlersAndAnimations",
-			"Weather",
-			"WindowsAndStatus",
-			"Timers"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -191,5 +165,35 @@ namespace RPG {
 LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::Effect, true, None, Wave);
 LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::MapLayer, true, None, Timers);
 LCF_DEFINE_ENUM_TRAITS(RPG::SavePicture::BattleLayer, true, None, Timers);
+
+LCF_DEFINE_ENUM_TAGS(RPG::SavePicture::Effect, (makeEnumTags<RPG::SavePicture::Effect>({{
+	"None",
+	"Rotation",
+	"Wave"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::SavePicture::MapLayer, (makeEnumTags<RPG::SavePicture::MapLayer>({{
+	"None",
+	"Parallax",
+	"TilemapBelow",
+	"EventsBelow",
+	"EventsSameAsPlayer",
+	"TilemapAbove",
+	"EventsAbove",
+	"Weather",
+	"Animations",
+	"Windows",
+	"Timers"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::SavePicture::BattleLayer, (makeEnumTags<RPG::SavePicture::BattleLayer>({{
+	"None",
+	"Background",
+	"BattlersAndAnimations",
+	"Weather",
+	"WindowsAndStatus",
+	"Timers"
+	}})));
+
 
 #endif

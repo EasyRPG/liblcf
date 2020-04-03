@@ -32,31 +32,16 @@ namespace RPG {
 			Event = 1,
 			Specific = 2
 		};
-		static constexpr auto kMusicTypeTags = makeEnumTags<MusicType>(
-			"Parent",
-			"Event",
-			"Specific"
-		);
 		enum class BGMType {
 			Parent = 0,
 			Terrain = 1,
 			Specific = 2
 		};
-		static constexpr auto kBGMTypeTags = makeEnumTags<BGMType>(
-			"Parent",
-			"Terrain",
-			"Specific"
-		);
 		enum class TriState {
 			Parent = 0,
 			Allow = 1,
 			Forbid = 2
 		};
-		static constexpr auto kTriStateTags = makeEnumTags<TriState>(
-			"Parent",
-			"Allow",
-			"Forbid"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -106,5 +91,24 @@ namespace RPG {
 LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::MusicType, true, Parent, Specific);
 LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::BGMType, true, Parent, Specific);
 LCF_DEFINE_ENUM_TRAITS(RPG::MapInfo::TriState, true, Parent, Forbid);
+
+LCF_DEFINE_ENUM_TAGS(RPG::MapInfo::MusicType, (makeEnumTags<RPG::MapInfo::MusicType>({{
+	"Parent",
+	"Event",
+	"Specific"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::MapInfo::BGMType, (makeEnumTags<RPG::MapInfo::BGMType>({{
+	"Parent",
+	"Terrain",
+	"Specific"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::MapInfo::TriState, (makeEnumTags<RPG::MapInfo::TriState>({{
+	"Parent",
+	"Allow",
+	"Forbid"
+	}})));
+
 
 #endif

@@ -37,6 +37,7 @@ add_library(lcf
 	src/encoder.cpp
 	src/encoder.h
 	src/enum.h
+	src/enum_table.h
 	src/enum_tags.h
 	src/enum_set.h
 	src/ini.cpp
@@ -75,6 +76,7 @@ add_library(lcf
 	src/writer_lcf.h
 	src/writer_xml.cpp
 	src/writer_xml.h
+	src/zstring_view.h
 	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp

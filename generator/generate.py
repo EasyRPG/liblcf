@@ -356,14 +356,6 @@ def is_monotonic(enum):
 def is_monotonic_str(enum):
     return "true" if is_monotonic(enum) else "false"
 
-def is_monotonic_from_0(enum):
-    expected = 0
-    for (val, idx) in enum:
-        if int(idx) != expected:
-            return False
-        expected += 1
-    return True
-
 def generate():
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
@@ -471,7 +463,6 @@ def main(argv):
     env.filters["monotonic_enum"] = is_monotonic_str
     env.tests['needs_ctor'] = needs_ctor
     env.tests['monotonic'] = is_monotonic
-    env.tests['monotonic_from_0'] = is_monotonic_from_0
 
     globals = dict(
         structs=structs,

@@ -124,6 +124,7 @@ pkginclude_HEADERS = \
 	src/data.h \
 	src/encoder.h \
 	src/enum.h \
+	src/enum_table.h \
 	src/enum_tags.h \
 	src/enum_set.h \
 	src/ini.h \
@@ -142,6 +143,7 @@ pkginclude_HEADERS = \
 	src/scope_guard.h \
 	src/writer_lcf.h \
 	src/writer_xml.h \
+	src/zstring_view.h \
 	src/generated/fwd_struct_impl.h \
 	src/generated/ldb_chunks.h \
 	src/generated/ldb_terrain_flags.h \
@@ -224,6 +226,8 @@ test_runner_SOURCES = \
 	tests/time_stamp.cpp \
 	tests/enum.cpp \
 	tests/enum_set.cpp \
+	tests/enum_table.cpp \
+	tests/enum_tags.cpp \
 	tests/test_main.cpp
 test_runner_CPPFLAGS = \
 	-I$(srcdir)/src \

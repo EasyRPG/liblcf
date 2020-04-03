@@ -27,11 +27,6 @@ namespace RPG {
 			Skill = 1,
 			Transformation = 2
 		};
-		static constexpr auto kKindTags = makeEnumTags<Kind>(
-			"Basic",
-			"Skill",
-			"Transformation"
-		);
 		enum class Basic {
 			Attack = 0,
 			DualAttack = 1,
@@ -42,16 +37,6 @@ namespace RPG {
 			Escape = 6,
 			Nothing = 7
 		};
-		static constexpr auto kBasicTags = makeEnumTags<Basic>(
-			"Attack",
-			"DualAttack",
-			"Defense",
-			"Observe",
-			"Charge",
-			"Autodestruction",
-			"Escape",
-			"Nothing"
-		);
 		enum class ConditionType {
 			Always = 0,
 			Switch = 1,
@@ -62,16 +47,6 @@ namespace RPG {
 			PartyLvl = 6,
 			PartyFatigue = 7
 		};
-		static constexpr auto kConditionTypeTags = makeEnumTags<ConditionType>(
-			"Always",
-			"Switch",
-			"Turn",
-			"Actors",
-			"Hp",
-			"Sp",
-			"PartyLvl",
-			"PartyFatigue"
-		);
 
 		int ID = 0;
 		int32_t kind = 0;
@@ -113,5 +88,34 @@ namespace RPG {
 LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Kind, true, Basic, Transformation);
 LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::Basic, true, Attack, Nothing);
 LCF_DEFINE_ENUM_TRAITS(RPG::EnemyAction::ConditionType, true, Always, PartyFatigue);
+
+LCF_DEFINE_ENUM_TAGS(RPG::EnemyAction::Kind, (makeEnumTags<RPG::EnemyAction::Kind>({{
+	"Basic",
+	"Skill",
+	"Transformation"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EnemyAction::Basic, (makeEnumTags<RPG::EnemyAction::Basic>({{
+	"Attack",
+	"DualAttack",
+	"Defense",
+	"Observe",
+	"Charge",
+	"Autodestruction",
+	"Escape",
+	"Nothing"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::EnemyAction::ConditionType, (makeEnumTags<RPG::EnemyAction::ConditionType>({{
+	"Always",
+	"Switch",
+	"Turn",
+	"Actors",
+	"Hp",
+	"Sp",
+	"PartyLvl",
+	"PartyFatigue"
+	}})));
+
 
 #endif

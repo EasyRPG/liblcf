@@ -31,20 +31,10 @@ namespace RPG {
 			Half = 2,
 			Full = 3
 		};
-		static constexpr auto kBushDepthTags = makeEnumTags<BushDepth>(
-			"Normal",
-			"Third",
-			"Half",
-			"Full"
-		);
 		enum class BGAssociation {
 			Background = 0,
 			Frame = 1
 		};
-		static constexpr auto kBGAssociationTags = makeEnumTags<BGAssociation>(
-			"Background",
-			"Frame"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -144,5 +134,18 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BushDepth, true, Normal, Full);
 LCF_DEFINE_ENUM_TRAITS(RPG::Terrain::BGAssociation, true, Background, Frame);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Terrain::BushDepth, (makeEnumTags<RPG::Terrain::BushDepth>({{
+	"Normal",
+	"Third",
+	"Half",
+	"Full"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Terrain::BGAssociation, (makeEnumTags<RPG::Terrain::BGAssociation>({{
+	"Background",
+	"Frame"
+	}})));
+
 
 #endif

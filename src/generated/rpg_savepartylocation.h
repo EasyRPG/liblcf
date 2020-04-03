@@ -36,20 +36,10 @@ namespace RPG {
 			Ship = 2,
 			Airship = 3
 		};
-		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
-			"None",
-			"Skiff",
-			"Ship",
-			"Airship"
-		);
 		enum class PanState {
 			Fixed = 0,
 			Follow = 1
 		};
-		static constexpr auto kPanStateTags = makeEnumTags<PanState>(
-			"Fixed",
-			"Follow"
-		);
 
 		bool boarding = false;
 		bool aboard = false;
@@ -95,5 +85,18 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::VehicleType, true, None, Airship);
 LCF_DEFINE_ENUM_TRAITS(RPG::SavePartyLocation::PanState, true, Fixed, Follow);
+
+LCF_DEFINE_ENUM_TAGS(RPG::SavePartyLocation::VehicleType, (makeEnumTags<RPG::SavePartyLocation::VehicleType>({{
+	"None",
+	"Skiff",
+	"Ship",
+	"Airship"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::SavePartyLocation::PanState, (makeEnumTags<RPG::SavePartyLocation::PanState>({{
+	"Fixed",
+	"Follow"
+	}})));
+
 
 #endif

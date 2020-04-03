@@ -38,39 +38,16 @@ namespace RPG {
 			Special = 9,
 			Switch = 10
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"Normal",
-			"Weapon",
-			"Shield",
-			"Armor",
-			"Helmet",
-			"Accessory",
-			"Medicine",
-			"Book",
-			"Material",
-			"Special",
-			"Switch"
-		);
 		enum class Trajectory {
 			Straight = 0,
 			Return = 1
 		};
-		static constexpr auto kTrajectoryTags = makeEnumTags<Trajectory>(
-			"Straight",
-			"Return"
-		);
 		enum class Target {
 			Single = 0,
 			Center = 1,
 			Simultaneous = 2,
 			Sequential = 3
 		};
-		static constexpr auto kTargetTags = makeEnumTags<Target>(
-			"Single",
-			"Center",
-			"Simultaneous",
-			"Sequential"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -190,5 +167,32 @@ namespace RPG {
 LCF_DEFINE_ENUM_TRAITS(RPG::Item::Type, true, Normal, Switch);
 LCF_DEFINE_ENUM_TRAITS(RPG::Item::Trajectory, true, Straight, Return);
 LCF_DEFINE_ENUM_TRAITS(RPG::Item::Target, true, Single, Sequential);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Item::Type, (makeEnumTags<RPG::Item::Type>({{
+	"Normal",
+	"Weapon",
+	"Shield",
+	"Armor",
+	"Helmet",
+	"Accessory",
+	"Medicine",
+	"Book",
+	"Material",
+	"Special",
+	"Switch"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Item::Trajectory, (makeEnumTags<RPG::Item::Trajectory>({{
+	"Straight",
+	"Return"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Item::Target, (makeEnumTags<RPG::Item::Target>({{
+	"Single",
+	"Center",
+	"Simultaneous",
+	"Sequential"
+	}})));
+
 
 #endif

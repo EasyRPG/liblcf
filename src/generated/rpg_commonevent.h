@@ -53,4 +53,11 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::CommonEvent::Trigger, true, Automatic, Call);
 
+LCF_DEFINE_ENUM_TAGS(RPG::CommonEvent::Trigger, (makeEnumTags<RPG::CommonEvent::Trigger>({{
+	"Automatic",
+	"Parallel",
+	"Call"
+	}})));
+
+
 #endif

@@ -38,13 +38,6 @@ namespace RPG {
 			{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
 		{%- endfor %}
 		};
-		{%- if enum is monotonic_from_0 %}
-		static constexpr auto k{{ name }}Tags = makeEnumTags<{{name}}>(
-		{%- for field in enum %}
-			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
-		{%- endfor %}
-		);
-		{%- endif %}
 	{%- endfor %}
 	{% endif %}
 	{%- if struct_name is needs_ctor %}
@@ -115,6 +108,22 @@ namespace RPG {
 {% for name, enum in enums[struct_name].items() %}
 LCF_DEFINE_ENUM_TRAITS(RPG::{{ struct_name }}::{{ name }}, {{ enum | monotonic_enum }}, {{ enum | min_enum }}, {{ enum | max_enum }});
 {%- endfor %}
+{% for name, enum in enums[struct_name].items() %}
+LCF_DEFINE_ENUM_TAGS(RPG::{{ struct_name }}::{{ name }}, (makeEnumTags<RPG::{{ struct_name }}::{{ name }}
+{%- if enum is not monotonic -%}
+, {{ enum | length }}
+{%- endif -%}>({{"{{"}}
+{%- if enum is not monotonic -%}
+	{%- for field in enum %}
+	RPG::{{ struct_name }}::{{ name }}::{{ field.0 }}{%- if not loop.last %},{% endif %}
+	{%- endfor %}
+	{{"}}, {{"}}
+{%- endif -%}
+	{%- for field in enum %}
+	"{{ field.0 }}"{%- if not loop.last %},{% endif %}
+	{%- endfor %}
+	{{"}}"}})));
+{% endfor %}
 {%- endif %}
 
 #endif

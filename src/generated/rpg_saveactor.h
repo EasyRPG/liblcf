@@ -28,10 +28,6 @@ namespace RPG {
 			Front = 0,
 			Back = 1
 		};
-		static constexpr auto kRowTypeTags = makeEnumTags<RowType>(
-			"Front",
-			"Back"
-		);
 
 		void Setup(int actor_id);
 		void Fixup(int actor_id);
@@ -108,5 +104,11 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::SaveActor::RowType, true, Front, Back);
+
+LCF_DEFINE_ENUM_TAGS(RPG::SaveActor::RowType, (makeEnumTags<RPG::SaveActor::RowType>({{
+	"Front",
+	"Back"
+	}})));
+
 
 #endif

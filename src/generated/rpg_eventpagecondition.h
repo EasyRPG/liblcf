@@ -31,14 +31,6 @@ namespace RPG {
 			Less = 4,
 			NotEqual = 5
 		};
-		static constexpr auto kComparisonTags = makeEnumTags<Comparison>(
-			"Equal",
-			"GreaterEqual",
-			"LessEqual",
-			"Greater",
-			"Less",
-			"NotEqual"
-		);
 
 		struct Flags {
 			union {
@@ -95,5 +87,15 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::EventPageCondition::Comparison, true, Equal, NotEqual);
+
+LCF_DEFINE_ENUM_TAGS(RPG::EventPageCondition::Comparison, (makeEnumTags<RPG::EventPageCondition::Comparison>({{
+	"Equal",
+	"GreaterEqual",
+	"LessEqual",
+	"Greater",
+	"Less",
+	"NotEqual"
+	}})));
+
 
 #endif

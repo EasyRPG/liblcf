@@ -28,10 +28,6 @@ namespace RPG {
 			Reciprocating = 0,
 			Cyclic = 1
 		};
-		static constexpr auto kAnimTypeTags = makeEnumTags<AnimType>(
-			"Reciprocating",
-			"Cyclic"
-		);
 
 		Chipset();
 		void Init();
@@ -61,5 +57,11 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::Chipset::AnimType, true, Reciprocating, Cyclic);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Chipset::AnimType, (makeEnumTags<RPG::Chipset::AnimType>({{
+	"Reciprocating",
+	"Cyclic"
+	}})));
+
 
 #endif

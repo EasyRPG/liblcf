@@ -51,30 +51,6 @@ namespace RPG {
 			Instantaneous = 20,
 			None = 21
 		};
-		static constexpr auto kFadeOutTags = makeEnumTags<FadeOut>(
-			"Default",
-			"FadeOut",
-			"RemoveBlocks",
-			"WipeDownward",
-			"WipeUpward",
-			"VenetianBlinds",
-			"VerticalBlinds",
-			"HorizontalBlinds",
-			"RecedingSquare",
-			"ExpandingSquare",
-			"ScreenMovesUp",
-			"ScreenMovesDown",
-			"ScreenMovesLeft",
-			"ScreenMovesRight",
-			"VerticalDiv",
-			"HorizontalDiv",
-			"Quadrasection",
-			"ZoomIn",
-			"Mosaic",
-			"WaverScreen",
-			"Instantaneous",
-			"None"
-		);
 		enum class FadeIn {
 			Default = 0,
 			FadeIn = 1,
@@ -99,56 +75,19 @@ namespace RPG {
 			Instantaneous = 20,
 			None = 21
 		};
-		static constexpr auto kFadeInTags = makeEnumTags<FadeIn>(
-			"Default",
-			"FadeIn",
-			"ReconstituteBlocks",
-			"UnwipeDownward",
-			"UnwipeUpward",
-			"VenetianBlinds",
-			"VerticalBlinds",
-			"HorizontalBlinds",
-			"RecedingSquare",
-			"ExpandingSquare",
-			"ScreenMovesDown",
-			"ScreenMovesUp",
-			"ScreenMovesRight",
-			"ScreenMovesLeft",
-			"VerticalUnify",
-			"HorizontalUnify",
-			"UnifyQuadrants",
-			"ZoomOut",
-			"Mosaic",
-			"WaverScreen",
-			"Instantaneous",
-			"None"
-		);
 		enum class Stretch {
 			Stretch = 0,
 			Tiled = 1
 		};
-		static constexpr auto kStretchTags = makeEnumTags<Stretch>(
-			"Stretch",
-			"Tiled"
-		);
 		enum class Font {
 			Gothic = 0,
 			Mincho = 1
 		};
-		static constexpr auto kFontTags = makeEnumTags<Font>(
-			"Gothic",
-			"Mincho"
-		);
 		enum class BattleFormation {
 			Terrain = 0,
 			Loose = 1,
 			Tight = 2
 		};
-		static constexpr auto kBattleFormationTags = makeEnumTags<BattleFormation>(
-			"Terrain",
-			"Loose",
-			"Tight"
-		);
 		enum class BattleCondition {
 			None = 0,
 			Initiative = 1,
@@ -156,21 +95,10 @@ namespace RPG {
 			Surround = 3,
 			Pincers = 4
 		};
-		static constexpr auto kBattleConditionTags = makeEnumTags<BattleCondition>(
-			"None",
-			"Initiative",
-			"Back",
-			"Surround",
-			"Pincers"
-		);
 		enum class EquipmentSetting {
 			Actor = 0,
 			Class = 1
 		};
-		static constexpr auto kEquipmentSettingTags = makeEnumTags<EquipmentSetting>(
-			"Actor",
-			"Class"
-		);
 
 		System();
 		void Init();
@@ -301,5 +229,85 @@ LCF_DEFINE_ENUM_TRAITS(RPG::System::Font, true, Gothic, Mincho);
 LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleFormation, true, Terrain, Tight);
 LCF_DEFINE_ENUM_TRAITS(RPG::System::BattleCondition, true, None, Pincers);
 LCF_DEFINE_ENUM_TRAITS(RPG::System::EquipmentSetting, true, Actor, Class);
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::FadeOut, (makeEnumTags<RPG::System::FadeOut>({{
+	"Default",
+	"FadeOut",
+	"RemoveBlocks",
+	"WipeDownward",
+	"WipeUpward",
+	"VenetianBlinds",
+	"VerticalBlinds",
+	"HorizontalBlinds",
+	"RecedingSquare",
+	"ExpandingSquare",
+	"ScreenMovesUp",
+	"ScreenMovesDown",
+	"ScreenMovesLeft",
+	"ScreenMovesRight",
+	"VerticalDiv",
+	"HorizontalDiv",
+	"Quadrasection",
+	"ZoomIn",
+	"Mosaic",
+	"WaverScreen",
+	"Instantaneous",
+	"None"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::FadeIn, (makeEnumTags<RPG::System::FadeIn>({{
+	"Default",
+	"FadeIn",
+	"ReconstituteBlocks",
+	"UnwipeDownward",
+	"UnwipeUpward",
+	"VenetianBlinds",
+	"VerticalBlinds",
+	"HorizontalBlinds",
+	"RecedingSquare",
+	"ExpandingSquare",
+	"ScreenMovesDown",
+	"ScreenMovesUp",
+	"ScreenMovesRight",
+	"ScreenMovesLeft",
+	"VerticalUnify",
+	"HorizontalUnify",
+	"UnifyQuadrants",
+	"ZoomOut",
+	"Mosaic",
+	"WaverScreen",
+	"Instantaneous",
+	"None"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::Stretch, (makeEnumTags<RPG::System::Stretch>({{
+	"Stretch",
+	"Tiled"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::Font, (makeEnumTags<RPG::System::Font>({{
+	"Gothic",
+	"Mincho"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::BattleFormation, (makeEnumTags<RPG::System::BattleFormation>({{
+	"Terrain",
+	"Loose",
+	"Tight"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::BattleCondition, (makeEnumTags<RPG::System::BattleCondition>({{
+	"None",
+	"Initiative",
+	"Back",
+	"Surround",
+	"Pincers"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::System::EquipmentSetting, (makeEnumTags<RPG::System::EquipmentSetting>({{
+	"Actor",
+	"Class"
+	}})));
+
 
 #endif

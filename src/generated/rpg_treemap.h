@@ -30,11 +30,6 @@ namespace RPG {
 			Map = 1,
 			Area = 2
 		};
-		static constexpr auto kMapTypeTags = makeEnumTags<MapType>(
-			"Root",
-			"Map",
-			"Area"
-		);
 
 		std::vector<MapInfo> maps;
 		std::vector<int32_t> tree_order;
@@ -55,5 +50,12 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::TreeMap::MapType, true, Root, Area);
+
+LCF_DEFINE_ENUM_TAGS(RPG::TreeMap::MapType, (makeEnumTags<RPG::TreeMap::MapType>({{
+	"Root",
+	"Map",
+	"Area"
+	}})));
+
 
 #endif

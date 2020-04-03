@@ -28,20 +28,10 @@ namespace RPG {
 			Jump = 2,
 			Move = 3
 		};
-		static constexpr auto kMovementTags = makeEnumTags<Movement>(
-			"None",
-			"Step",
-			"Jump",
-			"Move"
-		);
 		enum class AfterImage {
 			None = 0,
 			Add = 1
 		};
-		static constexpr auto kAfterImageTags = makeEnumTags<AfterImage>(
-			"None",
-			"Add"
-		);
 
 		int ID = 0;
 		int32_t move = 0;
@@ -62,5 +52,18 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::Movement, true, None, Move);
 LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimationData::AfterImage, true, None, Add);
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattlerAnimationData::Movement, (makeEnumTags<RPG::BattlerAnimationData::Movement>({{
+	"None",
+	"Step",
+	"Jump",
+	"Move"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::BattlerAnimationData::AfterImage, (makeEnumTags<RPG::BattlerAnimationData::AfterImage>({{
+	"None",
+	"Add"
+	}})));
+
 
 #endif

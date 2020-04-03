@@ -51,4 +51,15 @@ namespace RPG {
 
 LCF_DEFINE_ENUM_TRAITS(RPG::BattlerAnimation::Speed, false, Slow, Fast);
 
+LCF_DEFINE_ENUM_TAGS(RPG::BattlerAnimation::Speed, (makeEnumTags<RPG::BattlerAnimation::Speed, 3>({{
+	RPG::BattlerAnimation::Speed::Slow,
+	RPG::BattlerAnimation::Speed::Normal,
+	RPG::BattlerAnimation::Speed::Fast
+	}}, {{
+	"Slow",
+	"Normal",
+	"Fast"
+	}})));
+
+
 #endif

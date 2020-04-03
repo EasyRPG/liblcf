@@ -30,12 +30,6 @@ namespace RPG {
 			Ship = 2,
 			Airship = 3
 		};
-		static constexpr auto kVehicleTypeTags = makeEnumTags<VehicleType>(
-			"None",
-			"Skiff",
-			"Ship",
-			"Airship"
-		);
 
 		int32_t vehicle = 0;
 		int32_t remaining_ascent = 0;
@@ -58,5 +52,13 @@ namespace RPG {
 }
 
 LCF_DEFINE_ENUM_TRAITS(RPG::SaveVehicleLocation::VehicleType, true, None, Airship);
+
+LCF_DEFINE_ENUM_TAGS(RPG::SaveVehicleLocation::VehicleType, (makeEnumTags<RPG::SaveVehicleLocation::VehicleType>({{
+	"None",
+	"Skiff",
+	"Ship",
+	"Airship"
+	}})));
+
 
 #endif

@@ -33,21 +33,10 @@ namespace RPG {
 			Switch = 3,
 			Subskill = 4
 		};
-		static constexpr auto kTypeTags = makeEnumTags<Type>(
-			"Normal",
-			"Teleport",
-			"Escape",
-			"Switch",
-			"Subskill"
-		);
 		enum class SpType {
 			Cost = 0,
 			Percent = 1
 		};
-		static constexpr auto kSpTypeTags = makeEnumTags<SpType>(
-			"Cost",
-			"Percent"
-		);
 		enum class Scope {
 			Enemy = 0,
 			Enemies = 1,
@@ -55,13 +44,6 @@ namespace RPG {
 			Ally = 3,
 			Party = 4
 		};
-		static constexpr auto kScopeTags = makeEnumTags<Scope>(
-			"Enemy",
-			"Enemies",
-			"Self",
-			"Ally",
-			"Party"
-		);
 
 		int ID = 0;
 		std::string name;
@@ -145,5 +127,27 @@ namespace RPG {
 LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Type, true, Normal, Subskill);
 LCF_DEFINE_ENUM_TRAITS(RPG::Skill::SpType, true, Cost, Percent);
 LCF_DEFINE_ENUM_TRAITS(RPG::Skill::Scope, true, Enemy, Party);
+
+LCF_DEFINE_ENUM_TAGS(RPG::Skill::Type, (makeEnumTags<RPG::Skill::Type>({{
+	"Normal",
+	"Teleport",
+	"Escape",
+	"Switch",
+	"Subskill"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Skill::SpType, (makeEnumTags<RPG::Skill::SpType>({{
+	"Cost",
+	"Percent"
+	}})));
+
+LCF_DEFINE_ENUM_TAGS(RPG::Skill::Scope, (makeEnumTags<RPG::Skill::Scope>({{
+	"Enemy",
+	"Enemies",
+	"Self",
+	"Ally",
+	"Party"
+	}})));
+
 
 #endif
