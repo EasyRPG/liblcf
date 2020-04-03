@@ -12,7 +12,7 @@
 /*
  * Headers
  */
-#include "lsd_reader.h"
+#include "lcf/lsd_reader.h"
 #include "lsd_chunks.h"
 #include "reader_struct.h"
 

@@ -12,11 +12,11 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lsd_reader.h"
+#include "lcf/lsd_reader.h"
 #include "lsd_chunks.h"
-#include "ldb_reader.h"
+#include "lcf/ldb_reader.h"
 #include "rpg_save.h"
-#include "reader_util.h"
+#include "lcf/reader_util.h"
 #include "reader_struct.h"
 
 namespace lcf {

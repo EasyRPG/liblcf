@@ -15,7 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <vector>
-#include "enum_tags.h"
+#include "lcf/enum_tags.h"
 #include "rpg_battlecommand.h"
 
 /**

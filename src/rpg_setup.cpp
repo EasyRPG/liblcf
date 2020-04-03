@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
+#include "lcf/lcf_options.h"
 #include "rpg_actor.h"
 #include "rpg_event.h"
 #include "rpg_map.h"
@@ -16,7 +16,7 @@
 #include "rpg_save.h"
 #include "rpg_chipset.h"
 #include "rpg_parameters.h"
-#include "data.h"
+#include "lcf/data.h"
 
 void RPG::SaveActor::Setup(int actor_id) {
 	const RPG::Actor& actor = lcf::Data::actors[actor_id - 1];

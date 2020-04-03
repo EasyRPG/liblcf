@@ -11,11 +11,11 @@
 #define LCF_LMT_READER_H
 
 #include <string>
-#include "reader_lcf.h"
-#include "writer_lcf.h"
-#include "writer_xml.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/writer_lcf.h"
+#include "lcf/writer_xml.h"
 #include "rpg_treemap.h"
-#include "lcf_saveopt.h"
+#include "lcf/lcf_saveopt.h"
 
 namespace lcf {
 

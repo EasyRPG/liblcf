@@ -20,10 +20,10 @@
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
-#include "reader_lcf.h"
-#include "writer_lcf.h"
-#include "reader_xml.h"
-#include "writer_xml.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/writer_lcf.h"
+#include "lcf/reader_xml.h"
+#include "lcf/writer_xml.h"
 #include "rpg_eventpagecondition.h"
 #include "rpg_trooppagecondition.h"
 #include "rpg_terrain.h"
@@ -35,7 +35,7 @@
 #include "rpg_rect.h"
 #include "rpg_savepicture.h"
 #include "rpg_terms.h"
-#include "data.h"
+#include "lcf/data.h"
 
 namespace lcf {
 

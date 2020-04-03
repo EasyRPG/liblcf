@@ -35,7 +35,7 @@
 #include "rpg_parameters.h"
 #include "rpg_equipment.h"
 #include "rpg_database.h"
-#include "lcf_saveopt.h"
+#include "lcf/lcf_saveopt.h"
 
 namespace lcf {
 

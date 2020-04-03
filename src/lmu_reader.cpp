@@ -11,10 +11,10 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lmu_reader.h"
+#include "lcf/lmu_reader.h"
 #include "lmu_chunks.h"
-#include "reader_lcf.h"
-#include "reader_util.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/reader_util.h"
 #include "reader_struct.h"
 
 namespace lcf {

@@ -18,9 +18,9 @@
 #include <cstdint>
 #include <cinttypes>
 #include <memory>
-#include "lcf_options.h"
-#include "reader_util.h"
-#include "encoder.h"
+#include "lcf/lcf_options.h"
+#include "lcf/reader_util.h"
+#include "lcf/encoder.h"
 
 /*
  * Calls SkipDebug() instead of Skip() for debug builds.

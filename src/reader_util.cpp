@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
-#include "scope_guard.h"
+#include "lcf/lcf_options.h"
+#include "lcf/scope_guard.h"
 
 #ifdef LCF_SUPPORT_ICU
 #   include <unicode/ucsdet.h>
@@ -39,10 +39,10 @@
 #include <sstream>
 #include <vector>
 
-#include "data.h"
-#include "inireader.h"
-#include "ldb_reader.h"
-#include "reader_util.h"
+#include "lcf/data.h"
+#include "lcf/inireader.h"
+#include "lcf/ldb_reader.h"
+#include "lcf/reader_util.h"
 
 namespace lcf {
 

@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <istream>
 
-#include "reader_lcf.h"
+#include "lcf/reader_lcf.h"
 
 namespace lcf {
 // Statics

@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
-#include "encoder.h"
-#include "reader_util.h"
-#include "scope_guard.h"
+#include "lcf/lcf_options.h"
+#include "lcf/encoder.h"
+#include "lcf/reader_util.h"
+#include "lcf/scope_guard.h"
 #include <cstdio>
 #include <cstdlib>
 #include <exception>

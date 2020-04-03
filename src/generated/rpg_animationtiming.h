@@ -14,7 +14,7 @@
 
 // Headers
 #include <stdint.h>
-#include "enum_tags.h"
+#include "lcf/enum_tags.h"
 #include "rpg_sound.h"
 
 /**

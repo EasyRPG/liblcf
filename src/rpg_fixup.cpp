@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
+#include "lcf/lcf_options.h"
 #include "rpg_actor.h"
 #include "rpg_mapinfo.h"
 #include "rpg_system.h"
 #include "rpg_save.h"
 #include "rpg_savemapinfo.h"
-#include "data.h"
+#include "lcf/data.h"
 
 template <typename T, typename U>
 static void FixInt(T& val, U def) {

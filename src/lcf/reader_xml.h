@@ -17,8 +17,8 @@
 #  include <expat.h>
 #endif
 #include <stdint.h>
-#include "lcf_options.h"
-#include "reader_util.h"
+#include "lcf/lcf_options.h"
+#include "lcf/reader_util.h"
 
 namespace lcf {
 

@@ -34,8 +34,8 @@
 #include <cstdlib>
 #include <cstring>
 #include <istream>
-#include "ini.h"
-#include "inireader.h"
+#include "lcf/ini.h"
+#include "lcf/inireader.h"
 
 namespace lcf {
 

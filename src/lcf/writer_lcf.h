@@ -17,9 +17,9 @@
 #include <memory>
 #include <cassert>
 #include <stdint.h>
-#include "lcf_options.h"
-#include "reader_util.h"
-#include "encoder.h"
+#include "lcf/lcf_options.h"
+#include "lcf/reader_util.h"
+#include "lcf/encoder.h"
 
 namespace lcf {
 

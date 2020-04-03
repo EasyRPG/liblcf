@@ -31,49 +31,49 @@ set(CMAKE_CXX_EXTENSIONS ON)
 
 # lcf library files
 add_library(lcf
-	src/command_codes.h
 	src/data.cpp
-	src/data.h
 	src/encoder.cpp
-	src/encoder.h
-	src/enum_tags.h
-	src/flag_set.h
 	src/ini.cpp
-	src/ini.h
 	src/inireader.cpp
-	src/inireader.h
-	src/lcf_options.h
-	src/lcf_saveopt.h
 	src/ldb_equipment.cpp
 	src/ldb_eventcommand.cpp
 	src/ldb_parameters.cpp
 	src/ldb_reader.cpp
-	src/ldb_reader.h
 	src/lmt_reader.cpp
-	src/lmt_reader.h
 	src/lmt_rect.cpp
 	src/lmt_treemap.cpp
 	src/lmu_movecommand.cpp
 	src/lmu_reader.cpp
-	src/lmu_reader.h
 	src/lsd_reader.cpp
-	src/lsd_reader.h
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
-	src/reader_lcf.h
+	src/reader_util.cpp
 	src/reader_struct.h
 	src/reader_struct_impl.h
-	src/reader_util.cpp
-	src/reader_util.h
 	src/reader_xml.cpp
-	src/reader_xml.h
 	src/rpg_fixup.cpp
 	src/rpg_setup.cpp
-	src/scope_guard.h
 	src/writer_lcf.cpp
-	src/writer_lcf.h
 	src/writer_xml.cpp
-	src/writer_xml.h
+	src/lcf/command_codes.h
+	src/lcf/data.h
+	src/lcf/encoder.h
+	src/lcf/enum_tags.h
+	src/lcf/flag_set.h
+	src/lcf/ini.h
+	src/lcf/inireader.h
+	src/lcf/lcf_options.h
+	src/lcf/lcf_saveopt.h
+	src/lcf/ldb_reader.h
+	src/lcf/lmt_reader.h
+	src/lcf/lmu_reader.h
+	src/lcf/lsd_reader.h
+	src/lcf/reader_lcf.h
+	src/lcf/reader_util.h
+	src/lcf/reader_xml.h
+	src/lcf/scope_guard.h
+	src/lcf/writer_lcf.h
+	src/lcf/writer_xml.h
 	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp

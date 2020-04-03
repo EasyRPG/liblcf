@@ -16,7 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
-#include "enum_tags.h"
+#include "lcf/enum_tags.h"
 #include "rpg_itemanimation.h"
 
 /**

@@ -178,7 +178,7 @@ def struct_headers(ty, header_map):
         return []
 
     if re.match(r'Enum<(.*)>', ty):
-        return ['"enum_tags.h"']
+        return ['"lcf/enum_tags.h"']
 
     if re.match(r'(.*)_Flags$', ty):
         return ['<array>']

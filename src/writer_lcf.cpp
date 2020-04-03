@@ -9,7 +9,7 @@
 
 #include <ostream>
 
-#include "writer_lcf.h"
+#include "lcf/writer_lcf.h"
 
 namespace lcf {
 

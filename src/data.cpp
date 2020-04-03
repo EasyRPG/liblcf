@@ -8,7 +8,7 @@
  */
 
 #include "rpg_database.h"
-#include "data.h"
+#include "lcf/data.h"
 
 namespace lcf {
 

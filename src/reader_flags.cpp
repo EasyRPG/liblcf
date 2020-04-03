@@ -12,7 +12,7 @@
 #include "rpg_eventpagecondition.h"
 #include "rpg_terrain.h"
 #include "rpg_savepicture.h"
-#include "data.h"
+#include "lcf/data.h"
 
 #include "ldb_trooppagecondition_flags.h"
 #include "ldb_terrain_flags.h"

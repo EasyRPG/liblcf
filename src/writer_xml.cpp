@@ -13,7 +13,7 @@
 #define snprintf(str, size, format, ...) sprintf((str), (format), __VA_ARGS__)
 #endif
 
-#include "writer_xml.h"
+#include "lcf/writer_xml.h"
 
 namespace lcf {
 

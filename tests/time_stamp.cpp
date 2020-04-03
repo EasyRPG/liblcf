@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "lsd_reader.h"
+#include "lcf/lsd_reader.h"
 #include "doctest.h"
 
 using namespace lcf;

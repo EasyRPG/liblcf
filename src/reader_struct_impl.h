@@ -11,13 +11,13 @@
 #include <iostream>
 #include <iomanip>
 #include <type_traits>
-#include "ldb_reader.h"
-#include "lmt_reader.h"
-#include "lmu_reader.h"
-#include "lsd_reader.h"
+#include "lcf/ldb_reader.h"
+#include "lcf/lmt_reader.h"
+#include "lcf/lmu_reader.h"
+#include "lcf/lsd_reader.h"
 #include "reader_struct.h"
 #include "rpg_save.h"
-#include "data.h"
+#include "lcf/data.h"
 
 namespace lcf {
 

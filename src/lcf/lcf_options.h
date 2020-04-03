@@ -15,7 +15,7 @@
  * This option may have defined LCF_SUPPORT_XML and others.
  */
 #ifdef HAVE_CONFIG_H
-#  include <config.h>
+#  include <lcf/config.h>
 #endif
 
 /**

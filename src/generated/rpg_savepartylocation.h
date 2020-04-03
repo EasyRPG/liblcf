@@ -15,7 +15,7 @@
 // Headers
 #include "rpg_savemapeventbase.h"
 #include <stdint.h>
-#include "enum_tags.h"
+#include "lcf/enum_tags.h"
 
 /**
  * RPG::SavePartyLocation class.

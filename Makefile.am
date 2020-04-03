@@ -50,6 +50,8 @@ liblcf_la_SOURCES = \
 	src/reader_flags.cpp \
 	src/reader_lcf.cpp \
 	src/reader_util.cpp \
+	src/reader_struct.h \
+	src/reader_struct_impl.h \
 	src/reader_xml.cpp \
 	src/rpg_fixup.cpp \
 	src/rpg_setup.cpp \
@@ -121,27 +123,25 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_state.cpp \
 	src/generated/rpg_system.cpp
 pkginclude_HEADERS = \
-	src/command_codes.h \
-	src/data.h \
-	src/encoder.h \
-	src/enum_tags.h \
-	src/flag_set.h \
-	src/ini.h \
-	src/inireader.h \
-	src/lcf_options.h \
-	src/lcf_saveopt.h \
-	src/ldb_reader.h \
-	src/lmt_reader.h \
-	src/lmu_reader.h \
-	src/lsd_reader.h \
-	src/reader_lcf.h \
-	src/reader_struct.h \
-	src/reader_struct_impl.h \
-	src/reader_util.h \
-	src/reader_xml.h \
-	src/scope_guard.h \
-	src/writer_lcf.h \
-	src/writer_xml.h \
+	src/lcf/command_codes.h \
+	src/lcf/data.h \
+	src/lcf/encoder.h \
+	src/lcf/enum_tags.h \
+	src/lcf/flag_set.h \
+	src/lcf/ini.h \
+	src/lcf/inireader.h \
+	src/lcf/lcf_options.h \
+	src/lcf/lcf_saveopt.h \
+	src/lcf/ldb_reader.h \
+	src/lcf/lmt_reader.h \
+	src/lcf/lmu_reader.h \
+	src/lcf/lsd_reader.h \
+	src/lcf/reader_lcf.h \
+	src/lcf/reader_util.h \
+	src/lcf/reader_xml.h \
+	src/lcf/scope_guard.h \
+	src/lcf/writer_lcf.h \
+	src/lcf/writer_xml.h \
 	src/generated/fwd_struct_impl.h \
 	src/generated/ldb_chunks.h \
 	src/generated/ldb_terrain_flags.h \

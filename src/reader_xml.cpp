@@ -9,8 +9,8 @@
 
 #include <sstream>
 #include <cstdarg>
-#include "reader_lcf.h"
-#include "reader_xml.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/reader_xml.h"
 
 // Expat callbacks
 #if defined(LCF_SUPPORT_XML)
