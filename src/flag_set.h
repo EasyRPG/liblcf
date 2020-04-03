@@ -25,11 +25,15 @@ class FlagSet {
 		reference operator[](E tag) { return _bits[size_t(tag)]; }
 
 		size_t count() const { return _bits.count(); }
+		bool any() const noexcept { return _bits.any(); }
+		bool none() const noexcept { return _bits.none(); }
+
 		size_t size() const { return _bits.size(); }
 
-		FlagSet& operator&=(const FlagSet& o) { _bits &= o._bits; return *this; }
-		FlagSet& operator|=(const FlagSet& o) { _bits |= o._bits; return *this; }
-		FlagSet& operator^=(const FlagSet& o) { _bits ^= o._bits; return *this; }
+		FlagSet operator~() const noexcept { FlagSet o; o._bits = ~_bits; return o; }
+		FlagSet& operator&=(const FlagSet& o) noexcept { _bits &= o._bits; return *this; }
+		FlagSet& operator|=(const FlagSet& o) noexcept { _bits |= o._bits; return *this; }
+		FlagSet& operator^=(const FlagSet& o) noexcept { _bits ^= o._bits; return *this; }
 
 		template <typename EE, size_t NN>
 		friend bool operator==(const FlagSet<EE,NN>& l, const FlagSet<EE,NN>& r);
@@ -73,7 +77,7 @@ inline FlagSet<E,N> operator^(const FlagSet<E,N>& l, const FlagSet<E,N>& r) {
 template <typename E, size_t N>
 inline FlagSet<E,N>::FlagSet(std::initializer_list<E> ilist) {
 	for (auto&& tag: ilist) {
-		_bits.set(tag);
+		_bits.set(static_cast<size_t>(tag));
 	}
 }
 
