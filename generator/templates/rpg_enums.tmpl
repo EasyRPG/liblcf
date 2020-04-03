@@ -2,7 +2,7 @@
 {%- for ftype, structlist in structs.items() %}
 	{%- for struct in structlist %}
 		{%- if enums[struct.name] %}
-#include "rpg_{{ struct.name|lower }}.h"
+#include "lcf/rpg_{{ struct.name|lower }}.h"
 		{%- endif %}
 	{%- endfor %}
 {%- endfor %}

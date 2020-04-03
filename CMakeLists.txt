@@ -139,81 +139,81 @@ add_library(lcf
 	src/generated/lsd_savetarget.cpp
 	src/generated/lsd_savetitle.cpp
 	src/generated/lsd_savevehiclelocation.cpp
-	src/generated/rpg_actor.h
-	src/generated/rpg_animation.h
-	src/generated/rpg_animationcelldata.h
-	src/generated/rpg_animationframe.h
-	src/generated/rpg_animationtiming.h
-	src/generated/rpg_attribute.h
-	src/generated/rpg_battlecommand.h
-	src/generated/rpg_battlecommands.h
-	src/generated/rpg_battleranimation.h
-	src/generated/rpg_battleranimationdata.h
-	src/generated/rpg_battleranimationextension.h
 	src/generated/rpg_chipset.cpp
-	src/generated/rpg_chipset.h
-	src/generated/rpg_class.h
-	src/generated/rpg_commonevent.h
-	src/generated/rpg_database.h
-	src/generated/rpg_encounter.h
-	src/generated/rpg_enemy.h
-	src/generated/rpg_enemyaction.h
 	src/generated/rpg_enums.cpp
-	src/generated/rpg_equipment.h
-	src/generated/rpg_event.h
-	src/generated/rpg_eventcommand.h
-	src/generated/rpg_eventpage.h
-	src/generated/rpg_eventpagecondition.h
-	src/generated/rpg_item.h
-	src/generated/rpg_itemanimation.h
-	src/generated/rpg_learning.h
-	src/generated/rpg_map.h
-	src/generated/rpg_mapinfo.h
-	src/generated/rpg_movecommand.h
-	src/generated/rpg_moveroute.h
-	src/generated/rpg_music.h
-	src/generated/rpg_parameters.h
-	src/generated/rpg_rect.h
-	src/generated/rpg_save.h
-	src/generated/rpg_saveactor.h
-	src/generated/rpg_savecommonevent.h
-	src/generated/rpg_saveeasyrpgdata.h
-	src/generated/rpg_saveeventexecframe.h
-	src/generated/rpg_saveeventexecstate.h
-	src/generated/rpg_saveinventory.h
-	src/generated/rpg_savemapevent.h
-	src/generated/rpg_savemapeventbase.h
-	src/generated/rpg_savemapinfo.h
-	src/generated/rpg_savepanorama.h
 	src/generated/rpg_savepartylocation.cpp
-	src/generated/rpg_savepartylocation.h
-	src/generated/rpg_savepicture.h
-	src/generated/rpg_savescreen.h
-	src/generated/rpg_savesystem.h
-	src/generated/rpg_savetarget.h
-	src/generated/rpg_savetitle.h
-	src/generated/rpg_savevehiclelocation.h
-	src/generated/rpg_skill.h
-	src/generated/rpg_sound.h
-	src/generated/rpg_start.h
 	src/generated/rpg_state.cpp
-	src/generated/rpg_state.h
-	src/generated/rpg_switch.h
 	src/generated/rpg_system.cpp
-	src/generated/rpg_system.h
-	src/generated/rpg_terms.h
-	src/generated/rpg_terrain.h
-	src/generated/rpg_testbattler.h
-	src/generated/rpg_treemap.h
-	src/generated/rpg_troop.h
-	src/generated/rpg_troopmember.h
-	src/generated/rpg_trooppage.h
-	src/generated/rpg_trooppagecondition.h
-	src/generated/rpg_variable.h
 	src/generated/lcf/ldb_chunks.h
 	src/generated/lcf/lmt_chunks.h
 	src/generated/lcf/lmu_chunks.h
 	src/generated/lcf/lsd_chunks.h
+	src/generated/lcf/rpg_actor.h
+	src/generated/lcf/rpg_animation.h
+	src/generated/lcf/rpg_animationcelldata.h
+	src/generated/lcf/rpg_animationframe.h
+	src/generated/lcf/rpg_animationtiming.h
+	src/generated/lcf/rpg_attribute.h
+	src/generated/lcf/rpg_battlecommand.h
+	src/generated/lcf/rpg_battlecommands.h
+	src/generated/lcf/rpg_battleranimation.h
+	src/generated/lcf/rpg_battleranimationdata.h
+	src/generated/lcf/rpg_battleranimationextension.h
+	src/generated/lcf/rpg_chipset.h
+	src/generated/lcf/rpg_class.h
+	src/generated/lcf/rpg_commonevent.h
+	src/generated/lcf/rpg_database.h
+	src/generated/lcf/rpg_encounter.h
+	src/generated/lcf/rpg_enemy.h
+	src/generated/lcf/rpg_enemyaction.h
+	src/generated/lcf/rpg_equipment.h
+	src/generated/lcf/rpg_event.h
+	src/generated/lcf/rpg_eventcommand.h
+	src/generated/lcf/rpg_eventpage.h
+	src/generated/lcf/rpg_eventpagecondition.h
+	src/generated/lcf/rpg_item.h
+	src/generated/lcf/rpg_itemanimation.h
+	src/generated/lcf/rpg_learning.h
+	src/generated/lcf/rpg_map.h
+	src/generated/lcf/rpg_mapinfo.h
+	src/generated/lcf/rpg_movecommand.h
+	src/generated/lcf/rpg_moveroute.h
+	src/generated/lcf/rpg_music.h
+	src/generated/lcf/rpg_parameters.h
+	src/generated/lcf/rpg_rect.h
+	src/generated/lcf/rpg_save.h
+	src/generated/lcf/rpg_saveactor.h
+	src/generated/lcf/rpg_savecommonevent.h
+	src/generated/lcf/rpg_saveeasyrpgdata.h
+	src/generated/lcf/rpg_saveeventexecframe.h
+	src/generated/lcf/rpg_saveeventexecstate.h
+	src/generated/lcf/rpg_saveinventory.h
+	src/generated/lcf/rpg_savemapevent.h
+	src/generated/lcf/rpg_savemapeventbase.h
+	src/generated/lcf/rpg_savemapinfo.h
+	src/generated/lcf/rpg_savepanorama.h
+	src/generated/lcf/rpg_savepartylocation.h
+	src/generated/lcf/rpg_savepicture.h
+	src/generated/lcf/rpg_savescreen.h
+	src/generated/lcf/rpg_savesystem.h
+	src/generated/lcf/rpg_savetarget.h
+	src/generated/lcf/rpg_savetitle.h
+	src/generated/lcf/rpg_savevehiclelocation.h
+	src/generated/lcf/rpg_skill.h
+	src/generated/lcf/rpg_sound.h
+	src/generated/lcf/rpg_start.h
+	src/generated/lcf/rpg_state.h
+	src/generated/lcf/rpg_switch.h
+	src/generated/lcf/rpg_system.h
+	src/generated/lcf/rpg_terms.h
+	src/generated/lcf/rpg_terrain.h
+	src/generated/lcf/rpg_testbattler.h
+	src/generated/lcf/rpg_treemap.h
+	src/generated/lcf/rpg_troop.h
+	src/generated/lcf/rpg_troopmember.h
+	src/generated/lcf/rpg_trooppage.h
+	src/generated/lcf/rpg_trooppagecondition.h
+	src/generated/lcf/rpg_variable.h
 )
 
 # IDE source grouping

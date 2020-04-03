@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "rpg_database.h"
+#include "lcf/rpg_database.h"
 #include "lcf/data.h"
 
 namespace lcf {

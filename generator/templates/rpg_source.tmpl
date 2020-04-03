@@ -1,6 +1,6 @@
 {% include "copyright.tmpl" %}
 // Headers
-#include "rpg_{{ filename }}.h"
+#include "lcf/rpg_{{ filename }}.h"
 {% if struct_name in constants -%}
 {%- for name, type, value, comment in constants[struct_name] %}
 constexpr {{ type }} RPG::{{ struct_name }}::{{ name }};

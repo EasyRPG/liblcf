@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-#include "rpg_movecommand.h"
+#include "lcf/rpg_movecommand.h"
 #include "reader_struct.h"
 #include <iostream>
 

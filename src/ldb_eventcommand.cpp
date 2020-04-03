@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 #include "reader_struct.h"
-#include "rpg_eventcommand.h"
+#include "lcf/rpg_eventcommand.h"
 
 namespace lcf {
 

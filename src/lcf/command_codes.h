@@ -10,12 +10,16 @@
 #ifndef LCF_COMMAND_CODES_H
 #define LCF_COMMAND_CODES_H
 
-#include "rpg_eventcommand.h"
+#include "lcf/rpg_eventcommand.h"
 
 /**
  * Abbreviate RPG::EventCommand::Code to Cmd.
  */
 
+namespace lcf {
+
 using Cmd = RPG::EventCommand::Code;
+
+} //namespace lcf
 
 #endif

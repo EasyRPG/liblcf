@@ -8,11 +8,11 @@
  */
 
 #include "lcf/lcf_options.h"
-#include "rpg_actor.h"
-#include "rpg_mapinfo.h"
-#include "rpg_system.h"
-#include "rpg_save.h"
-#include "rpg_savemapinfo.h"
+#include "lcf/rpg_actor.h"
+#include "lcf/rpg_mapinfo.h"
+#include "lcf/rpg_system.h"
+#include "lcf/rpg_save.h"
+#include "lcf/rpg_savemapinfo.h"
 #include "lcf/data.h"
 
 template <typename T, typename U>

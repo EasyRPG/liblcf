@@ -15,7 +15,7 @@
 #include <memory>
 #include <ctime>
 #include <stdint.h>
-#include "rpg_save.h"
+#include "lcf/rpg_save.h"
 
 namespace lcf {
 
