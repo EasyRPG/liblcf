@@ -13,7 +13,7 @@ AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
 AC_CONFIG_SRCDIR([src/data.cpp])
 # We want our public lcf/config.h to look like the cmake one. This tricks autoheader into generating
 # /config.h (which we don't use) and then configure uses our template for lcf/config.h
-AC_CONFIG_HEADERS([autogen/config.h autogen/lcf/config.h:builds/autoconf.config.h.in])
+AC_CONFIG_HEADERS([autogen/config.h:config.h.in autogen/lcf/config.h:builds/autoconf.config.h.in])
 AC_LANG([C++])
 
 # Checks for programs.
