@@ -22,6 +22,7 @@ liblcf_la_CPPFLAGS = \
 	-I$(srcdir)/src/generated
 liblcf_la_CXXFLAGS = \
 	-std=c++14 \
+	-fno-math-errno \
 	$(AM_CXXFLAGS) \
 	$(EXPAT_CFLAGS) \
 	$(ICU_CFLAGS)
