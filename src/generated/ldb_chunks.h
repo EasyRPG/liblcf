@@ -785,11 +785,11 @@ namespace LDB_Reader {
 			/** Integer - RPG2003 */
 			grid_location = 0x2D,
 			/** Integer - RPG2003 */
-			grid_a = 0x2E,
+			grid_top_y = 0x2E,
 			/** Integer - RPG2003 */
-			grid_b = 0x2F,
+			grid_elongation = 0x2F,
 			/** Integer - RPG2003 */
-			grid_c = 0x30
+			grid_inclination = 0x30
 		};
 	};
 	struct ChunkState {
