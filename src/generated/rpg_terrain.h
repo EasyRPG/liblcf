@@ -89,9 +89,9 @@ namespace RPG {
 		int32_t special_lateral_party = 10;
 		int32_t special_lateral_enemies = 5;
 		int32_t grid_location = 0;
-		int32_t grid_a = 120;
-		int32_t grid_b = 392;
-		int32_t grid_c = 16000;
+		int32_t grid_top_y = 120;
+		int32_t grid_elongation = 392;
+		int32_t grid_inclination = 16000;
 	};
 
 	inline bool operator==(const Terrain::Flags& l, const Terrain::Flags& r) {
@@ -132,9 +132,9 @@ namespace RPG {
 		&& l.special_lateral_party == r.special_lateral_party
 		&& l.special_lateral_enemies == r.special_lateral_enemies
 		&& l.grid_location == r.grid_location
-		&& l.grid_a == r.grid_a
-		&& l.grid_b == r.grid_b
-		&& l.grid_c == r.grid_c;
+		&& l.grid_top_y == r.grid_top_y
+		&& l.grid_elongation == r.grid_elongation
+		&& l.grid_inclination == r.grid_inclination;
 	}
 
 	inline bool operator!=(const Terrain& l, const Terrain& r) {

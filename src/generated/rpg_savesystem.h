@@ -75,7 +75,7 @@ namespace RPG {
 		int32_t face_id = 0;
 		bool face_right = false;
 		bool face_flip = false;
-		bool transparent = false;
+		bool message_active = false;
 		bool music_stopping = false;
 		Music title_music;
 		Music battle_music;
@@ -133,7 +133,7 @@ namespace RPG {
 		&& l.face_id == r.face_id
 		&& l.face_right == r.face_right
 		&& l.face_flip == r.face_flip
-		&& l.transparent == r.transparent
+		&& l.message_active == r.message_active
 		&& l.music_stopping == r.music_stopping
 		&& l.title_music == r.title_music
 		&& l.battle_music == r.battle_music

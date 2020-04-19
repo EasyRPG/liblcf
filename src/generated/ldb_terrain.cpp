@@ -221,24 +221,24 @@ static TypedField<RPG::Terrain, int32_t> static_grid_location(
 	0,
 	1
 );
-static TypedField<RPG::Terrain, int32_t> static_grid_a(
-	&RPG::Terrain::grid_a,
-	LDB_Reader::ChunkTerrain::grid_a,
-	"grid_a",
+static TypedField<RPG::Terrain, int32_t> static_grid_top_y(
+	&RPG::Terrain::grid_top_y,
+	LDB_Reader::ChunkTerrain::grid_top_y,
+	"grid_top_y",
 	0,
 	1
 );
-static TypedField<RPG::Terrain, int32_t> static_grid_b(
-	&RPG::Terrain::grid_b,
-	LDB_Reader::ChunkTerrain::grid_b,
-	"grid_b",
+static TypedField<RPG::Terrain, int32_t> static_grid_elongation(
+	&RPG::Terrain::grid_elongation,
+	LDB_Reader::ChunkTerrain::grid_elongation,
+	"grid_elongation",
 	0,
 	1
 );
-static TypedField<RPG::Terrain, int32_t> static_grid_c(
-	&RPG::Terrain::grid_c,
-	LDB_Reader::ChunkTerrain::grid_c,
-	"grid_c",
+static TypedField<RPG::Terrain, int32_t> static_grid_inclination(
+	&RPG::Terrain::grid_inclination,
+	LDB_Reader::ChunkTerrain::grid_inclination,
+	"grid_inclination",
 	0,
 	1
 );
@@ -275,9 +275,9 @@ Field<RPG::Terrain> const* Struct<RPG::Terrain>::fields[] = {
 	&static_special_lateral_party,
 	&static_special_lateral_enemies,
 	&static_grid_location,
-	&static_grid_a,
-	&static_grid_b,
-	&static_grid_c,
+	&static_grid_top_y,
+	&static_grid_elongation,
+	&static_grid_inclination,
 	NULL
 };
 

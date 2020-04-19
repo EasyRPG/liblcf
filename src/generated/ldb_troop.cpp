@@ -37,7 +37,7 @@ static TypedField<RPG::Troop, bool> static_auto_alignment(
 	LDB_Reader::ChunkTroop::auto_alignment,
 	"auto_alignment",
 	0,
-	0
+	1
 );
 static SizeField<RPG::Troop, bool> static_size_terrain_set(
 	&RPG::Troop::terrain_set,
@@ -57,7 +57,7 @@ static TypedField<RPG::Troop, bool> static_appear_randomly(
 	LDB_Reader::ChunkTroop::appear_randomly,
 	"appear_randomly",
 	0,
-	0
+	1
 );
 static TypedField<RPG::Troop, std::vector<RPG::TroopPage>> static_pages(
 	&RPG::Troop::pages,

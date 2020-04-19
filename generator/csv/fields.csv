@@ -298,10 +298,10 @@ TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - RPG::EventCommand
 Troop,name,f,String,0x01,'',0,0,String
 Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - RPG::TroopMember
-Troop,auto_alignment,f,Boolean,0x03,False,0,0,Flag
+Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
 Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
-Troop,appear_randomly,f,Boolean,0x06,False,0,0,Flag
+Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - RPG::TroopPage
 Terrain,name,f,String,0x01,'',0,0,String
 Terrain,damage,f,Int32,0x02,0,0,0,Integer
@@ -332,9 +332,9 @@ Terrain,special_back_enemies,f,Int32,0x2A,10,0,1,Integer - RPG2003
 Terrain,special_lateral_party,f,Int32,0x2B,10,0,1,Integer - RPG2003
 Terrain,special_lateral_enemies,f,Int32,0x2C,5,0,1,Integer - RPG2003
 Terrain,grid_location,f,Int32,0x2D,0,0,1,Integer - RPG2003
-Terrain,grid_a,f,Int32,0x2E,120,0,1,Integer - RPG2003
-Terrain,grid_b,f,Int32,0x2F,392,0,1,Integer - RPG2003
-Terrain,grid_c,f,Int32,0x30,16000,0,1,Integer - RPG2003
+Terrain,grid_top_y,f,Int32,0x2E,120,0,1,Integer - RPG2003
+Terrain,grid_elongation,f,Int32,0x2F,392,0,1,Integer - RPG2003
+Terrain,grid_inclination,f,Int32,0x30,16000,0,1,Integer - RPG2003
 State,name,f,String,0x01,'',0,0,String
 State,type,f,Enum<State_Persistence>,0x02,0,1,0,Integer
 State,color,f,Int32,0x03,6,0,0,Integer
@@ -722,7 +722,7 @@ SaveSystem,face_name,f,String,0x33,'',0,0,
 SaveSystem,face_id,f,Int32,0x34,0,0,0,
 SaveSystem,face_right,f,Boolean,0x35,False,0,0,bool
 SaveSystem,face_flip,f,Boolean,0x36,False,0,0,bool
-SaveSystem,transparent,f,Boolean,0x37,False,0,0,
+SaveSystem,message_active,f,Boolean,0x37,False,0,0,A flag set by RPG_RT when messages are summoned.
 SaveSystem,music_stopping,f,Boolean,0x3D,False,0,0,Music is being faded out or had been stopped (Play music with the same music as currently playing will restart the music when this flag is set)
 SaveSystem,title_music,f,Music,0x47,,1,0,
 SaveSystem,battle_music,f,Music,0x48,,1,0,

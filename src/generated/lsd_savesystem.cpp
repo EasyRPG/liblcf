@@ -135,10 +135,10 @@ static TypedField<RPG::SaveSystem, bool> static_face_flip(
 	0,
 	0
 );
-static TypedField<RPG::SaveSystem, bool> static_transparent(
-	&RPG::SaveSystem::transparent,
-	LSD_Reader::ChunkSaveSystem::transparent,
-	"transparent",
+static TypedField<RPG::SaveSystem, bool> static_message_active(
+	&RPG::SaveSystem::message_active,
+	LSD_Reader::ChunkSaveSystem::message_active,
+	"message_active",
 	0,
 	0
 );
@@ -436,7 +436,7 @@ Field<RPG::SaveSystem> const* Struct<RPG::SaveSystem>::fields[] = {
 	&static_face_id,
 	&static_face_right,
 	&static_face_flip,
-	&static_transparent,
+	&static_message_active,
 	&static_music_stopping,
 	&static_title_music,
 	&static_battle_music,
