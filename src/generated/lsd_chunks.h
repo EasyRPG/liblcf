@@ -80,8 +80,8 @@ namespace LSD_Reader {
 			face_right = 0x35,
 			/** bool */
 			face_flip = 0x36,
-			/**  */
-			transparent = 0x37,
+			/** A flag set by RPG_RT when messages are summoned. */
+			message_active = 0x37,
 			/** Music is being faded out or had been stopped (Play music with the same music as currently playing will restart the music when this flag is set) */
 			music_stopping = 0x3D,
 			/**  */
