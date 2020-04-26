@@ -277,12 +277,21 @@ set_property(TARGET lcf PROPERTY SOVERSION 0)
 include(GNUInstallDirs)
 
 # pkg-config file generation
+set(LCF_LIBDIR ${CMAKE_INSTALL_LIBDIR})
+if(IS_ABSOLUTE ${LCF_LIBDIR})
+	file(RELATIVE_PATH LCF_LIBDIR ${CMAKE_INSTALL_PREFIX} ${LCF_LIBDIR})
+endif()
+set(LCF_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
+if(IS_ABSOLUTE ${LCF_INCLUDEDIR})
+	file(RELATIVE_PATH LCF_INCLUDEDIR ${CMAKE_INSTALL_PREFIX} ${LCF_INCLUDEDIR})
+endif()
+
 set(PACKAGE_TARNAME ${PROJECT_NAME})
 set(PACKAGE_VERSION ${PROJECT_VERSION})
 set(prefix "${CMAKE_INSTALL_PREFIX}")
 set(exec_prefix "\${prefix}")
-set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
-set(includedir "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
+set(libdir "\${exec_prefix}/${LCF_LIBDIR}")
+set(includedir "\${prefix}/${LCF_INCLUDEDIR}")
 string(REPLACE ";" " " AX_PACKAGE_REQUIRES_PRIVATE "${LIBLCF_DEPS}")
 configure_file(builds/${PROJECT_NAME}.pc.in builds/${PROJECT_NAME}.pc @ONLY)
 
