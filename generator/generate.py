@@ -193,10 +193,10 @@ def struct_headers(ty, header_map):
 
     header = header_map.get(ty)
     if header is not None:
-        return ['"lcf/rpg_%s.h"' % header]
+        return ['"lcf/rpg/%s.h"' % header]
 
     if ty in ['Parameters', 'Equipment', 'EventCommand', 'MoveCommand', 'Rect', 'TreeMap']:
-        return ['"lcf/rpg_%s.h"' % ty.lower()]
+        return ['"lcf/rpg/%s.h"' % ty.lower()]
 
     return []
 
@@ -317,7 +317,7 @@ def get_headers():
 
         struct_base = struct.base
         if struct_base:
-            struct_result.append('"lcf/rpg_{}.h"'.format(struct_base.lower()))
+            struct_result.append('"lcf/rpg/{}.h"'.format(struct_base.lower()))
         headers = set()
         for field in sfields[struct_name]:
             ftype = field.type
@@ -396,7 +396,7 @@ def generate():
                             filename=filename
                         ))
 
-            filepath = os.path.join(tmp_dir, 'lcf', 'rpg_%s.h' % filename)
+            filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
             with openToRender(filepath) as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,

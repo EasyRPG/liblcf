@@ -12,7 +12,7 @@
 
 #include <string>
 #include <memory>
-#include "lcf/rpg_map.h"
+#include "lcf/rpg/map.h"
 #include "lcf/lcf_saveopt.h"
 
 namespace lcf {

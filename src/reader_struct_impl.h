@@ -16,7 +16,7 @@
 #include "lcf/lmu_reader.h"
 #include "lcf/lsd_reader.h"
 #include "reader_struct.h"
-#include "lcf/rpg_save.h"
+#include "lcf/rpg/save.h"
 #include "lcf/data.h"
 
 namespace lcf {

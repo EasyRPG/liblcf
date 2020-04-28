@@ -10,7 +10,7 @@
  */
 
 // Headers
-#include "lcf/rpg_chipset.h"
+#include "lcf/rpg/chipset.h"
 
 /**
  * Constructor.

@@ -8,10 +8,10 @@
  */
 
 #include "reader_struct.h"
-#include "lcf/rpg_trooppagecondition.h"
-#include "lcf/rpg_eventpagecondition.h"
-#include "lcf/rpg_terrain.h"
-#include "lcf/rpg_savepicture.h"
+#include "lcf/rpg/trooppagecondition.h"
+#include "lcf/rpg/eventpagecondition.h"
+#include "lcf/rpg/terrain.h"
+#include "lcf/rpg/savepicture.h"
 #include "lcf/data.h"
 
 #include "ldb_trooppagecondition_flags.h"

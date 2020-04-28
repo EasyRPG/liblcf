@@ -10,7 +10,7 @@
  */
 
 // Headers
-#include "lcf/rpg_system.h"
+#include "lcf/rpg/system.h"
 
 /**
  * Constructor.

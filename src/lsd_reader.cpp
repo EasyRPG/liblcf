@@ -15,7 +15,7 @@
 #include "lcf/lsd_reader.h"
 #include "lcf/lsd_chunks.h"
 #include "lcf/ldb_reader.h"
-#include "lcf/rpg_save.h"
+#include "lcf/rpg/save.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"
 

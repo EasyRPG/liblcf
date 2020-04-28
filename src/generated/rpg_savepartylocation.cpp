@@ -10,7 +10,7 @@
  */
 
 // Headers
-#include "lcf/rpg_savepartylocation.h"
+#include "lcf/rpg/savepartylocation.h"
 
 constexpr int lcf::rpg::SavePartyLocation::kPanXDefault;
 constexpr int lcf::rpg::SavePartyLocation::kPanYDefault;

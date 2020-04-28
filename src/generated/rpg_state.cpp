@@ -10,7 +10,7 @@
  */
 
 // Headers
-#include "lcf/rpg_state.h"
+#include "lcf/rpg/state.h"
 
 constexpr int lcf::rpg::State::kDeathID;
 

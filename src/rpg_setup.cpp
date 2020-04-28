@@ -8,14 +8,14 @@
  */
 
 #include "lcf/config.h"
-#include "lcf/rpg_actor.h"
-#include "lcf/rpg_event.h"
-#include "lcf/rpg_map.h"
-#include "lcf/rpg_mapinfo.h"
-#include "lcf/rpg_system.h"
-#include "lcf/rpg_save.h"
-#include "lcf/rpg_chipset.h"
-#include "lcf/rpg_parameters.h"
+#include "lcf/rpg/actor.h"
+#include "lcf/rpg/event.h"
+#include "lcf/rpg/map.h"
+#include "lcf/rpg/mapinfo.h"
+#include "lcf/rpg/system.h"
+#include "lcf/rpg/save.h"
+#include "lcf/rpg/chipset.h"
+#include "lcf/rpg/parameters.h"
 #include "lcf/data.h"
 
 namespace lcf {
