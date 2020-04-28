@@ -16,6 +16,11 @@ cmakeconfig_DATA = \
 	builds/cmake/Modules/FindICU.cmake
 
 lcfincludedir = $(includedir)/lcf
+lcfldbincludedir = $(includedir)/lcf/ldb
+lcflmtincludedir = $(includedir)/lcf/lmt
+lcflmuincludedir = $(includedir)/lcf/lmu
+lcflsdincludedir = $(includedir)/lcf/lsd
+lcfrpgincludedir = $(includedir)/lcf/rpg
 
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
@@ -130,6 +135,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_savepartylocation.cpp \
 	src/generated/rpg_state.cpp \
 	src/generated/rpg_system.cpp
+
 lcfinclude_HEADERS = \
 	autogen/lcf/config.h \
 	src/lcf/data.h \
@@ -139,20 +145,30 @@ lcfinclude_HEADERS = \
 	src/lcf/ini.h \
 	src/lcf/inireader.h \
 	src/lcf/saveopt.h \
-	src/lcf/ldb/reader.h \
-	src/lcf/lmt/reader.h \
-	src/lcf/lmu/reader.h \
-	src/lcf/lsd/reader.h \
 	src/lcf/reader_lcf.h \
 	src/lcf/reader_util.h \
 	src/lcf/reader_xml.h \
 	src/lcf/scope_guard.h \
 	src/lcf/writer_lcf.h \
-	src/lcf/writer_xml.h \
-	src/generated/lcf/ldb/chunks.h \
-	src/generated/lcf/lmt/chunks.h \
-	src/generated/lcf/lmu/chunks.h \
-	src/generated/lcf/lsd/chunks.h \
+	src/lcf/writer_xml.h
+
+lcfldbinclude_HEADERS = \
+	src/lcf/ldb/reader.h \
+	src/generated/lcf/ldb/chunks.h
+
+lcflmtinclude_HEADERS = \
+	src/lcf/lmt/reader.h \
+	src/generated/lcf/lmt/chunks.h
+
+lcflmuinclude_HEADERS = \
+	src/lcf/lmu/reader.h \
+	src/generated/lcf/lmu/chunks.h
+
+lcflsdinclude_HEADERS = \
+	src/lcf/lsd/reader.h \
+	src/generated/lcf/lsd/chunks.h
+
+lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/actor.h \
 	src/generated/lcf/rpg/animation.h \
 	src/generated/lcf/rpg/animationcelldata.h \

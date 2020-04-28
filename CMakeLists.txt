@@ -130,7 +130,7 @@ target_sources(lcf
 	src/generated/rpg_system.cpp
 	)
 
-set(PUBLIC_HEADERS
+set(LCF_HEADERS
 	src/lcf/data.h
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
@@ -138,20 +138,35 @@ set(PUBLIC_HEADERS
 	src/lcf/ini.h
 	src/lcf/inireader.h
 	src/lcf/saveopt.h
-	src/lcf/ldb/reader.h
-	src/lcf/lmt/reader.h
-	src/lcf/lmu/reader.h
-	src/lcf/lsd/reader.h
 	src/lcf/reader_lcf.h
 	src/lcf/reader_util.h
 	src/lcf/reader_xml.h
 	src/lcf/scope_guard.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
+)
+
+set(LCF_LDB_HEADERS
+	src/lcf/ldb/reader.h
 	src/generated/lcf/ldb/chunks.h
+)
+
+set(LCF_LMT_HEADERS
+	src/lcf/lmt/reader.h
 	src/generated/lcf/lmt/chunks.h
+)
+
+set(LCF_LMU_HEADERS
+	src/lcf/lmu/reader.h
 	src/generated/lcf/lmu/chunks.h
+)
+
+set(LCF_LSD_HEADERS
+	src/lcf/lsd/reader.h
 	src/generated/lcf/lsd/chunks.h
+)
+
+set(LCF_RPG_HEADERS
 	src/generated/lcf/rpg/actor.h
 	src/generated/lcf/rpg/animation.h
 	src/generated/lcf/rpg/animationcelldata.h
@@ -219,10 +234,23 @@ set(PUBLIC_HEADERS
 	src/generated/lcf/rpg/trooppagecondition.h
 	src/generated/lcf/rpg/variable.h
 )
-list(TRANSFORM PUBLIC_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(APPEND PUBLIC_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
-target_sources(lcf PUBLIC ${PUBLIC_HEADERS})
+list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
+
+list(TRANSFORM LCF_LDB_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(TRANSFORM LCF_LMT_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(TRANSFORM LCF_LMU_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(TRANSFORM LCF_LSD_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(TRANSFORM LCF_RPG_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+
+target_sources(lcf PUBLIC ${LCF_HEADERS}
+	${LCF_LDB_HEADERS}
+	${LCF_LMT_HEADERS}
+	${LCF_LMU_HEADERS}
+	${LCF_LSD_HEADERS}
+	${LCF_RPG_HEADERS}
+)
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
@@ -321,9 +349,12 @@ install(
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-install(
-	FILES ${PUBLIC_HEADERS}
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
+install(FILES ${LCF_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
+install(FILES ${LCF_LDB_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/ldb)
+install(FILES ${LCF_LMT_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lmt)
+install(FILES ${LCF_LMU_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lmu)
+install(FILES ${LCF_LSD_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lsd)
+install(FILES ${LCF_RPG_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/rpg)
 
 install(
 	FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc
