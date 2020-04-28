@@ -346,14 +346,14 @@ def is_monotonic_from_0(enum):
 def openToRender(path):
     subdir = os.path.dirname(path)
     if not os.path.exists(subdir):
-        os.mkdir(subdir)
+        os.makedirs(subdir)
     return open(path, 'w')
 
 def generate():
     if not os.path.exists(tmp_dir):
         os.mkdir(tmp_dir)
     for filetype in ['ldb','lmt','lmu','lsd']:
-        filepath = os.path.join(tmp_dir, 'lcf', '%s_chunks.h' % filetype)
+        filepath = os.path.join(tmp_dir, 'lcf', filetype, 'chunks.h')
 
         with openToRender(filepath) as f:
             f.write(chunk_tmpl.render(

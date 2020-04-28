@@ -10,8 +10,8 @@
  */
 
 // Headers
-#include "lcf/lsd_reader.h"
-#include "lcf/lsd_chunks.h"
+#include "lcf/lsd/reader.h"
+#include "lcf/lsd/chunks.h"
 #include "reader_struct_impl.h"
 
 namespace lcf {

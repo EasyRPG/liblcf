@@ -11,10 +11,10 @@
 #include <iostream>
 #include <iomanip>
 #include <type_traits>
-#include "lcf/ldb_reader.h"
-#include "lcf/lmt_reader.h"
-#include "lcf/lmu_reader.h"
-#include "lcf/lsd_reader.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmu/reader.h"
+#include "lcf/lsd/reader.h"
 #include "reader_struct.h"
 #include "lcf/rpg/save.h"
 #include "lcf/data.h"

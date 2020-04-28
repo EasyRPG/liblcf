@@ -11,8 +11,8 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lcf/lmt_reader.h"
-#include "lcf/lmt_chunks.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmt/chunks.h"
 #include "lcf/data.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"

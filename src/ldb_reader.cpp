@@ -11,8 +11,8 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lcf/ldb_reader.h"
-#include "lcf/ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "lcf/data.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"

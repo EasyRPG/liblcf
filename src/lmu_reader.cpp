@@ -11,8 +11,8 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lcf/lmu_reader.h"
-#include "lcf/lmu_chunks.h"
+#include "lcf/lmu/reader.h"
+#include "lcf/lmu/chunks.h"
 #include "lcf/reader_lcf.h"
 #include "lcf/reader_util.h"
 #include "reader_struct.h"

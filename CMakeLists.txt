@@ -138,20 +138,20 @@ set(PUBLIC_HEADERS
 	src/lcf/ini.h
 	src/lcf/inireader.h
 	src/lcf/saveopt.h
-	src/lcf/ldb_reader.h
-	src/lcf/lmt_reader.h
-	src/lcf/lmu_reader.h
-	src/lcf/lsd_reader.h
+	src/lcf/ldb/reader.h
+	src/lcf/lmt/reader.h
+	src/lcf/lmu/reader.h
+	src/lcf/lsd/reader.h
 	src/lcf/reader_lcf.h
 	src/lcf/reader_util.h
 	src/lcf/reader_xml.h
 	src/lcf/scope_guard.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
-	src/generated/lcf/ldb_chunks.h
-	src/generated/lcf/lmt_chunks.h
-	src/generated/lcf/lmu_chunks.h
-	src/generated/lcf/lsd_chunks.h
+	src/generated/lcf/ldb/chunks.h
+	src/generated/lcf/lmt/chunks.h
+	src/generated/lcf/lmu/chunks.h
+	src/generated/lcf/lsd/chunks.h
 	src/generated/lcf/rpg/actor.h
 	src/generated/lcf/rpg/animation.h
 	src/generated/lcf/rpg/animationcelldata.h

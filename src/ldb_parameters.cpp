@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf/ldb_reader.h"
-#include "lcf/ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct.h"
 
 namespace lcf {

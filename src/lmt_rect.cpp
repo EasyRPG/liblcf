@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf/lmt_reader.h"
-#include "lcf/lmt_chunks.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmt/chunks.h"
 #include "reader_struct.h"
 
 namespace lcf {

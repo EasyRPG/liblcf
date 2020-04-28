@@ -41,7 +41,7 @@
 
 #include "lcf/data.h"
 #include "lcf/inireader.h"
-#include "lcf/ldb_reader.h"
+#include "lcf/ldb/reader.h"
 #include "lcf/reader_util.h"
 
 namespace lcf {
