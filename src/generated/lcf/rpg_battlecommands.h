@@ -21,6 +21,7 @@
 /**
  * rpg::BattleCommands class.
  */
+namespace lcf {
 namespace rpg {
 	class BattleCommands {
 	public:
@@ -119,6 +120,7 @@ namespace rpg {
 	inline bool operator!=(const BattleCommands& l, const BattleCommands& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -21,6 +21,7 @@
 /**
  * rpg::SaveActor class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveActor {
 	public:
@@ -105,6 +106,7 @@ namespace rpg {
 	inline bool operator!=(const SaveActor& l, const SaveActor& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

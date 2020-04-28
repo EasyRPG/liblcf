@@ -20,6 +20,7 @@
 /**
  * rpg::EventPageCondition class.
  */
+namespace lcf {
 namespace rpg {
 	class EventPageCondition {
 	public:
@@ -92,6 +93,7 @@ namespace rpg {
 	inline bool operator!=(const EventPageCondition& l, const EventPageCondition& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

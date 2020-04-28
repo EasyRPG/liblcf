@@ -23,6 +23,7 @@
 /**
  * rpg::Skill class.
  */
+namespace lcf {
 namespace rpg {
 	class Skill {
 	public:
@@ -140,6 +141,7 @@ namespace rpg {
 	inline bool operator!=(const Skill& l, const Skill& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -18,6 +18,7 @@
 /**
  * rpg::TestBattler class.
  */
+namespace lcf {
 namespace rpg {
 	class TestBattler {
 	public:
@@ -44,6 +45,7 @@ namespace rpg {
 	inline bool operator!=(const TestBattler& l, const TestBattler& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

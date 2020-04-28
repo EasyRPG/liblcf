@@ -23,6 +23,7 @@
 /**
  * rpg::SaveSystem class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveSystem {
 	public:
@@ -178,6 +179,7 @@ namespace rpg {
 	inline bool operator!=(const SaveSystem& l, const SaveSystem& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

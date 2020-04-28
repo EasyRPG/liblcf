@@ -18,6 +18,7 @@
 /**
  * rpg::Terms class.
  */
+namespace lcf {
 namespace rpg {
 	class Terms {
 	public:
@@ -283,6 +284,7 @@ namespace rpg {
 	inline bool operator!=(const Terms& l, const Terms& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

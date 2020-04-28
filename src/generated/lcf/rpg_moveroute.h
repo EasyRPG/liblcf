@@ -19,6 +19,7 @@
 /**
  * rpg::MoveRoute class.
  */
+namespace lcf {
 namespace rpg {
 	class MoveRoute {
 	public:
@@ -36,6 +37,7 @@ namespace rpg {
 	inline bool operator!=(const MoveRoute& l, const MoveRoute& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

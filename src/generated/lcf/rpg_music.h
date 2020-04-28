@@ -19,6 +19,7 @@
 /**
  * rpg::Music class.
  */
+namespace lcf {
 namespace rpg {
 	class Music {
 	public:
@@ -40,6 +41,7 @@ namespace rpg {
 	inline bool operator!=(const Music& l, const Music& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -18,6 +18,7 @@
 /**
  * rpg::Variable class.
  */
+namespace lcf {
 namespace rpg {
 	class Variable {
 	public:
@@ -32,6 +33,7 @@ namespace rpg {
 	inline bool operator!=(const Variable& l, const Variable& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

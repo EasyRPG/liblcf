@@ -18,6 +18,7 @@
 /**
  * rpg::Learning class.
  */
+namespace lcf {
 namespace rpg {
 	class Learning {
 	public:
@@ -34,6 +35,7 @@ namespace rpg {
 	inline bool operator!=(const Learning& l, const Learning& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

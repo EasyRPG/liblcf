@@ -20,6 +20,7 @@
 /**
  * rpg::BattlerAnimationExtension class.
  */
+namespace lcf {
 namespace rpg {
 	class BattlerAnimationExtension {
 	public:
@@ -51,6 +52,7 @@ namespace rpg {
 	inline bool operator!=(const BattlerAnimationExtension& l, const BattlerAnimationExtension& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

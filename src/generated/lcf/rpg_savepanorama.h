@@ -18,6 +18,7 @@
 /**
  * rpg::SavePanorama class.
  */
+namespace lcf {
 namespace rpg {
 	class SavePanorama {
 	public:
@@ -33,6 +34,7 @@ namespace rpg {
 	inline bool operator!=(const SavePanorama& l, const SavePanorama& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

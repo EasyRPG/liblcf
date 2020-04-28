@@ -37,6 +37,7 @@
 /**
  * rpg::Database class.
  */
+namespace lcf {
 namespace rpg {
 	class Database {
 	public:
@@ -87,6 +88,7 @@ namespace rpg {
 	inline bool operator!=(const Database& l, const Database& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

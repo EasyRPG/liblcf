@@ -20,6 +20,7 @@
 /**
  * rpg::Attribute class.
  */
+namespace lcf {
 namespace rpg {
 	class Attribute {
 	public:
@@ -55,6 +56,7 @@ namespace rpg {
 	inline bool operator!=(const Attribute& l, const Attribute& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

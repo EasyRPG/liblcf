@@ -21,6 +21,7 @@
 /**
  * rpg::SaveVehicleLocation class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveVehicleLocation : public SaveMapEventBase {
 	public:
@@ -55,6 +56,7 @@ namespace rpg {
 	inline bool operator!=(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

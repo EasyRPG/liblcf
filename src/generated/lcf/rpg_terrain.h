@@ -22,6 +22,7 @@
 /**
  * rpg::Terrain class.
  */
+namespace lcf {
 namespace rpg {
 	class Terrain {
 	public:
@@ -140,6 +141,7 @@ namespace rpg {
 	inline bool operator!=(const Terrain& l, const Terrain& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

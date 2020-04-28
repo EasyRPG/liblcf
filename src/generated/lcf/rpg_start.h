@@ -18,6 +18,7 @@
 /**
  * rpg::Start class.
  */
+namespace lcf {
 namespace rpg {
 	class Start {
 	public:
@@ -53,6 +54,7 @@ namespace rpg {
 	inline bool operator!=(const Start& l, const Start& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

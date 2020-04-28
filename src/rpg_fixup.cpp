@@ -29,6 +29,8 @@ void UnFixInt(T& val, U def) {
 	}
 };
 
+namespace lcf {
+
 void rpg::SaveActor::Fixup(int actor_id) {
 	ID = actor_id;
 
@@ -230,3 +232,5 @@ void rpg::SaveMapInfo::UnFixup(const rpg::Map& map) {
 void rpg::SaveMapInfo::UnFixup(const rpg::MapInfo& map) {
 	UnFixInt(encounter_rate, map.encounter_steps);
 }
+
+} // namespace lcf

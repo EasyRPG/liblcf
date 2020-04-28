@@ -15,6 +15,6 @@
 /**
  * Constructor.
  */
-rpg::System::System() {
+lcf::rpg::System::System() {
 	Init();
 }

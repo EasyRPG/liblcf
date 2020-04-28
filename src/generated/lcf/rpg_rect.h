@@ -18,6 +18,7 @@
 /**
  * rpg::Rect class.
  */
+namespace lcf {
 namespace rpg {
 	class Rect {
 	public:
@@ -37,6 +38,7 @@ namespace rpg {
 	inline bool operator!=(const Rect& l, const Rect& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

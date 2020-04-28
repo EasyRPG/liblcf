@@ -15,6 +15,6 @@
 /**
  * Constructor.
  */
-rpg::Chipset::Chipset() {
+lcf::rpg::Chipset::Chipset() {
 	Init();
 }

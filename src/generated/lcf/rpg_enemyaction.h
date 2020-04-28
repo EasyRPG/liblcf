@@ -19,6 +19,7 @@
 /**
  * rpg::EnemyAction class.
  */
+namespace lcf {
 namespace rpg {
 	class EnemyAction {
 	public:
@@ -108,6 +109,7 @@ namespace rpg {
 	inline bool operator!=(const EnemyAction& l, const EnemyAction& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

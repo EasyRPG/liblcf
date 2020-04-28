@@ -21,6 +21,7 @@
 /**
  * rpg::SaveMapEvent class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveMapEvent : public SaveMapEventBase {
 	public:
@@ -42,6 +43,7 @@ namespace rpg {
 	inline bool operator!=(const SaveMapEvent& l, const SaveMapEvent& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

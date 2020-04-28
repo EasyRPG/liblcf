@@ -22,6 +22,7 @@
 /**
  * rpg::Item class.
  */
+namespace lcf {
 namespace rpg {
 	class Item {
 	public:
@@ -185,6 +186,7 @@ namespace rpg {
 	inline bool operator!=(const Item& l, const Item& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

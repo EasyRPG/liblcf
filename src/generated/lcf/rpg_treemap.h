@@ -21,6 +21,7 @@
 /**
  * rpg::TreeMap class.
  */
+namespace lcf {
 namespace rpg {
 	class TreeMap {
 	public:
@@ -52,6 +53,7 @@ namespace rpg {
 	inline bool operator!=(const TreeMap& l, const TreeMap& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

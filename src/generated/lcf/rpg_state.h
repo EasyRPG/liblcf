@@ -20,6 +20,7 @@
 /**
  * rpg::State class.
  */
+namespace lcf {
 namespace rpg {
 	class State {
 	public:
@@ -160,6 +161,7 @@ namespace rpg {
 	inline bool operator!=(const State& l, const State& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

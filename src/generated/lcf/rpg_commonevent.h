@@ -21,6 +21,7 @@
 /**
  * rpg::CommonEvent class.
  */
+namespace lcf {
 namespace rpg {
 	class CommonEvent {
 	public:
@@ -49,6 +50,7 @@ namespace rpg {
 	inline bool operator!=(const CommonEvent& l, const CommonEvent& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

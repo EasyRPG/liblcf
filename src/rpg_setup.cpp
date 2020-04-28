@@ -18,6 +18,8 @@
 #include "lcf/rpg_parameters.h"
 #include "lcf/data.h"
 
+namespace lcf {
+
 void rpg::SaveActor::Setup(int actor_id) {
 	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
 	ID = actor.ID;
@@ -193,3 +195,5 @@ void rpg::Parameters::Setup(int final_level) {
 	if (spirit.size() < level) spirit.resize(level, 1);
 	if (agility.size() < level) agility.resize(level, 1);
 }
+
+} // namespace lcf

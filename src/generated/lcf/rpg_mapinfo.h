@@ -24,6 +24,7 @@
 /**
  * rpg::MapInfo class.
  */
+namespace lcf {
 namespace rpg {
 	class MapInfo {
 	public:
@@ -101,6 +102,7 @@ namespace rpg {
 	inline bool operator!=(const MapInfo& l, const MapInfo& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

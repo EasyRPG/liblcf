@@ -20,6 +20,7 @@
 /**
  * rpg::AnimationTiming class.
  */
+namespace lcf {
 namespace rpg {
 	class AnimationTiming {
 	public:
@@ -69,6 +70,7 @@ namespace rpg {
 	inline bool operator!=(const AnimationTiming& l, const AnimationTiming& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

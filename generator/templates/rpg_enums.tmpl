@@ -7,6 +7,7 @@
 	{%- endfor %}
 {%- endfor %}
 
+namespace lcf {
 namespace rpg {
 
 {%- for ftype, structlist in structs.items() %}
@@ -21,4 +22,5 @@ constexpr decltype({{ struct.name }}::k{{ name }}Tags) {{ struct.name }}::k{{ na
 	{%- endfor %}
 {%- endfor %}
 
-}
+} // namespace rpg
+} // namespace lcf

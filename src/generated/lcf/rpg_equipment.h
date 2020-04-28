@@ -18,6 +18,7 @@
 /**
  * rpg::Equipment class.
  */
+namespace lcf {
 namespace rpg {
 	class Equipment {
 	public:
@@ -39,6 +40,7 @@ namespace rpg {
 	inline bool operator!=(const Equipment& l, const Equipment& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

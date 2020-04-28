@@ -21,6 +21,7 @@
 /**
  * rpg::Enemy class.
  */
+namespace lcf {
 namespace rpg {
 	class Enemy {
 	public:
@@ -75,6 +76,7 @@ namespace rpg {
 	inline bool operator!=(const Enemy& l, const Enemy& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

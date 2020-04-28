@@ -18,6 +18,7 @@
 /**
  * rpg::Switch class.
  */
+namespace lcf {
 namespace rpg {
 	class Switch {
 	public:
@@ -32,6 +33,7 @@ namespace rpg {
 	inline bool operator!=(const Switch& l, const Switch& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

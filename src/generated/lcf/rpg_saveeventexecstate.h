@@ -20,6 +20,7 @@
 /**
  * rpg::SaveEventExecState class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveEventExecState {
 	public:
@@ -75,6 +76,7 @@ namespace rpg {
 	inline bool operator!=(const SaveEventExecState& l, const SaveEventExecState& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

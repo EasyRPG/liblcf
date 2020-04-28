@@ -21,6 +21,7 @@
 /**
  * rpg::Troop class.
  */
+namespace lcf {
 namespace rpg {
 	class Troop {
 	public:
@@ -45,6 +46,7 @@ namespace rpg {
 	inline bool operator!=(const Troop& l, const Troop& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

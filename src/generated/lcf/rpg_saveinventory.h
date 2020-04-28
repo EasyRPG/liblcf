@@ -19,6 +19,7 @@
 /**
  * rpg::SaveInventory class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveInventory {
 	public:
@@ -69,6 +70,7 @@ namespace rpg {
 	inline bool operator!=(const SaveInventory& l, const SaveInventory& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

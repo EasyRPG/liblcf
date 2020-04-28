@@ -24,6 +24,7 @@
 /**
  * rpg::System class.
  */
+namespace lcf {
 namespace rpg {
 	class System {
 	public:
@@ -292,6 +293,7 @@ namespace rpg {
 	inline bool operator!=(const System& l, const System& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -18,6 +18,7 @@
 /**
  * rpg::AnimationCellData class.
  */
+namespace lcf {
 namespace rpg {
 	class AnimationCellData {
 	public:
@@ -50,6 +51,7 @@ namespace rpg {
 	inline bool operator!=(const AnimationCellData& l, const AnimationCellData& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

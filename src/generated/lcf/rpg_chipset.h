@@ -21,6 +21,7 @@
 /**
  * rpg::Chipset class.
  */
+namespace lcf {
 namespace rpg {
 	class Chipset {
 	public:
@@ -58,6 +59,7 @@ namespace rpg {
 	inline bool operator!=(const Chipset& l, const Chipset& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -23,6 +23,7 @@
 /**
  * rpg::Actor class.
  */
+namespace lcf {
 namespace rpg {
 	class Actor {
 	public:
@@ -98,6 +99,7 @@ namespace rpg {
 	inline bool operator!=(const Actor& l, const Actor& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

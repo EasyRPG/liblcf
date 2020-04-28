@@ -18,6 +18,7 @@
 /**
  * rpg::SaveEasyRpgData class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveEasyRpgData {
 	public:
@@ -31,6 +32,7 @@ namespace rpg {
 	inline bool operator!=(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

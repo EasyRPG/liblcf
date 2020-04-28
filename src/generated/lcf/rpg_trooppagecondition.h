@@ -19,6 +19,7 @@
 /**
  * rpg::TroopPageCondition class.
  */
+namespace lcf {
 namespace rpg {
 	class TroopPageCondition {
 	public:
@@ -103,6 +104,7 @@ namespace rpg {
 	inline bool operator!=(const TroopPageCondition& l, const TroopPageCondition& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

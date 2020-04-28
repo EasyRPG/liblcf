@@ -23,6 +23,7 @@
 /**
  * rpg::SaveMapInfo class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveMapInfo {
 	public:
@@ -68,6 +69,7 @@ namespace rpg {
 	inline bool operator!=(const SaveMapInfo& l, const SaveMapInfo& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

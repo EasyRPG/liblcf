@@ -22,6 +22,7 @@
 /**
  * rpg::Map class.
  */
+namespace lcf {
 namespace rpg {
 	class Map {
 	public:
@@ -131,6 +132,7 @@ namespace rpg {
 	inline bool operator!=(const Map& l, const Map& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

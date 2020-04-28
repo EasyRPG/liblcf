@@ -18,6 +18,7 @@
 /**
  * rpg::SaveTarget class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveTarget {
 	public:
@@ -40,6 +41,7 @@ namespace rpg {
 	inline bool operator!=(const SaveTarget& l, const SaveTarget& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

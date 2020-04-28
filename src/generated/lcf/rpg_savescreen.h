@@ -18,6 +18,7 @@
 /**
  * rpg::SaveScreen class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveScreen {
 	public:
@@ -89,6 +90,7 @@ namespace rpg {
 	inline bool operator!=(const SaveScreen& l, const SaveScreen& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

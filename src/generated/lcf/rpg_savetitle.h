@@ -19,6 +19,7 @@
 /**
  * rpg::SaveTitle class.
  */
+namespace lcf {
 namespace rpg {
 	class SaveTitle {
 	public:
@@ -54,6 +55,7 @@ namespace rpg {
 	inline bool operator!=(const SaveTitle& l, const SaveTitle& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

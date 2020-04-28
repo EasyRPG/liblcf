@@ -19,6 +19,7 @@
 /**
  * rpg::Parameters class.
  */
+namespace lcf {
 namespace rpg {
 	class Parameters {
 	public:
@@ -43,6 +44,7 @@ namespace rpg {
 	inline bool operator!=(const Parameters& l, const Parameters& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

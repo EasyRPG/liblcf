@@ -21,6 +21,7 @@
 /**
  * rpg::SavePicture class.
  */
+namespace lcf {
 namespace rpg {
 	class SavePicture {
 	public:
@@ -186,6 +187,7 @@ namespace rpg {
 	inline bool operator!=(const SavePicture& l, const SavePicture& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

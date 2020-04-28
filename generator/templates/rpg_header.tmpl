@@ -13,6 +13,7 @@
 /**
  * rpg::{{ struct_name }} class.
  */
+namespace lcf {
 namespace rpg {
 	class {{ struct_name }} {%- if struct_base %} : public {{ struct_base }} {%- endif %} {
 	public:
@@ -119,6 +120,7 @@ namespace rpg {
 	inline bool operator!=(const {{ struct_name }}& l, const {{ struct_name }}& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

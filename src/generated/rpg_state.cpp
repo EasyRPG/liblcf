@@ -12,5 +12,5 @@
 // Headers
 #include "lcf/rpg_state.h"
 
-constexpr int rpg::State::kDeathID;
+constexpr int lcf::rpg::State::kDeathID;
 

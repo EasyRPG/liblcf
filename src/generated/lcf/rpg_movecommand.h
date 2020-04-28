@@ -20,6 +20,7 @@
 /**
  * rpg::MoveCommand class.
  */
+namespace lcf {
 namespace rpg {
 	class MoveCommand {
 	public:
@@ -132,6 +133,7 @@ namespace rpg {
 	inline bool operator!=(const MoveCommand& l, const MoveCommand& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

@@ -21,6 +21,7 @@
 /**
  * rpg::Event class.
  */
+namespace lcf {
 namespace rpg {
 	class Event {
 	public:
@@ -41,6 +42,7 @@ namespace rpg {
 	inline bool operator!=(const Event& l, const Event& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif

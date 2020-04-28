@@ -19,6 +19,7 @@
 /**
  * rpg::AnimationFrame class.
  */
+namespace lcf {
 namespace rpg {
 	class AnimationFrame {
 	public:
@@ -33,6 +34,7 @@ namespace rpg {
 	inline bool operator!=(const AnimationFrame& l, const AnimationFrame& r) {
 		return !(l == r);
 	}
-}
+} // namespace rpg
+} // namespace lcf
 
 #endif
