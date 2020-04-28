@@ -137,7 +137,7 @@ set(PUBLIC_HEADERS
 	src/lcf/flag_set.h
 	src/lcf/ini.h
 	src/lcf/inireader.h
-	src/lcf/lcf_saveopt.h
+	src/lcf/saveopt.h
 	src/lcf/ldb_reader.h
 	src/lcf/lmt_reader.h
 	src/lcf/lmu_reader.h

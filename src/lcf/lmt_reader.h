@@ -15,7 +15,7 @@
 #include "lcf/writer_lcf.h"
 #include "lcf/writer_xml.h"
 #include "lcf/rpg/treemap.h"
-#include "lcf/lcf_saveopt.h"
+#include "lcf/saveopt.h"
 
 namespace lcf {
 
