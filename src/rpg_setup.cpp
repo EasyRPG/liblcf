@@ -38,7 +38,6 @@ void rpg::SaveActor::Setup(int actor_id) {
 	defense_mod = 0;
 	spirit_mod = 0;
 	agility_mod = 0;
-	skills_size = 0;
 	skills.clear();
 	equipped.clear();
 	equipped.push_back(actor.initial_equipment.weapon_id);

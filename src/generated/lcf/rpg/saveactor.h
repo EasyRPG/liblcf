@@ -53,7 +53,6 @@ namespace rpg {
 		int32_t defense_mod = 0;
 		int32_t spirit_mod = 0;
 		int32_t agility_mod = 0;
-		int32_t skills_size = -1;
 		std::vector<int16_t> skills;
 		std::vector<int16_t> equipped;
 		int32_t current_hp = -1;
@@ -86,7 +85,6 @@ namespace rpg {
 		&& l.defense_mod == r.defense_mod
 		&& l.spirit_mod == r.spirit_mod
 		&& l.agility_mod == r.agility_mod
-		&& l.skills_size == r.skills_size
 		&& l.skills == r.skills
 		&& l.equipped == r.equipped
 		&& l.current_hp == r.current_hp

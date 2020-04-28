@@ -125,10 +125,9 @@ static TypedField<rpg::SaveActor, int32_t> static_agility_mod(
 	0,
 	0
 );
-static TypedField<rpg::SaveActor, int32_t> static_skills_size(
-	&rpg::SaveActor::skills_size,
+static CountField<rpg::SaveActor, int16_t> static_size_skills(
+	&rpg::SaveActor::skills,
 	LSD_Reader::ChunkSaveActor::skills_size,
-	"skills_size",
 	0,
 	0
 );
@@ -255,7 +254,7 @@ Field<rpg::SaveActor> const* Struct<rpg::SaveActor>::fields[] = {
 	&static_defense_mod,
 	&static_spirit_mod,
 	&static_agility_mod,
-	&static_skills_size,
+	&static_size_skills,
 	&static_skills,
 	&static_equipped,
 	&static_current_hp,
