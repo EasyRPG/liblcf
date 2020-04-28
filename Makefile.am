@@ -132,7 +132,6 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_system.cpp
 lcfinclude_HEADERS = \
 	autogen/lcf/config.h \
-	src/lcf/command_codes.h \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \

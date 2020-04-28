@@ -131,7 +131,6 @@ target_sources(lcf
 	)
 
 set(PUBLIC_HEADERS
-	src/lcf/command_codes.h
 	src/lcf/data.h
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
