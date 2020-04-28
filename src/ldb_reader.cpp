@@ -19,7 +19,7 @@
 
 namespace lcf {
 
-void LDB_Reader::PrepareSave(RPG::Database& db) {
+void LDB_Reader::PrepareSave(rpg::Database& db) {
 	++db.system.save_count;
 }
 
@@ -75,11 +75,11 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 		fprintf(stderr, "Warning: This header is not LcfDataBase and might not be a valid RPG2000 database.\n");
 	}
 	Data::data.ldb_header = header;
-	TypeReader<RPG::Database>::ReadLcf(Data::data, reader, 0);
+	TypeReader<rpg::Database>::ReadLcf(Data::data, reader, 0);
 
 	// Delayed initialization of some actor fields because they are engine
 	// dependent
-	std::vector<RPG::Actor>::iterator it;
+	std::vector<rpg::Actor>::iterator it;
 	for (it = Data::actors.begin(); it != Data::actors.end(); ++it) {
 		(*it).Setup();
 	}
@@ -101,7 +101,7 @@ bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, Sav
 	}
 	writer.WriteInt(header.size());
 	writer.Write(header);
-	TypeReader<RPG::Database>::WriteLcf(Data::data, writer);
+	TypeReader<rpg::Database>::WriteLcf(Data::data, writer);
 	return true;
 }
 
@@ -112,7 +112,7 @@ bool LDB_Reader::SaveXml(std::ostream& filestream) {
 		return false;
 	}
 	writer.BeginElement("LDB");
-	TypeReader<RPG::Database>::WriteXml(Data::data, writer);
+	TypeReader<rpg::Database>::WriteXml(Data::data, writer);
 	writer.EndElement("LDB");
 	return true;
 }
@@ -123,7 +123,7 @@ bool LDB_Reader::LoadXml(std::istream& filestream) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
 	}
-	reader.SetHandler(new RootXmlHandler<RPG::Database>(Data::data, "LDB"));
+	reader.SetHandler(new RootXmlHandler<rpg::Database>(Data::data, "LDB"));
 	reader.Parse();
 	return true;
 }

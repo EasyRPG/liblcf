@@ -19,9 +19,9 @@
 #include "lcf/rpg_battleranimationextension.h"
 
 /**
- * RPG::BattlerAnimation class.
+ * rpg::BattlerAnimation class.
  */
-namespace RPG {
+namespace rpg {
 	class BattlerAnimation {
 	public:
 		enum Speed {

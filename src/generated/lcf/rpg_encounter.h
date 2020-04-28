@@ -13,9 +13,9 @@
 #define LCF_RPG_ENCOUNTER_H
 
 /**
- * RPG::Encounter class.
+ * rpg::Encounter class.
  */
-namespace RPG {
+namespace rpg {
 	class Encounter {
 	public:
 		int ID = 0;

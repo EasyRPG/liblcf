@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::Rect class.
+ * rpg::Rect class.
  */
-namespace RPG {
+namespace rpg {
 	class Rect {
 	public:
 		uint32_t l = 0;

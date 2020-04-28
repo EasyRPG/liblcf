@@ -11,9 +11,9 @@
 {%- endfor %}
 
 /**
- * RPG::{{ struct_name }} class.
+ * rpg::{{ struct_name }} class.
  */
-namespace RPG {
+namespace rpg {
 	class {{ struct_name }} {%- if struct_base %} : public {{ struct_base }} {%- endif %} {
 	public:
 	{%- if struct_name == "Database" %}

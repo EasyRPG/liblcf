@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::BattlerAnimationExtension class.
+ * rpg::BattlerAnimationExtension class.
  */
-namespace RPG {
+namespace rpg {
 	class BattlerAnimationExtension {
 	public:
 		enum AnimType {

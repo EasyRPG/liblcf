@@ -20,9 +20,9 @@
 #include "lcf/rpg_event.h"
 
 /**
- * RPG::Map class.
+ * rpg::Map class.
  */
-namespace RPG {
+namespace rpg {
 	class Map {
 	public:
 		std::string lmu_header;

@@ -21,9 +21,9 @@
 #include "lcf/rpg_sound.h"
 
 /**
- * RPG::Skill class.
+ * rpg::Skill class.
  */
-namespace RPG {
+namespace rpg {
 	class Skill {
 	public:
 		enum Type {

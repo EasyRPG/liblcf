@@ -35,9 +35,9 @@
 #include "lcf/rpg_variable.h"
 
 /**
- * RPG::Database class.
+ * rpg::Database class.
  */
-namespace RPG {
+namespace rpg {
 	class Database {
 	public:
 		std::string ldb_header;

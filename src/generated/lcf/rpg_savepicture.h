@@ -19,9 +19,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::SavePicture class.
+ * rpg::SavePicture class.
  */
-namespace RPG {
+namespace rpg {
 	class SavePicture {
 	public:
 		enum Effect {

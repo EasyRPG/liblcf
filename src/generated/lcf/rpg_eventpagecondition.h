@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::EventPageCondition class.
+ * rpg::EventPageCondition class.
  */
-namespace RPG {
+namespace rpg {
 	class EventPageCondition {
 	public:
 		enum Comparison {

@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::SavePanorama class.
+ * rpg::SavePanorama class.
  */
-namespace RPG {
+namespace rpg {
 	class SavePanorama {
 	public:
 		int32_t pan_x = 0;

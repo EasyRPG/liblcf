@@ -19,9 +19,9 @@
 #include "lcf/rpg_enemyaction.h"
 
 /**
- * RPG::Enemy class.
+ * rpg::Enemy class.
  */
-namespace RPG {
+namespace rpg {
 	class Enemy {
 	public:
 		int ID = 0;

@@ -19,9 +19,9 @@ namespace lcf {
 // Read AnimationFrame.
 
 template <>
-char const* const Struct<RPG::AnimationFrame>::name = "AnimationFrame";
-static TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData>> static_cells(
-	&RPG::AnimationFrame::cells,
+char const* const Struct<rpg::AnimationFrame>::name = "AnimationFrame";
+static TypedField<rpg::AnimationFrame, std::vector<rpg::AnimationCellData>> static_cells(
+	&rpg::AnimationFrame::cells,
 	LDB_Reader::ChunkAnimationFrame::cells,
 	"cells",
 	1,
@@ -30,11 +30,11 @@ static TypedField<RPG::AnimationFrame, std::vector<RPG::AnimationCellData>> stat
 
 
 template <>
-Field<RPG::AnimationFrame> const* Struct<RPG::AnimationFrame>::fields[] = {
+Field<rpg::AnimationFrame> const* Struct<rpg::AnimationFrame>::fields[] = {
 	&static_cells,
 	NULL
 };
 
-template class Struct<RPG::AnimationFrame>;
+template class Struct<rpg::AnimationFrame>;
 
 } //namespace lcf

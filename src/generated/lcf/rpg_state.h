@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::State class.
+ * rpg::State class.
  */
-namespace RPG {
+namespace rpg {
 	class State {
 	public:
 		// The ID of the special death state

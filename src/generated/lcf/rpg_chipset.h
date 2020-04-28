@@ -19,9 +19,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::Chipset class.
+ * rpg::Chipset class.
  */
-namespace RPG {
+namespace rpg {
 	class Chipset {
 	public:
 		enum AnimType {

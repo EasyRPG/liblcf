@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::SaveEasyRpgData class.
+ * rpg::SaveEasyRpgData class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveEasyRpgData {
 	public:
 		int32_t version = 0;

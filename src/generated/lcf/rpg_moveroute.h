@@ -17,9 +17,9 @@
 #include "lcf/rpg_movecommand.h"
 
 /**
- * RPG::MoveRoute class.
+ * rpg::MoveRoute class.
  */
-namespace RPG {
+namespace rpg {
 	class MoveRoute {
 	public:
 		std::vector<MoveCommand> move_commands;

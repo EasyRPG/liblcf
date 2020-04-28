@@ -16,9 +16,9 @@
 #include "lcf/rpg_saveeventexecstate.h"
 
 /**
- * RPG::SaveCommonEvent class.
+ * rpg::SaveCommonEvent class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveCommonEvent {
 	public:
 		int ID = 0;

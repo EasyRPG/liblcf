@@ -20,9 +20,9 @@
 #include "lcf/rpg_itemanimation.h"
 
 /**
- * RPG::Item class.
+ * rpg::Item class.
  */
-namespace RPG {
+namespace rpg {
 	class Item {
 	public:
 		enum Type {

@@ -78,7 +78,7 @@ namespace LDB_Reader {
 			battle_y = 0x3C,
 			/** Integer - RPG2003 */
 			battler_animation = 0x3E,
-			/** Array - RPG::Learning */
+			/** Array - rpg::Learning */
 			skills = 0x3F,
 			/** Flag */
 			rename_skill = 0x42,
@@ -92,7 +92,7 @@ namespace LDB_Reader {
 			attribute_ranks_size = 0x49,
 			/** Array - Short */
 			attribute_ranks = 0x4A,
-			/** Array - RPG::BattleCommand - RPG2003 */
+			/** Array - rpg::BattleCommand - RPG2003 */
 			battle_commands = 0x50
 		};
 	};
@@ -112,7 +112,7 @@ namespace LDB_Reader {
 		enum Index {
 			/** Integer */
 			frame = 0x01,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			se = 0x02,
 			/** Integer */
 			flash_scope = 0x03,
@@ -154,7 +154,7 @@ namespace LDB_Reader {
 	};
 	struct ChunkAnimationFrame {
 		enum Index {
-			/** Array - RPG::AnimationCellData */
+			/** Array - rpg::AnimationCellData */
 			cells = 0x01
 		};
 	};
@@ -166,13 +166,13 @@ namespace LDB_Reader {
 			animation_name = 0x02,
 			/** Battle2 animation when true */
 			large = 0x03,
-			/** Array - RPG::AnimationTiming */
+			/** Array - rpg::AnimationTiming */
 			timings = 0x06,
 			/** Integer */
 			scope = 0x09,
 			/** Integer */
 			position = 0x0A,
-			/** Array - RPG::AnimationFrames */
+			/** Array - rpg::AnimationFrames */
 			frames = 0x0C
 		};
 	};
@@ -214,7 +214,7 @@ namespace LDB_Reader {
 			battle_type = 0x07,
 			/** Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab */
 			unused_display_normal_parameters = 0x09,
-			/** Array - RPG::BattleCommand */
+			/** Array - rpg::BattleCommand */
 			commands = 0x0A,
 			/** True if a 2k3 random encounter death handler is active */
 			death_handler = 0x0F,
@@ -256,9 +256,9 @@ namespace LDB_Reader {
 			name = 0x01,
 			/** Integer */
 			speed = 0x02,
-			/** Array - RPG::BattlerAnimationExtension */
+			/** Array - rpg::BattlerAnimationExtension */
 			base_data = 0x0A,
-			/** Array - RPG::BattlerAnimationExtension */
+			/** Array - rpg::BattlerAnimationExtension */
 			weapon_data = 0x0B
 		};
 	};
@@ -312,7 +312,7 @@ namespace LDB_Reader {
 			exp_correction = 0x2B,
 			/** Integer */
 			battler_animation = 0x3E,
-			/** Array - RPG::Learning */
+			/** Array - rpg::Learning */
 			skills = 0x3F,
 			/** Integer */
 			state_ranks_size = 0x47,
@@ -338,7 +338,7 @@ namespace LDB_Reader {
 			switch_id = 0x0D,
 			/** Integer */
 			event_commands_size = 0x15,
-			/** Array - RPG::EventCommand */
+			/** Array - rpg::EventCommand */
 			event_commands = 0x16
 		};
 	};
@@ -368,7 +368,7 @@ namespace LDB_Reader {
 			switch_id = 0x0D,
 			/** Integer */
 			animation_id = 0x0E,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			sound_effect = 0x10,
 			/** Flag */
 			occasion_field = 0x12,
@@ -632,7 +632,7 @@ namespace LDB_Reader {
 			attribute_ranks_size = 0x21,
 			/** Array - Short */
 			attribute_ranks = 0x22,
-			/** Array - RPG::EnemyAction */
+			/** Array - rpg::EnemyAction */
 			actions = 0x2A
 		};
 	};
@@ -700,11 +700,11 @@ namespace LDB_Reader {
 	};
 	struct ChunkTroopPage {
 		enum Index {
-			/** RPG::TroopPageCondition */
+			/** rpg::TroopPageCondition */
 			condition = 0x02,
 			/** Integer */
 			event_commands_size = 0x0B,
-			/** Array - RPG::EventCommand */
+			/** Array - rpg::EventCommand */
 			event_commands = 0x0C
 		};
 	};
@@ -712,7 +712,7 @@ namespace LDB_Reader {
 		enum Index {
 			/** String */
 			name = 0x01,
-			/** Array - RPG::TroopMember */
+			/** Array - rpg::TroopMember */
 			members = 0x02,
 			/** Flag */
 			auto_alignment = 0x03,
@@ -722,7 +722,7 @@ namespace LDB_Reader {
 			terrain_set = 0x05,
 			/** Flag */
 			appear_randomly = 0x06,
-			/** Array - RPG::TroopPage */
+			/** Array - rpg::TroopPage */
 			pages = 0x0B
 		};
 	};
@@ -746,7 +746,7 @@ namespace LDB_Reader {
 			airship_land = 0x09,
 			/** Integer */
 			bush_depth = 0x0B,
-			/** RPG::Sound - RPG2003 */
+			/** rpg::Sound - RPG2003 */
 			footstep = 0x0F,
 			/** Flag - RPG2003 */
 			on_damage_se = 0x10,
@@ -1204,45 +1204,45 @@ namespace LDB_Reader {
 			menu_commands_size = 0x1A,
 			/** Array - Short - RPG2003 */
 			menu_commands = 0x1B,
-			/** RPG::Music */
+			/** rpg::Music */
 			title_music = 0x1F,
-			/** RPG::Music */
+			/** rpg::Music */
 			battle_music = 0x20,
-			/** RPG::Music */
+			/** rpg::Music */
 			battle_end_music = 0x21,
-			/** RPG::Music */
+			/** rpg::Music */
 			inn_music = 0x22,
-			/** RPG::Music */
+			/** rpg::Music */
 			boat_music = 0x23,
-			/** RPG::Music */
+			/** rpg::Music */
 			ship_music = 0x24,
-			/** RPG::Music */
+			/** rpg::Music */
 			airship_music = 0x25,
-			/** RPG::Music */
+			/** rpg::Music */
 			gameover_music = 0x26,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			cursor_se = 0x29,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			decision_se = 0x2A,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			cancel_se = 0x2B,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			buzzer_se = 0x2C,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			battle_se = 0x2D,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			escape_se = 0x2E,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			enemy_attack_se = 0x2F,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			enemy_damaged_se = 0x30,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			actor_damaged_se = 0x31,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			dodge_se = 0x32,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			enemy_death_se = 0x33,
-			/** RPG::Sound */
+			/** rpg::Sound */
 			item_se = 0x34,
 			/** Integer */
 			transition_out = 0x3D,
@@ -1266,7 +1266,7 @@ namespace LDB_Reader {
 			selected_hero = 0x52,
 			/** String */
 			battletest_background = 0x54,
-			/** Array - RPG::TestBattler */
+			/** Array - rpg::TestBattler */
 			battletest_data = 0x55,
 			/** Integer */
 			save_count = 0x5B,
@@ -1304,35 +1304,35 @@ namespace LDB_Reader {
 	};
 	struct ChunkDatabase {
 		enum Index {
-			/** RPG::Actor */
+			/** rpg::Actor */
 			actors = 0x0B,
-			/** RPG::Skill */
+			/** rpg::Skill */
 			skills = 0x0C,
-			/** RPG::Item */
+			/** rpg::Item */
 			items = 0x0D,
-			/** RPG::Enemy */
+			/** rpg::Enemy */
 			enemies = 0x0E,
-			/** RPG::Troop */
+			/** rpg::Troop */
 			troops = 0x0F,
-			/** RPG::Terrain */
+			/** rpg::Terrain */
 			terrains = 0x10,
-			/** RPG::Attribute */
+			/** rpg::Attribute */
 			attributes = 0x11,
-			/** RPG::State */
+			/** rpg::State */
 			states = 0x12,
-			/** RPG::Animation */
+			/** rpg::Animation */
 			animations = 0x13,
-			/** RPG::Chipset */
+			/** rpg::Chipset */
 			chipsets = 0x14,
-			/** RPG::Terms */
+			/** rpg::Terms */
 			terms = 0x15,
-			/** RPG::System */
+			/** rpg::System */
 			system = 0x16,
-			/** RPG::Switchs */
+			/** rpg::Switchs */
 			switches = 0x17,
-			/** RPG::Variables */
+			/** rpg::Variables */
 			variables = 0x18,
-			/** RPG::CommonEvent */
+			/** rpg::CommonEvent */
 			commonevents = 0x19,
 			/** Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61 */
 			version = 0x1A,
@@ -1340,13 +1340,13 @@ namespace LDB_Reader {
 			commoneventD2 = 0x1B,
 			/** Duplicated? - Not used - RPG2003 */
 			commoneventD3 = 0x1C,
-			/** RPG::BattleCommand - RPG2003 */
+			/** rpg::BattleCommand - RPG2003 */
 			battlecommands = 0x1D,
-			/** RPG::Class - RPG2003 */
+			/** rpg::Class - RPG2003 */
 			classes = 0x1E,
 			/** Duplicated? - Not used - RPG2003 */
 			classD1 = 0x1F,
-			/** RPG::BattlerAnimation - RPG2003 */
+			/** rpg::BattlerAnimation - RPG2003 */
 			battleranimations = 0x20
 		};
 	};

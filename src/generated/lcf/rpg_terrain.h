@@ -20,9 +20,9 @@
 #include "lcf/rpg_sound.h"
 
 /**
- * RPG::Terrain class.
+ * rpg::Terrain class.
  */
-namespace RPG {
+namespace rpg {
 	class Terrain {
 	public:
 		enum BushDepth {

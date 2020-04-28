@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::Equipment class.
+ * rpg::Equipment class.
  */
-namespace RPG {
+namespace rpg {
 	class Equipment {
 	public:
 		int16_t weapon_id = 0;

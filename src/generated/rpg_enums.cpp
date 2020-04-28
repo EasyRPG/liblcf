@@ -39,7 +39,7 @@
 #include "lcf/rpg_mapinfo.h"
 #include "lcf/rpg_treemap.h"
 
-namespace RPG {
+namespace rpg {
 constexpr decltype(MoveCommand::kCodeTags) MoveCommand::kCodeTags;
 constexpr decltype(AnimationTiming::kFlashScopeTags) AnimationTiming::kFlashScopeTags;
 constexpr decltype(AnimationTiming::kScreenShakeTags) AnimationTiming::kScreenShakeTags;

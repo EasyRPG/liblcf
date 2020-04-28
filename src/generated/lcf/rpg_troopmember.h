@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::TroopMember class.
+ * rpg::TroopMember class.
  */
-namespace RPG {
+namespace rpg {
 	class TroopMember {
 	public:
 		int ID = 0;

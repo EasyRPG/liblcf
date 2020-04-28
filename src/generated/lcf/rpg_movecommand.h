@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::MoveCommand class.
+ * rpg::MoveCommand class.
  */
-namespace RPG {
+namespace rpg {
 	class MoveCommand {
 	public:
 		struct Code {

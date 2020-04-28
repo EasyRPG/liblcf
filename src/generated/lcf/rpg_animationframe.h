@@ -17,9 +17,9 @@
 #include "lcf/rpg_animationcelldata.h"
 
 /**
- * RPG::AnimationFrame class.
+ * rpg::AnimationFrame class.
  */
-namespace RPG {
+namespace rpg {
 	class AnimationFrame {
 	public:
 		int ID = 0;

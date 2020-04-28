@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::AnimationCellData class.
+ * rpg::AnimationCellData class.
  */
-namespace RPG {
+namespace rpg {
 	class AnimationCellData {
 	public:
 		int ID = 0;

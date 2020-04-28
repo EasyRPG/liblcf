@@ -19,22 +19,22 @@ namespace lcf {
 // Read TroopPage.
 
 template <>
-char const* const Struct<RPG::TroopPage>::name = "TroopPage";
-static TypedField<RPG::TroopPage, RPG::TroopPageCondition> static_condition(
-	&RPG::TroopPage::condition,
+char const* const Struct<rpg::TroopPage>::name = "TroopPage";
+static TypedField<rpg::TroopPage, rpg::TroopPageCondition> static_condition(
+	&rpg::TroopPage::condition,
 	LDB_Reader::ChunkTroopPage::condition,
 	"condition",
 	1,
 	0
 );
-static SizeField<RPG::TroopPage, RPG::EventCommand> static_size_event_commands(
-	&RPG::TroopPage::event_commands,
+static SizeField<rpg::TroopPage, rpg::EventCommand> static_size_event_commands(
+	&rpg::TroopPage::event_commands,
 	LDB_Reader::ChunkTroopPage::event_commands_size,
 	1,
 	0
 );
-static TypedField<RPG::TroopPage, std::vector<RPG::EventCommand>> static_event_commands(
-	&RPG::TroopPage::event_commands,
+static TypedField<rpg::TroopPage, std::vector<rpg::EventCommand>> static_event_commands(
+	&rpg::TroopPage::event_commands,
 	LDB_Reader::ChunkTroopPage::event_commands,
 	"event_commands",
 	1,
@@ -43,13 +43,13 @@ static TypedField<RPG::TroopPage, std::vector<RPG::EventCommand>> static_event_c
 
 
 template <>
-Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[] = {
+Field<rpg::TroopPage> const* Struct<rpg::TroopPage>::fields[] = {
 	&static_condition,
 	&static_size_event_commands,
 	&static_event_commands,
 	NULL
 };
 
-template class Struct<RPG::TroopPage>;
+template class Struct<rpg::TroopPage>;
 
 } //namespace lcf

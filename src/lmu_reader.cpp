@@ -19,11 +19,11 @@
 
 namespace lcf {
 
-void LMU_Reader::PrepareSave(RPG::Map& map) {
+void LMU_Reader::PrepareSave(rpg::Map& map) {
 	++map.save_count;
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const std::string& encoding) {
+std::unique_ptr<rpg::Map> LMU_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMU file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
@@ -32,7 +32,7 @@ std::unique_ptr<RPG::Map> LMU_Reader::Load(const std::string& filename, const st
 	return LMU_Reader::Load(stream, encoding);
 }
 
-bool LMU_Reader::Save(const std::string& filename, const RPG::Map& save, const std::string& encoding, SaveOpt opt) {
+bool LMU_Reader::Save(const std::string& filename, const rpg::Map& save, const std::string& encoding, SaveOpt opt) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMU file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
@@ -41,7 +41,7 @@ bool LMU_Reader::Save(const std::string& filename, const RPG::Map& save, const s
 	return LMU_Reader::Save(stream, save, encoding, opt);
 }
 
-bool LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& save) {
+bool LMU_Reader::SaveXml(const std::string& filename, const rpg::Map& save) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMU XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
@@ -50,7 +50,7 @@ bool LMU_Reader::SaveXml(const std::string& filename, const RPG::Map& save) {
 	return LMU_Reader::SaveXml(stream, save);
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
+std::unique_ptr<rpg::Map> LMU_Reader::LoadXml(const std::string& filename) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMU XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
@@ -59,29 +59,29 @@ std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(const std::string& filename) {
 	return LMU_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::Load(std::istream& filestream, const std::string& encoding) {
+std::unique_ptr<rpg::Map> LMU_Reader::Load(std::istream& filestream, const std::string& encoding) {
 	LcfReader reader(filestream, encoding);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
-		return std::unique_ptr<RPG::Map>();
+		return std::unique_ptr<rpg::Map>();
 	}
 	std::string header;
 	reader.ReadString(header, reader.ReadInt());
 	if (header.length() != 10) {
 		LcfReader::SetError("This is not a valid RPG2000 map.\n");
-		return std::unique_ptr<RPG::Map>();
+		return std::unique_ptr<rpg::Map>();
 	}
 	if (header != "LcfMapUnit") {
 		fprintf(stderr, "Warning: This header is not LcfMapUnit and might not be a valid RPG2000 map.\n");
 	}
 
-	auto map = std::unique_ptr<RPG::Map>(new RPG::Map());
+	auto map = std::unique_ptr<rpg::Map>(new rpg::Map());
 	map->lmu_header = std::move(header);
-	Struct<RPG::Map>::ReadLcf(*map, reader);
+	Struct<rpg::Map>::ReadLcf(*map, reader);
 	return map;
 }
 
-bool LMU_Reader::Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding, SaveOpt opt) {
+bool LMU_Reader::Save(std::ostream& filestream, const rpg::Map& map, const std::string& encoding, SaveOpt opt) {
 	LcfWriter writer(filestream, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
@@ -96,31 +96,31 @@ bool LMU_Reader::Save(std::ostream& filestream, const RPG::Map& map, const std::
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
-	Struct<RPG::Map>::WriteLcf(map, writer);
+	Struct<rpg::Map>::WriteLcf(map, writer);
 	return true;
 }
 
-bool LMU_Reader::SaveXml(std::ostream& filestream, const RPG::Map& map) {
+bool LMU_Reader::SaveXml(std::ostream& filestream, const rpg::Map& map) {
 	XmlWriter writer(filestream);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
 		return false;
 	}
 	writer.BeginElement("LMU");
-	Struct<RPG::Map>::WriteXml(map, writer);
+	Struct<rpg::Map>::WriteXml(map, writer);
 	writer.EndElement("LMU");
 	return true;
 }
 
-std::unique_ptr<RPG::Map> LMU_Reader::LoadXml(std::istream& filestream) {
+std::unique_ptr<rpg::Map> LMU_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
-		return std::unique_ptr<RPG::Map>();
+		return std::unique_ptr<rpg::Map>();
 	}
 
-	auto map = std::unique_ptr<RPG::Map>(new RPG::Map());
-	reader.SetHandler(new RootXmlHandler<RPG::Map>(*map, "LMU"));
+	auto map = std::unique_ptr<rpg::Map>(new rpg::Map());
+	reader.SetHandler(new RootXmlHandler<rpg::Map>(*map, "LMU"));
 	reader.Parse();
 	return map;
 }

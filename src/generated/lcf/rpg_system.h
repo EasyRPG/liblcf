@@ -22,9 +22,9 @@
 #include "lcf/rpg_testbattler.h"
 
 /**
- * RPG::System class.
+ * rpg::System class.
  */
-namespace RPG {
+namespace rpg {
 	class System {
 	public:
 		enum FadeOut {

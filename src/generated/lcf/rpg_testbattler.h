@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::TestBattler class.
+ * rpg::TestBattler class.
  */
-namespace RPG {
+namespace rpg {
 	class TestBattler {
 	public:
 		int ID = 0;

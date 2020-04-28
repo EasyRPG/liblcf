@@ -46,7 +46,7 @@ namespace LMU_Reader {
 		enum Index {
 			/** Integer */
 			move_commands_size = 0x0B,
-			/** Array - RPG::MoveCommand */
+			/** Array - rpg::MoveCommand */
 			move_commands = 0x0C,
 			/** Flag */
 			repeat = 0x15,
@@ -56,7 +56,7 @@ namespace LMU_Reader {
 	};
 	struct ChunkEventPage {
 		enum Index {
-			/** RPG::EventPageCondition */
+			/** rpg::EventPageCondition */
 			condition = 0x02,
 			/** String */
 			character_name = 0x15,
@@ -82,11 +82,11 @@ namespace LMU_Reader {
 			animation_type = 0x24,
 			/** Integer */
 			move_speed = 0x25,
-			/** RPG::MoveRoute */
+			/** rpg::MoveRoute */
 			move_route = 0x29,
 			/** Integer */
 			event_commands_size = 0x33,
-			/** Array - RPG::EventCommand */
+			/** Array - rpg::EventCommand */
 			event_commands = 0x34
 		};
 	};
@@ -98,7 +98,7 @@ namespace LMU_Reader {
 			x = 0x02,
 			/** Integer */
 			y = 0x03,
-			/** Array - RPG::EventPage */
+			/** Array - rpg::EventPage */
 			pages = 0x05
 		};
 	};
@@ -162,7 +162,7 @@ namespace LMU_Reader {
 			lower_layer = 0x47,
 			/** Array - Short */
 			upper_layer = 0x48,
-			/** Array - RPG::Event */
+			/** Array - rpg::Event */
 			events = 0x51,
 			/** Integer - Used by steam version of rm2k3 instead of 0x5B. */
 			save_count_2k3e = 0x5A,

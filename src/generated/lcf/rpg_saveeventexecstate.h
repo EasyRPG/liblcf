@@ -18,9 +18,9 @@
 #include "lcf/rpg_saveeventexecframe.h"
 
 /**
- * RPG::SaveEventExecState class.
+ * rpg::SaveEventExecState class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveEventExecState {
 	public:
 		std::vector<SaveEventExecFrame> stack;

@@ -14,18 +14,18 @@
 namespace lcf {
 
 template <>
-struct RawStruct<RPG::Equipment> {
-	static void ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length);
-	static void WriteLcf(const RPG::Equipment& ref, LcfWriter& stream);
-	static int LcfSize(const RPG::Equipment& ref, LcfWriter& stream);
-	static void WriteXml(const RPG::Equipment& ref, XmlWriter& stream);
-	static void BeginXml(RPG::Equipment& ref, XmlReader& stream);
+struct RawStruct<rpg::Equipment> {
+	static void ReadLcf(rpg::Equipment& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const rpg::Equipment& ref, LcfWriter& stream);
+	static int LcfSize(const rpg::Equipment& ref, LcfWriter& stream);
+	static void WriteXml(const rpg::Equipment& ref, XmlWriter& stream);
+	static void BeginXml(rpg::Equipment& ref, XmlReader& stream);
 };
 
 /**
  * Reads Equipment.
  */
-void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<rpg::Equipment>::ReadLcf(rpg::Equipment& ref, LcfReader& stream, uint32_t length) {
 	if (length != 10) {
 		fprintf(stderr, "Equipment has incorrect size %" PRIu32 " (expected 10)\n", length);
 
@@ -45,7 +45,7 @@ void RawStruct<RPG::Equipment>::ReadLcf(RPG::Equipment& ref, LcfReader& stream, 
 	stream.Read(ref.accessory_id);
 }
 
-void RawStruct<RPG::Equipment>::WriteLcf(const RPG::Equipment& ref, LcfWriter& stream) {
+void RawStruct<rpg::Equipment>::WriteLcf(const rpg::Equipment& ref, LcfWriter& stream) {
 	stream.Write(ref.weapon_id);
 	stream.Write(ref.shield_id);
 	stream.Write(ref.armor_id);
@@ -53,11 +53,11 @@ void RawStruct<RPG::Equipment>::WriteLcf(const RPG::Equipment& ref, LcfWriter& s
 	stream.Write(ref.accessory_id);
 }
 
-int RawStruct<RPG::Equipment>::LcfSize(const RPG::Equipment& /* ref */, LcfWriter& /* stream */) {
+int RawStruct<rpg::Equipment>::LcfSize(const rpg::Equipment& /* ref */, LcfWriter& /* stream */) {
 	return 2 * 5;
 }
 
-void RawStruct<RPG::Equipment>::WriteXml(const RPG::Equipment& ref, XmlWriter& stream) {
+void RawStruct<rpg::Equipment>::WriteXml(const rpg::Equipment& ref, XmlWriter& stream) {
 	stream.BeginElement("Equipment");
 	stream.WriteNode<int16_t>("weapon_id", ref.weapon_id);
 	stream.WriteNode<int16_t>("shield_id", ref.shield_id);
@@ -69,10 +69,10 @@ void RawStruct<RPG::Equipment>::WriteXml(const RPG::Equipment& ref, XmlWriter& s
 
 class EquipmentXmlHandler : public XmlHandler {
 private:
-	RPG::Equipment& ref;
+	rpg::Equipment& ref;
 	int16_t* field;
 public:
-	EquipmentXmlHandler(RPG::Equipment& ref) : ref(ref), field(NULL) {}
+	EquipmentXmlHandler(rpg::Equipment& ref) : ref(ref), field(NULL) {}
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "weapon_id") == 0)
 			field = &ref.weapon_id;
@@ -98,7 +98,7 @@ public:
 	}
 };
 
-void RawStruct<RPG::Equipment>::BeginXml(RPG::Equipment& ref, XmlReader& stream) {
+void RawStruct<rpg::Equipment>::BeginXml(rpg::Equipment& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Equipment", new EquipmentXmlHandler(ref)));
 }
 

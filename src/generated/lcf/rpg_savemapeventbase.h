@@ -19,9 +19,9 @@
 #include "lcf/rpg_moveroute.h"
 
 /**
- * RPG::SaveMapEventBase class.
+ * rpg::SaveMapEventBase class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveMapEventBase {
 	public:
 		bool active = true;

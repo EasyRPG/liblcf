@@ -17,9 +17,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::BattleCommand class.
+ * rpg::BattleCommand class.
  */
-namespace RPG {
+namespace rpg {
 	class BattleCommand {
 	public:
 		enum Type {

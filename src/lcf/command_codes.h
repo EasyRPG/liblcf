@@ -13,12 +13,12 @@
 #include "lcf/rpg_eventcommand.h"
 
 /**
- * Abbreviate RPG::EventCommand::Code to Cmd.
+ * Abbreviate rpg::EventCommand::Code to Cmd.
  */
 
 namespace lcf {
 
-using Cmd = RPG::EventCommand::Code;
+using Cmd = rpg::EventCommand::Code;
 
 } //namespace lcf
 

@@ -46,7 +46,7 @@ namespace LDB_Reader {
 	/**
 	 * Increment the database save_count.
 	 */
-	void PrepareSave(RPG::Database& db);
+	void PrepareSave(rpg::Database& db);
 
 	/**
 	 * Loads Database.

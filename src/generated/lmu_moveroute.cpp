@@ -19,29 +19,29 @@ namespace lcf {
 // Read MoveRoute.
 
 template <>
-char const* const Struct<RPG::MoveRoute>::name = "MoveRoute";
-static SizeField<RPG::MoveRoute, RPG::MoveCommand> static_size_move_commands(
-	&RPG::MoveRoute::move_commands,
+char const* const Struct<rpg::MoveRoute>::name = "MoveRoute";
+static SizeField<rpg::MoveRoute, rpg::MoveCommand> static_size_move_commands(
+	&rpg::MoveRoute::move_commands,
 	LMU_Reader::ChunkMoveRoute::move_commands_size,
 	0,
 	0
 );
-static TypedField<RPG::MoveRoute, std::vector<RPG::MoveCommand>> static_move_commands(
-	&RPG::MoveRoute::move_commands,
+static TypedField<rpg::MoveRoute, std::vector<rpg::MoveCommand>> static_move_commands(
+	&rpg::MoveRoute::move_commands,
 	LMU_Reader::ChunkMoveRoute::move_commands,
 	"move_commands",
 	1,
 	0
 );
-static TypedField<RPG::MoveRoute, bool> static_repeat(
-	&RPG::MoveRoute::repeat,
+static TypedField<rpg::MoveRoute, bool> static_repeat(
+	&rpg::MoveRoute::repeat,
 	LMU_Reader::ChunkMoveRoute::repeat,
 	"repeat",
 	0,
 	0
 );
-static TypedField<RPG::MoveRoute, bool> static_skippable(
-	&RPG::MoveRoute::skippable,
+static TypedField<rpg::MoveRoute, bool> static_skippable(
+	&rpg::MoveRoute::skippable,
 	LMU_Reader::ChunkMoveRoute::skippable,
 	"skippable",
 	0,
@@ -50,7 +50,7 @@ static TypedField<RPG::MoveRoute, bool> static_skippable(
 
 
 template <>
-Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
+Field<rpg::MoveRoute> const* Struct<rpg::MoveRoute>::fields[] = {
 	&static_size_move_commands,
 	&static_move_commands,
 	&static_repeat,
@@ -58,6 +58,6 @@ Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::MoveRoute>;
+template class Struct<rpg::MoveRoute>;
 
 } //namespace lcf

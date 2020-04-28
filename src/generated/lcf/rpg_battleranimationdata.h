@@ -17,9 +17,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::BattlerAnimationData class.
+ * rpg::BattlerAnimationData class.
  */
-namespace RPG {
+namespace rpg {
 	class BattlerAnimationData {
 	public:
 		enum Movement {

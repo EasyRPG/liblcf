@@ -22,9 +22,9 @@
 #include "lcf/rpg_rect.h"
 
 /**
- * RPG::MapInfo class.
+ * rpg::MapInfo class.
  */
-namespace RPG {
+namespace rpg {
 	class MapInfo {
 	public:
 		enum MusicType {

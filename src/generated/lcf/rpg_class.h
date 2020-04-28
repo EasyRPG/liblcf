@@ -20,9 +20,9 @@
 #include "lcf/rpg_parameters.h"
 
 /**
- * RPG::Class class.
+ * rpg::Class class.
  */
-namespace RPG {
+namespace rpg {
 	class Class {
 	public:
 		int ID = 0;

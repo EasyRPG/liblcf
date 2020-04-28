@@ -21,9 +21,9 @@
 #include "lcf/rpg_parameters.h"
 
 /**
- * RPG::Actor class.
+ * rpg::Actor class.
  */
-namespace RPG {
+namespace rpg {
 	class Actor {
 	public:
 		void Setup();

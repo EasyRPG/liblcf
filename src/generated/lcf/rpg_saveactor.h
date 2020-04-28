@@ -19,9 +19,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::SaveActor class.
+ * rpg::SaveActor class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveActor {
 	public:
 		enum RowType {

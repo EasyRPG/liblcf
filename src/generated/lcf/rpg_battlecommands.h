@@ -19,9 +19,9 @@
 #include "lcf/rpg_battlecommand.h"
 
 /**
- * RPG::BattleCommands class.
+ * rpg::BattleCommands class.
  */
-namespace RPG {
+namespace rpg {
 	class BattleCommands {
 	public:
 		enum Placement {

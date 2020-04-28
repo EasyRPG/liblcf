@@ -21,9 +21,9 @@
 #include "lcf/rpg_sound.h"
 
 /**
- * RPG::SaveSystem class.
+ * rpg::SaveSystem class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveSystem {
 	public:
 		enum Scene {

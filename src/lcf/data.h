@@ -41,30 +41,30 @@ namespace lcf {
  */
 namespace Data {
 	/** Database Data (ldb) */
-	extern RPG::Database data;
+	extern rpg::Database data;
 	/** @{ */
-	extern std::vector<RPG::Actor>& actors;
-	extern std::vector<RPG::Skill>& skills;
-	extern std::vector<RPG::Item>& items;
-	extern std::vector<RPG::Enemy>& enemies;
-	extern std::vector<RPG::Troop>& troops;
-	extern std::vector<RPG::Terrain>& terrains;
-	extern std::vector<RPG::Attribute>& attributes;
-	extern std::vector<RPG::State>& states;
-	extern std::vector<RPG::Animation>& animations;
-	extern std::vector<RPG::Chipset>& chipsets;
-	extern std::vector<RPG::CommonEvent>& commonevents;
-	extern RPG::BattleCommands& battlecommands;
-	extern std::vector<RPG::Class>& classes;
-	extern std::vector<RPG::BattlerAnimation>& battleranimations;
-	extern RPG::Terms& terms;
-	extern RPG::System& system;
-	extern std::vector<RPG::Switch>& switches;
-	extern std::vector<RPG::Variable>& variables;
+	extern std::vector<rpg::Actor>& actors;
+	extern std::vector<rpg::Skill>& skills;
+	extern std::vector<rpg::Item>& items;
+	extern std::vector<rpg::Enemy>& enemies;
+	extern std::vector<rpg::Troop>& troops;
+	extern std::vector<rpg::Terrain>& terrains;
+	extern std::vector<rpg::Attribute>& attributes;
+	extern std::vector<rpg::State>& states;
+	extern std::vector<rpg::Animation>& animations;
+	extern std::vector<rpg::Chipset>& chipsets;
+	extern std::vector<rpg::CommonEvent>& commonevents;
+	extern rpg::BattleCommands& battlecommands;
+	extern std::vector<rpg::Class>& classes;
+	extern std::vector<rpg::BattlerAnimation>& battleranimations;
+	extern rpg::Terms& terms;
+	extern rpg::System& system;
+	extern std::vector<rpg::Switch>& switches;
+	extern std::vector<rpg::Variable>& variables;
 	/** @} */
 
 	/** TreeMap (lmt) */
-	extern RPG::TreeMap treemap;
+	extern rpg::TreeMap treemap;
 
 	/**
 	 * Clears database data.

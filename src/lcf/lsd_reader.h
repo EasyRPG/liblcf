@@ -41,52 +41,52 @@ namespace LSD_Reader {
 	/**
 	 * Increment the save save_count and update the timestamp.
 	 */
-	void PrepareSave(RPG::Save& save, int32_t version = 0);
+	void PrepareSave(rpg::Save& save, int32_t version = 0);
 
 	/**
 	 * Returns a copy of the save data with defaults cleared.
 	 */
-	RPG::Save ClearDefaults(const RPG::Save& save, const RPG::MapInfo& map_info, const RPG::Map& map);
+	rpg::Save ClearDefaults(const rpg::Save& save, const rpg::MapInfo& map_info, const rpg::Map& map);
 
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<RPG::Save> Load(const std::string& filename, const std::string &encoding);
+	std::unique_ptr<rpg::Save> Load(const std::string& filename, const std::string &encoding);
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(const std::string& filename, const RPG::Save& save, const std::string &encoding);
+	bool Save(const std::string& filename, const rpg::Save& save, const std::string &encoding);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(const std::string& filename, const RPG::Save& save);
+	bool SaveXml(const std::string& filename, const rpg::Save& save);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<RPG::Save> LoadXml(const std::string& filename);
+	std::unique_ptr<rpg::Save> LoadXml(const std::string& filename);
 
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<RPG::Save> Load(std::istream& filestream, const std::string &encoding);
+	std::unique_ptr<rpg::Save> Load(std::istream& filestream, const std::string &encoding);
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::ostream& filestream, const RPG::Save& save, const std::string &encoding);
+	bool Save(std::ostream& filestream, const rpg::Save& save, const std::string &encoding);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const RPG::Save& save);
+	bool SaveXml(std::ostream& filestream, const rpg::Save& save);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<RPG::Save> LoadXml(std::istream& filestream);
+	std::unique_ptr<rpg::Save> LoadXml(std::istream& filestream);
 }
 
 } //namespace lcf

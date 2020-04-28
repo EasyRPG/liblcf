@@ -21,10 +21,10 @@ namespace lcf {
 // Read EventPageCondition.
 
 template <>
-char const* const Flags<RPG::EventPageCondition::Flags>::name = "EventPageCondition_Flags";
+char const* const Flags<rpg::EventPageCondition::Flags>::name = "EventPageCondition_Flags";
 
 template <>
-decltype(Flags<RPG::EventPageCondition::Flags>::flag_names) Flags<RPG::EventPageCondition::Flags>::flag_names = {
+decltype(Flags<rpg::EventPageCondition::Flags>::flag_names) Flags<rpg::EventPageCondition::Flags>::flag_names = {
 	"switch_a",
 	"switch_b",
 	"variable",
@@ -35,7 +35,7 @@ decltype(Flags<RPG::EventPageCondition::Flags>::flag_names) Flags<RPG::EventPage
 };
 
 template <>
-decltype(Flags<RPG::EventPageCondition::Flags>::flags_is2k3) Flags<RPG::EventPageCondition::Flags>::flags_is2k3 = {
+decltype(Flags<rpg::EventPageCondition::Flags>::flags_is2k3) Flags<rpg::EventPageCondition::Flags>::flags_is2k3 = {
 	0,
 	0,
 	0,

@@ -19,16 +19,16 @@ namespace lcf {
 // Read Learning.
 
 template <>
-char const* const Struct<RPG::Learning>::name = "Learning";
-static TypedField<RPG::Learning, int32_t> static_level(
-	&RPG::Learning::level,
+char const* const Struct<rpg::Learning>::name = "Learning";
+static TypedField<rpg::Learning, int32_t> static_level(
+	&rpg::Learning::level,
 	LDB_Reader::ChunkLearning::level,
 	"level",
 	0,
 	0
 );
-static TypedField<RPG::Learning, int32_t> static_skill_id(
-	&RPG::Learning::skill_id,
+static TypedField<rpg::Learning, int32_t> static_skill_id(
+	&rpg::Learning::skill_id,
 	LDB_Reader::ChunkLearning::skill_id,
 	"skill_id",
 	0,
@@ -37,12 +37,12 @@ static TypedField<RPG::Learning, int32_t> static_skill_id(
 
 
 template <>
-Field<RPG::Learning> const* Struct<RPG::Learning>::fields[] = {
+Field<rpg::Learning> const* Struct<rpg::Learning>::fields[] = {
 	&static_level,
 	&static_skill_id,
 	NULL
 };
 
-template class Struct<RPG::Learning>;
+template class Struct<rpg::Learning>;
 
 } //namespace lcf

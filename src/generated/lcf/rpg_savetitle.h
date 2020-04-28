@@ -17,9 +17,9 @@
 #include <string>
 
 /**
- * RPG::SaveTitle class.
+ * rpg::SaveTitle class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveTitle {
 	public:
 		double timestamp = 0.0;

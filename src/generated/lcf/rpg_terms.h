@@ -16,9 +16,9 @@
 #include <string>
 
 /**
- * RPG::Terms class.
+ * rpg::Terms class.
  */
-namespace RPG {
+namespace rpg {
 	class Terms {
 	public:
 		std::string encounter;

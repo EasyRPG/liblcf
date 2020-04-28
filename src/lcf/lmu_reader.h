@@ -25,47 +25,47 @@ namespace LMU_Reader {
 	/**
 	 * Increment the map save count.
 	 */
-	void PrepareSave(RPG::Map& map);
+	void PrepareSave(rpg::Map& map);
 
 	/**
 	 * Loads map.
 	 */
-	std::unique_ptr<RPG::Map> Load(const std::string& filename, const std::string& encoding);
+	std::unique_ptr<rpg::Map> Load(const std::string& filename, const std::string& encoding);
 
 	/**
 	 * Saves map.
 	 */
-	bool Save(const std::string& filename, const RPG::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(const std::string& filename, const rpg::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
 	 */
-	bool SaveXml(const std::string& filename, const RPG::Map& map);
+	bool SaveXml(const std::string& filename, const rpg::Map& map);
 
 	/**
 	 * Loads map as XML.
 	 */
-	std::unique_ptr<RPG::Map> LoadXml(const std::string& filename);
+	std::unique_ptr<rpg::Map> LoadXml(const std::string& filename);
 
 	/**
 	 * Loads map.
 	 */
-	std::unique_ptr<RPG::Map> Load(std::istream& filestream, const std::string& encoding);
+	std::unique_ptr<rpg::Map> Load(std::istream& filestream, const std::string& encoding);
 
 	/**
 	 * Saves map.
 	 */
-	bool Save(std::ostream& filestream, const RPG::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const rpg::Map& map, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const RPG::Map& map);
+	bool SaveXml(std::ostream& filestream, const rpg::Map& map);
 
 	/**
 	 * Loads map as XML.
 	 */
-	std::unique_ptr<RPG::Map> LoadXml(std::istream& filestream);
+	std::unique_ptr<rpg::Map> LoadXml(std::istream& filestream);
 }
 
 } //namespace lcf

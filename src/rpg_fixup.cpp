@@ -29,10 +29,10 @@ void UnFixInt(T& val, U def) {
 	}
 };
 
-void RPG::SaveActor::Fixup(int actor_id) {
+void rpg::SaveActor::Fixup(int actor_id) {
 	ID = actor_id;
 
-	const RPG::Actor& actor = lcf::Data::actors[actor_id - 1];
+	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
 
 	if (name == "\x1") {
 		name = actor.name;
@@ -55,8 +55,8 @@ void RPG::SaveActor::Fixup(int actor_id) {
 	}
 }
 
-void RPG::SaveActor::UnFixup() {
-	const RPG::Actor& actor = lcf::Data::actors[ID - 1];
+void rpg::SaveActor::UnFixup() {
+	const rpg::Actor& actor = lcf::Data::actors[ID - 1];
 
 	if (name == actor.name) {
 		name = "\x1";
@@ -77,8 +77,8 @@ void RPG::SaveActor::UnFixup() {
 	}
 }
 
-void RPG::SaveSystem::Fixup() {
-	const RPG::System& system = lcf::Data::system;
+void rpg::SaveSystem::Fixup() {
+	const rpg::System& system = lcf::Data::system;
 
 	switches.reserve(lcf::Data::switches.size());
 	variables.reserve(lcf::Data::variables.size());
@@ -144,8 +144,8 @@ void RPG::SaveSystem::Fixup() {
 	}
 }
 
-void RPG::SaveSystem::UnFixup() {
-	const RPG::System& system = lcf::Data::system;
+void rpg::SaveSystem::UnFixup() {
+	const rpg::System& system = lcf::Data::system;
 
 	auto reset_audio = [](auto& s) {
 		s = {};
@@ -215,18 +215,18 @@ void RPG::SaveSystem::UnFixup() {
 }
 
 
-void RPG::SaveMapInfo::Fixup(const RPG::Map& map) {
+void rpg::SaveMapInfo::Fixup(const rpg::Map& map) {
 	FixInt(chipset_id, map.chipset_id);
 }
 
-void RPG::SaveMapInfo::Fixup(const RPG::MapInfo& map) {
+void rpg::SaveMapInfo::Fixup(const rpg::MapInfo& map) {
 	FixInt(encounter_rate, map.encounter_steps);
 }
 
-void RPG::SaveMapInfo::UnFixup(const RPG::Map& map) {
+void rpg::SaveMapInfo::UnFixup(const rpg::Map& map) {
 	UnFixInt(chipset_id, map.chipset_id);
 }
 
-void RPG::SaveMapInfo::UnFixup(const RPG::MapInfo& map) {
+void rpg::SaveMapInfo::UnFixup(const rpg::MapInfo& map) {
 	UnFixInt(encounter_rate, map.encounter_steps);
 }

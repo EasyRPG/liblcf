@@ -19,9 +19,9 @@
 #include "lcf/rpg_start.h"
 
 /**
- * RPG::TreeMap class.
+ * rpg::TreeMap class.
  */
-namespace RPG {
+namespace rpg {
 	class TreeMap {
 	public:
 		std::string lmt_header;

@@ -4,9 +4,9 @@
 namespace lcf {
 {% for struct in structs -%}
 template <>
-const char* const Struct<RPG::{{ struct }}>::name;
+const char* const Struct<rpg::{{ struct }}>::name;
 template <>
-Field<RPG::{{ struct }}> const* Struct<RPG::{{ struct }}>::fields[];
+Field<rpg::{{ struct }}> const* Struct<rpg::{{ struct }}>::fields[];
 
 {% endfor -%}
 } //namespace lcf

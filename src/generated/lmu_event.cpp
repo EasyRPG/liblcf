@@ -19,30 +19,30 @@ namespace lcf {
 // Read Event.
 
 template <>
-char const* const Struct<RPG::Event>::name = "Event";
-static TypedField<RPG::Event, std::string> static_name(
-	&RPG::Event::name,
+char const* const Struct<rpg::Event>::name = "Event";
+static TypedField<rpg::Event, std::string> static_name(
+	&rpg::Event::name,
 	LMU_Reader::ChunkEvent::name,
 	"name",
 	0,
 	0
 );
-static TypedField<RPG::Event, int32_t> static_x(
-	&RPG::Event::x,
+static TypedField<rpg::Event, int32_t> static_x(
+	&rpg::Event::x,
 	LMU_Reader::ChunkEvent::x,
 	"x",
 	0,
 	0
 );
-static TypedField<RPG::Event, int32_t> static_y(
-	&RPG::Event::y,
+static TypedField<rpg::Event, int32_t> static_y(
+	&rpg::Event::y,
 	LMU_Reader::ChunkEvent::y,
 	"y",
 	0,
 	0
 );
-static TypedField<RPG::Event, std::vector<RPG::EventPage>> static_pages(
-	&RPG::Event::pages,
+static TypedField<rpg::Event, std::vector<rpg::EventPage>> static_pages(
+	&rpg::Event::pages,
 	LMU_Reader::ChunkEvent::pages,
 	"pages",
 	1,
@@ -51,7 +51,7 @@ static TypedField<RPG::Event, std::vector<RPG::EventPage>> static_pages(
 
 
 template <>
-Field<RPG::Event> const* Struct<RPG::Event>::fields[] = {
+Field<rpg::Event> const* Struct<rpg::Event>::fields[] = {
 	&static_name,
 	&static_x,
 	&static_y,
@@ -59,6 +59,6 @@ Field<RPG::Event> const* Struct<RPG::Event>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::Event>;
+template class Struct<rpg::Event>;
 
 } //namespace lcf

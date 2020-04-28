@@ -21,17 +21,17 @@
 #include "rpg_mapinfo.h"
 
 /**
- * RPG::SaveMapInfo class.
+ * rpg::SaveMapInfo class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveMapInfo {
 	public:
 		void Setup();
-		void Setup(const RPG::Map& map);
-		void Fixup(const RPG::Map& map);
-		void Fixup(const RPG::MapInfo& map);
-		void UnFixup(const RPG::Map& map);
-		void UnFixup(const RPG::MapInfo& map);
+		void Setup(const rpg::Map& map);
+		void Fixup(const rpg::Map& map);
+		void Fixup(const rpg::MapInfo& map);
+		void UnFixup(const rpg::Map& map);
+		void UnFixup(const rpg::MapInfo& map);
 		int32_t position_x = 0;
 		int32_t position_y = 0;
 		int32_t encounter_rate = -1;

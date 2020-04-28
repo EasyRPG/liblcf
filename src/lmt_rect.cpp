@@ -14,18 +14,18 @@
 namespace lcf {
 
 template <>
-struct RawStruct<RPG::Rect> {
-	static void ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t length);
-	static void WriteLcf(const RPG::Rect& ref, LcfWriter& stream);
-	static int LcfSize(const RPG::Rect& ref, LcfWriter& stream);
-	static void WriteXml(const RPG::Rect& ref, XmlWriter& stream);
-	static void BeginXml(RPG::Rect& ref, XmlReader& stream);
+struct RawStruct<rpg::Rect> {
+	static void ReadLcf(rpg::Rect& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const rpg::Rect& ref, LcfWriter& stream);
+	static int LcfSize(const rpg::Rect& ref, LcfWriter& stream);
+	static void WriteXml(const rpg::Rect& ref, XmlWriter& stream);
+	static void BeginXml(rpg::Rect& ref, XmlReader& stream);
 };
 
 /**
  * Reads MapInfo Rect.
  */
-void RawStruct<RPG::Rect>::ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t length) {
+void RawStruct<rpg::Rect>::ReadLcf(rpg::Rect& ref, LcfReader& stream, uint32_t length) {
 	assert(length == 16);
 	(void)length;
 	stream.Read(ref.l);
@@ -34,18 +34,18 @@ void RawStruct<RPG::Rect>::ReadLcf(RPG::Rect& ref, LcfReader& stream, uint32_t l
 	stream.Read(ref.b);
 }
 
-void RawStruct<RPG::Rect>::WriteLcf(const RPG::Rect& ref, LcfWriter& stream) {
+void RawStruct<rpg::Rect>::WriteLcf(const rpg::Rect& ref, LcfWriter& stream) {
 	stream.Write(ref.l);
 	stream.Write(ref.t);
 	stream.Write(ref.r);
 	stream.Write(ref.b);
 }
 
-int RawStruct<RPG::Rect>::LcfSize(const RPG::Rect& /* ref */, LcfWriter& /* stream */) {
+int RawStruct<rpg::Rect>::LcfSize(const rpg::Rect& /* ref */, LcfWriter& /* stream */) {
 	return 4 * 4;
 }
 
-void RawStruct<RPG::Rect>::WriteXml(const RPG::Rect& ref, XmlWriter& stream) {
+void RawStruct<rpg::Rect>::WriteXml(const rpg::Rect& ref, XmlWriter& stream) {
 	stream.BeginElement("Rect");
 	stream.WriteNode<int32_t>("l", ref.l);
 	stream.WriteNode<int32_t>("t", ref.t);
@@ -56,10 +56,10 @@ void RawStruct<RPG::Rect>::WriteXml(const RPG::Rect& ref, XmlWriter& stream) {
 
 class RectXmlHandler : public XmlHandler {
 private:
-	RPG::Rect& ref;
+	rpg::Rect& ref;
 	uint32_t* field;
 public:
-	RectXmlHandler(RPG::Rect& ref) : ref(ref), field(NULL) {}
+	RectXmlHandler(rpg::Rect& ref) : ref(ref), field(NULL) {}
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "l") == 0)
 			field = &ref.l;
@@ -83,7 +83,7 @@ public:
 	}
 };
 
-void RawStruct<RPG::Rect>::BeginXml(RPG::Rect& ref, XmlReader& stream) {
+void RawStruct<rpg::Rect>::BeginXml(rpg::Rect& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("Rect", new RectXmlHandler(ref)));
 }
 

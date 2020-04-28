@@ -19,12 +19,12 @@
 #include "rpg_event.h"
 
 /**
- * RPG::SaveMapEvent class.
+ * rpg::SaveMapEvent class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveMapEvent : public SaveMapEventBase {
 	public:
-		void Setup(const RPG::Event& event);
+		void Setup(const rpg::Event& event);
 		int ID = 0;
 		bool waiting_execution = false;
 		int32_t original_move_route_index = 0;

@@ -16,9 +16,9 @@
 #include <string>
 
 /**
- * RPG::Variable class.
+ * rpg::Variable class.
  */
-namespace RPG {
+namespace rpg {
 	class Variable {
 	public:
 		int ID = 0;

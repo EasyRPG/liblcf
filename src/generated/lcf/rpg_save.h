@@ -30,9 +30,9 @@
 #include "lcf/rpg_savevehiclelocation.h"
 
 /**
- * RPG::Save class.
+ * rpg::Save class.
  */
-namespace RPG {
+namespace rpg {
 	class Save {
 	public:
 		void Setup();

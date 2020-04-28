@@ -19,218 +19,218 @@ namespace lcf {
 // Read SaveActor.
 
 template <>
-char const* const Struct<RPG::SaveActor>::name = "SaveActor";
-static TypedField<RPG::SaveActor, std::string> static_name(
-	&RPG::SaveActor::name,
+char const* const Struct<rpg::SaveActor>::name = "SaveActor";
+static TypedField<rpg::SaveActor, std::string> static_name(
+	&rpg::SaveActor::name,
 	LSD_Reader::ChunkSaveActor::name,
 	"name",
 	1,
 	0
 );
-static TypedField<RPG::SaveActor, std::string> static_title(
-	&RPG::SaveActor::title,
+static TypedField<rpg::SaveActor, std::string> static_title(
+	&rpg::SaveActor::title,
 	LSD_Reader::ChunkSaveActor::title,
 	"title",
 	1,
 	0
 );
-static TypedField<RPG::SaveActor, std::string> static_sprite_name(
-	&RPG::SaveActor::sprite_name,
+static TypedField<rpg::SaveActor, std::string> static_sprite_name(
+	&rpg::SaveActor::sprite_name,
 	LSD_Reader::ChunkSaveActor::sprite_name,
 	"sprite_name",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_sprite_id(
-	&RPG::SaveActor::sprite_id,
+static TypedField<rpg::SaveActor, int32_t> static_sprite_id(
+	&rpg::SaveActor::sprite_id,
 	LSD_Reader::ChunkSaveActor::sprite_id,
 	"sprite_id",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_transparency(
-	&RPG::SaveActor::transparency,
+static TypedField<rpg::SaveActor, int32_t> static_transparency(
+	&rpg::SaveActor::transparency,
 	LSD_Reader::ChunkSaveActor::transparency,
 	"transparency",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, std::string> static_face_name(
-	&RPG::SaveActor::face_name,
+static TypedField<rpg::SaveActor, std::string> static_face_name(
+	&rpg::SaveActor::face_name,
 	LSD_Reader::ChunkSaveActor::face_name,
 	"face_name",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_face_id(
-	&RPG::SaveActor::face_id,
+static TypedField<rpg::SaveActor, int32_t> static_face_id(
+	&rpg::SaveActor::face_id,
 	LSD_Reader::ChunkSaveActor::face_id,
 	"face_id",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_level(
-	&RPG::SaveActor::level,
+static TypedField<rpg::SaveActor, int32_t> static_level(
+	&rpg::SaveActor::level,
 	LSD_Reader::ChunkSaveActor::level,
 	"level",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_exp(
-	&RPG::SaveActor::exp,
+static TypedField<rpg::SaveActor, int32_t> static_exp(
+	&rpg::SaveActor::exp,
 	LSD_Reader::ChunkSaveActor::exp,
 	"exp",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_hp_mod(
-	&RPG::SaveActor::hp_mod,
+static TypedField<rpg::SaveActor, int32_t> static_hp_mod(
+	&rpg::SaveActor::hp_mod,
 	LSD_Reader::ChunkSaveActor::hp_mod,
 	"hp_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_sp_mod(
-	&RPG::SaveActor::sp_mod,
+static TypedField<rpg::SaveActor, int32_t> static_sp_mod(
+	&rpg::SaveActor::sp_mod,
 	LSD_Reader::ChunkSaveActor::sp_mod,
 	"sp_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_attack_mod(
-	&RPG::SaveActor::attack_mod,
+static TypedField<rpg::SaveActor, int32_t> static_attack_mod(
+	&rpg::SaveActor::attack_mod,
 	LSD_Reader::ChunkSaveActor::attack_mod,
 	"attack_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_defense_mod(
-	&RPG::SaveActor::defense_mod,
+static TypedField<rpg::SaveActor, int32_t> static_defense_mod(
+	&rpg::SaveActor::defense_mod,
 	LSD_Reader::ChunkSaveActor::defense_mod,
 	"defense_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_spirit_mod(
-	&RPG::SaveActor::spirit_mod,
+static TypedField<rpg::SaveActor, int32_t> static_spirit_mod(
+	&rpg::SaveActor::spirit_mod,
 	LSD_Reader::ChunkSaveActor::spirit_mod,
 	"spirit_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_agility_mod(
-	&RPG::SaveActor::agility_mod,
+static TypedField<rpg::SaveActor, int32_t> static_agility_mod(
+	&rpg::SaveActor::agility_mod,
 	LSD_Reader::ChunkSaveActor::agility_mod,
 	"agility_mod",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_skills_size(
-	&RPG::SaveActor::skills_size,
+static TypedField<rpg::SaveActor, int32_t> static_skills_size(
+	&rpg::SaveActor::skills_size,
 	LSD_Reader::ChunkSaveActor::skills_size,
 	"skills_size",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, std::vector<int16_t>> static_skills(
-	&RPG::SaveActor::skills,
+static TypedField<rpg::SaveActor, std::vector<int16_t>> static_skills(
+	&rpg::SaveActor::skills,
 	LSD_Reader::ChunkSaveActor::skills,
 	"skills",
 	1,
 	0
 );
-static TypedField<RPG::SaveActor, std::vector<int16_t>> static_equipped(
-	&RPG::SaveActor::equipped,
+static TypedField<rpg::SaveActor, std::vector<int16_t>> static_equipped(
+	&rpg::SaveActor::equipped,
 	LSD_Reader::ChunkSaveActor::equipped,
 	"equipped",
 	1,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_current_hp(
-	&RPG::SaveActor::current_hp,
+static TypedField<rpg::SaveActor, int32_t> static_current_hp(
+	&rpg::SaveActor::current_hp,
 	LSD_Reader::ChunkSaveActor::current_hp,
 	"current_hp",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_current_sp(
-	&RPG::SaveActor::current_sp,
+static TypedField<rpg::SaveActor, int32_t> static_current_sp(
+	&rpg::SaveActor::current_sp,
 	LSD_Reader::ChunkSaveActor::current_sp,
 	"current_sp",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, std::vector<int32_t>> static_battle_commands(
-	&RPG::SaveActor::battle_commands,
+static TypedField<rpg::SaveActor, std::vector<int32_t>> static_battle_commands(
+	&rpg::SaveActor::battle_commands,
 	LSD_Reader::ChunkSaveActor::battle_commands,
 	"battle_commands",
 	0,
 	1
 );
-static CountField<RPG::SaveActor, int16_t> static_size_status(
-	&RPG::SaveActor::status,
+static CountField<rpg::SaveActor, int16_t> static_size_status(
+	&rpg::SaveActor::status,
 	LSD_Reader::ChunkSaveActor::status_size,
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, std::vector<int16_t>> static_status(
-	&RPG::SaveActor::status,
+static TypedField<rpg::SaveActor, std::vector<int16_t>> static_status(
+	&rpg::SaveActor::status,
 	LSD_Reader::ChunkSaveActor::status,
 	"status",
 	1,
 	0
 );
-static TypedField<RPG::SaveActor, bool> static_changed_battle_commands(
-	&RPG::SaveActor::changed_battle_commands,
+static TypedField<rpg::SaveActor, bool> static_changed_battle_commands(
+	&rpg::SaveActor::changed_battle_commands,
 	LSD_Reader::ChunkSaveActor::changed_battle_commands,
 	"changed_battle_commands",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_class_id(
-	&RPG::SaveActor::class_id,
+static TypedField<rpg::SaveActor, int32_t> static_class_id(
+	&rpg::SaveActor::class_id,
 	LSD_Reader::ChunkSaveActor::class_id,
 	"class_id",
 	0,
 	0
 );
-static TypedField<RPG::SaveActor, int32_t> static_row(
-	&RPG::SaveActor::row,
+static TypedField<rpg::SaveActor, int32_t> static_row(
+	&rpg::SaveActor::row,
 	LSD_Reader::ChunkSaveActor::row,
 	"row",
 	0,
 	1
 );
-static TypedField<RPG::SaveActor, bool> static_two_weapon(
-	&RPG::SaveActor::two_weapon,
+static TypedField<rpg::SaveActor, bool> static_two_weapon(
+	&rpg::SaveActor::two_weapon,
 	LSD_Reader::ChunkSaveActor::two_weapon,
 	"two_weapon",
 	0,
 	1
 );
-static TypedField<RPG::SaveActor, bool> static_lock_equipment(
-	&RPG::SaveActor::lock_equipment,
+static TypedField<rpg::SaveActor, bool> static_lock_equipment(
+	&rpg::SaveActor::lock_equipment,
 	LSD_Reader::ChunkSaveActor::lock_equipment,
 	"lock_equipment",
 	0,
 	1
 );
-static TypedField<RPG::SaveActor, bool> static_auto_battle(
-	&RPG::SaveActor::auto_battle,
+static TypedField<rpg::SaveActor, bool> static_auto_battle(
+	&rpg::SaveActor::auto_battle,
 	LSD_Reader::ChunkSaveActor::auto_battle,
 	"auto_battle",
 	0,
 	1
 );
-static TypedField<RPG::SaveActor, bool> static_super_guard(
-	&RPG::SaveActor::super_guard,
+static TypedField<rpg::SaveActor, bool> static_super_guard(
+	&rpg::SaveActor::super_guard,
 	LSD_Reader::ChunkSaveActor::super_guard,
 	"super_guard",
 	0,
 	1
 );
-static TypedField<RPG::SaveActor, int32_t> static_battler_animation(
-	&RPG::SaveActor::battler_animation,
+static TypedField<rpg::SaveActor, int32_t> static_battler_animation(
+	&rpg::SaveActor::battler_animation,
 	LSD_Reader::ChunkSaveActor::battler_animation,
 	"battler_animation",
 	0,
@@ -239,7 +239,7 @@ static TypedField<RPG::SaveActor, int32_t> static_battler_animation(
 
 
 template <>
-Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[] = {
+Field<rpg::SaveActor> const* Struct<rpg::SaveActor>::fields[] = {
 	&static_name,
 	&static_title,
 	&static_sprite_name,
@@ -274,6 +274,6 @@ Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::SaveActor>;
+template class Struct<rpg::SaveActor>;
 
 } //namespace lcf

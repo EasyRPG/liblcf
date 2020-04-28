@@ -17,9 +17,9 @@
 #include <vector>
 
 /**
- * RPG::Parameters class.
+ * rpg::Parameters class.
  */
-namespace RPG {
+namespace rpg {
 	class Parameters {
 	public:
 		void Setup(int final_level);

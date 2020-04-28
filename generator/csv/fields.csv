@@ -26,20 +26,20 @@ Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
 Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
-Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - RPG::Learning
+Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
 Actor,skill_name,f,String,0x43,'',0,0,String
 Actor,state_ranks,t,UInt8,0x47,,0,0,Integer
 Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Actor,attribute_ranks,t,UInt8,0x49,,0,0,Integer
 Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
-Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - RPG::BattleCommand - RPG2003
+Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
 Sound,name,f,String,0x01,"(OFF)",1,0,String
 Sound,volume,f,Int32,0x03,100,0,0,Integer
 Sound,tempo,f,Int32,0x04,100,0,0,Integer
 Sound,balance,f,Int32,0x05,50,0,0,Integer
 AnimationTiming,frame,f,Int32,0x01,0,0,0,Integer
-AnimationTiming,se,f,Sound,0x02,,1,0,RPG::Sound
+AnimationTiming,se,f,Sound,0x02,,1,0,rpg::Sound
 AnimationTiming,flash_scope,f,Enum<AnimationTiming_FlashScope>,0x03,0,1,0,Integer
 AnimationTiming,flash_red,f,Int32,0x04,31,0,0,Integer
 AnimationTiming,flash_green,f,Int32,0x05,31,0,0,Integer
@@ -56,14 +56,14 @@ AnimationCellData,tone_green,f,Int32,0x07,100,0,0,Integer
 AnimationCellData,tone_blue,f,Int32,0x08,100,0,0,Integer
 AnimationCellData,tone_gray,f,Int32,0x09,100,0,0,Integer
 AnimationCellData,transparency,f,Int32,0x0A,0,0,0,Integer
-AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,1,0,Array - RPG::AnimationCellData
+AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,1,0,Array - rpg::AnimationCellData
 Animation,name,f,String,0x01,'',0,0,String
 Animation,animation_name,f,String,0x02,'',0,0,String
 Animation,large,f,Boolean,0x03,False,0,0,Battle2 animation when true
-Animation,timings,f,Array<AnimationTiming>,0x06,,1,0,Array - RPG::AnimationTiming
+Animation,timings,f,Array<AnimationTiming>,0x06,,1,0,Array - rpg::AnimationTiming
 Animation,scope,f,Enum<Animation_Scope>,0x09,0,1,0,Integer
 Animation,position,f,Enum<Animation_Position>,0x0A,2,1,0,Integer
-Animation,frames,f,Array<AnimationFrame>,0x0C,,1,0,Array - RPG::AnimationFrames
+Animation,frames,f,Array<AnimationFrame>,0x0C,,1,0,Array - rpg::AnimationFrames
 Attribute,name,f,String,0x01,'',0,0,String
 Attribute,type,f,Enum<Attribute_Type>,0x02,0,1,0,Integer
 Attribute,a_rate,f,Int32,0x0B,300,0,0,Integer
@@ -78,7 +78,7 @@ BattleCommands,death_handler_unused,f,Boolean,0x04,0,0,1,Set by the RM2k3 Editor
 BattleCommands,row,f,Enum<BattleCommands_RowShown>,0x06,0,0,0,Integer
 BattleCommands,battle_type,f,Enum<BattleCommands_BattleType>,0x07,0,0,0,Integer
 BattleCommands,unused_display_normal_parameters,f,Boolean,0x09,True,0,0,Unused hidden checkbox Display normal parameters in RPG2003's battle settings tab
-BattleCommands,commands,f,Array<BattleCommand>,0x0A,,1,0,Array - RPG::BattleCommand
+BattleCommands,commands,f,Array<BattleCommand>,0x0A,,1,0,Array - rpg::BattleCommand
 BattleCommands,death_handler,f,Boolean,0x0F,0,0,1,True if a 2k3 random encounter death handler is active
 BattleCommands,death_event,f,Ref<CommonEvent>,0x10,1,0,0,Integer
 BattleCommands,window_size,f,Enum<BattleCommands_WindowSize>,0x14,0,0,0,Integer
@@ -95,8 +95,8 @@ BattlerAnimationExtension,animation_type,f,Enum<BattlerAnimationExtension_AnimTy
 BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,1,0,0,Integer
 BattlerAnimation,name,f,String,0x01,'',0,0,String
 BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,0,0,0,Integer
-BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - RPG::BattlerAnimationExtension
-BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - RPG::BattlerAnimationExtension
+BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - rpg::BattlerAnimationExtension
+BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - rpg::BattlerAnimationExtension
 BattlerAnimationData,move,f,Enum<BattlerAnimationData_Movement>,0x05,0,0,0,Integer
 BattlerAnimationData,after_image,f,Enum<BattlerAnimationData_AfterImage>,0x06,0,0,0,Integer
 BattlerAnimationData,pose,f,Int32,0x0E,-1,0,0,Integer
@@ -117,7 +117,7 @@ Class,exp_base,f,Int32,0x29,300,0,0,Integer
 Class,exp_inflation,f,Int32,0x2A,300,0,0,Integer
 Class,exp_correction,f,Int32,0x2B,0,0,0,Integer
 Class,battler_animation,f,Ref<Animation>,0x3E,0,0,0,Integer
-Class,skills,f,Array<Learning>,0x3F,,1,0,Array - RPG::Learning
+Class,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
 Class,state_ranks,t,UInt8,0x47,,0,0,Integer
 Class,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Class,attribute_ranks,t,UInt8,0x49,,0,0,Integer
@@ -128,7 +128,7 @@ CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,0,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,0,0,Flag
 CommonEvent,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
 CommonEvent,event_commands,t,EventCommand,0x15,,1,0,Integer
-CommonEvent,event_commands,f,Vector<EventCommand>,0x16,,1,0,Array - RPG::EventCommand
+CommonEvent,event_commands,f,Vector<EventCommand>,0x16,,1,0,Array - rpg::EventCommand
 Skill,name,f,String,0x01,'',0,0,String
 Skill,description,f,String,0x02,'',0,0,String
 Skill,using_message1,f,String,0x03,'',0,0,String - RPG2000
@@ -141,7 +141,7 @@ Skill,sp_cost,f,Int32,0x0B,0,0,0,Integer
 Skill,scope,f,Enum<Skill_Scope>,0x0C,0,1,0,Integer
 Skill,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
 Skill,animation_id,f,Ref<Animation>,0x0E,1,0,0,Integer
-Skill,sound_effect,f,Sound,0x10,,1,0,RPG::Sound
+Skill,sound_effect,f,Sound,0x10,,1,0,rpg::Sound
 Skill,occasion_field,f,Boolean,0x12,True,0,0,Flag
 Skill,occasion_battle,f,Boolean,0x13,False,0,0,Flag
 Skill,reverse_state_effect,f,Boolean,0x14,False,0,1,Flag - RPG2003
@@ -265,7 +265,7 @@ Enemy,state_ranks,t,UInt8,0x1F,,0,0,Integer
 Enemy,state_ranks,f,Vector<UInt8>,0x20,,1,0,Array - Short
 Enemy,attribute_ranks,t,UInt8,0x21,,0,0,Integer
 Enemy,attribute_ranks,f,Vector<UInt8>,0x22,,1,0,Array - Short
-Enemy,actions,f,Array<EnemyAction>,0x2A,,1,0,Array - RPG::EnemyAction
+Enemy,actions,f,Array<EnemyAction>,0x2A,,1,0,Array - rpg::EnemyAction
 TroopMember,enemy_id,f,Ref<Enemy>,0x01,1,0,0,Integer
 TroopMember,x,f,Int32,0x02,0,0,0,Integer
 TroopMember,y,f,Int32,0x03,0,0,0,Integer
@@ -293,16 +293,16 @@ TroopPageCondition,turn_actor_a,f,Int32,0x14,0,0,1,Integer - RPG2003
 TroopPageCondition,turn_actor_b,f,Int32,0x15,0,0,1,Integer - RPG2003
 TroopPageCondition,command_actor_id,f,Ref<Actor>,0x16,1,0,1,Integer - RPG2003
 TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
-TroopPage,condition,f,TroopPageCondition,0x02,,1,0,RPG::TroopPageCondition
+TroopPage,condition,f,TroopPageCondition,0x02,,1,0,rpg::TroopPageCondition
 TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
-TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - RPG::EventCommand
+TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - rpg::EventCommand
 Troop,name,f,String,0x01,'',0,0,String
-Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - RPG::TroopMember
+Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - rpg::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
 Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
 Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
-Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - RPG::TroopPage
+Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - rpg::TroopPage
 Terrain,name,f,String,0x01,'',0,0,String
 Terrain,damage,f,Int32,0x02,0,0,0,Integer
 Terrain,encounter_rate,f,Int32,0x03,100,0,0,Integer
@@ -312,7 +312,7 @@ Terrain,ship_pass,f,Boolean,0x06,False,0,0,Flag
 Terrain,airship_pass,f,Boolean,0x07,True,0,0,Flag
 Terrain,airship_land,f,Boolean,0x09,True,0,0,Flag
 Terrain,bush_depth,f,Enum<Terrain_BushDepth>,0x0B,0,1,0,Integer
-Terrain,footstep,f,Sound,0x0F,,1,1,RPG::Sound - RPG2003
+Terrain,footstep,f,Sound,0x0F,,1,1,rpg::Sound - RPG2003
 Terrain,on_damage_se,f,Boolean,0x10,False,0,1,Flag - RPG2003
 Terrain,background_type,f,Enum<Terrain_BGAssociation>,0x11,0,0,1,Integer - RPG2003
 Terrain,background_a_name,f,String,0x15,'',0,1,String - RPG2003
@@ -531,26 +531,26 @@ System,party,t,Count<Int16>,0x15,,0,0,Integer
 System,party,f,Vector<Int16>,0x16,,1,0,Array - Short
 System,menu_commands,t,Count<Int16>,0x1A,,0,1,Integer - RPG2003
 System,menu_commands,f,Vector<Int16>,0x1B,,1,1,Array - Short - RPG2003
-System,title_music,f,Music,0x1F,,1,0,RPG::Music
-System,battle_music,f,Music,0x20,,1,0,RPG::Music
-System,battle_end_music,f,Music,0x21,,1,0,RPG::Music
-System,inn_music,f,Music,0x22,,1,0,RPG::Music
-System,boat_music,f,Music,0x23,,1,0,RPG::Music
-System,ship_music,f,Music,0x24,,1,0,RPG::Music
-System,airship_music,f,Music,0x25,,1,0,RPG::Music
-System,gameover_music,f,Music,0x26,,1,0,RPG::Music
-System,cursor_se,f,Sound,0x29,,1,0,RPG::Sound
-System,decision_se,f,Sound,0x2A,,1,0,RPG::Sound
-System,cancel_se,f,Sound,0x2B,,1,0,RPG::Sound
-System,buzzer_se,f,Sound,0x2C,,1,0,RPG::Sound
-System,battle_se,f,Sound,0x2D,,1,0,RPG::Sound
-System,escape_se,f,Sound,0x2E,,1,0,RPG::Sound
-System,enemy_attack_se,f,Sound,0x2F,,1,0,RPG::Sound
-System,enemy_damaged_se,f,Sound,0x30,,1,0,RPG::Sound
-System,actor_damaged_se,f,Sound,0x31,,1,0,RPG::Sound
-System,dodge_se,f,Sound,0x32,,1,0,RPG::Sound
-System,enemy_death_se,f,Sound,0x33,,1,0,RPG::Sound
-System,item_se,f,Sound,0x34,,1,0,RPG::Sound
+System,title_music,f,Music,0x1F,,1,0,rpg::Music
+System,battle_music,f,Music,0x20,,1,0,rpg::Music
+System,battle_end_music,f,Music,0x21,,1,0,rpg::Music
+System,inn_music,f,Music,0x22,,1,0,rpg::Music
+System,boat_music,f,Music,0x23,,1,0,rpg::Music
+System,ship_music,f,Music,0x24,,1,0,rpg::Music
+System,airship_music,f,Music,0x25,,1,0,rpg::Music
+System,gameover_music,f,Music,0x26,,1,0,rpg::Music
+System,cursor_se,f,Sound,0x29,,1,0,rpg::Sound
+System,decision_se,f,Sound,0x2A,,1,0,rpg::Sound
+System,cancel_se,f,Sound,0x2B,,1,0,rpg::Sound
+System,buzzer_se,f,Sound,0x2C,,1,0,rpg::Sound
+System,battle_se,f,Sound,0x2D,,1,0,rpg::Sound
+System,escape_se,f,Sound,0x2E,,1,0,rpg::Sound
+System,enemy_attack_se,f,Sound,0x2F,,1,0,rpg::Sound
+System,enemy_damaged_se,f,Sound,0x30,,1,0,rpg::Sound
+System,actor_damaged_se,f,Sound,0x31,,1,0,rpg::Sound
+System,dodge_se,f,Sound,0x32,,1,0,rpg::Sound
+System,enemy_death_se,f,Sound,0x33,,1,0,rpg::Sound
+System,item_se,f,Sound,0x34,,1,0,rpg::Sound
 System,transition_out,f,Enum<System_FadeOut>,0x3D,0,1,0,Integer
 System,transition_in,f,Enum<System_FadeIn>,0x3E,0,1,0,Integer
 System,battle_start_fadeout,f,Enum<System_FadeOut>,0x3F,0,1,0,Integer
@@ -562,7 +562,7 @@ System,font_id,f,Enum<System_Font>,0x48,0,0,0,Integer
 System,selected_condition,f,Int32,0x51,0,0,0,Integer
 System,selected_hero,f,Ref<Actor>,0x52,0,1,0,Integer
 System,battletest_background,f,String,0x54,'',0,0,String
-System,battletest_data,f,Array<TestBattler>,0x55,,1,0,Array - RPG::TestBattler
+System,battletest_data,f,Array<TestBattler>,0x55,,1,0,Array - rpg::TestBattler
 System,save_count,f,Int32,0x5B,0,0,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,0,0,Integer
 System,battletest_formation,f,Enum<System_BattleFormation>,0x5F,0,0,0,Integer
@@ -575,28 +575,28 @@ System,invert_animations,f,Boolean,0x65,False,0,1,Flag - RPG2003
 System,show_title,f,Boolean,0x6F,True,0,1,When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11
 Switch,name,f,String,0x01,'',0,0,String
 Variable,name,f,String,0x01,'',0,0,String
-Database,actors,f,Array<Actor>,0x0B,,1,0,RPG::Actor
-Database,skills,f,Array<Skill>,0x0C,,1,0,RPG::Skill
-Database,items,f,Array<Item>,0x0D,,1,0,RPG::Item
-Database,enemies,f,Array<Enemy>,0x0E,,1,0,RPG::Enemy
-Database,troops,f,Array<Troop>,0x0F,,1,0,RPG::Troop
-Database,terrains,f,Array<Terrain>,0x10,,1,0,RPG::Terrain
-Database,attributes,f,Array<Attribute>,0x11,,1,0,RPG::Attribute
-Database,states,f,Array<State>,0x12,,1,0,RPG::State
-Database,animations,f,Array<Animation>,0x13,,1,0,RPG::Animation
-Database,chipsets,f,Array<Chipset>,0x14,,1,0,RPG::Chipset
-Database,terms,f,Terms,0x15,,1,0,RPG::Terms
-Database,system,f,System,0x16,,1,0,RPG::System
-Database,switches,f,Array<Switch>,0x17,,1,0,RPG::Switchs
-Database,variables,f,Array<Variable>,0x18,,1,0,RPG::Variables
-Database,commonevents,f,Array<CommonEvent>,0x19,,1,0,RPG::CommonEvent
+Database,actors,f,Array<Actor>,0x0B,,1,0,rpg::Actor
+Database,skills,f,Array<Skill>,0x0C,,1,0,rpg::Skill
+Database,items,f,Array<Item>,0x0D,,1,0,rpg::Item
+Database,enemies,f,Array<Enemy>,0x0E,,1,0,rpg::Enemy
+Database,troops,f,Array<Troop>,0x0F,,1,0,rpg::Troop
+Database,terrains,f,Array<Terrain>,0x10,,1,0,rpg::Terrain
+Database,attributes,f,Array<Attribute>,0x11,,1,0,rpg::Attribute
+Database,states,f,Array<State>,0x12,,1,0,rpg::State
+Database,animations,f,Array<Animation>,0x13,,1,0,rpg::Animation
+Database,chipsets,f,Array<Chipset>,0x14,,1,0,rpg::Chipset
+Database,terms,f,Terms,0x15,,1,0,rpg::Terms
+Database,system,f,System,0x16,,1,0,rpg::System
+Database,switches,f,Array<Switch>,0x17,,1,0,rpg::Switchs
+Database,variables,f,Array<Variable>,0x18,,1,0,rpg::Variables
+Database,commonevents,f,Array<CommonEvent>,0x19,,1,0,rpg::CommonEvent
 Database,version,f,DatabaseVersion,0x1A,0,0,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61
 Database,commoneventD2,f,EmptyBlock,0x1B,,1,1,Duplicated? - Not used - RPG2003
 Database,commoneventD3,f,EmptyBlock,0x1C,,1,1,Duplicated? - Not used - RPG2003
-Database,battlecommands,f,BattleCommands,0x1D,,1,1,RPG::BattleCommand - RPG2003
-Database,classes,f,Array<Class>,0x1E,,1,1,RPG::Class - RPG2003
+Database,battlecommands,f,BattleCommands,0x1D,,1,1,rpg::BattleCommand - RPG2003
+Database,classes,f,Array<Class>,0x1E,,1,1,rpg::Class - RPG2003
 Database,classD1,f,EmptyBlock,0x1F,,1,1,Duplicated? - Not used - RPG2003
-Database,battleranimations,f,Array<BattlerAnimation>,0x20,,1,1,RPG::BattlerAnimation - RPG2003
+Database,battleranimations,f,Array<BattlerAnimation>,0x20,,1,1,rpg::BattlerAnimation - RPG2003
 Encounter,troop_id,f,Ref<Troop>,0x01,0,0,0,Integer
 MapInfo,name,f,String,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,0,0,Integer. Used to inherit parent map properties
@@ -606,13 +606,13 @@ MapInfo,scrollbar_x,f,Int32,0x05,0,0,0,Integer. Editor only
 MapInfo,scrollbar_y,f,Int32,0x06,0,0,0,Integer. Editor only
 MapInfo,expanded_node,f,Boolean,0x07,False,0,0,Flag. Editor only
 MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,1,0,Integer. 0=inherit; 1=from event; 2=specified in 0x0C
-MapInfo,music,f,Music,0x0C,,1,0,Array - RPG::Music
+MapInfo,music,f,Music,0x0C,,1,0,Array - rpg::Music
 MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,1,0,Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
 MapInfo,background_name,f,String,0x16,'',0,0,String
 MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
-MapInfo,encounters,f,Array<Encounter>,0x29,,1,0,Array - RPG::Encounter
+MapInfo,encounters,f,Array<Encounter>,0x29,,1,0,Array - rpg::Encounter
 MapInfo,encounter_steps,f,Int32,0x2C,25,0,0,0=Encounters Disabled; 1=Encounter Rate for the map
 MapInfo,area_rect,f,Rect,0x33,,1,0,Uint32 x 4 (Left; Top; Right; Bottom). Normal map (non-area) is 0; 0; 0; 0
 Start,party_map_id,f,Ref<Map>,0x01,0,0,0,Integer
@@ -638,10 +638,10 @@ EventPageCondition,timer_sec,f,Int32,0x08,0,0,0,Integer
 EventPageCondition,timer2_sec,f,Int32,0x09,0,0,1,Integer - RPG2003
 EventPageCondition,compare_operator,f,Enum<EventPageCondition_Comparison>,0x0A,1,0,1,Integer - RPG2003
 MoveRoute,move_commands,t,MoveCommand,0x0B,,0,0,Integer
-MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - RPG::MoveCommand
+MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - rpg::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
-EventPage,condition,f,EventPageCondition,0x02,,1,0,RPG::EventPageCondition
+EventPage,condition,f,EventPageCondition,0x02,,1,0,rpg::EventPageCondition
 EventPage,character_name,f,String,0x15,'',0,0,String
 EventPage,character_index,f,Int32,0x16,0,0,0,Integer
 EventPage,character_direction,f,Enum<EventPage_Direction>,0x17,2,1,0,Integer
@@ -654,13 +654,13 @@ EventPage,layer,f,Enum<EventPage_Layers>,0x22,0,1,0,Integer
 EventPage,overlap_forbidden,f,Boolean,0x23,False,1,0,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,1,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
-EventPage,move_route,f,MoveRoute,0x29,,1,0,RPG::MoveRoute
+EventPage,move_route,f,MoveRoute,0x29,,1,0,rpg::MoveRoute
 EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
-EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - RPG::EventCommand
+EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - rpg::EventCommand
 Event,name,f,String,0x01,'',0,0,String
 Event,x,f,Int32,0x02,0,0,0,Integer
 Event,y,f,Int32,0x03,0,0,0,Integer
-Event,pages,f,Array<EventPage>,0x05,,1,0,Array - RPG::EventPage
+Event,pages,f,Array<EventPage>,0x05,,1,0,Array - rpg::EventPage
 Map,chipset_id,f,Int32,0x01,1,0,0,Integer
 Map,width,f,Int32,0x02,20,0,0,Integer
 Map,height,f,Int32,0x03,15,0,0,Integer
@@ -690,7 +690,7 @@ Map,generator_y,f,Vector<UInt32>,0x3D,,0,0,Uint32 x 9 RPG2003
 Map,generator_tile_ids,f,Vector<Int16>,0x3E,,0,0,Array - Short RPG2003
 Map,lower_layer,f,Vector<Int16>,0x47,,1,0,Array - Short
 Map,upper_layer,f,Vector<Int16>,0x48,,1,0,Array - Short
-Map,events,f,Array<Event>,0x51,,1,0,Array - RPG::Event
+Map,events,f,Array<Event>,0x51,,1,0,Array - rpg::Event
 Map,save_count_2k3e,f,Int32,0x5A,0,0,1,Integer - Used by steam version of rm2k3 instead of 0x5B.
 Map,save_count,f,Int32,0x5B,0,0,0,Integer
 SaveTitle,timestamp,f,Double,0x01,0.0,0,0,double - timestamp in Delphi's TDateTime format
@@ -952,7 +952,7 @@ SaveMapEventBase,overlap_forbidden,f,Boolean,0x22,False,0,0,Flag
 SaveMapEventBase,animation_type,f,Enum<EventPage_AnimType>,0x23,0,1,0,
 SaveMapEventBase,lock_facing,f,Boolean,0x24,False,0,0,facing locked
 SaveMapEventBase,move_speed,f,Int32,0x25,4,1,0,
-SaveMapEventBase,move_route,f,MoveRoute,0x29,,1,0,chunks: RPG::MoveRoute
+SaveMapEventBase,move_route,f,MoveRoute,0x29,,1,0,chunks: rpg::MoveRoute
 SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
 SaveMapEventBase,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
@@ -997,21 +997,21 @@ SaveMapInfo,parallax_vert_speed,f,Int32,0x26,0,0,0,int
 SaveCommonEvent,parallel_event_execstate,f,SaveEventExecState,0x01,,1,0,chunks
 SavePanorama,pan_x,f,Int32,0x01,0,0,0,Panorama X position
 SavePanorama,pan_y,f,Int32,0x02,0,0,0,Panorama Y position
-Save,title,f,SaveTitle,0x64,,0,0,RPG::SaveTitle
-Save,system,f,SaveSystem,0x65,,1,0,RPG::SaveSystem
-Save,screen,f,SaveScreen,0x66,,1,0,RPG::SaveScreen
-Save,pictures,f,Array<SavePicture>,0x67,,1,0,array of RPG::SavePicture
-Save,party_location,f,SavePartyLocation,0x68,,1,0,RPG::SavePartyLocation
-Save,boat_location,f,SaveVehicleLocation,0x69,,1,0,RPG::SaveVehicleLocation
-Save,ship_location,f,SaveVehicleLocation,0x6A,,1,0,RPG::SaveVehicleLocation
-Save,airship_location,f,SaveVehicleLocation,0x6B,,1,0,RPG::SaveVehicleLocation
-Save,actors,f,Array<SaveActor>,0x6C,,1,0,array of RPG::SaveActor
-Save,inventory,f,SaveInventory,0x6D,,1,0,RPG::SaveInventory
-Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of RPG::SaveTarget
-Save,map_info,f,SaveMapInfo,0x6F,,1,0,RPG::SaveMapInfo
+Save,title,f,SaveTitle,0x64,,0,0,rpg::SaveTitle
+Save,system,f,SaveSystem,0x65,,1,0,rpg::SaveSystem
+Save,screen,f,SaveScreen,0x66,,1,0,rpg::SaveScreen
+Save,pictures,f,Array<SavePicture>,0x67,,1,0,array of rpg::SavePicture
+Save,party_location,f,SavePartyLocation,0x68,,1,0,rpg::SavePartyLocation
+Save,boat_location,f,SaveVehicleLocation,0x69,,1,0,rpg::SaveVehicleLocation
+Save,ship_location,f,SaveVehicleLocation,0x6A,,1,0,rpg::SaveVehicleLocation
+Save,airship_location,f,SaveVehicleLocation,0x6B,,1,0,rpg::SaveVehicleLocation
+Save,actors,f,Array<SaveActor>,0x6C,,1,0,array of rpg::SaveActor
+Save,inventory,f,SaveInventory,0x6D,,1,0,rpg::SaveInventory
+Save,targets,f,Array<SaveTarget>,0x6E,,1,0,array of rpg::SaveTarget
+Save,map_info,f,SaveMapInfo,0x6F,,1,0,rpg::SaveMapInfo
 Save,panorama,f,SavePanorama,0x70,,1,0,Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object.
-Save,foreground_event_execstate,f,SaveEventExecState,0x71,,1,0,RPG::SaveEventExecState
-Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of RPG::SaveCommonEvent
+Save,foreground_event_execstate,f,SaveEventExecState,0x71,,1,0,rpg::SaveEventExecState
+Save,common_events,f,Array<SaveCommonEvent>,0x72,,1,0,array of rpg::SaveCommonEvent
 Equipment,weapon_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,shield_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,armor_id,,Ref<Item:Int16>,,0,0,0,

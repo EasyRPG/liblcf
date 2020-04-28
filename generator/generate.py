@@ -87,11 +87,11 @@ def cpp_type(ty, prefix=True):
     if m:
         ty = m.expand(r'\1::Flags')
         if prefix:
-            ty = 'RPG::' + ty
+            ty = 'rpg::' + ty
         return ty
 
     if prefix:
-        ty = 'RPG::' + ty
+        ty = 'rpg::' + ty
 
     return ty
 

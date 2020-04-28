@@ -13,334 +13,334 @@
 #ifndef _MSC_VER
 namespace lcf {
 template <>
-const char* const Struct<RPG::Actor>::name;
+const char* const Struct<rpg::Actor>::name;
 template <>
-Field<RPG::Actor> const* Struct<RPG::Actor>::fields[];
+Field<rpg::Actor> const* Struct<rpg::Actor>::fields[];
 
 template <>
-const char* const Struct<RPG::Animation>::name;
+const char* const Struct<rpg::Animation>::name;
 template <>
-Field<RPG::Animation> const* Struct<RPG::Animation>::fields[];
+Field<rpg::Animation> const* Struct<rpg::Animation>::fields[];
 
 template <>
-const char* const Struct<RPG::AnimationCellData>::name;
+const char* const Struct<rpg::AnimationCellData>::name;
 template <>
-Field<RPG::AnimationCellData> const* Struct<RPG::AnimationCellData>::fields[];
+Field<rpg::AnimationCellData> const* Struct<rpg::AnimationCellData>::fields[];
 
 template <>
-const char* const Struct<RPG::AnimationFrame>::name;
+const char* const Struct<rpg::AnimationFrame>::name;
 template <>
-Field<RPG::AnimationFrame> const* Struct<RPG::AnimationFrame>::fields[];
+Field<rpg::AnimationFrame> const* Struct<rpg::AnimationFrame>::fields[];
 
 template <>
-const char* const Struct<RPG::AnimationTiming>::name;
+const char* const Struct<rpg::AnimationTiming>::name;
 template <>
-Field<RPG::AnimationTiming> const* Struct<RPG::AnimationTiming>::fields[];
+Field<rpg::AnimationTiming> const* Struct<rpg::AnimationTiming>::fields[];
 
 template <>
-const char* const Struct<RPG::Attribute>::name;
+const char* const Struct<rpg::Attribute>::name;
 template <>
-Field<RPG::Attribute> const* Struct<RPG::Attribute>::fields[];
+Field<rpg::Attribute> const* Struct<rpg::Attribute>::fields[];
 
 template <>
-const char* const Struct<RPG::BattleCommand>::name;
+const char* const Struct<rpg::BattleCommand>::name;
 template <>
-Field<RPG::BattleCommand> const* Struct<RPG::BattleCommand>::fields[];
+Field<rpg::BattleCommand> const* Struct<rpg::BattleCommand>::fields[];
 
 template <>
-const char* const Struct<RPG::BattleCommands>::name;
+const char* const Struct<rpg::BattleCommands>::name;
 template <>
-Field<RPG::BattleCommands> const* Struct<RPG::BattleCommands>::fields[];
+Field<rpg::BattleCommands> const* Struct<rpg::BattleCommands>::fields[];
 
 template <>
-const char* const Struct<RPG::BattlerAnimation>::name;
+const char* const Struct<rpg::BattlerAnimation>::name;
 template <>
-Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[];
+Field<rpg::BattlerAnimation> const* Struct<rpg::BattlerAnimation>::fields[];
 
 template <>
-const char* const Struct<RPG::BattlerAnimationData>::name;
+const char* const Struct<rpg::BattlerAnimationData>::name;
 template <>
-Field<RPG::BattlerAnimationData> const* Struct<RPG::BattlerAnimationData>::fields[];
+Field<rpg::BattlerAnimationData> const* Struct<rpg::BattlerAnimationData>::fields[];
 
 template <>
-const char* const Struct<RPG::BattlerAnimationExtension>::name;
+const char* const Struct<rpg::BattlerAnimationExtension>::name;
 template <>
-Field<RPG::BattlerAnimationExtension> const* Struct<RPG::BattlerAnimationExtension>::fields[];
+Field<rpg::BattlerAnimationExtension> const* Struct<rpg::BattlerAnimationExtension>::fields[];
 
 template <>
-const char* const Struct<RPG::Chipset>::name;
+const char* const Struct<rpg::Chipset>::name;
 template <>
-Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[];
+Field<rpg::Chipset> const* Struct<rpg::Chipset>::fields[];
 
 template <>
-const char* const Struct<RPG::Class>::name;
+const char* const Struct<rpg::Class>::name;
 template <>
-Field<RPG::Class> const* Struct<RPG::Class>::fields[];
+Field<rpg::Class> const* Struct<rpg::Class>::fields[];
 
 template <>
-const char* const Struct<RPG::CommonEvent>::name;
+const char* const Struct<rpg::CommonEvent>::name;
 template <>
-Field<RPG::CommonEvent> const* Struct<RPG::CommonEvent>::fields[];
+Field<rpg::CommonEvent> const* Struct<rpg::CommonEvent>::fields[];
 
 template <>
-const char* const Struct<RPG::Database>::name;
+const char* const Struct<rpg::Database>::name;
 template <>
-Field<RPG::Database> const* Struct<RPG::Database>::fields[];
+Field<rpg::Database> const* Struct<rpg::Database>::fields[];
 
 template <>
-const char* const Struct<RPG::Encounter>::name;
+const char* const Struct<rpg::Encounter>::name;
 template <>
-Field<RPG::Encounter> const* Struct<RPG::Encounter>::fields[];
+Field<rpg::Encounter> const* Struct<rpg::Encounter>::fields[];
 
 template <>
-const char* const Struct<RPG::Enemy>::name;
+const char* const Struct<rpg::Enemy>::name;
 template <>
-Field<RPG::Enemy> const* Struct<RPG::Enemy>::fields[];
+Field<rpg::Enemy> const* Struct<rpg::Enemy>::fields[];
 
 template <>
-const char* const Struct<RPG::EnemyAction>::name;
+const char* const Struct<rpg::EnemyAction>::name;
 template <>
-Field<RPG::EnemyAction> const* Struct<RPG::EnemyAction>::fields[];
+Field<rpg::EnemyAction> const* Struct<rpg::EnemyAction>::fields[];
 
 template <>
-const char* const Struct<RPG::Equipment>::name;
+const char* const Struct<rpg::Equipment>::name;
 template <>
-Field<RPG::Equipment> const* Struct<RPG::Equipment>::fields[];
+Field<rpg::Equipment> const* Struct<rpg::Equipment>::fields[];
 
 template <>
-const char* const Struct<RPG::Event>::name;
+const char* const Struct<rpg::Event>::name;
 template <>
-Field<RPG::Event> const* Struct<RPG::Event>::fields[];
+Field<rpg::Event> const* Struct<rpg::Event>::fields[];
 
 template <>
-const char* const Struct<RPG::EventCommand>::name;
+const char* const Struct<rpg::EventCommand>::name;
 template <>
-Field<RPG::EventCommand> const* Struct<RPG::EventCommand>::fields[];
+Field<rpg::EventCommand> const* Struct<rpg::EventCommand>::fields[];
 
 template <>
-const char* const Struct<RPG::EventPage>::name;
+const char* const Struct<rpg::EventPage>::name;
 template <>
-Field<RPG::EventPage> const* Struct<RPG::EventPage>::fields[];
+Field<rpg::EventPage> const* Struct<rpg::EventPage>::fields[];
 
 template <>
-const char* const Struct<RPG::EventPageCondition>::name;
+const char* const Struct<rpg::EventPageCondition>::name;
 template <>
-Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[];
+Field<rpg::EventPageCondition> const* Struct<rpg::EventPageCondition>::fields[];
 
 template <>
-const char* const Struct<RPG::Item>::name;
+const char* const Struct<rpg::Item>::name;
 template <>
-Field<RPG::Item> const* Struct<RPG::Item>::fields[];
+Field<rpg::Item> const* Struct<rpg::Item>::fields[];
 
 template <>
-const char* const Struct<RPG::ItemAnimation>::name;
+const char* const Struct<rpg::ItemAnimation>::name;
 template <>
-Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[];
+Field<rpg::ItemAnimation> const* Struct<rpg::ItemAnimation>::fields[];
 
 template <>
-const char* const Struct<RPG::Learning>::name;
+const char* const Struct<rpg::Learning>::name;
 template <>
-Field<RPG::Learning> const* Struct<RPG::Learning>::fields[];
+Field<rpg::Learning> const* Struct<rpg::Learning>::fields[];
 
 template <>
-const char* const Struct<RPG::Map>::name;
+const char* const Struct<rpg::Map>::name;
 template <>
-Field<RPG::Map> const* Struct<RPG::Map>::fields[];
+Field<rpg::Map> const* Struct<rpg::Map>::fields[];
 
 template <>
-const char* const Struct<RPG::MapInfo>::name;
+const char* const Struct<rpg::MapInfo>::name;
 template <>
-Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[];
+Field<rpg::MapInfo> const* Struct<rpg::MapInfo>::fields[];
 
 template <>
-const char* const Struct<RPG::MoveCommand>::name;
+const char* const Struct<rpg::MoveCommand>::name;
 template <>
-Field<RPG::MoveCommand> const* Struct<RPG::MoveCommand>::fields[];
+Field<rpg::MoveCommand> const* Struct<rpg::MoveCommand>::fields[];
 
 template <>
-const char* const Struct<RPG::MoveRoute>::name;
+const char* const Struct<rpg::MoveRoute>::name;
 template <>
-Field<RPG::MoveRoute> const* Struct<RPG::MoveRoute>::fields[];
+Field<rpg::MoveRoute> const* Struct<rpg::MoveRoute>::fields[];
 
 template <>
-const char* const Struct<RPG::Music>::name;
+const char* const Struct<rpg::Music>::name;
 template <>
-Field<RPG::Music> const* Struct<RPG::Music>::fields[];
+Field<rpg::Music> const* Struct<rpg::Music>::fields[];
 
 template <>
-const char* const Struct<RPG::Parameters>::name;
+const char* const Struct<rpg::Parameters>::name;
 template <>
-Field<RPG::Parameters> const* Struct<RPG::Parameters>::fields[];
+Field<rpg::Parameters> const* Struct<rpg::Parameters>::fields[];
 
 template <>
-const char* const Struct<RPG::Rect>::name;
+const char* const Struct<rpg::Rect>::name;
 template <>
-Field<RPG::Rect> const* Struct<RPG::Rect>::fields[];
+Field<rpg::Rect> const* Struct<rpg::Rect>::fields[];
 
 template <>
-const char* const Struct<RPG::Save>::name;
+const char* const Struct<rpg::Save>::name;
 template <>
-Field<RPG::Save> const* Struct<RPG::Save>::fields[];
+Field<rpg::Save> const* Struct<rpg::Save>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveActor>::name;
+const char* const Struct<rpg::SaveActor>::name;
 template <>
-Field<RPG::SaveActor> const* Struct<RPG::SaveActor>::fields[];
+Field<rpg::SaveActor> const* Struct<rpg::SaveActor>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveCommonEvent>::name;
+const char* const Struct<rpg::SaveCommonEvent>::name;
 template <>
-Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[];
+Field<rpg::SaveCommonEvent> const* Struct<rpg::SaveCommonEvent>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveEasyRpgData>::name;
+const char* const Struct<rpg::SaveEasyRpgData>::name;
 template <>
-Field<RPG::SaveEasyRpgData> const* Struct<RPG::SaveEasyRpgData>::fields[];
+Field<rpg::SaveEasyRpgData> const* Struct<rpg::SaveEasyRpgData>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveEventExecFrame>::name;
+const char* const Struct<rpg::SaveEventExecFrame>::name;
 template <>
-Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[];
+Field<rpg::SaveEventExecFrame> const* Struct<rpg::SaveEventExecFrame>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveEventExecState>::name;
+const char* const Struct<rpg::SaveEventExecState>::name;
 template <>
-Field<RPG::SaveEventExecState> const* Struct<RPG::SaveEventExecState>::fields[];
+Field<rpg::SaveEventExecState> const* Struct<rpg::SaveEventExecState>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveInventory>::name;
+const char* const Struct<rpg::SaveInventory>::name;
 template <>
-Field<RPG::SaveInventory> const* Struct<RPG::SaveInventory>::fields[];
+Field<rpg::SaveInventory> const* Struct<rpg::SaveInventory>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveMapEvent>::name;
+const char* const Struct<rpg::SaveMapEvent>::name;
 template <>
-Field<RPG::SaveMapEvent> const* Struct<RPG::SaveMapEvent>::fields[];
+Field<rpg::SaveMapEvent> const* Struct<rpg::SaveMapEvent>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveMapEventBase>::name;
+const char* const Struct<rpg::SaveMapEventBase>::name;
 template <>
-Field<RPG::SaveMapEventBase> const* Struct<RPG::SaveMapEventBase>::fields[];
+Field<rpg::SaveMapEventBase> const* Struct<rpg::SaveMapEventBase>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveMapInfo>::name;
+const char* const Struct<rpg::SaveMapInfo>::name;
 template <>
-Field<RPG::SaveMapInfo> const* Struct<RPG::SaveMapInfo>::fields[];
+Field<rpg::SaveMapInfo> const* Struct<rpg::SaveMapInfo>::fields[];
 
 template <>
-const char* const Struct<RPG::SavePanorama>::name;
+const char* const Struct<rpg::SavePanorama>::name;
 template <>
-Field<RPG::SavePanorama> const* Struct<RPG::SavePanorama>::fields[];
+Field<rpg::SavePanorama> const* Struct<rpg::SavePanorama>::fields[];
 
 template <>
-const char* const Struct<RPG::SavePartyLocation>::name;
+const char* const Struct<rpg::SavePartyLocation>::name;
 template <>
-Field<RPG::SavePartyLocation> const* Struct<RPG::SavePartyLocation>::fields[];
+Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[];
 
 template <>
-const char* const Struct<RPG::SavePicture>::name;
+const char* const Struct<rpg::SavePicture>::name;
 template <>
-Field<RPG::SavePicture> const* Struct<RPG::SavePicture>::fields[];
+Field<rpg::SavePicture> const* Struct<rpg::SavePicture>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveScreen>::name;
+const char* const Struct<rpg::SaveScreen>::name;
 template <>
-Field<RPG::SaveScreen> const* Struct<RPG::SaveScreen>::fields[];
+Field<rpg::SaveScreen> const* Struct<rpg::SaveScreen>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveSystem>::name;
+const char* const Struct<rpg::SaveSystem>::name;
 template <>
-Field<RPG::SaveSystem> const* Struct<RPG::SaveSystem>::fields[];
+Field<rpg::SaveSystem> const* Struct<rpg::SaveSystem>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveTarget>::name;
+const char* const Struct<rpg::SaveTarget>::name;
 template <>
-Field<RPG::SaveTarget> const* Struct<RPG::SaveTarget>::fields[];
+Field<rpg::SaveTarget> const* Struct<rpg::SaveTarget>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveTitle>::name;
+const char* const Struct<rpg::SaveTitle>::name;
 template <>
-Field<RPG::SaveTitle> const* Struct<RPG::SaveTitle>::fields[];
+Field<rpg::SaveTitle> const* Struct<rpg::SaveTitle>::fields[];
 
 template <>
-const char* const Struct<RPG::SaveVehicleLocation>::name;
+const char* const Struct<rpg::SaveVehicleLocation>::name;
 template <>
-Field<RPG::SaveVehicleLocation> const* Struct<RPG::SaveVehicleLocation>::fields[];
+Field<rpg::SaveVehicleLocation> const* Struct<rpg::SaveVehicleLocation>::fields[];
 
 template <>
-const char* const Struct<RPG::Skill>::name;
+const char* const Struct<rpg::Skill>::name;
 template <>
-Field<RPG::Skill> const* Struct<RPG::Skill>::fields[];
+Field<rpg::Skill> const* Struct<rpg::Skill>::fields[];
 
 template <>
-const char* const Struct<RPG::Sound>::name;
+const char* const Struct<rpg::Sound>::name;
 template <>
-Field<RPG::Sound> const* Struct<RPG::Sound>::fields[];
+Field<rpg::Sound> const* Struct<rpg::Sound>::fields[];
 
 template <>
-const char* const Struct<RPG::Start>::name;
+const char* const Struct<rpg::Start>::name;
 template <>
-Field<RPG::Start> const* Struct<RPG::Start>::fields[];
+Field<rpg::Start> const* Struct<rpg::Start>::fields[];
 
 template <>
-const char* const Struct<RPG::State>::name;
+const char* const Struct<rpg::State>::name;
 template <>
-Field<RPG::State> const* Struct<RPG::State>::fields[];
+Field<rpg::State> const* Struct<rpg::State>::fields[];
 
 template <>
-const char* const Struct<RPG::Switch>::name;
+const char* const Struct<rpg::Switch>::name;
 template <>
-Field<RPG::Switch> const* Struct<RPG::Switch>::fields[];
+Field<rpg::Switch> const* Struct<rpg::Switch>::fields[];
 
 template <>
-const char* const Struct<RPG::System>::name;
+const char* const Struct<rpg::System>::name;
 template <>
-Field<RPG::System> const* Struct<RPG::System>::fields[];
+Field<rpg::System> const* Struct<rpg::System>::fields[];
 
 template <>
-const char* const Struct<RPG::Terms>::name;
+const char* const Struct<rpg::Terms>::name;
 template <>
-Field<RPG::Terms> const* Struct<RPG::Terms>::fields[];
+Field<rpg::Terms> const* Struct<rpg::Terms>::fields[];
 
 template <>
-const char* const Struct<RPG::Terrain>::name;
+const char* const Struct<rpg::Terrain>::name;
 template <>
-Field<RPG::Terrain> const* Struct<RPG::Terrain>::fields[];
+Field<rpg::Terrain> const* Struct<rpg::Terrain>::fields[];
 
 template <>
-const char* const Struct<RPG::TestBattler>::name;
+const char* const Struct<rpg::TestBattler>::name;
 template <>
-Field<RPG::TestBattler> const* Struct<RPG::TestBattler>::fields[];
+Field<rpg::TestBattler> const* Struct<rpg::TestBattler>::fields[];
 
 template <>
-const char* const Struct<RPG::TreeMap>::name;
+const char* const Struct<rpg::TreeMap>::name;
 template <>
-Field<RPG::TreeMap> const* Struct<RPG::TreeMap>::fields[];
+Field<rpg::TreeMap> const* Struct<rpg::TreeMap>::fields[];
 
 template <>
-const char* const Struct<RPG::Troop>::name;
+const char* const Struct<rpg::Troop>::name;
 template <>
-Field<RPG::Troop> const* Struct<RPG::Troop>::fields[];
+Field<rpg::Troop> const* Struct<rpg::Troop>::fields[];
 
 template <>
-const char* const Struct<RPG::TroopMember>::name;
+const char* const Struct<rpg::TroopMember>::name;
 template <>
-Field<RPG::TroopMember> const* Struct<RPG::TroopMember>::fields[];
+Field<rpg::TroopMember> const* Struct<rpg::TroopMember>::fields[];
 
 template <>
-const char* const Struct<RPG::TroopPage>::name;
+const char* const Struct<rpg::TroopPage>::name;
 template <>
-Field<RPG::TroopPage> const* Struct<RPG::TroopPage>::fields[];
+Field<rpg::TroopPage> const* Struct<rpg::TroopPage>::fields[];
 
 template <>
-const char* const Struct<RPG::TroopPageCondition>::name;
+const char* const Struct<rpg::TroopPageCondition>::name;
 template <>
-Field<RPG::TroopPageCondition> const* Struct<RPG::TroopPageCondition>::fields[];
+Field<rpg::TroopPageCondition> const* Struct<rpg::TroopPageCondition>::fields[];
 
 template <>
-const char* const Struct<RPG::Variable>::name;
+const char* const Struct<rpg::Variable>::name;
 template <>
-Field<RPG::Variable> const* Struct<RPG::Variable>::fields[];
+Field<rpg::Variable> const* Struct<rpg::Variable>::fields[];
 
 } //namespace lcf
 #endif

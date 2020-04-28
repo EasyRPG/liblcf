@@ -17,9 +17,9 @@
 #include <string>
 
 /**
- * RPG::Sound class.
+ * rpg::Sound class.
  */
-namespace RPG {
+namespace rpg {
 	class Sound {
 	public:
 		std::string name = "(OFF)";

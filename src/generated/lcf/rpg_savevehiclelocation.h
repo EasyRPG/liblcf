@@ -19,9 +19,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::SaveVehicleLocation class.
+ * rpg::SaveVehicleLocation class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveVehicleLocation : public SaveMapEventBase {
 	public:
 		enum VehicleType {

@@ -340,7 +340,7 @@ namespace LSD_Reader {
 			lock_facing = 0x24,
 			/**  */
 			move_speed = 0x25,
-			/** chunks: RPG::MoveRoute */
+			/** chunks: rpg::MoveRoute */
 			move_route = 0x29,
 			/** Use custom move route */
 			move_route_overwrite = 0x2A,
@@ -454,7 +454,7 @@ namespace LSD_Reader {
 			lock_facing = 0x24,
 			/**  */
 			move_speed = 0x25,
-			/** chunks: RPG::MoveRoute */
+			/** chunks: rpg::MoveRoute */
 			move_route = 0x29,
 			/** Use custom move route */
 			move_route_overwrite = 0x2A,
@@ -738,7 +738,7 @@ namespace LSD_Reader {
 			lock_facing = 0x24,
 			/**  */
 			move_speed = 0x25,
-			/** chunks: RPG::MoveRoute */
+			/** chunks: rpg::MoveRoute */
 			move_route = 0x29,
 			/** Use custom move route */
 			move_route_overwrite = 0x2A,
@@ -820,7 +820,7 @@ namespace LSD_Reader {
 			lock_facing = 0x24,
 			/**  */
 			move_speed = 0x25,
-			/** chunks: RPG::MoveRoute */
+			/** chunks: rpg::MoveRoute */
 			move_route = 0x29,
 			/** Use custom move route */
 			move_route_overwrite = 0x2A,
@@ -926,35 +926,35 @@ namespace LSD_Reader {
 	};
 	struct ChunkSave {
 		enum Index {
-			/** RPG::SaveTitle */
+			/** rpg::SaveTitle */
 			title = 0x64,
-			/** RPG::SaveSystem */
+			/** rpg::SaveSystem */
 			system = 0x65,
-			/** RPG::SaveScreen */
+			/** rpg::SaveScreen */
 			screen = 0x66,
-			/** array of RPG::SavePicture */
+			/** array of rpg::SavePicture */
 			pictures = 0x67,
-			/** RPG::SavePartyLocation */
+			/** rpg::SavePartyLocation */
 			party_location = 0x68,
-			/** RPG::SaveVehicleLocation */
+			/** rpg::SaveVehicleLocation */
 			boat_location = 0x69,
-			/** RPG::SaveVehicleLocation */
+			/** rpg::SaveVehicleLocation */
 			ship_location = 0x6A,
-			/** RPG::SaveVehicleLocation */
+			/** rpg::SaveVehicleLocation */
 			airship_location = 0x6B,
-			/** array of RPG::SaveActor */
+			/** array of rpg::SaveActor */
 			actors = 0x6C,
-			/** RPG::SaveInventory */
+			/** rpg::SaveInventory */
 			inventory = 0x6D,
-			/** array of RPG::SaveTarget */
+			/** array of rpg::SaveTarget */
 			targets = 0x6E,
-			/** RPG::SaveMapInfo */
+			/** rpg::SaveMapInfo */
 			map_info = 0x6F,
 			/** Used to store panorama position data. Used by RPG_RT 2k3 1.12 in other versions an empty object. */
 			panorama = 0x70,
-			/** RPG::SaveEventExecState */
+			/** rpg::SaveEventExecState */
 			foreground_event_execstate = 0x71,
-			/** array of RPG::SaveCommonEvent */
+			/** array of rpg::SaveCommonEvent */
 			common_events = 0x72,
 			/** Additional save data written by EasyRPG Player */
 			easyrpg_data = 0xC8

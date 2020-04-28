@@ -19,390 +19,390 @@ namespace lcf {
 // Read Item.
 
 template <>
-char const* const Struct<RPG::Item>::name = "Item";
-static TypedField<RPG::Item, std::string> static_name(
-	&RPG::Item::name,
+char const* const Struct<rpg::Item>::name = "Item";
+static TypedField<rpg::Item, std::string> static_name(
+	&rpg::Item::name,
 	LDB_Reader::ChunkItem::name,
 	"name",
 	0,
 	0
 );
-static TypedField<RPG::Item, std::string> static_description(
-	&RPG::Item::description,
+static TypedField<rpg::Item, std::string> static_description(
+	&rpg::Item::description,
 	LDB_Reader::ChunkItem::description,
 	"description",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_type(
-	&RPG::Item::type,
+static TypedField<rpg::Item, int32_t> static_type(
+	&rpg::Item::type,
 	LDB_Reader::ChunkItem::type,
 	"type",
 	1,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_price(
-	&RPG::Item::price,
+static TypedField<rpg::Item, int32_t> static_price(
+	&rpg::Item::price,
 	LDB_Reader::ChunkItem::price,
 	"price",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_uses(
-	&RPG::Item::uses,
+static TypedField<rpg::Item, int32_t> static_uses(
+	&rpg::Item::uses,
 	LDB_Reader::ChunkItem::uses,
 	"uses",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_atk_points1(
-	&RPG::Item::atk_points1,
+static TypedField<rpg::Item, int32_t> static_atk_points1(
+	&rpg::Item::atk_points1,
 	LDB_Reader::ChunkItem::atk_points1,
 	"atk_points1",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_def_points1(
-	&RPG::Item::def_points1,
+static TypedField<rpg::Item, int32_t> static_def_points1(
+	&rpg::Item::def_points1,
 	LDB_Reader::ChunkItem::def_points1,
 	"def_points1",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_spi_points1(
-	&RPG::Item::spi_points1,
+static TypedField<rpg::Item, int32_t> static_spi_points1(
+	&rpg::Item::spi_points1,
 	LDB_Reader::ChunkItem::spi_points1,
 	"spi_points1",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_agi_points1(
-	&RPG::Item::agi_points1,
+static TypedField<rpg::Item, int32_t> static_agi_points1(
+	&rpg::Item::agi_points1,
 	LDB_Reader::ChunkItem::agi_points1,
 	"agi_points1",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_two_handed(
-	&RPG::Item::two_handed,
+static TypedField<rpg::Item, bool> static_two_handed(
+	&rpg::Item::two_handed,
 	LDB_Reader::ChunkItem::two_handed,
 	"two_handed",
 	1,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_sp_cost(
-	&RPG::Item::sp_cost,
+static TypedField<rpg::Item, int32_t> static_sp_cost(
+	&rpg::Item::sp_cost,
 	LDB_Reader::ChunkItem::sp_cost,
 	"sp_cost",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_hit(
-	&RPG::Item::hit,
+static TypedField<rpg::Item, int32_t> static_hit(
+	&rpg::Item::hit,
 	LDB_Reader::ChunkItem::hit,
 	"hit",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_critical_hit(
-	&RPG::Item::critical_hit,
+static TypedField<rpg::Item, int32_t> static_critical_hit(
+	&rpg::Item::critical_hit,
 	LDB_Reader::ChunkItem::critical_hit,
 	"critical_hit",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_animation_id(
-	&RPG::Item::animation_id,
+static TypedField<rpg::Item, int32_t> static_animation_id(
+	&rpg::Item::animation_id,
 	LDB_Reader::ChunkItem::animation_id,
 	"animation_id",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_preemptive(
-	&RPG::Item::preemptive,
+static TypedField<rpg::Item, bool> static_preemptive(
+	&rpg::Item::preemptive,
 	LDB_Reader::ChunkItem::preemptive,
 	"preemptive",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_dual_attack(
-	&RPG::Item::dual_attack,
+static TypedField<rpg::Item, bool> static_dual_attack(
+	&rpg::Item::dual_attack,
 	LDB_Reader::ChunkItem::dual_attack,
 	"dual_attack",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_attack_all(
-	&RPG::Item::attack_all,
+static TypedField<rpg::Item, bool> static_attack_all(
+	&rpg::Item::attack_all,
 	LDB_Reader::ChunkItem::attack_all,
 	"attack_all",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_ignore_evasion(
-	&RPG::Item::ignore_evasion,
+static TypedField<rpg::Item, bool> static_ignore_evasion(
+	&rpg::Item::ignore_evasion,
 	LDB_Reader::ChunkItem::ignore_evasion,
 	"ignore_evasion",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_prevent_critical(
-	&RPG::Item::prevent_critical,
+static TypedField<rpg::Item, bool> static_prevent_critical(
+	&rpg::Item::prevent_critical,
 	LDB_Reader::ChunkItem::prevent_critical,
 	"prevent_critical",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_raise_evasion(
-	&RPG::Item::raise_evasion,
+static TypedField<rpg::Item, bool> static_raise_evasion(
+	&rpg::Item::raise_evasion,
 	LDB_Reader::ChunkItem::raise_evasion,
 	"raise_evasion",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_half_sp_cost(
-	&RPG::Item::half_sp_cost,
+static TypedField<rpg::Item, bool> static_half_sp_cost(
+	&rpg::Item::half_sp_cost,
 	LDB_Reader::ChunkItem::half_sp_cost,
 	"half_sp_cost",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_no_terrain_damage(
-	&RPG::Item::no_terrain_damage,
+static TypedField<rpg::Item, bool> static_no_terrain_damage(
+	&rpg::Item::no_terrain_damage,
 	LDB_Reader::ChunkItem::no_terrain_damage,
 	"no_terrain_damage",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_cursed(
-	&RPG::Item::cursed,
+static TypedField<rpg::Item, bool> static_cursed(
+	&rpg::Item::cursed,
 	LDB_Reader::ChunkItem::cursed,
 	"cursed",
 	0,
 	1
 );
-static TypedField<RPG::Item, bool> static_entire_party(
-	&RPG::Item::entire_party,
+static TypedField<rpg::Item, bool> static_entire_party(
+	&rpg::Item::entire_party,
 	LDB_Reader::ChunkItem::entire_party,
 	"entire_party",
 	1,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_recover_hp_rate(
-	&RPG::Item::recover_hp_rate,
+static TypedField<rpg::Item, int32_t> static_recover_hp_rate(
+	&rpg::Item::recover_hp_rate,
 	LDB_Reader::ChunkItem::recover_hp_rate,
 	"recover_hp_rate",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_recover_hp(
-	&RPG::Item::recover_hp,
+static TypedField<rpg::Item, int32_t> static_recover_hp(
+	&rpg::Item::recover_hp,
 	LDB_Reader::ChunkItem::recover_hp,
 	"recover_hp",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_recover_sp_rate(
-	&RPG::Item::recover_sp_rate,
+static TypedField<rpg::Item, int32_t> static_recover_sp_rate(
+	&rpg::Item::recover_sp_rate,
 	LDB_Reader::ChunkItem::recover_sp_rate,
 	"recover_sp_rate",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_recover_sp(
-	&RPG::Item::recover_sp,
+static TypedField<rpg::Item, int32_t> static_recover_sp(
+	&rpg::Item::recover_sp,
 	LDB_Reader::ChunkItem::recover_sp,
 	"recover_sp",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_occasion_field1(
-	&RPG::Item::occasion_field1,
+static TypedField<rpg::Item, bool> static_occasion_field1(
+	&rpg::Item::occasion_field1,
 	LDB_Reader::ChunkItem::occasion_field1,
 	"occasion_field1",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_ko_only(
-	&RPG::Item::ko_only,
+static TypedField<rpg::Item, bool> static_ko_only(
+	&rpg::Item::ko_only,
 	LDB_Reader::ChunkItem::ko_only,
 	"ko_only",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_max_hp_points(
-	&RPG::Item::max_hp_points,
+static TypedField<rpg::Item, int32_t> static_max_hp_points(
+	&rpg::Item::max_hp_points,
 	LDB_Reader::ChunkItem::max_hp_points,
 	"max_hp_points",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_max_sp_points(
-	&RPG::Item::max_sp_points,
+static TypedField<rpg::Item, int32_t> static_max_sp_points(
+	&rpg::Item::max_sp_points,
 	LDB_Reader::ChunkItem::max_sp_points,
 	"max_sp_points",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_atk_points2(
-	&RPG::Item::atk_points2,
+static TypedField<rpg::Item, int32_t> static_atk_points2(
+	&rpg::Item::atk_points2,
 	LDB_Reader::ChunkItem::atk_points2,
 	"atk_points2",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_def_points2(
-	&RPG::Item::def_points2,
+static TypedField<rpg::Item, int32_t> static_def_points2(
+	&rpg::Item::def_points2,
 	LDB_Reader::ChunkItem::def_points2,
 	"def_points2",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_spi_points2(
-	&RPG::Item::spi_points2,
+static TypedField<rpg::Item, int32_t> static_spi_points2(
+	&rpg::Item::spi_points2,
 	LDB_Reader::ChunkItem::spi_points2,
 	"spi_points2",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_agi_points2(
-	&RPG::Item::agi_points2,
+static TypedField<rpg::Item, int32_t> static_agi_points2(
+	&rpg::Item::agi_points2,
 	LDB_Reader::ChunkItem::agi_points2,
 	"agi_points2",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_using_message(
-	&RPG::Item::using_message,
+static TypedField<rpg::Item, int32_t> static_using_message(
+	&rpg::Item::using_message,
 	LDB_Reader::ChunkItem::using_message,
 	"using_message",
 	1,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_skill_id(
-	&RPG::Item::skill_id,
+static TypedField<rpg::Item, int32_t> static_skill_id(
+	&rpg::Item::skill_id,
 	LDB_Reader::ChunkItem::skill_id,
 	"skill_id",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_switch_id(
-	&RPG::Item::switch_id,
+static TypedField<rpg::Item, int32_t> static_switch_id(
+	&rpg::Item::switch_id,
 	LDB_Reader::ChunkItem::switch_id,
 	"switch_id",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_occasion_field2(
-	&RPG::Item::occasion_field2,
+static TypedField<rpg::Item, bool> static_occasion_field2(
+	&rpg::Item::occasion_field2,
 	LDB_Reader::ChunkItem::occasion_field2,
 	"occasion_field2",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_occasion_battle(
-	&RPG::Item::occasion_battle,
+static TypedField<rpg::Item, bool> static_occasion_battle(
+	&rpg::Item::occasion_battle,
 	LDB_Reader::ChunkItem::occasion_battle,
 	"occasion_battle",
 	0,
 	0
 );
-static SizeField<RPG::Item, bool> static_size_actor_set(
-	&RPG::Item::actor_set,
+static SizeField<rpg::Item, bool> static_size_actor_set(
+	&rpg::Item::actor_set,
 	LDB_Reader::ChunkItem::actor_set_size,
 	0,
 	0
 );
-static TypedField<RPG::Item, std::vector<bool>> static_actor_set(
-	&RPG::Item::actor_set,
+static TypedField<rpg::Item, std::vector<bool>> static_actor_set(
+	&rpg::Item::actor_set,
 	LDB_Reader::ChunkItem::actor_set,
 	"actor_set",
 	1,
 	0
 );
-static SizeField<RPG::Item, bool> static_size_state_set(
-	&RPG::Item::state_set,
+static SizeField<rpg::Item, bool> static_size_state_set(
+	&rpg::Item::state_set,
 	LDB_Reader::ChunkItem::state_set_size,
 	0,
 	0
 );
-static TypedField<RPG::Item, std::vector<bool>> static_state_set(
-	&RPG::Item::state_set,
+static TypedField<rpg::Item, std::vector<bool>> static_state_set(
+	&rpg::Item::state_set,
 	LDB_Reader::ChunkItem::state_set,
 	"state_set",
 	1,
 	0
 );
-static SizeField<RPG::Item, bool> static_size_attribute_set(
-	&RPG::Item::attribute_set,
+static SizeField<rpg::Item, bool> static_size_attribute_set(
+	&rpg::Item::attribute_set,
 	LDB_Reader::ChunkItem::attribute_set_size,
 	0,
 	0
 );
-static TypedField<RPG::Item, std::vector<bool>> static_attribute_set(
-	&RPG::Item::attribute_set,
+static TypedField<rpg::Item, std::vector<bool>> static_attribute_set(
+	&rpg::Item::attribute_set,
 	LDB_Reader::ChunkItem::attribute_set,
 	"attribute_set",
 	1,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_state_chance(
-	&RPG::Item::state_chance,
+static TypedField<rpg::Item, int32_t> static_state_chance(
+	&rpg::Item::state_chance,
 	LDB_Reader::ChunkItem::state_chance,
 	"state_chance",
 	0,
 	0
 );
-static TypedField<RPG::Item, bool> static_reverse_state_effect(
-	&RPG::Item::reverse_state_effect,
+static TypedField<rpg::Item, bool> static_reverse_state_effect(
+	&rpg::Item::reverse_state_effect,
 	LDB_Reader::ChunkItem::reverse_state_effect,
 	"reverse_state_effect",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_weapon_animation(
-	&RPG::Item::weapon_animation,
+static TypedField<rpg::Item, int32_t> static_weapon_animation(
+	&rpg::Item::weapon_animation,
 	LDB_Reader::ChunkItem::weapon_animation,
 	"weapon_animation",
 	0,
 	1
 );
-static TypedField<RPG::Item, std::vector<RPG::ItemAnimation>> static_animation_data(
-	&RPG::Item::animation_data,
+static TypedField<rpg::Item, std::vector<rpg::ItemAnimation>> static_animation_data(
+	&rpg::Item::animation_data,
 	LDB_Reader::ChunkItem::animation_data,
 	"animation_data",
 	1,
 	1
 );
-static TypedField<RPG::Item, bool> static_use_skill(
-	&RPG::Item::use_skill,
+static TypedField<rpg::Item, bool> static_use_skill(
+	&rpg::Item::use_skill,
 	LDB_Reader::ChunkItem::use_skill,
 	"use_skill",
 	0,
 	1
 );
-static SizeField<RPG::Item, bool> static_size_class_set(
-	&RPG::Item::class_set,
+static SizeField<rpg::Item, bool> static_size_class_set(
+	&rpg::Item::class_set,
 	LDB_Reader::ChunkItem::class_set_size,
 	0,
 	1
 );
-static TypedField<RPG::Item, std::vector<bool>> static_class_set(
-	&RPG::Item::class_set,
+static TypedField<rpg::Item, std::vector<bool>> static_class_set(
+	&rpg::Item::class_set,
 	LDB_Reader::ChunkItem::class_set,
 	"class_set",
 	1,
 	1
 );
-static TypedField<RPG::Item, int32_t> static_ranged_trajectory(
-	&RPG::Item::ranged_trajectory,
+static TypedField<rpg::Item, int32_t> static_ranged_trajectory(
+	&rpg::Item::ranged_trajectory,
 	LDB_Reader::ChunkItem::ranged_trajectory,
 	"ranged_trajectory",
 	0,
 	0
 );
-static TypedField<RPG::Item, int32_t> static_ranged_target(
-	&RPG::Item::ranged_target,
+static TypedField<rpg::Item, int32_t> static_ranged_target(
+	&rpg::Item::ranged_target,
 	LDB_Reader::ChunkItem::ranged_target,
 	"ranged_target",
 	0,
@@ -411,7 +411,7 @@ static TypedField<RPG::Item, int32_t> static_ranged_target(
 
 
 template <>
-Field<RPG::Item> const* Struct<RPG::Item>::fields[] = {
+Field<rpg::Item> const* Struct<rpg::Item>::fields[] = {
 	&static_name,
 	&static_description,
 	&static_type,
@@ -471,6 +471,6 @@ Field<RPG::Item> const* Struct<RPG::Item>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::Item>;
+template class Struct<rpg::Item>;
 
 } //namespace lcf

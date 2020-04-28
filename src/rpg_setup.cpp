@@ -18,8 +18,8 @@
 #include "lcf/rpg_parameters.h"
 #include "lcf/data.h"
 
-void RPG::SaveActor::Setup(int actor_id) {
-	const RPG::Actor& actor = lcf::Data::actors[actor_id - 1];
+void rpg::SaveActor::Setup(int actor_id) {
+	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
 	ID = actor.ID;
 	name = actor.name;
 	title = actor.title;
@@ -56,17 +56,17 @@ void RPG::SaveActor::Setup(int actor_id) {
 	super_guard = actor.super_guard;
 }
 
-void RPG::SaveInventory::Setup() {
+void rpg::SaveInventory::Setup() {
 	party = lcf::Data::system.party;
 }
 
-void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
+void rpg::SaveMapEvent::Setup(const rpg::Event& event) {
 	ID = event.ID;
 	position_x = event.x;
 	position_y = event.y;
 }
 
-void RPG::SaveMapInfo::Setup() {
+void rpg::SaveMapInfo::Setup() {
 	position_x = 0;
 	position_y = 0;
 	lower_tiles.resize(144);
@@ -77,7 +77,7 @@ void RPG::SaveMapInfo::Setup() {
 	}
 }
 
-void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
+void rpg::SaveMapInfo::Setup(const rpg::Map& map) {
 	chipset_id = map.chipset_id;
 	parallax_name = map.parallax_name;
 	parallax_horz = map.parallax_loop_x;
@@ -88,8 +88,8 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 	parallax_vert_speed = map.parallax_sy;
 }
 
-void RPG::SaveSystem::Setup() {
-	const RPG::System& system = lcf::Data::system;
+void rpg::SaveSystem::Setup() {
+	const rpg::System& system = lcf::Data::system;
 	frame_count = 0;
 	face_name = "";
 	face_id = -1;
@@ -130,9 +130,9 @@ void RPG::SaveSystem::Setup() {
 	save_slot = -1;
 }
 
-void RPG::Save::Setup() {
+void rpg::Save::Setup() {
 	system.Setup();
-	screen = RPG::SaveScreen();
+	screen = rpg::SaveScreen();
 	pictures.clear();
 	actors.clear();
 	actors.resize(lcf::Data::actors.size());
@@ -141,16 +141,16 @@ void RPG::Save::Setup() {
 	map_info.Setup();
 
 	party_location.move_speed = 4;
-	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
-	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
-	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
+	boat_location.vehicle = rpg::SaveVehicleLocation::VehicleType_skiff;
+	ship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_ship;
+	airship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_airship;
 
 	if (targets.empty()) {
 		targets.resize(1);
 	}
 }
 
-void RPG::Actor::Setup() {
+void rpg::Actor::Setup() {
 	int max_final_level = 0;
 	if (lcf::Data::system.ldb_id == 2003) {
 		max_final_level = 99;
@@ -171,19 +171,19 @@ void RPG::Actor::Setup() {
 	parameters.Setup(max_final_level);
 }
 
-void RPG::Chipset::Init() {
+void rpg::Chipset::Init() {
 	terrain_data.resize(162, 1);
 	passable_data_lower.resize(162, 15);
 	passable_data_upper.resize(144, 15);
 	passable_data_upper.front() = 31;
 }
 
-void RPG::System::Init() {
+void rpg::System::Init() {
 	party.resize(1, 1);
 	menu_commands.resize(1, 1);
 }
 
-void RPG::Parameters::Setup(int final_level) {
+void rpg::Parameters::Setup(int final_level) {
 	size_t level = 0;
 	if (final_level > 0) level = final_level;
 	if (maxhp.size() < level) maxhp.resize(level, 1);

@@ -17,9 +17,9 @@
 #include <vector>
 
 /**
- * RPG::SaveInventory class.
+ * rpg::SaveInventory class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveInventory {
 	public:
 		void Setup();

@@ -18,9 +18,9 @@
 #include "lcf/rpg_trooppagecondition.h"
 
 /**
- * RPG::TroopPage class.
+ * rpg::TroopPage class.
  */
-namespace RPG {
+namespace rpg {
 	class TroopPage {
 	public:
 		int ID = 0;

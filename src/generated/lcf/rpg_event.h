@@ -19,9 +19,9 @@
 #include "lcf/rpg_eventpage.h"
 
 /**
- * RPG::Event class.
+ * rpg::Event class.
  */
-namespace RPG {
+namespace rpg {
 	class Event {
 	public:
 		int ID = 0;

@@ -16,9 +16,9 @@
 #include <string>
 
 /**
- * RPG::Switch class.
+ * rpg::Switch class.
  */
-namespace RPG {
+namespace rpg {
 	class Switch {
 	public:
 		int ID = 0;

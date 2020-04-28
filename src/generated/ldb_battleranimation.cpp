@@ -19,30 +19,30 @@ namespace lcf {
 // Read BattlerAnimation.
 
 template <>
-char const* const Struct<RPG::BattlerAnimation>::name = "BattlerAnimation";
-static TypedField<RPG::BattlerAnimation, std::string> static_name(
-	&RPG::BattlerAnimation::name,
+char const* const Struct<rpg::BattlerAnimation>::name = "BattlerAnimation";
+static TypedField<rpg::BattlerAnimation, std::string> static_name(
+	&rpg::BattlerAnimation::name,
 	LDB_Reader::ChunkBattlerAnimation::name,
 	"name",
 	0,
 	0
 );
-static TypedField<RPG::BattlerAnimation, int32_t> static_speed(
-	&RPG::BattlerAnimation::speed,
+static TypedField<rpg::BattlerAnimation, int32_t> static_speed(
+	&rpg::BattlerAnimation::speed,
 	LDB_Reader::ChunkBattlerAnimation::speed,
 	"speed",
 	0,
 	0
 );
-static TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>> static_base_data(
-	&RPG::BattlerAnimation::base_data,
+static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationExtension>> static_base_data(
+	&rpg::BattlerAnimation::base_data,
 	LDB_Reader::ChunkBattlerAnimation::base_data,
 	"base_data",
 	1,
 	0
 );
-static TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtension>> static_weapon_data(
-	&RPG::BattlerAnimation::weapon_data,
+static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationExtension>> static_weapon_data(
+	&rpg::BattlerAnimation::weapon_data,
 	LDB_Reader::ChunkBattlerAnimation::weapon_data,
 	"weapon_data",
 	1,
@@ -51,7 +51,7 @@ static TypedField<RPG::BattlerAnimation, std::vector<RPG::BattlerAnimationExtens
 
 
 template <>
-Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[] = {
+Field<rpg::BattlerAnimation> const* Struct<rpg::BattlerAnimation>::fields[] = {
 	&static_name,
 	&static_speed,
 	&static_base_data,
@@ -59,6 +59,6 @@ Field<RPG::BattlerAnimation> const* Struct<RPG::BattlerAnimation>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::BattlerAnimation>;
+template class Struct<rpg::BattlerAnimation>;
 
 } //namespace lcf

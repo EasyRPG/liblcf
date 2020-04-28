@@ -15,6 +15,6 @@
 /**
  * Constructor.
  */
-RPG::System::System() {
+rpg::System::System() {
 	Init();
 }

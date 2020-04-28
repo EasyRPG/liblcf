@@ -18,9 +18,9 @@
 #include "lcf/rpg_eventcommand.h"
 
 /**
- * RPG::SaveEventExecFrame class.
+ * rpg::SaveEventExecFrame class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveEventExecFrame {
 	public:
 		int ID = 0;

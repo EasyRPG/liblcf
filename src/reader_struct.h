@@ -60,17 +60,17 @@ struct TypeCategory {
 	static const Category::Index value = Category::Struct;
 };
 
-template <> struct TypeCategory<RPG::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
 
-template <> struct TypeCategory<RPG::Equipment>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::MoveCommand>				{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::Parameters>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::Rect>						{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Equipment>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::MoveCommand>				{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Parameters>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Rect>						{ static const Category::Index value = Category::RawStruct; };
 
 template <>	struct TypeCategory<int8_t> 						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<uint8_t>						{ static const Category::Index value = Category::Primitive; };
@@ -331,7 +331,7 @@ struct Field {
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
 	bool isPresentIfDefault(bool db_is2k3) const {
-		if (std::is_same<S,RPG::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
+		if (std::is_same<S,rpg::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
 			//Special case - only known fields that are 2k specific and not
 			//written to a 2k3 db if defaulted.
 			return false;

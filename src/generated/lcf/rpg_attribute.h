@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::Attribute class.
+ * rpg::Attribute class.
  */
-namespace RPG {
+namespace rpg {
 	class Attribute {
 	public:
 		enum Type {

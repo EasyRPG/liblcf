@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::SaveScreen class.
+ * rpg::SaveScreen class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveScreen {
 	public:
 		int32_t tint_finish_red = 100;

@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::SaveTarget class.
+ * rpg::SaveTarget class.
  */
-namespace RPG {
+namespace rpg {
 	class SaveTarget {
 	public:
 		int ID = 0;

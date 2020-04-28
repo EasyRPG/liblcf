@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::Start class.
+ * rpg::Start class.
  */
-namespace RPG {
+namespace rpg {
 	class Start {
 	public:
 		int32_t party_map_id = 0;

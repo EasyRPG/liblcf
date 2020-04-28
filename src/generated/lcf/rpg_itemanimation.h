@@ -17,9 +17,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::ItemAnimation class.
+ * rpg::ItemAnimation class.
  */
-namespace RPG {
+namespace rpg {
 	class ItemAnimation {
 	public:
 		enum Movement {

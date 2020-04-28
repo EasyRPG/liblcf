@@ -142,9 +142,9 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 #pragma warning (disable : 4661)
 #endif
 
-template class Flags<RPG::TroopPageCondition::Flags>;
-template class Flags<RPG::EventPageCondition::Flags>;
-template class Flags<RPG::Terrain::Flags>;
-template class Flags<RPG::SavePicture::Flags>;
+template class Flags<rpg::TroopPageCondition::Flags>;
+template class Flags<rpg::EventPageCondition::Flags>;
+template class Flags<rpg::Terrain::Flags>;
+template class Flags<rpg::SavePicture::Flags>;
 
 } //namespace lcf

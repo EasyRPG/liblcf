@@ -19,9 +19,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::EventCommand class.
+ * rpg::EventCommand class.
  */
-namespace RPG {
+namespace rpg {
 	class EventCommand {
 	public:
 		struct Code {

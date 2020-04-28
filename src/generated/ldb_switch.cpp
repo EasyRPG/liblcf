@@ -19,9 +19,9 @@ namespace lcf {
 // Read Switch.
 
 template <>
-char const* const Struct<RPG::Switch>::name = "Switch";
-static TypedField<RPG::Switch, std::string> static_name(
-	&RPG::Switch::name,
+char const* const Struct<rpg::Switch>::name = "Switch";
+static TypedField<rpg::Switch, std::string> static_name(
+	&rpg::Switch::name,
 	LDB_Reader::ChunkSwitch::name,
 	"name",
 	0,
@@ -30,11 +30,11 @@ static TypedField<RPG::Switch, std::string> static_name(
 
 
 template <>
-Field<RPG::Switch> const* Struct<RPG::Switch>::fields[] = {
+Field<rpg::Switch> const* Struct<rpg::Switch>::fields[] = {
 	&static_name,
 	NULL
 };
 
-template class Struct<RPG::Switch>;
+template class Struct<rpg::Switch>;
 
 } //namespace lcf

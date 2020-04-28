@@ -20,9 +20,9 @@
 #include "lcf/rpg_animationtiming.h"
 
 /**
- * RPG::Animation class.
+ * rpg::Animation class.
  */
-namespace RPG {
+namespace rpg {
 	class Animation {
 	public:
 		enum Scope {

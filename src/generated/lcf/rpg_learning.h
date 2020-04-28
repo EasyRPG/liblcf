@@ -16,9 +16,9 @@
 #include <stdint.h>
 
 /**
- * RPG::Learning class.
+ * rpg::Learning class.
  */
-namespace RPG {
+namespace rpg {
 	class Learning {
 	public:
 		int ID = 0;

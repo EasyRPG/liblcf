@@ -18,9 +18,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::SavePartyLocation class.
+ * rpg::SavePartyLocation class.
  */
-namespace RPG {
+namespace rpg {
 	class SavePartyLocation : public SaveMapEventBase {
 	public:
 		// Equal to 9 tiles in 1/16th pixels

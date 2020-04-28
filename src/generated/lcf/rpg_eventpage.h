@@ -22,9 +22,9 @@
 #include "lcf/rpg_moveroute.h"
 
 /**
- * RPG::EventPage class.
+ * rpg::EventPage class.
  */
-namespace RPG {
+namespace rpg {
 	class EventPage {
 	public:
 		enum Direction {

@@ -19,9 +19,9 @@
 #include "lcf/rpg_eventcommand.h"
 
 /**
- * RPG::CommonEvent class.
+ * rpg::CommonEvent class.
  */
-namespace RPG {
+namespace rpg {
 	class CommonEvent {
 	public:
 		enum Trigger {

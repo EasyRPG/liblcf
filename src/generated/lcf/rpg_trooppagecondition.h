@@ -17,9 +17,9 @@
 #include <stdint.h>
 
 /**
- * RPG::TroopPageCondition class.
+ * rpg::TroopPageCondition class.
  */
-namespace RPG {
+namespace rpg {
 	class TroopPageCondition {
 	public:
 		struct Flags {

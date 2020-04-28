@@ -17,9 +17,9 @@
 #include "lcf/enum_tags.h"
 
 /**
- * RPG::EnemyAction class.
+ * rpg::EnemyAction class.
  */
-namespace RPG {
+namespace rpg {
 	class EnemyAction {
 	public:
 		enum Kind {

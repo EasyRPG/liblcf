@@ -18,9 +18,9 @@
 #include "lcf/rpg_sound.h"
 
 /**
- * RPG::AnimationTiming class.
+ * rpg::AnimationTiming class.
  */
-namespace RPG {
+namespace rpg {
 	class AnimationTiming {
 	public:
 		enum FlashScope {

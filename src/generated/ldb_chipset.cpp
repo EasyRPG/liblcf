@@ -19,51 +19,51 @@ namespace lcf {
 // Read Chipset.
 
 template <>
-char const* const Struct<RPG::Chipset>::name = "Chipset";
-static TypedField<RPG::Chipset, std::string> static_name(
-	&RPG::Chipset::name,
+char const* const Struct<rpg::Chipset>::name = "Chipset";
+static TypedField<rpg::Chipset, std::string> static_name(
+	&rpg::Chipset::name,
 	LDB_Reader::ChunkChipset::name,
 	"name",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, std::string> static_chipset_name(
-	&RPG::Chipset::chipset_name,
+static TypedField<rpg::Chipset, std::string> static_chipset_name(
+	&rpg::Chipset::chipset_name,
 	LDB_Reader::ChunkChipset::chipset_name,
 	"chipset_name",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, std::vector<int16_t>> static_terrain_data(
-	&RPG::Chipset::terrain_data,
+static TypedField<rpg::Chipset, std::vector<int16_t>> static_terrain_data(
+	&rpg::Chipset::terrain_data,
 	LDB_Reader::ChunkChipset::terrain_data,
 	"terrain_data",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, std::vector<uint8_t>> static_passable_data_lower(
-	&RPG::Chipset::passable_data_lower,
+static TypedField<rpg::Chipset, std::vector<uint8_t>> static_passable_data_lower(
+	&rpg::Chipset::passable_data_lower,
 	LDB_Reader::ChunkChipset::passable_data_lower,
 	"passable_data_lower",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, std::vector<uint8_t>> static_passable_data_upper(
-	&RPG::Chipset::passable_data_upper,
+static TypedField<rpg::Chipset, std::vector<uint8_t>> static_passable_data_upper(
+	&rpg::Chipset::passable_data_upper,
 	LDB_Reader::ChunkChipset::passable_data_upper,
 	"passable_data_upper",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, int32_t> static_animation_type(
-	&RPG::Chipset::animation_type,
+static TypedField<rpg::Chipset, int32_t> static_animation_type(
+	&rpg::Chipset::animation_type,
 	LDB_Reader::ChunkChipset::animation_type,
 	"animation_type",
 	0,
 	0
 );
-static TypedField<RPG::Chipset, int32_t> static_animation_speed(
-	&RPG::Chipset::animation_speed,
+static TypedField<rpg::Chipset, int32_t> static_animation_speed(
+	&rpg::Chipset::animation_speed,
 	LDB_Reader::ChunkChipset::animation_speed,
 	"animation_speed",
 	0,
@@ -72,7 +72,7 @@ static TypedField<RPG::Chipset, int32_t> static_animation_speed(
 
 
 template <>
-Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[] = {
+Field<rpg::Chipset> const* Struct<rpg::Chipset>::fields[] = {
 	&static_name,
 	&static_chipset_name,
 	&static_terrain_data,
@@ -83,6 +83,6 @@ Field<RPG::Chipset> const* Struct<RPG::Chipset>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::Chipset>;
+template class Struct<rpg::Chipset>;
 
 } //namespace lcf

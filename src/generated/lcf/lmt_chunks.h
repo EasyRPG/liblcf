@@ -42,7 +42,7 @@ namespace LMT_Reader {
 			expanded_node = 0x07,
 			/** Integer. 0=inherit; 1=from event; 2=specified in 0x0C */
 			music_type = 0x0B,
-			/** Array - RPG::Music */
+			/** Array - rpg::Music */
 			music = 0x0C,
 			/** Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16 */
 			background_type = 0x15,
@@ -54,7 +54,7 @@ namespace LMT_Reader {
 			escape = 0x20,
 			/** Flag. 0=inherit; 1=allow; 2=disallow */
 			save = 0x21,
-			/** Array - RPG::Encounter */
+			/** Array - rpg::Encounter */
 			encounters = 0x29,
 			/** 0=Encounters Disabled; 1=Encounter Rate for the map */
 			encounter_steps = 0x2C,

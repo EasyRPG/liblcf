@@ -19,30 +19,30 @@ namespace lcf {
 // Read TroopMember.
 
 template <>
-char const* const Struct<RPG::TroopMember>::name = "TroopMember";
-static TypedField<RPG::TroopMember, int32_t> static_enemy_id(
-	&RPG::TroopMember::enemy_id,
+char const* const Struct<rpg::TroopMember>::name = "TroopMember";
+static TypedField<rpg::TroopMember, int32_t> static_enemy_id(
+	&rpg::TroopMember::enemy_id,
 	LDB_Reader::ChunkTroopMember::enemy_id,
 	"enemy_id",
 	0,
 	0
 );
-static TypedField<RPG::TroopMember, int32_t> static_x(
-	&RPG::TroopMember::x,
+static TypedField<rpg::TroopMember, int32_t> static_x(
+	&rpg::TroopMember::x,
 	LDB_Reader::ChunkTroopMember::x,
 	"x",
 	0,
 	0
 );
-static TypedField<RPG::TroopMember, int32_t> static_y(
-	&RPG::TroopMember::y,
+static TypedField<rpg::TroopMember, int32_t> static_y(
+	&rpg::TroopMember::y,
 	LDB_Reader::ChunkTroopMember::y,
 	"y",
 	0,
 	0
 );
-static TypedField<RPG::TroopMember, bool> static_invisible(
-	&RPG::TroopMember::invisible,
+static TypedField<rpg::TroopMember, bool> static_invisible(
+	&rpg::TroopMember::invisible,
 	LDB_Reader::ChunkTroopMember::invisible,
 	"invisible",
 	0,
@@ -51,7 +51,7 @@ static TypedField<RPG::TroopMember, bool> static_invisible(
 
 
 template <>
-Field<RPG::TroopMember> const* Struct<RPG::TroopMember>::fields[] = {
+Field<rpg::TroopMember> const* Struct<rpg::TroopMember>::fields[] = {
 	&static_enemy_id,
 	&static_x,
 	&static_y,
@@ -59,6 +59,6 @@ Field<RPG::TroopMember> const* Struct<RPG::TroopMember>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::TroopMember>;
+template class Struct<rpg::TroopMember>;
 
 } //namespace lcf
