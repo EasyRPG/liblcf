@@ -34,23 +34,17 @@ namespace rpg {
 	{% endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
-		{%- if name == "Code" %}
-		struct {{ name }} {
-			enum Index {
-			{%- for field in enum %}
-				{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
-			{%- endfor %}
-			};
-		};
-		{%- else %}
-		enum {{ name }} {
+		enum {% if name == "Code" -%} class {% endif -%} {{ name }} {
 		{%- for field in enum %}
-			{{ name }}_{{ field.0 }} = {{ field.1 }}{%- if not loop.last %},{% endif %}
+			{%- if name != "Code" %}
+			{{ name }}_{{ field.0 }}
+			{%- else %}
+			{{ field.0 }}
+			{%- endif %} = {{ field.1 }}{%- if not loop.last %},{% endif %}
 		{%- endfor %}
 		};
-		{%- endif %}
 		{%- if enum is monotonic_from_0 %}
-		static constexpr auto k{{ name }}Tags = lcf::makeEnumTags<{{name}}{%- if name == "Code" %}::Index{%- endif %}>(
+		static constexpr auto k{{ name }}Tags = lcf::makeEnumTags<{{name}}>(
 		{%- for field in enum %}
 			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
 		{%- endfor %}

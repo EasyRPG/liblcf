@@ -36,7 +36,8 @@ struct RawStruct<std::vector<rpg::MoveCommand> > {
  */
 void RawStruct<rpg::MoveCommand>::ReadLcf(rpg::MoveCommand& ref, LcfReader& stream, uint32_t /* length */) {
 	ref.command_id = stream.ReadInt();
-	switch (ref.command_id) {
+	const auto cmd = static_cast<rpg::MoveCommand::Code>(ref.command_id);
+	switch (cmd) {
 		case rpg::MoveCommand::Code::switch_on:
 			stream.Read(ref.parameter_a);
 			break;
@@ -58,7 +59,8 @@ void RawStruct<rpg::MoveCommand>::ReadLcf(rpg::MoveCommand& ref, LcfReader& stre
 
 void RawStruct<rpg::MoveCommand>::WriteLcf(const rpg::MoveCommand& ref, LcfWriter& stream) {
 	stream.WriteInt(ref.command_id);
-	switch (ref.command_id) {
+	const auto cmd = static_cast<rpg::MoveCommand::Code>(ref.command_id);
+	switch (cmd) {
 		case rpg::MoveCommand::Code::switch_on:
 			stream.Write(ref.parameter_a);
 			break;
@@ -83,7 +85,8 @@ void RawStruct<rpg::MoveCommand>::WriteLcf(const rpg::MoveCommand& ref, LcfWrite
 int RawStruct<rpg::MoveCommand>::LcfSize(const rpg::MoveCommand& ref, LcfWriter& stream) {
 	int result = 0;
 	result += LcfReader::IntSize(ref.command_id);
-	switch (ref.command_id) {
+	const auto cmd = static_cast<rpg::MoveCommand::Code>(ref.command_id);
+	switch (cmd) {
 		case rpg::MoveCommand::Code::switch_on:
 			result += LcfReader::IntSize(ref.parameter_a);
 			break;
@@ -109,7 +112,8 @@ int RawStruct<rpg::MoveCommand>::LcfSize(const rpg::MoveCommand& ref, LcfWriter&
 void RawStruct<rpg::MoveCommand>::WriteXml(const rpg::MoveCommand& ref, XmlWriter& stream) {
 	stream.BeginElement("MoveCommand");
 	stream.WriteNode<int32_t>("command_id", ref.command_id);
-	switch (ref.command_id) {
+	const auto cmd = static_cast<rpg::MoveCommand::Code>(ref.command_id);
+	switch (cmd) {
 		case rpg::MoveCommand::Code::switch_on:
 			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
 			break;
