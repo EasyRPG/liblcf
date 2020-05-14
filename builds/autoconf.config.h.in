@@ -1,6 +1,6 @@
 
 /* Enable encoding detection (ICU) */
-#undef LCF_SUPPORT_ICU
+#define LCF_SUPPORT_ICU @LCF_SUPPORT_ICU@
 
 /* Enable XML reading support (expat) */
-#undef LCF_SUPPORT_XML
+#define LCF_SUPPORT_XML @LCF_SUPPORT_XML@

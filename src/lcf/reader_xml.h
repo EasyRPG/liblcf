@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 #include <cstdio>
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 #  include <expat.h>
 #endif
 #include <stdint.h>

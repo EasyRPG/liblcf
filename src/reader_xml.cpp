@@ -13,7 +13,7 @@
 #include "lcf/reader_xml.h"
 
 // Expat callbacks
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
 	((lcf::XmlReader*) closure)->StartElement(name, atts);
@@ -35,7 +35,7 @@ XmlReader::XmlReader(std::istream& filestream) :
 	stream(filestream),
 	parser(NULL)
 {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	parser = XML_ParserCreate("UTF-8");
 
 	XML_SetUserData(parser, (void*) this);
@@ -47,7 +47,7 @@ XmlReader::XmlReader(std::istream& filestream) :
 }
 
 XmlReader::~XmlReader() {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	if (parser != NULL)
 		XML_ParserFree(parser);
 	parser = NULL;
@@ -67,7 +67,7 @@ void XmlReader::Error(const char* fmt, ...) {
 }
 
 void XmlReader::Parse() {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	static const int bufsize = 4096;
 	while (IsOk() && !stream.eof()) {
 		void* buffer = XML_GetBuffer(parser, bufsize);
