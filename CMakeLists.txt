@@ -144,29 +144,14 @@ set(LCF_HEADERS
 	src/lcf/scope_guard.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
-)
-
-set(LCF_LDB_HEADERS
 	src/lcf/ldb/reader.h
-	src/generated/lcf/ldb/chunks.h
-)
-
-set(LCF_LMT_HEADERS
 	src/lcf/lmt/reader.h
-	src/generated/lcf/lmt/chunks.h
-)
-
-set(LCF_LMU_HEADERS
 	src/lcf/lmu/reader.h
-	src/generated/lcf/lmu/chunks.h
-)
-
-set(LCF_LSD_HEADERS
 	src/lcf/lsd/reader.h
+	src/generated/lcf/ldb/chunks.h
+	src/generated/lcf/lmt/chunks.h
+	src/generated/lcf/lmu/chunks.h
 	src/generated/lcf/lsd/chunks.h
-)
-
-set(LCF_RPG_HEADERS
 	src/generated/lcf/rpg/actor.h
 	src/generated/lcf/rpg/animation.h
 	src/generated/lcf/rpg/animationcelldata.h
@@ -238,19 +223,7 @@ set(LCF_RPG_HEADERS
 list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
 list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
-list(TRANSFORM LCF_LDB_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(TRANSFORM LCF_LMT_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(TRANSFORM LCF_LMU_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(TRANSFORM LCF_LSD_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(TRANSFORM LCF_RPG_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-
-target_sources(lcf PUBLIC ${LCF_HEADERS}
-	${LCF_LDB_HEADERS}
-	${LCF_LMT_HEADERS}
-	${LCF_LMU_HEADERS}
-	${LCF_LSD_HEADERS}
-	${LCF_RPG_HEADERS}
-)
+target_sources(lcf PUBLIC ${LCF_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
@@ -349,12 +322,14 @@ install(
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-install(FILES ${LCF_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
-install(FILES ${LCF_LDB_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/ldb)
-install(FILES ${LCF_LMT_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lmt)
-install(FILES ${LCF_LMU_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lmu)
-install(FILES ${LCF_LSD_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/lsd)
-install(FILES ${LCF_RPG_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/rpg)
+set(LCF_INSTALL_HEADERS ${LCF_HEADERS})
+foreach(S ldb lmt lmu lsd rpg)
+	set(SUBDIR_HEADERS ${LCF_INSTALL_HEADERS})
+	list(FILTER SUBDIR_HEADERS INCLUDE REGEX "/${S}/")
+	install(FILES ${SUBDIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/${S})
+	list(REMOVE_ITEM LCF_INSTALL_HEADERS ${SUBDIR_HEADERS})
+endforeach()
+install(FILES ${LCF_INSTALL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
 
 install(
 	FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc
