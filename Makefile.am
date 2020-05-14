@@ -25,7 +25,7 @@ lcfrpgincludedir = $(includedir)/lcf/rpg
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I$(srcdir)/autogen \
+	-I$(builddir)/autogen \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
 liblcf_la_CXXFLAGS = \
@@ -136,8 +136,9 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_state.cpp \
 	src/generated/rpg_system.cpp
 
+nodist_lcfinclude_HEADERS = autogen/lcf/config.h
+
 lcfinclude_HEADERS = \
-	autogen/lcf/config.h \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
