@@ -32,7 +32,7 @@ pkg_check_modules(PC_LIBLCF QUIET lcf)
 
 # Look for the header file.
 find_path(LIBLCF_INCLUDE_DIR
-	NAMES "lcf/ldb_reader.h"
+	NAMES "lcf/reader_lcf.h"
 	PATH_SUFFIXES liblcf lcf
 	HINTS ${PC_LIBLCF_INCLUDE_DIRS})
 
