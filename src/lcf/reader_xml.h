@@ -99,7 +99,7 @@ protected:
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
 	/** Expat XML parser object. */
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	XML_Parser parser;
 #else
 	void* parser;
