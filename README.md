@@ -85,6 +85,14 @@ CMake is the only supported way to build liblcf for Windows. All dependencies
 must be installed with [vcpkg].
 
 
+## Tools
+
+### LCF2XML
+
+LCF2XML is a small tool to convert RPG Maker 2000 and 2003 data format
+(LMU, LMT, LDB, LSD, ...) to XML and vice-versa.
+
+
 ## Bug reporting
 
 Available options:

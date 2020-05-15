@@ -259,6 +259,20 @@ test_runner_LDFLAGS = -no-install
 check-local:
 	$(AM_V_at)./test_runner
 
+lcf2xml_SOURCES = tools/lcf2xml.cpp
+lcf2xml_CPPFLAGS = $(liblcf_la_CPPFLAGS)
+lcf2xml_CXXFLAGS = $(liblcf_la_CXXFLAGS)
+lcf2xml_LDADD = liblcf.la
+
+tools =
+if ENABLE_TOOLS
+if SUPPORT_XML
+tools += lcf2xml
+endif
+endif
+bin_PROGRAMS = $(tools)
+tools: $(tools)
+
 install-data-hook:
 if ENABLE_UPDATE_MIMEDB
 if CROSS_COMPILING
