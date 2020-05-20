@@ -54,6 +54,7 @@ void RawStruct<rpg::MoveCommand>::ReadLcf(rpg::MoveCommand& ref, LcfReader& stre
 			stream.Read(ref.parameter_b);
 			stream.Read(ref.parameter_c);
 			break;
+		default: break;
 	}
 }
 
@@ -79,6 +80,7 @@ void RawStruct<rpg::MoveCommand>::WriteLcf(const rpg::MoveCommand& ref, LcfWrite
 			stream.Write(ref.parameter_b);
 			stream.Write(ref.parameter_c);
 			break;
+		default: break;
 	}
 }
 
@@ -105,6 +107,7 @@ int RawStruct<rpg::MoveCommand>::LcfSize(const rpg::MoveCommand& ref, LcfWriter&
 			result += LcfReader::IntSize(ref.parameter_b);
 			result += LcfReader::IntSize(ref.parameter_c);
 			break;
+		default: break;
 	}
 	return result;
 }
@@ -130,6 +133,7 @@ void RawStruct<rpg::MoveCommand>::WriteXml(const rpg::MoveCommand& ref, XmlWrite
 			stream.WriteNode<int32_t>("parameter_b", ref.parameter_b);
 			stream.WriteNode<int32_t>("parameter_c", ref.parameter_c);
 			break;
+		default: break;
 	}
 	stream.EndElement("MoveCommand");
 }
