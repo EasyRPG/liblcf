@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
-#include "scope_guard.h"
+#include "lcf/config.h"
+#include "lcf/scope_guard.h"
 
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
 #   include <unicode/normalizer2.h>
@@ -24,7 +24,7 @@
 #ifdef _WIN32
 #   include <windows.h>
 #else
-#   ifndef LCF_SUPPORT_ICU
+#   if !LCF_SUPPORT_ICU
 #       include <iconv.h>
 #   endif
 #   include <locale>
@@ -39,10 +39,12 @@
 #include <sstream>
 #include <vector>
 
-#include "data.h"
-#include "inireader.h"
-#include "ldb_reader.h"
-#include "reader_util.h"
+#include "lcf/data.h"
+#include "lcf/inireader.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/reader_util.h"
+
+namespace lcf {
 
 namespace ReaderUtil {
 }
@@ -52,21 +54,21 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 		return std::string();
 
 	if (codepage == 932) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 		return "ibm-943_P15A-2003";
 #else
 		return "SHIFT_JIS";
 #endif
 	}
 	if (codepage == 949) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 		return "windows-949-2000";
 #else
 		return "cp949";
 #endif
 	}
 	std::ostringstream out;
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	out << "windows-" << codepage;
 #else
 	out << "CP" << codepage;
@@ -98,7 +100,7 @@ std::string ReaderUtil::DetectEncoding(std::string const & data) {
 }
 
 std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	std::ostringstream text;
 
 	// Populate Data::terms and Data::system or will empty by default even if load fails
@@ -157,7 +159,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 
 std::vector<std::string> ReaderUtil::DetectEncodings(std::string const & data) {
 std::vector<std::string> encodings;
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	if (!data.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
@@ -305,7 +307,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 		? ReaderUtil::CodepageToEncoding(dst_cp)
 		: dst_enc;
 
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	auto status = U_ZERO_ERROR;
 	auto conv_from = ucnv_open(src_enc_str.c_str(), &status);
 
@@ -374,7 +376,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 }
 
 std::string ReaderUtil::Normalize(const std::string &str) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	icu::UnicodeString uni = icu::UnicodeString(str.c_str(), "utf-8").toLower();
 	UErrorCode err = U_ZERO_ERROR;
 	std::string res;
@@ -401,3 +403,5 @@ std::string ReaderUtil::Normalize(const std::string &str) {
 	return result;
 #endif
 }
+
+} //namespace lcf

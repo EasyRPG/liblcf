@@ -7,15 +7,15 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
-#include "encoder.h"
-#include "reader_util.h"
-#include "scope_guard.h"
+#include "lcf/config.h"
+#include "lcf/encoder.h"
+#include "lcf/reader_util.h"
+#include "lcf/scope_guard.h"
 #include <cstdio>
 #include <cstdlib>
 #include <exception>
 
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
 #else
@@ -27,7 +27,7 @@
 #ifdef _WIN32
 #   include <windows.h>
 #else
-#   ifndef LCF_SUPPORT_ICU
+#   if !LCF_SUPPORT_ICU
 #       include <iconv.h>
 #   endif
 #   include <locale>
@@ -37,8 +37,10 @@
 #define ICONV_CONST const
 #endif
 
+namespace lcf {
+
 static std::string filterUtf8Compatible(std::string enc) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	if (ucnv_compareNames(enc.c_str(), "UTF-8") == 0) {
 		return "";
 	}
@@ -78,7 +80,7 @@ void Encoder::Init() {
 	if (_encoding.empty()) {
 		return;
 	}
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	auto code_page = atoi(_encoding.c_str());
 	const auto& storage_encoding = code_page > 0
 		? ReaderUtil::CodepageToEncoding(code_page)
@@ -113,7 +115,7 @@ void Encoder::Init() {
 }
 
 void Encoder::Reset() {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	auto* conv = reinterpret_cast<UConverter*>(_conv_runtime);
 	if (conv) ucnv_close(conv);
 	conv = reinterpret_cast<UConverter*>(_conv_storage);
@@ -123,7 +125,7 @@ void Encoder::Reset() {
 
 
 void Encoder::Convert(std::string& str, void* conv_dst_void, void* conv_src_void) {
-#ifdef LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU
 	const auto& src = str;
 	auto* conv_dst = reinterpret_cast<UConverter*>(conv_dst_void);
 	auto* conv_src = reinterpret_cast<UConverter*>(conv_src_void);
@@ -178,4 +180,5 @@ void Encoder::Convert(std::string& str, void* conv_dst_void, void* conv_src_void
 #endif
 }
 
+} //namespace lcf
 

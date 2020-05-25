@@ -30,50 +30,34 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 # lcf library files
-add_library(lcf
-	src/command_codes.h
+add_library(lcf)
+
+target_sources(lcf
+	PRIVATE
 	src/data.cpp
-	src/data.h
 	src/encoder.cpp
-	src/encoder.h
-	src/enum_tags.h
-	src/flag_set.h
 	src/ini.cpp
-	src/ini.h
 	src/inireader.cpp
-	src/inireader.h
-	src/lcf_options.h
-	src/lcf_saveopt.h
 	src/ldb_equipment.cpp
 	src/ldb_eventcommand.cpp
 	src/ldb_parameters.cpp
 	src/ldb_reader.cpp
-	src/ldb_reader.h
 	src/lmt_reader.cpp
-	src/lmt_reader.h
 	src/lmt_rect.cpp
 	src/lmt_treemap.cpp
 	src/lmu_movecommand.cpp
 	src/lmu_reader.cpp
-	src/lmu_reader.h
 	src/lsd_reader.cpp
-	src/lsd_reader.h
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
-	src/reader_lcf.h
+	src/reader_util.cpp
 	src/reader_struct.h
 	src/reader_struct_impl.h
-	src/reader_util.cpp
-	src/reader_util.h
 	src/reader_xml.cpp
-	src/reader_xml.h
 	src/rpg_fixup.cpp
 	src/rpg_setup.cpp
-	src/scope_guard.h
 	src/writer_lcf.cpp
-	src/writer_lcf.h
 	src/writer_xml.cpp
-	src/writer_xml.h
 	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp
@@ -87,7 +71,6 @@ add_library(lcf
 	src/generated/ldb_battleranimationdata.cpp
 	src/generated/ldb_battleranimationextension.cpp
 	src/generated/ldb_chipset.cpp
-	src/generated/ldb_chunks.h
 	src/generated/ldb_class.cpp
 	src/generated/ldb_commonevent.cpp
 	src/generated/ldb_database.cpp
@@ -112,18 +95,15 @@ add_library(lcf
 	src/generated/ldb_trooppagecondition.cpp
 	src/generated/ldb_trooppagecondition_flags.h
 	src/generated/ldb_variable.cpp
-	src/generated/lmt_chunks.h
 	src/generated/lmt_encounter.cpp
 	src/generated/lmt_mapinfo.cpp
 	src/generated/lmt_start.cpp
-	src/generated/lmu_chunks.h
 	src/generated/lmu_event.cpp
 	src/generated/lmu_eventpage.cpp
 	src/generated/lmu_eventpagecondition.cpp
 	src/generated/lmu_eventpagecondition_flags.h
 	src/generated/lmu_map.cpp
 	src/generated/lmu_moveroute.cpp
-	src/generated/lsd_chunks.h
 	src/generated/lsd_save.cpp
 	src/generated/lsd_saveactor.cpp
 	src/generated/lsd_savecommonevent.cpp
@@ -143,78 +123,107 @@ add_library(lcf
 	src/generated/lsd_savetarget.cpp
 	src/generated/lsd_savetitle.cpp
 	src/generated/lsd_savevehiclelocation.cpp
-	src/generated/rpg_actor.h
-	src/generated/rpg_animation.h
-	src/generated/rpg_animationcelldata.h
-	src/generated/rpg_animationframe.h
-	src/generated/rpg_animationtiming.h
-	src/generated/rpg_attribute.h
-	src/generated/rpg_battlecommand.h
-	src/generated/rpg_battlecommands.h
-	src/generated/rpg_battleranimation.h
-	src/generated/rpg_battleranimationdata.h
-	src/generated/rpg_battleranimationextension.h
 	src/generated/rpg_chipset.cpp
-	src/generated/rpg_chipset.h
-	src/generated/rpg_class.h
-	src/generated/rpg_commonevent.h
-	src/generated/rpg_database.h
-	src/generated/rpg_encounter.h
-	src/generated/rpg_enemy.h
-	src/generated/rpg_enemyaction.h
 	src/generated/rpg_enums.cpp
-	src/generated/rpg_equipment.h
-	src/generated/rpg_event.h
-	src/generated/rpg_eventcommand.h
-	src/generated/rpg_eventpage.h
-	src/generated/rpg_eventpagecondition.h
-	src/generated/rpg_item.h
-	src/generated/rpg_itemanimation.h
-	src/generated/rpg_learning.h
-	src/generated/rpg_map.h
-	src/generated/rpg_mapinfo.h
-	src/generated/rpg_movecommand.h
-	src/generated/rpg_moveroute.h
-	src/generated/rpg_music.h
-	src/generated/rpg_parameters.h
-	src/generated/rpg_rect.h
-	src/generated/rpg_save.h
-	src/generated/rpg_saveactor.h
-	src/generated/rpg_savecommonevent.h
-	src/generated/rpg_saveeasyrpgdata.h
-	src/generated/rpg_saveeventexecframe.h
-	src/generated/rpg_saveeventexecstate.h
-	src/generated/rpg_saveinventory.h
-	src/generated/rpg_savemapevent.h
-	src/generated/rpg_savemapeventbase.h
-	src/generated/rpg_savemapinfo.h
-	src/generated/rpg_savepanorama.h
 	src/generated/rpg_savepartylocation.cpp
-	src/generated/rpg_savepartylocation.h
-	src/generated/rpg_savepicture.h
-	src/generated/rpg_savescreen.h
-	src/generated/rpg_savesystem.h
-	src/generated/rpg_savetarget.h
-	src/generated/rpg_savetitle.h
-	src/generated/rpg_savevehiclelocation.h
-	src/generated/rpg_skill.h
-	src/generated/rpg_sound.h
-	src/generated/rpg_start.h
 	src/generated/rpg_state.cpp
-	src/generated/rpg_state.h
-	src/generated/rpg_switch.h
 	src/generated/rpg_system.cpp
-	src/generated/rpg_system.h
-	src/generated/rpg_terms.h
-	src/generated/rpg_terrain.h
-	src/generated/rpg_testbattler.h
-	src/generated/rpg_treemap.h
-	src/generated/rpg_troop.h
-	src/generated/rpg_troopmember.h
-	src/generated/rpg_trooppage.h
-	src/generated/rpg_trooppagecondition.h
-	src/generated/rpg_variable.h
+	)
+
+set(LCF_HEADERS
+	src/lcf/data.h
+	src/lcf/encoder.h
+	src/lcf/enum_tags.h
+	src/lcf/flag_set.h
+	src/lcf/ini.h
+	src/lcf/inireader.h
+	src/lcf/saveopt.h
+	src/lcf/reader_lcf.h
+	src/lcf/reader_util.h
+	src/lcf/reader_xml.h
+	src/lcf/scope_guard.h
+	src/lcf/writer_lcf.h
+	src/lcf/writer_xml.h
+	src/lcf/ldb/reader.h
+	src/lcf/lmt/reader.h
+	src/lcf/lmu/reader.h
+	src/lcf/lsd/reader.h
+	src/generated/lcf/ldb/chunks.h
+	src/generated/lcf/lmt/chunks.h
+	src/generated/lcf/lmu/chunks.h
+	src/generated/lcf/lsd/chunks.h
+	src/generated/lcf/rpg/actor.h
+	src/generated/lcf/rpg/animation.h
+	src/generated/lcf/rpg/animationcelldata.h
+	src/generated/lcf/rpg/animationframe.h
+	src/generated/lcf/rpg/animationtiming.h
+	src/generated/lcf/rpg/attribute.h
+	src/generated/lcf/rpg/battlecommand.h
+	src/generated/lcf/rpg/battlecommands.h
+	src/generated/lcf/rpg/battleranimation.h
+	src/generated/lcf/rpg/battleranimationdata.h
+	src/generated/lcf/rpg/battleranimationextension.h
+	src/generated/lcf/rpg/chipset.h
+	src/generated/lcf/rpg/class.h
+	src/generated/lcf/rpg/commonevent.h
+	src/generated/lcf/rpg/database.h
+	src/generated/lcf/rpg/encounter.h
+	src/generated/lcf/rpg/enemy.h
+	src/generated/lcf/rpg/enemyaction.h
+	src/generated/lcf/rpg/equipment.h
+	src/generated/lcf/rpg/event.h
+	src/generated/lcf/rpg/eventcommand.h
+	src/generated/lcf/rpg/eventpage.h
+	src/generated/lcf/rpg/eventpagecondition.h
+	src/generated/lcf/rpg/item.h
+	src/generated/lcf/rpg/itemanimation.h
+	src/generated/lcf/rpg/learning.h
+	src/generated/lcf/rpg/map.h
+	src/generated/lcf/rpg/mapinfo.h
+	src/generated/lcf/rpg/movecommand.h
+	src/generated/lcf/rpg/moveroute.h
+	src/generated/lcf/rpg/music.h
+	src/generated/lcf/rpg/parameters.h
+	src/generated/lcf/rpg/rect.h
+	src/generated/lcf/rpg/save.h
+	src/generated/lcf/rpg/saveactor.h
+	src/generated/lcf/rpg/savecommonevent.h
+	src/generated/lcf/rpg/saveeasyrpgdata.h
+	src/generated/lcf/rpg/saveeventexecframe.h
+	src/generated/lcf/rpg/saveeventexecstate.h
+	src/generated/lcf/rpg/saveinventory.h
+	src/generated/lcf/rpg/savemapevent.h
+	src/generated/lcf/rpg/savemapeventbase.h
+	src/generated/lcf/rpg/savemapinfo.h
+	src/generated/lcf/rpg/savepanorama.h
+	src/generated/lcf/rpg/savepartylocation.h
+	src/generated/lcf/rpg/savepicture.h
+	src/generated/lcf/rpg/savescreen.h
+	src/generated/lcf/rpg/savesystem.h
+	src/generated/lcf/rpg/savetarget.h
+	src/generated/lcf/rpg/savetitle.h
+	src/generated/lcf/rpg/savevehiclelocation.h
+	src/generated/lcf/rpg/skill.h
+	src/generated/lcf/rpg/sound.h
+	src/generated/lcf/rpg/start.h
+	src/generated/lcf/rpg/state.h
+	src/generated/lcf/rpg/switch.h
+	src/generated/lcf/rpg/system.h
+	src/generated/lcf/rpg/terms.h
+	src/generated/lcf/rpg/terrain.h
+	src/generated/lcf/rpg/testbattler.h
+	src/generated/lcf/rpg/treemap.h
+	src/generated/lcf/rpg/troop.h
+	src/generated/lcf/rpg/troopmember.h
+	src/generated/lcf/rpg/trooppage.h
+	src/generated/lcf/rpg/trooppagecondition.h
+	src/generated/lcf/rpg/variable.h
 )
+
+list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
+list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
+
+target_sources(lcf PUBLIC ${LCF_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
@@ -228,6 +237,7 @@ endforeach()
 # includes
 target_include_directories(
 	lcf PUBLIC
+	${CMAKE_CURRENT_BINARY_DIR}/src
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 	${CMAKE_CURRENT_SOURCE_DIR}/src/generated
 )
@@ -259,22 +269,24 @@ if(DISABLE_ICU)
 else()
 	find_package(ICU COMPONENTS i18n uc data REQUIRED)
 	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
-	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_ICU=1)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
+	set(LCF_SUPPORT_ICU "1")
 endif()
 
 # expat
 if(NOT DISABLE_XML)
 	find_package(EXPAT)
 	target_link_libraries(lcf EXPAT::EXPAT)
-	target_compile_definitions(lcf PRIVATE LCF_SUPPORT_XML=1)
 	list(APPEND LIBLCF_DEPS "expat")
+	set(LCF_SUPPORT_XML "1")
 endif()
 
 # mime types
 if(NOT DISABLE_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 	find_program(UPDATE_MIME_DATABASE update-mime-database)
 endif()
+
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake.config.h.in" "src/lcf/config.h" @ONLY)
 
 # .so version
 set_property(TARGET lcf PROPERTY SOVERSION 0)
@@ -310,12 +322,14 @@ install(
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-file(GLOB includefiles "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/generated/*.h")
-
-install(
-	FILES ${includefiles}
-	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblcf)
+set(LCF_INSTALL_HEADERS ${LCF_HEADERS})
+foreach(S ldb lmt lmu lsd rpg)
+	set(SUBDIR_HEADERS ${LCF_INSTALL_HEADERS})
+	list(FILTER SUBDIR_HEADERS INCLUDE REGEX "/${S}/")
+	install(FILES ${SUBDIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/${S})
+	list(REMOVE_ITEM LCF_INSTALL_HEADERS ${SUBDIR_HEADERS})
+endforeach()
+install(FILES ${LCF_INSTALL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
 
 install(
 	FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc

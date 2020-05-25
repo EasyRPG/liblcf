@@ -9,31 +9,33 @@
 
 #include <sstream>
 #include <cstdarg>
-#include "reader_lcf.h"
-#include "reader_xml.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/reader_xml.h"
 
 // Expat callbacks
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 extern "C" {
 static void StartElementHandler(void* closure, const XML_Char* name, const XML_Char** atts) {
-	((XmlReader*) closure)->StartElement(name, atts);
+	((lcf::XmlReader*) closure)->StartElement(name, atts);
 }
 
 static void EndElementHandler(void* closure, const XML_Char* name) {
-	((XmlReader*) closure)->EndElement(name);
+	((lcf::XmlReader*) closure)->EndElement(name);
 }
 
 static void CharacterDataHandler(void* closure, const XML_Char* s, int len) {
-	((XmlReader*) closure)->CharacterData(s, len);
+	((lcf::XmlReader*) closure)->CharacterData(s, len);
 }
 }
 #endif
+
+namespace lcf {
 
 XmlReader::XmlReader(std::istream& filestream) :
 	stream(filestream),
 	parser(NULL)
 {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	parser = XML_ParserCreate("UTF-8");
 
 	XML_SetUserData(parser, (void*) this);
@@ -45,7 +47,7 @@ XmlReader::XmlReader(std::istream& filestream) :
 }
 
 XmlReader::~XmlReader() {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	if (parser != NULL)
 		XML_ParserFree(parser);
 	parser = NULL;
@@ -65,7 +67,7 @@ void XmlReader::Error(const char* fmt, ...) {
 }
 
 void XmlReader::Parse() {
-#if defined(LCF_SUPPORT_XML)
+#if LCF_SUPPORT_XML
 	static const int bufsize = 4096;
 	while (IsOk() && !stream.eof()) {
 		void* buffer = XML_GetBuffer(parser, bufsize);
@@ -224,3 +226,5 @@ template <>
 void XmlReader::Read<std::vector<double>>(std::vector<double>& val, const std::string& data) {
 	ReadVector<double>(val, data);
 }
+
+} //namespace lcf

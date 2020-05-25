@@ -12,18 +12,19 @@
 /*
  * Headers
  */
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read TroopPageCondition.
 
 template <>
-char const* const Flags<RPG::TroopPageCondition::Flags>::name = "TroopPageCondition_Flags";
+char const* const Flags<rpg::TroopPageCondition::Flags>::name = "TroopPageCondition_Flags";
 
 template <>
-decltype(Flags<RPG::TroopPageCondition::Flags>::flag_names) Flags<RPG::TroopPageCondition::Flags>::flag_names = {
+decltype(Flags<rpg::TroopPageCondition::Flags>::flag_names) Flags<rpg::TroopPageCondition::Flags>::flag_names = {
 	"switch_a",
 	"switch_b",
 	"variable",
@@ -37,7 +38,7 @@ decltype(Flags<RPG::TroopPageCondition::Flags>::flag_names) Flags<RPG::TroopPage
 };
 
 template <>
-decltype(Flags<RPG::TroopPageCondition::Flags>::flags_is2k3) Flags<RPG::TroopPageCondition::Flags>::flags_is2k3 = {
+decltype(Flags<rpg::TroopPageCondition::Flags>::flags_is2k3) Flags<rpg::TroopPageCondition::Flags>::flags_is2k3 = {
 	0,
 	0,
 	0,
@@ -50,3 +51,4 @@ decltype(Flags<RPG::TroopPageCondition::Flags>::flags_is2k3) Flags<RPG::TroopPag
 	1
 };
 
+} //namespace lcf

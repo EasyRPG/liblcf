@@ -9,37 +9,38 @@
  * file that was distributed with this source code.
  */
 
-#include "rpg_eventcommand.h"
-#include "rpg_movecommand.h"
-#include "rpg_animationtiming.h"
-#include "rpg_animation.h"
-#include "rpg_attribute.h"
-#include "rpg_battlecommand.h"
-#include "rpg_battlecommands.h"
-#include "rpg_battleranimationextension.h"
-#include "rpg_battleranimation.h"
-#include "rpg_battleranimationdata.h"
-#include "rpg_chipset.h"
-#include "rpg_commonevent.h"
-#include "rpg_skill.h"
-#include "rpg_itemanimation.h"
-#include "rpg_item.h"
-#include "rpg_enemyaction.h"
-#include "rpg_terrain.h"
-#include "rpg_state.h"
-#include "rpg_system.h"
-#include "rpg_eventpagecondition.h"
-#include "rpg_eventpage.h"
-#include "rpg_map.h"
-#include "rpg_savesystem.h"
-#include "rpg_savepicture.h"
-#include "rpg_savepartylocation.h"
-#include "rpg_savevehiclelocation.h"
-#include "rpg_saveactor.h"
-#include "rpg_mapinfo.h"
-#include "rpg_treemap.h"
+#include "lcf/rpg/eventcommand.h"
+#include "lcf/rpg/movecommand.h"
+#include "lcf/rpg/animationtiming.h"
+#include "lcf/rpg/animation.h"
+#include "lcf/rpg/attribute.h"
+#include "lcf/rpg/battlecommand.h"
+#include "lcf/rpg/battlecommands.h"
+#include "lcf/rpg/battleranimationextension.h"
+#include "lcf/rpg/battleranimation.h"
+#include "lcf/rpg/battleranimationdata.h"
+#include "lcf/rpg/chipset.h"
+#include "lcf/rpg/commonevent.h"
+#include "lcf/rpg/skill.h"
+#include "lcf/rpg/itemanimation.h"
+#include "lcf/rpg/item.h"
+#include "lcf/rpg/enemyaction.h"
+#include "lcf/rpg/terrain.h"
+#include "lcf/rpg/state.h"
+#include "lcf/rpg/system.h"
+#include "lcf/rpg/eventpagecondition.h"
+#include "lcf/rpg/eventpage.h"
+#include "lcf/rpg/map.h"
+#include "lcf/rpg/savesystem.h"
+#include "lcf/rpg/savepicture.h"
+#include "lcf/rpg/savepartylocation.h"
+#include "lcf/rpg/savevehiclelocation.h"
+#include "lcf/rpg/saveactor.h"
+#include "lcf/rpg/mapinfo.h"
+#include "lcf/rpg/treemap.h"
 
-namespace RPG {
+namespace lcf {
+namespace rpg {
 constexpr decltype(MoveCommand::kCodeTags) MoveCommand::kCodeTags;
 constexpr decltype(AnimationTiming::kFlashScopeTags) AnimationTiming::kFlashScopeTags;
 constexpr decltype(AnimationTiming::kScreenShakeTags) AnimationTiming::kScreenShakeTags;
@@ -106,4 +107,5 @@ constexpr decltype(MapInfo::kBGMTypeTags) MapInfo::kBGMTypeTags;
 constexpr decltype(MapInfo::kTriStateTags) MapInfo::kTriStateTags;
 constexpr decltype(TreeMap::kMapTypeTags) TreeMap::kMapTypeTags;
 
-}
+} // namespace rpg
+} // namespace lcf

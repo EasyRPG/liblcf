@@ -10,16 +10,18 @@
  */
 
 // Headers
-#include "lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd/reader.h"
+#include "lcf/lsd/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read SaveCommonEvent.
 
 template <>
-char const* const Struct<RPG::SaveCommonEvent>::name = "SaveCommonEvent";
-static TypedField<RPG::SaveCommonEvent, RPG::SaveEventExecState> static_parallel_event_execstate(
-	&RPG::SaveCommonEvent::parallel_event_execstate,
+char const* const Struct<rpg::SaveCommonEvent>::name = "SaveCommonEvent";
+static TypedField<rpg::SaveCommonEvent, rpg::SaveEventExecState> static_parallel_event_execstate(
+	&rpg::SaveCommonEvent::parallel_event_execstate,
 	LSD_Reader::ChunkSaveCommonEvent::parallel_event_execstate,
 	"parallel_event_execstate",
 	1,
@@ -28,9 +30,11 @@ static TypedField<RPG::SaveCommonEvent, RPG::SaveEventExecState> static_parallel
 
 
 template <>
-Field<RPG::SaveCommonEvent> const* Struct<RPG::SaveCommonEvent>::fields[] = {
+Field<rpg::SaveCommonEvent> const* Struct<rpg::SaveCommonEvent>::fields[] = {
 	&static_parallel_event_execstate,
 	NULL
 };
 
-template class Struct<RPG::SaveCommonEvent>;
+template class Struct<rpg::SaveCommonEvent>;
+
+} //namespace lcf

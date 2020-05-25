@@ -8,17 +8,18 @@
  */
 
 #include "reader_struct.h"
-#include "rpg_trooppagecondition.h"
-#include "rpg_eventpagecondition.h"
-#include "rpg_terrain.h"
-#include "rpg_savepicture.h"
-#include "data.h"
+#include "lcf/rpg/trooppagecondition.h"
+#include "lcf/rpg/eventpagecondition.h"
+#include "lcf/rpg/terrain.h"
+#include "lcf/rpg/savepicture.h"
+#include "lcf/data.h"
 
 #include "ldb_trooppagecondition_flags.h"
 #include "ldb_terrain_flags.h"
 #include "lmu_eventpagecondition_flags.h"
 #include "lsd_savepicture_flags.h"
 
+namespace lcf {
 // Templates
 
 template <class S>
@@ -141,7 +142,9 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 #pragma warning (disable : 4661)
 #endif
 
-template class Flags<RPG::TroopPageCondition::Flags>;
-template class Flags<RPG::EventPageCondition::Flags>;
-template class Flags<RPG::Terrain::Flags>;
-template class Flags<RPG::SavePicture::Flags>;
+template class Flags<rpg::TroopPageCondition::Flags>;
+template class Flags<rpg::EventPageCondition::Flags>;
+template class Flags<rpg::Terrain::Flags>;
+template class Flags<rpg::SavePicture::Flags>;
+
+} //namespace lcf

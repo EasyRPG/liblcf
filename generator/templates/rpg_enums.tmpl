@@ -2,12 +2,13 @@
 {%- for ftype, structlist in structs.items() %}
 	{%- for struct in structlist %}
 		{%- if enums[struct.name] %}
-#include "rpg_{{ struct.name|lower }}.h"
+#include "lcf/rpg/{{ struct.name|lower }}.h"
 		{%- endif %}
 	{%- endfor %}
 {%- endfor %}
 
-namespace RPG {
+namespace lcf {
+namespace rpg {
 
 {%- for ftype, structlist in structs.items() %}
 	{%- for struct in structlist %}
@@ -21,4 +22,5 @@ constexpr decltype({{ struct.name }}::k{{ name }}Tags) {{ struct.name }}::k{{ na
 	{%- endfor %}
 {%- endfor %}
 
-}
+} // namespace rpg
+} // namespace lcf

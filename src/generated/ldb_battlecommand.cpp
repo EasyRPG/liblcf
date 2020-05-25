@@ -10,23 +10,25 @@
  */
 
 // Headers
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read BattleCommand.
 
 template <>
-char const* const Struct<RPG::BattleCommand>::name = "BattleCommand";
-static TypedField<RPG::BattleCommand, std::string> static_name(
-	&RPG::BattleCommand::name,
+char const* const Struct<rpg::BattleCommand>::name = "BattleCommand";
+static TypedField<rpg::BattleCommand, std::string> static_name(
+	&rpg::BattleCommand::name,
 	LDB_Reader::ChunkBattleCommand::name,
 	"name",
 	1,
 	0
 );
-static TypedField<RPG::BattleCommand, int32_t> static_type(
-	&RPG::BattleCommand::type,
+static TypedField<rpg::BattleCommand, int32_t> static_type(
+	&rpg::BattleCommand::type,
 	LDB_Reader::ChunkBattleCommand::type,
 	"type",
 	0,
@@ -35,10 +37,12 @@ static TypedField<RPG::BattleCommand, int32_t> static_type(
 
 
 template <>
-Field<RPG::BattleCommand> const* Struct<RPG::BattleCommand>::fields[] = {
+Field<rpg::BattleCommand> const* Struct<rpg::BattleCommand>::fields[] = {
 	&static_name,
 	&static_type,
 	NULL
 };
 
-template class Struct<RPG::BattleCommand>;
+template class Struct<rpg::BattleCommand>;
+
+} //namespace lcf

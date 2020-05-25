@@ -10,128 +10,130 @@
  */
 
 // Headers
-#include "lmt_reader.h"
-#include "lmt_chunks.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmt/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read MapInfo.
 
 template <>
-char const* const Struct<RPG::MapInfo>::name = "MapInfo";
-static TypedField<RPG::MapInfo, std::string> static_name(
-	&RPG::MapInfo::name,
+char const* const Struct<rpg::MapInfo>::name = "MapInfo";
+static TypedField<rpg::MapInfo, std::string> static_name(
+	&rpg::MapInfo::name,
 	LMT_Reader::ChunkMapInfo::name,
 	"name",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_parent_map(
-	&RPG::MapInfo::parent_map,
+static TypedField<rpg::MapInfo, int32_t> static_parent_map(
+	&rpg::MapInfo::parent_map,
 	LMT_Reader::ChunkMapInfo::parent_map,
 	"parent_map",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_indentation(
-	&RPG::MapInfo::indentation,
+static TypedField<rpg::MapInfo, int32_t> static_indentation(
+	&rpg::MapInfo::indentation,
 	LMT_Reader::ChunkMapInfo::indentation,
 	"indentation",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_type(
-	&RPG::MapInfo::type,
+static TypedField<rpg::MapInfo, int32_t> static_type(
+	&rpg::MapInfo::type,
 	LMT_Reader::ChunkMapInfo::type,
 	"type",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_scrollbar_x(
-	&RPG::MapInfo::scrollbar_x,
+static TypedField<rpg::MapInfo, int32_t> static_scrollbar_x(
+	&rpg::MapInfo::scrollbar_x,
 	LMT_Reader::ChunkMapInfo::scrollbar_x,
 	"scrollbar_x",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_scrollbar_y(
-	&RPG::MapInfo::scrollbar_y,
+static TypedField<rpg::MapInfo, int32_t> static_scrollbar_y(
+	&rpg::MapInfo::scrollbar_y,
 	LMT_Reader::ChunkMapInfo::scrollbar_y,
 	"scrollbar_y",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, bool> static_expanded_node(
-	&RPG::MapInfo::expanded_node,
+static TypedField<rpg::MapInfo, bool> static_expanded_node(
+	&rpg::MapInfo::expanded_node,
 	LMT_Reader::ChunkMapInfo::expanded_node,
 	"expanded_node",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_music_type(
-	&RPG::MapInfo::music_type,
+static TypedField<rpg::MapInfo, int32_t> static_music_type(
+	&rpg::MapInfo::music_type,
 	LMT_Reader::ChunkMapInfo::music_type,
 	"music_type",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, RPG::Music> static_music(
-	&RPG::MapInfo::music,
+static TypedField<rpg::MapInfo, rpg::Music> static_music(
+	&rpg::MapInfo::music,
 	LMT_Reader::ChunkMapInfo::music,
 	"music",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_background_type(
-	&RPG::MapInfo::background_type,
+static TypedField<rpg::MapInfo, int32_t> static_background_type(
+	&rpg::MapInfo::background_type,
 	LMT_Reader::ChunkMapInfo::background_type,
 	"background_type",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, std::string> static_background_name(
-	&RPG::MapInfo::background_name,
+static TypedField<rpg::MapInfo, std::string> static_background_name(
+	&rpg::MapInfo::background_name,
 	LMT_Reader::ChunkMapInfo::background_name,
 	"background_name",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_teleport(
-	&RPG::MapInfo::teleport,
+static TypedField<rpg::MapInfo, int32_t> static_teleport(
+	&rpg::MapInfo::teleport,
 	LMT_Reader::ChunkMapInfo::teleport,
 	"teleport",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_escape(
-	&RPG::MapInfo::escape,
+static TypedField<rpg::MapInfo, int32_t> static_escape(
+	&rpg::MapInfo::escape,
 	LMT_Reader::ChunkMapInfo::escape,
 	"escape",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_save(
-	&RPG::MapInfo::save,
+static TypedField<rpg::MapInfo, int32_t> static_save(
+	&rpg::MapInfo::save,
 	LMT_Reader::ChunkMapInfo::save,
 	"save",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, std::vector<RPG::Encounter>> static_encounters(
-	&RPG::MapInfo::encounters,
+static TypedField<rpg::MapInfo, std::vector<rpg::Encounter>> static_encounters(
+	&rpg::MapInfo::encounters,
 	LMT_Reader::ChunkMapInfo::encounters,
 	"encounters",
 	1,
 	0
 );
-static TypedField<RPG::MapInfo, int32_t> static_encounter_steps(
-	&RPG::MapInfo::encounter_steps,
+static TypedField<rpg::MapInfo, int32_t> static_encounter_steps(
+	&rpg::MapInfo::encounter_steps,
 	LMT_Reader::ChunkMapInfo::encounter_steps,
 	"encounter_steps",
 	0,
 	0
 );
-static TypedField<RPG::MapInfo, RPG::Rect> static_area_rect(
-	&RPG::MapInfo::area_rect,
+static TypedField<rpg::MapInfo, rpg::Rect> static_area_rect(
+	&rpg::MapInfo::area_rect,
 	LMT_Reader::ChunkMapInfo::area_rect,
 	"area_rect",
 	1,
@@ -140,7 +142,7 @@ static TypedField<RPG::MapInfo, RPG::Rect> static_area_rect(
 
 
 template <>
-Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[] = {
+Field<rpg::MapInfo> const* Struct<rpg::MapInfo>::fields[] = {
 	&static_name,
 	&static_parent_map,
 	&static_indentation,
@@ -161,4 +163,6 @@ Field<RPG::MapInfo> const* Struct<RPG::MapInfo>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::MapInfo>;
+template class Struct<rpg::MapInfo>;
+
+} //namespace lcf

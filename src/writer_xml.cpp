@@ -13,7 +13,9 @@
 #define snprintf(str, size, format, ...) sprintf((str), (format), __VA_ARGS__)
 #endif
 
-#include "writer_xml.h"
+#include "lcf/writer_xml.h"
+
+namespace lcf {
 
 XmlWriter::XmlWriter(std::ostream& filestream) :
 	stream(filestream),
@@ -213,3 +215,5 @@ template void XmlWriter::WriteNode<std::vector<uint8_t>>(const std::string& name
 template void XmlWriter::WriteNode<std::vector<int16_t>>(const std::string& name, const std::vector<int16_t>& val);
 template void XmlWriter::WriteNode<std::vector<uint32_t>>(const std::string& name, const std::vector<uint32_t>& val);
 template void XmlWriter::WriteNode<std::vector<int32_t>>(const std::string& name, const std::vector<int32_t>& val);
+
+} //namespace lcf

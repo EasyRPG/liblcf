@@ -12,18 +12,19 @@
 /*
  * Headers
  */
-#include "lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd/reader.h"
+#include "lcf/lsd/chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
 
 // Read SavePicture.
 
 template <>
-char const* const Flags<RPG::SavePicture::Flags>::name = "SavePicture_Flags";
+char const* const Flags<rpg::SavePicture::Flags>::name = "SavePicture_Flags";
 
 template <>
-decltype(Flags<RPG::SavePicture::Flags>::flag_names) Flags<RPG::SavePicture::Flags>::flag_names = {
+decltype(Flags<rpg::SavePicture::Flags>::flag_names) Flags<rpg::SavePicture::Flags>::flag_names = {
 	"erase_on_map_change",
 	"erase_on_battle_end",
 	"unused_bit",
@@ -34,7 +35,7 @@ decltype(Flags<RPG::SavePicture::Flags>::flag_names) Flags<RPG::SavePicture::Fla
 };
 
 template <>
-decltype(Flags<RPG::SavePicture::Flags>::flags_is2k3) Flags<RPG::SavePicture::Flags>::flags_is2k3 = {
+decltype(Flags<rpg::SavePicture::Flags>::flags_is2k3) Flags<rpg::SavePicture::Flags>::flags_is2k3 = {
 	1,
 	1,
 	1,
@@ -44,3 +45,4 @@ decltype(Flags<RPG::SavePicture::Flags>::flags_is2k3) Flags<RPG::SavePicture::Fl
 	1
 };
 
+} //namespace lcf

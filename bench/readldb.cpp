@@ -1,5 +1,7 @@
 #include <iostream>
-#include "ldb_reader.h"
+#include "lcf/ldb/reader.h"
+
+using namespace lcf;
 
 int main(int argc, char** argv) {
 	if (argc < 2) {

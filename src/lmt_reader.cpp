@@ -11,11 +11,13 @@
 #include <cerrno>
 #include <cstring>
 
-#include "lmt_reader.h"
-#include "lmt_chunks.h"
-#include "data.h"
-#include "reader_util.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmt/chunks.h"
+#include "lcf/data.h"
+#include "lcf/reader_util.h"
 #include "reader_struct.h"
+
+namespace lcf {
 
 bool LMT_Reader::Load(const std::string& filename, const std::string& encoding) {
 	std::ifstream stream(filename.c_str(), std::ios::binary);
@@ -69,7 +71,7 @@ bool LMT_Reader::Load(std::istream& filestream, const std::string &encoding) {
 		fprintf(stderr, "Warning: This header is not LcfMapTree and might not be a valid RPG2000 map tree.\n");
 	}
 	Data::treemap.lmt_header = std::move(header);
-	TypeReader<RPG::TreeMap>::ReadLcf(Data::treemap, reader, 0);
+	TypeReader<rpg::TreeMap>::ReadLcf(Data::treemap, reader, 0);
 	return true;
 }
 
@@ -87,7 +89,7 @@ bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding, Sav
 	}
 	writer.WriteInt(header.size());
 	writer.Write(header);
-	TypeReader<RPG::TreeMap>::WriteLcf(Data::treemap, writer);
+	TypeReader<rpg::TreeMap>::WriteLcf(Data::treemap, writer);
 	return true;
 }
 
@@ -98,7 +100,7 @@ bool LMT_Reader::SaveXml(std::ostream& filestream) {
 		return false;
 	}
 	writer.BeginElement("LMT");
-	TypeReader<RPG::TreeMap>::WriteXml(Data::treemap, writer);
+	TypeReader<rpg::TreeMap>::WriteXml(Data::treemap, writer);
 	writer.EndElement("LMT");
 	return true;
 }
@@ -109,7 +111,9 @@ bool LMT_Reader::LoadXml(std::istream& filestream) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;
 	}
-	reader.SetHandler(new RootXmlHandler<RPG::TreeMap>(Data::treemap, "LMT"));
+	reader.SetHandler(new RootXmlHandler<rpg::TreeMap>(Data::treemap, "LMT"));
 	reader.Parse();
 	return true;
 }
+
+} //namespace lcf

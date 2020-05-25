@@ -10,79 +10,81 @@
  */
 
 // Headers
-#include "lmu_reader.h"
-#include "lmu_chunks.h"
+#include "lcf/lmu/reader.h"
+#include "lcf/lmu/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read EventPageCondition.
 
 template <>
-char const* const Struct<RPG::EventPageCondition>::name = "EventPageCondition";
-static TypedField<RPG::EventPageCondition, RPG::EventPageCondition::Flags> static_flags(
-	&RPG::EventPageCondition::flags,
+char const* const Struct<rpg::EventPageCondition>::name = "EventPageCondition";
+static TypedField<rpg::EventPageCondition, rpg::EventPageCondition::Flags> static_flags(
+	&rpg::EventPageCondition::flags,
 	LMU_Reader::ChunkEventPageCondition::flags,
 	"flags",
 	1,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_switch_a_id(
-	&RPG::EventPageCondition::switch_a_id,
+static TypedField<rpg::EventPageCondition, int32_t> static_switch_a_id(
+	&rpg::EventPageCondition::switch_a_id,
 	LMU_Reader::ChunkEventPageCondition::switch_a_id,
 	"switch_a_id",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_switch_b_id(
-	&RPG::EventPageCondition::switch_b_id,
+static TypedField<rpg::EventPageCondition, int32_t> static_switch_b_id(
+	&rpg::EventPageCondition::switch_b_id,
 	LMU_Reader::ChunkEventPageCondition::switch_b_id,
 	"switch_b_id",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_variable_id(
-	&RPG::EventPageCondition::variable_id,
+static TypedField<rpg::EventPageCondition, int32_t> static_variable_id(
+	&rpg::EventPageCondition::variable_id,
 	LMU_Reader::ChunkEventPageCondition::variable_id,
 	"variable_id",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_variable_value(
-	&RPG::EventPageCondition::variable_value,
+static TypedField<rpg::EventPageCondition, int32_t> static_variable_value(
+	&rpg::EventPageCondition::variable_value,
 	LMU_Reader::ChunkEventPageCondition::variable_value,
 	"variable_value",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_item_id(
-	&RPG::EventPageCondition::item_id,
+static TypedField<rpg::EventPageCondition, int32_t> static_item_id(
+	&rpg::EventPageCondition::item_id,
 	LMU_Reader::ChunkEventPageCondition::item_id,
 	"item_id",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_actor_id(
-	&RPG::EventPageCondition::actor_id,
+static TypedField<rpg::EventPageCondition, int32_t> static_actor_id(
+	&rpg::EventPageCondition::actor_id,
 	LMU_Reader::ChunkEventPageCondition::actor_id,
 	"actor_id",
 	1,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_timer_sec(
-	&RPG::EventPageCondition::timer_sec,
+static TypedField<rpg::EventPageCondition, int32_t> static_timer_sec(
+	&rpg::EventPageCondition::timer_sec,
 	LMU_Reader::ChunkEventPageCondition::timer_sec,
 	"timer_sec",
 	0,
 	0
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_timer2_sec(
-	&RPG::EventPageCondition::timer2_sec,
+static TypedField<rpg::EventPageCondition, int32_t> static_timer2_sec(
+	&rpg::EventPageCondition::timer2_sec,
 	LMU_Reader::ChunkEventPageCondition::timer2_sec,
 	"timer2_sec",
 	0,
 	1
 );
-static TypedField<RPG::EventPageCondition, int32_t> static_compare_operator(
-	&RPG::EventPageCondition::compare_operator,
+static TypedField<rpg::EventPageCondition, int32_t> static_compare_operator(
+	&rpg::EventPageCondition::compare_operator,
 	LMU_Reader::ChunkEventPageCondition::compare_operator,
 	"compare_operator",
 	0,
@@ -91,7 +93,7 @@ static TypedField<RPG::EventPageCondition, int32_t> static_compare_operator(
 
 
 template <>
-Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[] = {
+Field<rpg::EventPageCondition> const* Struct<rpg::EventPageCondition>::fields[] = {
 	&static_flags,
 	&static_switch_a_id,
 	&static_switch_b_id,
@@ -105,4 +107,6 @@ Field<RPG::EventPageCondition> const* Struct<RPG::EventPageCondition>::fields[] 
 	NULL
 };
 
-template class Struct<RPG::EventPageCondition>;
+template class Struct<rpg::EventPageCondition>;
+
+} //namespace lcf

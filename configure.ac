@@ -11,7 +11,6 @@ AM_SILENT_RULES([yes])
 
 AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
 AC_CONFIG_SRCDIR([src/data.cpp])
-AC_CONFIG_HEADERS([config.h])
 AC_LANG([C++])
 
 # Checks for programs.
@@ -22,14 +21,16 @@ LT_INIT([win32-dll])
 AM_CONDITIONAL(CROSS_COMPILING,[test "x$cross_compiling" = "xyes"])
 
 # Checks for libraries.
+AC_SUBST([LCF_SUPPORT_ICU],[0])
 AC_ARG_ENABLE([icu],[AS_HELP_STRING([--disable-icu],[Disable ICU encoding detection (fallback to iconv) [default=no]])])
 AS_IF([test "x$enable_icu" != "xno"],[
-	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[AC_DEFINE([LCF_SUPPORT_ICU],[1],[Enable encoding detection (ICU)])])
+	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[AC_SUBST([LCF_SUPPORT_ICU],[1])])
 ])
 
+AC_SUBST([LCF_SUPPORT_XML],[0])
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat) [default=no]])])
 AS_IF([test "x$enable_xml" != "xno"],[
-	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_DEFINE([LCF_SUPPORT_XML],[1],[Enable XML reading support (expat)])])
+	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_SUBST([LCF_SUPPORT_XML],[1])])
 ])
 
 # Add mime types
@@ -70,6 +71,7 @@ AC_SUBST([CMAKE_DEBUG_POSTFIX])
 # Files to generate
 AC_CONFIG_FILES([Makefile
                  builds/liblcf.pc
-                 builds/liblcf-config.cmake])
+                 builds/liblcf-config.cmake
+                 autogen/lcf/config.h:builds/autoconf.config.h.in])
 
 AC_OUTPUT

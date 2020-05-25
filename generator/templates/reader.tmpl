@@ -1,35 +1,37 @@
 {% include "copyright.tmpl" %}
 // Headers
-#include "{{ type }}_reader.h"
-#include "{{ type }}_chunks.h"
+#include "lcf/{{ type }}/reader.h"
+#include "lcf/{{ type }}/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read {{ struct_name }}.
 {%- set LCF_CHUNK_SUFFIX = type|upper + "_Reader" %}
 {%- set LCF_CURRENT_STRUCT = struct_name %}
 
 template <>
-char const* const Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_STRUCT }}";
+char const* const Struct<rpg::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_STRUCT }}";
 
 {%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
 {%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
-static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_{{ field.name }}(
-	&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+static {{ field|lcf_type }}Field<rpg::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_{{ field.name }}(
+	&rpg::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	"{{ field.name }}",
 	{{field.presentifdefault}},
 	{{field.is2k3}}
 );
 {%- elif field|lcf_type in ["Empty"] %}
-static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}> static_{{ field.name }}(
+static {{ field|lcf_type }}Field<rpg::{{ LCF_CURRENT_STRUCT }}> static_{{ field.name }}(
 	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	"{{ field.name }}",
 	{{field.presentifdefault}},
 	{{field.is2k3}}
 );
 {%- elif field|lcf_type in ["Size", "Count"] %}
-static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_size_{{ field.name }}(
-	&RPG::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
+static {{ field|lcf_type }}Field<rpg::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_size_{{ field.name }}(
+	&rpg::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }}_size,
 	{{field.presentifdefault}},
 	{{field.is2k3}}
@@ -39,7 +41,7 @@ static {{ field|lcf_type }}Field<RPG::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cp
 
 
 template <>
-Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
+Field<rpg::{{ LCF_CURRENT_STRUCT }}> const* Struct<rpg::{{ LCF_CURRENT_STRUCT }}>::fields[] = {
 {%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
 	{%- if field|lcf_type in ["Typed", "DatabaseVersion", "Empty"] %}
 	&static_{{ field.name }},
@@ -50,4 +52,6 @@ Field<RPG::{{ LCF_CURRENT_STRUCT }}> const* Struct<RPG::{{ LCF_CURRENT_STRUCT }}
 	NULL
 };
 
-template class Struct<RPG::{{ LCF_CURRENT_STRUCT }}>;
+template class Struct<rpg::{{ LCF_CURRENT_STRUCT }}>;
+
+} //namespace lcf

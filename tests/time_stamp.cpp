@@ -7,8 +7,10 @@
  * file that was distributed with this source code.
  */
 
-#include "lsd_reader.h"
+#include "lcf/lsd/reader.h"
 #include "doctest.h"
+
+using namespace lcf;
 
 TEST_SUITE_BEGIN("timestamps");
 

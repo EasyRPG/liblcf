@@ -20,22 +20,24 @@
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
-#include "reader_lcf.h"
-#include "writer_lcf.h"
-#include "reader_xml.h"
-#include "writer_xml.h"
-#include "rpg_eventpagecondition.h"
-#include "rpg_trooppagecondition.h"
-#include "rpg_terrain.h"
-#include "rpg_equipment.h"
-#include "rpg_parameters.h"
-#include "rpg_eventcommand.h"
-#include "rpg_movecommand.h"
-#include "rpg_treemap.h"
-#include "rpg_rect.h"
-#include "rpg_savepicture.h"
-#include "rpg_terms.h"
-#include "data.h"
+#include "lcf/reader_lcf.h"
+#include "lcf/writer_lcf.h"
+#include "lcf/reader_xml.h"
+#include "lcf/writer_xml.h"
+#include "lcf/rpg/eventpagecondition.h"
+#include "lcf/rpg/trooppagecondition.h"
+#include "lcf/rpg/terrain.h"
+#include "lcf/rpg/equipment.h"
+#include "lcf/rpg/parameters.h"
+#include "lcf/rpg/eventcommand.h"
+#include "lcf/rpg/movecommand.h"
+#include "lcf/rpg/treemap.h"
+#include "lcf/rpg/rect.h"
+#include "lcf/rpg/savepicture.h"
+#include "lcf/rpg/terms.h"
+#include "lcf/data.h"
+
+namespace lcf {
 
 // Forward declarations
 
@@ -58,17 +60,17 @@ struct TypeCategory {
 	static const Category::Index value = Category::Struct;
 };
 
-template <> struct TypeCategory<RPG::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<RPG::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
 
-template <> struct TypeCategory<RPG::Equipment>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::MoveCommand>				{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::Parameters>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
-template <> struct TypeCategory<RPG::Rect>						{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Equipment>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::MoveCommand>				{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Parameters>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::TreeMap>					{ static const Category::Index value = Category::RawStruct; };
+template <> struct TypeCategory<rpg::Rect>						{ static const Category::Index value = Category::RawStruct; };
 
 template <>	struct TypeCategory<int8_t> 						{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<uint8_t>						{ static const Category::Index value = Category::Primitive; };
@@ -329,7 +331,7 @@ struct Field {
 	virtual void ParseXml(S& obj, const std::string& data) const = 0;
 
 	bool isPresentIfDefault(bool db_is2k3) const {
-		if (std::is_same<S,RPG::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
+		if (std::is_same<S,rpg::Terms>::value && db_is2k3 && (id == 0x3 || id == 0x1)) {
 			//Special case - only known fields that are 2k specific and not
 			//written to a 2k3 db if defaulted.
 			return false;
@@ -738,5 +740,7 @@ private:
 	const char* const name;
 
 };
+
+} //namespace lcf
 
 #endif

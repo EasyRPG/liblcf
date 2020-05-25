@@ -10,56 +10,58 @@
  */
 
 // Headers
-#include "lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd/reader.h"
+#include "lcf/lsd/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read SaveEventExecFrame.
 
 template <>
-char const* const Struct<RPG::SaveEventExecFrame>::name = "SaveEventExecFrame";
-static SizeField<RPG::SaveEventExecFrame, RPG::EventCommand> static_size_commands(
-	&RPG::SaveEventExecFrame::commands,
+char const* const Struct<rpg::SaveEventExecFrame>::name = "SaveEventExecFrame";
+static SizeField<rpg::SaveEventExecFrame, rpg::EventCommand> static_size_commands(
+	&rpg::SaveEventExecFrame::commands,
 	LSD_Reader::ChunkSaveEventExecFrame::commands_size,
 	1,
 	0
 );
-static TypedField<RPG::SaveEventExecFrame, std::vector<RPG::EventCommand>> static_commands(
-	&RPG::SaveEventExecFrame::commands,
+static TypedField<rpg::SaveEventExecFrame, std::vector<rpg::EventCommand>> static_commands(
+	&rpg::SaveEventExecFrame::commands,
 	LSD_Reader::ChunkSaveEventExecFrame::commands,
 	"commands",
 	1,
 	0
 );
-static TypedField<RPG::SaveEventExecFrame, int32_t> static_current_command(
-	&RPG::SaveEventExecFrame::current_command,
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_current_command(
+	&rpg::SaveEventExecFrame::current_command,
 	LSD_Reader::ChunkSaveEventExecFrame::current_command,
 	"current_command",
 	0,
 	0
 );
-static TypedField<RPG::SaveEventExecFrame, int32_t> static_event_id(
-	&RPG::SaveEventExecFrame::event_id,
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_event_id(
+	&rpg::SaveEventExecFrame::event_id,
 	LSD_Reader::ChunkSaveEventExecFrame::event_id,
 	"event_id",
 	0,
 	0
 );
-static TypedField<RPG::SaveEventExecFrame, bool> static_triggered_by_decision_key(
-	&RPG::SaveEventExecFrame::triggered_by_decision_key,
+static TypedField<rpg::SaveEventExecFrame, bool> static_triggered_by_decision_key(
+	&rpg::SaveEventExecFrame::triggered_by_decision_key,
 	LSD_Reader::ChunkSaveEventExecFrame::triggered_by_decision_key,
 	"triggered_by_decision_key",
 	0,
 	0
 );
-static SizeField<RPG::SaveEventExecFrame, uint8_t> static_size_subcommand_path(
-	&RPG::SaveEventExecFrame::subcommand_path,
+static SizeField<rpg::SaveEventExecFrame, uint8_t> static_size_subcommand_path(
+	&rpg::SaveEventExecFrame::subcommand_path,
 	LSD_Reader::ChunkSaveEventExecFrame::subcommand_path_size,
 	0,
 	0
 );
-static TypedField<RPG::SaveEventExecFrame, std::vector<uint8_t>> static_subcommand_path(
-	&RPG::SaveEventExecFrame::subcommand_path,
+static TypedField<rpg::SaveEventExecFrame, std::vector<uint8_t>> static_subcommand_path(
+	&rpg::SaveEventExecFrame::subcommand_path,
 	LSD_Reader::ChunkSaveEventExecFrame::subcommand_path,
 	"subcommand_path",
 	1,
@@ -68,7 +70,7 @@ static TypedField<RPG::SaveEventExecFrame, std::vector<uint8_t>> static_subcomma
 
 
 template <>
-Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] = {
+Field<rpg::SaveEventExecFrame> const* Struct<rpg::SaveEventExecFrame>::fields[] = {
 	&static_size_commands,
 	&static_commands,
 	&static_current_command,
@@ -79,4 +81,6 @@ Field<RPG::SaveEventExecFrame> const* Struct<RPG::SaveEventExecFrame>::fields[] 
 	NULL
 };
 
-template class Struct<RPG::SaveEventExecFrame>;
+template class Struct<rpg::SaveEventExecFrame>;
+
+} //namespace lcf

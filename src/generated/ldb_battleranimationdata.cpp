@@ -10,30 +10,32 @@
  */
 
 // Headers
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read BattlerAnimationData.
 
 template <>
-char const* const Struct<RPG::BattlerAnimationData>::name = "BattlerAnimationData";
-static TypedField<RPG::BattlerAnimationData, int32_t> static_move(
-	&RPG::BattlerAnimationData::move,
+char const* const Struct<rpg::BattlerAnimationData>::name = "BattlerAnimationData";
+static TypedField<rpg::BattlerAnimationData, int32_t> static_move(
+	&rpg::BattlerAnimationData::move,
 	LDB_Reader::ChunkBattlerAnimationData::move,
 	"move",
 	0,
 	0
 );
-static TypedField<RPG::BattlerAnimationData, int32_t> static_after_image(
-	&RPG::BattlerAnimationData::after_image,
+static TypedField<rpg::BattlerAnimationData, int32_t> static_after_image(
+	&rpg::BattlerAnimationData::after_image,
 	LDB_Reader::ChunkBattlerAnimationData::after_image,
 	"after_image",
 	0,
 	0
 );
-static TypedField<RPG::BattlerAnimationData, int32_t> static_pose(
-	&RPG::BattlerAnimationData::pose,
+static TypedField<rpg::BattlerAnimationData, int32_t> static_pose(
+	&rpg::BattlerAnimationData::pose,
 	LDB_Reader::ChunkBattlerAnimationData::pose,
 	"pose",
 	0,
@@ -42,11 +44,13 @@ static TypedField<RPG::BattlerAnimationData, int32_t> static_pose(
 
 
 template <>
-Field<RPG::BattlerAnimationData> const* Struct<RPG::BattlerAnimationData>::fields[] = {
+Field<rpg::BattlerAnimationData> const* Struct<rpg::BattlerAnimationData>::fields[] = {
 	&static_move,
 	&static_after_image,
 	&static_pose,
 	NULL
 };
 
-template class Struct<RPG::BattlerAnimationData>;
+template class Struct<rpg::BattlerAnimationData>;
+
+} //namespace lcf

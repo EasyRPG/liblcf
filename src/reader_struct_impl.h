@@ -11,13 +11,15 @@
 #include <iostream>
 #include <iomanip>
 #include <type_traits>
-#include "ldb_reader.h"
-#include "lmt_reader.h"
-#include "lmu_reader.h"
-#include "lsd_reader.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmu/reader.h"
+#include "lcf/lsd/reader.h"
 #include "reader_struct.h"
-#include "rpg_save.h"
-#include "data.h"
+#include "lcf/rpg/save.h"
+#include "lcf/data.h"
+
+namespace lcf {
 
 // Read/Write Struct
 
@@ -45,9 +47,9 @@ struct StructDefault {
 };
 
 template <>
-struct StructDefault<RPG::Actor> {
-	static RPG::Actor make() {
-		auto actor = RPG::Actor();
+struct StructDefault<rpg::Actor> {
+	static rpg::Actor make() {
+		auto actor = rpg::Actor();
 		actor.Setup();
 		return actor;
 	}
@@ -87,15 +89,15 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 }
 
 template<typename T>
-typename std::enable_if<std::is_same<T, RPG::Save>::value ||
-		std::is_same<T, RPG::Database>::value>::type
+typename std::enable_if<std::is_same<T, rpg::Save>::value ||
+		std::is_same<T, rpg::Database>::value>::type
 conditional_zero_writer(LcfWriter&) {
 	// no-op
 }
 
 template<typename T>
-typename std::enable_if<!std::is_same<T, RPG::Save>::value &&
-		!std::is_same<T, RPG::Database>::value>::type
+typename std::enable_if<!std::is_same<T, rpg::Save>::value &&
+		!std::is_same<T, rpg::Database>::value>::type
 conditional_zero_writer(LcfWriter& stream) {
 	stream.WriteInt(0);
 }
@@ -126,7 +128,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 			field->WriteLcf(obj, stream);
 		}
 	}
-	// Writing a 0-byte after RPG::Database or RPG::Save breaks the parser in RPG_RT
+	// Writing a 0-byte after rpg::Database or rpg::Save breaks the parser in RPG_RT
 	conditional_zero_writer<S>(stream);
 }
 
@@ -270,5 +272,7 @@ template <class S>
 void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
+
+} //namespace lcf
 
 #include "fwd_struct_impl.h"

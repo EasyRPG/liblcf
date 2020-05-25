@@ -7,8 +7,10 @@
  * file that was distributed with this source code.
  */
 
-#include "flag_set.h"
+#include "lcf/flag_set.h"
 #include "doctest.h"
+
+using namespace lcf;
 
 enum Color {
 	Red,
@@ -16,7 +18,7 @@ enum Color {
 	Blue
 };
 
-template class FlagSet<Color>;
+template class lcf::FlagSet<Color>;
 
 using ColorSet = FlagSet<Color>;
 

@@ -7,19 +7,21 @@
  * file that was distributed with this source code.
  */
 
-#include "lcf_options.h"
-#include "rpg_actor.h"
-#include "rpg_event.h"
-#include "rpg_map.h"
-#include "rpg_mapinfo.h"
-#include "rpg_system.h"
-#include "rpg_save.h"
-#include "rpg_chipset.h"
-#include "rpg_parameters.h"
-#include "data.h"
+#include "lcf/config.h"
+#include "lcf/rpg/actor.h"
+#include "lcf/rpg/event.h"
+#include "lcf/rpg/map.h"
+#include "lcf/rpg/mapinfo.h"
+#include "lcf/rpg/system.h"
+#include "lcf/rpg/save.h"
+#include "lcf/rpg/chipset.h"
+#include "lcf/rpg/parameters.h"
+#include "lcf/data.h"
 
-void RPG::SaveActor::Setup(int actor_id) {
-	const RPG::Actor& actor = Data::actors[actor_id - 1];
+namespace lcf {
+
+void rpg::SaveActor::Setup(int actor_id) {
+	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
 	ID = actor.ID;
 	name = actor.name;
 	title = actor.title;
@@ -36,7 +38,6 @@ void RPG::SaveActor::Setup(int actor_id) {
 	defense_mod = 0;
 	spirit_mod = 0;
 	agility_mod = 0;
-	skills_size = 0;
 	skills.clear();
 	equipped.clear();
 	equipped.push_back(actor.initial_equipment.weapon_id);
@@ -47,7 +48,7 @@ void RPG::SaveActor::Setup(int actor_id) {
 	current_hp = 0;
 	current_sp = 0;
 	battle_commands.resize(7, -1);
-	status.resize(Data::states.size());
+	status.resize(lcf::Data::states.size());
 	changed_battle_commands = false;
 	class_id = -1;
 	two_weapon = actor.two_weapon;
@@ -56,17 +57,17 @@ void RPG::SaveActor::Setup(int actor_id) {
 	super_guard = actor.super_guard;
 }
 
-void RPG::SaveInventory::Setup() {
-	party = Data::system.party;
+void rpg::SaveInventory::Setup() {
+	party = lcf::Data::system.party;
 }
 
-void RPG::SaveMapEvent::Setup(const RPG::Event& event) {
+void rpg::SaveMapEvent::Setup(const rpg::Event& event) {
 	ID = event.ID;
 	position_x = event.x;
 	position_y = event.y;
 }
 
-void RPG::SaveMapInfo::Setup() {
+void rpg::SaveMapInfo::Setup() {
 	position_x = 0;
 	position_y = 0;
 	lower_tiles.resize(144);
@@ -77,7 +78,7 @@ void RPG::SaveMapInfo::Setup() {
 	}
 }
 
-void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
+void rpg::SaveMapInfo::Setup(const rpg::Map& map) {
 	chipset_id = map.chipset_id;
 	parallax_name = map.parallax_name;
 	parallax_horz = map.parallax_loop_x;
@@ -88,8 +89,8 @@ void RPG::SaveMapInfo::Setup(const RPG::Map& map) {
 	parallax_vert_speed = map.parallax_sy;
 }
 
-void RPG::SaveSystem::Setup() {
-	const RPG::System& system = Data::system;
+void rpg::SaveSystem::Setup() {
+	const rpg::System& system = lcf::Data::system;
 	frame_count = 0;
 	face_name = "";
 	face_id = -1;
@@ -130,29 +131,29 @@ void RPG::SaveSystem::Setup() {
 	save_slot = -1;
 }
 
-void RPG::Save::Setup() {
+void rpg::Save::Setup() {
 	system.Setup();
-	screen = RPG::SaveScreen();
+	screen = rpg::SaveScreen();
 	pictures.clear();
 	actors.clear();
-	actors.resize(Data::actors.size());
+	actors.resize(lcf::Data::actors.size());
 	for (int i = 1; i <= (int) actors.size(); i++)
 		actors[i - 1].Setup(i);
 	map_info.Setup();
 
 	party_location.move_speed = 4;
-	boat_location.vehicle = RPG::SaveVehicleLocation::VehicleType_skiff;
-	ship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_ship;
-	airship_location.vehicle = RPG::SaveVehicleLocation::VehicleType_airship;
+	boat_location.vehicle = rpg::SaveVehicleLocation::VehicleType_skiff;
+	ship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_ship;
+	airship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_airship;
 
 	if (targets.empty()) {
 		targets.resize(1);
 	}
 }
 
-void RPG::Actor::Setup() {
+void rpg::Actor::Setup() {
 	int max_final_level = 0;
-	if (Data::system.ldb_id == 2003) {
+	if (lcf::Data::system.ldb_id == 2003) {
 		max_final_level = 99;
 		if (final_level == -1) {
 			final_level = max_final_level;
@@ -171,19 +172,19 @@ void RPG::Actor::Setup() {
 	parameters.Setup(max_final_level);
 }
 
-void RPG::Chipset::Init() {
+void rpg::Chipset::Init() {
 	terrain_data.resize(162, 1);
 	passable_data_lower.resize(162, 15);
 	passable_data_upper.resize(144, 15);
 	passable_data_upper.front() = 31;
 }
 
-void RPG::System::Init() {
+void rpg::System::Init() {
 	party.resize(1, 1);
 	menu_commands.resize(1, 1);
 }
 
-void RPG::Parameters::Setup(int final_level) {
+void rpg::Parameters::Setup(int final_level) {
 	size_t level = 0;
 	if (final_level > 0) level = final_level;
 	if (maxhp.size() < level) maxhp.resize(level, 1);
@@ -193,3 +194,5 @@ void RPG::Parameters::Setup(int final_level) {
 	if (spirit.size() < level) spirit.resize(level, 1);
 	if (agility.size() < level) agility.resize(level, 1);
 }
+
+} // namespace lcf

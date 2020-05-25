@@ -7,50 +7,52 @@
  * file that was distributed with this source code.
  */
 
-#include "lmt_reader.h"
-#include "lmt_chunks.h"
+#include "lcf/lmt/reader.h"
+#include "lcf/lmt/chunks.h"
 #include "reader_struct.h"
 
+namespace lcf {
+
 template <>
-struct RawStruct<RPG::TreeMap> {
-	static void ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t length);
-	static void WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream);
-	static int LcfSize(const RPG::TreeMap& ref, LcfWriter& stream);
-	static void WriteXml(const RPG::TreeMap& ref, XmlWriter& stream);
-	static void BeginXml(RPG::TreeMap& ref, XmlReader& stream);
+struct RawStruct<rpg::TreeMap> {
+	static void ReadLcf(rpg::TreeMap& ref, LcfReader& stream, uint32_t length);
+	static void WriteLcf(const rpg::TreeMap& ref, LcfWriter& stream);
+	static int LcfSize(const rpg::TreeMap& ref, LcfWriter& stream);
+	static void WriteXml(const rpg::TreeMap& ref, XmlWriter& stream);
+	static void BeginXml(rpg::TreeMap& ref, XmlReader& stream);
 };
 
 /**
  * Reads Map Tree.
  */
-void RawStruct<RPG::TreeMap>::ReadLcf(RPG::TreeMap& ref, LcfReader& stream, uint32_t /* length */) {
-	Struct<RPG::MapInfo>::ReadLcf(ref.maps, stream);
+void RawStruct<rpg::TreeMap>::ReadLcf(rpg::TreeMap& ref, LcfReader& stream, uint32_t /* length */) {
+	Struct<rpg::MapInfo>::ReadLcf(ref.maps, stream);
 	for (int i = stream.ReadInt(); i > 0; i--)
 		ref.tree_order.push_back(stream.ReadInt());
 	ref.active_node = stream.ReadInt();
-	Struct<RPG::Start>::ReadLcf(ref.start, stream);
+	Struct<rpg::Start>::ReadLcf(ref.start, stream);
 }
 
-void RawStruct<RPG::TreeMap>::WriteLcf(const RPG::TreeMap& ref, LcfWriter& stream) {
-	Struct<RPG::MapInfo>::WriteLcf(ref.maps, stream);
+void RawStruct<rpg::TreeMap>::WriteLcf(const rpg::TreeMap& ref, LcfWriter& stream) {
+	Struct<rpg::MapInfo>::WriteLcf(ref.maps, stream);
 	int count = ref.tree_order.size();
 	stream.WriteInt(count);
 	for (int i = 0; i < count; i++)
 		stream.WriteInt(ref.tree_order[i]);
 	stream.WriteInt(ref.active_node);
-	Struct<RPG::Start>::WriteLcf(ref.start, stream);
+	Struct<rpg::Start>::WriteLcf(ref.start, stream);
 }
 
-int RawStruct<RPG::TreeMap>::LcfSize(const RPG::TreeMap& /* ref */, LcfWriter& /* stream */) {
+int RawStruct<rpg::TreeMap>::LcfSize(const rpg::TreeMap& /* ref */, LcfWriter& /* stream */) {
 	/* doesn't matter; this structure never occurs within a chunk */
 	return 0;
 }
 
-void RawStruct<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& stream) {
+void RawStruct<rpg::TreeMap>::WriteXml(const rpg::TreeMap& ref, XmlWriter& stream) {
 	stream.BeginElement("TreeMap");
 
 	stream.BeginElement("maps");
-	Struct<RPG::MapInfo>::WriteXml(ref.maps, stream);
+	Struct<rpg::MapInfo>::WriteXml(ref.maps, stream);
 	stream.EndElement("maps");
 
 	stream.BeginElement("tree_order");
@@ -60,7 +62,7 @@ void RawStruct<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& strea
 	stream.WriteNode<int32_t>("active_node", ref.active_node);
 
 	stream.BeginElement("start");
-	Struct<RPG::Start>::WriteXml(ref.start, stream);
+	Struct<rpg::Start>::WriteXml(ref.start, stream);
 	stream.EndElement("start");
 
 	stream.EndElement("TreeMap");
@@ -68,24 +70,24 @@ void RawStruct<RPG::TreeMap>::WriteXml(const RPG::TreeMap& ref, XmlWriter& strea
 
 class TreeMapXmlHandler : public XmlHandler {
 private:
-	RPG::TreeMap& ref;
+	rpg::TreeMap& ref;
 	bool active_node;
 	bool tree_order;
 public:
-	TreeMapXmlHandler(RPG::TreeMap& ref) :
+	TreeMapXmlHandler(rpg::TreeMap& ref) :
 		ref(ref), active_node(false), tree_order(false) {}
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		active_node = false;
 		tree_order = false;
 		if (strcmp(name, "maps") == 0)
-			Struct<RPG::MapInfo>::BeginXml(ref.maps, stream);
+			Struct<rpg::MapInfo>::BeginXml(ref.maps, stream);
 		else if (strcmp(name, "tree_order") == 0)
 			tree_order = true;
 		else if (strcmp(name, "active_node") == 0)
 			active_node = true;
 		else if (strcmp(name, "start") == 0)
-			Struct<RPG::Start>::BeginXml(ref.start, stream);
+			Struct<rpg::Start>::BeginXml(ref.start, stream);
 		else {
 			stream.Error("Unrecognized field '%s'", name);
 		}
@@ -102,6 +104,8 @@ public:
 	}
 };
 
-void RawStruct<RPG::TreeMap>::BeginXml(RPG::TreeMap& ref, XmlReader& stream) {
+void RawStruct<rpg::TreeMap>::BeginXml(rpg::TreeMap& ref, XmlReader& stream) {
 	stream.SetHandler(new WrapperXmlHandler("TreeMap", new TreeMapXmlHandler(ref)));
 }
+
+} //namespace lcf

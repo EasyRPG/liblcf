@@ -10,233 +10,235 @@
  */
 
 // Headers
-#include "lmu_reader.h"
-#include "lmu_chunks.h"
+#include "lcf/lmu/reader.h"
+#include "lcf/lmu/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read Map.
 
 template <>
-char const* const Struct<RPG::Map>::name = "Map";
-static TypedField<RPG::Map, int32_t> static_chipset_id(
-	&RPG::Map::chipset_id,
+char const* const Struct<rpg::Map>::name = "Map";
+static TypedField<rpg::Map, int32_t> static_chipset_id(
+	&rpg::Map::chipset_id,
 	LMU_Reader::ChunkMap::chipset_id,
 	"chipset_id",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_width(
-	&RPG::Map::width,
+static TypedField<rpg::Map, int32_t> static_width(
+	&rpg::Map::width,
 	LMU_Reader::ChunkMap::width,
 	"width",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_height(
-	&RPG::Map::height,
+static TypedField<rpg::Map, int32_t> static_height(
+	&rpg::Map::height,
 	LMU_Reader::ChunkMap::height,
 	"height",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_scroll_type(
-	&RPG::Map::scroll_type,
+static TypedField<rpg::Map, int32_t> static_scroll_type(
+	&rpg::Map::scroll_type,
 	LMU_Reader::ChunkMap::scroll_type,
 	"scroll_type",
 	1,
 	0
 );
-static TypedField<RPG::Map, bool> static_parallax_flag(
-	&RPG::Map::parallax_flag,
+static TypedField<rpg::Map, bool> static_parallax_flag(
+	&rpg::Map::parallax_flag,
 	LMU_Reader::ChunkMap::parallax_flag,
 	"parallax_flag",
 	0,
 	0
 );
-static TypedField<RPG::Map, std::string> static_parallax_name(
-	&RPG::Map::parallax_name,
+static TypedField<rpg::Map, std::string> static_parallax_name(
+	&rpg::Map::parallax_name,
 	LMU_Reader::ChunkMap::parallax_name,
 	"parallax_name",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_parallax_loop_x(
-	&RPG::Map::parallax_loop_x,
+static TypedField<rpg::Map, bool> static_parallax_loop_x(
+	&rpg::Map::parallax_loop_x,
 	LMU_Reader::ChunkMap::parallax_loop_x,
 	"parallax_loop_x",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_parallax_loop_y(
-	&RPG::Map::parallax_loop_y,
+static TypedField<rpg::Map, bool> static_parallax_loop_y(
+	&rpg::Map::parallax_loop_y,
 	LMU_Reader::ChunkMap::parallax_loop_y,
 	"parallax_loop_y",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_parallax_auto_loop_x(
-	&RPG::Map::parallax_auto_loop_x,
+static TypedField<rpg::Map, bool> static_parallax_auto_loop_x(
+	&rpg::Map::parallax_auto_loop_x,
 	LMU_Reader::ChunkMap::parallax_auto_loop_x,
 	"parallax_auto_loop_x",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_parallax_sx(
-	&RPG::Map::parallax_sx,
+static TypedField<rpg::Map, int32_t> static_parallax_sx(
+	&rpg::Map::parallax_sx,
 	LMU_Reader::ChunkMap::parallax_sx,
 	"parallax_sx",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_parallax_auto_loop_y(
-	&RPG::Map::parallax_auto_loop_y,
+static TypedField<rpg::Map, bool> static_parallax_auto_loop_y(
+	&rpg::Map::parallax_auto_loop_y,
 	LMU_Reader::ChunkMap::parallax_auto_loop_y,
 	"parallax_auto_loop_y",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_parallax_sy(
-	&RPG::Map::parallax_sy,
+static TypedField<rpg::Map, int32_t> static_parallax_sy(
+	&rpg::Map::parallax_sy,
 	LMU_Reader::ChunkMap::parallax_sy,
 	"parallax_sy",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_flag(
-	&RPG::Map::generator_flag,
+static TypedField<rpg::Map, bool> static_generator_flag(
+	&rpg::Map::generator_flag,
 	LMU_Reader::ChunkMap::generator_flag,
 	"generator_flag",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_generator_mode(
-	&RPG::Map::generator_mode,
+static TypedField<rpg::Map, int32_t> static_generator_mode(
+	&rpg::Map::generator_mode,
 	LMU_Reader::ChunkMap::generator_mode,
 	"generator_mode",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_top_level(
-	&RPG::Map::top_level,
+static TypedField<rpg::Map, bool> static_top_level(
+	&rpg::Map::top_level,
 	LMU_Reader::ChunkMap::top_level,
 	"top_level",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_generator_tiles(
-	&RPG::Map::generator_tiles,
+static TypedField<rpg::Map, int32_t> static_generator_tiles(
+	&rpg::Map::generator_tiles,
 	LMU_Reader::ChunkMap::generator_tiles,
 	"generator_tiles",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_generator_width(
-	&RPG::Map::generator_width,
+static TypedField<rpg::Map, int32_t> static_generator_width(
+	&rpg::Map::generator_width,
 	LMU_Reader::ChunkMap::generator_width,
 	"generator_width",
 	0,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_generator_height(
-	&RPG::Map::generator_height,
+static TypedField<rpg::Map, int32_t> static_generator_height(
+	&rpg::Map::generator_height,
 	LMU_Reader::ChunkMap::generator_height,
 	"generator_height",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_surround(
-	&RPG::Map::generator_surround,
+static TypedField<rpg::Map, bool> static_generator_surround(
+	&rpg::Map::generator_surround,
 	LMU_Reader::ChunkMap::generator_surround,
 	"generator_surround",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_upper_wall(
-	&RPG::Map::generator_upper_wall,
+static TypedField<rpg::Map, bool> static_generator_upper_wall(
+	&rpg::Map::generator_upper_wall,
 	LMU_Reader::ChunkMap::generator_upper_wall,
 	"generator_upper_wall",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_floor_b(
-	&RPG::Map::generator_floor_b,
+static TypedField<rpg::Map, bool> static_generator_floor_b(
+	&rpg::Map::generator_floor_b,
 	LMU_Reader::ChunkMap::generator_floor_b,
 	"generator_floor_b",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_floor_c(
-	&RPG::Map::generator_floor_c,
+static TypedField<rpg::Map, bool> static_generator_floor_c(
+	&rpg::Map::generator_floor_c,
 	LMU_Reader::ChunkMap::generator_floor_c,
 	"generator_floor_c",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_extra_b(
-	&RPG::Map::generator_extra_b,
+static TypedField<rpg::Map, bool> static_generator_extra_b(
+	&rpg::Map::generator_extra_b,
 	LMU_Reader::ChunkMap::generator_extra_b,
 	"generator_extra_b",
 	0,
 	0
 );
-static TypedField<RPG::Map, bool> static_generator_extra_c(
-	&RPG::Map::generator_extra_c,
+static TypedField<rpg::Map, bool> static_generator_extra_c(
+	&rpg::Map::generator_extra_c,
 	LMU_Reader::ChunkMap::generator_extra_c,
 	"generator_extra_c",
 	0,
 	0
 );
-static TypedField<RPG::Map, std::vector<uint32_t>> static_generator_x(
-	&RPG::Map::generator_x,
+static TypedField<rpg::Map, std::vector<uint32_t>> static_generator_x(
+	&rpg::Map::generator_x,
 	LMU_Reader::ChunkMap::generator_x,
 	"generator_x",
 	0,
 	0
 );
-static TypedField<RPG::Map, std::vector<uint32_t>> static_generator_y(
-	&RPG::Map::generator_y,
+static TypedField<rpg::Map, std::vector<uint32_t>> static_generator_y(
+	&rpg::Map::generator_y,
 	LMU_Reader::ChunkMap::generator_y,
 	"generator_y",
 	0,
 	0
 );
-static TypedField<RPG::Map, std::vector<int16_t>> static_generator_tile_ids(
-	&RPG::Map::generator_tile_ids,
+static TypedField<rpg::Map, std::vector<int16_t>> static_generator_tile_ids(
+	&rpg::Map::generator_tile_ids,
 	LMU_Reader::ChunkMap::generator_tile_ids,
 	"generator_tile_ids",
 	0,
 	0
 );
-static TypedField<RPG::Map, std::vector<int16_t>> static_lower_layer(
-	&RPG::Map::lower_layer,
+static TypedField<rpg::Map, std::vector<int16_t>> static_lower_layer(
+	&rpg::Map::lower_layer,
 	LMU_Reader::ChunkMap::lower_layer,
 	"lower_layer",
 	1,
 	0
 );
-static TypedField<RPG::Map, std::vector<int16_t>> static_upper_layer(
-	&RPG::Map::upper_layer,
+static TypedField<rpg::Map, std::vector<int16_t>> static_upper_layer(
+	&rpg::Map::upper_layer,
 	LMU_Reader::ChunkMap::upper_layer,
 	"upper_layer",
 	1,
 	0
 );
-static TypedField<RPG::Map, std::vector<RPG::Event>> static_events(
-	&RPG::Map::events,
+static TypedField<rpg::Map, std::vector<rpg::Event>> static_events(
+	&rpg::Map::events,
 	LMU_Reader::ChunkMap::events,
 	"events",
 	1,
 	0
 );
-static TypedField<RPG::Map, int32_t> static_save_count_2k3e(
-	&RPG::Map::save_count_2k3e,
+static TypedField<rpg::Map, int32_t> static_save_count_2k3e(
+	&rpg::Map::save_count_2k3e,
 	LMU_Reader::ChunkMap::save_count_2k3e,
 	"save_count_2k3e",
 	0,
 	1
 );
-static TypedField<RPG::Map, int32_t> static_save_count(
-	&RPG::Map::save_count,
+static TypedField<rpg::Map, int32_t> static_save_count(
+	&rpg::Map::save_count,
 	LMU_Reader::ChunkMap::save_count,
 	"save_count",
 	0,
@@ -245,7 +247,7 @@ static TypedField<RPG::Map, int32_t> static_save_count(
 
 
 template <>
-Field<RPG::Map> const* Struct<RPG::Map>::fields[] = {
+Field<rpg::Map> const* Struct<rpg::Map>::fields[] = {
 	&static_chipset_id,
 	&static_width,
 	&static_height,
@@ -281,4 +283,6 @@ Field<RPG::Map> const* Struct<RPG::Map>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::Map>;
+template class Struct<rpg::Map>;
+
+} //namespace lcf

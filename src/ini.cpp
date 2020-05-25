@@ -39,7 +39,7 @@ Go to the project home page for more info: https://github.com/benhoyt/inih
 #include <cctype>
 #include <cstring>
 
-#include "ini.h"
+#include "lcf/ini.h"
 
 #if !INI_USE_STACK
 #include <cstdlib>

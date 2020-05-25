@@ -10,16 +10,18 @@
  */
 
 // Headers
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read Variable.
 
 template <>
-char const* const Struct<RPG::Variable>::name = "Variable";
-static TypedField<RPG::Variable, std::string> static_name(
-	&RPG::Variable::name,
+char const* const Struct<rpg::Variable>::name = "Variable";
+static TypedField<rpg::Variable, std::string> static_name(
+	&rpg::Variable::name,
 	LDB_Reader::ChunkVariable::name,
 	"name",
 	0,
@@ -28,9 +30,11 @@ static TypedField<RPG::Variable, std::string> static_name(
 
 
 template <>
-Field<RPG::Variable> const* Struct<RPG::Variable>::fields[] = {
+Field<rpg::Variable> const* Struct<rpg::Variable>::fields[] = {
 	&static_name,
 	NULL
 };
 
-template class Struct<RPG::Variable>;
+template class Struct<rpg::Variable>;
+
+} //namespace lcf

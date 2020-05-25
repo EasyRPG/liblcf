@@ -10,11 +10,11 @@
  */
 
 // Headers
-#include "rpg_chipset.h"
+#include "lcf/rpg/chipset.h"
 
 /**
  * Constructor.
  */
-RPG::Chipset::Chipset() {
+lcf::rpg::Chipset::Chipset() {
 	Init();
 }

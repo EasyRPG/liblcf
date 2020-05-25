@@ -7,32 +7,34 @@
  * file that was distributed with this source code.
  */
 
-#include "rpg_database.h"
-#include "data.h"
+#include "lcf/rpg/database.h"
+#include "lcf/data.h"
+
+namespace lcf {
 
 namespace Data {
-	RPG::Database data;
+	rpg::Database data;
 
-	std::vector<RPG::Actor>& actors = data.actors;
-	std::vector<RPG::Skill>& skills = data.skills;
-	std::vector<RPG::Item>& items = data.items;
-	std::vector<RPG::Enemy>& enemies = data.enemies;
-	std::vector<RPG::Troop>& troops = data.troops;
-	std::vector<RPG::Terrain>& terrains = data.terrains;
-	std::vector<RPG::Attribute>& attributes = data.attributes;
-	std::vector<RPG::State>& states = data.states;
-	std::vector<RPG::Animation>& animations = data.animations;
-	std::vector<RPG::Chipset>& chipsets = data.chipsets;
-	std::vector<RPG::CommonEvent>& commonevents = data.commonevents;
-	RPG::BattleCommands& battlecommands = data.battlecommands;
-	std::vector<RPG::Class>& classes = data.classes;
-	std::vector<RPG::BattlerAnimation>& battleranimations = data.battleranimations;
-	RPG::Terms& terms = data.terms;
-	RPG::System& system = data.system;
-	std::vector<RPG::Switch>& switches = data.switches;
-	std::vector<RPG::Variable>& variables = data.variables;
+	std::vector<rpg::Actor>& actors = data.actors;
+	std::vector<rpg::Skill>& skills = data.skills;
+	std::vector<rpg::Item>& items = data.items;
+	std::vector<rpg::Enemy>& enemies = data.enemies;
+	std::vector<rpg::Troop>& troops = data.troops;
+	std::vector<rpg::Terrain>& terrains = data.terrains;
+	std::vector<rpg::Attribute>& attributes = data.attributes;
+	std::vector<rpg::State>& states = data.states;
+	std::vector<rpg::Animation>& animations = data.animations;
+	std::vector<rpg::Chipset>& chipsets = data.chipsets;
+	std::vector<rpg::CommonEvent>& commonevents = data.commonevents;
+	rpg::BattleCommands& battlecommands = data.battlecommands;
+	std::vector<rpg::Class>& classes = data.classes;
+	std::vector<rpg::BattlerAnimation>& battleranimations = data.battleranimations;
+	rpg::Terms& terms = data.terms;
+	rpg::System& system = data.system;
+	std::vector<rpg::Switch>& switches = data.switches;
+	std::vector<rpg::Variable>& variables = data.variables;
 
-	RPG::TreeMap treemap;
+	rpg::TreeMap treemap;
 }
 
 void Data::Clear() {
@@ -47,14 +49,16 @@ void Data::Clear() {
 	animations.clear();
 	chipsets.clear();
 	commonevents.clear();
-	battlecommands = RPG::BattleCommands();
+	battlecommands = rpg::BattleCommands();
 	classes.clear();
 	battleranimations.clear();
-	terms = RPG::Terms();
-	system = RPG::System();
+	terms = rpg::Terms();
+	system = rpg::System();
 	switches.clear();
 	variables.clear();
 	treemap.active_node = 0;
 	treemap.maps.clear();
 	treemap.tree_order.clear();
 }
+
+} //namespace lcf

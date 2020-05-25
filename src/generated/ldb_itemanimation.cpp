@@ -10,72 +10,74 @@
  */
 
 // Headers
-#include "ldb_reader.h"
-#include "ldb_chunks.h"
+#include "lcf/ldb/reader.h"
+#include "lcf/ldb/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read ItemAnimation.
 
 template <>
-char const* const Struct<RPG::ItemAnimation>::name = "ItemAnimation";
-static TypedField<RPG::ItemAnimation, int32_t> static_type(
-	&RPG::ItemAnimation::type,
+char const* const Struct<rpg::ItemAnimation>::name = "ItemAnimation";
+static TypedField<rpg::ItemAnimation, int32_t> static_type(
+	&rpg::ItemAnimation::type,
 	LDB_Reader::ChunkItemAnimation::type,
 	"type",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_weapon_anim(
-	&RPG::ItemAnimation::weapon_anim,
+static TypedField<rpg::ItemAnimation, int32_t> static_weapon_anim(
+	&rpg::ItemAnimation::weapon_anim,
 	LDB_Reader::ChunkItemAnimation::weapon_anim,
 	"weapon_anim",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_movement(
-	&RPG::ItemAnimation::movement,
+static TypedField<rpg::ItemAnimation, int32_t> static_movement(
+	&rpg::ItemAnimation::movement,
 	LDB_Reader::ChunkItemAnimation::movement,
 	"movement",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_after_image(
-	&RPG::ItemAnimation::after_image,
+static TypedField<rpg::ItemAnimation, int32_t> static_after_image(
+	&rpg::ItemAnimation::after_image,
 	LDB_Reader::ChunkItemAnimation::after_image,
 	"after_image",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_attacks(
-	&RPG::ItemAnimation::attacks,
+static TypedField<rpg::ItemAnimation, int32_t> static_attacks(
+	&rpg::ItemAnimation::attacks,
 	LDB_Reader::ChunkItemAnimation::attacks,
 	"attacks",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, bool> static_ranged(
-	&RPG::ItemAnimation::ranged,
+static TypedField<rpg::ItemAnimation, bool> static_ranged(
+	&rpg::ItemAnimation::ranged,
 	LDB_Reader::ChunkItemAnimation::ranged,
 	"ranged",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_ranged_anim(
-	&RPG::ItemAnimation::ranged_anim,
+static TypedField<rpg::ItemAnimation, int32_t> static_ranged_anim(
+	&rpg::ItemAnimation::ranged_anim,
 	LDB_Reader::ChunkItemAnimation::ranged_anim,
 	"ranged_anim",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_ranged_speed(
-	&RPG::ItemAnimation::ranged_speed,
+static TypedField<rpg::ItemAnimation, int32_t> static_ranged_speed(
+	&rpg::ItemAnimation::ranged_speed,
 	LDB_Reader::ChunkItemAnimation::ranged_speed,
 	"ranged_speed",
 	0,
 	0
 );
-static TypedField<RPG::ItemAnimation, int32_t> static_battle_anim(
-	&RPG::ItemAnimation::battle_anim,
+static TypedField<rpg::ItemAnimation, int32_t> static_battle_anim(
+	&rpg::ItemAnimation::battle_anim,
 	LDB_Reader::ChunkItemAnimation::battle_anim,
 	"battle_anim",
 	0,
@@ -84,7 +86,7 @@ static TypedField<RPG::ItemAnimation, int32_t> static_battle_anim(
 
 
 template <>
-Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[] = {
+Field<rpg::ItemAnimation> const* Struct<rpg::ItemAnimation>::fields[] = {
 	&static_type,
 	&static_weapon_anim,
 	&static_movement,
@@ -97,4 +99,6 @@ Field<RPG::ItemAnimation> const* Struct<RPG::ItemAnimation>::fields[] = {
 	NULL
 };
 
-template class Struct<RPG::ItemAnimation>;
+template class Struct<rpg::ItemAnimation>;
+
+} //namespace lcf

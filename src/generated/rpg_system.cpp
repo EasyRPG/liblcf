@@ -10,11 +10,11 @@
  */
 
 // Headers
-#include "rpg_system.h"
+#include "lcf/rpg/system.h"
 
 /**
  * Constructor.
  */
-RPG::System::System() {
+lcf::rpg::System::System() {
 	Init();
 }

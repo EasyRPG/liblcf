@@ -10,16 +10,18 @@
  */
 
 // Headers
-#include "lsd_reader.h"
-#include "lsd_chunks.h"
+#include "lcf/lsd/reader.h"
+#include "lcf/lsd/chunks.h"
 #include "reader_struct_impl.h"
+
+namespace lcf {
 
 // Read SaveEasyRpgData.
 
 template <>
-char const* const Struct<RPG::SaveEasyRpgData>::name = "SaveEasyRpgData";
-static TypedField<RPG::SaveEasyRpgData, int32_t> static_version(
-	&RPG::SaveEasyRpgData::version,
+char const* const Struct<rpg::SaveEasyRpgData>::name = "SaveEasyRpgData";
+static TypedField<rpg::SaveEasyRpgData, int32_t> static_version(
+	&rpg::SaveEasyRpgData::version,
 	LSD_Reader::ChunkSaveEasyRpgData::version,
 	"version",
 	0,
@@ -28,9 +30,11 @@ static TypedField<RPG::SaveEasyRpgData, int32_t> static_version(
 
 
 template <>
-Field<RPG::SaveEasyRpgData> const* Struct<RPG::SaveEasyRpgData>::fields[] = {
+Field<rpg::SaveEasyRpgData> const* Struct<rpg::SaveEasyRpgData>::fields[] = {
 	&static_version,
 	NULL
 };
 
-template class Struct<RPG::SaveEasyRpgData>;
+template class Struct<rpg::SaveEasyRpgData>;
+
+} //namespace lcf

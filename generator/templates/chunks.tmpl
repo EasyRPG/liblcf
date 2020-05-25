@@ -2,6 +2,8 @@
 #ifndef LCF_{{ type|upper }}_CHUNKS_H
 #define LCF_{{ type|upper }}_CHUNKS_H
 
+namespace lcf {
+
 /**
  * {{ type|upper }} Reader namespace.
  */
@@ -22,5 +24,7 @@ namespace {{ type|upper }}_Reader {
 	};
 {%- endfor %}
 }
+
+} //namespace lcf
 
 #endif
