@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include <ostream>
 
 /**
  * rpg::Sound class.
@@ -38,6 +39,16 @@ namespace rpg {
 
 	inline bool operator!=(const Sound& l, const Sound& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const Sound& obj) {
+		os << "Sound{";
+		os << "name="<< obj.name;
+		os << " volume="<< obj.volume;
+		os << " tempo="<< obj.tempo;
+		os << " balance="<< obj.balance;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

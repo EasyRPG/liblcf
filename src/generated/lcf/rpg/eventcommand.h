@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include "lcf/enum_tags.h"
+#include <ostream>
 
 /**
  * rpg::EventCommand class.
@@ -187,6 +188,20 @@ namespace rpg {
 
 	inline bool operator!=(const EventCommand& l, const EventCommand& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const EventCommand& obj) {
+		os << "EventCommand{";
+		os << "code="<< obj.code;
+		os << " indent="<< obj.indent;
+		os << " string="<< obj.string;
+		os << " parameters=";
+		for (size_t i = 0; i < obj.parameters.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.parameters[i];
+		}
+		os << "]";
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

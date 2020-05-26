@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
 
 /**
  * rpg::SaveTarget class.
@@ -40,6 +41,17 @@ namespace rpg {
 
 	inline bool operator!=(const SaveTarget& l, const SaveTarget& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const SaveTarget& obj) {
+		os << "SaveTarget{";
+		os << "map_id="<< obj.map_id;
+		os << " map_x="<< obj.map_x;
+		os << " map_y="<< obj.map_y;
+		os << " switch_on="<< obj.switch_on;
+		os << " switch_id="<< obj.switch_id;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

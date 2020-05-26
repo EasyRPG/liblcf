@@ -9,6 +9,7 @@
 {%- endif %}
 #include {{ header }}
 {%- endfor %}
+#include <ostream>
 
 /**
  * rpg::{{ struct_name }} class.
@@ -97,6 +98,14 @@ namespace rpg {
 	inline bool operator!=(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
 		return !(l == r);
 	}
+
+	inline std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::Flags& obj) {
+		for (size_t i = 0; i < obj.flags.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.flags[i];
+		}
+		os << "]";
+		return os;
+	}
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}
@@ -113,6 +122,28 @@ namespace rpg {
 
 	inline bool operator!=(const {{ struct_name }}& l, const {{ struct_name }}& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const {{ struct_name }}& obj) {
+		os << "{{ struct_name }}{";
+	{%- for field in fields[struct_name]|field_is_used|field_is_not_size -%}
+		{% if loop.first %}
+		os << "{{ field.name }}="
+		{%- else %}
+		os << " {{ field.name }}="
+		{%- endif -%}
+		{%- if field.type is is_array -%}
+		;
+		for (size_t i = 0; i < obj.{{ field.name }}.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.{{ field.name }}[i];
+		}
+		os << "]";
+		{%- else -%}
+		<< obj.{{ field.name }};
+		{%- endif %}
+	{%- endfor %}
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

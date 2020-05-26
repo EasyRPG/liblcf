@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/sound.h"
+#include <ostream>
 
 /**
  * rpg::AnimationTiming class.
@@ -69,6 +70,20 @@ namespace rpg {
 
 	inline bool operator!=(const AnimationTiming& l, const AnimationTiming& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const AnimationTiming& obj) {
+		os << "AnimationTiming{";
+		os << "frame="<< obj.frame;
+		os << " se="<< obj.se;
+		os << " flash_scope="<< obj.flash_scope;
+		os << " flash_red="<< obj.flash_red;
+		os << " flash_green="<< obj.flash_green;
+		os << " flash_blue="<< obj.flash_blue;
+		os << " flash_power="<< obj.flash_power;
+		os << " screen_shake="<< obj.screen_shake;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

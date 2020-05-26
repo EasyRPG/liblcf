@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
 
 /**
  * rpg::SaveEasyRpgData class.
@@ -31,6 +32,13 @@ namespace rpg {
 
 	inline bool operator!=(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const SaveEasyRpgData& obj) {
+		os << "SaveEasyRpgData{";
+		os << "version="<< obj.version;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

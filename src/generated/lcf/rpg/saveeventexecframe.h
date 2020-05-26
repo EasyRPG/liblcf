@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <vector>
 #include "lcf/rpg/eventcommand.h"
+#include <ostream>
 
 /**
  * rpg::SaveEventExecFrame class.
@@ -42,6 +43,25 @@ namespace rpg {
 
 	inline bool operator!=(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame& obj) {
+		os << "SaveEventExecFrame{";
+		os << "commands=";
+		for (size_t i = 0; i < obj.commands.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.commands[i];
+		}
+		os << "]";
+		os << " current_command="<< obj.current_command;
+		os << " event_id="<< obj.event_id;
+		os << " triggered_by_decision_key="<< obj.triggered_by_decision_key;
+		os << " subcommand_path=";
+		for (size_t i = 0; i < obj.subcommand_path.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.subcommand_path[i];
+		}
+		os << "]";
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

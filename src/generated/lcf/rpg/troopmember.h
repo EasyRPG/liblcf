@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
 
 /**
  * rpg::TroopMember class.
@@ -38,6 +39,16 @@ namespace rpg {
 
 	inline bool operator!=(const TroopMember& l, const TroopMember& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const TroopMember& obj) {
+		os << "TroopMember{";
+		os << "enemy_id="<< obj.enemy_id;
+		os << " x="<< obj.x;
+		os << " y="<< obj.y;
+		os << " invisible="<< obj.invisible;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

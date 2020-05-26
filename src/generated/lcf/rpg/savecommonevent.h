@@ -14,6 +14,7 @@
 
 // Headers
 #include "lcf/rpg/saveeventexecstate.h"
+#include <ostream>
 
 /**
  * rpg::SaveCommonEvent class.
@@ -32,6 +33,13 @@ namespace rpg {
 
 	inline bool operator!=(const SaveCommonEvent& l, const SaveCommonEvent& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const SaveCommonEvent& obj) {
+		os << "SaveCommonEvent{";
+		os << "parallel_event_execstate="<< obj.parallel_event_execstate;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include "lcf/enum_tags.h"
+#include <ostream>
 
 /**
  * rpg::BattlerAnimationData class.
@@ -58,6 +59,15 @@ namespace rpg {
 
 	inline bool operator!=(const BattlerAnimationData& l, const BattlerAnimationData& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj) {
+		os << "BattlerAnimationData{";
+		os << "move="<< obj.move;
+		os << " after_image="<< obj.after_image;
+		os << " pose="<< obj.pose;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

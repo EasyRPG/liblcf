@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include "lcf/enum_tags.h"
+#include <ostream>
 
 /**
  * rpg::MoveCommand class.
@@ -130,6 +131,17 @@ namespace rpg {
 
 	inline bool operator!=(const MoveCommand& l, const MoveCommand& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const MoveCommand& obj) {
+		os << "MoveCommand{";
+		os << "command_id="<< obj.command_id;
+		os << " parameter_string="<< obj.parameter_string;
+		os << " parameter_a="<< obj.parameter_a;
+		os << " parameter_b="<< obj.parameter_b;
+		os << " parameter_c="<< obj.parameter_c;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

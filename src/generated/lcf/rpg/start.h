@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
 
 /**
  * rpg::Start class.
@@ -53,6 +54,24 @@ namespace rpg {
 
 	inline bool operator!=(const Start& l, const Start& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const Start& obj) {
+		os << "Start{";
+		os << "party_map_id="<< obj.party_map_id;
+		os << " party_x="<< obj.party_x;
+		os << " party_y="<< obj.party_y;
+		os << " boat_map_id="<< obj.boat_map_id;
+		os << " boat_x="<< obj.boat_x;
+		os << " boat_y="<< obj.boat_y;
+		os << " ship_map_id="<< obj.ship_map_id;
+		os << " ship_x="<< obj.ship_x;
+		os << " ship_y="<< obj.ship_y;
+		os << " airship_map_id="<< obj.airship_map_id;
+		os << " airship_x="<< obj.airship_x;
+		os << " airship_y="<< obj.airship_y;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

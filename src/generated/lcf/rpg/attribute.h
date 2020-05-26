@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include "lcf/enum_tags.h"
+#include <ostream>
 
 /**
  * rpg::Attribute class.
@@ -55,6 +56,19 @@ namespace rpg {
 
 	inline bool operator!=(const Attribute& l, const Attribute& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const Attribute& obj) {
+		os << "Attribute{";
+		os << "name="<< obj.name;
+		os << " type="<< obj.type;
+		os << " a_rate="<< obj.a_rate;
+		os << " b_rate="<< obj.b_rate;
+		os << " c_rate="<< obj.c_rate;
+		os << " d_rate="<< obj.d_rate;
+		os << " e_rate="<< obj.e_rate;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

@@ -15,6 +15,7 @@
 // Headers
 #include <string>
 #include "lcf/enum_tags.h"
+#include <ostream>
 
 /**
  * rpg::BattleCommand class.
@@ -54,6 +55,14 @@ namespace rpg {
 
 	inline bool operator!=(const BattleCommand& l, const BattleCommand& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const BattleCommand& obj) {
+		os << "BattleCommand{";
+		os << "name="<< obj.name;
+		os << " type="<< obj.type;
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

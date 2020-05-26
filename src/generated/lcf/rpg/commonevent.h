@@ -17,6 +17,7 @@
 #include <vector>
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/eventcommand.h"
+#include <ostream>
 
 /**
  * rpg::CommonEvent class.
@@ -49,6 +50,21 @@ namespace rpg {
 
 	inline bool operator!=(const CommonEvent& l, const CommonEvent& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const CommonEvent& obj) {
+		os << "CommonEvent{";
+		os << "name="<< obj.name;
+		os << " trigger="<< obj.trigger;
+		os << " switch_flag="<< obj.switch_flag;
+		os << " switch_id="<< obj.switch_id;
+		os << " event_commands=";
+		for (size_t i = 0; i < obj.event_commands.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.event_commands[i];
+		}
+		os << "]";
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf

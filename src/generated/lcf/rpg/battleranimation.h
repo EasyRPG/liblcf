@@ -17,6 +17,7 @@
 #include <vector>
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationextension.h"
+#include <ostream>
 
 /**
  * rpg::BattlerAnimation class.
@@ -47,6 +48,24 @@ namespace rpg {
 
 	inline bool operator!=(const BattlerAnimation& l, const BattlerAnimation& r) {
 		return !(l == r);
+	}
+
+	inline std::ostream& operator<<(std::ostream& os, const BattlerAnimation& obj) {
+		os << "BattlerAnimation{";
+		os << "name="<< obj.name;
+		os << " speed="<< obj.speed;
+		os << " base_data=";
+		for (size_t i = 0; i < obj.base_data.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.base_data[i];
+		}
+		os << "]";
+		os << " weapon_data=";
+		for (size_t i = 0; i < obj.weapon_data.size(); ++i) {
+			os << (i == 0 ? "[" : ", ") << obj.weapon_data[i];
+		}
+		os << "]";
+		os << "}";
+		return os;
 	}
 } // namespace rpg
 } // namespace lcf
