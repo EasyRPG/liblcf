@@ -37,13 +37,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Learning& obj) {
-		os << "Learning{";
-		os << "level="<< obj.level;
-		os << " skill_id="<< obj.skill_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Learning& obj);
 } // namespace rpg
 } // namespace lcf
 

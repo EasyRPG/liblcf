@@ -133,16 +133,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const MoveCommand& obj) {
-		os << "MoveCommand{";
-		os << "command_id="<< obj.command_id;
-		os << " parameter_string="<< obj.parameter_string;
-		os << " parameter_a="<< obj.parameter_a;
-		os << " parameter_b="<< obj.parameter_b;
-		os << " parameter_c="<< obj.parameter_c;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const MoveCommand& obj);
 } // namespace rpg
 } // namespace lcf
 

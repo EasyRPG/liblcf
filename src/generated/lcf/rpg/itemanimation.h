@@ -83,20 +83,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const ItemAnimation& obj) {
-		os << "ItemAnimation{";
-		os << "type="<< obj.type;
-		os << " weapon_anim="<< obj.weapon_anim;
-		os << " movement="<< obj.movement;
-		os << " after_image="<< obj.after_image;
-		os << " attacks="<< obj.attacks;
-		os << " ranged="<< obj.ranged;
-		os << " ranged_anim="<< obj.ranged_anim;
-		os << " ranged_speed="<< obj.ranged_speed;
-		os << " battle_anim="<< obj.battle_anim;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const ItemAnimation& obj);
 } // namespace rpg
 } // namespace lcf
 

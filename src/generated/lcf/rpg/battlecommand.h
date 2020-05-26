@@ -57,13 +57,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const BattleCommand& obj) {
-		os << "BattleCommand{";
-		os << "name="<< obj.name;
-		os << " type="<< obj.type;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const BattleCommand& obj);
 } // namespace rpg
 } // namespace lcf
 

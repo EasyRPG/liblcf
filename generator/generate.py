@@ -390,14 +390,6 @@ def generate():
                         type=filetype
                     ))
 
-                if needs_ctor(struct.name) or struct.name in constants:
-                    filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
-                    with openToRender(filepath) as f:
-                        f.write(rpg_source_tmpl.render(
-                            struct_name=struct.name,
-                            struct_base=struct.base,
-                            filename=filename
-                        ))
 
             filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
             with openToRender(filepath) as f:
@@ -405,6 +397,14 @@ def generate():
                     struct_name=struct.name,
                     struct_base=struct.base,
                     has_id=struct.hasid
+                ))
+
+            filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
+            with openToRender(filepath) as f:
+                f.write(rpg_source_tmpl.render(
+                    struct_name=struct.name,
+                    struct_base=struct.base,
+                    filename=filename
                 ))
 
             if struct.name in flags:

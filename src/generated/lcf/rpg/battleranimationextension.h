@@ -54,16 +54,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const BattlerAnimationExtension& obj) {
-		os << "BattlerAnimationExtension{";
-		os << "name="<< obj.name;
-		os << " battler_name="<< obj.battler_name;
-		os << " battler_index="<< obj.battler_index;
-		os << " animation_type="<< obj.animation_type;
-		os << " animation_id="<< obj.animation_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const BattlerAnimationExtension& obj);
 } // namespace rpg
 } // namespace lcf
 

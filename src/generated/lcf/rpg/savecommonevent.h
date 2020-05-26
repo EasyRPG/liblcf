@@ -35,12 +35,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SaveCommonEvent& obj) {
-		os << "SaveCommonEvent{";
-		os << "parallel_event_execstate="<< obj.parallel_event_execstate;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SaveCommonEvent& obj);
 } // namespace rpg
 } // namespace lcf
 

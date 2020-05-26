@@ -35,12 +35,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Switch& obj) {
-		os << "Switch{";
-		os << "name="<< obj.name;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Switch& obj);
 } // namespace rpg
 } // namespace lcf
 

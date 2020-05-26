@@ -94,27 +94,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SavePartyLocation& obj) {
-		os << "SavePartyLocation{";
-		os << "boarding="<< obj.boarding;
-		os << " aboard="<< obj.aboard;
-		os << " vehicle="<< obj.vehicle;
-		os << " unboarding="<< obj.unboarding;
-		os << " preboard_move_speed="<< obj.preboard_move_speed;
-		os << " menu_calling="<< obj.menu_calling;
-		os << " pan_state="<< obj.pan_state;
-		os << " pan_current_x="<< obj.pan_current_x;
-		os << " pan_current_y="<< obj.pan_current_y;
-		os << " pan_finish_x="<< obj.pan_finish_x;
-		os << " pan_finish_y="<< obj.pan_finish_y;
-		os << " pan_speed="<< obj.pan_speed;
-		os << " encounter_steps="<< obj.encounter_steps;
-		os << " encounter_calling="<< obj.encounter_calling;
-		os << " map_save_count="<< obj.map_save_count;
-		os << " database_save_count="<< obj.database_save_count;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SavePartyLocation& obj);
 } // namespace rpg
 } // namespace lcf
 

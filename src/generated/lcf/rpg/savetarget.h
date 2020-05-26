@@ -43,16 +43,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SaveTarget& obj) {
-		os << "SaveTarget{";
-		os << "map_id="<< obj.map_id;
-		os << " map_x="<< obj.map_x;
-		os << " map_y="<< obj.map_y;
-		os << " switch_on="<< obj.switch_on;
-		os << " switch_id="<< obj.switch_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SaveTarget& obj);
 } // namespace rpg
 } // namespace lcf
 

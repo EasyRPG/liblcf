@@ -61,14 +61,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj) {
-		os << "BattlerAnimationData{";
-		os << "move="<< obj.move;
-		os << " after_image="<< obj.after_image;
-		os << " pose="<< obj.pose;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj);
 } // namespace rpg
 } // namespace lcf
 

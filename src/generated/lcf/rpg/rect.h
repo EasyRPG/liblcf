@@ -40,15 +40,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Rect& obj) {
-		os << "Rect{";
-		os << "l="<< obj.l;
-		os << " t="<< obj.t;
-		os << " r="<< obj.r;
-		os << " b="<< obj.b;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Rect& obj);
 } // namespace rpg
 } // namespace lcf
 

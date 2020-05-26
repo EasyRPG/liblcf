@@ -122,30 +122,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const BattleCommands& obj) {
-		os << "BattleCommands{";
-		os << "placement="<< obj.placement;
-		os << " death_handler_unused="<< obj.death_handler_unused;
-		os << " row="<< obj.row;
-		os << " battle_type="<< obj.battle_type;
-		os << " unused_display_normal_parameters="<< obj.unused_display_normal_parameters;
-		os << " commands=";
-		for (size_t i = 0; i < obj.commands.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.commands[i];
-		}
-		os << "]";
-		os << " death_handler="<< obj.death_handler;
-		os << " death_event="<< obj.death_event;
-		os << " window_size="<< obj.window_size;
-		os << " transparency="<< obj.transparency;
-		os << " death_teleport="<< obj.death_teleport;
-		os << " death_teleport_id="<< obj.death_teleport_id;
-		os << " death_teleport_x="<< obj.death_teleport_x;
-		os << " death_teleport_y="<< obj.death_teleport_y;
-		os << " death_teleport_face="<< obj.death_teleport_face;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const BattleCommands& obj);
 } // namespace rpg
 } // namespace lcf
 

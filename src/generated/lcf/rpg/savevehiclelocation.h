@@ -58,16 +58,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SaveVehicleLocation& obj) {
-		os << "SaveVehicleLocation{";
-		os << "vehicle="<< obj.vehicle;
-		os << " remaining_ascent="<< obj.remaining_ascent;
-		os << " remaining_descent="<< obj.remaining_descent;
-		os << " orig_sprite_name="<< obj.orig_sprite_name;
-		os << " orig_sprite_id="<< obj.orig_sprite_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SaveVehicleLocation& obj);
 } // namespace rpg
 } // namespace lcf
 

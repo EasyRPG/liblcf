@@ -44,19 +44,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Event& obj) {
-		os << "Event{";
-		os << "name="<< obj.name;
-		os << " x="<< obj.x;
-		os << " y="<< obj.y;
-		os << " pages=";
-		for (size_t i = 0; i < obj.pages.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.pages[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Event& obj);
 } // namespace rpg
 } // namespace lcf
 

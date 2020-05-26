@@ -39,17 +39,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const TroopPage& obj) {
-		os << "TroopPage{";
-		os << "condition="<< obj.condition;
-		os << " event_commands=";
-		for (size_t i = 0; i < obj.event_commands.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.event_commands[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const TroopPage& obj);
 } // namespace rpg
 } // namespace lcf
 

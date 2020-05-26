@@ -111,24 +111,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const EnemyAction& obj) {
-		os << "EnemyAction{";
-		os << "kind="<< obj.kind;
-		os << " basic="<< obj.basic;
-		os << " skill_id="<< obj.skill_id;
-		os << " enemy_id="<< obj.enemy_id;
-		os << " condition_type="<< obj.condition_type;
-		os << " condition_param1="<< obj.condition_param1;
-		os << " condition_param2="<< obj.condition_param2;
-		os << " switch_id="<< obj.switch_id;
-		os << " switch_on="<< obj.switch_on;
-		os << " switch_on_id="<< obj.switch_on_id;
-		os << " switch_off="<< obj.switch_off;
-		os << " switch_off_id="<< obj.switch_off_id;
-		os << " rating="<< obj.rating;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const EnemyAction& obj);
 } // namespace rpg
 } // namespace lcf
 

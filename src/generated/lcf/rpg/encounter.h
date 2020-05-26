@@ -32,12 +32,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Encounter& obj) {
-		os << "Encounter{";
-		os << "troop_id="<< obj.troop_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Encounter& obj);
 } // namespace rpg
 } // namespace lcf
 

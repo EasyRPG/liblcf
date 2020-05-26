@@ -39,18 +39,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const MoveRoute& obj) {
-		os << "MoveRoute{";
-		os << "move_commands=";
-		for (size_t i = 0; i < obj.move_commands.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.move_commands[i];
-		}
-		os << "]";
-		os << " repeat="<< obj.repeat;
-		os << " skippable="<< obj.skippable;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const MoveRoute& obj);
 } // namespace rpg
 } // namespace lcf
 

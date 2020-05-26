@@ -55,23 +55,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const TreeMap& obj) {
-		os << "TreeMap{";
-		os << "maps=";
-		for (size_t i = 0; i < obj.maps.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.maps[i];
-		}
-		os << "]";
-		os << " tree_order=";
-		for (size_t i = 0; i < obj.tree_order.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.tree_order[i];
-		}
-		os << "]";
-		os << " active_node="<< obj.active_node;
-		os << " start="<< obj.start;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const TreeMap& obj);
 } // namespace rpg
 } // namespace lcf
 

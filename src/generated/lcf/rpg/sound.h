@@ -41,15 +41,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Sound& obj) {
-		os << "Sound{";
-		os << "name="<< obj.name;
-		os << " volume="<< obj.volume;
-		os << " tempo="<< obj.tempo;
-		os << " balance="<< obj.balance;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Sound& obj);
 } // namespace rpg
 } // namespace lcf
 

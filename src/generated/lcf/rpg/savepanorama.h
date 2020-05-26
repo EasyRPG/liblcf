@@ -36,13 +36,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SavePanorama& obj) {
-		os << "SavePanorama{";
-		os << "pan_x="<< obj.pan_x;
-		os << " pan_y="<< obj.pan_y;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SavePanorama& obj);
 } // namespace rpg
 } // namespace lcf
 

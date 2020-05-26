@@ -70,26 +70,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Animation& obj) {
-		os << "Animation{";
-		os << "name="<< obj.name;
-		os << " animation_name="<< obj.animation_name;
-		os << " large="<< obj.large;
-		os << " timings=";
-		for (size_t i = 0; i < obj.timings.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.timings[i];
-		}
-		os << "]";
-		os << " scope="<< obj.scope;
-		os << " position="<< obj.position;
-		os << " frames=";
-		for (size_t i = 0; i < obj.frames.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.frames[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Animation& obj);
 } // namespace rpg
 } // namespace lcf
 

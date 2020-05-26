@@ -36,16 +36,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const AnimationFrame& obj) {
-		os << "AnimationFrame{";
-		os << "cells=";
-		for (size_t i = 0; i < obj.cells.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.cells[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const AnimationFrame& obj);
 } // namespace rpg
 } // namespace lcf
 

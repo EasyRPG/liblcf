@@ -48,29 +48,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Troop& obj) {
-		os << "Troop{";
-		os << "name="<< obj.name;
-		os << " members=";
-		for (size_t i = 0; i < obj.members.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.members[i];
-		}
-		os << "]";
-		os << " auto_alignment="<< obj.auto_alignment;
-		os << " terrain_set=";
-		for (size_t i = 0; i < obj.terrain_set.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.terrain_set[i];
-		}
-		os << "]";
-		os << " appear_randomly="<< obj.appear_randomly;
-		os << " pages=";
-		for (size_t i = 0; i < obj.pages.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.pages[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Troop& obj);
 } // namespace rpg
 } // namespace lcf
 

@@ -41,15 +41,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const TroopMember& obj) {
-		os << "TroopMember{";
-		os << "enemy_id="<< obj.enemy_id;
-		os << " x="<< obj.x;
-		os << " y="<< obj.y;
-		os << " invisible="<< obj.invisible;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const TroopMember& obj);
 } // namespace rpg
 } // namespace lcf
 

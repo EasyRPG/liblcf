@@ -190,19 +190,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const EventCommand& obj) {
-		os << "EventCommand{";
-		os << "code="<< obj.code;
-		os << " indent="<< obj.indent;
-		os << " string="<< obj.string;
-		os << " parameters=";
-		for (size_t i = 0; i < obj.parameters.size(); ++i) {
-			os << (i == 0 ? "[" : ", ") << obj.parameters[i];
-		}
-		os << "]";
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const EventCommand& obj);
 } // namespace rpg
 } // namespace lcf
 

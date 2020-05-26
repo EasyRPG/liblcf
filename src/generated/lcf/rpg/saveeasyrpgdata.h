@@ -34,12 +34,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const SaveEasyRpgData& obj) {
-		os << "SaveEasyRpgData{";
-		os << "version="<< obj.version;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgData& obj);
 } // namespace rpg
 } // namespace lcf
 

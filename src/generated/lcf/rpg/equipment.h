@@ -42,16 +42,7 @@ namespace rpg {
 		return !(l == r);
 	}
 
-	inline std::ostream& operator<<(std::ostream& os, const Equipment& obj) {
-		os << "Equipment{";
-		os << "weapon_id="<< obj.weapon_id;
-		os << " shield_id="<< obj.shield_id;
-		os << " armor_id="<< obj.armor_id;
-		os << " helmet_id="<< obj.helmet_id;
-		os << " accessory_id="<< obj.accessory_id;
-		os << "}";
-		return os;
-	}
+	std::ostream& operator<<(std::ostream& os, const Equipment& obj);
 } // namespace rpg
 } // namespace lcf
 
