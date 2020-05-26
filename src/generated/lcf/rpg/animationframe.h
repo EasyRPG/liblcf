@@ -16,6 +16,7 @@
 #include <vector>
 #include "lcf/rpg/animationcelldata.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::AnimationFrame class.

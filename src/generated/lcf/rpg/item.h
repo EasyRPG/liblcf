@@ -19,6 +19,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/itemanimation.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Item class.
@@ -128,6 +129,18 @@ namespace rpg {
 		int32_t ranged_trajectory = 0;
 		int32_t ranged_target = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Item::Type code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Item::Trajectory code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Item::Target code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Item& l, const Item& r) {
 		return l.name == r.name

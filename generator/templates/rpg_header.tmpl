@@ -10,6 +10,7 @@
 #include {{ header }}
 {%- endfor %}
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::{{ struct_name }} class.
@@ -87,6 +88,14 @@ namespace rpg {
 	{%- endif %}
 	{%- endfor %}
 	};
+	{%- if struct_name in enums %}
+	{%- for name, enum in enums[struct_name].items() %}
+	inline std::ostream& operator<<(std::ostream& os, {{ struct_name }}::{{ name }} code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	{%- endfor %}
+	{%- endif %}
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 	{%- if field.type.endswith("_Flags") %}

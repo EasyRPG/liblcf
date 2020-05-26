@@ -17,6 +17,7 @@
 #include <string>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::MoveCommand class.
@@ -120,6 +121,10 @@ namespace rpg {
 		int32_t parameter_b = 0;
 		int32_t parameter_c = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, MoveCommand::Code code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const MoveCommand& l, const MoveCommand& r) {
 		return l.command_id == r.command_id

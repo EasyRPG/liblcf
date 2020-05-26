@@ -19,6 +19,7 @@
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Class class.

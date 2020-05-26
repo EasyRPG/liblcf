@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::ItemAnimation class.
@@ -66,6 +67,18 @@ namespace rpg {
 		int32_t ranged_speed = 0;
 		int32_t battle_anim = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::Movement code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::AfterImage code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::Speed code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const ItemAnimation& l, const ItemAnimation& r) {
 		return l.type == r.type

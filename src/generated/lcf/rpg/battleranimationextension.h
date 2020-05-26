@@ -17,6 +17,7 @@
 #include <string>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::BattlerAnimationExtension class.
@@ -41,6 +42,10 @@ namespace rpg {
 		int32_t animation_type = 0;
 		int32_t animation_id = 1;
 	};
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationExtension::AnimType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const BattlerAnimationExtension& l, const BattlerAnimationExtension& r) {
 		return l.name == r.name

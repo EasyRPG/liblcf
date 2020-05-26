@@ -19,6 +19,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/event.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Map class.
@@ -94,6 +95,18 @@ namespace rpg {
 		int32_t save_count_2k3e = 0;
 		int32_t save_count = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Map::ScrollType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Map::GeneratorMode code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Map::GeneratorTiles code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Map& l, const Map& r) {
 		return l.chipset_id == r.chipset_id

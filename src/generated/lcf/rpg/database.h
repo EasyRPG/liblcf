@@ -34,6 +34,7 @@
 #include "lcf/rpg/troop.h"
 #include "lcf/rpg/variable.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Database class.

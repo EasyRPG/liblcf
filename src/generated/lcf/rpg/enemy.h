@@ -18,6 +18,7 @@
 #include <vector>
 #include "lcf/rpg/enemyaction.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Enemy class.

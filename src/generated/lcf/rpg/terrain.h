@@ -19,6 +19,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/sound.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Terrain class.
@@ -95,6 +96,14 @@ namespace rpg {
 		int32_t grid_elongation = 392;
 		int32_t grid_inclination = 16000;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Terrain::BushDepth code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Terrain::BGAssociation code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Terrain::Flags& l, const Terrain::Flags& r) {
 		return l.flags == r.flags;

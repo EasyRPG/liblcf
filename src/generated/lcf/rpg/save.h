@@ -29,6 +29,7 @@
 #include "lcf/rpg/savetitle.h"
 #include "lcf/rpg/savevehiclelocation.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Save class.

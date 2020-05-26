@@ -18,6 +18,7 @@
 #include "lcf/rpg/troopmember.h"
 #include "lcf/rpg/trooppage.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Troop class.

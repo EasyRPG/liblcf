@@ -20,6 +20,7 @@
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/sound.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveSystem class.
@@ -118,6 +119,14 @@ namespace rpg {
 		int32_t save_slot = 1;
 		int32_t atb_mode = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SaveSystem::Scene code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SaveSystem::AtbMode code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SaveSystem& l, const SaveSystem& r) {
 		return l.scene == r.scene

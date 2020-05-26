@@ -18,6 +18,7 @@
 #include "lcf/rpg/event.h"
 #include "lcf/rpg/saveeventexecstate.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapEvent class.

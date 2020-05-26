@@ -12,6 +12,7 @@
 #ifndef LCF_RPG_ENCOUNTER_H
 #define LCF_RPG_ENCOUNTER_H
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Encounter class.

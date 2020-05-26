@@ -21,6 +21,7 @@
 #include "lcf/rpg/eventpagecondition.h"
 #include "lcf/rpg/moveroute.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::EventPage class.
@@ -139,6 +140,34 @@ namespace rpg {
 		MoveRoute move_route;
 		std::vector<EventCommand> event_commands;
 	};
+	inline std::ostream& operator<<(std::ostream& os, EventPage::Direction code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::Frame code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::MoveType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::Trigger code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::Layers code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::AnimType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::MoveSpeed code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const EventPage& l, const EventPage& r) {
 		return l.condition == r.condition

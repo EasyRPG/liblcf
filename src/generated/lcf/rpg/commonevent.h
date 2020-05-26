@@ -18,6 +18,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/eventcommand.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::CommonEvent class.
@@ -39,6 +40,10 @@ namespace rpg {
 		int32_t switch_id = 1;
 		std::vector<EventCommand> event_commands;
 	};
+	inline std::ostream& operator<<(std::ostream& os, CommonEvent::Trigger code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const CommonEvent& l, const CommonEvent& r) {
 		return l.name == r.name

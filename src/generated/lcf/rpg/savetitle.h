@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveTitle class.

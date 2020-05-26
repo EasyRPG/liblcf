@@ -17,6 +17,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/sound.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::AnimationTiming class.
@@ -56,6 +57,14 @@ namespace rpg {
 		int32_t flash_power = 31;
 		int32_t screen_shake = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, AnimationTiming::FlashScope code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, AnimationTiming::ScreenShake code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const AnimationTiming& l, const AnimationTiming& r) {
 		return l.frame == r.frame

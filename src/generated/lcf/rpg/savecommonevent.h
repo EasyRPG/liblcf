@@ -15,6 +15,7 @@
 // Headers
 #include "lcf/rpg/saveeventexecstate.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveCommonEvent class.

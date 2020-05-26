@@ -19,6 +19,7 @@
 #include "lcf/rpg/animationframe.h"
 #include "lcf/rpg/animationtiming.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Animation class.
@@ -55,6 +56,14 @@ namespace rpg {
 		int32_t position = 2;
 		std::vector<AnimationFrame> frames;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Animation::Scope code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Animation::Position code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Animation& l, const Animation& r) {
 		return l.name == r.name

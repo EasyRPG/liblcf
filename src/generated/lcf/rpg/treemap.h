@@ -18,6 +18,7 @@
 #include "lcf/rpg/mapinfo.h"
 #include "lcf/rpg/start.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::TreeMap class.
@@ -43,6 +44,10 @@ namespace rpg {
 		int32_t active_node = 0;
 		Start start;
 	};
+	inline std::ostream& operator<<(std::ostream& os, TreeMap::MapType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const TreeMap& l, const TreeMap& r) {
 		return l.maps == r.maps

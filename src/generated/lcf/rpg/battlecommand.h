@@ -16,6 +16,7 @@
 #include <string>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::BattleCommand class.
@@ -47,6 +48,10 @@ namespace rpg {
 		std::string name;
 		int32_t type = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, BattleCommand::Type code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const BattleCommand& l, const BattleCommand& r) {
 		return l.name == r.name

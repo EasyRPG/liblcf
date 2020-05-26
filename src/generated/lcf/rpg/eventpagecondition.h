@@ -17,6 +17,7 @@
 #include <stdint.h>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::EventPageCondition class.
@@ -69,6 +70,10 @@ namespace rpg {
 		int32_t timer2_sec = 0;
 		int32_t compare_operator = 1;
 	};
+	inline std::ostream& operator<<(std::ostream& os, EventPageCondition::Comparison code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
 		return l.flags == r.flags;

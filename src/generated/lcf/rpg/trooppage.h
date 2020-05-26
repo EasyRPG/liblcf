@@ -17,6 +17,7 @@
 #include "lcf/rpg/eventcommand.h"
 #include "lcf/rpg/trooppagecondition.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::TroopPage class.

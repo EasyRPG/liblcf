@@ -16,6 +16,7 @@
 #include <vector>
 #include "lcf/rpg/movecommand.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::MoveRoute class.

@@ -20,6 +20,7 @@
 #include "lcf/rpg/battleranimationdata.h"
 #include "lcf/rpg/sound.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Skill class.
@@ -101,6 +102,18 @@ namespace rpg {
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Skill::SpType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Skill::Scope code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Skill& l, const Skill& r) {
 		return l.name == r.name

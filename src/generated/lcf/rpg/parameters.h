@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <vector>
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Parameters class.

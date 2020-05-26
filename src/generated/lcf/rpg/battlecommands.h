@@ -18,6 +18,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battlecommand.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::BattleCommands class.
@@ -99,6 +100,30 @@ namespace rpg {
 		int32_t death_teleport_y = 0;
 		int32_t death_teleport_face = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Placement code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::RowShown code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::BattleType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::WindowSize code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Transparency code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Facing code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const BattleCommands& l, const BattleCommands& r) {
 		return l.placement == r.placement

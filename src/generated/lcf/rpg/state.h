@@ -17,6 +17,7 @@
 #include <string>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::State class.
@@ -113,6 +114,22 @@ namespace rpg {
 		int32_t sp_change_map_steps = 0;
 		int32_t sp_change_map_val = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, State::Persistence code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, State::Restriction code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, State::AffectType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, State::ChangeType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const State& l, const State& r) {
 		return l.name == r.name

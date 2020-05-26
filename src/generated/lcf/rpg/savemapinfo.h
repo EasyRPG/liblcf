@@ -20,6 +20,7 @@
 #include "lcf/rpg/mapinfo.h"
 #include "lcf/rpg/savemapevent.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapInfo class.

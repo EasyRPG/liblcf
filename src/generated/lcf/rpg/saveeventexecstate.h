@@ -17,6 +17,7 @@
 #include <vector>
 #include "lcf/rpg/saveeventexecframe.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveEventExecState class.

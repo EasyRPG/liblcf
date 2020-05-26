@@ -18,6 +18,7 @@
 #include <vector>
 #include "lcf/rpg/eventpage.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Event class.

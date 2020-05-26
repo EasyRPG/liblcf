@@ -18,6 +18,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/moveroute.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapEventBase class.

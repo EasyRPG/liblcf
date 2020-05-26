@@ -17,6 +17,7 @@
 #include <stdint.h>
 #include "lcf/enum_tags.h"
 #include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SavePartyLocation class.
@@ -70,6 +71,14 @@ namespace rpg {
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SavePartyLocation::VehicleType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SavePartyLocation::PanState code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SavePartyLocation& l, const SavePartyLocation& r) {
 		return l.boarding == r.boarding
