@@ -32,6 +32,11 @@ AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support
 AS_IF([test "x$enable_xml" != "xno"],[
 	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_SUBST([LCF_SUPPORT_XML],[1])])
 ])
+AM_CONDITIONAL(SUPPORT_XML,[test $LCF_SUPPORT_XML == 1])
+
+# Tools
+AC_ARG_ENABLE([tools],[AS_HELP_STRING([--disable-tools],[Do not build and install the tools [default=no]])])
+AM_CONDITIONAL(ENABLE_TOOLS,[test "x$enable_tools" != "xno"])
 
 # Add mime types
 AC_ARG_ENABLE([update-mimedb],[AS_HELP_STRING([--disable-update-mimedb],[Do not run update-mime-database after install [default=no]])])

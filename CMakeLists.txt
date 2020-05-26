@@ -7,6 +7,7 @@ option(BUILD_SHARED_LIBS "Build shared library, disable for building the static 
 option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended)" OFF)
 option(DISABLE_XML "Disable XML reading support (expat)" OFF)
 option(DISABLE_UPDATE_MIMEDB "Do not run update-mime-database after install" OFF)
+option(DISABLE_TOOLS "Do not build and install the tools" OFF)
 
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
@@ -374,3 +375,18 @@ foreach(i ${BENCH_FILES})
 	add_executable(bench_${name} ${i})
 	target_link_libraries(bench_${name} lcf)
 endforeach()
+
+# tools
+if(NOT DISABLE_TOOLS)
+	add_custom_target(tools)
+	add_dependencies(tools lcf)
+	if(NOT DISABLE_XML)
+		list(APPEND TOOLS lcf2xml)
+	endif()
+	foreach(tool ${TOOLS})
+		add_executable(${tool} tools/${tool}.cpp)
+		target_link_libraries(${tool} lcf)
+		add_dependencies(tools ${tool})
+		install(TARGETS ${tool} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+	endforeach()
+endif()
