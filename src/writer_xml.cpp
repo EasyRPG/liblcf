@@ -9,9 +9,6 @@
 
 #include <ostream>
 #include <vector>
-#if defined(__amigaos4__) && defined(__NEWLIB__) && defined(__STRICT_ANSI__)
-#define snprintf(str, size, format, ...) sprintf((str), (format), __VA_ARGS__)
-#endif
 
 #include "lcf/writer_xml.h"
 
