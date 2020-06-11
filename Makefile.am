@@ -148,6 +148,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_encounter.cpp \
 	src/generated/rpg_enemy.cpp \
 	src/generated/rpg_enemyaction.cpp \
+	src/generated/rpg_enums.cpp \
 	src/generated/rpg_equipment.cpp \
 	src/generated/rpg_event.cpp \
 	src/generated/rpg_eventcommand.cpp \
