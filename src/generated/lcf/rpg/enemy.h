@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 #include "lcf/rpg/enemyaction.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Enemy class.
@@ -76,6 +78,8 @@ namespace rpg {
 	inline bool operator!=(const Enemy& l, const Enemy& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Enemy& obj);
 } // namespace rpg
 } // namespace lcf
 

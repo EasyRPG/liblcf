@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveTarget class.
@@ -41,6 +43,8 @@ namespace rpg {
 	inline bool operator!=(const SaveTarget& l, const SaveTarget& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveTarget& obj);
 } // namespace rpg
 } // namespace lcf
 

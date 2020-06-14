@@ -16,6 +16,8 @@
 #include <stdint.h>
 #include <vector>
 #include "lcf/rpg/saveeventexecframe.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveEventExecState class.
@@ -76,6 +78,8 @@ namespace rpg {
 	inline bool operator!=(const SaveEventExecState& l, const SaveEventExecState& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveEventExecState& obj);
 } // namespace rpg
 } // namespace lcf
 

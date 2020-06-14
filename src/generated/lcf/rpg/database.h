@@ -33,6 +33,8 @@
 #include "lcf/rpg/terrain.h"
 #include "lcf/rpg/troop.h"
 #include "lcf/rpg/variable.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Database class.
@@ -88,6 +90,8 @@ namespace rpg {
 	inline bool operator!=(const Database& l, const Database& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Database& obj);
 } // namespace rpg
 } // namespace lcf
 

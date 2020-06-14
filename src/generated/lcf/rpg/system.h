@@ -20,6 +20,8 @@
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/sound.h"
 #include "lcf/rpg/testbattler.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::System class.
@@ -231,6 +233,34 @@ namespace rpg {
 		bool invert_animations = false;
 		bool show_title = true;
 	};
+	inline std::ostream& operator<<(std::ostream& os, System::FadeOut code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::FadeIn code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::Stretch code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::Font code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::BattleFormation code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::BattleCondition code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, System::EquipmentSetting code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const System& l, const System& r) {
 		return l.ldb_id == r.ldb_id
@@ -293,6 +323,8 @@ namespace rpg {
 	inline bool operator!=(const System& l, const System& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const System& obj);
 } // namespace rpg
 } // namespace lcf
 

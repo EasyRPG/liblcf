@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Chipset class.
@@ -45,6 +47,10 @@ namespace rpg {
 		int32_t animation_type = 0;
 		int32_t animation_speed = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, Chipset::AnimType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const Chipset& l, const Chipset& r) {
 		return l.name == r.name
@@ -59,6 +65,8 @@ namespace rpg {
 	inline bool operator!=(const Chipset& l, const Chipset& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Chipset& obj);
 } // namespace rpg
 } // namespace lcf
 

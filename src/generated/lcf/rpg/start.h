@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Start class.
@@ -54,6 +56,8 @@ namespace rpg {
 	inline bool operator!=(const Start& l, const Start& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Start& obj);
 } // namespace rpg
 } // namespace lcf
 

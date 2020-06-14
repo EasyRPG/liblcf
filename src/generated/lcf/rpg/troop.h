@@ -17,6 +17,8 @@
 #include <vector>
 #include "lcf/rpg/troopmember.h"
 #include "lcf/rpg/trooppage.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Troop class.
@@ -46,6 +48,8 @@ namespace rpg {
 	inline bool operator!=(const Troop& l, const Troop& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Troop& obj);
 } // namespace rpg
 } // namespace lcf
 

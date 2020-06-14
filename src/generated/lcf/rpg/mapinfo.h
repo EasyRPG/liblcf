@@ -20,6 +20,8 @@
 #include "lcf/rpg/encounter.h"
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/rect.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::MapInfo class.
@@ -78,6 +80,18 @@ namespace rpg {
 		int32_t encounter_steps = 25;
 		Rect area_rect;
 	};
+	inline std::ostream& operator<<(std::ostream& os, MapInfo::MusicType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, MapInfo::BGMType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, MapInfo::TriState code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const MapInfo& l, const MapInfo& r) {
 		return l.name == r.name
@@ -102,6 +116,8 @@ namespace rpg {
 	inline bool operator!=(const MapInfo& l, const MapInfo& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const MapInfo& obj);
 } // namespace rpg
 } // namespace lcf
 

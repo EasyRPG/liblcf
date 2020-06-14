@@ -14,6 +14,8 @@
 
 // Headers
 #include <string>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Terms class.
@@ -284,6 +286,8 @@ namespace rpg {
 	inline bool operator!=(const Terms& l, const Terms& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Terms& obj);
 } // namespace rpg
 } // namespace lcf
 

@@ -14,6 +14,8 @@
 
 // Headers
 #include <string>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Switch class.
@@ -33,6 +35,8 @@ namespace rpg {
 	inline bool operator!=(const Switch& l, const Switch& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Switch& obj);
 } // namespace rpg
 } // namespace lcf
 

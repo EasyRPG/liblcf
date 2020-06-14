@@ -17,6 +17,8 @@
 #include <stdint.h>
 #include <string>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveVehicleLocation class.
@@ -44,6 +46,10 @@ namespace rpg {
 		std::string orig_sprite_name;
 		int32_t orig_sprite_id = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SaveVehicleLocation::VehicleType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
 		return l.vehicle == r.vehicle
@@ -56,6 +62,8 @@ namespace rpg {
 	inline bool operator!=(const SaveVehicleLocation& l, const SaveVehicleLocation& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveVehicleLocation& obj);
 } // namespace rpg
 } // namespace lcf
 

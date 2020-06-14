@@ -17,6 +17,8 @@
 #include <stdint.h>
 #include "lcf/rpg/event.h"
 #include "lcf/rpg/saveeventexecstate.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapEvent class.
@@ -43,6 +45,8 @@ namespace rpg {
 	inline bool operator!=(const SaveMapEvent& l, const SaveMapEvent& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveMapEvent& obj);
 } // namespace rpg
 } // namespace lcf
 

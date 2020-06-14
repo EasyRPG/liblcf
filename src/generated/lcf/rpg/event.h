@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 #include "lcf/rpg/eventpage.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Event class.
@@ -42,6 +44,8 @@ namespace rpg {
 	inline bool operator!=(const Event& l, const Event& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Event& obj);
 } // namespace rpg
 } // namespace lcf
 

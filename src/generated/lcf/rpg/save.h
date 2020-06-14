@@ -28,6 +28,8 @@
 #include "lcf/rpg/savetarget.h"
 #include "lcf/rpg/savetitle.h"
 #include "lcf/rpg/savevehiclelocation.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Save class.
@@ -77,6 +79,8 @@ namespace rpg {
 	inline bool operator!=(const Save& l, const Save& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Save& obj);
 } // namespace rpg
 } // namespace lcf
 

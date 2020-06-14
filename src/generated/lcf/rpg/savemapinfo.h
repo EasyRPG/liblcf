@@ -19,6 +19,8 @@
 #include "lcf/rpg/map.h"
 #include "lcf/rpg/mapinfo.h"
 #include "lcf/rpg/savemapevent.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapInfo class.
@@ -69,6 +71,8 @@ namespace rpg {
 	inline bool operator!=(const SaveMapInfo& l, const SaveMapInfo& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveMapInfo& obj);
 } // namespace rpg
 } // namespace lcf
 

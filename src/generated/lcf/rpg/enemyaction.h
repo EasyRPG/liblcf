@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::EnemyAction class.
@@ -89,6 +91,18 @@ namespace rpg {
 		int32_t switch_off_id = 1;
 		int32_t rating = 50;
 	};
+	inline std::ostream& operator<<(std::ostream& os, EnemyAction::Kind code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EnemyAction::Basic code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EnemyAction::ConditionType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const EnemyAction& l, const EnemyAction& r) {
 		return l.kind == r.kind
@@ -109,6 +123,8 @@ namespace rpg {
 	inline bool operator!=(const EnemyAction& l, const EnemyAction& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const EnemyAction& obj);
 } // namespace rpg
 } // namespace lcf
 

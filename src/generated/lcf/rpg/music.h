@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Music class.
@@ -41,6 +43,8 @@ namespace rpg {
 	inline bool operator!=(const Music& l, const Music& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Music& obj);
 } // namespace rpg
 } // namespace lcf
 

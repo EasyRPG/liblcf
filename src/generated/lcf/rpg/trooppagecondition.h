@@ -15,6 +15,8 @@
 // Headers
 #include <array>
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::TroopPageCondition class.
@@ -75,6 +77,8 @@ namespace rpg {
 		return !(l == r);
 	}
 
+	std::ostream& operator<<(std::ostream& os, const TroopPageCondition::Flags& obj);
+
 	inline bool operator==(const TroopPageCondition& l, const TroopPageCondition& r) {
 		return l.flags == r.flags
 		&& l.switch_a_id == r.switch_a_id
@@ -104,6 +108,8 @@ namespace rpg {
 	inline bool operator!=(const TroopPageCondition& l, const TroopPageCondition& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const TroopPageCondition& obj);
 } // namespace rpg
 } // namespace lcf
 

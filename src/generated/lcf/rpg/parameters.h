@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include <vector>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Parameters class.
@@ -44,6 +46,8 @@ namespace rpg {
 	inline bool operator!=(const Parameters& l, const Parameters& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Parameters& obj);
 } // namespace rpg
 } // namespace lcf
 

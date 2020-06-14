@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include <string>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveTitle class.
@@ -55,6 +57,8 @@ namespace rpg {
 	inline bool operator!=(const SaveTitle& l, const SaveTitle& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveTitle& obj);
 } // namespace rpg
 } // namespace lcf
 

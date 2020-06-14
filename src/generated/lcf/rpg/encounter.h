@@ -11,6 +11,8 @@
 
 #ifndef LCF_RPG_ENCOUNTER_H
 #define LCF_RPG_ENCOUNTER_H
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Encounter class.
@@ -30,6 +32,8 @@ namespace rpg {
 	inline bool operator!=(const Encounter& l, const Encounter& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Encounter& obj);
 } // namespace rpg
 } // namespace lcf
 

@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Rect class.
@@ -38,6 +40,8 @@ namespace rpg {
 	inline bool operator!=(const Rect& l, const Rect& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Rect& obj);
 } // namespace rpg
 } // namespace lcf
 

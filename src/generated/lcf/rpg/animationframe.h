@@ -15,6 +15,8 @@
 // Headers
 #include <vector>
 #include "lcf/rpg/animationcelldata.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::AnimationFrame class.
@@ -34,6 +36,8 @@ namespace rpg {
 	inline bool operator!=(const AnimationFrame& l, const AnimationFrame& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const AnimationFrame& obj);
 } // namespace rpg
 } // namespace lcf
 

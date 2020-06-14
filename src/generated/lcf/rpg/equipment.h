@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Equipment class.
@@ -40,6 +42,8 @@ namespace rpg {
 	inline bool operator!=(const Equipment& l, const Equipment& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Equipment& obj);
 } // namespace rpg
 } // namespace lcf
 

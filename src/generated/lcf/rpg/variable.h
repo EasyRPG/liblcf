@@ -14,6 +14,8 @@
 
 // Headers
 #include <string>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Variable class.
@@ -33,6 +35,8 @@ namespace rpg {
 	inline bool operator!=(const Variable& l, const Variable& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Variable& obj);
 } // namespace rpg
 } // namespace lcf
 

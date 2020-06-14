@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::TestBattler class.
@@ -45,6 +47,8 @@ namespace rpg {
 	inline bool operator!=(const TestBattler& l, const TestBattler& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const TestBattler& obj);
 } // namespace rpg
 } // namespace lcf
 

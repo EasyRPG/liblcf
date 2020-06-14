@@ -16,6 +16,8 @@
 #include <vector>
 #include "lcf/rpg/eventcommand.h"
 #include "lcf/rpg/trooppagecondition.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::TroopPage class.
@@ -37,6 +39,8 @@ namespace rpg {
 	inline bool operator!=(const TroopPage& l, const TroopPage& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const TroopPage& obj);
 } // namespace rpg
 } // namespace lcf
 

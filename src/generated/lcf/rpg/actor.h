@@ -19,6 +19,8 @@
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Actor class.
@@ -99,6 +101,8 @@ namespace rpg {
 	inline bool operator!=(const Actor& l, const Actor& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Actor& obj);
 } // namespace rpg
 } // namespace lcf
 

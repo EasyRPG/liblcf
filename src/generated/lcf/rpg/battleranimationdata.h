@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::BattlerAnimationData class.
@@ -49,6 +51,14 @@ namespace rpg {
 		int32_t after_image = 0;
 		int32_t pose = -1;
 	};
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationData::Movement code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationData::AfterImage code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const BattlerAnimationData& l, const BattlerAnimationData& r) {
 		return l.move == r.move
@@ -59,6 +69,8 @@ namespace rpg {
 	inline bool operator!=(const BattlerAnimationData& l, const BattlerAnimationData& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj);
 } // namespace rpg
 } // namespace lcf
 

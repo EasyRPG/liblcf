@@ -17,6 +17,8 @@
 #include <string>
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/moveroute.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveMapEventBase class.
@@ -111,6 +113,8 @@ namespace rpg {
 	inline bool operator!=(const SaveMapEventBase& l, const SaveMapEventBase& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj);
 } // namespace rpg
 } // namespace lcf
 

@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SavePanorama class.
@@ -34,6 +36,8 @@ namespace rpg {
 	inline bool operator!=(const SavePanorama& l, const SavePanorama& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SavePanorama& obj);
 } // namespace rpg
 } // namespace lcf
 

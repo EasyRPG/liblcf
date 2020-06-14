@@ -17,6 +17,8 @@
 #include <stdint.h>
 #include <string>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SavePicture class.
@@ -134,6 +136,18 @@ namespace rpg {
 		double current_rotation = 0.0;
 		int32_t current_waver = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SavePicture::Effect code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SavePicture::MapLayer code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SavePicture::BattleLayer code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SavePicture::Flags& l, const SavePicture::Flags& r) {
 		return l.flags == r.flags;
@@ -142,6 +156,8 @@ namespace rpg {
 	inline bool operator!=(const SavePicture::Flags& l, const SavePicture::Flags& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SavePicture::Flags& obj);
 
 	inline bool operator==(const SavePicture& l, const SavePicture& r) {
 		return l.name == r.name
@@ -187,6 +203,8 @@ namespace rpg {
 	inline bool operator!=(const SavePicture& l, const SavePicture& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SavePicture& obj);
 } // namespace rpg
 } // namespace lcf
 

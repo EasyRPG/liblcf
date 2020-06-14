@@ -18,6 +18,8 @@
 #include <vector>
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Class class.
@@ -63,6 +65,8 @@ namespace rpg {
 	inline bool operator!=(const Class& l, const Class& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Class& obj);
 } // namespace rpg
 } // namespace lcf
 

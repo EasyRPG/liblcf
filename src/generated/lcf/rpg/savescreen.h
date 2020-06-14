@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveScreen class.
@@ -90,6 +92,8 @@ namespace rpg {
 	inline bool operator!=(const SaveScreen& l, const SaveScreen& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveScreen& obj);
 } // namespace rpg
 } // namespace lcf
 

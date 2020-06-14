@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::Learning class.
@@ -35,6 +37,8 @@ namespace rpg {
 	inline bool operator!=(const Learning& l, const Learning& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Learning& obj);
 } // namespace rpg
 } // namespace lcf
 

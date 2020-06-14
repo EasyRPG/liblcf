@@ -335,6 +335,9 @@ def needs_ctor(struct_name):
     return struct_name in setup and any('Init()' in method
                                     for method, hdrs in setup[struct_name])
 
+def type_is_array(ty):
+    return re.match(r'(Vector|Array)<(.*)>', ty)
+
 def is_monotonic_from_0(enum):
     expected = 0
     for (val, idx) in enum:
@@ -387,14 +390,6 @@ def generate():
                         type=filetype
                     ))
 
-                if needs_ctor(struct.name) or struct.name in constants:
-                    filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
-                    with openToRender(filepath) as f:
-                        f.write(rpg_source_tmpl.render(
-                            struct_name=struct.name,
-                            struct_base=struct.base,
-                            filename=filename
-                        ))
 
             filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
             with openToRender(filepath) as f:
@@ -402,6 +397,14 @@ def generate():
                     struct_name=struct.name,
                     struct_base=struct.base,
                     has_id=struct.hasid
+                ))
+
+            filepath = os.path.join(tmp_dir, 'rpg_%s.cpp' % filename)
+            with openToRender(filepath) as f:
+                f.write(rpg_source_tmpl.render(
+                    struct_name=struct.name,
+                    struct_base=struct.base,
+                    filename=filename
                 ))
 
             if struct.name in flags:
@@ -459,6 +462,7 @@ def main(argv):
     env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor
     env.tests['monotonic_from_0'] = is_monotonic_from_0
+    env.tests['is_array'] = type_is_array
 
     globals = dict(
         structs=structs,

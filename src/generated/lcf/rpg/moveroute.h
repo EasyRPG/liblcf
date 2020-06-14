@@ -15,6 +15,8 @@
 // Headers
 #include <vector>
 #include "lcf/rpg/movecommand.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::MoveRoute class.
@@ -37,6 +39,8 @@ namespace rpg {
 	inline bool operator!=(const MoveRoute& l, const MoveRoute& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const MoveRoute& obj);
 } // namespace rpg
 } // namespace lcf
 

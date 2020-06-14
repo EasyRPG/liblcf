@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::AnimationCellData class.
@@ -51,6 +53,8 @@ namespace rpg {
 	inline bool operator!=(const AnimationCellData& l, const AnimationCellData& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const AnimationCellData& obj);
 } // namespace rpg
 } // namespace lcf
 

@@ -17,6 +17,8 @@
 #include <string>
 #include <vector>
 #include "lcf/enum_tags.h"
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveActor class.
@@ -68,6 +70,10 @@ namespace rpg {
 		bool super_guard = false;
 		int32_t battler_animation = 0;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SaveActor::RowType code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SaveActor& l, const SaveActor& r) {
 		return l.name == r.name
@@ -104,6 +110,8 @@ namespace rpg {
 	inline bool operator!=(const SaveActor& l, const SaveActor& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveActor& obj);
 } // namespace rpg
 } // namespace lcf
 

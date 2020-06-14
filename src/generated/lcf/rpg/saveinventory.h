@@ -15,6 +15,8 @@
 // Headers
 #include <stdint.h>
 #include <vector>
+#include <ostream>
+#include <type_traits>
 
 /**
  * rpg::SaveInventory class.
@@ -70,6 +72,8 @@ namespace rpg {
 	inline bool operator!=(const SaveInventory& l, const SaveInventory& r) {
 		return !(l == r);
 	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveInventory& obj);
 } // namespace rpg
 } // namespace lcf
 
