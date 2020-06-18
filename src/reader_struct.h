@@ -648,12 +648,10 @@ private:
 	static const std::array<const char* const, num_flags> flag_names;
 	static const std::array<bool, num_flags> flags_is2k3;
 
+public:
 	static const char* tag(int idx);
 	static int idx(const char* tag);
 
-	template <class T> friend class FlagsXmlHandler;
-
-public:
 	static void ReadLcf(S& obj, LcfReader& stream, uint32_t length);
 	static void WriteLcf(const S& obj, LcfWriter& stream);
 	static int LcfSize(const S& obj, LcfWriter& stream);
