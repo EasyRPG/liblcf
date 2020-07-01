@@ -198,8 +198,6 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_trooppagecondition.cpp \
 	src/generated/rpg_variable.cpp
 
-nodist_lcfinclude_HEADERS = autogen/lcf/config.h
-
 lcfinclude_HEADERS = \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
@@ -298,6 +296,8 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/trooppage.h \
 	src/generated/lcf/rpg/trooppagecondition.h \
 	src/generated/lcf/rpg/variable.h
+
+nodist_lcfinclude_HEADERS = autogen/lcf/config.h
 
 check_PROGRAMS = test_runner
 test_runner_SOURCES = \

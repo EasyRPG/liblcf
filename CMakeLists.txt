@@ -33,8 +33,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # lcf library files
 add_library(lcf)
 
-target_sources(lcf
-	PRIVATE
+set(LCF_SOURCES
 	src/data.cpp
 	src/encoder.cpp
 	src/ini.cpp
@@ -191,7 +190,7 @@ target_sources(lcf
 	src/generated/rpg_trooppage.cpp
 	src/generated/rpg_trooppagecondition.cpp
 	src/generated/rpg_variable.cpp
-	)
+)
 
 set(LCF_HEADERS
 	src/lcf/data.h
@@ -283,10 +282,11 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/variable.h
 )
 
+list(TRANSFORM LCF_SOURCES PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
 list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
 list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
-target_sources(lcf PUBLIC ${LCF_HEADERS})
+target_sources(lcf PRIVATE ${LCF_SOURCES} PUBLIC ${LCF_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
