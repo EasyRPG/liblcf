@@ -50,9 +50,9 @@ set(LCF_SOURCES
 	src/lsd_reader.cpp
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
-	src/reader_util.cpp
 	src/reader_struct.h
 	src/reader_struct_impl.h
+	src/reader_util.cpp
 	src/reader_xml.cpp
 	src/rpg_fixup.cpp
 	src/rpg_setup.cpp
@@ -199,17 +199,17 @@ set(LCF_HEADERS
 	src/lcf/flag_set.h
 	src/lcf/ini.h
 	src/lcf/inireader.h
-	src/lcf/saveopt.h
-	src/lcf/reader_lcf.h
-	src/lcf/reader_util.h
-	src/lcf/reader_xml.h
-	src/lcf/scope_guard.h
-	src/lcf/writer_lcf.h
-	src/lcf/writer_xml.h
 	src/lcf/ldb/reader.h
 	src/lcf/lmt/reader.h
 	src/lcf/lmu/reader.h
 	src/lcf/lsd/reader.h
+	src/lcf/reader_lcf.h
+	src/lcf/reader_util.h
+	src/lcf/reader_xml.h
+	src/lcf/saveopt.h
+	src/lcf/scope_guard.h
+	src/lcf/writer_lcf.h
+	src/lcf/writer_xml.h
 	src/generated/lcf/ldb/chunks.h
 	src/generated/lcf/lmt/chunks.h
 	src/generated/lcf/lmu/chunks.h
