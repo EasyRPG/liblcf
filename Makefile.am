@@ -57,19 +57,15 @@ liblcf_la_SOURCES = \
 	src/lsd_reader.cpp \
 	src/reader_flags.cpp \
 	src/reader_lcf.cpp \
-	src/reader_util.cpp \
 	src/reader_struct.h \
 	src/reader_struct_impl.h \
+	src/reader_util.cpp \
 	src/reader_xml.cpp \
 	src/rpg_fixup.cpp \
 	src/rpg_setup.cpp \
 	src/writer_lcf.cpp \
 	src/writer_xml.cpp \
 	src/generated/fwd_struct_impl.h \
-	src/generated/ldb_terrain_flags.h \
-	src/generated/ldb_trooppagecondition_flags.h \
-	src/generated/lmu_eventpagecondition_flags.h \
-	src/generated/lsd_savepicture_flags.h \
 	src/generated/ldb_actor.cpp \
 	src/generated/ldb_animation.cpp \
 	src/generated/ldb_animationcelldata.cpp \
@@ -98,11 +94,13 @@ liblcf_la_SOURCES = \
 	src/generated/ldb_system.cpp \
 	src/generated/ldb_terms.cpp \
 	src/generated/ldb_terrain.cpp \
+	src/generated/ldb_terrain_flags.h \
 	src/generated/ldb_testbattler.cpp \
 	src/generated/ldb_troop.cpp \
 	src/generated/ldb_troopmember.cpp \
 	src/generated/ldb_trooppage.cpp \
 	src/generated/ldb_trooppagecondition.cpp \
+	src/generated/ldb_trooppagecondition_flags.h \
 	src/generated/ldb_variable.cpp \
 	src/generated/lmt_encounter.cpp \
 	src/generated/lmt_mapinfo.cpp \
@@ -110,6 +108,7 @@ liblcf_la_SOURCES = \
 	src/generated/lmu_event.cpp \
 	src/generated/lmu_eventpage.cpp \
 	src/generated/lmu_eventpagecondition.cpp \
+	src/generated/lmu_eventpagecondition_flags.h \
 	src/generated/lmu_map.cpp \
 	src/generated/lmu_moveroute.cpp \
 	src/generated/lsd_save.cpp \
@@ -125,6 +124,7 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_savepanorama.cpp \
 	src/generated/lsd_savepartylocation.cpp \
 	src/generated/lsd_savepicture.cpp \
+	src/generated/lsd_savepicture_flags.h \
 	src/generated/lsd_savescreen.cpp \
 	src/generated/lsd_savesystem.cpp \
 	src/generated/lsd_savetarget.cpp \
@@ -198,8 +198,6 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_trooppagecondition.cpp \
 	src/generated/rpg_variable.cpp
 
-nodist_lcfinclude_HEADERS = autogen/lcf/config.h
-
 lcfinclude_HEADERS = \
 	src/lcf/data.h \
 	src/lcf/encoder.h \
@@ -207,10 +205,10 @@ lcfinclude_HEADERS = \
 	src/lcf/flag_set.h \
 	src/lcf/ini.h \
 	src/lcf/inireader.h \
-	src/lcf/saveopt.h \
 	src/lcf/reader_lcf.h \
 	src/lcf/reader_util.h \
 	src/lcf/reader_xml.h \
+	src/lcf/saveopt.h \
 	src/lcf/scope_guard.h \
 	src/lcf/writer_lcf.h \
 	src/lcf/writer_xml.h
@@ -298,6 +296,8 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/trooppage.h \
 	src/generated/lcf/rpg/trooppagecondition.h \
 	src/generated/lcf/rpg/variable.h
+
+nodist_lcfinclude_HEADERS = autogen/lcf/config.h
 
 check_PROGRAMS = test_runner
 test_runner_SOURCES = \

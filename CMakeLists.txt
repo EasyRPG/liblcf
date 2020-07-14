@@ -33,8 +33,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # lcf library files
 add_library(lcf)
 
-target_sources(lcf
-	PRIVATE
+set(LCF_SOURCES
 	src/data.cpp
 	src/encoder.cpp
 	src/ini.cpp
@@ -51,9 +50,9 @@ target_sources(lcf
 	src/lsd_reader.cpp
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
-	src/reader_util.cpp
 	src/reader_struct.h
 	src/reader_struct_impl.h
+	src/reader_util.cpp
 	src/reader_xml.cpp
 	src/rpg_fixup.cpp
 	src/rpg_setup.cpp
@@ -191,7 +190,7 @@ target_sources(lcf
 	src/generated/rpg_trooppage.cpp
 	src/generated/rpg_trooppagecondition.cpp
 	src/generated/rpg_variable.cpp
-	)
+)
 
 set(LCF_HEADERS
 	src/lcf/data.h
@@ -200,17 +199,17 @@ set(LCF_HEADERS
 	src/lcf/flag_set.h
 	src/lcf/ini.h
 	src/lcf/inireader.h
-	src/lcf/saveopt.h
-	src/lcf/reader_lcf.h
-	src/lcf/reader_util.h
-	src/lcf/reader_xml.h
-	src/lcf/scope_guard.h
-	src/lcf/writer_lcf.h
-	src/lcf/writer_xml.h
 	src/lcf/ldb/reader.h
 	src/lcf/lmt/reader.h
 	src/lcf/lmu/reader.h
 	src/lcf/lsd/reader.h
+	src/lcf/reader_lcf.h
+	src/lcf/reader_util.h
+	src/lcf/reader_xml.h
+	src/lcf/saveopt.h
+	src/lcf/scope_guard.h
+	src/lcf/writer_lcf.h
+	src/lcf/writer_xml.h
 	src/generated/lcf/ldb/chunks.h
 	src/generated/lcf/lmt/chunks.h
 	src/generated/lcf/lmu/chunks.h
@@ -283,18 +282,19 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/variable.h
 )
 
+list(TRANSFORM LCF_SOURCES PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
 list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
 list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
-target_sources(lcf PUBLIC ${LCF_HEADERS})
+target_sources(lcf PRIVATE ${LCF_SOURCES} PUBLIC ${LCF_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG)
 	string(TOLOWER ${SG} LSG)
 	source_group("Source Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/${LSG}_.*\\.cpp")
-	source_group("Header Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/${LSG}_.*\\.h")
+	source_group("Header Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/lcf/${LSG}/.*\\.h")
 	source_group("Source Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.cpp")
-	source_group("Header Files\\${SG}" REGULAR_EXPRESSION "${LSG}_.*\\.h")
+	source_group("Header Files\\${SG}" REGULAR_EXPRESSION "/${LSG}/.*\\.h")
 endforeach()
 
 # includes

@@ -2,7 +2,7 @@
 
 # sources2buildsystem.pl - maintainer utility script to keep the
 # source/header file list for our build systems organized and up-to-date.
-# by carstene1ns 2018, released under the MIT license
+# by carstene1ns 2018-2020, released under the MIT license
 
 use strict;
 use warnings;
@@ -19,23 +19,29 @@ find(\&wanted, "src");
 my @generated = grep(/\/generated\//, @files);
 my @others = grep(!/\/generated\//, @files);
 @files = (@others, @generated);
+my @sources = grep( /(\.cpp|_flags\.h|_impl\.h|src\/[^\/]*\.h)$/, @files);
+my @headers = grep(!/(\.cpp|_flags\.h|_impl\.h|src\/[^\/]*\.h)$/, @files);
 
 # cmake
-my $files_formatted = format_files(0, @files);
+my $sources_formatted = format_files(0, @sources);
+my $headers_formatted = format_files(0, @headers);
 my $buildsystem_file = "CMakeLists.txt";
 my $data = slurp($buildsystem_file);
-$data =~ s/^(add_library\(lcf\n).*?(\n\))$/$1$files_formatted$2/sm;
+$data =~ s/(?<=^set\(LCF_SOURCES\n).*?(?=\n\)$)/$sources_formatted/sm;
+$data =~ s/(?<=^set\(LCF_HEADERS\n).*?(?=\n\)$)/$headers_formatted/sm;
 burp($buildsystem_file, $data);
 
 # autotools (needs split)
-my @headers = grep(/\.h$/, @files);
-my @sources = grep(/\.cpp$/, @files);
-my $sources_formatted = format_files(1, @sources);
-my $headers_formatted = format_files(1, @headers);
+$sources_formatted = format_files(1, @sources);
+$headers_formatted = format_files(1, grep(!/\/(ldb|lmt|lmu|lsd|rpg)\//, @headers));
 $buildsystem_file = "Makefile.am";
 $data = slurp($buildsystem_file);
-$data =~ s/^(liblcf_la_SOURCES = \\\n).*?\.cpp$/$1$sources_formatted/sm;
-$data =~ s/^(pkginclude_HEADERS = \\\n).*?\.h$/$1$headers_formatted/sm;
+$data =~ s/(?<=^liblcf_la_SOURCES = \\\n).*?\.cpp$/$sources_formatted/sm;
+$data =~ s/(?<=^lcfinclude_HEADERS = \\\n).*?\.h$/$headers_formatted/sm;
+foreach my $hg ("ldb", "lmt", "lmu", "lsd", "rpg") {
+	my $h = format_files(1, grep(/\/$hg\//, @headers));
+	$data =~ s/(?<=^lcf${hg}include_HEADERS = \\\n).*?\.h$/$h/sm;
+}
 burp($buildsystem_file, $data);
 
 print "done.\n";
