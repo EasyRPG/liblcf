@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::MapInfo>::name = "MapInfo";
-static TypedField<rpg::MapInfo, std::string> static_name(
+static TypedField<rpg::MapInfo, DBString> static_name(
 	&rpg::MapInfo::name,
 	LMT_Reader::ChunkMapInfo::name,
 	"name",

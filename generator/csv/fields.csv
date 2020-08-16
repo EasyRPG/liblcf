@@ -598,7 +598,7 @@ Database,classes,f,Array<Class>,0x1E,,1,1,rpg::Class - RPG2003
 Database,classD1,f,EmptyBlock,0x1F,,1,1,Duplicated? - Not used - RPG2003
 Database,battleranimations,f,Array<BattlerAnimation>,0x20,,1,1,rpg::BattlerAnimation - RPG2003
 Encounter,troop_id,f,Ref<Troop>,0x01,0,0,0,Integer
-MapInfo,name,f,String,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
+MapInfo,name,f,DBString,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,0,0,Integer. Used to inherit parent map properties
 MapInfo,indentation,f,Int32,0x03,0,0,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
 MapInfo,type,f,Enum<TreeMap_MapType>,0x04,-1,0,0,Integer

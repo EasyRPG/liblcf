@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/encounter.h"
 #include "lcf/rpg/music.h"
@@ -62,7 +63,7 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t parent_map = 0;
 		int32_t indentation = 0;
 		int32_t type = -1;
