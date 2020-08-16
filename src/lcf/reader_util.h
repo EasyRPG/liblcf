@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include "lcf/string_view.h"
 
 namespace lcf {
 
@@ -43,7 +44,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(const std::string& data);
+	std::string DetectEncoding(StringView data);
 
 	/**
 	 * Detects the encoding based on text analysis and returns a vector with
@@ -63,7 +64,7 @@ namespace ReaderUtil {
 	 *
 	 * @return list of encodings or empty if not detected
 	 */
-	std::vector<std::string> DetectEncodings(const std::string& data);
+	std::vector<std::string> DetectEncodings(StringView data);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -118,7 +119,7 @@ namespace ReaderUtil {
 	 * @param str the string to normalize.
 	 * @return the normalized string.
 	 */
-	std::string Normalize(const std::string &str);
+	std::string Normalize(StringView str);
 
 
 	/**
