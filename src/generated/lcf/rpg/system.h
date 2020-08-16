@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/sound.h"
@@ -178,16 +178,16 @@ namespace rpg {
 		System();
 		void Init();
 		int32_t ldb_id = 0;
-		std::string boat_name;
-		std::string ship_name;
-		std::string airship_name;
+		DBString boat_name;
+		DBString ship_name;
+		DBString airship_name;
 		int32_t boat_index = 0;
 		int32_t ship_index = 0;
 		int32_t airship_index = 0;
-		std::string title_name;
-		std::string gameover_name;
-		std::string system_name;
-		std::string system2_name;
+		DBString title_name;
+		DBString gameover_name;
+		DBString system_name;
+		DBString system2_name;
 		std::vector<int16_t> party;
 		std::vector<int16_t> menu_commands;
 		Music title_music;
@@ -220,7 +220,7 @@ namespace rpg {
 		int32_t font_id = 0;
 		int32_t selected_condition = 0;
 		int32_t selected_hero = 0;
-		std::string battletest_background;
+		DBString battletest_background;
 		std::vector<TestBattler> battletest_data;
 		int32_t save_count = 0;
 		int32_t battletest_terrain = 0;
@@ -229,7 +229,7 @@ namespace rpg {
 		int32_t equipment_setting = 0;
 		int32_t battletest_alt_terrain = -1;
 		bool show_frame = false;
-		std::string frame_name;
+		DBString frame_name;
 		bool invert_animations = false;
 		bool show_title = true;
 	};
