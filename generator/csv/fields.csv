@@ -174,8 +174,8 @@ ItemAnimation,ranged,f,Boolean,0x08,False,0,0,
 ItemAnimation,ranged_anim,f,Int32,0x09,0,0,0,
 ItemAnimation,ranged_speed,f,Enum<ItemAnimation_Speed>,0x0C,0,0,0,
 ItemAnimation,battle_anim,f,Ref<Animation>,0x0D,0,0,0,
-Item,name,f,String,0x01,'',0,0,String
-Item,description,f,String,0x02,'',0,0,String
+Item,name,f,DBString,0x01,'',0,0,String
+Item,description,f,DBString,0x02,'',0,0,String
 Item,type,f,Enum<Item_Type>,0x03,0,1,0,Integer
 Item,price,f,Int32,0x05,0,0,0,Integer
 Item,uses,f,Int32,0x06,1,0,0,Integer
