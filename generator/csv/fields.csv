@@ -71,7 +71,7 @@ Attribute,b_rate,f,Int32,0x0C,200,0,0,Integer
 Attribute,c_rate,f,Int32,0x0D,100,0,0,Integer
 Attribute,d_rate,f,Int32,0x0E,50,0,0,Integer
 Attribute,e_rate,f,Int32,0x0F,0,0,0,Integer
-BattleCommand,name,f,String,0x01,'',1,0,String
+BattleCommand,name,f,DBString,0x01,'',1,0,String
 BattleCommand,type,f,Enum<BattleCommand_Type>,0x02,0,0,0,Integer
 BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,0,0,Integer
 BattleCommands,death_handler_unused,f,Boolean,0x04,0,0,1,Set by the RM2k3 Editor when you enable death handler; but has no effect in RPG_RT.
@@ -88,12 +88,12 @@ BattleCommands,death_teleport_id,f,Ref<Map>,0x1A,1,0,0,Integer
 BattleCommands,death_teleport_x,f,Int32,0x1B,0,0,0,Integer
 BattleCommands,death_teleport_y,f,Int32,0x1C,0,0,0,Integer
 BattleCommands,death_teleport_face,f,Enum<BattleCommands_Facing>,0x1D,0,0,0,Integer
-BattlerAnimationExtension,name,f,String,0x01,'',0,0,String
-BattlerAnimationExtension,battler_name,f,String,0x02,'',0,0,String
+BattlerAnimationExtension,name,f,DBString,0x01,'',0,0,String
+BattlerAnimationExtension,battler_name,f,DBString,0x02,'',0,0,String
 BattlerAnimationExtension,battler_index,f,Int32,0x03,0,0,0,Integer
 BattlerAnimationExtension,animation_type,f,Enum<BattlerAnimationExtension_AnimType>,0x04,0,0,0,Integer
 BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,1,0,0,Integer
-BattlerAnimation,name,f,String,0x01,'',0,0,String
+BattlerAnimation,name,f,DBString,0x01,'',0,0,String
 BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,0,0,0,Integer
 BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - rpg::BattlerAnimationExtension
 BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - rpg::BattlerAnimationExtension
@@ -107,7 +107,7 @@ Chipset,passable_data_lower,f,Vector<UInt8>,0x04,[15]*162,0,0,Array - Bitflag x 
 Chipset,passable_data_upper,f,Vector<UInt8>,0x05,[31]+[15]*143,0,0,Array - Bitflag x 144
 Chipset,animation_type,f,Enum<Chipset_AnimType>,0x0B,0,0,0,Integer
 Chipset,animation_speed,f,Int32,0x0C,0,0,0,Integer
-Class,name,f,String,0x01,'',0,0,String
+Class,name,f,DBString,0x01,'',0,0,String
 Class,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Class,lock_equipment,f,Boolean,0x16,False,0,0,Flag
 Class,auto_battle,f,Boolean,0x17,False,0,0,Flag

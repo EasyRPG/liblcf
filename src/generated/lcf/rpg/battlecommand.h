@@ -13,7 +13,7 @@
 #define LCF_RPG_BATTLECOMMAND_H
 
 // Headers
-#include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -45,7 +45,7 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t type = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattleCommand::Type code) {

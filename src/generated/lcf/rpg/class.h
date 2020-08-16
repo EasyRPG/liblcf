@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
 #include <ostream>
@@ -29,7 +29,7 @@ namespace rpg {
 	class Class {
 	public:
 		int ID = 0;
-		std::string name;
+		DBString name;
 		bool two_weapon = false;
 		bool lock_equipment = false;
 		bool auto_battle = false;

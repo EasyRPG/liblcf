@@ -14,7 +14,7 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -36,8 +36,8 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string battler_name;
+		DBString name;
+		DBString battler_name;
 		int32_t battler_index = 0;
 		int32_t animation_type = 0;
 		int32_t animation_id = 1;
