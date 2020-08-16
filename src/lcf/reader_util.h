@@ -99,7 +99,7 @@ namespace ReaderUtil {
 	 *
 	 * @return the recoded string.
 	 */
-	std::string Recode(const std::string& str_to_encode, const std::string& source_encoding);
+	std::string Recode(StringView str_to_encode, StringView source_encoding);
 
 	/**
 	 * Converts a string between encodings.
@@ -109,9 +109,9 @@ namespace ReaderUtil {
 	 * @param dst_enc the destination encoding.
 	 * @return the recoded string.
 	 */
-	std::string Recode(const std::string& str_to_encode,
-					   const std::string& src_enc,
-					   const std::string& dst_enc);
+	std::string Recode(StringView str_to_encode,
+					   StringView src_enc,
+					   StringView dst_enc);
 
 	/**
 	 * Converts a UTF-8 string to lowercase and then decomposes it.
