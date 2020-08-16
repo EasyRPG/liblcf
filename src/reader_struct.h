@@ -20,6 +20,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
+#include "lcf/dbstring.h"
 #include "lcf/reader_lcf.h"
 #include "lcf/writer_lcf.h"
 #include "lcf/reader_xml.h"
@@ -80,6 +81,7 @@ template <>	struct TypeCategory<int32_t>						{ static const Category::Index val
 template <>	struct TypeCategory<bool>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<double>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<std::string>					{ static const Category::Index value = Category::Primitive; };
+template <>	struct TypeCategory<DBString>						{ static const Category::Index value = Category::Primitive; };
 
 template <class T>
 struct TypeCategory<std::vector<T>> {
@@ -281,6 +283,31 @@ struct Primitive<std::string> {
 		stream.Write(ref);
 	}
 	static void ParseXml(std::string& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
+};
+
+/**
+ * DBString specialization.
+ */
+template <>
+struct Primitive<DBString> {
+	static void ReadLcf(DBString& ref, LcfReader& stream, uint32_t length) {
+		stream.ReadString(ref, length);
+#ifdef LCF_DEBUG_TRACE
+		printf("  %s\n", ref.c_str());
+#endif
+	}
+	static void WriteLcf(const DBString& ref, LcfWriter& stream) {
+		stream.Write(ref);
+	}
+	static int LcfSize(const DBString& ref, LcfWriter& stream) {
+		return stream.Decode(ref).size();
+	}
+	static void WriteXml(const DBString& ref, XmlWriter& stream) {
+		stream.Write(ref);
+	}
+	static void ParseXml(DBString& ref, const std::string& data) {
 		XmlReader::Read(ref, data);
 	}
 };

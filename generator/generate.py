@@ -34,6 +34,7 @@ cpp_types = {
     'Int16': 'int16_t',
     'Int32': 'int32_t',
     'String': 'std::string',
+    'DBString': 'DBString',
 }
 
 # Additional Jinja 2 functions
@@ -163,6 +164,9 @@ int_types = {
 def struct_headers(ty, header_map):
     if ty == 'String':
         return ['<string>']
+
+    if ty == 'DBString':
+        return ['"lcf/dbstring.h"']
 
     if ty in int_types or ty == "DatabaseVersion":
         return ['<stdint.h>']

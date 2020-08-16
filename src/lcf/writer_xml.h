@@ -15,6 +15,7 @@
 #include <memory>
 #include <cstdio>
 #include <stdint.h>
+#include "lcf/string_view.h"
 
 namespace lcf {
 
@@ -122,6 +123,7 @@ protected:
 	template <class T>
 	void WriteVector(const std::vector<T>& val);
 
+	void WriteString(StringView s);
 };
 
 } //namespace lcf

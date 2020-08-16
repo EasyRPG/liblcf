@@ -120,6 +120,13 @@ void LcfWriter::Write(const std::string& _str) {
 	}
 }
 
+void LcfWriter::Write(const DBString& _str) {
+	std::string str = Decode(_str);
+	if (!str.empty()) {
+		Write(&*str.begin(), 1, str.size());
+	}
+}
+
 uint32_t LcfWriter::Tell() {
 	return (uint32_t)stream.tellp();
 }
@@ -132,6 +139,11 @@ std::string LcfWriter::Decode(const std::string& str) {
 	auto copy = str;
 	encoder.Decode(copy);
 	return copy;
+}
+
+std::string LcfWriter::Decode(const DBString& str) {
+	// FIXME: String copy here
+	return Decode(str.to_string());
 }
 
 #ifdef WORDS_BIGENDIAN
