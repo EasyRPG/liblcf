@@ -86,7 +86,7 @@ std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
 	return encodings.front();
 }
 
-std::string ReaderUtil::DetectEncoding(std::string const & data) {
+std::string ReaderUtil::DetectEncoding(StringView data) {
 	std::vector<std::string> encodings = DetectEncodings(data);
 
 	if (encodings.empty()) {
@@ -154,14 +154,14 @@ std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #endif
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(std::string const & data) {
+std::vector<std::string> ReaderUtil::DetectEncodings(StringView data) {
 std::vector<std::string> encodings;
 #if LCF_SUPPORT_ICU
 	if (!data.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		std::string s = data;
+		auto s = std::string(data);
 		ucsdet_setText(detector, s.c_str(), s.length(), &status);
 
 		int32_t matches_count;
@@ -372,9 +372,9 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 #endif
 }
 
-std::string ReaderUtil::Normalize(const std::string &str) {
+std::string ReaderUtil::Normalize(StringView str) {
 #if LCF_SUPPORT_ICU
-	icu::UnicodeString uni = icu::UnicodeString(str.c_str(), "utf-8").toLower();
+	icu::UnicodeString uni = icu::UnicodeString(str.data(), str.length(), "utf-8").toLower();
 	UErrorCode err = U_ZERO_ERROR;
 	std::string res;
 	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
@@ -395,7 +395,7 @@ std::string ReaderUtil::Normalize(const std::string &str) {
 	}
 	return res;
 #else
-	std::string result = str;
+	auto result = std::string(str);
 	std::transform(result.begin(), result.end(), result.begin(), tolower);
 	return result;
 #endif
