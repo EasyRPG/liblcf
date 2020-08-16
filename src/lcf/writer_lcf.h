@@ -107,8 +107,7 @@ public:
 	 * @param str_to_encode UTF-8 string to encode.
 	 * @return native version of string.
 	 */
-	std::string Decode(const std::string& str_to_encode);
-	std::string Decode(const DBString& str_to_encode);
+	std::string Decode(StringView str_to_encode);
 
 private:
 	/** File-stream managed by this Writer. */

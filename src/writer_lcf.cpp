@@ -135,15 +135,10 @@ bool LcfWriter::IsOk() const {
 	return stream.good() && encoder.IsOk();
 }
 
-std::string LcfWriter::Decode(const std::string& str) {
-	auto copy = str;
+std::string LcfWriter::Decode(StringView str) {
+	auto copy = std::string(str);
 	encoder.Decode(copy);
 	return copy;
-}
-
-std::string LcfWriter::Decode(const DBString& str) {
-	// FIXME: String copy here
-	return Decode(str.to_string());
 }
 
 #ifdef WORDS_BIGENDIAN
