@@ -20,7 +20,6 @@
 
 #include "lcf/string_view.h"
 
-
 namespace lcf {
 
 // A read-only string class optimized for database storage.
@@ -36,21 +35,26 @@ class DBString {
 
 		static constexpr size_type npos = size_type(-1);
 
-		constexpr DBString() = default;
-		explicit DBString(const std::string& s) : DBString(s.c_str(), s.size()) {}
-		explicit DBString(StringView s) : DBString(s.data(), s.size()) {}
+		// FIXME: When the allocator constructor is constexpr, this can be also
+		DBString() : DBString(StringView()) {}
+		explicit DBString(StringView s);
+		explicit DBString(const std::string& s) : DBString(StringView(s)) {}
 
 		// Explicit construct for general const char*
-		explicit DBString(const char* s) : DBString(s, std::strlen(s)) {}
+		explicit DBString(const char* s) : DBString(StringView(s)) {}
 		// Implicit constructor to capture string literals
 		template <size_t N>
 			DBString(const char(&literal)[N]) : DBString(StringView(literal)) {}
-		DBString(const char* s, size_t len);
+		DBString(const char* s, size_t len) : DBString(StringView(s, len)) {}
 
-		DBString(const DBString&);
+		DBString(const DBString& o);
 		DBString& operator=(const DBString&);
 		DBString(DBString&&) noexcept;
 		DBString& operator=(DBString&&) noexcept;
+
+		void swap(DBString& o) noexcept {
+			std::swap(_storage, o._storage);
+		}
 
 		~DBString() { _reset(); }
 
@@ -60,7 +64,7 @@ class DBString {
 		char operator[](size_type i) const { return data()[i]; }
 		char front() const { return (*this)[0]; }
 		char back() const { return (*this)[size()-1]; }
-		const char* data() const;
+		const char* data() const { return _storage; }
 		const char* c_str() const { return data(); }
 
 		iterator begin() const { return data(); }
@@ -71,10 +75,15 @@ class DBString {
 
 		bool empty() const { return size() == 0; }
 		size_type size() const;
+
+		static constexpr const char* empty_str() {
+			return _empty_str + sizeof(size_type);
+		}
 	private:
 		void _reset() noexcept;
 	private:
-		char* _storage = nullptr;
+		alignas(size_type) static constexpr char _empty_str[sizeof(size_type)] = {};
+		const char* _storage = empty_str();
 };
 
 // This should be used over the conversion operator, so we can track all dbstr -> str instances
@@ -116,28 +125,24 @@ template <> struct hash<lcf::DBString> {
 namespace lcf {
 
 inline DBString::DBString(DBString&& o) noexcept
-	: _storage(o._storage)
 {
-	o._storage = nullptr;
+	std::swap(_storage, o._storage);
 }
 
 inline DBString& DBString::operator=(DBString&& o) noexcept {
+	return operator=(o);
 	if (this != &o) {
-		if (_storage) {
+		if (!empty()) {
 			_reset();
 		}
 		_storage = o._storage;
-		o._storage = nullptr;
+		o._storage = empty_str();
 	}
 	return *this;
 }
 
-inline const char* DBString::data() const {
-	return _storage ? _storage + sizeof(size_type) : nullptr;
-}
-
 inline DBString::size_type DBString::size() const {
-	return _storage ? *reinterpret_cast<const size_type*>(_storage) : 0;
+	return *(reinterpret_cast<const size_type*>(_storage) - 1);
 }
 
 } // namespace lcf
