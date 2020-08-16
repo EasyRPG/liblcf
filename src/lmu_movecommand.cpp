@@ -114,24 +114,24 @@ int RawStruct<rpg::MoveCommand>::LcfSize(const rpg::MoveCommand& ref, LcfWriter&
 
 void RawStruct<rpg::MoveCommand>::WriteXml(const rpg::MoveCommand& ref, XmlWriter& stream) {
 	stream.BeginElement("MoveCommand");
-	stream.WriteNode<int32_t>("command_id", ref.command_id);
+	stream.WriteNode("command_id", ref.command_id);
 	const auto cmd = static_cast<rpg::MoveCommand::Code>(ref.command_id);
 	switch (cmd) {
 		case rpg::MoveCommand::Code::switch_on:
-			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
+			stream.WriteNode("parameter_a", ref.parameter_a);
 			break;
 		case rpg::MoveCommand::Code::switch_off:
-			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
+			stream.WriteNode("parameter_a", ref.parameter_a);
 			break;
 		case rpg::MoveCommand::Code::change_graphic:
-			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
-			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
+			stream.WriteNode("parameter_string", ref.parameter_string);
+			stream.WriteNode("parameter_a", ref.parameter_a);
 			break;
 		case rpg::MoveCommand::Code::play_sound_effect:
-			stream.WriteNode<std::string>("parameter_string", ref.parameter_string);
-			stream.WriteNode<int32_t>("parameter_a", ref.parameter_a);
-			stream.WriteNode<int32_t>("parameter_b", ref.parameter_b);
-			stream.WriteNode<int32_t>("parameter_c", ref.parameter_c);
+			stream.WriteNode("parameter_string", ref.parameter_string);
+			stream.WriteNode("parameter_a", ref.parameter_a);
+			stream.WriteNode("parameter_b", ref.parameter_b);
+			stream.WriteNode("parameter_c", ref.parameter_c);
 			break;
 		default: break;
 	}
@@ -169,9 +169,9 @@ public:
 	}
 	void CharacterData(XmlReader& /* stream */, const std::string& data) {
 		if (field != NULL)
-			XmlReader::Read<int32_t>(*field, data);
+			XmlReader::Read(*field, data);
 		else if (parameter_string)
-			XmlReader::Read<std::string>(ref.parameter_string, data);
+			XmlReader::Read(ref.parameter_string, data);
 	}
 };
 
