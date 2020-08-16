@@ -15,7 +15,7 @@
 // Headers
 #include <array>
 #include <stdint.h>
-#include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/sound.h"
 #include <ostream>
@@ -50,10 +50,10 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t damage = 0;
 		int32_t encounter_rate = 100;
-		std::string background_name;
+		DBString background_name;
 		bool boat_pass = false;
 		bool ship_pass = false;
 		bool airship_pass = true;
@@ -62,13 +62,13 @@ namespace rpg {
 		Sound footstep;
 		bool on_damage_se = false;
 		int32_t background_type = 0;
-		std::string background_a_name;
+		DBString background_a_name;
 		bool background_a_scrollh = false;
 		bool background_a_scrollv = false;
 		int32_t background_a_scrollh_speed = 0;
 		int32_t background_a_scrollv_speed = 0;
 		bool background_b = false;
-		std::string background_b_name;
+		DBString background_b_name;
 		bool background_b_scrollh = false;
 		bool background_b_scrollv = false;
 		int32_t background_b_scrollh_speed = 0;
