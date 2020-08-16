@@ -123,7 +123,7 @@ Class,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Class,attribute_ranks,t,UInt8,0x49,,0,0,Integer
 Class,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Class,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,0,Array - Uint32
-CommonEvent,name,f,String,0x01,'',0,0,String
+CommonEvent,name,f,DBString,0x01,'',0,0,String
 CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,0,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,0,0,Flag
 CommonEvent,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
@@ -573,8 +573,8 @@ System,show_frame,f,Boolean,0x63,False,0,1,Flag - RPG2003
 System,frame_name,f,DBString,0x64,'',0,1,String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,0,1,Flag - RPG2003
 System,show_title,f,Boolean,0x6F,True,0,1,When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11
-Switch,name,f,String,0x01,'',0,0,String
-Variable,name,f,String,0x01,'',0,0,String
+Switch,name,f,DBString,0x01,'',0,0,String
+Variable,name,f,DBString,0x01,'',0,0,String
 Database,actors,f,Array<Actor>,0x0B,,1,0,rpg::Actor
 Database,skills,f,Array<Skill>,0x0C,,1,0,rpg::Skill
 Database,items,f,Array<Item>,0x0D,,1,0,rpg::Item

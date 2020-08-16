@@ -13,7 +13,7 @@
 #define LCF_RPG_VARIABLE_H
 
 // Headers
-#include <string>
+#include "lcf/dbstring.h"
 #include <ostream>
 #include <type_traits>
 
@@ -25,7 +25,7 @@ namespace rpg {
 	class Variable {
 	public:
 		int ID = 0;
-		std::string name;
+		DBString name;
 	};
 
 	inline bool operator==(const Variable& l, const Variable& r) {

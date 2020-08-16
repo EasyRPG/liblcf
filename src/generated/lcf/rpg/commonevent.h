@@ -13,8 +13,8 @@
 #define LCF_RPG_COMMONEVENT_H
 
 // Headers
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/eventcommand.h"
 #include <ostream>
@@ -34,7 +34,7 @@ namespace rpg {
 		};
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t trigger = 0;
 		bool switch_flag = false;
 		int32_t switch_id = 1;
