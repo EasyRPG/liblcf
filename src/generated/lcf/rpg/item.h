@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/itemanimation.h"
 #include <ostream>
@@ -76,8 +76,8 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string description;
+		DBString name;
+		DBString description;
 		int32_t type = 0;
 		int32_t price = 0;
 		int32_t uses = 1;
