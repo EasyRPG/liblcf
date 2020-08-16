@@ -296,7 +296,7 @@ TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
 TroopPage,condition,f,TroopPageCondition,0x02,,1,0,rpg::TroopPageCondition
 TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - rpg::EventCommand
-Troop,name,f,String,0x01,'',0,0,String
+Troop,name,f,DBString,0x01,'',0,0,String
 Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - rpg::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
 Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
