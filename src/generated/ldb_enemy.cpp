@@ -20,14 +20,14 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Enemy>::name = "Enemy";
-static TypedField<rpg::Enemy, std::string> static_name(
+static TypedField<rpg::Enemy, DBString> static_name(
 	&rpg::Enemy::name,
 	LDB_Reader::ChunkEnemy::name,
 	"name",
 	0,
 	0
 );
-static TypedField<rpg::Enemy, std::string> static_battler_name(
+static TypedField<rpg::Enemy, DBString> static_battler_name(
 	&rpg::Enemy::battler_name,
 	LDB_Reader::ChunkEnemy::battler_name,
 	"battler_name",

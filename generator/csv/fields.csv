@@ -243,8 +243,8 @@ EnemyAction,switch_on_id,f,Ref<Switch>,0x0A,1,0,0,Integer
 EnemyAction,switch_off,f,Boolean,0x0B,False,0,0,Flag
 EnemyAction,switch_off_id,f,Ref<Switch>,0x0C,1,0,0,Integer
 EnemyAction,rating,f,Int32,0x0D,50,0,0,Integer
-Enemy,name,f,String,0x01,'',0,0,String
-Enemy,battler_name,f,String,0x02,'',0,0,String
+Enemy,name,f,DBString,0x01,'',0,0,String
+Enemy,battler_name,f,DBString,0x02,'',0,0,String
 Enemy,battler_hue,f,Int32,0x03,0,0,0,Integer
 Enemy,max_hp,f,Int32,0x04,10,0,0,Integer
 Enemy,max_sp,f,Int32,0x05,10,0,0,Integer
