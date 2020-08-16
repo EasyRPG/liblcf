@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Chipset>::name = "Chipset";
-static TypedField<rpg::Chipset, std::string> static_name(
+static TypedField<rpg::Chipset, DBString> static_name(
 	&rpg::Chipset::name,
 	LDB_Reader::ChunkChipset::name,
 	"name",
