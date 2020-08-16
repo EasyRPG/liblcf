@@ -11,6 +11,7 @@
 #define LCF_READER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbstring.h"
 
 #include <string>
 #include <vector>
@@ -139,6 +140,7 @@ public:
 	 *        Note: The string is converted to UTF-8.
 	 */
 	void ReadString(std::string& ref, size_t size);
+	void ReadString(DBString& ref, size_t size);
 
 	/**
 	 * Checks if the file is readable and if no error occured.

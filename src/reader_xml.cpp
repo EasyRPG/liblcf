@@ -11,6 +11,7 @@
 #include <cstdarg>
 #include "lcf/reader_lcf.h"
 #include "lcf/reader_xml.h"
+#include "lcf/dbstring.h"
 
 // Expat callbacks
 #if LCF_SUPPORT_XML
@@ -178,6 +179,13 @@ void XmlReader::Read<std::string>(std::string& val, const std::string& data) {
 		val.append(1, data[pos] - '\x80');
 		pos++;
 	}
+}
+
+template <>
+void XmlReader::Read<DBString>(DBString& val, const std::string& data) {
+	std::string sval;
+	Read(sval, data);
+	val = DBString(sval);
 }
 
 template <class T>

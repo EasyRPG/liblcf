@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "lcf/writer_xml.h"
+#include "lcf/dbstring.h"
 
 namespace lcf {
 
@@ -65,12 +66,9 @@ void XmlWriter::Write<double>(const double& val) {
 	stream << val;
 }
 
-template <>
-void XmlWriter::Write<std::string>(const std::string& val) {
+void XmlWriter::WriteString(StringView val) {
 	Indent();
-	std::string::const_iterator it;
-	for (it = val.begin(); it != val.end(); it++) {
-		int c = (int) *it;
+	for (auto c: val) {
 		switch (c) {
 			case '<':
 				stream << "&lt;";
@@ -101,6 +99,16 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 				break;
 		}
 	}
+}
+
+template <>
+void XmlWriter::Write<std::string>(const std::string& val) {
+	WriteString(val);
+}
+
+template <>
+void XmlWriter::Write<DBString>(const DBString& val) {
+	WriteString(val);
 }
 
 template <>
@@ -206,6 +214,7 @@ template void XmlWriter::WriteNode<uint32_t>(const std::string& name, const uint
 template void XmlWriter::WriteNode<int32_t>(const std::string& name, const int32_t& val);
 template void XmlWriter::WriteNode<double>(const std::string& name, const double& val);
 template void XmlWriter::WriteNode<std::string>(const std::string& name, const std::string& val);
+template void XmlWriter::WriteNode<DBString>(const std::string& name, const DBString& val);
 
 template void XmlWriter::WriteNode<std::vector<bool>>(const std::string& name, const std::vector<bool>& val);
 template void XmlWriter::WriteNode<std::vector<uint8_t>>(const std::string& name, const std::vector<uint8_t>& val);

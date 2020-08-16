@@ -190,6 +190,13 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 	Encode(ref);
 }
 
+void LcfReader::ReadString(DBString& ref, size_t size) {
+	// FIXME: Relies on short string optimization
+	std::string tmp;
+	ReadString(tmp, size);
+	ref = DBString(tmp);
+}
+
 bool LcfReader::IsOk() const {
 	return stream.good() && encoder.IsOk();
 }
