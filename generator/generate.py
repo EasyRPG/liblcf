@@ -370,6 +370,12 @@ def generate():
 
     filepath = os.path.join(tmp_dir, 'fwd_struct_impl.h')
     with openToRender(filepath) as f:
+        f.write(fwd_struct_tmpl.render(
+            structs=sorted([x.name for x in structs_flat])
+        ))
+
+    filepath = os.path.join(tmp_dir, 'lcf', 'rpg', 'fwd.h')
+    with openToRender(filepath) as f:
         f.write(fwd_tmpl.render(
             structs=sorted([x.name for x in structs_flat])
         ))
@@ -439,7 +445,7 @@ def main(argv):
         os.mkdir(dest_dir)
 
     global structs, sfields, enums, flags, setup, constants, headers
-    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl
+    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
     structs = get_structs('structs.csv','structs_easyrpg.csv')
     sfields = get_fields('fields.csv','fields_easyrpg.csv')
@@ -480,7 +486,8 @@ def main(argv):
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
     enums_tmpl = env.get_template('rpg_enums.tmpl', globals=globals)
-    fwd_tmpl = env.get_template('fwd_header.tmpl', globals=globals)
+    fwd_tmpl = env.get_template('fwd.tmpl', globals=globals)
+    fwd_struct_tmpl = env.get_template('fwd_struct.tmpl', globals=globals)
 
     generate()
 

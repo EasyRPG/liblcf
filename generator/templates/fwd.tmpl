@@ -1,0 +1,13 @@
+{% include "copyright.tmpl" %}
+#ifndef LCF_RPG_FWD_H
+#define LCF_RPG_FWD_H
+
+namespace lcf {
+namespace rpg {
+	{%- for struct in structs %}
+	class {{ struct }};
+	{%- endfor %}
+} // namespace rpg
+} // namespace lcf
+
+#endif

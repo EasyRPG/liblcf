@@ -253,6 +253,7 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/eventcommand.h \
 	src/generated/lcf/rpg/eventpage.h \
 	src/generated/lcf/rpg/eventpagecondition.h \
+	src/generated/lcf/rpg/fwd.h \
 	src/generated/lcf/rpg/item.h \
 	src/generated/lcf/rpg/itemanimation.h \
 	src/generated/lcf/rpg/learning.h \
