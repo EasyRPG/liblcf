@@ -303,10 +303,10 @@ Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
 Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - rpg::TroopPage
-Terrain,name,f,String,0x01,'',0,0,String
+Terrain,name,f,DBString,0x01,'',0,0,String
 Terrain,damage,f,Int32,0x02,0,0,0,Integer
 Terrain,encounter_rate,f,Int32,0x03,100,0,0,Integer
-Terrain,background_name,f,String,0x04,'',0,0,String
+Terrain,background_name,f,DBString,0x04,'',0,0,String
 Terrain,boat_pass,f,Boolean,0x05,False,0,0,Flag
 Terrain,ship_pass,f,Boolean,0x06,False,0,0,Flag
 Terrain,airship_pass,f,Boolean,0x07,True,0,0,Flag
@@ -315,13 +315,13 @@ Terrain,bush_depth,f,Enum<Terrain_BushDepth>,0x0B,0,1,0,Integer
 Terrain,footstep,f,Sound,0x0F,,1,1,rpg::Sound - RPG2003
 Terrain,on_damage_se,f,Boolean,0x10,False,0,1,Flag - RPG2003
 Terrain,background_type,f,Enum<Terrain_BGAssociation>,0x11,0,0,1,Integer - RPG2003
-Terrain,background_a_name,f,String,0x15,'',0,1,String - RPG2003
+Terrain,background_a_name,f,DBString,0x15,'',0,1,String - RPG2003
 Terrain,background_a_scrollh,f,Boolean,0x16,False,0,1,Flag - RPG2003
 Terrain,background_a_scrollv,f,Boolean,0x17,False,0,1,Flag - RPG2003
 Terrain,background_a_scrollh_speed,f,Int32,0x18,0,0,1,Integer - RPG2003
 Terrain,background_a_scrollv_speed,f,Int32,0x19,0,0,1,Integer - RPG2003
 Terrain,background_b,f,Boolean,0x1E,False,0,1,Flag - RPG2003
-Terrain,background_b_name,f,String,0x1F,'',0,1,String - RPG2003
+Terrain,background_b_name,f,DBString,0x1F,'',0,1,String - RPG2003
 Terrain,background_b_scrollh,f,Boolean,0x20,False,0,1,Flag - RPG2003
 Terrain,background_b_scrollv,f,Boolean,0x21,False,0,1,Flag - RPG2003
 Terrain,background_b_scrollh_speed,f,Int32,0x22,0,0,1,Integer - RPG2003
