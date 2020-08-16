@@ -335,7 +335,7 @@ Terrain,grid_location,f,Int32,0x2D,0,0,1,Integer - RPG2003
 Terrain,grid_top_y,f,Int32,0x2E,120,0,1,Integer - RPG2003
 Terrain,grid_elongation,f,Int32,0x2F,392,0,1,Integer - RPG2003
 Terrain,grid_inclination,f,Int32,0x30,16000,0,1,Integer - RPG2003
-State,name,f,String,0x01,'',0,0,String
+State,name,f,DBString,0x01,'',0,0,String
 State,type,f,Enum<State_Persistence>,0x02,0,1,0,Integer
 State,color,f,Int32,0x03,6,0,0,Integer
 State,priority,f,Int32,0x04,50,0,0,Integer
@@ -364,11 +364,11 @@ State,restrict_magic,f,Boolean,0x2B,False,0,0,Flag
 State,restrict_magic_level,f,Int32,0x2C,0,0,0,Integer
 State,hp_change_type,f,Enum<State_ChangeType>,0x2D,0,0,0,Integer
 State,sp_change_type,f,Enum<State_ChangeType>,0x2E,0,0,0,Integer
-State,message_actor,f,String,0x33,'',0,0,String
-State,message_enemy,f,String,0x34,'',0,0,String
-State,message_already,f,String,0x35,'',0,0,String
-State,message_affected,f,String,0x36,'',0,0,String
-State,message_recovery,f,String,0x37,'',0,0,String
+State,message_actor,f,DBString,0x33,'',0,0,String
+State,message_enemy,f,DBString,0x34,'',0,0,String
+State,message_already,f,DBString,0x35,'',0,0,String
+State,message_affected,f,DBString,0x36,'',0,0,String
+State,message_recovery,f,DBString,0x37,'',0,0,String
 State,hp_change_max,f,Int32,0x3D,0,0,0,Integer
 State,hp_change_val,f,Int32,0x3E,0,0,0,Integer
 State,hp_change_map_steps,f,Int32,0x3F,0,0,0,Integer
