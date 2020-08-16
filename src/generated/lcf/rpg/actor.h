@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
@@ -31,16 +31,16 @@ namespace rpg {
 	public:
 		void Setup();
 		int ID = 0;
-		std::string name;
-		std::string title;
-		std::string character_name;
+		DBString name;
+		DBString title;
+		DBString character_name;
 		int32_t character_index = 0;
 		bool transparent = false;
 		int32_t initial_level = 1;
 		int32_t final_level = -1;
 		bool critical_hit = true;
 		int32_t critical_hit_chance = 30;
-		std::string face_name;
+		DBString face_name;
 		int32_t face_index = 0;
 		bool two_weapon = false;
 		bool lock_equipment = false;
@@ -58,7 +58,7 @@ namespace rpg {
 		int32_t battler_animation = 1;
 		std::vector<Learning> skills;
 		bool rename_skill = false;
-		std::string skill_name;
+		DBString skill_name;
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<int32_t> battle_commands;

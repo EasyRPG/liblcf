@@ -37,18 +37,18 @@ void rpg::SaveActor::Fixup(int actor_id) {
 	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
 
 	if (name == "\x1") {
-		name = actor.name;
+		name = ToString(actor.name);
 	}
 	if (title == "\x1") {
-		title = actor.title;
+		title = ToString(actor.title);
 	}
 	if (sprite_name.empty()) {
-		sprite_name = actor.character_name;
+		sprite_name = ToString(actor.character_name);
 		sprite_id = actor.character_index;
 		transparency = actor.transparent ? 3 : 0;
 	}
 	if (face_name.empty()) {
-		face_name = actor.face_name;
+		face_name = ToString(actor.face_name);
 		face_id = actor.face_index;
 	}
 

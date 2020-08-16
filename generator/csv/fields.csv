@@ -1,16 +1,16 @@
 #Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
 Learning,level,f,Int32,0x01,1,0,0,Integer
 Learning,skill_id,f,Ref<Skill>,0x02,1,0,0,Integer
-Actor,name,f,String,0x01,'',0,0,String
-Actor,title,f,String,0x02,'',0,0,String
-Actor,character_name,f,String,0x03,'',0,0,String
+Actor,name,f,DBString,0x01,'',0,0,String
+Actor,title,f,DBString,0x02,'',0,0,String
+Actor,character_name,f,DBString,0x03,'',0,0,String
 Actor,character_index,f,Int32,0x04,0,0,0,Integer
 Actor,transparent,f,Boolean,0x05,False,0,0,Flag
 Actor,initial_level,f,Int32,0x07,1,0,0,Integer
 Actor,final_level,f,Int32,0x08,50|99,0,0,Integer
 Actor,critical_hit,f,Boolean,0x09,True,0,0,Flag
 Actor,critical_hit_chance,f,Int32,0x0A,30,0,0,Integer
-Actor,face_name,f,String,0x0F,,0,0,String
+Actor,face_name,f,DBString,0x0F,,0,0,String
 Actor,face_index,f,Int32,0x10,0,0,0,Integer
 Actor,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Actor,lock_equipment,f,Boolean,0x16,False,0,0,Flag
@@ -28,7 +28,7 @@ Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
 Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
-Actor,skill_name,f,String,0x43,'',0,0,String
+Actor,skill_name,f,DBString,0x43,'',0,0,String
 Actor,state_ranks,t,UInt8,0x47,,0,0,Integer
 Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Actor,attribute_ranks,t,UInt8,0x49,,0,0,Integer
