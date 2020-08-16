@@ -210,6 +210,7 @@ lcfinclude_HEADERS = \
 	src/lcf/reader_xml.h \
 	src/lcf/saveopt.h \
 	src/lcf/scope_guard.h \
+	src/lcf/string_view.h \
 	src/lcf/writer_lcf.h \
 	src/lcf/writer_xml.h
 
