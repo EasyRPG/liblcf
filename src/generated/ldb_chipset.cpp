@@ -27,7 +27,7 @@ static TypedField<rpg::Chipset, DBString> static_name(
 	0,
 	0
 );
-static TypedField<rpg::Chipset, std::string> static_chipset_name(
+static TypedField<rpg::Chipset, DBString> static_chipset_name(
 	&rpg::Chipset::chipset_name,
 	LDB_Reader::ChunkChipset::chipset_name,
 	"chipset_name",
