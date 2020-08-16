@@ -57,8 +57,8 @@ AnimationCellData,tone_blue,f,Int32,0x08,100,0,0,Integer
 AnimationCellData,tone_gray,f,Int32,0x09,100,0,0,Integer
 AnimationCellData,transparency,f,Int32,0x0A,0,0,0,Integer
 AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,1,0,Array - rpg::AnimationCellData
-Animation,name,f,String,0x01,'',0,0,String
-Animation,animation_name,f,String,0x02,'',0,0,String
+Animation,name,f,DBString,0x01,'',0,0,String
+Animation,animation_name,f,DBString,0x02,'',0,0,String
 Animation,large,f,Boolean,0x03,False,0,0,Battle2 animation when true
 Animation,timings,f,Array<AnimationTiming>,0x06,,1,0,Array - rpg::AnimationTiming
 Animation,scope,f,Enum<Animation_Scope>,0x09,0,1,0,Integer
