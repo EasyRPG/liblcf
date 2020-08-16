@@ -64,7 +64,7 @@ Animation,timings,f,Array<AnimationTiming>,0x06,,1,0,Array - rpg::AnimationTimin
 Animation,scope,f,Enum<Animation_Scope>,0x09,0,1,0,Integer
 Animation,position,f,Enum<Animation_Position>,0x0A,2,1,0,Integer
 Animation,frames,f,Array<AnimationFrame>,0x0C,,1,0,Array - rpg::AnimationFrames
-Attribute,name,f,String,0x01,'',0,0,String
+Attribute,name,f,DBString,0x01,'',0,0,String
 Attribute,type,f,Enum<Attribute_Type>,0x02,0,1,0,Integer
 Attribute,a_rate,f,Int32,0x0B,300,0,0,Integer
 Attribute,b_rate,f,Int32,0x0C,200,0,0,Integer
