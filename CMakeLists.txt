@@ -193,6 +193,7 @@ set(LCF_SOURCES
 )
 
 set(LCF_HEADERS
+	src/lcf/compiler.h
 	src/lcf/data.h
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
@@ -208,6 +209,7 @@ set(LCF_HEADERS
 	src/lcf/reader_xml.h
 	src/lcf/saveopt.h
 	src/lcf/scope_guard.h
+	src/lcf/small_vector.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
 	src/generated/lcf/ldb/chunks.h
