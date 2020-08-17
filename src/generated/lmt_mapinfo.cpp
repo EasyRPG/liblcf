@@ -90,7 +90,7 @@ static TypedField<rpg::MapInfo, int32_t> static_background_type(
 	1,
 	0
 );
-static TypedField<rpg::MapInfo, std::string> static_background_name(
+static TypedField<rpg::MapInfo, DBString> static_background_name(
 	&rpg::MapInfo::background_name,
 	LMT_Reader::ChunkMapInfo::background_name,
 	"background_name",

@@ -608,7 +608,7 @@ MapInfo,expanded_node,f,Boolean,0x07,False,0,0,Flag. Editor only
 MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,1,0,Integer. 0=inherit; 1=from event; 2=specified in 0x0C
 MapInfo,music,f,Music,0x0C,,1,0,Array - rpg::Music
 MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,1,0,Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
-MapInfo,background_name,f,String,0x16,'',0,0,String
+MapInfo,background_name,f,DBString,0x16,'',0,0,String
 MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow

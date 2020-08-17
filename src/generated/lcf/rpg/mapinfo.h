@@ -14,7 +14,6 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
@@ -73,7 +72,7 @@ namespace rpg {
 		int32_t music_type = 0;
 		Music music;
 		int32_t background_type = 0;
-		std::string background_name;
+		DBString background_name;
 		int32_t teleport = 0;
 		int32_t escape = 0;
 		int32_t save = 0;
