@@ -46,7 +46,7 @@ class DBString {
 			DBString(const char(&literal)[N]) : DBString(StringView(literal)) {}
 		DBString(const char* s, size_t len) : DBString(StringView(s, len)) {}
 
-		DBString(const DBString& o);
+		DBString(const DBString& o) : DBString(StringView(o)) {}
 		DBString& operator=(const DBString&);
 		DBString(DBString&&) noexcept;
 		DBString& operator=(DBString&&) noexcept;
@@ -129,7 +129,6 @@ inline DBString::DBString(DBString&& o) noexcept
 }
 
 inline DBString& DBString::operator=(DBString&& o) noexcept {
-	return operator=(o);
 	if (this != &o) {
 		if (!empty()) {
 			_reset();
