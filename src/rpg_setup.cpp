@@ -80,7 +80,7 @@ void rpg::SaveMapInfo::Setup() {
 
 void rpg::SaveMapInfo::Setup(const rpg::Map& map) {
 	chipset_id = map.chipset_id;
-	parallax_name = map.parallax_name;
+	parallax_name = ToString(map.parallax_name);
 	parallax_horz = map.parallax_loop_x;
 	parallax_vert = map.parallax_loop_y;
 	parallax_horz_auto = map.parallax_auto_loop_x;

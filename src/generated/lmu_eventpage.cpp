@@ -27,7 +27,7 @@ static TypedField<rpg::EventPage, rpg::EventPageCondition> static_condition(
 	1,
 	0
 );
-static TypedField<rpg::EventPage, std::string> static_character_name(
+static TypedField<rpg::EventPage, DBString> static_character_name(
 	&rpg::EventPage::character_name,
 	LMU_Reader::ChunkEventPage::character_name,
 	"character_name",

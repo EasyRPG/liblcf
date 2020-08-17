@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Event>::name = "Event";
-static TypedField<rpg::Event, std::string> static_name(
+static TypedField<rpg::Event, DBString> static_name(
 	&rpg::Event::name,
 	LMU_Reader::ChunkEvent::name,
 	"name",
