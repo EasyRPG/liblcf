@@ -35,8 +35,7 @@ class DBString {
 
 		static constexpr size_type npos = size_type(-1);
 
-		// FIXME: When the allocator constructor is constexpr, this can be also
-		DBString() : DBString(StringView()) {}
+		constexpr DBString() = default;
 		explicit DBString(StringView s);
 		explicit DBString(const std::string& s) : DBString(StringView(s)) {}
 

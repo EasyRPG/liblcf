@@ -62,16 +62,10 @@ class DBStringAllocator {
 				return DBString::empty_str();
 			}
 
-			auto iter = _map.find(str);
-			if (iter != _map.end()) {
-				iter->second->refcnt += 1;
-			} else {
-				auto ptr = Alloc(str);
-				auto sv = StringView(ptr->data(), ptr->size);
-				// FIXME: Double hash lookup because the key changes..
-				iter = _map.insert({ sv, std::move(ptr) }).first;
-			}
-			return iter->second->data();
+			auto ptr = Alloc(str);
+			ptr->refcnt += 1;
+
+			return ptr.release()->data();
 		}
 
 		const char* Dup(const char* s) {
@@ -82,21 +76,16 @@ class DBStringAllocator {
 			return s;
 		}
 
-		void Release(StringView str) {
-			if (str.empty()) {
-				// This is needed, due to global DBStrings which are initialized to null.
-				// They may be destroyed *after* DBStringAllocator is destroyed!
-				// FIMXE: To fix this, use a hash table with constexpr default constructor.
+		void Release(const char* str) {
+			if (str == DBString::empty_str()) {
 				return;
 			}
-			auto iter = _map.find(str);
-			if (iter != _map.end()) {
-				auto& data = iter->second;
-				data->refcnt -= 1;
-				assert(data->refcnt >= 0);
-				if (data->refcnt == 0) {
-					_map.erase(iter);
-				}
+
+			auto* data = DBStringData::from_data(const_cast<char*>(str));
+			data->refcnt -= 1;
+			assert(data->refcnt >= 0);
+			if (data->refcnt == 0) {
+				Free(data);
 			}
 		}
 
@@ -105,9 +94,7 @@ class DBStringAllocator {
 			return alloc;
 		}
 	private:
-		DBStringAllocator() = default;
-	private:
-		std::unordered_map<StringView,DBStringDataPtr> _map;
+		constexpr DBStringAllocator() = default;
 };
 
 void DBStringDataDeleter::operator()(DBStringData* p) {
@@ -135,7 +122,7 @@ DBString& DBString::operator=(const DBString& o) {
 
 void DBString::_reset() noexcept {
 	assert(_storage != nullptr);
-	DBStringAllocator::instance().Release(*this);
+	DBStringAllocator::instance().Release(_storage);
 }
 
 } // namespace lcf
