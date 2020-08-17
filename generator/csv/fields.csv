@@ -642,7 +642,7 @@ MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - rpg::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
 EventPage,condition,f,EventPageCondition,0x02,,1,0,rpg::EventPageCondition
-EventPage,character_name,f,String,0x15,'',0,0,String
+EventPage,character_name,f,DBString,0x15,'',0,0,String
 EventPage,character_index,f,Int32,0x16,0,0,0,Integer
 EventPage,character_direction,f,Enum<EventPage_Direction>,0x17,2,1,0,Integer
 EventPage,character_pattern,f,Enum<EventPage_Frame>,0x18,1,0,0,Integer
@@ -657,7 +657,7 @@ EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
 EventPage,move_route,f,MoveRoute,0x29,,1,0,rpg::MoveRoute
 EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
 EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - rpg::EventCommand
-Event,name,f,String,0x01,'',0,0,String
+Event,name,f,DBString,0x01,'',0,0,String
 Event,x,f,Int32,0x02,0,0,0,Integer
 Event,y,f,Int32,0x03,0,0,0,Integer
 Event,pages,f,Array<EventPage>,0x05,,1,0,Array - rpg::EventPage
@@ -666,7 +666,7 @@ Map,width,f,Int32,0x02,20,0,0,Integer
 Map,height,f,Int32,0x03,15,0,0,Integer
 Map,scroll_type,f,Enum<Map_ScrollType>,0x0B,0,1,0,Integer
 Map,parallax_flag,f,Boolean,0x1F,False,0,0,Flag
-Map,parallax_name,f,String,0x20,'',0,0,String
+Map,parallax_name,f,DBString,0x20,'',0,0,String
 Map,parallax_loop_x,f,Boolean,0x21,False,0,0,Flag
 Map,parallax_loop_y,f,Boolean,0x22,False,0,0,Flag
 Map,parallax_auto_loop_x,f,Boolean,0x23,False,0,0,Flag
