@@ -14,7 +14,7 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -116,7 +116,7 @@ namespace rpg {
 		);
 
 		int32_t command_id = 0;
-		std::string parameter_string;
+		DBString parameter_string;
 		int32_t parameter_a = 0;
 		int32_t parameter_b = 0;
 		int32_t parameter_c = 0;
