@@ -171,7 +171,10 @@ namespace rpg {
 			Maniac_ControlVarArray = 3013,
 			Maniac_KeyInputProcEx = 3014,
 			Maniac_RewriteMap = 3015,
-			Maniac_ControlGlobalSave = 3016
+			Maniac_ControlGlobalSave = 3016,
+			Maniac_ChangePictureId = 3017,
+			Maniac_SetGameOption = 3018,
+			Maniac_CallCommand = 3019
 		};
 
 		int32_t code = 0;

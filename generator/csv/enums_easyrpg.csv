@@ -15,3 +15,6 @@ EventCommand,Code,Maniac_ControlVarArray,3013
 EventCommand,Code,Maniac_KeyInputProcEx,3014
 EventCommand,Code,Maniac_RewriteMap,3015
 EventCommand,Code,Maniac_ControlGlobalSave,3016
+EventCommand,Code,Maniac_ChangePictureId,3017
+EventCommand,Code,Maniac_SetGameOption,3018
+EventCommand,Code,Maniac_CallCommand,3019
