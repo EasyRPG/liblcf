@@ -43,6 +43,7 @@ liblcf_la_LDFLAGS = \
 	-no-undefined
 liblcf_la_SOURCES = \
 	src/data.cpp \
+	src/dbarray.cpp \
 	src/dbstring.cpp \
 	src/encoder.cpp \
 	src/ini.cpp \
@@ -202,6 +203,7 @@ liblcf_la_SOURCES = \
 
 lcfinclude_HEADERS = \
 	src/lcf/data.h \
+	src/lcf/dbarray.h \
 	src/lcf/dbstring.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
