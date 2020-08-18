@@ -21,6 +21,7 @@ lcflmtincludedir = $(includedir)/lcf/lmt
 lcflmuincludedir = $(includedir)/lcf/lmu
 lcflsdincludedir = $(includedir)/lcf/lsd
 lcfrpgincludedir = $(includedir)/lcf/rpg
+lcfthirdpartyincludedir = $(includedir)/lcf/third_party
 
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
@@ -298,6 +299,9 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/trooppage.h \
 	src/generated/lcf/rpg/trooppagecondition.h \
 	src/generated/lcf/rpg/variable.h
+
+lcfthirdpartyinclude_HEADERS = \
+	src/lcf/third_party/string_view.h
 
 nodist_lcfinclude_HEADERS = autogen/lcf/config.h
 

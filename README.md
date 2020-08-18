@@ -110,6 +110,7 @@ See the file [COPYING] for copying conditions.
 ### 3rd party software
 
 liblcf code includes a copy of [inih] under New BSD license.
+liblcf code includes a copy of [string-view-lite] under Boost Software License, Version 1.0.
 See the source code comment headers for license details.
 
 
@@ -119,3 +120,4 @@ See the source code comment headers for license details.
 [#easyrpg at irc.freenode.net]: https://kiwiirc.com/nextclient/#ircs://irc.freenode.net/#easyrpg?nick=rpgguest??
 [COPYING]: COPYING
 [inih]: https://github.com/benhoyt/inih
+[string-view-lite]: https://github.com/martinmoene/string-view-lite
