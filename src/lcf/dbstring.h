@@ -19,6 +19,7 @@
 #include <ostream>
 
 #include "lcf/string_view.h"
+#include "lcf/dbarrayalloc.h"
 
 namespace lcf {
 
@@ -41,14 +42,14 @@ class DBString {
 		static constexpr size_type npos = size_type(-1);
 
 		constexpr DBString() = default;
-		explicit DBString(StringView s);
-		explicit DBString(const std::string& s) : DBString(StringView(s)) {}
+		explicit DBString(StringView s) : _storage(construct_sv(s.data(), s.size())) {}
+		explicit DBString(const std::string& s) : _storage(construct_z(s.c_str(), s.size())) {}
 
 		// Explicit construct for general const char*
 		explicit DBString(const char* s) : DBString(StringView(s)) {}
 		// Implicit constructor to capture string literals
 		template <size_t N>
-			DBString(const char(&literal)[N]) : DBString(StringView(literal)) {}
+			DBString(const char(&literal)[N]) : _storage(construct_z(literal, N - 1)) {}
 		DBString(const char* s, size_t len) : DBString(StringView(s, len)) {}
 
 		DBString(const DBString& o) : DBString(StringView(o)) {}
@@ -61,7 +62,7 @@ class DBString {
 			std::swap(_storage, o._storage);
 		}
 
-		~DBString() { _reset(); }
+		~DBString() { destroy(); }
 
 		explicit operator std::string() const { return std::string(data(), size()); }
 		operator StringView() const { return StringView(data(), size()); }
@@ -75,8 +76,8 @@ class DBString {
 		char& back() { return (*this)[size()-1]; }
 		char back() const { return (*this)[size()-1]; }
 
-		char* data() { return _storage; }
-		const char* data() const { return _storage; }
+		char* data() { return static_cast<char*>(_storage); }
+		const char* data() const { return static_cast<const char*>(_storage); }
 
 		const char* c_str() const { return data(); }
 
@@ -99,16 +100,20 @@ class DBString {
 		const_reverse_iterator crend() const { return rend(); }
 
 		bool empty() const { return size() == 0; }
-		size_type size() const;
+		size_type size() const { return *DBArrayAlloc::get_size_ptr(_storage); }
 
-		static constexpr char* empty_str() {
-			return const_cast<char*>(_empty_str + sizeof(size_type));
+	private:
+		char* alloc(size_t count) {
+			return reinterpret_cast<char*>(DBArrayAlloc::alloc(count + 1, count, 1));
 		}
+		void free(void* p) {
+			DBArrayAlloc::free(p, 1);
+		}
+		void destroy() noexcept;
+		char* construct_z(const char* s, size_t len);
+		char* construct_sv(const char* s, size_t len);
 	private:
-		void _reset() noexcept;
-	private:
-		alignas(size_type) static constexpr char _empty_str[sizeof(size_type)] = {};
-		char* _storage = empty_str();
+		void* _storage = DBArrayAlloc::empty_buf();
 };
 
 // This should be used over the conversion operator, so we can track all dbstr -> str instances
@@ -151,17 +156,17 @@ namespace lcf {
 
 inline DBString& DBString::operator=(DBString&& o) noexcept {
 	if (this != &o) {
-		if (!empty()) {
-			_reset();
-		}
-		_storage = o._storage;
-		o._storage = empty_str();
+		destroy();
+		swap(o);
 	}
 	return *this;
 }
 
-inline DBString::size_type DBString::size() const {
-	return *(reinterpret_cast<const size_type*>(_storage) - 1);
+inline void DBString::destroy() noexcept {
+	if (_storage != DBArrayAlloc::empty_buf()) {
+		free(_storage);
+		_storage = DBArrayAlloc::empty_buf();
+	}
 }
 
 } // namespace lcf
