@@ -208,6 +208,7 @@ set(LCF_HEADERS
 	src/lcf/reader_xml.h
 	src/lcf/saveopt.h
 	src/lcf/scope_guard.h
+	src/lcf/span.h
 	src/lcf/string_view.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
@@ -282,6 +283,7 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/trooppage.h
 	src/generated/lcf/rpg/trooppagecondition.h
 	src/generated/lcf/rpg/variable.h
+	src/lcf/third_party/span.h
 	src/lcf/third_party/string_view.h
 )
 

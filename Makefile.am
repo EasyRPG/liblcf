@@ -211,6 +211,7 @@ lcfinclude_HEADERS = \
 	src/lcf/reader_xml.h \
 	src/lcf/saveopt.h \
 	src/lcf/scope_guard.h \
+	src/lcf/span.h \
 	src/lcf/string_view.h \
 	src/lcf/writer_lcf.h \
 	src/lcf/writer_xml.h
@@ -301,6 +302,7 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/variable.h
 
 lcfthirdpartyinclude_HEADERS = \
+	src/lcf/third_party/span.h \
 	src/lcf/third_party/string_view.h
 
 nodist_lcfinclude_HEADERS = autogen/lcf/config.h
