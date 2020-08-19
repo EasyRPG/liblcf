@@ -118,7 +118,7 @@ static TypedField<rpg::EventPage, rpg::MoveRoute> static_move_route(
 	1,
 	0
 );
-static SizeField<rpg::EventPage, rpg::EventCommand> static_size_event_commands(
+static SizeField<rpg::EventPage, std::vector<rpg::EventCommand>> static_size_event_commands(
 	&rpg::EventPage::event_commands,
 	LMU_Reader::ChunkEventPage::event_commands_size,
 	1,

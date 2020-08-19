@@ -97,7 +97,7 @@ static TypedField<rpg::System, DBString> static_system2_name(
 	0,
 	1
 );
-static CountField<rpg::System, int16_t> static_size_party(
+static CountField<rpg::System, std::vector<int16_t>> static_size_party(
 	&rpg::System::party,
 	LDB_Reader::ChunkSystem::party_size,
 	0,
@@ -110,7 +110,7 @@ static TypedField<rpg::System, std::vector<int16_t>> static_party(
 	1,
 	0
 );
-static CountField<rpg::System, int16_t> static_size_menu_commands(
+static CountField<rpg::System, std::vector<int16_t>> static_size_menu_commands(
 	&rpg::System::menu_commands,
 	LDB_Reader::ChunkSystem::menu_commands_size,
 	0,

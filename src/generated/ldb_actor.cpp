@@ -216,7 +216,7 @@ static TypedField<rpg::Actor, DBString> static_skill_name(
 	0,
 	0
 );
-static SizeField<rpg::Actor, uint8_t> static_size_state_ranks(
+static SizeField<rpg::Actor, std::vector<uint8_t>> static_size_state_ranks(
 	&rpg::Actor::state_ranks,
 	LDB_Reader::ChunkActor::state_ranks_size,
 	0,
@@ -229,7 +229,7 @@ static TypedField<rpg::Actor, std::vector<uint8_t>> static_state_ranks(
 	1,
 	0
 );
-static SizeField<rpg::Actor, uint8_t> static_size_attribute_ranks(
+static SizeField<rpg::Actor, std::vector<uint8_t>> static_size_attribute_ranks(
 	&rpg::Actor::attribute_ranks,
 	LDB_Reader::ChunkActor::attribute_ranks_size,
 	0,

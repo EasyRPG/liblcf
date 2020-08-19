@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::SaveEventExecFrame>::name = "SaveEventExecFrame";
-static SizeField<rpg::SaveEventExecFrame, rpg::EventCommand> static_size_commands(
+static SizeField<rpg::SaveEventExecFrame, std::vector<rpg::EventCommand>> static_size_commands(
 	&rpg::SaveEventExecFrame::commands,
 	LSD_Reader::ChunkSaveEventExecFrame::commands_size,
 	1,
@@ -54,7 +54,7 @@ static TypedField<rpg::SaveEventExecFrame, bool> static_triggered_by_decision_ke
 	0,
 	0
 );
-static SizeField<rpg::SaveEventExecFrame, uint8_t> static_size_subcommand_path(
+static SizeField<rpg::SaveEventExecFrame, std::vector<uint8_t>> static_size_subcommand_path(
 	&rpg::SaveEventExecFrame::subcommand_path,
 	LSD_Reader::ChunkSaveEventExecFrame::subcommand_path_size,
 	0,

@@ -29,9 +29,9 @@ Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
 Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
 Actor,skill_name,f,DBString,0x43,'',0,0,String
-Actor,state_ranks,t,UInt8,0x47,,0,0,Integer
+Actor,state_ranks,t,Vector<UInt8>,0x47,,0,0,Integer
 Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
-Actor,attribute_ranks,t,UInt8,0x49,,0,0,Integer
+Actor,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
 Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
 Sound,name,f,String,0x01,"(OFF)",1,0,String
@@ -118,16 +118,16 @@ Class,exp_inflation,f,Int32,0x2A,300,0,0,Integer
 Class,exp_correction,f,Int32,0x2B,0,0,0,Integer
 Class,battler_animation,f,Ref<Animation>,0x3E,0,0,0,Integer
 Class,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
-Class,state_ranks,t,UInt8,0x47,,0,0,Integer
+Class,state_ranks,t,Vector<UInt8>,0x47,,0,0,Integer
 Class,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
-Class,attribute_ranks,t,UInt8,0x49,,0,0,Integer
+Class,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
 Class,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Class,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,0,Array - Uint32
 CommonEvent,name,f,DBString,0x01,'',0,0,String
 CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,0,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,0,0,Flag
 CommonEvent,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
-CommonEvent,event_commands,t,EventCommand,0x15,,1,0,Integer
+CommonEvent,event_commands,t,Vector<EventCommand>,0x15,,1,0,Integer
 CommonEvent,event_commands,f,Vector<EventCommand>,0x16,,1,0,Array - rpg::EventCommand
 Skill,name,f,DBString,0x01,'',0,0,String
 Skill,description,f,DBString,0x02,'',0,0,String
@@ -158,9 +158,9 @@ Skill,affect_spirit,f,Boolean,0x23,False,0,0,Flag
 Skill,affect_agility,f,Boolean,0x24,False,0,0,Flag
 Skill,absorb_damage,f,Boolean,0x25,False,0,0,Flag
 Skill,ignore_defense,f,Boolean,0x26,False,0,0,Flag
-Skill,state_effects,t,Boolean,0x29,,0,0,Integer
+Skill,state_effects,t,Vector<Boolean>,0x29,,0,0,Integer
 Skill,state_effects,f,Vector<Boolean>,0x2A,,1,0,Array - Flag
-Skill,attribute_effects,t,Boolean,0x2B,,0,0,Integer
+Skill,attribute_effects,t,Vector<Boolean>,0x2B,,0,0,Integer
 Skill,attribute_effects,f,Vector<Boolean>,0x2C,,1,0,Array - Flag
 Skill,affect_attr_defence,f,Boolean,0x2D,False,0,0,Flag
 Skill,battler_animation,f,Ref<Actor>,0x31,-1,0,1,Integer - RPG2003
@@ -215,18 +215,18 @@ Item,skill_id,f,Ref<Skill>,0x35,1,0,0,Integer
 Item,switch_id,f,Ref<Switch>,0x37,1,0,0,Integer
 Item,occasion_field2,f,Boolean,0x39,True,0,0,Flag
 Item,occasion_battle,f,Boolean,0x3A,False,0,0,Flag
-Item,actor_set,t,Boolean,0x3D,,0,0,Integer
+Item,actor_set,t,Vector<Boolean>,0x3D,,0,0,Integer
 Item,actor_set,f,Vector<Boolean>,0x3E,,1,0,Array - Flag
-Item,state_set,t,Boolean,0x3F,,0,0,Integer
+Item,state_set,t,Vector<Boolean>,0x3F,,0,0,Integer
 Item,state_set,f,Vector<Boolean>,0x40,,1,0,Array - Flag
-Item,attribute_set,t,Boolean,0x41,,0,0,Integer
+Item,attribute_set,t,Vector<Boolean>,0x41,,0,0,Integer
 Item,attribute_set,f,Vector<Boolean>,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
 Item,reverse_state_effect,f,Boolean,0x44,False,0,0,Flag
 Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
 Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003
-Item,class_set,t,Boolean,0x48,,0,1,Integer - RPG2003
+Item,class_set,t,Vector<Boolean>,0x48,,0,1,Integer - RPG2003
 Item,class_set,f,Vector<Boolean>,0x49,,1,1,Array - Flag - RPG2003
 Item,ranged_trajectory,f,Enum<Item_Trajectory>,0x4B,0,0,0,Integer
 Item,ranged_target,f,Enum<Item_Target>,0x4C,0,0,0,Integer
@@ -261,9 +261,9 @@ Enemy,critical_hit,f,Boolean,0x15,False,0,0,Flag
 Enemy,critical_hit_chance,f,Int32,0x16,30,0,0,Integer
 Enemy,miss,f,Boolean,0x1A,False,0,0,Flag
 Enemy,levitate,f,Boolean,0x1C,False,0,0,Flag
-Enemy,state_ranks,t,UInt8,0x1F,,0,0,Integer
+Enemy,state_ranks,t,Vector<UInt8>,0x1F,,0,0,Integer
 Enemy,state_ranks,f,Vector<UInt8>,0x20,,1,0,Array - Short
-Enemy,attribute_ranks,t,UInt8,0x21,,0,0,Integer
+Enemy,attribute_ranks,t,Vector<UInt8>,0x21,,0,0,Integer
 Enemy,attribute_ranks,f,Vector<UInt8>,0x22,,1,0,Array - Short
 Enemy,actions,f,Array<EnemyAction>,0x2A,,1,0,Array - rpg::EnemyAction
 TroopMember,enemy_id,f,Ref<Enemy>,0x01,1,0,0,Integer
@@ -294,12 +294,12 @@ TroopPageCondition,turn_actor_b,f,Int32,0x15,0,0,1,Integer - RPG2003
 TroopPageCondition,command_actor_id,f,Ref<Actor>,0x16,1,0,1,Integer - RPG2003
 TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
 TroopPage,condition,f,TroopPageCondition,0x02,,1,0,rpg::TroopPageCondition
-TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
+TroopPage,event_commands,t,Vector<EventCommand>,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - rpg::EventCommand
 Troop,name,f,DBString,0x01,'',0,0,String
 Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - rpg::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
-Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
+Troop,terrain_set,t,Vector<Boolean>,0x04,,0,0,Integer
 Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
 Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - rpg::TroopPage
@@ -527,9 +527,9 @@ System,title_name,f,DBString,0x11,'',0,0,String
 System,gameover_name,f,DBString,0x12,'',0,0,String
 System,system_name,f,DBString,0x13,'',0,0,String
 System,system2_name,f,DBString,0x14,'',0,1,String - RPG2003
-System,party,t,Count<Int16>,0x15,,0,0,Integer
+System,party,t,Count<Vector<Int16>>,0x15,,0,0,Integer
 System,party,f,Vector<Int16>,0x16,,1,0,Array - Short
-System,menu_commands,t,Count<Int16>,0x1A,,0,1,Integer - RPG2003
+System,menu_commands,t,Count<Vector<Int16>>,0x1A,,0,1,Integer - RPG2003
 System,menu_commands,f,Vector<Int16>,0x1B,,1,1,Array - Short - RPG2003
 System,title_music,f,Music,0x1F,,1,0,rpg::Music
 System,battle_music,f,Music,0x20,,1,0,rpg::Music
@@ -637,7 +637,7 @@ EventPageCondition,actor_id,f,Ref<Actor>,0x07,1,1,0,Integer
 EventPageCondition,timer_sec,f,Int32,0x08,0,0,0,Integer
 EventPageCondition,timer2_sec,f,Int32,0x09,0,0,1,Integer - RPG2003
 EventPageCondition,compare_operator,f,Enum<EventPageCondition_Comparison>,0x0A,1,0,1,Integer - RPG2003
-MoveRoute,move_commands,t,MoveCommand,0x0B,,0,0,Integer
+MoveRoute,move_commands,t,Vector<MoveCommand>,0x0B,,0,0,Integer
 MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - rpg::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
@@ -655,7 +655,7 @@ EventPage,overlap_forbidden,f,Boolean,0x23,False,1,0,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,1,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
 EventPage,move_route,f,MoveRoute,0x29,,1,0,rpg::MoveRoute
-EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
+EventPage,event_commands,t,Vector<EventCommand>,0x33,,1,0,Integer
 EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - rpg::EventCommand
 Event,name,f,DBString,0x01,'',0,0,String
 Event,x,f,Int32,0x02,0,0,0,Integer
@@ -710,9 +710,9 @@ SaveSystem,frame_count,f,Int32,0x0B,0,0,0,
 SaveSystem,graphics_name,f,String,0x15,'',0,0,string
 SaveSystem,message_stretch,f,Enum<System_Stretch>,0x16,0,0,0,Integer
 SaveSystem,font_id,f,Enum<System_Font>,0x17,0,0,0,Integer
-SaveSystem,switches,t,Count<Boolean>,0x1F,0,0,0,
+SaveSystem,switches,t,Count<Vector<Boolean>>,0x1F,0,0,0,
 SaveSystem,switches,f,Vector<Boolean>,0x20,,1,0,
-SaveSystem,variables,t,Count<Int32>,0x21,0,0,0,
+SaveSystem,variables,t,Count<Vector<Int32>>,0x21,0,0,0,
 SaveSystem,variables,f,Vector<Int32>,0x22,,1,0,
 SaveSystem,message_transparent,f,Int32,0x29,0,0,0,
 SaveSystem,message_position,f,Int32,0x2A,2,0,0,
@@ -866,13 +866,13 @@ SaveActor,attack_mod,f,Int32,0x29,0,0,0,int
 SaveActor,defense_mod,f,Int32,0x2A,0,0,0,int
 SaveActor,spirit_mod,f,Int32,0x2B,0,0,0,int
 SaveActor,agility_mod,f,Int32,0x2C,0,0,0,int
-SaveActor,skills,t,Count<Int16>,0x33,0,0,0,?
+SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,0,0,?
 SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
 SaveActor,current_sp,f,Int32,0x48,-1,0,0,int
 SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,0,1,array of (uncompressed) int32
-SaveActor,status,t,Count<Int16>,0x51,0,0,0,?
+SaveActor,status,t,Count<Vector<Int16>>,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,0,0,int class-id
@@ -882,9 +882,9 @@ SaveActor,lock_equipment,f,Boolean,0x5D,False,0,1,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,0,1,bool
 SaveActor,super_guard,f,Boolean,0x5F,False,0,1,bool
 SaveActor,battler_animation,f,Ref<BattlerAnimation>,0x60,0,0,1,Integer - RPG2003
-SaveInventory,party,t,Count<Int16>,0x01,0,1,0,?
+SaveInventory,party,t,Count<Vector<Int16>>,0x01,0,1,0,?
 SaveInventory,party,f,Vector<Int16>,0x02,,1,0,?
-SaveInventory,item_ids,t,Count<Int16>,0x0B,0,1,0,?
+SaveInventory,item_ids,t,Count<Vector<Int16>>,0x0B,0,1,0,?
 SaveInventory,item_ids,f,Vector<Int16>,0x0C,,1,0,short[]: item list
 SaveInventory,item_counts,f,Vector<UInt8>,0x0D,,1,0,?
 SaveInventory,item_usage,f,Vector<UInt8>,0x0E,,1,0,?
@@ -908,12 +908,12 @@ SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
 SaveTarget,switch_on,f,Boolean,0x04,False,0,0,bool
 SaveTarget,switch_id,f,Ref<Switch>,0x05,0,0,0,int
-SaveEventExecFrame,commands,t,EventCommand,0x01,0,1,0,int
+SaveEventExecFrame,commands,t,Vector<EventCommand>,0x01,0,1,0,int
 SaveEventExecFrame,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
 SaveEventExecFrame,current_command,f,Int32,0x0B,0,0,0,int
 SaveEventExecFrame,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
 SaveEventExecFrame,triggered_by_decision_key,f,Boolean,0x0D,False,0,0,Event was triggered by the Action Key
-SaveEventExecFrame,subcommand_path,t,UInt8,0x15,0,0,0,size of the 0x16 vector - indention level
+SaveEventExecFrame,subcommand_path,t,Vector<UInt8>,0x15,0,0,0,size of the 0x16 vector - indention level
 SaveEventExecFrame,subcommand_path,f,Vector<UInt8>,0x16,,1,0,byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID).
 SaveEventExecState,stack,f,Array<SaveEventExecFrame>,0x01,,1,0,array
 SaveEventExecState,show_message,f,Boolean,0x04,False,0,0,Show Message command has been executed in the current move route

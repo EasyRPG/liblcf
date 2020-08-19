@@ -223,7 +223,7 @@ static TypedField<rpg::Skill, bool> static_ignore_defense(
 	0,
 	0
 );
-static SizeField<rpg::Skill, bool> static_size_state_effects(
+static SizeField<rpg::Skill, std::vector<bool>> static_size_state_effects(
 	&rpg::Skill::state_effects,
 	LDB_Reader::ChunkSkill::state_effects_size,
 	0,
@@ -236,7 +236,7 @@ static TypedField<rpg::Skill, std::vector<bool>> static_state_effects(
 	1,
 	0
 );
-static SizeField<rpg::Skill, bool> static_size_attribute_effects(
+static SizeField<rpg::Skill, std::vector<bool>> static_size_attribute_effects(
 	&rpg::Skill::attribute_effects,
 	LDB_Reader::ChunkSkill::attribute_effects_size,
 	0,

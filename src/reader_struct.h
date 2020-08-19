@@ -463,18 +463,18 @@ struct EmptyField : public Field<S> {
  */
 template <class S, class T>
 struct SizeField : public Field<S> {
-	const std::vector<T> S::*ref;
+	const T S::*ref;
 
 	void ReadLcf(S& /* obj */, LcfReader& stream, uint32_t length) const {
 		int32_t dummy;
 		TypeReader<int32_t>::ReadLcf(dummy, stream, length);
 	}
 	void WriteLcf(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
+		int size = TypeReader<T>::LcfSize(obj.*ref, stream);
 		TypeReader<int32_t>::WriteLcf(size, stream);
 	}
 	int LcfSize(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
+		int size = TypeReader<T>::LcfSize(obj.*ref, stream);
 		return LcfReader::IntSize(size);
 	}
 	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const {
@@ -490,7 +490,7 @@ struct SizeField : public Field<S> {
 		return (a.*ref).size() == (b.*ref).size();
 	}
 
-	SizeField(const std::vector<T> S::*ref, int id, bool present_if_default, bool is2k3) :
+	SizeField(const T S::*ref, int id, bool present_if_default, bool is2k3) :
 		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
 };
 
