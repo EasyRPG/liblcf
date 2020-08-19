@@ -35,6 +35,7 @@ cpp_types = {
     'Int32': 'int32_t',
     'String': 'std::string',
     'DBString': 'DBString',
+    'DBBitArray': 'DBBitArray',
 }
 
 # Additional Jinja 2 functions
@@ -104,7 +105,7 @@ def pod_default(field):
     ftype = field.type
 
     # Not a POD, no default
-    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray'):
+    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray') or ftype.startswith('DBBitArray'):
         return ""
 
     if ftype == 'Boolean':
@@ -170,6 +171,9 @@ def struct_headers(ty, header_map):
 
     if ty == 'DBString':
         return ['"lcf/dbstring.h"']
+
+    if ty == 'DBBitArray':
+        return ['"lcf/dbbitarray.h"']
 
     if ty in int_types or ty == "DatabaseVersion":
         return ['<stdint.h>']
@@ -347,7 +351,7 @@ def needs_ctor(struct_name):
                                     for method, hdrs in setup[struct_name])
 
 def type_is_array(ty):
-    return re.match(r'(Vector|Array|DBArray)<(.*)>', ty)
+    return re.match(r'(Vector|Array|DBArray)<(.*)>', ty) or ty == "DBBitArray"
 
 def is_monotonic_from_0(enum):
     expected = 0
