@@ -12,6 +12,7 @@
 
 #include "lcf/config.h"
 #include "lcf/dbstring.h"
+#include "lcf/dbbitarray.h"
 
 #include <string>
 #include <vector>
@@ -124,6 +125,14 @@ public:
 	 */
 	template <class T>
 	void Read(std::vector<T> &buffer, size_t size);
+
+	/**
+	 * Reads a DBBitsArray of primitive type.
+	 *
+	 * @param buffer DBBitArray to fill.
+	 * @param size how many bytes to read as bits.
+	 */
+	void ReadBits(DBBitArray &buffer, size_t size);
 
 	/**
 	 * Reads a compressed integer from the stream.

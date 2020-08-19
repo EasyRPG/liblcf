@@ -11,6 +11,7 @@
 #define LCF_WRITER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 
 #include <string>
@@ -69,6 +70,13 @@ public:
 	 */
 	void Write(const std::string& str);
 	void Write(const DBString& str);
+
+	/**
+	 * Writes a bit array to bytes in the stream.
+	 *
+	 * @param bits the bit array.
+	 */
+	void Write(const DBBitArray& bits);
 
 	/**
 	 * Writes a compressed integer to the stream.

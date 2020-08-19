@@ -188,6 +188,14 @@ void XmlReader::Read<DBString>(DBString& val, const std::string& data) {
 	val = DBString(sval);
 }
 
+template <>
+void XmlReader::Read<DBBitArray>(DBBitArray& val, const std::string& data) {
+	// FIXME: Adds copies
+	std::vector<bool> tmp;
+	ReadVector(tmp, data);
+	val = DBBitArray(tmp.begin(), tmp.end());
+}
+
 template <class T>
 void XmlReader::ReadVector(std::vector<T>& val, const std::string& data) {
 	val.clear();
