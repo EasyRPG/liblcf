@@ -22,16 +22,21 @@
 
 namespace lcf {
 
-// A read-only string class optimized for database storage.
+// A custom string class optimized for database storage.
+// This string type is good for storing and retrieving values.
+// It is not good for string manipulation like insertion or concatenation.
 class DBString {
 	public:
 		using value_type = char;
+		using size_type = uint32_t;
+
 		using char_type = value_type; // <- FIXME: HACK to workaround bug in older versions of fmtlib for Player: https://github.com/fmtlib/fmt/issues/1539
 		using traits_type = std::char_traits<char>;
 
-		using iterator = const char*;
+		using iterator = char*;
+		using const_iterator = const char*;
 		using reverse_iterator = std::reverse_iterator<iterator>;
-		using size_type = uint32_t;
+		using const_reverse_iterator = std::reverse_iterator<const_iterator>;
 
 		static constexpr size_type npos = size_type(-1);
 
@@ -47,8 +52,9 @@ class DBString {
 		DBString(const char* s, size_t len) : DBString(StringView(s, len)) {}
 
 		DBString(const DBString& o) : DBString(StringView(o)) {}
+		DBString(DBString&& o) noexcept { swap(o); }
+
 		DBString& operator=(const DBString&);
-		DBString(DBString&&) noexcept;
 		DBString& operator=(DBString&&) noexcept;
 
 		void swap(DBString& o) noexcept {
@@ -60,29 +66,49 @@ class DBString {
 		explicit operator std::string() const { return std::string(data(), size()); }
 		operator StringView() const { return StringView(data(), size()); }
 
+		char& operator[](size_type i) { return data()[i]; }
 		char operator[](size_type i) const { return data()[i]; }
+
+		char& front() { return (*this)[0]; }
 		char front() const { return (*this)[0]; }
+
+		char& back() { return (*this)[size()-1]; }
 		char back() const { return (*this)[size()-1]; }
+
+		char* data() { return _storage; }
 		const char* data() const { return _storage; }
+
 		const char* c_str() const { return data(); }
 
-		iterator begin() const { return data(); }
-		iterator end() const { return data() + size(); }
+		iterator begin() { return data(); }
+		iterator end() { return data() + size(); }
 
-		reverse_iterator rbegin() const { return reverse_iterator(end()); }
-		reverse_iterator rend() const { return reverse_iterator(begin()); }
+		const_iterator begin() const { return data(); }
+		const_iterator end() const { return data() + size(); }
+
+		const_iterator cbegin() const { return begin(); }
+		const_iterator cend() const { return end(); }
+
+		reverse_iterator rbegin() { return reverse_iterator(end()); }
+		reverse_iterator rend() { return reverse_iterator(begin()); }
+
+		const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
+		const_reverse_iterator rend() const { return const_reverse_iterator(begin()); }
+
+		const_reverse_iterator crbegin() const { return rbegin(); }
+		const_reverse_iterator crend() const { return rend(); }
 
 		bool empty() const { return size() == 0; }
 		size_type size() const;
 
-		static constexpr const char* empty_str() {
-			return _empty_str + sizeof(size_type);
+		static constexpr char* empty_str() {
+			return const_cast<char*>(_empty_str + sizeof(size_type));
 		}
 	private:
 		void _reset() noexcept;
 	private:
 		alignas(size_type) static constexpr char _empty_str[sizeof(size_type)] = {};
-		const char* _storage = empty_str();
+		char* _storage = empty_str();
 };
 
 // This should be used over the conversion operator, so we can track all dbstr -> str instances
@@ -122,11 +148,6 @@ template <> struct hash<lcf::DBString> {
 } // namespace std
 
 namespace lcf {
-
-inline DBString::DBString(DBString&& o) noexcept
-{
-	std::swap(_storage, o._storage);
-}
 
 inline DBString& DBString::operator=(DBString&& o) noexcept {
 	if (this != &o) {

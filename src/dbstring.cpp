@@ -30,7 +30,7 @@ struct DBStringData {
 	}
 };
 
-static const char* Alloc(StringView str) {
+static char* Alloc(StringView str) {
 	if (str.empty()) {
 		return DBString::empty_str();
 	}
@@ -44,11 +44,11 @@ static const char* Alloc(StringView str) {
 	return db->data();
 }
 
-static void Free(const char* str) {
+static void Free(char* str) {
 	if (str == DBString::empty_str()) {
 		return;
 	}
-	auto* db = DBStringData::from_data(const_cast<char*>(str));
+	auto* db = DBStringData::from_data(str);
 
 	db->~DBStringData();
 	::operator delete(db);
