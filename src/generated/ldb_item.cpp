@@ -307,39 +307,39 @@ static TypedField<rpg::Item, bool> static_occasion_battle(
 	0,
 	0
 );
-static SizeField<rpg::Item, std::vector<bool>> static_size_actor_set(
+static SizeField<rpg::Item, DBBitArray> static_size_actor_set(
 	&rpg::Item::actor_set,
 	LDB_Reader::ChunkItem::actor_set_size,
 	0,
 	0
 );
-static TypedField<rpg::Item, std::vector<bool>> static_actor_set(
+static TypedField<rpg::Item, DBBitArray> static_actor_set(
 	&rpg::Item::actor_set,
 	LDB_Reader::ChunkItem::actor_set,
 	"actor_set",
 	1,
 	0
 );
-static SizeField<rpg::Item, std::vector<bool>> static_size_state_set(
+static SizeField<rpg::Item, DBBitArray> static_size_state_set(
 	&rpg::Item::state_set,
 	LDB_Reader::ChunkItem::state_set_size,
 	0,
 	0
 );
-static TypedField<rpg::Item, std::vector<bool>> static_state_set(
+static TypedField<rpg::Item, DBBitArray> static_state_set(
 	&rpg::Item::state_set,
 	LDB_Reader::ChunkItem::state_set,
 	"state_set",
 	1,
 	0
 );
-static SizeField<rpg::Item, std::vector<bool>> static_size_attribute_set(
+static SizeField<rpg::Item, DBBitArray> static_size_attribute_set(
 	&rpg::Item::attribute_set,
 	LDB_Reader::ChunkItem::attribute_set_size,
 	0,
 	0
 );
-static TypedField<rpg::Item, std::vector<bool>> static_attribute_set(
+static TypedField<rpg::Item, DBBitArray> static_attribute_set(
 	&rpg::Item::attribute_set,
 	LDB_Reader::ChunkItem::attribute_set,
 	"attribute_set",
@@ -381,13 +381,13 @@ static TypedField<rpg::Item, bool> static_use_skill(
 	0,
 	1
 );
-static SizeField<rpg::Item, std::vector<bool>> static_size_class_set(
+static SizeField<rpg::Item, DBBitArray> static_size_class_set(
 	&rpg::Item::class_set,
 	LDB_Reader::ChunkItem::class_set_size,
 	0,
 	1
 );
-static TypedField<rpg::Item, std::vector<bool>> static_class_set(
+static TypedField<rpg::Item, DBBitArray> static_class_set(
 	&rpg::Item::class_set,
 	LDB_Reader::ChunkItem::class_set,
 	"class_set",

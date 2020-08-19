@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <vector>
+#include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationdata.h"
@@ -96,8 +97,8 @@ namespace rpg {
 		bool affect_agility = false;
 		bool absorb_damage = false;
 		bool ignore_defense = false;
-		std::vector<bool> state_effects;
-		std::vector<bool> attribute_effects;
+		DBBitArray state_effects;
+		DBBitArray attribute_effects;
 		bool affect_attr_defence = false;
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
