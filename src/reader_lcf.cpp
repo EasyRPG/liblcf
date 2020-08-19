@@ -191,8 +191,7 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 }
 
 void LcfReader::ReadString(DBString& ref, size_t size) {
-	// FIXME: Relies on short string optimization
-	std::string tmp;
+	auto& tmp = StrBuffer();
 	ReadString(tmp, size);
 	ref = DBString(tmp);
 }
