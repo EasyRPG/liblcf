@@ -26,14 +26,14 @@ Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
 Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
-Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
+Actor,skills,f,Vector<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
 Actor,skill_name,f,DBString,0x43,'',0,0,String
-Actor,state_ranks,t,Vector<UInt8>,0x47,,0,0,Integer
-Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
-Actor,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
-Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
-Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
+Actor,state_ranks,t,DBArray<UInt8>,0x47,,0,0,Integer
+Actor,state_ranks,f,DBArray<UInt8>,0x48,,1,0,Array - Short
+Actor,attribute_ranks,t,DBArray<UInt8>,0x49,,0,0,Integer
+Actor,attribute_ranks,f,DBArray<UInt8>,0x4A,,1,0,Array - Short
+Actor,battle_commands,f,DBArray<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
 Sound,name,f,String,0x01,"(OFF)",1,0,String
 Sound,volume,f,Int32,0x03,100,0,0,Integer
 Sound,tempo,f,Int32,0x04,100,0,0,Integer
