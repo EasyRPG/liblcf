@@ -36,7 +36,6 @@ add_library(lcf)
 set(LCF_SOURCES
 	src/data.cpp
 	src/dbarray.cpp
-	src/dbstring.cpp
 	src/encoder.cpp
 	src/ini.cpp
 	src/inireader.cpp

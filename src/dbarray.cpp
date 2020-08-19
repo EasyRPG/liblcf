@@ -1,4 +1,5 @@
 #include "lcf/dbarray.h"
+#include "lcf/dbstring.h"
 #include <cassert>
 #include <cstddef>
 
@@ -11,6 +12,7 @@
 namespace lcf {
 
 constexpr DBArrayBase::size_type DBArrayBase::_empty_buf;
+constexpr DBString::size_type DBString::npos;
 
 static ptrdiff_t HeaderSize(size_t align) {
 	return std::max(sizeof(DBArrayBase::size_type), align);
@@ -58,6 +60,31 @@ void DBArrayBase::free(void* p, size_type align) noexcept {
 #endif
 		::operator delete(raw);
 	}
+}
+
+char* DBString::construct_z(const char* s, size_t len) {
+	auto* p = alloc(len);
+	if (len) {
+		std::memcpy(p, s, len + 1);
+	}
+	return p;
+}
+
+char* DBString::construct_sv(const char* s, size_t len) {
+	auto* p = alloc(len);
+	if (len) {
+		std::memcpy(p, s, len);
+		p[len] = '\0';
+	}
+	return p;
+}
+
+DBString& DBString::operator=(const DBString& o) {
+	if (this != &o) {
+		destroy();
+		_storage = construct_z(o.data(), o.size());
+	}
+	return *this;
 }
 
 } // namespace lcf
