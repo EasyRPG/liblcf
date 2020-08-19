@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <stdint.h>
 #include "lcf/string_view.h"
+#include "lcf/span.h"
 
 namespace lcf {
 
@@ -120,8 +121,8 @@ protected:
 	 *
 	 * @param val vector to write.
 	 */
-	template <class T>
-	void WriteVector(const std::vector<T>& val);
+	template <class ArrayType>
+	void WriteVector(const ArrayType& val);
 
 	void WriteString(StringView s);
 };
