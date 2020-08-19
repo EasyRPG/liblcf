@@ -48,8 +48,7 @@ void RawStruct<rpg::EventCommand>::ReadLcf(rpg::EventCommand& event_command, Lcf
 			param_buf.push_back(stream.ReadInt());
 		}
 		if (!param_buf.empty()) {
-			event_command.parameters.reserve(param_buf.size());
-			event_command.parameters.assign(param_buf.begin(), param_buf.end());
+			event_command.parameters = DBArray<int32_t>(param_buf.begin(), param_buf.end());
 		}
 	}
 }
