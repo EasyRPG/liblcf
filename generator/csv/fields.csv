@@ -158,10 +158,10 @@ Skill,affect_spirit,f,Boolean,0x23,False,0,0,Flag
 Skill,affect_agility,f,Boolean,0x24,False,0,0,Flag
 Skill,absorb_damage,f,Boolean,0x25,False,0,0,Flag
 Skill,ignore_defense,f,Boolean,0x26,False,0,0,Flag
-Skill,state_effects,t,Vector<Boolean>,0x29,,0,0,Integer
-Skill,state_effects,f,Vector<Boolean>,0x2A,,1,0,Array - Flag
-Skill,attribute_effects,t,Vector<Boolean>,0x2B,,0,0,Integer
-Skill,attribute_effects,f,Vector<Boolean>,0x2C,,1,0,Array - Flag
+Skill,state_effects,t,DBBitArray,0x29,,0,0,Integer
+Skill,state_effects,f,DBBitArray,0x2A,,1,0,Array - Flag
+Skill,attribute_effects,t,DBBitArray,0x2B,,0,0,Integer
+Skill,attribute_effects,f,DBBitArray,0x2C,,1,0,Array - Flag
 Skill,affect_attr_defence,f,Boolean,0x2D,False,0,0,Flag
 Skill,battler_animation,f,Ref<Actor>,0x31,-1,0,1,Integer - RPG2003
 Skill,battler_animation_data,f,Array<BattlerAnimationData:Ref<Actor>>,0x32,,1,1,? - RPG2003
@@ -215,19 +215,19 @@ Item,skill_id,f,Ref<Skill>,0x35,1,0,0,Integer
 Item,switch_id,f,Ref<Switch>,0x37,1,0,0,Integer
 Item,occasion_field2,f,Boolean,0x39,True,0,0,Flag
 Item,occasion_battle,f,Boolean,0x3A,False,0,0,Flag
-Item,actor_set,t,Vector<Boolean>,0x3D,,0,0,Integer
-Item,actor_set,f,Vector<Boolean>,0x3E,,1,0,Array - Flag
-Item,state_set,t,Vector<Boolean>,0x3F,,0,0,Integer
-Item,state_set,f,Vector<Boolean>,0x40,,1,0,Array - Flag
-Item,attribute_set,t,Vector<Boolean>,0x41,,0,0,Integer
-Item,attribute_set,f,Vector<Boolean>,0x42,,1,0,Array - Flag
+Item,actor_set,t,DBBitArray,0x3D,,0,0,Integer
+Item,actor_set,f,DBBitArray,0x3E,,1,0,Array - Flag
+Item,state_set,t,DBBitArray,0x3F,,0,0,Integer
+Item,state_set,f,DBBitArray,0x40,,1,0,Array - Flag
+Item,attribute_set,t,DBBitArray,0x41,,0,0,Integer
+Item,attribute_set,f,DBBitArray,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
 Item,reverse_state_effect,f,Boolean,0x44,False,0,0,Flag
 Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
 Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003
-Item,class_set,t,Vector<Boolean>,0x48,,0,1,Integer - RPG2003
-Item,class_set,f,Vector<Boolean>,0x49,,1,1,Array - Flag - RPG2003
+Item,class_set,t,DBBitArray,0x48,,0,1,Integer - RPG2003
+Item,class_set,f,DBBitArray,0x49,,1,1,Array - Flag - RPG2003
 Item,ranged_trajectory,f,Enum<Item_Trajectory>,0x4B,0,0,0,Integer
 Item,ranged_target,f,Enum<Item_Target>,0x4C,0,0,0,Integer
 EnemyAction,kind,f,Enum<EnemyAction_Kind>,0x01,0,1,0,Integer
@@ -299,8 +299,8 @@ TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - rpg::EventComm
 Troop,name,f,DBString,0x01,'',0,0,String
 Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - rpg::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
-Troop,terrain_set,t,Vector<Boolean>,0x04,,0,0,Integer
-Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
+Troop,terrain_set,t,DBBitArray,0x04,,0,0,Integer
+Troop,terrain_set,f,DBBitArray,0x05,,1,0,Array - Flag
 Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - rpg::TroopPage
 Terrain,name,f,DBString,0x01,'',0,0,String
