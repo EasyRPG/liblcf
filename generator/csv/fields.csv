@@ -26,7 +26,7 @@ Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
 Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
-Actor,skills,f,Vector<Learning>,0x3F,,1,0,Array - rpg::Learning
+Actor,skills,f,DBArray<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
 Actor,skill_name,f,DBString,0x43,'',0,0,String
 Actor,state_ranks,t,DBArray<UInt8>,0x47,,0,0,Integer

@@ -15,7 +15,6 @@
 // Headers
 #include <lcf/dbarray.h>
 #include <stdint.h>
-#include <vector>
 #include "lcf/dbstring.h"
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/learning.h"
@@ -57,7 +56,7 @@ namespace rpg {
 		int32_t battle_x = 220;
 		int32_t battle_y = 120;
 		int32_t battler_animation = 1;
-		std::vector<Learning> skills;
+		DBArray<Learning> skills;
 		bool rename_skill = false;
 		DBString skill_name;
 		DBArray<uint8_t> state_ranks;

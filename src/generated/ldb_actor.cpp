@@ -195,7 +195,7 @@ static TypedField<rpg::Actor, int32_t> static_battler_animation(
 	0,
 	1
 );
-static TypedField<rpg::Actor, std::vector<rpg::Learning>> static_skills(
+static TypedField<rpg::Actor, DBArray<rpg::Learning>> static_skills(
 	&rpg::Actor::skills,
 	LDB_Reader::ChunkActor::skills,
 	"skills",
