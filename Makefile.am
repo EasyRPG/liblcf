@@ -204,6 +204,7 @@ liblcf_la_SOURCES = \
 lcfinclude_HEADERS = \
 	src/lcf/data.h \
 	src/lcf/dbarray.h \
+	src/lcf/dbbitarray.h \
 	src/lcf/dbstring.h \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
