@@ -273,6 +273,69 @@ void Struct<S>::BeginXml(std::vector<S>& obj, XmlReader& stream) {
 	stream.SetHandler(new StructVectorXmlHandler<S>(obj));
 }
 
+// Read/Write DBArray<Struct>
+
+template <class S>
+void Struct<S>::ReadLcf(DBArray<S>& vec, LcfReader& stream) {
+	int count = stream.ReadInt();
+	vec = DBArray<S>(count);
+	for (int i = 0; i < count; i++) {
+		IDReader::ReadID(vec[i], stream);
+		TypeReader<S>::ReadLcf(vec[i], stream, 0);
+	}
+}
+
+template <class S>
+void Struct<S>::WriteLcf(const DBArray<S>& vec, LcfWriter& stream) {
+	int count = vec.size();
+	stream.WriteInt(count);
+	for (int i = 0; i < count; i++) {
+		IDReader::WriteID(vec[i], stream);
+		TypeReader<S>::WriteLcf(vec[i], stream);
+	}
+}
+
+template <class S>
+int Struct<S>::LcfSize(const DBArray<S>& vec, LcfWriter& stream) {
+	int result = 0;
+	int count = vec.size();
+	result += LcfReader::IntSize(count);
+	for (int i = 0; i < count; i++) {
+		result += IDReader::IDSize(vec[i]);
+		result += TypeReader<S>::LcfSize(vec[i], stream);
+	}
+	return result;
+}
+
+template <class S>
+void Struct<S>::WriteXml(const DBArray<S>& vec, XmlWriter& stream) {
+	int count = vec.size();
+	for (int i = 0; i < count; i++)
+		TypeReader<S>::WriteXml(vec[i], stream);
+}
+
+template <class S>
+class StructDBArrayXmlHandler : public XmlHandler {
+public:
+	StructDBArrayXmlHandler(DBArray<S>& ref) : ref(ref) {}
+
+	void StartElement(XmlReader& stream, const char* name, const char** atts) {
+		if (strcmp(name, Struct<S>::name) != 0)
+			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
+		ref = DBArray<S>(ref.size() + 1);
+		S& obj = ref.back();
+		Struct<S>::IDReader::ReadIDXml(obj, atts);
+		stream.SetHandler(new StructXmlHandler<S>(obj));
+	}
+private:
+	DBArray<S>& ref;
+};
+
+template <class S>
+void Struct<S>::BeginXml(DBArray<S>& obj, XmlReader& stream) {
+	stream.SetHandler(new StructDBArrayXmlHandler<S>(obj));
+}
+
 } //namespace lcf
 
 #include "fwd_struct_impl.h"

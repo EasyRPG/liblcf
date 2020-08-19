@@ -20,6 +20,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
+#include "lcf/dbarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/reader_lcf.h"
 #include "lcf/writer_lcf.h"
@@ -85,6 +86,11 @@ template <>	struct TypeCategory<DBString>						{ static const Category::Index va
 
 template <class T>
 struct TypeCategory<std::vector<T>> {
+	static const Category::Index value = TypeCategory<T>::value;
+};
+
+template <class T>
+struct TypeCategory<DBArray<T>> {
 	static const Category::Index value = TypeCategory<T>::value;
 };
 
@@ -206,10 +212,9 @@ struct Primitive<std::vector<T>> {
 	static void ReadLcf(std::vector<T>& ref, LcfReader& stream, uint32_t length) {
 		stream.Read(ref, length);
 #ifdef LCF_DEBUG_TRACE
-		typename std::vector<T>::iterator it;
 		printf("  ");
-		for (it = ref.begin(); it != ref.end(); ++it) {
-			printf("%d, ", static_cast<int>(*it));
+		for (auto e: ref) {
+			printf("%d, ", static_cast<int>(e));
 		}
 		printf("\n");
 #endif
@@ -227,6 +232,37 @@ struct Primitive<std::vector<T>> {
 		XmlReader::Read(ref, data);
 	}
 };
+
+/**
+ * DBArray specialization.
+ */
+template <class T>
+struct Primitive<DBArray<T>> {
+	static void ReadLcf(DBArray<T>& ref, LcfReader& stream, uint32_t length) {
+		stream.Read(ref, length);
+#ifdef LCF_DEBUG_TRACE
+		printf("  ");
+		for (auto e: ref) {
+			printf("%d, ", static_cast<int>(e));
+		}
+		printf("\n");
+#endif
+	}
+	static void WriteLcf(const DBArray<T>& ref, LcfWriter& stream) {
+		stream.Write(ref);
+	}
+	static int LcfSize(const DBArray<T>& ref, LcfWriter& /* stream */) {
+		return LcfSizeT<T>::value * ref.size();
+	}
+	static void WriteXml(const DBArray<T>& ref, XmlWriter& stream) {
+		stream.Write(ref);
+	}
+	static void ParseXml(DBArray<T>& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
+};
+
+
 
 /**
  * Int specialization.
@@ -494,7 +530,6 @@ struct SizeField : public Field<S> {
 		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
 };
 
-
 /**
  * CountField class template.
  */
@@ -593,6 +628,7 @@ private:
 
 	template <class T> friend class StructXmlHandler;
 	template <class T> friend class StructVectorXmlHandler;
+	template <class T> friend class StructDBArrayXmlHandler;
 	template <class T> friend class StructFieldXmlHandler;
 
 public:
@@ -607,6 +643,12 @@ public:
 	static int LcfSize(const std::vector<S>& obj, LcfWriter& stream);
 	static void WriteXml(const std::vector<S>& obj, XmlWriter& stream);
 	static void BeginXml(std::vector<S>& obj, XmlReader& stream);
+
+	static void ReadLcf(DBArray<S>& obj, LcfReader& stream);
+	static void WriteLcf(const DBArray<S>& obj, LcfWriter& stream);
+	static int LcfSize(const DBArray<S>& obj, LcfWriter& stream);
+	static void WriteXml(const DBArray<S>& obj, XmlWriter& stream);
+	static void BeginXml(DBArray<S>& obj, XmlReader& stream);
 };
 
 template <class S>
@@ -662,7 +704,27 @@ struct TypeReader<std::vector<T>, Category::Struct> {
 	}
 };
 
-
+template <class T>
+struct TypeReader<DBArray<T>, Category::Struct> {
+	static void ReadLcf(DBArray<T>& ref, LcfReader& stream, uint32_t /* length */) {
+		Struct<T>::ReadLcf(ref, stream);
+	}
+	static void WriteLcf(const DBArray<T>& ref, LcfWriter& stream) {
+		Struct<T>::WriteLcf(ref, stream);
+	}
+	static int LcfSize(const DBArray<T>& ref, LcfWriter& stream) {
+		return Struct<T>::LcfSize(ref, stream);
+	}
+	static void WriteXml(const DBArray<T>& ref, XmlWriter& stream) {
+		Struct<T>::WriteXml(ref, stream);
+	}
+	static void BeginXml(DBArray<T>& ref, XmlReader& stream) {
+		Struct<T>::BeginXml(ref, stream);
+	}
+	static void ParseXml(DBArray<T>& /* ref */, const std::string& /* data */) {
+		// no-op
+	}
+};
 
 /**
  * Flags class template.
