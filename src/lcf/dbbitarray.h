@@ -24,7 +24,7 @@ namespace lcf {
 
 class DBBitProxy {
 	public:
-		using size_type = DBArrayBase::size_type;
+		using size_type = DBArrayAlloc::size_type;
 
 		constexpr DBBitProxy() = default;
 
@@ -109,10 +109,10 @@ class DBBitProxyIterator {
 
 // An array data structure optimized for database storage.
 // Low memory footprint and not dynamically resizable.
-class DBBitArray : private DBArrayBase {
+class DBBitArray {
 	public:
 		using value_type = bool;
-		using DBArrayBase::size_type;
+		using size_type = DBArrayAlloc::size_type;
 
 		using iterator = DBBitProxyIterator<DBBitProxy>;
 		using const_iterator = DBBitProxyIterator<const DBBitProxy>;
@@ -177,7 +177,7 @@ class DBBitArray : private DBArrayBase {
 		const_reverse_iterator crend() const { return rend(); }
 
 		bool empty() const { return size() == 0; }
-		size_type size() const { return *get_size_ptr(_storage); }
+		size_type size() const { return *DBArrayAlloc::get_size_ptr(_storage); }
 
 		void set_all() { std::memset(_storage, 0xff, bytes_up_from_bits(size())); }
 		void reset_all() { std::memset(_storage, 0, bytes_up_from_bits(size())); }
@@ -199,16 +199,16 @@ class DBBitArray : private DBArrayBase {
 
 		void* alloc(size_type bits) {
 			auto bytes = bytes_up_from_bits(bits);
-			return DBArrayBase::alloc(bytes, bits, alignof(size_type));
+			return DBArrayAlloc::alloc(bytes, bits, alignof(size_type));
 		}
 
 		void free(void* p) {
-			DBArrayBase::free(p, alignof(size_type));
+			DBArrayAlloc::free(p, alignof(size_type));
 		}
 
 		void destroy() noexcept;
 	private:
-		void* _storage = DBArrayBase::empty_buf();
+		void* _storage = DBArrayAlloc::empty_buf();
 };
 
 inline bool operator==(const DBBitArray& l, const DBBitArray& r) { return std::equal(l.begin(), l.end(), r.begin(), r.end()); }
@@ -235,10 +235,10 @@ inline DBBitArray& DBBitArray::operator=(DBBitArray&& o) noexcept {
 	return *this;
 }
 
-void DBBitArray::destroy() noexcept {
-	if (_storage != this->empty_buf()) {
+inline void DBBitArray::destroy() noexcept {
+	if (_storage != DBArrayAlloc::empty_buf()) {
 		free(_storage);
-		_storage = this->empty_buf();
+		_storage = DBArrayAlloc::empty_buf();
 	}
 }
 

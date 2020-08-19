@@ -1,3 +1,4 @@
+#include "lcf/dbarrayalloc.h"
 #include "lcf/dbarray.h"
 #include "lcf/dbstring.h"
 #include <cassert>
@@ -11,11 +12,11 @@
 
 namespace lcf {
 
-constexpr DBArrayBase::size_type DBArrayBase::_empty_buf;
+constexpr DBArrayAlloc::size_type DBArrayAlloc::_empty_buf;
 constexpr DBString::size_type DBString::npos;
 
 static ptrdiff_t HeaderSize(size_t align) {
-	return std::max(sizeof(DBArrayBase::size_type), align);
+	return std::max(sizeof(DBArrayAlloc::size_type), align);
 }
 
 static size_t AllocSize(size_t size, size_t align) {
@@ -26,7 +27,7 @@ static void* Adjust(void* p, ptrdiff_t off) {
 	return reinterpret_cast<void*>(reinterpret_cast<intptr_t>(p) + off);
 }
 
-void* DBArrayBase::alloc(size_type size, size_type field_size, size_type align) {
+void* DBArrayAlloc::alloc(size_type size, size_type field_size, size_type align) {
 	if (size == 0) {
 		return empty_buf();
 	}
@@ -46,7 +47,7 @@ void* DBArrayBase::alloc(size_type size, size_type field_size, size_type align) 
 	return p;
 }
 
-void DBArrayBase::free(void* p, size_type align) noexcept {
+void DBArrayAlloc::free(void* p, size_type align) noexcept {
 	assert(p != nullptr);
 	if (p != empty_buf()) {
 		auto* raw = Adjust(p, -HeaderSize(align));

@@ -19,14 +19,14 @@
 #include <ostream>
 
 #include "lcf/string_view.h"
-#include "lcf/dbarray.h"
+#include "lcf/dbarrayalloc.h"
 
 namespace lcf {
 
 // A custom string class optimized for database storage.
 // This string type is good for storing and retrieving values.
 // It is not good for string manipulation like insertion or concatenation.
-class DBString : public DBArrayBase {
+class DBString {
 	public:
 		using value_type = char;
 		using size_type = uint32_t;
@@ -100,20 +100,20 @@ class DBString : public DBArrayBase {
 		const_reverse_iterator crend() const { return rend(); }
 
 		bool empty() const { return size() == 0; }
-		size_type size() const { return *this->get_size_ptr(_storage); }
+		size_type size() const { return *DBArrayAlloc::get_size_ptr(_storage); }
 
 	private:
 		char* alloc(size_t count) {
-			return reinterpret_cast<char*>(DBArrayBase::alloc(count + 1, count, 1));
+			return reinterpret_cast<char*>(DBArrayAlloc::alloc(count + 1, count, 1));
 		}
 		void free(void* p) {
-			DBArrayBase::free(p, 1);
+			DBArrayAlloc::free(p, 1);
 		}
 		void destroy() noexcept;
 		char* construct_z(const char* s, size_t len);
 		char* construct_sv(const char* s, size_t len);
 	private:
-		void* _storage = this->empty_buf();
+		void* _storage = DBArrayAlloc::empty_buf();
 };
 
 // This should be used over the conversion operator, so we can track all dbstr -> str instances
@@ -163,9 +163,9 @@ inline DBString& DBString::operator=(DBString&& o) noexcept {
 }
 
 inline void DBString::destroy() noexcept {
-	if (_storage != this->empty_buf()) {
+	if (_storage != DBArrayAlloc::empty_buf()) {
 		free(_storage);
-		_storage = this->empty_buf();
+		_storage = DBArrayAlloc::empty_buf();
 	}
 }
 

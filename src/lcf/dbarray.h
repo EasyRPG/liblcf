@@ -17,43 +17,18 @@
 #include <algorithm>
 #include <type_traits>
 
+#include "lcf/dbarrayalloc.h"
 #include "lcf/scope_guard.h"
 
 namespace lcf {
 
-class DBArrayBase {
-	public:
-		using size_type = uint32_t;
-
-	protected:
-		constexpr DBArrayBase() = default;
-
-		static void* alloc(size_type size, size_type field_size, size_type align);
-		static void free(void* p, size_type align) noexcept;
-
-		static constexpr void* empty_buf() {
-			return const_cast<size_type*>(&_empty_buf + 1);
-		}
-
-		static size_type* get_size_ptr(void* p) {
-			return reinterpret_cast<size_type*>(p) - 1;
-		}
-
-		static const size_type* get_size_ptr(const void* p) {
-			return reinterpret_cast<const size_type*>(p) - 1;
-		}
-
-	private:
-		static constexpr const size_type _empty_buf = 0;
-};
-
 // An array data structure optimized for database storage.
 // Low memory footprint and not dynamically resizable.
 template <typename T>
-class DBArray : private DBArrayBase {
+class DBArray {
 	public:
 		using value_type = T;
-		using DBArrayBase::size_type;
+		using size_type = DBArrayAlloc::size_type;
 
 		using iterator = T*;
 		using const_iterator = const T*;
@@ -123,15 +98,15 @@ class DBArray : private DBArrayBase {
 		const_reverse_iterator crend() const { return rend(); }
 
 		bool empty() const { return size() == 0; }
-		size_type size() const { return *get_size_ptr(_storage); }
+		size_type size() const { return *DBArrayAlloc::get_size_ptr(_storage); }
 
 	private:
 		T* alloc(size_t count) {
-			return reinterpret_cast<T*>(DBArrayBase::alloc(count * sizeof(T), count, alignof(T)));
+			return reinterpret_cast<T*>(DBArrayAlloc::alloc(count * sizeof(T), count, alignof(T)));
 		}
 
 		void free(void* p) {
-			DBArrayBase::free(p, alignof(T));
+			DBArrayAlloc::free(p, alignof(T));
 		}
 
 		template <typename F>
@@ -140,7 +115,7 @@ class DBArray : private DBArrayBase {
 		void destroy() noexcept;
 		void destroy_impl(size_type n) noexcept;
 	private:
-		void* _storage = DBArrayBase::empty_buf();
+		void* _storage = DBArrayAlloc::empty_buf();
 };
 
 template <typename T>
@@ -197,18 +172,16 @@ void DBArray<T>::construct(size_type count, const F& make) {
 
 template <typename T>
 void DBArray<T>::destroy() noexcept {
-	if (empty()) {
-		return;
+	if (_storage != DBArrayAlloc::empty_buf()) {
+		destroy_impl(size());
+		_storage = DBArrayAlloc::empty_buf();
 	}
-	destroy_impl(size());
-	_storage = DBArrayBase::empty_buf();
 }
 
 template <typename T>
 void DBArray<T>::destroy_impl(size_type n) noexcept {
 	while (n > 0) {
-		--n;
-		data()[n].~T();
+		data()[--n].~T();
 	}
 	free(_storage);
 }
