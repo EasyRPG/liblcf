@@ -158,6 +158,12 @@ void LcfWriter::Write(const DBString& _str) {
 	}
 }
 
+void LcfWriter::Write(const DBBitArray& bits) {
+	for (auto& b: bits) {
+		Write(static_cast<uint8_t>(b));
+	}
+}
+
 uint32_t LcfWriter::Tell() {
 	return (uint32_t)stream.tellp();
 }

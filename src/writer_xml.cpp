@@ -13,6 +13,7 @@
 #include "lcf/writer_xml.h"
 #include "lcf/dbstring.h"
 #include "lcf/dbarray.h"
+#include "lcf/dbbitarray.h"
 
 namespace lcf {
 
@@ -174,6 +175,11 @@ void XmlWriter::Write<DBArray<double>>(const DBArray<double>& val) {
 
 void XmlWriter::WriteInt(int val) {
 	Write<int32_t>(val);
+}
+
+template <>
+void XmlWriter::Write(const DBBitArray& val) {
+	WriteVector(val);
 }
 
 template <typename ArrayType>
