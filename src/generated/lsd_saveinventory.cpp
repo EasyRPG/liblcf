@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::SaveInventory>::name = "SaveInventory";
-static CountField<rpg::SaveInventory, int16_t> static_size_party(
+static CountField<rpg::SaveInventory, std::vector<int16_t>> static_size_party(
 	&rpg::SaveInventory::party,
 	LSD_Reader::ChunkSaveInventory::party_size,
 	1,
@@ -33,7 +33,7 @@ static TypedField<rpg::SaveInventory, std::vector<int16_t>> static_party(
 	1,
 	0
 );
-static CountField<rpg::SaveInventory, int16_t> static_size_item_ids(
+static CountField<rpg::SaveInventory, std::vector<int16_t>> static_size_item_ids(
 	&rpg::SaveInventory::item_ids,
 	LSD_Reader::ChunkSaveInventory::item_ids_size,
 	1,

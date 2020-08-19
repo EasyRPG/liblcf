@@ -55,7 +55,7 @@ static TypedField<rpg::SaveSystem, int32_t> static_font_id(
 	0,
 	0
 );
-static CountField<rpg::SaveSystem, bool> static_size_switches(
+static CountField<rpg::SaveSystem, std::vector<bool>> static_size_switches(
 	&rpg::SaveSystem::switches,
 	LSD_Reader::ChunkSaveSystem::switches_size,
 	0,
@@ -68,7 +68,7 @@ static TypedField<rpg::SaveSystem, std::vector<bool>> static_switches(
 	1,
 	0
 );
-static CountField<rpg::SaveSystem, int32_t> static_size_variables(
+static CountField<rpg::SaveSystem, std::vector<int32_t>> static_size_variables(
 	&rpg::SaveSystem::variables,
 	LSD_Reader::ChunkSaveSystem::variables_size,
 	0,
