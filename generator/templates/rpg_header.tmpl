@@ -87,6 +87,9 @@ namespace rpg {
 		{%- endif %}
 	{%- endif %}
 	{%- endfor %}
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
@@ -128,6 +131,15 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}& obj);
+
+	template <typename F>
+	inline void {{ struct_name }}::ForEachString(const F& f) {
+	{%- for field in fields[struct_name]|field_is_used|field_has_type("String") %}
+		{{ field.name }} = f({{ field.name }}, "{{ field.name }}");
+	{%- else %}
+		(void)f;
+	{%- endfor %}
+	}
 } // namespace rpg
 } // namespace lcf
 

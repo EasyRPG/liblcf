@@ -150,6 +150,11 @@ def filter_size_fields(fields):
     for field in fields:
         if not field.size:
             yield field
+
+def filter_field_has_type(fields, typ):
+    for field in fields:
+        if field.type == typ:
+            yield field
 # End of Jinja 2 functions
 
 int_types = {
@@ -463,6 +468,7 @@ def main(argv):
     env.filters["field_is_used"] = filter_unused_fields
     env.filters["field_is_written"] = filter_unwritten_fields
     env.filters["field_is_not_size"] = filter_size_fields
+    env.filters["field_has_type"] = filter_field_has_type
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
