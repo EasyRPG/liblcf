@@ -43,27 +43,7 @@ ToStringView(const std::basic_string<CharT, Traits, Allocator>& s )
 	return nonstd::to_string_view(s);
 }
 
-// Make sure converting string to string is an error. To catch bugs.
-template <typename C, typename T, typename A>
-void ToString(const std::basic_string<C,T,A>&) = delete;
-
-// We use macros instead of template to enable implicit string -> string_view conversion here.
-#define LCF_STRING_VIEW_FREE_FUNCTIONS(TYPE)\
-inline TYPE Substr(TYPE s, size_t pos = 0, size_t count = TYPE::npos) { return s.substr(pos, count); }\
-inline bool StartsWith(TYPE str, TYPE prefix) { return str.starts_with(prefix); }\
-inline bool StartsWith(TYPE str, TYPE::value_type prefix) { return str.starts_with(prefix); }\
-inline bool StartsWith(TYPE str, const TYPE::value_type* prefix) { return str.starts_with(prefix); }\
-inline bool EndsWith(TYPE str, TYPE suffix) { return str.ends_with(suffix); }\
-inline bool EndsWith(TYPE str, TYPE::value_type suffix) { return str.ends_with(suffix); }\
-inline bool EndsWith(TYPE str, const TYPE::value_type* suffix) { return str.ends_with(suffix); }
-
-LCF_STRING_VIEW_FREE_FUNCTIONS(StringView)
-LCF_STRING_VIEW_FREE_FUNCTIONS(WStringView)
-LCF_STRING_VIEW_FREE_FUNCTIONS(U16StringView)
-LCF_STRING_VIEW_FREE_FUNCTIONS(U32StringView)
-
-#undef LCF_STRING_VIEW_FREE_FUNCTIONS
-
+/** A reimplementation of std::atoi() which works for StringView */
 inline int SvAtoi(StringView str) {
 	const char* b = str.data();
 	const char* e = str.data() + str.length();
