@@ -208,6 +208,8 @@ set(LCF_HEADERS
 	src/lcf/reader_xml.h
 	src/lcf/saveopt.h
 	src/lcf/scope_guard.h
+	src/lcf/span.h
+	src/lcf/string_view.h
 	src/lcf/writer_lcf.h
 	src/lcf/writer_xml.h
 	src/generated/lcf/ldb/chunks.h
@@ -281,6 +283,8 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/trooppage.h
 	src/generated/lcf/rpg/trooppagecondition.h
 	src/generated/lcf/rpg/variable.h
+	src/lcf/third_party/span.h
+	src/lcf/third_party/string_view.h
 )
 
 list(TRANSFORM LCF_SOURCES PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
@@ -290,7 +294,7 @@ list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 target_sources(lcf PRIVATE ${LCF_SOURCES} PUBLIC ${LCF_HEADERS})
 
 # IDE source grouping
-foreach(SG LDB LMT LMU LSD RPG)
+foreach(SG LDB LMT LMU LSD RPG THIRD_PARTY)
 	string(TOLOWER ${SG} LSG)
 	source_group("Source Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/${LSG}_.*\\.cpp")
 	source_group("Header Files\\generated\\${SG}" REGULAR_EXPRESSION "generated/lcf/${LSG}/.*\\.h")
@@ -387,7 +391,7 @@ install(
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 set(LCF_INSTALL_HEADERS ${LCF_HEADERS})
-foreach(S ldb lmt lmu lsd rpg)
+foreach(S ldb lmt lmu lsd rpg third_party)
 	set(SUBDIR_HEADERS ${LCF_INSTALL_HEADERS})
 	list(FILTER SUBDIR_HEADERS INCLUDE REGEX "/${S}/")
 	install(FILES ${SUBDIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/${S})
