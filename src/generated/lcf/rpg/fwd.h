@@ -12,8 +12,6 @@
 #ifndef LCF_RPG_FWD_H
 #define LCF_RPG_FWD_H
 
-#include <lcf/fwd.h>
-
 namespace lcf {
 namespace rpg {
 	class Actor;
