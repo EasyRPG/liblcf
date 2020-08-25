@@ -49,6 +49,9 @@ namespace rpg {
 		int32_t parallax_horz_speed = 0;
 		bool parallax_vert_auto = false;
 		int32_t parallax_vert_speed = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveMapInfo& l, const SaveMapInfo& r) {
@@ -73,6 +76,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveMapInfo& obj);
+
+	template <typename F>
+	inline void SaveMapInfo::ForEachString(const F& f) {
+		parallax_name = f(parallax_name, "parallax_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

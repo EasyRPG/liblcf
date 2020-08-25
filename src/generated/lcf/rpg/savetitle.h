@@ -37,6 +37,9 @@ namespace rpg {
 		int32_t face3_id = 0;
 		std::string face4_name;
 		int32_t face4_id = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveTitle& l, const SaveTitle& r) {
@@ -59,6 +62,15 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveTitle& obj);
+
+	template <typename F>
+	inline void SaveTitle::ForEachString(const F& f) {
+		hero_name = f(hero_name, "hero_name");
+		face1_name = f(face1_name, "face1_name");
+		face2_name = f(face2_name, "face2_name");
+		face3_name = f(face3_name, "face3_name");
+		face4_name = f(face4_name, "face4_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

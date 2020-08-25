@@ -54,6 +54,9 @@ namespace rpg {
 		bool battleanim_global = false;
 		int32_t weather = 0;
 		int32_t weather_strength = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveScreen& l, const SaveScreen& r) {
@@ -94,6 +97,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveScreen& obj);
+
+	template <typename F>
+	inline void SaveScreen::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -55,6 +55,9 @@ namespace rpg {
 		SaveEventExecState foreground_event_execstate;
 		std::vector<SaveCommonEvent> common_events;
 		SaveEasyRpgData easyrpg_data;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Save& l, const Save& r) {
@@ -81,6 +84,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Save& obj);
+
+	template <typename F>
+	inline void Save::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

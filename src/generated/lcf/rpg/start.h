@@ -36,6 +36,9 @@ namespace rpg {
 		int32_t airship_map_id = 0;
 		int32_t airship_x = 0;
 		int32_t airship_y = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Start& l, const Start& r) {
@@ -58,6 +61,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Start& obj);
+
+	template <typename F>
+	inline void Start::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

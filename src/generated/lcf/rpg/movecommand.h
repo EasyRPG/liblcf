@@ -120,6 +120,9 @@ namespace rpg {
 		int32_t parameter_a = 0;
 		int32_t parameter_b = 0;
 		int32_t parameter_c = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, MoveCommand::Code code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -139,6 +142,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const MoveCommand& obj);
+
+	template <typename F>
+	inline void MoveCommand::ForEachString(const F& f) {
+		parameter_string = f(parameter_string, "parameter_string");
+	}
 } // namespace rpg
 } // namespace lcf
 

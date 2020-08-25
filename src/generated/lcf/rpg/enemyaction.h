@@ -90,6 +90,9 @@ namespace rpg {
 		bool switch_off = false;
 		int32_t switch_off_id = 1;
 		int32_t rating = 50;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, EnemyAction::Kind code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -125,6 +128,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const EnemyAction& obj);
+
+	template <typename F>
+	inline void EnemyAction::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

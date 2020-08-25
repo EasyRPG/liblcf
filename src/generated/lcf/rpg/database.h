@@ -63,6 +63,9 @@ namespace rpg {
 		BattleCommands battlecommands;
 		std::vector<Class> classes;
 		std::vector<BattlerAnimation> battleranimations;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Database& l, const Database& r) {
@@ -92,6 +95,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Database& obj);
+
+	template <typename F>
+	inline void Database::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

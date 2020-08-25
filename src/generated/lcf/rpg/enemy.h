@@ -49,6 +49,9 @@ namespace rpg {
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<EnemyAction> actions;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Enemy& l, const Enemy& r) {
@@ -80,6 +83,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Enemy& obj);
+
+	template <typename F>
+	inline void Enemy::ForEachString(const F& f) {
+		name = f(name, "name");
+		battler_name = f(battler_name, "battler_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -50,6 +50,9 @@ namespace rpg {
 		int32_t move = 0;
 		int32_t after_image = 0;
 		int32_t pose = -1;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationData::Movement code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -71,6 +74,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj);
+
+	template <typename F>
+	inline void BattlerAnimationData::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -128,6 +128,9 @@ namespace rpg {
 		std::vector<bool> class_set;
 		int32_t ranged_trajectory = 0;
 		int32_t ranged_target = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Item::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -202,6 +205,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Item& obj);
+
+	template <typename F>
+	inline void Item::ForEachString(const F& f) {
+		name = f(name, "name");
+		description = f(description, "description");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -43,6 +43,9 @@ namespace rpg {
 		std::vector<int32_t> tree_order;
 		int32_t active_node = 0;
 		Start start;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, TreeMap::MapType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -61,6 +64,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const TreeMap& obj);
+
+	template <typename F>
+	inline void TreeMap::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

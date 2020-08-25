@@ -26,6 +26,9 @@ namespace rpg {
 	public:
 		int ID = 0;
 		std::string name;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Variable& l, const Variable& r) {
@@ -37,6 +40,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Variable& obj);
+
+	template <typename F>
+	inline void Variable::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

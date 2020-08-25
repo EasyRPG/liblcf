@@ -113,6 +113,9 @@ namespace rpg {
 		int32_t sp_change_val = 0;
 		int32_t sp_change_map_steps = 0;
 		int32_t sp_change_map_val = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, State::Persistence code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -181,6 +184,16 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const State& obj);
+
+	template <typename F>
+	inline void State::ForEachString(const F& f) {
+		name = f(name, "name");
+		message_actor = f(message_actor, "message_actor");
+		message_enemy = f(message_enemy, "message_enemy");
+		message_already = f(message_already, "message_already");
+		message_affected = f(message_affected, "message_affected");
+		message_recovery = f(message_recovery, "message_recovery");
+	}
 } // namespace rpg
 } // namespace lcf
 

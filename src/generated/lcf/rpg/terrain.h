@@ -95,6 +95,9 @@ namespace rpg {
 		int32_t grid_top_y = 120;
 		int32_t grid_elongation = 392;
 		int32_t grid_inclination = 16000;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Terrain::BushDepth code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -155,6 +158,14 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Terrain& obj);
+
+	template <typename F>
+	inline void Terrain::ForEachString(const F& f) {
+		name = f(name, "name");
+		background_name = f(background_name, "background_name");
+		background_a_name = f(background_a_name, "background_a_name");
+		background_b_name = f(background_b_name, "background_b_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

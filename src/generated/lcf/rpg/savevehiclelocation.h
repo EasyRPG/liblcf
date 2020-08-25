@@ -45,6 +45,9 @@ namespace rpg {
 		int32_t remaining_descent = 0;
 		std::string orig_sprite_name;
 		int32_t orig_sprite_id = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, SaveVehicleLocation::VehicleType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -64,6 +67,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveVehicleLocation& obj);
+
+	template <typename F>
+	inline void SaveVehicleLocation::ForEachString(const F& f) {
+		orig_sprite_name = f(orig_sprite_name, "orig_sprite_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

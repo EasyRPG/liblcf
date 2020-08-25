@@ -38,6 +38,9 @@ namespace rpg {
 		int32_t speed = 0;
 		std::vector<BattlerAnimationExtension> base_data;
 		std::vector<BattlerAnimationExtension> weapon_data;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattlerAnimation::Speed code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -56,6 +59,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattlerAnimation& obj);
+
+	template <typename F>
+	inline void BattlerAnimation::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -23,6 +23,9 @@ namespace rpg {
 	public:
 		int ID = 0;
 		int32_t troop_id = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Encounter& l, const Encounter& r) {
@@ -34,6 +37,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Encounter& obj);
+
+	template <typename F>
+	inline void Encounter::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

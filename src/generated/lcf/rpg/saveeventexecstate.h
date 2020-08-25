@@ -48,6 +48,9 @@ namespace rpg {
 		bool keyinput_2k3up = false;
 		bool keyinput_timed = false;
 		bool wait_key_enter = false;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveEventExecState& l, const SaveEventExecState& r) {
@@ -80,6 +83,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveEventExecState& obj);
+
+	template <typename F>
+	inline void SaveEventExecState::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

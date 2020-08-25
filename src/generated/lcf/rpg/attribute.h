@@ -43,6 +43,9 @@ namespace rpg {
 		int32_t c_rate = 100;
 		int32_t d_rate = 50;
 		int32_t e_rate = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Attribute::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -64,6 +67,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Attribute& obj);
+
+	template <typename F>
+	inline void Attribute::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

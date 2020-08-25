@@ -69,6 +69,9 @@ namespace rpg {
 		int32_t timer_sec = 0;
 		int32_t timer2_sec = 0;
 		int32_t compare_operator = 1;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, EventPageCondition::Comparison code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -103,6 +106,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const EventPageCondition& obj);
+
+	template <typename F>
+	inline void EventPageCondition::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

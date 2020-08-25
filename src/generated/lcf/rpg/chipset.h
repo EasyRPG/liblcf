@@ -46,6 +46,9 @@ namespace rpg {
 		std::vector<uint8_t> passable_data_upper;
 		int32_t animation_type = 0;
 		int32_t animation_speed = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Chipset::AnimType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -67,6 +70,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Chipset& obj);
+
+	template <typename F>
+	inline void Chipset::ForEachString(const F& f) {
+		name = f(name, "name");
+		chipset_name = f(chipset_name, "chipset_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

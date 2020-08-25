@@ -135,6 +135,9 @@ namespace rpg {
 		int32_t time_left = 0;
 		double current_rotation = 0.0;
 		int32_t current_waver = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, SavePicture::Effect code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -205,6 +208,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SavePicture& obj);
+
+	template <typename F>
+	inline void SavePicture::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

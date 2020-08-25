@@ -101,6 +101,9 @@ namespace rpg {
 		bool affect_attr_defence = false;
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -157,6 +160,14 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Skill& obj);
+
+	template <typename F>
+	inline void Skill::ForEachString(const F& f) {
+		name = f(name, "name");
+		description = f(description, "description");
+		using_message1 = f(using_message1, "using_message1");
+		using_message2 = f(using_message2, "using_message2");
+	}
 } // namespace rpg
 } // namespace lcf
 

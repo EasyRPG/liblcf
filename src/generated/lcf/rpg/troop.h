@@ -34,6 +34,9 @@ namespace rpg {
 		std::vector<bool> terrain_set;
 		bool appear_randomly = false;
 		std::vector<TroopPage> pages;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Troop& l, const Troop& r) {
@@ -50,6 +53,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Troop& obj);
+
+	template <typename F>
+	inline void Troop::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

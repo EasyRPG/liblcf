@@ -70,6 +70,9 @@ namespace rpg {
 		bool encounter_calling = false;
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, SavePartyLocation::VehicleType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -104,6 +107,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SavePartyLocation& obj);
+
+	template <typename F>
+	inline void SavePartyLocation::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -32,6 +32,9 @@ namespace rpg {
 		int32_t x = 0;
 		int32_t y = 0;
 		std::vector<EventPage> pages;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Event& l, const Event& r) {
@@ -46,6 +49,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Event& obj);
+
+	template <typename F>
+	inline void Event::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

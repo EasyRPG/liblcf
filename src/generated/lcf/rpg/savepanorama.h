@@ -26,6 +26,9 @@ namespace rpg {
 	public:
 		int32_t pan_x = 0;
 		int32_t pan_y = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SavePanorama& l, const SavePanorama& r) {
@@ -38,6 +41,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SavePanorama& obj);
+
+	template <typename F>
+	inline void SavePanorama::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

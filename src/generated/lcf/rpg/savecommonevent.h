@@ -26,6 +26,9 @@ namespace rpg {
 	public:
 		int ID = 0;
 		SaveEventExecState parallel_event_execstate;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveCommonEvent& l, const SaveCommonEvent& r) {
@@ -37,6 +40,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveCommonEvent& obj);
+
+	template <typename F>
+	inline void SaveCommonEvent::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

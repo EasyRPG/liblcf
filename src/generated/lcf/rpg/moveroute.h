@@ -28,6 +28,9 @@ namespace rpg {
 		std::vector<MoveCommand> move_commands;
 		bool repeat = true;
 		bool skippable = false;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const MoveRoute& l, const MoveRoute& r) {
@@ -41,6 +44,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const MoveRoute& obj);
+
+	template <typename F>
+	inline void MoveRoute::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

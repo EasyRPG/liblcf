@@ -32,6 +32,9 @@ namespace rpg {
 		int32_t event_id = 0;
 		bool triggered_by_decision_key = false;
 		std::vector<uint8_t> subcommand_path;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {
@@ -47,6 +50,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame& obj);
+
+	template <typename F>
+	inline void SaveEventExecFrame::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

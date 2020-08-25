@@ -56,6 +56,9 @@ namespace rpg {
 		int32_t flash_blue = 31;
 		int32_t flash_power = 31;
 		int32_t screen_shake = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, AnimationTiming::FlashScope code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -82,6 +85,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const AnimationTiming& obj);
+
+	template <typename F>
+	inline void AnimationTiming::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

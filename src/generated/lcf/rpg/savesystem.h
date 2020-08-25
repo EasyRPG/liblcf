@@ -118,6 +118,9 @@ namespace rpg {
 		int32_t save_count = 0;
 		int32_t save_slot = 1;
 		int32_t atb_mode = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, SaveSystem::Scene code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -191,6 +194,13 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveSystem& obj);
+
+	template <typename F>
+	inline void SaveSystem::ForEachString(const F& f) {
+		graphics_name = f(graphics_name, "graphics_name");
+		face_name = f(face_name, "face_name");
+		background = f(background, "background");
+	}
 } // namespace rpg
 } // namespace lcf
 

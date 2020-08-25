@@ -39,6 +39,9 @@ namespace rpg {
 		bool switch_flag = false;
 		int32_t switch_id = 1;
 		std::vector<EventCommand> event_commands;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, CommonEvent::Trigger code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -58,6 +61,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const CommonEvent& obj);
+
+	template <typename F>
+	inline void CommonEvent::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

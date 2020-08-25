@@ -67,6 +67,9 @@ namespace rpg {
 		int32_t turn_actor_b = 0;
 		int32_t command_actor_id = 1;
 		int32_t command_id = 1;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
@@ -110,6 +113,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const TroopPageCondition& obj);
+
+	template <typename F>
+	inline void TroopPageCondition::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

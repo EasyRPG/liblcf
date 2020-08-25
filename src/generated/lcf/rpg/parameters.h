@@ -32,6 +32,9 @@ namespace rpg {
 		std::vector<int16_t> defense;
 		std::vector<int16_t> spirit;
 		std::vector<int16_t> agility;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Parameters& l, const Parameters& r) {
@@ -48,6 +51,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Parameters& obj);
+
+	template <typename F>
+	inline void Parameters::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

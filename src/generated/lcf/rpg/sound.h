@@ -29,6 +29,9 @@ namespace rpg {
 		int32_t volume = 100;
 		int32_t tempo = 100;
 		int32_t balance = 50;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Sound& l, const Sound& r) {
@@ -43,6 +46,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Sound& obj);
+
+	template <typename F>
+	inline void Sound::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

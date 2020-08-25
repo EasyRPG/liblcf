@@ -27,6 +27,9 @@ namespace rpg {
 	public:
 		int ID = 0;
 		std::vector<AnimationCellData> cells;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const AnimationFrame& l, const AnimationFrame& r) {
@@ -38,6 +41,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const AnimationFrame& obj);
+
+	template <typename F>
+	inline void AnimationFrame::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

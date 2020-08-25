@@ -45,6 +45,9 @@ namespace rpg {
 		int32_t victories = 0;
 		int32_t turns = 0;
 		int32_t steps = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveInventory& l, const SaveInventory& r) {
@@ -74,6 +77,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveInventory& obj);
+
+	template <typename F>
+	inline void SaveInventory::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

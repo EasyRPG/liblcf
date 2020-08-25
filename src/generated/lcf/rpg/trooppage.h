@@ -29,6 +29,9 @@ namespace rpg {
 		int ID = 0;
 		TroopPageCondition condition;
 		std::vector<EventCommand> event_commands;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const TroopPage& l, const TroopPage& r) {
@@ -41,6 +44,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const TroopPage& obj);
+
+	template <typename F>
+	inline void TroopPage::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

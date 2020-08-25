@@ -99,6 +99,9 @@ namespace rpg {
 		int32_t death_teleport_x = 0;
 		int32_t death_teleport_y = 0;
 		int32_t death_teleport_face = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Placement code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -148,6 +151,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattleCommands& obj);
+
+	template <typename F>
+	inline void BattleCommands::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

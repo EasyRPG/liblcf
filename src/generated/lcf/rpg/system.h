@@ -232,6 +232,9 @@ namespace rpg {
 		std::string frame_name;
 		bool invert_animations = false;
 		bool show_title = true;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, System::FadeOut code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -325,6 +328,19 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const System& obj);
+
+	template <typename F>
+	inline void System::ForEachString(const F& f) {
+		boat_name = f(boat_name, "boat_name");
+		ship_name = f(ship_name, "ship_name");
+		airship_name = f(airship_name, "airship_name");
+		title_name = f(title_name, "title_name");
+		gameover_name = f(gameover_name, "gameover_name");
+		system_name = f(system_name, "system_name");
+		system2_name = f(system2_name, "system2_name");
+		battletest_background = f(battletest_background, "battletest_background");
+		frame_name = f(frame_name, "frame_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -35,6 +35,9 @@ namespace rpg {
 		int32_t tone_blue = 100;
 		int32_t tone_gray = 100;
 		int32_t transparency = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const AnimationCellData& l, const AnimationCellData& r) {
@@ -55,6 +58,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const AnimationCellData& obj);
+
+	template <typename F>
+	inline void AnimationCellData::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

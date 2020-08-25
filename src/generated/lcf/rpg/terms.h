@@ -151,6 +151,9 @@ namespace rpg {
 		std::string exit_game_message;
 		std::string yes;
 		std::string no;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Terms& l, const Terms& r) {
@@ -288,6 +291,137 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Terms& obj);
+
+	template <typename F>
+	inline void Terms::ForEachString(const F& f) {
+		encounter = f(encounter, "encounter");
+		special_combat = f(special_combat, "special_combat");
+		escape_success = f(escape_success, "escape_success");
+		escape_failure = f(escape_failure, "escape_failure");
+		victory = f(victory, "victory");
+		defeat = f(defeat, "defeat");
+		exp_received = f(exp_received, "exp_received");
+		gold_recieved_a = f(gold_recieved_a, "gold_recieved_a");
+		gold_recieved_b = f(gold_recieved_b, "gold_recieved_b");
+		item_recieved = f(item_recieved, "item_recieved");
+		attacking = f(attacking, "attacking");
+		enemy_critical = f(enemy_critical, "enemy_critical");
+		actor_critical = f(actor_critical, "actor_critical");
+		defending = f(defending, "defending");
+		observing = f(observing, "observing");
+		focus = f(focus, "focus");
+		autodestruction = f(autodestruction, "autodestruction");
+		enemy_escape = f(enemy_escape, "enemy_escape");
+		enemy_transform = f(enemy_transform, "enemy_transform");
+		enemy_damaged = f(enemy_damaged, "enemy_damaged");
+		enemy_undamaged = f(enemy_undamaged, "enemy_undamaged");
+		actor_damaged = f(actor_damaged, "actor_damaged");
+		actor_undamaged = f(actor_undamaged, "actor_undamaged");
+		skill_failure_a = f(skill_failure_a, "skill_failure_a");
+		skill_failure_b = f(skill_failure_b, "skill_failure_b");
+		skill_failure_c = f(skill_failure_c, "skill_failure_c");
+		dodge = f(dodge, "dodge");
+		use_item = f(use_item, "use_item");
+		hp_recovery = f(hp_recovery, "hp_recovery");
+		parameter_increase = f(parameter_increase, "parameter_increase");
+		parameter_decrease = f(parameter_decrease, "parameter_decrease");
+		enemy_hp_absorbed = f(enemy_hp_absorbed, "enemy_hp_absorbed");
+		actor_hp_absorbed = f(actor_hp_absorbed, "actor_hp_absorbed");
+		resistance_increase = f(resistance_increase, "resistance_increase");
+		resistance_decrease = f(resistance_decrease, "resistance_decrease");
+		level_up = f(level_up, "level_up");
+		skill_learned = f(skill_learned, "skill_learned");
+		battle_start = f(battle_start, "battle_start");
+		miss = f(miss, "miss");
+		shop_greeting1 = f(shop_greeting1, "shop_greeting1");
+		shop_regreeting1 = f(shop_regreeting1, "shop_regreeting1");
+		shop_buy1 = f(shop_buy1, "shop_buy1");
+		shop_sell1 = f(shop_sell1, "shop_sell1");
+		shop_leave1 = f(shop_leave1, "shop_leave1");
+		shop_buy_select1 = f(shop_buy_select1, "shop_buy_select1");
+		shop_buy_number1 = f(shop_buy_number1, "shop_buy_number1");
+		shop_purchased1 = f(shop_purchased1, "shop_purchased1");
+		shop_sell_select1 = f(shop_sell_select1, "shop_sell_select1");
+		shop_sell_number1 = f(shop_sell_number1, "shop_sell_number1");
+		shop_sold1 = f(shop_sold1, "shop_sold1");
+		shop_greeting2 = f(shop_greeting2, "shop_greeting2");
+		shop_regreeting2 = f(shop_regreeting2, "shop_regreeting2");
+		shop_buy2 = f(shop_buy2, "shop_buy2");
+		shop_sell2 = f(shop_sell2, "shop_sell2");
+		shop_leave2 = f(shop_leave2, "shop_leave2");
+		shop_buy_select2 = f(shop_buy_select2, "shop_buy_select2");
+		shop_buy_number2 = f(shop_buy_number2, "shop_buy_number2");
+		shop_purchased2 = f(shop_purchased2, "shop_purchased2");
+		shop_sell_select2 = f(shop_sell_select2, "shop_sell_select2");
+		shop_sell_number2 = f(shop_sell_number2, "shop_sell_number2");
+		shop_sold2 = f(shop_sold2, "shop_sold2");
+		shop_greeting3 = f(shop_greeting3, "shop_greeting3");
+		shop_regreeting3 = f(shop_regreeting3, "shop_regreeting3");
+		shop_buy3 = f(shop_buy3, "shop_buy3");
+		shop_sell3 = f(shop_sell3, "shop_sell3");
+		shop_leave3 = f(shop_leave3, "shop_leave3");
+		shop_buy_select3 = f(shop_buy_select3, "shop_buy_select3");
+		shop_buy_number3 = f(shop_buy_number3, "shop_buy_number3");
+		shop_purchased3 = f(shop_purchased3, "shop_purchased3");
+		shop_sell_select3 = f(shop_sell_select3, "shop_sell_select3");
+		shop_sell_number3 = f(shop_sell_number3, "shop_sell_number3");
+		shop_sold3 = f(shop_sold3, "shop_sold3");
+		inn_a_greeting_1 = f(inn_a_greeting_1, "inn_a_greeting_1");
+		inn_a_greeting_2 = f(inn_a_greeting_2, "inn_a_greeting_2");
+		inn_a_greeting_3 = f(inn_a_greeting_3, "inn_a_greeting_3");
+		inn_a_accept = f(inn_a_accept, "inn_a_accept");
+		inn_a_cancel = f(inn_a_cancel, "inn_a_cancel");
+		inn_b_greeting_1 = f(inn_b_greeting_1, "inn_b_greeting_1");
+		inn_b_greeting_2 = f(inn_b_greeting_2, "inn_b_greeting_2");
+		inn_b_greeting_3 = f(inn_b_greeting_3, "inn_b_greeting_3");
+		inn_b_accept = f(inn_b_accept, "inn_b_accept");
+		inn_b_cancel = f(inn_b_cancel, "inn_b_cancel");
+		possessed_items = f(possessed_items, "possessed_items");
+		equipped_items = f(equipped_items, "equipped_items");
+		gold = f(gold, "gold");
+		battle_fight = f(battle_fight, "battle_fight");
+		battle_auto = f(battle_auto, "battle_auto");
+		battle_escape = f(battle_escape, "battle_escape");
+		command_attack = f(command_attack, "command_attack");
+		command_defend = f(command_defend, "command_defend");
+		command_item = f(command_item, "command_item");
+		command_skill = f(command_skill, "command_skill");
+		menu_equipment = f(menu_equipment, "menu_equipment");
+		menu_save = f(menu_save, "menu_save");
+		menu_quit = f(menu_quit, "menu_quit");
+		new_game = f(new_game, "new_game");
+		load_game = f(load_game, "load_game");
+		exit_game = f(exit_game, "exit_game");
+		status = f(status, "status");
+		row = f(row, "row");
+		order = f(order, "order");
+		wait_on = f(wait_on, "wait_on");
+		wait_off = f(wait_off, "wait_off");
+		level = f(level, "level");
+		health_points = f(health_points, "health_points");
+		spirit_points = f(spirit_points, "spirit_points");
+		normal_status = f(normal_status, "normal_status");
+		exp_short = f(exp_short, "exp_short");
+		lvl_short = f(lvl_short, "lvl_short");
+		hp_short = f(hp_short, "hp_short");
+		sp_short = f(sp_short, "sp_short");
+		sp_cost = f(sp_cost, "sp_cost");
+		attack = f(attack, "attack");
+		defense = f(defense, "defense");
+		spirit = f(spirit, "spirit");
+		agility = f(agility, "agility");
+		weapon = f(weapon, "weapon");
+		shield = f(shield, "shield");
+		armor = f(armor, "armor");
+		helmet = f(helmet, "helmet");
+		accessory = f(accessory, "accessory");
+		save_game_message = f(save_game_message, "save_game_message");
+		load_game_message = f(load_game_message, "load_game_message");
+		file = f(file, "file");
+		exit_game_message = f(exit_game_message, "exit_game_message");
+		yes = f(yes, "yes");
+		no = f(no, "no");
+	}
 } // namespace rpg
 } // namespace lcf
 

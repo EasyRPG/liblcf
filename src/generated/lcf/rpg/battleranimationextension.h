@@ -41,6 +41,9 @@ namespace rpg {
 		int32_t battler_index = 0;
 		int32_t animation_type = 0;
 		int32_t animation_id = 1;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationExtension::AnimType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -60,6 +63,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattlerAnimationExtension& obj);
+
+	template <typename F>
+	inline void BattlerAnimationExtension::ForEachString(const F& f) {
+		name = f(name, "name");
+		battler_name = f(battler_name, "battler_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

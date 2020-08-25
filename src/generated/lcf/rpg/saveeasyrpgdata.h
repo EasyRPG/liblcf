@@ -25,6 +25,9 @@ namespace rpg {
 	class SaveEasyRpgData {
 	public:
 		int32_t version = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
@@ -36,6 +39,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgData& obj);
+
+	template <typename F>
+	inline void SaveEasyRpgData::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -66,6 +66,9 @@ namespace rpg {
 		int32_t flash_blue = -1;
 		double flash_current_level = 0.0;
 		int32_t flash_time_left = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveMapEventBase& l, const SaveMapEventBase& r) {
@@ -115,6 +118,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj);
+
+	template <typename F>
+	inline void SaveMapEventBase::ForEachString(const F& f) {
+		sprite_name = f(sprite_name, "sprite_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

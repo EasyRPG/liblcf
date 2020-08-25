@@ -69,6 +69,9 @@ namespace rpg {
 		bool auto_battle = false;
 		bool super_guard = false;
 		int32_t battler_animation = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, SaveActor::RowType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -112,6 +115,14 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveActor& obj);
+
+	template <typename F>
+	inline void SaveActor::ForEachString(const F& f) {
+		name = f(name, "name");
+		title = f(title, "title");
+		sprite_name = f(sprite_name, "sprite_name");
+		face_name = f(face_name, "face_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -29,6 +29,9 @@ namespace rpg {
 		int16_t armor_id = 0;
 		int16_t helmet_id = 0;
 		int16_t accessory_id = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Equipment& l, const Equipment& r) {
@@ -44,6 +47,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Equipment& obj);
+
+	template <typename F>
+	inline void Equipment::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

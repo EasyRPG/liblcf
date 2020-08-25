@@ -181,6 +181,9 @@ namespace rpg {
 		int32_t indent = 0;
 		std::string string;
 		std::vector<int32_t> parameters;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, EventCommand::Code code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -199,6 +202,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const EventCommand& obj);
+
+	template <typename F>
+	inline void EventCommand::ForEachString(const F& f) {
+		string = f(string, "string");
+	}
 } // namespace rpg
 } // namespace lcf
 

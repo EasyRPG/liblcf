@@ -94,6 +94,9 @@ namespace rpg {
 		std::vector<Event> events;
 		int32_t save_count_2k3e = 0;
 		int32_t save_count = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Map::ScrollType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -148,6 +151,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Map& obj);
+
+	template <typename F>
+	inline void Map::ForEachString(const F& f) {
+		parallax_name = f(parallax_name, "parallax_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

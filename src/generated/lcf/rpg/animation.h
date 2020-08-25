@@ -55,6 +55,9 @@ namespace rpg {
 		int32_t scope = 0;
 		int32_t position = 2;
 		std::vector<AnimationFrame> frames;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Animation::Scope code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -80,6 +83,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Animation& obj);
+
+	template <typename F>
+	inline void Animation::ForEachString(const F& f) {
+		name = f(name, "name");
+		animation_name = f(animation_name, "animation_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

@@ -27,6 +27,9 @@ namespace rpg {
 		int ID = 0;
 		int32_t level = 1;
 		int32_t skill_id = 1;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Learning& l, const Learning& r) {
@@ -39,6 +42,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Learning& obj);
+
+	template <typename F>
+	inline void Learning::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

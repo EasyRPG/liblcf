@@ -66,6 +66,9 @@ namespace rpg {
 		int32_t ranged_anim = 0;
 		int32_t ranged_speed = 0;
 		int32_t battle_anim = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::Movement code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -97,6 +100,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const ItemAnimation& obj);
+
+	template <typename F>
+	inline void ItemAnimation::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

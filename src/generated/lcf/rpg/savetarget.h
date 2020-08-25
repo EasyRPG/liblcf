@@ -30,6 +30,9 @@ namespace rpg {
 		int32_t map_y = 0;
 		bool switch_on = false;
 		int32_t switch_id = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveTarget& l, const SaveTarget& r) {
@@ -45,6 +48,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveTarget& obj);
+
+	template <typename F>
+	inline void SaveTarget::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

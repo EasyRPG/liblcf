@@ -47,6 +47,9 @@ namespace rpg {
 		int ID = 0;
 		std::string name;
 		int32_t type = 0;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattleCommand::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -63,6 +66,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattleCommand& obj);
+
+	template <typename F>
+	inline void BattleCommand::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

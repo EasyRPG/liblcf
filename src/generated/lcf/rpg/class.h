@@ -43,6 +43,9 @@ namespace rpg {
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<int32_t> battle_commands;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const Class& l, const Class& r) {
@@ -67,6 +70,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Class& obj);
+
+	template <typename F>
+	inline void Class::ForEachString(const F& f) {
+		name = f(name, "name");
+	}
 } // namespace rpg
 } // namespace lcf
 

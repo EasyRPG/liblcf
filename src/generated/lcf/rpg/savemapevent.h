@@ -33,6 +33,9 @@ namespace rpg {
 		int32_t original_move_route_index = 0;
 		bool triggered_by_decision_key = false;
 		SaveEventExecState parallel_event_execstate;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 
 	inline bool operator==(const SaveMapEvent& l, const SaveMapEvent& r) {
@@ -47,6 +50,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveMapEvent& obj);
+
+	template <typename F>
+	inline void SaveMapEvent::ForEachString(const F& f) {
+		(void)f;
+	}
 } // namespace rpg
 } // namespace lcf
 

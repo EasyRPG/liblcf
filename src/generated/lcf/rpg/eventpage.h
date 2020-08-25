@@ -139,6 +139,9 @@ namespace rpg {
 		int32_t move_speed = 3;
 		MoveRoute move_route;
 		std::vector<EventCommand> event_commands;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, EventPage::Direction code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -192,6 +195,11 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const EventPage& obj);
+
+	template <typename F>
+	inline void EventPage::ForEachString(const F& f) {
+		character_name = f(character_name, "character_name");
+	}
 } // namespace rpg
 } // namespace lcf
 

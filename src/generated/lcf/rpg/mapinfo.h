@@ -79,6 +79,9 @@ namespace rpg {
 		std::vector<Encounter> encounters;
 		int32_t encounter_steps = 25;
 		Rect area_rect;
+
+		template <typename F>
+		void ForEachString(const F& f);
 	};
 	inline std::ostream& operator<<(std::ostream& os, MapInfo::MusicType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -118,6 +121,12 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const MapInfo& obj);
+
+	template <typename F>
+	inline void MapInfo::ForEachString(const F& f) {
+		name = f(name, "name");
+		background_name = f(background_name, "background_name");
+	}
 } // namespace rpg
 } // namespace lcf
 
