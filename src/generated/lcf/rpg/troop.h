@@ -13,8 +13,9 @@
 #define LCF_RPG_TROOP_H
 
 // Headers
-#include <string>
 #include <vector>
+#include "lcf/dbbitarray.h"
+#include "lcf/dbstring.h"
 #include "lcf/rpg/troopmember.h"
 #include "lcf/rpg/trooppage.h"
 #include <ostream>
@@ -28,10 +29,10 @@ namespace rpg {
 	class Troop {
 	public:
 		int ID = 0;
-		std::string name;
+		DBString name;
 		std::vector<TroopMember> members;
 		bool auto_alignment = false;
-		std::vector<bool> terrain_set;
+		DBBitArray terrain_set;
 		bool appear_randomly = false;
 		std::vector<TroopPage> pages;
 	};

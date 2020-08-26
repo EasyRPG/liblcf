@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::CommonEvent>::name = "CommonEvent";
-static TypedField<rpg::CommonEvent, std::string> static_name(
+static TypedField<rpg::CommonEvent, DBString> static_name(
 	&rpg::CommonEvent::name,
 	LDB_Reader::ChunkCommonEvent::name,
 	"name",
@@ -48,7 +48,7 @@ static TypedField<rpg::CommonEvent, int32_t> static_switch_id(
 	0,
 	0
 );
-static SizeField<rpg::CommonEvent, rpg::EventCommand> static_size_event_commands(
+static SizeField<rpg::CommonEvent, std::vector<rpg::EventCommand>> static_size_event_commands(
 	&rpg::CommonEvent::event_commands,
 	LDB_Reader::ChunkCommonEvent::event_commands_size,
 	1,

@@ -1,16 +1,16 @@
 #Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
 Learning,level,f,Int32,0x01,1,0,0,Integer
 Learning,skill_id,f,Ref<Skill>,0x02,1,0,0,Integer
-Actor,name,f,String,0x01,'',0,0,String
-Actor,title,f,String,0x02,'',0,0,String
-Actor,character_name,f,String,0x03,'',0,0,String
+Actor,name,f,DBString,0x01,'',0,0,String
+Actor,title,f,DBString,0x02,'',0,0,String
+Actor,character_name,f,DBString,0x03,'',0,0,String
 Actor,character_index,f,Int32,0x04,0,0,0,Integer
 Actor,transparent,f,Boolean,0x05,False,0,0,Flag
 Actor,initial_level,f,Int32,0x07,1,0,0,Integer
 Actor,final_level,f,Int32,0x08,50|99,0,0,Integer
 Actor,critical_hit,f,Boolean,0x09,True,0,0,Flag
 Actor,critical_hit_chance,f,Int32,0x0A,30,0,0,Integer
-Actor,face_name,f,String,0x0F,,0,0,String
+Actor,face_name,f,DBString,0x0F,,0,0,String
 Actor,face_index,f,Int32,0x10,0,0,0,Integer
 Actor,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Actor,lock_equipment,f,Boolean,0x16,False,0,0,Flag
@@ -26,14 +26,14 @@ Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
 Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
-Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
+Actor,skills,f,DBArray<Learning>,0x3F,,1,0,Array - rpg::Learning
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
-Actor,skill_name,f,String,0x43,'',0,0,String
-Actor,state_ranks,t,UInt8,0x47,,0,0,Integer
-Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
-Actor,attribute_ranks,t,UInt8,0x49,,0,0,Integer
-Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
-Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
+Actor,skill_name,f,DBString,0x43,'',0,0,String
+Actor,state_ranks,t,DBArray<UInt8>,0x47,,0,0,Integer
+Actor,state_ranks,f,DBArray<UInt8>,0x48,,1,0,Array - Short
+Actor,attribute_ranks,t,DBArray<UInt8>,0x49,,0,0,Integer
+Actor,attribute_ranks,f,DBArray<UInt8>,0x4A,,1,0,Array - Short
+Actor,battle_commands,f,DBArray<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
 Sound,name,f,String,0x01,"(OFF)",1,0,String
 Sound,volume,f,Int32,0x03,100,0,0,Integer
 Sound,tempo,f,Int32,0x04,100,0,0,Integer
@@ -57,21 +57,21 @@ AnimationCellData,tone_blue,f,Int32,0x08,100,0,0,Integer
 AnimationCellData,tone_gray,f,Int32,0x09,100,0,0,Integer
 AnimationCellData,transparency,f,Int32,0x0A,0,0,0,Integer
 AnimationFrame,cells,f,Array<AnimationCellData>,0x01,,1,0,Array - rpg::AnimationCellData
-Animation,name,f,String,0x01,'',0,0,String
-Animation,animation_name,f,String,0x02,'',0,0,String
+Animation,name,f,DBString,0x01,'',0,0,String
+Animation,animation_name,f,DBString,0x02,'',0,0,String
 Animation,large,f,Boolean,0x03,False,0,0,Battle2 animation when true
 Animation,timings,f,Array<AnimationTiming>,0x06,,1,0,Array - rpg::AnimationTiming
 Animation,scope,f,Enum<Animation_Scope>,0x09,0,1,0,Integer
 Animation,position,f,Enum<Animation_Position>,0x0A,2,1,0,Integer
 Animation,frames,f,Array<AnimationFrame>,0x0C,,1,0,Array - rpg::AnimationFrames
-Attribute,name,f,String,0x01,'',0,0,String
+Attribute,name,f,DBString,0x01,'',0,0,String
 Attribute,type,f,Enum<Attribute_Type>,0x02,0,1,0,Integer
 Attribute,a_rate,f,Int32,0x0B,300,0,0,Integer
 Attribute,b_rate,f,Int32,0x0C,200,0,0,Integer
 Attribute,c_rate,f,Int32,0x0D,100,0,0,Integer
 Attribute,d_rate,f,Int32,0x0E,50,0,0,Integer
 Attribute,e_rate,f,Int32,0x0F,0,0,0,Integer
-BattleCommand,name,f,String,0x01,'',1,0,String
+BattleCommand,name,f,DBString,0x01,'',1,0,String
 BattleCommand,type,f,Enum<BattleCommand_Type>,0x02,0,0,0,Integer
 BattleCommands,placement,f,Enum<BattleCommands_Placement>,0x02,0,0,0,Integer
 BattleCommands,death_handler_unused,f,Boolean,0x04,0,0,1,Set by the RM2k3 Editor when you enable death handler; but has no effect in RPG_RT.
@@ -88,26 +88,26 @@ BattleCommands,death_teleport_id,f,Ref<Map>,0x1A,1,0,0,Integer
 BattleCommands,death_teleport_x,f,Int32,0x1B,0,0,0,Integer
 BattleCommands,death_teleport_y,f,Int32,0x1C,0,0,0,Integer
 BattleCommands,death_teleport_face,f,Enum<BattleCommands_Facing>,0x1D,0,0,0,Integer
-BattlerAnimationExtension,name,f,String,0x01,'',0,0,String
-BattlerAnimationExtension,battler_name,f,String,0x02,'',0,0,String
+BattlerAnimationExtension,name,f,DBString,0x01,'',0,0,String
+BattlerAnimationExtension,battler_name,f,DBString,0x02,'',0,0,String
 BattlerAnimationExtension,battler_index,f,Int32,0x03,0,0,0,Integer
 BattlerAnimationExtension,animation_type,f,Enum<BattlerAnimationExtension_AnimType>,0x04,0,0,0,Integer
 BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,1,0,0,Integer
-BattlerAnimation,name,f,String,0x01,'',0,0,String
+BattlerAnimation,name,f,DBString,0x01,'',0,0,String
 BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,0,0,0,Integer
 BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - rpg::BattlerAnimationExtension
 BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - rpg::BattlerAnimationExtension
 BattlerAnimationData,move,f,Enum<BattlerAnimationData_Movement>,0x05,0,0,0,Integer
 BattlerAnimationData,after_image,f,Enum<BattlerAnimationData_AfterImage>,0x06,0,0,0,Integer
 BattlerAnimationData,pose,f,Int32,0x0E,-1,0,0,Integer
-Chipset,name,f,String,0x01,'',0,0,String
-Chipset,chipset_name,f,String,0x02,'',0,0,String
+Chipset,name,f,DBString,0x01,'',0,0,String
+Chipset,chipset_name,f,DBString,0x02,'',0,0,String
 Chipset,terrain_data,f,Vector<Int16>,0x03,[1]*162,0,0,Array - Short x 162
 Chipset,passable_data_lower,f,Vector<UInt8>,0x04,[15]*162,0,0,Array - Bitflag x 162
 Chipset,passable_data_upper,f,Vector<UInt8>,0x05,[31]+[15]*143,0,0,Array - Bitflag x 144
 Chipset,animation_type,f,Enum<Chipset_AnimType>,0x0B,0,0,0,Integer
 Chipset,animation_speed,f,Int32,0x0C,0,0,0,Integer
-Class,name,f,String,0x01,'',0,0,String
+Class,name,f,DBString,0x01,'',0,0,String
 Class,two_weapon,f,Boolean,0x15,False,0,0,Flag
 Class,lock_equipment,f,Boolean,0x16,False,0,0,Flag
 Class,auto_battle,f,Boolean,0x17,False,0,0,Flag
@@ -118,21 +118,21 @@ Class,exp_inflation,f,Int32,0x2A,300,0,0,Integer
 Class,exp_correction,f,Int32,0x2B,0,0,0,Integer
 Class,battler_animation,f,Ref<Animation>,0x3E,0,0,0,Integer
 Class,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
-Class,state_ranks,t,UInt8,0x47,,0,0,Integer
+Class,state_ranks,t,Vector<UInt8>,0x47,,0,0,Integer
 Class,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
-Class,attribute_ranks,t,UInt8,0x49,,0,0,Integer
+Class,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
 Class,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Class,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,0,Array - Uint32
-CommonEvent,name,f,String,0x01,'',0,0,String
+CommonEvent,name,f,DBString,0x01,'',0,0,String
 CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,0,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,0,0,Flag
 CommonEvent,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
-CommonEvent,event_commands,t,EventCommand,0x15,,1,0,Integer
+CommonEvent,event_commands,t,Vector<EventCommand>,0x15,,1,0,Integer
 CommonEvent,event_commands,f,Vector<EventCommand>,0x16,,1,0,Array - rpg::EventCommand
-Skill,name,f,String,0x01,'',0,0,String
-Skill,description,f,String,0x02,'',0,0,String
-Skill,using_message1,f,String,0x03,'',0,0,String - RPG2000
-Skill,using_message2,f,String,0x04,'',0,0,String - RPG2000
+Skill,name,f,DBString,0x01,'',0,0,String
+Skill,description,f,DBString,0x02,'',0,0,String
+Skill,using_message1,f,DBString,0x03,'',0,0,String - RPG2000
+Skill,using_message2,f,DBString,0x04,'',0,0,String - RPG2000
 Skill,failure_message,f,Int32,0x07,0,0,0,Integer - RPG2000
 Skill,type,f,Enum<Skill_Type>,0x08,0,1,0,Integer
 Skill,sp_type,f,Enum<Skill_SpType>,0x09,0,0,1,Integer - RPG2003
@@ -158,10 +158,10 @@ Skill,affect_spirit,f,Boolean,0x23,False,0,0,Flag
 Skill,affect_agility,f,Boolean,0x24,False,0,0,Flag
 Skill,absorb_damage,f,Boolean,0x25,False,0,0,Flag
 Skill,ignore_defense,f,Boolean,0x26,False,0,0,Flag
-Skill,state_effects,t,Boolean,0x29,,0,0,Integer
-Skill,state_effects,f,Vector<Boolean>,0x2A,,1,0,Array - Flag
-Skill,attribute_effects,t,Boolean,0x2B,,0,0,Integer
-Skill,attribute_effects,f,Vector<Boolean>,0x2C,,1,0,Array - Flag
+Skill,state_effects,t,DBBitArray,0x29,,0,0,Integer
+Skill,state_effects,f,DBBitArray,0x2A,,1,0,Array - Flag
+Skill,attribute_effects,t,DBBitArray,0x2B,,0,0,Integer
+Skill,attribute_effects,f,DBBitArray,0x2C,,1,0,Array - Flag
 Skill,affect_attr_defence,f,Boolean,0x2D,False,0,0,Flag
 Skill,battler_animation,f,Ref<Actor>,0x31,-1,0,1,Integer - RPG2003
 Skill,battler_animation_data,f,Array<BattlerAnimationData:Ref<Actor>>,0x32,,1,1,? - RPG2003
@@ -174,8 +174,8 @@ ItemAnimation,ranged,f,Boolean,0x08,False,0,0,
 ItemAnimation,ranged_anim,f,Int32,0x09,0,0,0,
 ItemAnimation,ranged_speed,f,Enum<ItemAnimation_Speed>,0x0C,0,0,0,
 ItemAnimation,battle_anim,f,Ref<Animation>,0x0D,0,0,0,
-Item,name,f,String,0x01,'',0,0,String
-Item,description,f,String,0x02,'',0,0,String
+Item,name,f,DBString,0x01,'',0,0,String
+Item,description,f,DBString,0x02,'',0,0,String
 Item,type,f,Enum<Item_Type>,0x03,0,1,0,Integer
 Item,price,f,Int32,0x05,0,0,0,Integer
 Item,uses,f,Int32,0x06,1,0,0,Integer
@@ -215,19 +215,19 @@ Item,skill_id,f,Ref<Skill>,0x35,1,0,0,Integer
 Item,switch_id,f,Ref<Switch>,0x37,1,0,0,Integer
 Item,occasion_field2,f,Boolean,0x39,True,0,0,Flag
 Item,occasion_battle,f,Boolean,0x3A,False,0,0,Flag
-Item,actor_set,t,Boolean,0x3D,,0,0,Integer
-Item,actor_set,f,Vector<Boolean>,0x3E,,1,0,Array - Flag
-Item,state_set,t,Boolean,0x3F,,0,0,Integer
-Item,state_set,f,Vector<Boolean>,0x40,,1,0,Array - Flag
-Item,attribute_set,t,Boolean,0x41,,0,0,Integer
-Item,attribute_set,f,Vector<Boolean>,0x42,,1,0,Array - Flag
+Item,actor_set,t,DBBitArray,0x3D,,0,0,Integer
+Item,actor_set,f,DBBitArray,0x3E,,1,0,Array - Flag
+Item,state_set,t,DBBitArray,0x3F,,0,0,Integer
+Item,state_set,f,DBBitArray,0x40,,1,0,Array - Flag
+Item,attribute_set,t,DBBitArray,0x41,,0,0,Integer
+Item,attribute_set,f,DBBitArray,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
 Item,reverse_state_effect,f,Boolean,0x44,False,0,0,Flag
 Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
 Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003
-Item,class_set,t,Boolean,0x48,,0,1,Integer - RPG2003
-Item,class_set,f,Vector<Boolean>,0x49,,1,1,Array - Flag - RPG2003
+Item,class_set,t,DBBitArray,0x48,,0,1,Integer - RPG2003
+Item,class_set,f,DBBitArray,0x49,,1,1,Array - Flag - RPG2003
 Item,ranged_trajectory,f,Enum<Item_Trajectory>,0x4B,0,0,0,Integer
 Item,ranged_target,f,Enum<Item_Target>,0x4C,0,0,0,Integer
 EnemyAction,kind,f,Enum<EnemyAction_Kind>,0x01,0,1,0,Integer
@@ -243,8 +243,8 @@ EnemyAction,switch_on_id,f,Ref<Switch>,0x0A,1,0,0,Integer
 EnemyAction,switch_off,f,Boolean,0x0B,False,0,0,Flag
 EnemyAction,switch_off_id,f,Ref<Switch>,0x0C,1,0,0,Integer
 EnemyAction,rating,f,Int32,0x0D,50,0,0,Integer
-Enemy,name,f,String,0x01,'',0,0,String
-Enemy,battler_name,f,String,0x02,'',0,0,String
+Enemy,name,f,DBString,0x01,'',0,0,String
+Enemy,battler_name,f,DBString,0x02,'',0,0,String
 Enemy,battler_hue,f,Int32,0x03,0,0,0,Integer
 Enemy,max_hp,f,Int32,0x04,10,0,0,Integer
 Enemy,max_sp,f,Int32,0x05,10,0,0,Integer
@@ -261,9 +261,9 @@ Enemy,critical_hit,f,Boolean,0x15,False,0,0,Flag
 Enemy,critical_hit_chance,f,Int32,0x16,30,0,0,Integer
 Enemy,miss,f,Boolean,0x1A,False,0,0,Flag
 Enemy,levitate,f,Boolean,0x1C,False,0,0,Flag
-Enemy,state_ranks,t,UInt8,0x1F,,0,0,Integer
+Enemy,state_ranks,t,Vector<UInt8>,0x1F,,0,0,Integer
 Enemy,state_ranks,f,Vector<UInt8>,0x20,,1,0,Array - Short
-Enemy,attribute_ranks,t,UInt8,0x21,,0,0,Integer
+Enemy,attribute_ranks,t,Vector<UInt8>,0x21,,0,0,Integer
 Enemy,attribute_ranks,f,Vector<UInt8>,0x22,,1,0,Array - Short
 Enemy,actions,f,Array<EnemyAction>,0x2A,,1,0,Array - rpg::EnemyAction
 TroopMember,enemy_id,f,Ref<Enemy>,0x01,1,0,0,Integer
@@ -294,19 +294,19 @@ TroopPageCondition,turn_actor_b,f,Int32,0x15,0,0,1,Integer - RPG2003
 TroopPageCondition,command_actor_id,f,Ref<Actor>,0x16,1,0,1,Integer - RPG2003
 TroopPageCondition,command_id,f,Ref<BattleCommand>,0x17,1,0,1,Integer - RPG2003
 TroopPage,condition,f,TroopPageCondition,0x02,,1,0,rpg::TroopPageCondition
-TroopPage,event_commands,t,EventCommand,0x0B,,1,0,Integer
+TroopPage,event_commands,t,Vector<EventCommand>,0x0B,,1,0,Integer
 TroopPage,event_commands,f,Vector<EventCommand>,0x0C,,1,0,Array - rpg::EventCommand
-Troop,name,f,String,0x01,'',0,0,String
+Troop,name,f,DBString,0x01,'',0,0,String
 Troop,members,f,Array<TroopMember>,0x02,,1,0,Array - rpg::TroopMember
 Troop,auto_alignment,f,Boolean,0x03,False,0,1,Flag
-Troop,terrain_set,t,Boolean,0x04,,0,0,Integer
-Troop,terrain_set,f,Vector<Boolean>,0x05,,1,0,Array - Flag
+Troop,terrain_set,t,DBBitArray,0x04,,0,0,Integer
+Troop,terrain_set,f,DBBitArray,0x05,,1,0,Array - Flag
 Troop,appear_randomly,f,Boolean,0x06,False,0,1,Flag
 Troop,pages,f,Array<TroopPage>,0x0B,,1,0,Array - rpg::TroopPage
-Terrain,name,f,String,0x01,'',0,0,String
+Terrain,name,f,DBString,0x01,'',0,0,String
 Terrain,damage,f,Int32,0x02,0,0,0,Integer
 Terrain,encounter_rate,f,Int32,0x03,100,0,0,Integer
-Terrain,background_name,f,String,0x04,'',0,0,String
+Terrain,background_name,f,DBString,0x04,'',0,0,String
 Terrain,boat_pass,f,Boolean,0x05,False,0,0,Flag
 Terrain,ship_pass,f,Boolean,0x06,False,0,0,Flag
 Terrain,airship_pass,f,Boolean,0x07,True,0,0,Flag
@@ -315,13 +315,13 @@ Terrain,bush_depth,f,Enum<Terrain_BushDepth>,0x0B,0,1,0,Integer
 Terrain,footstep,f,Sound,0x0F,,1,1,rpg::Sound - RPG2003
 Terrain,on_damage_se,f,Boolean,0x10,False,0,1,Flag - RPG2003
 Terrain,background_type,f,Enum<Terrain_BGAssociation>,0x11,0,0,1,Integer - RPG2003
-Terrain,background_a_name,f,String,0x15,'',0,1,String - RPG2003
+Terrain,background_a_name,f,DBString,0x15,'',0,1,String - RPG2003
 Terrain,background_a_scrollh,f,Boolean,0x16,False,0,1,Flag - RPG2003
 Terrain,background_a_scrollv,f,Boolean,0x17,False,0,1,Flag - RPG2003
 Terrain,background_a_scrollh_speed,f,Int32,0x18,0,0,1,Integer - RPG2003
 Terrain,background_a_scrollv_speed,f,Int32,0x19,0,0,1,Integer - RPG2003
 Terrain,background_b,f,Boolean,0x1E,False,0,1,Flag - RPG2003
-Terrain,background_b_name,f,String,0x1F,'',0,1,String - RPG2003
+Terrain,background_b_name,f,DBString,0x1F,'',0,1,String - RPG2003
 Terrain,background_b_scrollh,f,Boolean,0x20,False,0,1,Flag - RPG2003
 Terrain,background_b_scrollv,f,Boolean,0x21,False,0,1,Flag - RPG2003
 Terrain,background_b_scrollh_speed,f,Int32,0x22,0,0,1,Integer - RPG2003
@@ -335,7 +335,7 @@ Terrain,grid_location,f,Int32,0x2D,0,0,1,Integer - RPG2003
 Terrain,grid_top_y,f,Int32,0x2E,120,0,1,Integer - RPG2003
 Terrain,grid_elongation,f,Int32,0x2F,392,0,1,Integer - RPG2003
 Terrain,grid_inclination,f,Int32,0x30,16000,0,1,Integer - RPG2003
-State,name,f,String,0x01,'',0,0,String
+State,name,f,DBString,0x01,'',0,0,String
 State,type,f,Enum<State_Persistence>,0x02,0,1,0,Integer
 State,color,f,Int32,0x03,6,0,0,Integer
 State,priority,f,Int32,0x04,50,0,0,Integer
@@ -364,11 +364,11 @@ State,restrict_magic,f,Boolean,0x2B,False,0,0,Flag
 State,restrict_magic_level,f,Int32,0x2C,0,0,0,Integer
 State,hp_change_type,f,Enum<State_ChangeType>,0x2D,0,0,0,Integer
 State,sp_change_type,f,Enum<State_ChangeType>,0x2E,0,0,0,Integer
-State,message_actor,f,String,0x33,'',0,0,String
-State,message_enemy,f,String,0x34,'',0,0,String
-State,message_already,f,String,0x35,'',0,0,String
-State,message_affected,f,String,0x36,'',0,0,String
-State,message_recovery,f,String,0x37,'',0,0,String
+State,message_actor,f,DBString,0x33,'',0,0,String
+State,message_enemy,f,DBString,0x34,'',0,0,String
+State,message_already,f,DBString,0x35,'',0,0,String
+State,message_affected,f,DBString,0x36,'',0,0,String
+State,message_recovery,f,DBString,0x37,'',0,0,String
 State,hp_change_max,f,Int32,0x3D,0,0,0,Integer
 State,hp_change_val,f,Int32,0x3E,0,0,0,Integer
 State,hp_change_map_steps,f,Int32,0x3F,0,0,0,Integer
@@ -377,133 +377,133 @@ State,sp_change_max,f,Int32,0x41,0,0,0,Integer
 State,sp_change_val,f,Int32,0x42,0,0,0,Integer
 State,sp_change_map_steps,f,Int32,0x43,0,0,0,Integer
 State,sp_change_map_val,f,Int32,0x44,0,0,0,Integer
-Terms,encounter,f,String,0x01,'',1,0,String
-Terms,special_combat,f,String,0x02,'',1,0,String
-Terms,escape_success,f,String,0x03,'',1,0,String
-Terms,escape_failure,f,String,0x04,'',1,0,String
-Terms,victory,f,String,0x05,'',1,0,String
-Terms,defeat,f,String,0x06,'',1,0,String
-Terms,exp_received,f,String,0x07,'',1,0,String
-Terms,gold_recieved_a,f,String,0x08,'',1,0,String
-Terms,gold_recieved_b,f,String,0x09,'',1,0,String
-Terms,item_recieved,f,String,0x0A,'',1,0,String
-Terms,attacking,f,String,0x0B,'',1,0,String
-Terms,enemy_critical,f,String,0x0C,'',1,0,String
-Terms,actor_critical,f,String,0x0D,'',1,0,String
-Terms,defending,f,String,0x0E,'',1,0,String
-Terms,observing,f,String,0x0F,'',1,0,String
-Terms,focus,f,String,0x10,'',1,0,String
-Terms,autodestruction,f,String,0x11,'',1,0,String
-Terms,enemy_escape,f,String,0x12,'',1,0,String
-Terms,enemy_transform,f,String,0x13,'',1,0,String
-Terms,enemy_damaged,f,String,0x14,'',1,0,String
-Terms,enemy_undamaged,f,String,0x15,'',1,0,String
-Terms,actor_damaged,f,String,0x16,'',1,0,String
-Terms,actor_undamaged,f,String,0x17,'',1,0,String
-Terms,skill_failure_a,f,String,0x18,'',1,0,String
-Terms,skill_failure_b,f,String,0x19,'',1,0,String
-Terms,skill_failure_c,f,String,0x1A,'',1,0,String
-Terms,dodge,f,String,0x1B,'',1,0,String
-Terms,use_item,f,String,0x1C,'',1,0,String
-Terms,hp_recovery,f,String,0x1D,'',1,0,String
-Terms,parameter_increase,f,String,0x1E,'',1,0,String
-Terms,parameter_decrease,f,String,0x1F,'',1,0,String
-Terms,enemy_hp_absorbed,f,String,0x20,'',1,0,String
-Terms,actor_hp_absorbed,f,String,0x21,'',1,0,String
-Terms,resistance_increase,f,String,0x22,'',1,0,String
-Terms,resistance_decrease,f,String,0x23,'',1,0,String
-Terms,level_up,f,String,0x24,'',1,0,String
-Terms,skill_learned,f,String,0x25,'',1,0,String
-Terms,battle_start,f,String,0x26,'',1,1,String
-Terms,miss,f,String,0x27,'',1,1,String
-Terms,shop_greeting1,f,String,0x29,'',1,0,String
-Terms,shop_regreeting1,f,String,0x2A,'',1,0,String
-Terms,shop_buy1,f,String,0x2B,'',1,0,String
-Terms,shop_sell1,f,String,0x2C,'',1,0,String
-Terms,shop_leave1,f,String,0x2D,'',1,0,String
-Terms,shop_buy_select1,f,String,0x2E,'',1,0,String
-Terms,shop_buy_number1,f,String,0x2F,'',1,0,String
-Terms,shop_purchased1,f,String,0x30,'',1,0,String
-Terms,shop_sell_select1,f,String,0x31,'',1,0,String
-Terms,shop_sell_number1,f,String,0x32,'',1,0,String
-Terms,shop_sold1,f,String,0x33,'',1,0,String
-Terms,shop_greeting2,f,String,0x36,'',1,0,String
-Terms,shop_regreeting2,f,String,0x37,'',1,0,String
-Terms,shop_buy2,f,String,0x38,'',1,0,String
-Terms,shop_sell2,f,String,0x39,'',1,0,String
-Terms,shop_leave2,f,String,0x3A,'',1,0,String
-Terms,shop_buy_select2,f,String,0x3B,'',1,0,String
-Terms,shop_buy_number2,f,String,0x3C,'',1,0,String
-Terms,shop_purchased2,f,String,0x3D,'',1,0,String
-Terms,shop_sell_select2,f,String,0x3E,'',1,0,String
-Terms,shop_sell_number2,f,String,0x3F,'',1,0,String
-Terms,shop_sold2,f,String,0x40,'',1,0,String
-Terms,shop_greeting3,f,String,0x43,'',1,0,String
-Terms,shop_regreeting3,f,String,0x44,'',1,0,String
-Terms,shop_buy3,f,String,0x45,'',1,0,String
-Terms,shop_sell3,f,String,0x46,'',1,0,String
-Terms,shop_leave3,f,String,0x47,'',1,0,String
-Terms,shop_buy_select3,f,String,0x48,'',1,0,String
-Terms,shop_buy_number3,f,String,0x49,'',1,0,String
-Terms,shop_purchased3,f,String,0x4A,'',1,0,String
-Terms,shop_sell_select3,f,String,0x4B,'',1,0,String
-Terms,shop_sell_number3,f,String,0x4C,'',1,0,String
-Terms,shop_sold3,f,String,0x4D,'',1,0,String
-Terms,inn_a_greeting_1,f,String,0x50,'',1,0,String
-Terms,inn_a_greeting_2,f,String,0x51,'',1,0,String
-Terms,inn_a_greeting_3,f,String,0x52,'',1,0,String
-Terms,inn_a_accept,f,String,0x53,'',1,0,String
-Terms,inn_a_cancel,f,String,0x54,'',1,0,String
-Terms,inn_b_greeting_1,f,String,0x55,'',1,0,String
-Terms,inn_b_greeting_2,f,String,0x56,'',1,0,String
-Terms,inn_b_greeting_3,f,String,0x57,'',1,0,String
-Terms,inn_b_accept,f,String,0x58,'',1,0,String
-Terms,inn_b_cancel,f,String,0x59,'',1,0,String
-Terms,possessed_items,f,String,0x5C,'',1,0,String
-Terms,equipped_items,f,String,0x5D,'',1,0,String
-Terms,gold,f,String,0x5F,'',1,0,String
-Terms,battle_fight,f,String,0x65,'',1,0,String
-Terms,battle_auto,f,String,0x66,'',1,0,String
-Terms,battle_escape,f,String,0x67,'',1,0,String
-Terms,command_attack,f,String,0x68,'',1,0,String
-Terms,command_defend,f,String,0x69,'',1,0,String
-Terms,command_item,f,String,0x6A,'',1,0,String
-Terms,command_skill,f,String,0x6B,'',1,0,String
-Terms,menu_equipment,f,String,0x6C,'',1,0,String
-Terms,menu_save,f,String,0x6E,'',1,0,String
-Terms,menu_quit,f,String,0x70,'',1,0,String
-Terms,new_game,f,String,0x72,'',1,0,String
-Terms,load_game,f,String,0x73,'',1,0,String
-Terms,exit_game,f,String,0x75,'',1,0,String
-Terms,status,f,String,0x76,'',1,1,String
-Terms,row,f,String,0x77,'',1,1,String
-Terms,order,f,String,0x78,'',1,1,String
-Terms,wait_on,f,String,0x79,'',1,1,String
-Terms,wait_off,f,String,0x7A,'',1,1,String
-Terms,level,f,String,0x7B,'',1,0,String
-Terms,health_points,f,String,0x7C,'',1,0,String
-Terms,spirit_points,f,String,0x7D,'',1,0,String
-Terms,normal_status,f,String,0x7E,'',1,0,String
-Terms,exp_short,f,String,0x7F,'',1,0,String - char x 2?
-Terms,lvl_short,f,String,0x80,'',1,0,String - char x 2?
-Terms,hp_short,f,String,0x81,'',1,0,String - char x 2?
-Terms,sp_short,f,String,0x82,'',1,0,String - char x 2?
-Terms,sp_cost,f,String,0x83,'',1,0,String
-Terms,attack,f,String,0x84,'',1,0,String
-Terms,defense,f,String,0x85,'',1,0,String
-Terms,spirit,f,String,0x86,'',1,0,String
-Terms,agility,f,String,0x87,'',1,0,String
-Terms,weapon,f,String,0x88,'',1,0,String
-Terms,shield,f,String,0x89,'',1,0,String
-Terms,armor,f,String,0x8A,'',1,0,String
-Terms,helmet,f,String,0x8B,'',1,0,String
-Terms,accessory,f,String,0x8C,'',1,0,String
-Terms,save_game_message,f,String,0x92,'',1,0,String
-Terms,load_game_message,f,String,0x93,'',1,0,String
-Terms,file,f,String,0x94,'',1,0,String
-Terms,exit_game_message,f,String,0x97,'',1,0,String
-Terms,yes,f,String,0x98,'',1,0,String
-Terms,no,f,String,0x99,'',1,0,String
+Terms,encounter,f,DBString,0x01,'',1,0,String
+Terms,special_combat,f,DBString,0x02,'',1,0,String
+Terms,escape_success,f,DBString,0x03,'',1,0,String
+Terms,escape_failure,f,DBString,0x04,'',1,0,String
+Terms,victory,f,DBString,0x05,'',1,0,String
+Terms,defeat,f,DBString,0x06,'',1,0,String
+Terms,exp_received,f,DBString,0x07,'',1,0,String
+Terms,gold_recieved_a,f,DBString,0x08,'',1,0,String
+Terms,gold_recieved_b,f,DBString,0x09,'',1,0,String
+Terms,item_recieved,f,DBString,0x0A,'',1,0,String
+Terms,attacking,f,DBString,0x0B,'',1,0,String
+Terms,enemy_critical,f,DBString,0x0C,'',1,0,String
+Terms,actor_critical,f,DBString,0x0D,'',1,0,String
+Terms,defending,f,DBString,0x0E,'',1,0,String
+Terms,observing,f,DBString,0x0F,'',1,0,String
+Terms,focus,f,DBString,0x10,'',1,0,String
+Terms,autodestruction,f,DBString,0x11,'',1,0,String
+Terms,enemy_escape,f,DBString,0x12,'',1,0,String
+Terms,enemy_transform,f,DBString,0x13,'',1,0,String
+Terms,enemy_damaged,f,DBString,0x14,'',1,0,String
+Terms,enemy_undamaged,f,DBString,0x15,'',1,0,String
+Terms,actor_damaged,f,DBString,0x16,'',1,0,String
+Terms,actor_undamaged,f,DBString,0x17,'',1,0,String
+Terms,skill_failure_a,f,DBString,0x18,'',1,0,String
+Terms,skill_failure_b,f,DBString,0x19,'',1,0,String
+Terms,skill_failure_c,f,DBString,0x1A,'',1,0,String
+Terms,dodge,f,DBString,0x1B,'',1,0,String
+Terms,use_item,f,DBString,0x1C,'',1,0,String
+Terms,hp_recovery,f,DBString,0x1D,'',1,0,String
+Terms,parameter_increase,f,DBString,0x1E,'',1,0,String
+Terms,parameter_decrease,f,DBString,0x1F,'',1,0,String
+Terms,enemy_hp_absorbed,f,DBString,0x20,'',1,0,String
+Terms,actor_hp_absorbed,f,DBString,0x21,'',1,0,String
+Terms,resistance_increase,f,DBString,0x22,'',1,0,String
+Terms,resistance_decrease,f,DBString,0x23,'',1,0,String
+Terms,level_up,f,DBString,0x24,'',1,0,String
+Terms,skill_learned,f,DBString,0x25,'',1,0,String
+Terms,battle_start,f,DBString,0x26,'',1,1,String
+Terms,miss,f,DBString,0x27,'',1,1,String
+Terms,shop_greeting1,f,DBString,0x29,'',1,0,String
+Terms,shop_regreeting1,f,DBString,0x2A,'',1,0,String
+Terms,shop_buy1,f,DBString,0x2B,'',1,0,String
+Terms,shop_sell1,f,DBString,0x2C,'',1,0,String
+Terms,shop_leave1,f,DBString,0x2D,'',1,0,String
+Terms,shop_buy_select1,f,DBString,0x2E,'',1,0,String
+Terms,shop_buy_number1,f,DBString,0x2F,'',1,0,String
+Terms,shop_purchased1,f,DBString,0x30,'',1,0,String
+Terms,shop_sell_select1,f,DBString,0x31,'',1,0,String
+Terms,shop_sell_number1,f,DBString,0x32,'',1,0,String
+Terms,shop_sold1,f,DBString,0x33,'',1,0,String
+Terms,shop_greeting2,f,DBString,0x36,'',1,0,String
+Terms,shop_regreeting2,f,DBString,0x37,'',1,0,String
+Terms,shop_buy2,f,DBString,0x38,'',1,0,String
+Terms,shop_sell2,f,DBString,0x39,'',1,0,String
+Terms,shop_leave2,f,DBString,0x3A,'',1,0,String
+Terms,shop_buy_select2,f,DBString,0x3B,'',1,0,String
+Terms,shop_buy_number2,f,DBString,0x3C,'',1,0,String
+Terms,shop_purchased2,f,DBString,0x3D,'',1,0,String
+Terms,shop_sell_select2,f,DBString,0x3E,'',1,0,String
+Terms,shop_sell_number2,f,DBString,0x3F,'',1,0,String
+Terms,shop_sold2,f,DBString,0x40,'',1,0,String
+Terms,shop_greeting3,f,DBString,0x43,'',1,0,String
+Terms,shop_regreeting3,f,DBString,0x44,'',1,0,String
+Terms,shop_buy3,f,DBString,0x45,'',1,0,String
+Terms,shop_sell3,f,DBString,0x46,'',1,0,String
+Terms,shop_leave3,f,DBString,0x47,'',1,0,String
+Terms,shop_buy_select3,f,DBString,0x48,'',1,0,String
+Terms,shop_buy_number3,f,DBString,0x49,'',1,0,String
+Terms,shop_purchased3,f,DBString,0x4A,'',1,0,String
+Terms,shop_sell_select3,f,DBString,0x4B,'',1,0,String
+Terms,shop_sell_number3,f,DBString,0x4C,'',1,0,String
+Terms,shop_sold3,f,DBString,0x4D,'',1,0,String
+Terms,inn_a_greeting_1,f,DBString,0x50,'',1,0,String
+Terms,inn_a_greeting_2,f,DBString,0x51,'',1,0,String
+Terms,inn_a_greeting_3,f,DBString,0x52,'',1,0,String
+Terms,inn_a_accept,f,DBString,0x53,'',1,0,String
+Terms,inn_a_cancel,f,DBString,0x54,'',1,0,String
+Terms,inn_b_greeting_1,f,DBString,0x55,'',1,0,String
+Terms,inn_b_greeting_2,f,DBString,0x56,'',1,0,String
+Terms,inn_b_greeting_3,f,DBString,0x57,'',1,0,String
+Terms,inn_b_accept,f,DBString,0x58,'',1,0,String
+Terms,inn_b_cancel,f,DBString,0x59,'',1,0,String
+Terms,possessed_items,f,DBString,0x5C,'',1,0,String
+Terms,equipped_items,f,DBString,0x5D,'',1,0,String
+Terms,gold,f,DBString,0x5F,'',1,0,String
+Terms,battle_fight,f,DBString,0x65,'',1,0,String
+Terms,battle_auto,f,DBString,0x66,'',1,0,String
+Terms,battle_escape,f,DBString,0x67,'',1,0,String
+Terms,command_attack,f,DBString,0x68,'',1,0,String
+Terms,command_defend,f,DBString,0x69,'',1,0,String
+Terms,command_item,f,DBString,0x6A,'',1,0,String
+Terms,command_skill,f,DBString,0x6B,'',1,0,String
+Terms,menu_equipment,f,DBString,0x6C,'',1,0,String
+Terms,menu_save,f,DBString,0x6E,'',1,0,String
+Terms,menu_quit,f,DBString,0x70,'',1,0,String
+Terms,new_game,f,DBString,0x72,'',1,0,String
+Terms,load_game,f,DBString,0x73,'',1,0,String
+Terms,exit_game,f,DBString,0x75,'',1,0,String
+Terms,status,f,DBString,0x76,'',1,1,String
+Terms,row,f,DBString,0x77,'',1,1,String
+Terms,order,f,DBString,0x78,'',1,1,String
+Terms,wait_on,f,DBString,0x79,'',1,1,String
+Terms,wait_off,f,DBString,0x7A,'',1,1,String
+Terms,level,f,DBString,0x7B,'',1,0,String
+Terms,health_points,f,DBString,0x7C,'',1,0,String
+Terms,spirit_points,f,DBString,0x7D,'',1,0,String
+Terms,normal_status,f,DBString,0x7E,'',1,0,String
+Terms,exp_short,f,DBString,0x7F,'',1,0,String - char x 2?
+Terms,lvl_short,f,DBString,0x80,'',1,0,String - char x 2?
+Terms,hp_short,f,DBString,0x81,'',1,0,String - char x 2?
+Terms,sp_short,f,DBString,0x82,'',1,0,String - char x 2?
+Terms,sp_cost,f,DBString,0x83,'',1,0,String
+Terms,attack,f,DBString,0x84,'',1,0,String
+Terms,defense,f,DBString,0x85,'',1,0,String
+Terms,spirit,f,DBString,0x86,'',1,0,String
+Terms,agility,f,DBString,0x87,'',1,0,String
+Terms,weapon,f,DBString,0x88,'',1,0,String
+Terms,shield,f,DBString,0x89,'',1,0,String
+Terms,armor,f,DBString,0x8A,'',1,0,String
+Terms,helmet,f,DBString,0x8B,'',1,0,String
+Terms,accessory,f,DBString,0x8C,'',1,0,String
+Terms,save_game_message,f,DBString,0x92,'',1,0,String
+Terms,load_game_message,f,DBString,0x93,'',1,0,String
+Terms,file,f,DBString,0x94,'',1,0,String
+Terms,exit_game_message,f,DBString,0x97,'',1,0,String
+Terms,yes,f,DBString,0x98,'',1,0,String
+Terms,no,f,DBString,0x99,'',1,0,String
 Music,name,f,String,0x01,"(OFF)",1,0,String
 Music,fadein,f,Int32,0x02,0,0,0,Integer
 Music,volume,f,Int32,0x03,100,0,0,Integer
@@ -517,19 +517,19 @@ TestBattler,armor_id,f,Ref<Item>,0x0D,0,0,0,Integer
 TestBattler,helmet_id,f,Ref<Item>,0x0E,0,0,0,Integer
 TestBattler,accessory_id,f,Ref<Item>,0x0F,0,0,0,Integer
 System,ldb_id,f,Int32,0x0A,0,0,0,Integer - RPG2003
-System,boat_name,f,String,0x0B,'',0,0,String
-System,ship_name,f,String,0x0C,'',0,0,String
-System,airship_name,f,String,0x0D,'',0,0,String
+System,boat_name,f,DBString,0x0B,'',0,0,String
+System,ship_name,f,DBString,0x0C,'',0,0,String
+System,airship_name,f,DBString,0x0D,'',0,0,String
 System,boat_index,f,Int32,0x0E,0,0,0,Integer
 System,ship_index,f,Int32,0x0F,0,0,0,Integer
 System,airship_index,f,Int32,0x10,0,0,0,Integer
-System,title_name,f,String,0x11,'',0,0,String
-System,gameover_name,f,String,0x12,'',0,0,String
-System,system_name,f,String,0x13,'',0,0,String
-System,system2_name,f,String,0x14,'',0,1,String - RPG2003
-System,party,t,Count<Int16>,0x15,,0,0,Integer
+System,title_name,f,DBString,0x11,'',0,0,String
+System,gameover_name,f,DBString,0x12,'',0,0,String
+System,system_name,f,DBString,0x13,'',0,0,String
+System,system2_name,f,DBString,0x14,'',0,1,String - RPG2003
+System,party,t,Count<Vector<Int16>>,0x15,,0,0,Integer
 System,party,f,Vector<Int16>,0x16,,1,0,Array - Short
-System,menu_commands,t,Count<Int16>,0x1A,,0,1,Integer - RPG2003
+System,menu_commands,t,Count<Vector<Int16>>,0x1A,,0,1,Integer - RPG2003
 System,menu_commands,f,Vector<Int16>,0x1B,,1,1,Array - Short - RPG2003
 System,title_music,f,Music,0x1F,,1,0,rpg::Music
 System,battle_music,f,Music,0x20,,1,0,rpg::Music
@@ -561,7 +561,7 @@ System,message_stretch,f,Enum<System_Stretch>,0x47,0,0,0,Integer
 System,font_id,f,Enum<System_Font>,0x48,0,0,0,Integer
 System,selected_condition,f,Int32,0x51,0,0,0,Integer
 System,selected_hero,f,Ref<Actor>,0x52,0,1,0,Integer
-System,battletest_background,f,String,0x54,'',0,0,String
+System,battletest_background,f,DBString,0x54,'',0,0,String
 System,battletest_data,f,Array<TestBattler>,0x55,,1,0,Array - rpg::TestBattler
 System,save_count,f,Int32,0x5B,0,0,0,Integer
 System,battletest_terrain,f,Ref<Terrain>,0x5E,0,0,0,Integer
@@ -570,11 +570,11 @@ System,battletest_condition,f,Enum<System_BattleCondition>,0x60,0,0,0,Integer
 System,equipment_setting,f,Enum<System_EquipmentSetting>,0x61,0,0,1,Integer RPG2003 - Whether equipment usage is by Actor or by Class. This is a global setting in RM2k3!
 System,battletest_alt_terrain,f,Ref<Terrain>,0x62,-1,0,1,Integer RPG2003 (EDITOR ONLY) - Double click on Terrain in Troops changes this setting and 0x54. Affects only the RM2k3 editor.
 System,show_frame,f,Boolean,0x63,False,0,1,Flag - RPG2003
-System,frame_name,f,String,0x64,'',0,1,String - RPG2003
+System,frame_name,f,DBString,0x64,'',0,1,String - RPG2003
 System,invert_animations,f,Boolean,0x65,False,0,1,Flag - RPG2003
 System,show_title,f,Boolean,0x6F,True,0,1,When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11
-Switch,name,f,String,0x01,'',0,0,String
-Variable,name,f,String,0x01,'',0,0,String
+Switch,name,f,DBString,0x01,'',0,0,String
+Variable,name,f,DBString,0x01,'',0,0,String
 Database,actors,f,Array<Actor>,0x0B,,1,0,rpg::Actor
 Database,skills,f,Array<Skill>,0x0C,,1,0,rpg::Skill
 Database,items,f,Array<Item>,0x0D,,1,0,rpg::Item
@@ -598,7 +598,7 @@ Database,classes,f,Array<Class>,0x1E,,1,1,rpg::Class - RPG2003
 Database,classD1,f,EmptyBlock,0x1F,,1,1,Duplicated? - Not used - RPG2003
 Database,battleranimations,f,Array<BattlerAnimation>,0x20,,1,1,rpg::BattlerAnimation - RPG2003
 Encounter,troop_id,f,Ref<Troop>,0x01,0,0,0,Integer
-MapInfo,name,f,String,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
+MapInfo,name,f,DBString,0x01,'',0,0,String. Note: Map ID 0 used to be game title but it should be ignored (TreeCtrl dummy editor dumped data); always use RPG_RT.ini GameTitle instead
 MapInfo,parent_map,f,Ref<Map>,0x02,0,0,0,Integer. Used to inherit parent map properties
 MapInfo,indentation,f,Int32,0x03,0,0,0,Integer. Dummy editor dumped data. Branch indentation level in TreeCtrl
 MapInfo,type,f,Enum<TreeMap_MapType>,0x04,-1,0,0,Integer
@@ -608,7 +608,7 @@ MapInfo,expanded_node,f,Boolean,0x07,False,0,0,Flag. Editor only
 MapInfo,music_type,f,Enum<MapInfo_MusicType>,0x0B,0,1,0,Integer. 0=inherit; 1=from event; 2=specified in 0x0C
 MapInfo,music,f,Music,0x0C,,1,0,Array - rpg::Music
 MapInfo,background_type,f,Enum<MapInfo_BGMType>,0x15,0,1,0,Integer. 0=inherit; 1=from terrain ldb data; 2=specified in 0x16
-MapInfo,background_name,f,String,0x16,'',0,0,String
+MapInfo,background_name,f,DBString,0x16,'',0,0,String
 MapInfo,teleport,f,Enum<MapInfo_TriState>,0x1F,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,escape,f,Enum<MapInfo_TriState>,0x20,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
 MapInfo,save,f,Enum<MapInfo_TriState>,0x21,0,1,0,Flag. 0=inherit; 1=allow; 2=disallow
@@ -637,12 +637,12 @@ EventPageCondition,actor_id,f,Ref<Actor>,0x07,1,1,0,Integer
 EventPageCondition,timer_sec,f,Int32,0x08,0,0,0,Integer
 EventPageCondition,timer2_sec,f,Int32,0x09,0,0,1,Integer - RPG2003
 EventPageCondition,compare_operator,f,Enum<EventPageCondition_Comparison>,0x0A,1,0,1,Integer - RPG2003
-MoveRoute,move_commands,t,MoveCommand,0x0B,,0,0,Integer
+MoveRoute,move_commands,t,Vector<MoveCommand>,0x0B,,0,0,Integer
 MoveRoute,move_commands,f,Vector<MoveCommand>,0x0C,,1,0,Array - rpg::MoveCommand
 MoveRoute,repeat,f,Boolean,0x15,True,0,0,Flag
 MoveRoute,skippable,f,Boolean,0x16,False,0,0,Flag
 EventPage,condition,f,EventPageCondition,0x02,,1,0,rpg::EventPageCondition
-EventPage,character_name,f,String,0x15,'',0,0,String
+EventPage,character_name,f,DBString,0x15,'',0,0,String
 EventPage,character_index,f,Int32,0x16,0,0,0,Integer
 EventPage,character_direction,f,Enum<EventPage_Direction>,0x17,2,1,0,Integer
 EventPage,character_pattern,f,Enum<EventPage_Frame>,0x18,1,0,0,Integer
@@ -655,9 +655,9 @@ EventPage,overlap_forbidden,f,Boolean,0x23,False,1,0,Flag
 EventPage,animation_type,f,Enum<EventPage_AnimType>,0x24,0,1,0,Integer
 EventPage,move_speed,f,Enum<EventPage_MoveSpeed>,0x25,3,0,0,Integer
 EventPage,move_route,f,MoveRoute,0x29,,1,0,rpg::MoveRoute
-EventPage,event_commands,t,EventCommand,0x33,,1,0,Integer
+EventPage,event_commands,t,Vector<EventCommand>,0x33,,1,0,Integer
 EventPage,event_commands,f,Vector<EventCommand>,0x34,,1,0,Array - rpg::EventCommand
-Event,name,f,String,0x01,'',0,0,String
+Event,name,f,DBString,0x01,'',0,0,String
 Event,x,f,Int32,0x02,0,0,0,Integer
 Event,y,f,Int32,0x03,0,0,0,Integer
 Event,pages,f,Array<EventPage>,0x05,,1,0,Array - rpg::EventPage
@@ -666,7 +666,7 @@ Map,width,f,Int32,0x02,20,0,0,Integer
 Map,height,f,Int32,0x03,15,0,0,Integer
 Map,scroll_type,f,Enum<Map_ScrollType>,0x0B,0,1,0,Integer
 Map,parallax_flag,f,Boolean,0x1F,False,0,0,Flag
-Map,parallax_name,f,String,0x20,'',0,0,String
+Map,parallax_name,f,DBString,0x20,'',0,0,String
 Map,parallax_loop_x,f,Boolean,0x21,False,0,0,Flag
 Map,parallax_loop_y,f,Boolean,0x22,False,0,0,Flag
 Map,parallax_auto_loop_x,f,Boolean,0x23,False,0,0,Flag
@@ -710,9 +710,9 @@ SaveSystem,frame_count,f,Int32,0x0B,0,0,0,
 SaveSystem,graphics_name,f,String,0x15,'',0,0,string
 SaveSystem,message_stretch,f,Enum<System_Stretch>,0x16,0,0,0,Integer
 SaveSystem,font_id,f,Enum<System_Font>,0x17,0,0,0,Integer
-SaveSystem,switches,t,Count<Boolean>,0x1F,0,0,0,
+SaveSystem,switches,t,Count<Vector<Boolean>>,0x1F,0,0,0,
 SaveSystem,switches,f,Vector<Boolean>,0x20,,1,0,
-SaveSystem,variables,t,Count<Int32>,0x21,0,0,0,
+SaveSystem,variables,t,Count<Vector<Int32>>,0x21,0,0,0,
 SaveSystem,variables,f,Vector<Int32>,0x22,,1,0,
 SaveSystem,message_transparent,f,Int32,0x29,0,0,0,
 SaveSystem,message_position,f,Int32,0x2A,2,0,0,
@@ -866,13 +866,13 @@ SaveActor,attack_mod,f,Int32,0x29,0,0,0,int
 SaveActor,defense_mod,f,Int32,0x2A,0,0,0,int
 SaveActor,spirit_mod,f,Int32,0x2B,0,0,0,int
 SaveActor,agility_mod,f,Int32,0x2C,0,0,0,int
-SaveActor,skills,t,Count<Int16>,0x33,0,0,0,?
+SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,0,0,?
 SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
 SaveActor,current_sp,f,Int32,0x48,-1,0,0,int
 SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,0,1,array of (uncompressed) int32
-SaveActor,status,t,Count<Int16>,0x51,0,0,0,?
+SaveActor,status,t,Count<Vector<Int16>>,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
 SaveActor,class_id,f,Ref<Class>,0x5A,-1,0,0,int class-id
@@ -882,9 +882,9 @@ SaveActor,lock_equipment,f,Boolean,0x5D,False,0,1,bool
 SaveActor,auto_battle,f,Boolean,0x5E,False,0,1,bool
 SaveActor,super_guard,f,Boolean,0x5F,False,0,1,bool
 SaveActor,battler_animation,f,Ref<BattlerAnimation>,0x60,0,0,1,Integer - RPG2003
-SaveInventory,party,t,Count<Int16>,0x01,0,1,0,?
+SaveInventory,party,t,Count<Vector<Int16>>,0x01,0,1,0,?
 SaveInventory,party,f,Vector<Int16>,0x02,,1,0,?
-SaveInventory,item_ids,t,Count<Int16>,0x0B,0,1,0,?
+SaveInventory,item_ids,t,Count<Vector<Int16>>,0x0B,0,1,0,?
 SaveInventory,item_ids,f,Vector<Int16>,0x0C,,1,0,short[]: item list
 SaveInventory,item_counts,f,Vector<UInt8>,0x0D,,1,0,?
 SaveInventory,item_usage,f,Vector<UInt8>,0x0E,,1,0,?
@@ -908,12 +908,12 @@ SaveTarget,map_x,f,Int32,0x02,0,0,0,int
 SaveTarget,map_y,f,Int32,0x03,0,0,0,int
 SaveTarget,switch_on,f,Boolean,0x04,False,0,0,bool
 SaveTarget,switch_id,f,Ref<Switch>,0x05,0,0,0,int
-SaveEventExecFrame,commands,t,EventCommand,0x01,0,1,0,int
+SaveEventExecFrame,commands,t,Vector<EventCommand>,0x01,0,1,0,int
 SaveEventExecFrame,commands,f,Vector<EventCommand>,0x02,,1,0,event command list
 SaveEventExecFrame,current_command,f,Int32,0x0B,0,0,0,int
 SaveEventExecFrame,event_id,f,Int32,0x0C,0,0,0,0 if it's common event or in other map
 SaveEventExecFrame,triggered_by_decision_key,f,Boolean,0x0D,False,0,0,Event was triggered by the Action Key
-SaveEventExecFrame,subcommand_path,t,UInt8,0x15,0,0,0,size of the 0x16 vector - indention level
+SaveEventExecFrame,subcommand_path,t,Vector<UInt8>,0x15,0,0,0,size of the 0x16 vector - indention level
 SaveEventExecFrame,subcommand_path,f,Vector<UInt8>,0x16,,1,0,byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID).
 SaveEventExecState,stack,f,Array<SaveEventExecFrame>,0x01,,1,0,array
 SaveEventExecState,show_message,f,Boolean,0x04,False,0,0,Show Message command has been executed in the current move route
@@ -1019,10 +1019,10 @@ Equipment,helmet_id,,Ref<Item:Int16>,,0,0,0,
 Equipment,accessory_id,,Ref<Item:Int16>,,0,0,0,
 EventCommand,code,,Enum<EventCommand_Code>,,0,0,0,
 EventCommand,indent,,Int32,,0,0,0,
-EventCommand,string,,String,,'',0,0,
-EventCommand,parameters,,Vector<Int32>,,,0,0,
+EventCommand,string,,DBString,,'',0,0,
+EventCommand,parameters,,DBArray<Int32>,,,0,0,
 MoveCommand,command_id,,Enum<MoveCommand_Code>,,0,0,0,
-MoveCommand,parameter_string,,String,,'',0,0,
+MoveCommand,parameter_string,,DBString,,'',0,0,
 MoveCommand,parameter_a,,Int32,,0,0,0,
 MoveCommand,parameter_b,,Int32,,0,0,0,
 MoveCommand,parameter_c,,Int32,,0,0,0,

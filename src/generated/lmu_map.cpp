@@ -55,7 +55,7 @@ static TypedField<rpg::Map, bool> static_parallax_flag(
 	0,
 	0
 );
-static TypedField<rpg::Map, std::string> static_parallax_name(
+static TypedField<rpg::Map, DBString> static_parallax_name(
 	&rpg::Map::parallax_name,
 	LMU_Reader::ChunkMap::parallax_name,
 	"parallax_name",

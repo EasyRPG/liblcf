@@ -76,30 +76,26 @@ void LcfWriter::Write<double>(double val) {
 
 template <>
 void LcfWriter::Write<bool>(const std::vector<bool>& buffer) {
-	std::vector<bool>::const_iterator it;
-	for (it = buffer.begin(); it != buffer.end(); it++) {
-		uint8_t val = *it ? 1 : 0;
-		Write(val);
+	for (auto e: buffer) {
+		Write(static_cast<uint8_t>(e));
 	}
 }
 
 template <>
 void LcfWriter::Write<uint8_t>(const std::vector<uint8_t>& buffer) {
-	Write(&buffer.front(), 1, buffer.size());
+	Write(buffer.data(), 1, buffer.size());
 }
 
 template <>
 void LcfWriter::Write<int16_t>(const std::vector<int16_t>& buffer) {
-	std::vector<int16_t>::const_iterator it;
-	for (it = buffer.begin(); it != buffer.end(); it++)
-		Write(*it);
+	for (auto e: buffer) {
+		Write(e);
+	}
 }
 
 template <>
 void LcfWriter::Write<int32_t>(const std::vector<int32_t>& buffer) {
-	std::vector<int32_t>::const_iterator it;
-	for (it = buffer.begin(); it != buffer.end(); it++) {
-		int32_t val = *it;
+	for (auto val: buffer) {
 		SwapByteOrder(val);
 		// Write<int32_t> writes a compressed integer
 		Write(&val, 4, 1);
@@ -108,15 +104,63 @@ void LcfWriter::Write<int32_t>(const std::vector<int32_t>& buffer) {
 
 template <>
 void LcfWriter::Write<uint32_t>(const std::vector<uint32_t>& buffer) {
-	std::vector<uint32_t>::const_iterator it;
-	for (it = buffer.begin(); it != buffer.end(); it++)
-		Write(*it);
+	for (auto e: buffer) {
+		Write(e);
+	}
+}
+
+template <>
+void LcfWriter::Write<bool>(const DBArray<bool>& buffer) {
+	for (auto e: buffer) {
+		Write(static_cast<uint8_t>(e));
+	}
+}
+
+template <>
+void LcfWriter::Write<uint8_t>(const DBArray<uint8_t>& buffer) {
+	Write(buffer.data(), 1, buffer.size());
+}
+
+template <>
+void LcfWriter::Write<int16_t>(const DBArray<int16_t>& buffer) {
+	for (auto e: buffer) {
+		Write(e);
+	}
+}
+
+template <>
+void LcfWriter::Write<int32_t>(const DBArray<int32_t>& buffer) {
+	for (auto val: buffer) {
+		SwapByteOrder(val);
+		// Write<int32_t> writes a compressed integer
+		Write(&val, 4, 1);
+	}
+}
+
+template <>
+void LcfWriter::Write<uint32_t>(const DBArray<uint32_t>& buffer) {
+	for (auto e: buffer) {
+		Write(e);
+	}
 }
 
 void LcfWriter::Write(const std::string& _str) {
 	std::string str = Decode(_str);
 	if (!str.empty()) {
 		Write(&*str.begin(), 1, str.size());
+	}
+}
+
+void LcfWriter::Write(const DBString& _str) {
+	std::string str = Decode(_str);
+	if (!str.empty()) {
+		Write(&*str.begin(), 1, str.size());
+	}
+}
+
+void LcfWriter::Write(const DBBitArray& bits) {
+	for (auto& b: bits) {
+		Write(static_cast<uint8_t>(b));
 	}
 }
 
@@ -128,8 +172,8 @@ bool LcfWriter::IsOk() const {
 	return stream.good() && encoder.IsOk();
 }
 
-std::string LcfWriter::Decode(const std::string& str) {
-	auto copy = str;
+std::string LcfWriter::Decode(StringView str) {
+	auto copy = std::string(str);
 	encoder.Decode(copy);
 	return copy;
 }

@@ -11,6 +11,9 @@
 #define LCF_READER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbstring.h"
+#include "lcf/dbarray.h"
+#include "lcf/dbbitarray.h"
 
 #include <string>
 #include <vector>
@@ -125,6 +128,23 @@ public:
 	void Read(std::vector<T> &buffer, size_t size);
 
 	/**
+	 * Reads a DBArray of primitive type.
+	 *
+	 * @param buffer DBArray to fill.
+	 * @param size how many bytes to read.
+	 */
+	template <class T>
+	void Read(DBArray<T> &buffer, size_t size);
+
+	/**
+	 * Reads a DBBitsArray of primitive type.
+	 *
+	 * @param buffer DBBitArray to fill.
+	 * @param size how many bytes to read as bits.
+	 */
+	void ReadBits(DBBitArray &buffer, size_t size);
+
+	/**
 	 * Reads a compressed integer from the stream.
 	 *
 	 * @return The decompressed integer.
@@ -139,6 +159,7 @@ public:
 	 *        Note: The string is converted to UTF-8.
 	 */
 	void ReadString(std::string& ref, size_t size);
+	void ReadString(DBString& ref, size_t size);
 
 	/**
 	 * Checks if the file is readable and if no error occured.
@@ -219,6 +240,9 @@ public:
 	/** @return a buffer which can be reused for parsing */
 	std::vector<int32_t>& IntBuffer();
 
+	/** @return a buffer which can be reused for parsing */
+	std::string& StrBuffer();
+
 private:
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
@@ -230,6 +254,11 @@ private:
 	Encoder encoder;
 	/** A temporary buffer to be used in parsing */
 	std::vector<int32_t> buffer;
+	/** A temporary buffer to be used in parsing */
+	std::string str_buffer;
+
+	template <typename ArrayType>
+		void ReadVector(ArrayType &buffer, size_t size);
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
@@ -265,10 +294,24 @@ private:
 	 * @param d double to convert.
 	 */
 	static void SwapByteOrder(double &d);
+
+	/** No-op function for generic code */
+	static void SwapByteOrder(int8_t&) {}
+
+	/** No-op function for generic code */
+	static void SwapByteOrder(uint8_t&) {}
+
+	/** No-op function for generic code */
+	static void SwapByteOrder(bool&) {}
+
 };
 
 inline std::vector<int32_t>& LcfReader::IntBuffer() {
 	return buffer;
+}
+
+inline std::string& LcfReader::StrBuffer() {
+	return str_buffer;
 }
 
 } //namespace lcf

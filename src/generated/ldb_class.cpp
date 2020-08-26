@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Class>::name = "Class";
-static TypedField<rpg::Class, std::string> static_name(
+static TypedField<rpg::Class, DBString> static_name(
 	&rpg::Class::name,
 	LDB_Reader::ChunkClass::name,
 	"name",
@@ -97,7 +97,7 @@ static TypedField<rpg::Class, std::vector<rpg::Learning>> static_skills(
 	1,
 	0
 );
-static SizeField<rpg::Class, uint8_t> static_size_state_ranks(
+static SizeField<rpg::Class, std::vector<uint8_t>> static_size_state_ranks(
 	&rpg::Class::state_ranks,
 	LDB_Reader::ChunkClass::state_ranks_size,
 	0,
@@ -110,7 +110,7 @@ static TypedField<rpg::Class, std::vector<uint8_t>> static_state_ranks(
 	1,
 	0
 );
-static SizeField<rpg::Class, uint8_t> static_size_attribute_ranks(
+static SizeField<rpg::Class, std::vector<uint8_t>> static_size_attribute_ranks(
 	&rpg::Class::attribute_ranks,
 	LDB_Reader::ChunkClass::attribute_ranks_size,
 	0,

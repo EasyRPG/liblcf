@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/event.h"
 #include <ostream>
@@ -67,7 +67,7 @@ namespace rpg {
 		int32_t height = 15;
 		int32_t scroll_type = 0;
 		bool parallax_flag = false;
-		std::string parallax_name;
+		DBString parallax_name;
 		bool parallax_loop_x = false;
 		bool parallax_loop_y = false;
 		bool parallax_auto_loop_x = false;

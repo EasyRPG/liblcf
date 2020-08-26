@@ -116,71 +116,79 @@ void LcfReader::Read<double>(double& ref) {
 
 template <>
 void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
-	buffer.clear();
-
-	for (unsigned i = 0; i < size; ++i) {
-		uint8_t val;
-		Read(&val, 1, 1);
-		buffer.push_back(val > 0);
-	}
+	ReadVector(buffer, size);
 }
 
 template <>
 void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
-	buffer.clear();
-
-	for (unsigned int i = 0; i < size; ++i) {
-		uint8_t val;
-		Read(&val, 1, 1);
-		buffer.push_back(val);
-	}
+	ReadVector(buffer, size);
 }
 
 template <>
 void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
-	buffer.clear();
-	size_t items = size / 2;
-	for (unsigned int i = 0; i < items; ++i) {
-		int16_t val;
-		Read(&val, 2, 1);
-		SwapByteOrder(val);
-		buffer.push_back(val);
-	}
-	if (size % 2 != 0) {
-		Seek(1, FromCurrent);
-		buffer.push_back(0);
-	}
+	ReadVector(buffer, size);
 }
 
 template <>
 void LcfReader::Read<int32_t>(std::vector<int32_t> &buffer, size_t size) {
-	buffer.clear();
-	size_t items = size / 4;
-	for (unsigned int i = 0; i < items; ++i) {
-		int32_t val;
-		Read(&val, 4, 1);
-		SwapByteOrder(val);
-		buffer.push_back(val);
-	}
-	if (size % 4 != 0) {
-		Seek(size % 4, FromCurrent);
-		buffer.push_back(0);
-	}
+	ReadVector(buffer, size);
 }
 
 template <>
 void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
-	buffer.clear();
-	size_t items = size / 4;
-	for (unsigned int i = 0; i < items; ++i) {
-		uint32_t val;
-		Read(&val, 4, 1);
+	ReadVector(buffer, size);
+}
+
+template <>
+void LcfReader::Read<bool>(DBArray<bool> &buffer, size_t size) {
+	ReadVector(buffer, size);
+}
+
+template <>
+void LcfReader::Read<uint8_t>(DBArray<uint8_t> &buffer, size_t size) {
+	ReadVector(buffer, size);
+}
+
+template <>
+void LcfReader::Read<int16_t>(DBArray<int16_t> &buffer, size_t size) {
+	ReadVector(buffer, size);
+}
+
+template <>
+void LcfReader::Read<int32_t>(DBArray<int32_t> &buffer, size_t size) {
+	ReadVector(buffer, size);
+}
+
+template <>
+void LcfReader::Read<uint32_t>(DBArray<uint32_t> &buffer, size_t size) {
+	ReadVector(buffer, size);
+}
+
+template <typename ArrayType>
+void LcfReader::ReadVector(ArrayType &buffer, size_t size) {
+	using T = typename ArrayType::value_type;
+	const auto count = size / sizeof(T);
+	const auto partial = (size % sizeof(T) != 0);
+
+	buffer = ArrayType(count + partial);
+	for (size_t i = 0; i < count; ++i) {
+		T val;
+		Read(&val, sizeof(T), 1);
 		SwapByteOrder(val);
-		buffer.push_back(val);
+		buffer[i] = val;
 	}
-	if (size % 4 != 0) {
-		Seek(size % 4, FromCurrent);
-		buffer.push_back(0);
+	if (partial) {
+		Seek(size % sizeof(T), FromCurrent);
+		buffer.back() = T(0);
+	}
+}
+
+void LcfReader::ReadBits(DBBitArray &buffer, size_t size) {
+	buffer = DBBitArray(size);
+	for (size_t i = 0; i < size; ++i) {
+		uint8_t val;
+		Read(&val, sizeof(val), 1);
+		buffer[i] = static_cast<bool>(val);
 	}
 }
 
@@ -189,6 +197,14 @@ void LcfReader::ReadString(std::string& ref, size_t size) {
 	Read((size > 0 ? &ref.front(): nullptr), 1, size);
 	Encode(ref);
 }
+
+void LcfReader::ReadString(DBString& ref, size_t size) {
+	auto& tmp = StrBuffer();
+	ReadString(tmp, size);
+	ref = DBString(tmp);
+}
+
+
 
 bool LcfReader::IsOk() const {
 	return stream.good() && encoder.IsOk();

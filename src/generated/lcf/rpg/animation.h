@@ -13,8 +13,8 @@
 #define LCF_RPG_ANIMATION_H
 
 // Headers
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/animationframe.h"
 #include "lcf/rpg/animationtiming.h"
@@ -48,8 +48,8 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string animation_name;
+		DBString name;
+		DBString animation_name;
 		bool large = false;
 		std::vector<AnimationTiming> timings;
 		int32_t scope = 0;

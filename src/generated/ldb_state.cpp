@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::State>::name = "State";
-static TypedField<rpg::State, std::string> static_name(
+static TypedField<rpg::State, DBString> static_name(
 	&rpg::State::name,
 	LDB_Reader::ChunkState::name,
 	"name",
@@ -223,35 +223,35 @@ static TypedField<rpg::State, int32_t> static_sp_change_type(
 	0,
 	0
 );
-static TypedField<rpg::State, std::string> static_message_actor(
+static TypedField<rpg::State, DBString> static_message_actor(
 	&rpg::State::message_actor,
 	LDB_Reader::ChunkState::message_actor,
 	"message_actor",
 	0,
 	0
 );
-static TypedField<rpg::State, std::string> static_message_enemy(
+static TypedField<rpg::State, DBString> static_message_enemy(
 	&rpg::State::message_enemy,
 	LDB_Reader::ChunkState::message_enemy,
 	"message_enemy",
 	0,
 	0
 );
-static TypedField<rpg::State, std::string> static_message_already(
+static TypedField<rpg::State, DBString> static_message_already(
 	&rpg::State::message_already,
 	LDB_Reader::ChunkState::message_already,
 	"message_already",
 	0,
 	0
 );
-static TypedField<rpg::State, std::string> static_message_affected(
+static TypedField<rpg::State, DBString> static_message_affected(
 	&rpg::State::message_affected,
 	LDB_Reader::ChunkState::message_affected,
 	"message_affected",
 	0,
 	0
 );
-static TypedField<rpg::State, std::string> static_message_recovery(
+static TypedField<rpg::State, DBString> static_message_recovery(
 	&rpg::State::message_recovery,
 	LDB_Reader::ChunkState::message_recovery,
 	"message_recovery",

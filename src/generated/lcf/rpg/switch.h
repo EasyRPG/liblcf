@@ -13,7 +13,7 @@
 #define LCF_RPG_SWITCH_H
 
 // Headers
-#include <string>
+#include "lcf/dbstring.h"
 #include <ostream>
 #include <type_traits>
 
@@ -25,7 +25,7 @@ namespace rpg {
 	class Switch {
 	public:
 		int ID = 0;
-		std::string name;
+		DBString name;
 	};
 
 	inline bool operator==(const Switch& l, const Switch& r) {

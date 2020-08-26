@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/rpg/eventpage.h"
 #include <ostream>
 #include <type_traits>
@@ -28,7 +28,7 @@ namespace rpg {
 	class Event {
 	public:
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t x = 0;
 		int32_t y = 0;
 		std::vector<EventPage> pages;

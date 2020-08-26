@@ -11,6 +11,9 @@
 #define LCF_WRITER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbarray.h"
+#include "lcf/dbbitarray.h"
+#include "lcf/dbstring.h"
 
 #include <string>
 #include <vector>
@@ -67,6 +70,14 @@ public:
 	 *        Note: the string is converted to the native encoding.
 	 */
 	void Write(const std::string& str);
+	void Write(const DBString& str);
+
+	/**
+	 * Writes a bit array to bytes in the stream.
+	 *
+	 * @param bits the bit array.
+	 */
+	void Write(const DBBitArray& bits);
 
 	/**
 	 * Writes a compressed integer to the stream.
@@ -82,6 +93,14 @@ public:
 	 */
 	template <class T>
 	void Write(const std::vector<T>& buffer);
+
+	/**
+	 * Write a DBArray of primitive values to the stream.
+	 *
+	 * @param buffer DBArray to write.
+	 */
+	template <class T>
+	void Write(const DBArray<T>& buffer);
 
 	/**
 	 * Returns the current position of the read pointer in
@@ -105,7 +124,7 @@ public:
 	 * @param str_to_encode UTF-8 string to encode.
 	 * @return native version of string.
 	 */
-	std::string Decode(const std::string& str_to_encode);
+	std::string Decode(StringView str_to_encode);
 
 private:
 	/** File-stream managed by this Writer. */

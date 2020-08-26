@@ -14,8 +14,9 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbbitarray.h"
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationdata.h"
 #include "lcf/rpg/sound.h"
@@ -67,10 +68,10 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string description;
-		std::string using_message1;
-		std::string using_message2;
+		DBString name;
+		DBString description;
+		DBString using_message1;
+		DBString using_message2;
 		int32_t failure_message = 0;
 		int32_t type = 0;
 		int32_t sp_type = 0;
@@ -96,8 +97,8 @@ namespace rpg {
 		bool affect_agility = false;
 		bool absorb_damage = false;
 		bool ignore_defense = false;
-		std::vector<bool> state_effects;
-		std::vector<bool> attribute_effects;
+		DBBitArray state_effects;
+		DBBitArray attribute_effects;
 		bool affect_attr_defence = false;
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationData> battler_animation_data;

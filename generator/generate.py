@@ -34,6 +34,8 @@ cpp_types = {
     'Int16': 'int16_t',
     'Int32': 'int32_t',
     'String': 'std::string',
+    'DBString': 'DBString',
+    'DBBitArray': 'DBBitArray',
 }
 
 # Additional Jinja 2 functions
@@ -70,6 +72,9 @@ def cpp_type(ty, prefix=True):
     m = re.match(r'(Vector|Array)<(.*)>', ty)
     if m:
         return 'std::vector<%s>' % cpp_type(m.group(2), prefix)
+    m = re.match(r'DBArray<(.*)>', ty)
+    if m:
+        return 'DBArray<%s>' % cpp_type(m.group(1), prefix)
 
     m = re.match(r'Ref<(.*):(.*)>', ty)
     if m:
@@ -100,7 +105,7 @@ def pod_default(field):
     ftype = field.type
 
     # Not a POD, no default
-    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array'):
+    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray') or ftype.startswith('DBBitArray'):
         return ""
 
     if ftype == 'Boolean':
@@ -164,6 +169,12 @@ def struct_headers(ty, header_map):
     if ty == 'String':
         return ['<string>']
 
+    if ty == 'DBString':
+        return ['"lcf/dbstring.h"']
+
+    if ty == 'DBBitArray':
+        return ['"lcf/dbbitarray.h"']
+
     if ty in int_types or ty == "DatabaseVersion":
         return ['<stdint.h>']
 
@@ -190,6 +201,10 @@ def struct_headers(ty, header_map):
     m = re.match(r'(Vector|Array)<(.*)>', ty)
     if m:
         return ['<vector>'] + struct_headers(m.group(2), header_map)
+
+    m = re.match(r'DBArray<(.*)>', ty)
+    if m:
+        return ['<lcf/dbarray.h>'] + struct_headers(m.group(1), header_map)
 
     header = header_map.get(ty)
     if header is not None:
@@ -336,7 +351,7 @@ def needs_ctor(struct_name):
                                     for method, hdrs in setup[struct_name])
 
 def type_is_array(ty):
-    return re.match(r'(Vector|Array)<(.*)>', ty)
+    return re.match(r'(Vector|Array|DBArray)<(.*)>', ty) or ty == "DBBitArray"
 
 def is_monotonic_from_0(enum):
     expected = 0

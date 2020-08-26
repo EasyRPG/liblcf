@@ -27,21 +27,21 @@ static TypedField<rpg::System, int32_t> static_ldb_id(
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_boat_name(
+static TypedField<rpg::System, DBString> static_boat_name(
 	&rpg::System::boat_name,
 	LDB_Reader::ChunkSystem::boat_name,
 	"boat_name",
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_ship_name(
+static TypedField<rpg::System, DBString> static_ship_name(
 	&rpg::System::ship_name,
 	LDB_Reader::ChunkSystem::ship_name,
 	"ship_name",
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_airship_name(
+static TypedField<rpg::System, DBString> static_airship_name(
 	&rpg::System::airship_name,
 	LDB_Reader::ChunkSystem::airship_name,
 	"airship_name",
@@ -69,35 +69,35 @@ static TypedField<rpg::System, int32_t> static_airship_index(
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_title_name(
+static TypedField<rpg::System, DBString> static_title_name(
 	&rpg::System::title_name,
 	LDB_Reader::ChunkSystem::title_name,
 	"title_name",
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_gameover_name(
+static TypedField<rpg::System, DBString> static_gameover_name(
 	&rpg::System::gameover_name,
 	LDB_Reader::ChunkSystem::gameover_name,
 	"gameover_name",
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_system_name(
+static TypedField<rpg::System, DBString> static_system_name(
 	&rpg::System::system_name,
 	LDB_Reader::ChunkSystem::system_name,
 	"system_name",
 	0,
 	0
 );
-static TypedField<rpg::System, std::string> static_system2_name(
+static TypedField<rpg::System, DBString> static_system2_name(
 	&rpg::System::system2_name,
 	LDB_Reader::ChunkSystem::system2_name,
 	"system2_name",
 	0,
 	1
 );
-static CountField<rpg::System, int16_t> static_size_party(
+static CountField<rpg::System, std::vector<int16_t>> static_size_party(
 	&rpg::System::party,
 	LDB_Reader::ChunkSystem::party_size,
 	0,
@@ -110,7 +110,7 @@ static TypedField<rpg::System, std::vector<int16_t>> static_party(
 	1,
 	0
 );
-static CountField<rpg::System, int16_t> static_size_menu_commands(
+static CountField<rpg::System, std::vector<int16_t>> static_size_menu_commands(
 	&rpg::System::menu_commands,
 	LDB_Reader::ChunkSystem::menu_commands_size,
 	0,
@@ -333,7 +333,7 @@ static TypedField<rpg::System, int32_t> static_selected_hero(
 	1,
 	0
 );
-static TypedField<rpg::System, std::string> static_battletest_background(
+static TypedField<rpg::System, DBString> static_battletest_background(
 	&rpg::System::battletest_background,
 	LDB_Reader::ChunkSystem::battletest_background,
 	"battletest_background",
@@ -396,7 +396,7 @@ static TypedField<rpg::System, bool> static_show_frame(
 	0,
 	1
 );
-static TypedField<rpg::System, std::string> static_frame_name(
+static TypedField<rpg::System, DBString> static_frame_name(
 	&rpg::System::frame_name,
 	LDB_Reader::ChunkSystem::frame_name,
 	"frame_name",

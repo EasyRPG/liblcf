@@ -35,6 +35,7 @@ add_library(lcf)
 
 set(LCF_SOURCES
 	src/data.cpp
+	src/dbarray.cpp
 	src/encoder.cpp
 	src/ini.cpp
 	src/inireader.cpp
@@ -194,6 +195,10 @@ set(LCF_SOURCES
 
 set(LCF_HEADERS
 	src/lcf/data.h
+	src/lcf/dbarray.h
+	src/lcf/dbarrayalloc.h
+	src/lcf/dbbitarray.h
+	src/lcf/dbstring.h
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
 	src/lcf/flag_set.h

@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -39,8 +39,8 @@ namespace rpg {
 		Chipset();
 		void Init();
 		int ID = 0;
-		std::string name;
-		std::string chipset_name;
+		DBString name;
+		DBString chipset_name;
 		std::vector<int16_t> terrain_data;
 		std::vector<uint8_t> passable_data_lower;
 		std::vector<uint8_t> passable_data_upper;

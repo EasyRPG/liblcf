@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Terrain>::name = "Terrain";
-static TypedField<rpg::Terrain, std::string> static_name(
+static TypedField<rpg::Terrain, DBString> static_name(
 	&rpg::Terrain::name,
 	LDB_Reader::ChunkTerrain::name,
 	"name",
@@ -41,7 +41,7 @@ static TypedField<rpg::Terrain, int32_t> static_encounter_rate(
 	0,
 	0
 );
-static TypedField<rpg::Terrain, std::string> static_background_name(
+static TypedField<rpg::Terrain, DBString> static_background_name(
 	&rpg::Terrain::background_name,
 	LDB_Reader::ChunkTerrain::background_name,
 	"background_name",
@@ -104,7 +104,7 @@ static TypedField<rpg::Terrain, int32_t> static_background_type(
 	0,
 	1
 );
-static TypedField<rpg::Terrain, std::string> static_background_a_name(
+static TypedField<rpg::Terrain, DBString> static_background_a_name(
 	&rpg::Terrain::background_a_name,
 	LDB_Reader::ChunkTerrain::background_a_name,
 	"background_a_name",
@@ -146,7 +146,7 @@ static TypedField<rpg::Terrain, bool> static_background_b(
 	0,
 	1
 );
-static TypedField<rpg::Terrain, std::string> static_background_b_name(
+static TypedField<rpg::Terrain, DBString> static_background_b_name(
 	&rpg::Terrain::background_b_name,
 	LDB_Reader::ChunkTerrain::background_b_name,
 	"background_b_name",

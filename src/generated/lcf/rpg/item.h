@@ -14,8 +14,9 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbbitarray.h"
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/itemanimation.h"
 #include <ostream>
@@ -76,8 +77,8 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string description;
+		DBString name;
+		DBString description;
 		int32_t type = 0;
 		int32_t price = 0;
 		int32_t uses = 1;
@@ -117,15 +118,15 @@ namespace rpg {
 		int32_t switch_id = 1;
 		bool occasion_field2 = true;
 		bool occasion_battle = false;
-		std::vector<bool> actor_set;
-		std::vector<bool> state_set;
-		std::vector<bool> attribute_set;
+		DBBitArray actor_set;
+		DBBitArray state_set;
+		DBBitArray attribute_set;
 		int32_t state_chance = 0;
 		bool reverse_state_effect = false;
 		int32_t weapon_animation = -1;
 		std::vector<ItemAnimation> animation_data;
 		bool use_skill = false;
-		std::vector<bool> class_set;
+		DBBitArray class_set;
 		int32_t ranged_trajectory = 0;
 		int32_t ranged_target = 0;
 	};
