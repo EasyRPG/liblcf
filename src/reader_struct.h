@@ -52,7 +52,8 @@ struct Category {
 		Primitive,
 		Struct,
 		Flags,
-		RawStruct
+		RawStruct,
+		Void
 	};
 };
 
@@ -93,6 +94,30 @@ struct TypeCategory<std::vector<T>> {
  */
 template <class T, Category::Index cat = TypeCategory<T>::value>
 struct TypeReader {};
+
+
+/**
+ * Void reader template.
+ */
+
+template <class T>
+struct TypeReader<T, Category::Void> {
+	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
+		stream.Seek(length, LcfReader::FromCurrent);
+	}
+	static void WriteLcf(const T& ref, LcfWriter& stream) {
+	}
+	static int LcfSize(const T& ref, LcfWriter& stream) {
+		return 0;
+	}
+	static void WriteXml(const T& ref, XmlWriter& stream) {
+	}
+	static void BeginXml(T& ref, XmlReader& stream) {
+	}
+	static void ParseXml(T& /* ref */, const std::string& /* data */) {
+		//no-op
+	}
+};
 
 /**
  * Raw structure reader template.
