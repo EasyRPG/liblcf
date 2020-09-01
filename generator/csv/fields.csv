@@ -866,7 +866,7 @@ SaveActor,attack_mod,f,Int32,0x29,0,0,0,int
 SaveActor,defense_mod,f,Int32,0x2A,0,0,0,int
 SaveActor,spirit_mod,f,Int32,0x2B,0,0,0,int
 SaveActor,agility_mod,f,Int32,0x2C,0,0,0,int
-SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,0,0,?
+SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,1,0,?
 SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
