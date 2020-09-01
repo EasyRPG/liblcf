@@ -11,6 +11,7 @@
 #define LCF_READER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbstring.h"
 
 #include <string>
 #include <vector>
@@ -139,6 +140,7 @@ public:
 	 *        Note: The string is converted to UTF-8.
 	 */
 	void ReadString(std::string& ref, size_t size);
+	void ReadString(DBString& ref, size_t size);
 
 	/**
 	 * Checks if the file is readable and if no error occured.
@@ -219,6 +221,9 @@ public:
 	/** @return a buffer which can be reused for parsing */
 	std::vector<int32_t>& IntBuffer();
 
+	/** @return a buffer which can be reused for parsing */
+	std::string& StrBuffer();
+
 private:
 	/** File-stream managed by this Reader. */
 	std::istream& stream;
@@ -230,6 +235,8 @@ private:
 	Encoder encoder;
 	/** A temporary buffer to be used in parsing */
 	std::vector<int32_t> buffer;
+	/** A temporary buffer to be used in parsing */
+	std::string str_buffer;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
@@ -269,6 +276,10 @@ private:
 
 inline std::vector<int32_t>& LcfReader::IntBuffer() {
 	return buffer;
+}
+
+inline std::string& LcfReader::StrBuffer() {
+	return str_buffer;
 }
 
 } //namespace lcf

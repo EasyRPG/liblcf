@@ -11,6 +11,7 @@
 #include <cstdarg>
 #include "lcf/reader_lcf.h"
 #include "lcf/reader_xml.h"
+#include "lcf/dbstring.h"
 
 // Expat callbacks
 #if LCF_SUPPORT_XML
@@ -180,6 +181,13 @@ void XmlReader::Read<std::string>(std::string& val, const std::string& data) {
 	}
 }
 
+template <>
+void XmlReader::Read<DBString>(DBString& val, const std::string& data) {
+	std::string sval;
+	Read(sval, data);
+	val = DBString(sval);
+}
+
 template <class T>
 void XmlReader::ReadVector(std::vector<T>& val, const std::string& data) {
 	val.clear();
@@ -197,34 +205,73 @@ void XmlReader::ReadVector(std::vector<T>& val, const std::string& data) {
 	}
 }
 
+template <class T>
+void XmlReader::ReadVector(DBArray<T>& val, const std::string& data) {
+	// FIXME: Adds copies
+	std::vector<T> tmp;
+	ReadVector(tmp, data);
+	val = DBArray<T>(tmp.begin(), tmp.end());
+}
+
 template <>
 void XmlReader::Read<std::vector<int32_t>>(std::vector<int32_t>& val, const std::string& data) {
-	ReadVector<int32_t>(val, data);
+       ReadVector<int32_t>(val, data);
 }
 
 template <>
 void XmlReader::Read<std::vector<bool>>(std::vector<bool>& val, const std::string& data) {
-	ReadVector<bool>(val, data);
+       ReadVector<bool>(val, data);
 }
 
 template <>
 void XmlReader::Read<std::vector<uint8_t>>(std::vector<uint8_t>& val, const std::string& data) {
-	ReadVector<uint8_t>(val, data);
+       ReadVector<uint8_t>(val, data);
 }
 
 template <>
 void XmlReader::Read<std::vector<int16_t>>(std::vector<int16_t>& val, const std::string& data) {
-	ReadVector<int16_t>(val, data);
+       ReadVector<int16_t>(val, data);
 }
 
 template <>
 void XmlReader::Read<std::vector<uint32_t>>(std::vector<uint32_t>& val, const std::string& data) {
-	ReadVector<uint32_t>(val, data);
+       ReadVector<uint32_t>(val, data);
 }
 
 template <>
 void XmlReader::Read<std::vector<double>>(std::vector<double>& val, const std::string& data) {
-	ReadVector<double>(val, data);
+       ReadVector<double>(val, data);
 }
+
+template <>
+void XmlReader::Read<DBArray<int32_t>>(DBArray<int32_t>& val, const std::string& data) {
+       ReadVector<int32_t>(val, data);
+}
+
+template <>
+void XmlReader::Read<DBArray<bool>>(DBArray<bool>& val, const std::string& data) {
+       ReadVector<bool>(val, data);
+}
+
+template <>
+void XmlReader::Read<DBArray<uint8_t>>(DBArray<uint8_t>& val, const std::string& data) {
+       ReadVector<uint8_t>(val, data);
+}
+
+template <>
+void XmlReader::Read<DBArray<int16_t>>(DBArray<int16_t>& val, const std::string& data) {
+       ReadVector<int16_t>(val, data);
+}
+
+template <>
+void XmlReader::Read<DBArray<uint32_t>>(DBArray<uint32_t>& val, const std::string& data) {
+       ReadVector<uint32_t>(val, data);
+}
+
+template <>
+void XmlReader::Read<DBArray<double>>(DBArray<double>& val, const std::string& data) {
+       ReadVector<double>(val, data);
+}
+
 
 } //namespace lcf

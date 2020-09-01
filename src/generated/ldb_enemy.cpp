@@ -20,14 +20,14 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Enemy>::name = "Enemy";
-static TypedField<rpg::Enemy, std::string> static_name(
+static TypedField<rpg::Enemy, DBString> static_name(
 	&rpg::Enemy::name,
 	LDB_Reader::ChunkEnemy::name,
 	"name",
 	0,
 	0
 );
-static TypedField<rpg::Enemy, std::string> static_battler_name(
+static TypedField<rpg::Enemy, DBString> static_battler_name(
 	&rpg::Enemy::battler_name,
 	LDB_Reader::ChunkEnemy::battler_name,
 	"battler_name",
@@ -146,7 +146,7 @@ static TypedField<rpg::Enemy, bool> static_levitate(
 	0,
 	0
 );
-static SizeField<rpg::Enemy, uint8_t> static_size_state_ranks(
+static SizeField<rpg::Enemy, std::vector<uint8_t>> static_size_state_ranks(
 	&rpg::Enemy::state_ranks,
 	LDB_Reader::ChunkEnemy::state_ranks_size,
 	0,
@@ -159,7 +159,7 @@ static TypedField<rpg::Enemy, std::vector<uint8_t>> static_state_ranks(
 	1,
 	0
 );
-static SizeField<rpg::Enemy, uint8_t> static_size_attribute_ranks(
+static SizeField<rpg::Enemy, std::vector<uint8_t>> static_size_attribute_ranks(
 	&rpg::Enemy::attribute_ranks,
 	LDB_Reader::ChunkEnemy::attribute_ranks_size,
 	0,

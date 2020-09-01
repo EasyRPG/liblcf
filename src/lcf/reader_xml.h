@@ -11,6 +11,7 @@
 #define LCF_READER_XML_H
 
 #include "lcf/config.h"
+#include "lcf/dbarray.h"
 
 #include <string>
 #include <vector>
@@ -79,6 +80,12 @@ public:
 	 */
 	template <class T>
 	static void ReadVector(std::vector<T>& ref, const std::string& data);
+
+	/**
+	 * Parses a vector of primitive type.
+	 */
+	template <class T>
+	static void ReadVector(DBArray<T>& ref, const std::string& data);
 
 	/**
 	 * Start element callback.

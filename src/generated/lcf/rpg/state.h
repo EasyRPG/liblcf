@@ -14,7 +14,7 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -71,7 +71,7 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t type = 0;
 		int32_t color = 6;
 		int32_t priority = 50;
@@ -100,11 +100,11 @@ namespace rpg {
 		int32_t restrict_magic_level = 0;
 		int32_t hp_change_type = 0;
 		int32_t sp_change_type = 0;
-		std::string message_actor;
-		std::string message_enemy;
-		std::string message_already;
-		std::string message_affected;
-		std::string message_recovery;
+		DBString message_actor;
+		DBString message_enemy;
+		DBString message_already;
+		DBString message_affected;
+		DBString message_recovery;
 		int32_t hp_change_max = 0;
 		int32_t hp_change_val = 0;
 		int32_t hp_change_map_steps = 0;

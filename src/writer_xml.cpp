@@ -11,6 +11,8 @@
 #include <vector>
 
 #include "lcf/writer_xml.h"
+#include "lcf/dbstring.h"
+#include "lcf/dbarray.h"
 
 namespace lcf {
 
@@ -65,12 +67,9 @@ void XmlWriter::Write<double>(const double& val) {
 	stream << val;
 }
 
-template <>
-void XmlWriter::Write<std::string>(const std::string& val) {
+void XmlWriter::WriteString(StringView val) {
 	Indent();
-	std::string::const_iterator it;
-	for (it = val.begin(); it != val.end(); it++) {
-		int c = (int) *it;
+	for (auto c: val) {
 		switch (c) {
 			case '<':
 				stream << "&lt;";
@@ -104,49 +103,88 @@ void XmlWriter::Write<std::string>(const std::string& val) {
 }
 
 template <>
+void XmlWriter::Write<std::string>(const std::string& val) {
+	WriteString(val);
+}
+
+template <>
+void XmlWriter::Write<DBString>(const DBString& val) {
+	WriteString(val);
+}
+
+template <>
 void XmlWriter::Write<std::vector<int32_t>>(const std::vector<int32_t>& val) {
-	WriteVector<int32_t>(val);
+	WriteVector(val);
 }
 
 template <>
 void XmlWriter::Write<std::vector<bool>>(const std::vector<bool>& val) {
-	WriteVector<bool>(val);
+	WriteVector(val);
 }
 
 template <>
 void XmlWriter::Write<std::vector<uint8_t>>(const std::vector<uint8_t>& val) {
-	WriteVector<uint8_t>(val);
+	WriteVector(val);
 }
 
 template <>
 void XmlWriter::Write<std::vector<int16_t>>(const std::vector<int16_t>& val) {
-	WriteVector<int16_t>(val);
+	WriteVector(val);
 }
 
 template <>
 void XmlWriter::Write<std::vector<uint32_t>>(const std::vector<uint32_t>& val) {
-	WriteVector<uint32_t>(val);
+	WriteVector(val);
 }
 
 template <>
 void XmlWriter::Write<std::vector<double>>(const std::vector<double>& val) {
-	WriteVector<double>(val);
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<int32_t>>(const DBArray<int32_t>& val) {
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<bool>>(const DBArray<bool>& val) {
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<uint8_t>>(const DBArray<uint8_t>& val) {
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<int16_t>>(const DBArray<int16_t>& val) {
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<uint32_t>>(const DBArray<uint32_t>& val) {
+	WriteVector(val);
+}
+
+template <>
+void XmlWriter::Write<DBArray<double>>(const DBArray<double>& val) {
+	WriteVector(val);
 }
 
 void XmlWriter::WriteInt(int val) {
 	Write<int32_t>(val);
 }
 
-template <class T>
-void XmlWriter::WriteVector(const std::vector<T>& val) {
+template <typename ArrayType>
+void XmlWriter::WriteVector(const ArrayType& val) {
 	Indent();
-	typename std::vector<T>::const_iterator it;
 	bool first = true;
-	for (it = val.begin(); it != val.end(); it++) {
+	for (auto&& e: val) {
 		if (!first)
 			stream.put(' ');
 		first = false;
-		Write<T>(*it);
+		Write<typename ArrayType::value_type>(e);
 	}
 }
 
@@ -206,11 +244,18 @@ template void XmlWriter::WriteNode<uint32_t>(const std::string& name, const uint
 template void XmlWriter::WriteNode<int32_t>(const std::string& name, const int32_t& val);
 template void XmlWriter::WriteNode<double>(const std::string& name, const double& val);
 template void XmlWriter::WriteNode<std::string>(const std::string& name, const std::string& val);
+template void XmlWriter::WriteNode<DBString>(const std::string& name, const DBString& val);
 
 template void XmlWriter::WriteNode<std::vector<bool>>(const std::string& name, const std::vector<bool>& val);
 template void XmlWriter::WriteNode<std::vector<uint8_t>>(const std::string& name, const std::vector<uint8_t>& val);
 template void XmlWriter::WriteNode<std::vector<int16_t>>(const std::string& name, const std::vector<int16_t>& val);
 template void XmlWriter::WriteNode<std::vector<uint32_t>>(const std::string& name, const std::vector<uint32_t>& val);
 template void XmlWriter::WriteNode<std::vector<int32_t>>(const std::string& name, const std::vector<int32_t>& val);
+
+template void XmlWriter::WriteNode<DBArray<bool>>(const std::string& name, const DBArray<bool>& val);
+template void XmlWriter::WriteNode<DBArray<uint8_t>>(const std::string& name, const DBArray<uint8_t>& val);
+template void XmlWriter::WriteNode<DBArray<int16_t>>(const std::string& name, const DBArray<int16_t>& val);
+template void XmlWriter::WriteNode<DBArray<uint32_t>>(const std::string& name, const DBArray<uint32_t>& val);
+template void XmlWriter::WriteNode<DBArray<int32_t>>(const std::string& name, const DBArray<int32_t>& val);
 
 } //namespace lcf

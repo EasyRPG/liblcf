@@ -13,9 +13,9 @@
 #define LCF_RPG_EVENTCOMMAND_H
 
 // Headers
+#include <lcf/dbarray.h>
 #include <stdint.h>
-#include <string>
-#include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include <ostream>
 #include <type_traits>
@@ -179,8 +179,8 @@ namespace rpg {
 
 		int32_t code = 0;
 		int32_t indent = 0;
-		std::string string;
-		std::vector<int32_t> parameters;
+		DBString string;
+		DBArray<int32_t> parameters;
 	};
 	inline std::ostream& operator<<(std::ostream& os, EventCommand::Code code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);

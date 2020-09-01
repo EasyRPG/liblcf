@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/rpg/enemyaction.h"
 #include <ostream>
 #include <type_traits>
@@ -28,8 +28,8 @@ namespace rpg {
 	class Enemy {
 	public:
 		int ID = 0;
-		std::string name;
-		std::string battler_name;
+		DBString name;
+		DBString battler_name;
 		int32_t battler_hue = 0;
 		int32_t max_hp = 10;
 		int32_t max_sp = 10;

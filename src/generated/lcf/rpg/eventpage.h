@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/eventcommand.h"
 #include "lcf/rpg/eventpagecondition.h"
@@ -125,7 +125,7 @@ namespace rpg {
 
 		int ID = 0;
 		EventPageCondition condition;
-		std::string character_name;
+		DBString character_name;
 		int32_t character_index = 0;
 		int32_t character_direction = 2;
 		int32_t character_pattern = 1;

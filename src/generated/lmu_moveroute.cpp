@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::MoveRoute>::name = "MoveRoute";
-static SizeField<rpg::MoveRoute, rpg::MoveCommand> static_size_move_commands(
+static SizeField<rpg::MoveRoute, std::vector<rpg::MoveCommand>> static_size_move_commands(
 	&rpg::MoveRoute::move_commands,
 	LMU_Reader::ChunkMoveRoute::move_commands_size,
 	0,

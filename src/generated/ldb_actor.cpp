@@ -20,21 +20,21 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Actor>::name = "Actor";
-static TypedField<rpg::Actor, std::string> static_name(
+static TypedField<rpg::Actor, DBString> static_name(
 	&rpg::Actor::name,
 	LDB_Reader::ChunkActor::name,
 	"name",
 	0,
 	0
 );
-static TypedField<rpg::Actor, std::string> static_title(
+static TypedField<rpg::Actor, DBString> static_title(
 	&rpg::Actor::title,
 	LDB_Reader::ChunkActor::title,
 	"title",
 	0,
 	0
 );
-static TypedField<rpg::Actor, std::string> static_character_name(
+static TypedField<rpg::Actor, DBString> static_character_name(
 	&rpg::Actor::character_name,
 	LDB_Reader::ChunkActor::character_name,
 	"character_name",
@@ -83,7 +83,7 @@ static TypedField<rpg::Actor, int32_t> static_critical_hit_chance(
 	0,
 	0
 );
-static TypedField<rpg::Actor, std::string> static_face_name(
+static TypedField<rpg::Actor, DBString> static_face_name(
 	&rpg::Actor::face_name,
 	LDB_Reader::ChunkActor::face_name,
 	"face_name",
@@ -209,14 +209,14 @@ static TypedField<rpg::Actor, bool> static_rename_skill(
 	0,
 	0
 );
-static TypedField<rpg::Actor, std::string> static_skill_name(
+static TypedField<rpg::Actor, DBString> static_skill_name(
 	&rpg::Actor::skill_name,
 	LDB_Reader::ChunkActor::skill_name,
 	"skill_name",
 	0,
 	0
 );
-static SizeField<rpg::Actor, uint8_t> static_size_state_ranks(
+static SizeField<rpg::Actor, std::vector<uint8_t>> static_size_state_ranks(
 	&rpg::Actor::state_ranks,
 	LDB_Reader::ChunkActor::state_ranks_size,
 	0,
@@ -229,7 +229,7 @@ static TypedField<rpg::Actor, std::vector<uint8_t>> static_state_ranks(
 	1,
 	0
 );
-static SizeField<rpg::Actor, uint8_t> static_size_attribute_ranks(
+static SizeField<rpg::Actor, std::vector<uint8_t>> static_size_attribute_ranks(
 	&rpg::Actor::attribute_ranks,
 	LDB_Reader::ChunkActor::attribute_ranks_size,
 	0,

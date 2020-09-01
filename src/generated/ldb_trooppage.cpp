@@ -27,7 +27,7 @@ static TypedField<rpg::TroopPage, rpg::TroopPageCondition> static_condition(
 	1,
 	0
 );
-static SizeField<rpg::TroopPage, rpg::EventCommand> static_size_event_commands(
+static SizeField<rpg::TroopPage, std::vector<rpg::EventCommand>> static_size_event_commands(
 	&rpg::TroopPage::event_commands,
 	LDB_Reader::ChunkTroopPage::event_commands_size,
 	1,

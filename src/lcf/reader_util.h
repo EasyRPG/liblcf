@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include "lcf/string_view.h"
 
 namespace lcf {
 
@@ -43,7 +44,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(const std::string& data);
+	std::string DetectEncoding(StringView data);
 
 	/**
 	 * Detects the encoding based on text analysis and returns a vector with
@@ -63,7 +64,7 @@ namespace ReaderUtil {
 	 *
 	 * @return list of encodings or empty if not detected
 	 */
-	std::vector<std::string> DetectEncodings(const std::string& data);
+	std::vector<std::string> DetectEncodings(StringView data);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -98,7 +99,7 @@ namespace ReaderUtil {
 	 *
 	 * @return the recoded string.
 	 */
-	std::string Recode(const std::string& str_to_encode, const std::string& source_encoding);
+	std::string Recode(StringView str_to_encode, StringView source_encoding);
 
 	/**
 	 * Converts a string between encodings.
@@ -108,9 +109,9 @@ namespace ReaderUtil {
 	 * @param dst_enc the destination encoding.
 	 * @return the recoded string.
 	 */
-	std::string Recode(const std::string& str_to_encode,
-					   const std::string& src_enc,
-					   const std::string& dst_enc);
+	std::string Recode(StringView str_to_encode,
+					   StringView src_enc,
+					   StringView dst_enc);
 
 	/**
 	 * Converts a UTF-8 string to lowercase and then decomposes it.
@@ -118,7 +119,7 @@ namespace ReaderUtil {
 	 * @param str the string to normalize.
 	 * @return the normalized string.
 	 */
-	std::string Normalize(const std::string &str);
+	std::string Normalize(StringView str);
 
 
 	/**

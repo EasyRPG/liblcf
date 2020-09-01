@@ -120,6 +120,13 @@ void LcfWriter::Write(const std::string& _str) {
 	}
 }
 
+void LcfWriter::Write(const DBString& _str) {
+	std::string str = Decode(_str);
+	if (!str.empty()) {
+		Write(&*str.begin(), 1, str.size());
+	}
+}
+
 uint32_t LcfWriter::Tell() {
 	return (uint32_t)stream.tellp();
 }
@@ -128,8 +135,8 @@ bool LcfWriter::IsOk() const {
 	return stream.good() && encoder.IsOk();
 }
 
-std::string LcfWriter::Decode(const std::string& str) {
-	auto copy = str;
+std::string LcfWriter::Decode(StringView str) {
+	auto copy = std::string(str);
 	encoder.Decode(copy);
 	return copy;
 }

@@ -86,7 +86,7 @@ std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
 	return encodings.front();
 }
 
-std::string ReaderUtil::DetectEncoding(std::string const & data) {
+std::string ReaderUtil::DetectEncoding(StringView data) {
 	std::vector<std::string> encodings = DetectEncodings(data);
 
 	if (encodings.empty()) {
@@ -154,14 +154,14 @@ std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #endif
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(std::string const & data) {
+std::vector<std::string> ReaderUtil::DetectEncodings(StringView data) {
 std::vector<std::string> encodings;
 #if LCF_SUPPORT_ICU
 	if (!data.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		std::string s = data;
+		auto s = std::string(data);
 		ucsdet_setText(detector, s.c_str(), s.length(), &status);
 
 		int32_t matches_count;
@@ -282,27 +282,27 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	return CodepageToEncoding(codepage);
 }
 
-std::string ReaderUtil::Recode(const std::string& str_to_encode, const std::string& source_encoding) {
+std::string ReaderUtil::Recode(StringView str_to_encode, StringView source_encoding) {
 	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
 }
 
-std::string ReaderUtil::Recode(const std::string& str_to_encode,
-                               const std::string& src_enc,
-                               const std::string& dst_enc) {
+std::string ReaderUtil::Recode(StringView str_to_encode,
+                               StringView src_enc,
+                               StringView dst_enc) {
 
 	if (src_enc.empty() || dst_enc.empty() || str_to_encode.empty()) {
-		return str_to_encode;
+		return ToString(str_to_encode);
 	}
 
-	auto src_cp = atoi(src_enc.c_str());
+	auto src_cp = SvAtoi(src_enc);
 	const auto& src_enc_str = src_cp > 0
 		? ReaderUtil::CodepageToEncoding(src_cp)
-		: src_enc;
+		: ToString(src_enc);
 
-	auto dst_cp = atoi(dst_enc.c_str());
+	auto dst_cp = SvAtoi(dst_enc);
 	const auto& dst_enc_str = dst_cp > 0
 		? ReaderUtil::CodepageToEncoding(dst_cp)
-		: dst_enc;
+		: ToString(dst_enc);
 
 #if LCF_SUPPORT_ICU
 	auto status = U_ZERO_ERROR;
@@ -325,7 +325,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 	status = U_ZERO_ERROR;
 
 	std::string result(str_to_encode.size() * 4, '\0');
-	auto* src = &str_to_encode.front();
+	auto* src = str_to_encode.data();
 	auto* dst = &result.front();
 
 	ucnv_convertEx(conv_to, conv_from,
@@ -336,7 +336,7 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 			&status);
 
 	if (U_FAILURE(status)) {
-		fprintf(stderr, "liblcf: ucnv_convertEx() error when encoding \"%s\": %s\n", str_to_encode.c_str(), u_errorName(status));
+		fprintf(stderr, "liblcf: ucnv_convertEx() error when encoding \"%.*s\": %s\n", (int)str_to_encode.length(), str_to_encode.data(), u_errorName(status));
 		return std::string();
 	}
 
@@ -347,8 +347,8 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 #else
 	iconv_t cd = iconv_open(dst_enc_str.c_str(), src_enc_str.c_str());
 	if (cd == (iconv_t)-1)
-		return str_to_encode;
-	char *src = const_cast<char *>(str_to_encode.c_str());
+		return ToString(str_to_encode);
+	char *src = const_cast<char *>(str_to_encode.data());
 	size_t src_left = str_to_encode.size();
 	size_t dst_size = str_to_encode.size() * 5 + 10;
 	char *dst = new char[dst_size];
@@ -372,9 +372,9 @@ std::string ReaderUtil::Recode(const std::string& str_to_encode,
 #endif
 }
 
-std::string ReaderUtil::Normalize(const std::string &str) {
+std::string ReaderUtil::Normalize(StringView str) {
 #if LCF_SUPPORT_ICU
-	icu::UnicodeString uni = icu::UnicodeString(str.c_str(), "utf-8").toLower();
+	icu::UnicodeString uni = icu::UnicodeString(str.data(), str.length(), "utf-8").toLower();
 	UErrorCode err = U_ZERO_ERROR;
 	std::string res;
 	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
@@ -395,7 +395,7 @@ std::string ReaderUtil::Normalize(const std::string &str) {
 	}
 	return res;
 #else
-	std::string result = str;
+	auto result = std::string(str);
 	std::transform(result.begin(), result.end(), result.begin(), tolower);
 	return result;
 #endif

@@ -20,6 +20,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
+#include "lcf/dbstring.h"
 #include "lcf/reader_lcf.h"
 #include "lcf/writer_lcf.h"
 #include "lcf/reader_xml.h"
@@ -51,7 +52,8 @@ struct Category {
 		Primitive,
 		Struct,
 		Flags,
-		RawStruct
+		RawStruct,
+		Void
 	};
 };
 
@@ -80,6 +82,7 @@ template <>	struct TypeCategory<int32_t>						{ static const Category::Index val
 template <>	struct TypeCategory<bool>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<double>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<std::string>					{ static const Category::Index value = Category::Primitive; };
+template <>	struct TypeCategory<DBString>						{ static const Category::Index value = Category::Primitive; };
 
 template <class T>
 struct TypeCategory<std::vector<T>> {
@@ -91,6 +94,30 @@ struct TypeCategory<std::vector<T>> {
  */
 template <class T, Category::Index cat = TypeCategory<T>::value>
 struct TypeReader {};
+
+
+/**
+ * Void reader template.
+ */
+
+template <class T>
+struct TypeReader<T, Category::Void> {
+	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
+		stream.Seek(length, LcfReader::FromCurrent);
+	}
+	static void WriteLcf(const T& ref, LcfWriter& stream) {
+	}
+	static int LcfSize(const T& ref, LcfWriter& stream) {
+		return 0;
+	}
+	static void WriteXml(const T& ref, XmlWriter& stream) {
+	}
+	static void BeginXml(T& ref, XmlReader& stream) {
+	}
+	static void ParseXml(T& /* ref */, const std::string& /* data */) {
+		//no-op
+	}
+};
 
 /**
  * Raw structure reader template.
@@ -286,6 +313,31 @@ struct Primitive<std::string> {
 };
 
 /**
+ * DBString specialization.
+ */
+template <>
+struct Primitive<DBString> {
+	static void ReadLcf(DBString& ref, LcfReader& stream, uint32_t length) {
+		stream.ReadString(ref, length);
+#ifdef LCF_DEBUG_TRACE
+		printf("  %s\n", ref.c_str());
+#endif
+	}
+	static void WriteLcf(const DBString& ref, LcfWriter& stream) {
+		stream.Write(ref);
+	}
+	static int LcfSize(const DBString& ref, LcfWriter& stream) {
+		return stream.Decode(ref).size();
+	}
+	static void WriteXml(const DBString& ref, XmlWriter& stream) {
+		stream.Write(ref);
+	}
+	static void ParseXml(DBString& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
+};
+
+/**
  * Primitive Reader.
  */
 template <class T>
@@ -436,18 +488,18 @@ struct EmptyField : public Field<S> {
  */
 template <class S, class T>
 struct SizeField : public Field<S> {
-	const std::vector<T> S::*ref;
+	const T S::*ref;
 
 	void ReadLcf(S& /* obj */, LcfReader& stream, uint32_t length) const {
 		int32_t dummy;
 		TypeReader<int32_t>::ReadLcf(dummy, stream, length);
 	}
 	void WriteLcf(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
+		int size = TypeReader<T>::LcfSize(obj.*ref, stream);
 		TypeReader<int32_t>::WriteLcf(size, stream);
 	}
 	int LcfSize(const S& obj, LcfWriter& stream) const {
-		int size = TypeReader<std::vector<T>>::LcfSize(obj.*ref, stream);
+		int size = TypeReader<T>::LcfSize(obj.*ref, stream);
 		return LcfReader::IntSize(size);
 	}
 	void WriteXml(const S& /* obj */, XmlWriter& /* stream */) const {
@@ -463,7 +515,7 @@ struct SizeField : public Field<S> {
 		return (a.*ref).size() == (b.*ref).size();
 	}
 
-	SizeField(const std::vector<T> S::*ref, int id, bool present_if_default, bool is2k3) :
+	SizeField(const T S::*ref, int id, bool present_if_default, bool is2k3) :
 		Field<S>(id, "", present_if_default, is2k3), ref(ref) {}
 };
 

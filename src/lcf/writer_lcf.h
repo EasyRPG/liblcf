@@ -11,6 +11,7 @@
 #define LCF_WRITER_LCF_H
 
 #include "lcf/config.h"
+#include "lcf/dbstring.h"
 
 #include <string>
 #include <vector>
@@ -67,6 +68,7 @@ public:
 	 *        Note: the string is converted to the native encoding.
 	 */
 	void Write(const std::string& str);
+	void Write(const DBString& str);
 
 	/**
 	 * Writes a compressed integer to the stream.
@@ -105,7 +107,7 @@ public:
 	 * @param str_to_encode UTF-8 string to encode.
 	 * @return native version of string.
 	 */
-	std::string Decode(const std::string& str_to_encode);
+	std::string Decode(StringView str_to_encode);
 
 private:
 	/** File-stream managed by this Writer. */

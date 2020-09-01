@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Troop>::name = "Troop";
-static TypedField<rpg::Troop, std::string> static_name(
+static TypedField<rpg::Troop, DBString> static_name(
 	&rpg::Troop::name,
 	LDB_Reader::ChunkTroop::name,
 	"name",
@@ -41,7 +41,7 @@ static TypedField<rpg::Troop, bool> static_auto_alignment(
 	0,
 	1
 );
-static SizeField<rpg::Troop, bool> static_size_terrain_set(
+static SizeField<rpg::Troop, std::vector<bool>> static_size_terrain_set(
 	&rpg::Troop::terrain_set,
 	LDB_Reader::ChunkTroop::terrain_set_size,
 	0,

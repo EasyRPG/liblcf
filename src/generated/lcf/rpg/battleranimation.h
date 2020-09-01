@@ -13,8 +13,8 @@
 #define LCF_RPG_BATTLERANIMATION_H
 
 // Headers
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationextension.h"
 #include <ostream>
@@ -34,7 +34,7 @@ namespace rpg {
 		};
 
 		int ID = 0;
-		std::string name;
+		DBString name;
 		int32_t speed = 0;
 		std::vector<BattlerAnimationExtension> base_data;
 		std::vector<BattlerAnimationExtension> weapon_data;

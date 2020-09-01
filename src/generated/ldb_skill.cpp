@@ -20,28 +20,28 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::Skill>::name = "Skill";
-static TypedField<rpg::Skill, std::string> static_name(
+static TypedField<rpg::Skill, DBString> static_name(
 	&rpg::Skill::name,
 	LDB_Reader::ChunkSkill::name,
 	"name",
 	0,
 	0
 );
-static TypedField<rpg::Skill, std::string> static_description(
+static TypedField<rpg::Skill, DBString> static_description(
 	&rpg::Skill::description,
 	LDB_Reader::ChunkSkill::description,
 	"description",
 	0,
 	0
 );
-static TypedField<rpg::Skill, std::string> static_using_message1(
+static TypedField<rpg::Skill, DBString> static_using_message1(
 	&rpg::Skill::using_message1,
 	LDB_Reader::ChunkSkill::using_message1,
 	"using_message1",
 	0,
 	0
 );
-static TypedField<rpg::Skill, std::string> static_using_message2(
+static TypedField<rpg::Skill, DBString> static_using_message2(
 	&rpg::Skill::using_message2,
 	LDB_Reader::ChunkSkill::using_message2,
 	"using_message2",
@@ -223,7 +223,7 @@ static TypedField<rpg::Skill, bool> static_ignore_defense(
 	0,
 	0
 );
-static SizeField<rpg::Skill, bool> static_size_state_effects(
+static SizeField<rpg::Skill, std::vector<bool>> static_size_state_effects(
 	&rpg::Skill::state_effects,
 	LDB_Reader::ChunkSkill::state_effects_size,
 	0,
@@ -236,7 +236,7 @@ static TypedField<rpg::Skill, std::vector<bool>> static_state_effects(
 	1,
 	0
 );
-static SizeField<rpg::Skill, bool> static_size_attribute_effects(
+static SizeField<rpg::Skill, std::vector<bool>> static_size_attribute_effects(
 	&rpg::Skill::attribute_effects,
 	LDB_Reader::ChunkSkill::attribute_effects_size,
 	0,

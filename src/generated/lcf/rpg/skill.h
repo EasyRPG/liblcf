@@ -14,8 +14,8 @@
 
 // Headers
 #include <stdint.h>
-#include <string>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationdata.h"
 #include "lcf/rpg/sound.h"
@@ -67,10 +67,10 @@ namespace rpg {
 		);
 
 		int ID = 0;
-		std::string name;
-		std::string description;
-		std::string using_message1;
-		std::string using_message2;
+		DBString name;
+		DBString description;
+		DBString using_message1;
+		DBString using_message2;
 		int32_t failure_message = 0;
 		int32_t type = 0;
 		int32_t sp_type = 0;
