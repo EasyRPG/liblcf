@@ -722,7 +722,7 @@ SaveSystem,face_name,f,String,0x33,'',0,0,
 SaveSystem,face_id,f,Int32,0x34,0,0,0,
 SaveSystem,face_right,f,Boolean,0x35,False,0,0,bool
 SaveSystem,face_flip,f,Boolean,0x36,False,0,0,bool
-SaveSystem,message_active,f,Boolean,0x37,False,0,0,A flag set by RPG_RT when messages are summoned.
+SaveSystem,event_message_active,f,Boolean,0x37,False,0,0,A flag set by RPG_RT when a message is spawned by ShowMessage; ShowChoices; or ShowNumberInput and cleared when message spawned for any other reason.
 SaveSystem,music_stopping,f,Boolean,0x3D,False,0,0,Music is being faded out or had been stopped (Play music with the same music as currently playing will restart the music when this flag is set)
 SaveSystem,title_music,f,Music,0x47,,1,0,
 SaveSystem,battle_music,f,Music,0x48,,1,0,
@@ -866,7 +866,7 @@ SaveActor,attack_mod,f,Int32,0x29,0,0,0,int
 SaveActor,defense_mod,f,Int32,0x2A,0,0,0,int
 SaveActor,spirit_mod,f,Int32,0x2B,0,0,0,int
 SaveActor,agility_mod,f,Int32,0x2C,0,0,0,int
-SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,0,0,?
+SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,1,0,?
 SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
 SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int

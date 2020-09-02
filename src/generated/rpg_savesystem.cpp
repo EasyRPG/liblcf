@@ -41,7 +41,7 @@ std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 	os << ", face_id="<< obj.face_id;
 	os << ", face_right="<< obj.face_right;
 	os << ", face_flip="<< obj.face_flip;
-	os << ", message_active="<< obj.message_active;
+	os << ", event_message_active="<< obj.event_message_active;
 	os << ", music_stopping="<< obj.music_stopping;
 	os << ", title_music="<< obj.title_music;
 	os << ", battle_music="<< obj.battle_music;

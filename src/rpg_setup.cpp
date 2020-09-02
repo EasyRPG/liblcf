@@ -96,7 +96,6 @@ void rpg::SaveSystem::Setup() {
 	face_id = -1;
 	face_right = false;
 	face_flip = false;
-	message_active = false;
 	music_stopping = false;
 	title_music = system.title_music;
 	battle_music = system.battle_music;

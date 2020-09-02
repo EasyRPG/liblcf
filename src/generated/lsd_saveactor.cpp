@@ -128,7 +128,7 @@ static TypedField<rpg::SaveActor, int32_t> static_agility_mod(
 static CountField<rpg::SaveActor, std::vector<int16_t>> static_size_skills(
 	&rpg::SaveActor::skills,
 	LSD_Reader::ChunkSaveActor::skills_size,
-	0,
+	1,
 	0
 );
 static TypedField<rpg::SaveActor, std::vector<int16_t>> static_skills(
