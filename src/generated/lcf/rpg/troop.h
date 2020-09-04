@@ -14,6 +14,7 @@
 
 // Headers
 #include <vector>
+#include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/rpg/troopmember.h"
 #include "lcf/rpg/trooppage.h"
@@ -31,7 +32,7 @@ namespace rpg {
 		DBString name;
 		std::vector<TroopMember> members;
 		bool auto_alignment = false;
-		std::vector<bool> terrain_set;
+		DBBitArray terrain_set;
 		bool appear_randomly = false;
 		std::vector<TroopPage> pages;
 	};

@@ -83,6 +83,7 @@ template <>	struct TypeCategory<bool>							{ static const Category::Index value
 template <>	struct TypeCategory<double>							{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<std::string>					{ static const Category::Index value = Category::Primitive; };
 template <>	struct TypeCategory<DBString>						{ static const Category::Index value = Category::Primitive; };
+template <>	struct TypeCategory<DBBitArray>						{ static const Category::Index value = Category::Primitive; };
 
 template <class T>
 struct TypeCategory<std::vector<T>> {
@@ -336,6 +337,37 @@ struct Primitive<DBString> {
 		XmlReader::Read(ref, data);
 	}
 };
+
+/**
+ * DBBitArray specialization.
+ */
+template <>
+struct Primitive<DBBitArray> {
+	static void ReadLcf(DBBitArray& ref, LcfReader& stream, uint32_t length) {
+		stream.ReadBits(ref, length);
+#ifdef LCF_DEBUG_TRACE
+		printf("  ");
+		for (auto& b: ref) {
+			print("%d", static_cast<int>(b));
+		}
+		printf("\n");
+#endif
+	}
+	static void WriteLcf(const DBBitArray& ref, LcfWriter& stream) {
+		stream.Write(ref);
+	}
+	static int LcfSize(const DBBitArray& ref, LcfWriter& stream) {
+		return ref.size();
+	}
+	static void WriteXml(const DBBitArray& ref, XmlWriter& stream) {
+		stream.Write(ref);
+	}
+	static void ParseXml(DBBitArray& ref, const std::string& data) {
+		XmlReader::Read(ref, data);
+	}
+};
+
+
 
 /**
  * Primitive Reader.

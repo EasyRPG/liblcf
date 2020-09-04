@@ -184,6 +184,15 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	}
 }
 
+void LcfReader::ReadBits(DBBitArray &buffer, size_t size) {
+	buffer = DBBitArray(size);
+	for (size_t i = 0; i < size; ++i) {
+		uint8_t val;
+		Read(&val, sizeof(val), 1);
+		buffer[i] = static_cast<bool>(val);
+	}
+}
+
 void LcfReader::ReadString(std::string& ref, size_t size) {
 	ref.resize(size);
 	Read((size > 0 ? &ref.front(): nullptr), 1, size);
@@ -195,6 +204,8 @@ void LcfReader::ReadString(DBString& ref, size_t size) {
 	ReadString(tmp, size);
 	ref = DBString(tmp);
 }
+
+
 
 bool LcfReader::IsOk() const {
 	return stream.good() && encoder.IsOk();

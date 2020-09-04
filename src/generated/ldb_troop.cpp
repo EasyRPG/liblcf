@@ -41,13 +41,13 @@ static TypedField<rpg::Troop, bool> static_auto_alignment(
 	0,
 	1
 );
-static SizeField<rpg::Troop, std::vector<bool>> static_size_terrain_set(
+static SizeField<rpg::Troop, DBBitArray> static_size_terrain_set(
 	&rpg::Troop::terrain_set,
 	LDB_Reader::ChunkTroop::terrain_set_size,
 	0,
 	0
 );
-static TypedField<rpg::Troop, std::vector<bool>> static_terrain_set(
+static TypedField<rpg::Troop, DBBitArray> static_terrain_set(
 	&rpg::Troop::terrain_set,
 	LDB_Reader::ChunkTroop::terrain_set,
 	"terrain_set",
