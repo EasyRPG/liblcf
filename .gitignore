@@ -2,6 +2,7 @@
 /autom4te.cache/
 /builds/autoconf/
 !/builds/autoconf/m4/m4_ax_pkg_check_modules.m4
+/lcf2xml
 /liblcf-*/
 .deps/
 .libs/
