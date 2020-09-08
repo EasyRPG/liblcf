@@ -30,6 +30,7 @@ class DBString {
 	public:
 		using value_type = char;
 		using size_type = uint32_t;
+		using ssize_type = typename std::make_signed<size_type>::type;
 
 		using char_type = value_type; // <- FIXME: HACK to workaround bug in older versions of fmtlib for Player: https://github.com/fmtlib/fmt/issues/1539
 		using traits_type = std::char_traits<char>;
@@ -104,7 +105,7 @@ class DBString {
 
 	private:
 		char* alloc(size_t count) {
-			return reinterpret_cast<char*>(DBArrayAlloc::alloc(count + 1, count, 1));
+			return reinterpret_cast<char*>(DBArrayAlloc::alloc(static_cast<size_type>(count + 1), static_cast<size_type>(count), 1));
 		}
 		void free(void* p) {
 			DBArrayAlloc::free(p, 1);

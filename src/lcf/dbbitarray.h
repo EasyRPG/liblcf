@@ -18,13 +18,14 @@
 #include <algorithm>
 #include <type_traits>
 
-#include "lcf/dbarray.h"
+#include "lcf/dbarrayalloc.h"
 
 namespace lcf {
 
 class DBBitProxy {
 	public:
 		using size_type = DBArrayAlloc::size_type;
+		using ssize_type = DBArrayAlloc::ssize_type;
 
 		constexpr DBBitProxy() = default;
 
@@ -32,7 +33,7 @@ class DBBitProxy {
 		DBBitProxy& operator=(bool x) noexcept {
 			auto& byte = _base[_idx / CHAR_BIT];
 			auto bit = _idx % CHAR_BIT;
-			byte ^= (-size_type(x) ^ byte) & (size_type(1) << bit);
+			byte ^= (size_type(-ssize_type(x)) ^ byte) & (size_type(1) << bit);
 			return *this;
 		}
 
@@ -67,7 +68,7 @@ template <typename ProxyType>
 class DBBitProxyIterator {
 	public:
 		using size_type = typename DBBitProxy::size_type;
-		using ssize_type = typename std::make_signed<size_type>::type;
+		using ssize_type = DBArrayAlloc::ssize_type;
 
 		using difference_type = ssize_type;
 		using value_type = ProxyType;
@@ -113,6 +114,7 @@ class DBBitArray {
 	public:
 		using value_type = bool;
 		using size_type = DBArrayAlloc::size_type;
+		using ssize_type = typename std::make_signed<size_type>::type;
 
 		using iterator = DBBitProxyIterator<DBBitProxy>;
 		using const_iterator = DBBitProxyIterator<const DBBitProxy>;
@@ -128,7 +130,7 @@ class DBBitArray {
 				 typename std::enable_if<
 					 std::is_base_of<std::forward_iterator_tag, typename std::iterator_traits<Iter>::iterator_category>::value, int>::type = 0
 				 >
-		DBBitArray(Iter first, Iter last) : _storage(this->alloc(std::distance(first, last))) {
+		DBBitArray(Iter first, Iter last) : _storage(this->alloc(static_cast<size_type>(std::distance(first, last)))) {
 			std::copy(first, last, begin());
 		}
 

@@ -21,6 +21,7 @@ namespace lcf {
 
 struct DBArrayAlloc {
 	using size_type = uint32_t;
+	using ssize_type = int32_t;
 
 	static void* alloc(size_type size, size_type field_size, size_type align);
 	static void free(void* p, size_type align) noexcept;
