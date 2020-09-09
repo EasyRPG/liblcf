@@ -265,7 +265,12 @@ def get_structs(*filenames):
             elem = Struct(elem.name, elem.base, bool(int(elem.hasid)) if elem.hasid else None)
             processed_result[k].append(elem)
 
-    return processed_result
+    processed_flat = []
+    for filetype, struct in processed_result.items():
+        for elem in struct:
+            processed_flat.append(elem)
+
+    return processed_result, processed_flat
 
 def get_fields(*filenames):
     Field = namedtuple("Field", "name size type code default presentifdefault is2k3 comment")
@@ -317,10 +322,8 @@ def get_constants(filename='constants.csv'):
 def get_headers():
     header_map = dict()
 
-    structs_flat = []
     for filetype, struct in structs.items():
         for elem in struct:
-            structs_flat.append(elem)
             header_map[elem.name] = elem.name.lower()
 
     result = {}
@@ -350,8 +353,18 @@ def needs_ctor(struct_name):
     return struct_name in setup and any('Init()' in method
                                     for method, hdrs in setup[struct_name])
 
+def type_is_db_string(ty):
+    return ty == 'DBString'
+
 def type_is_array(ty):
     return re.match(r'(Vector|Array|DBArray)<(.*)>', ty) or ty == "DBBitArray"
+
+def type_is_struct(ty):
+    return ty in [ x.name for x in structs_flat ]
+
+def type_is_array_of_struct(ty):
+    m = re.match(r'(Vector|Array|DBArray)<(.*)>', ty)
+    return m and type_is_struct(m.group(2))
 
 def is_monotonic_from_0(enum):
     expected = 0
@@ -377,11 +390,6 @@ def generate():
             f.write(chunk_tmpl.render(
                 type=filetype
             ))
-
-    structs_flat = []
-    for filetype, struct in structs.items():
-        for elem in struct:
-            structs_flat.append(elem)
 
     filepath = os.path.join(tmp_dir, 'fwd_struct_impl.h')
     with openToRender(filepath) as f:
@@ -459,10 +467,10 @@ def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
 
-    global structs, sfields, enums, flags, setup, constants, headers
+    global structs, structs_flat, sfields, enums, flags, setup, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
-    structs = get_structs('structs.csv','structs_easyrpg.csv')
+    structs, structs_flat = get_structs('structs.csv','structs_easyrpg.csv')
     sfields = get_fields('fields.csv','fields_easyrpg.csv')
     enums = get_enums('enums.csv','enums_easyrpg.csv')
     flags = get_flags('flags.csv')
@@ -483,10 +491,14 @@ def main(argv):
     env.filters["flag_set"] = flag_set
     env.tests['needs_ctor'] = needs_ctor
     env.tests['monotonic_from_0'] = is_monotonic_from_0
+    env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array
+    env.tests['is_array_of_struct'] = type_is_array_of_struct
+    env.tests['is_struct'] = type_is_struct
 
     globals = dict(
         structs=structs,
+        structs_flat=structs_flat,
         fields=sfields,
         flags=flags,
         enums=enums,

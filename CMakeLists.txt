@@ -194,6 +194,7 @@ set(LCF_SOURCES
 )
 
 set(LCF_HEADERS
+	src/lcf/context.h
 	src/lcf/data.h
 	src/lcf/dbarray.h
 	src/lcf/dbarrayalloc.h
@@ -452,6 +453,7 @@ endforeach()
 if(NOT DISABLE_TOOLS)
 	add_custom_target(tools)
 	add_dependencies(tools lcf)
+	list(APPEND TOOLS lcfstrings)
 	if(NOT DISABLE_XML)
 		list(APPEND TOOLS lcf2xml)
 	endif()

@@ -201,6 +201,7 @@ liblcf_la_SOURCES = \
 	src/generated/rpg_variable.cpp
 
 lcfinclude_HEADERS = \
+	src/lcf/context.h \
 	src/lcf/data.h \
 	src/lcf/dbarray.h \
 	src/lcf/dbarrayalloc.h \
