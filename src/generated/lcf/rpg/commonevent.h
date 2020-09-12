@@ -17,6 +17,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/eventcommand.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -58,6 +59,20 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const CommonEvent& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(CommonEvent& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<CommonEvent, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		for (int i = 0; i < static_cast<int>(obj.event_commands.size()); ++i) {
+			const auto ctx5 = Context<CommonEvent, ParentCtx>{ "event_commands", i, &obj, parent_ctx };
+			ForEachString(obj.event_commands[i], f, &ctx5);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

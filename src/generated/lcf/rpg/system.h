@@ -20,6 +20,7 @@
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/sound.h"
 #include "lcf/rpg/testbattler.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -325,6 +326,76 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const System& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(System& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx2 = Context<System, ParentCtx>{ "boat_name", -1, &obj, parent_ctx };
+		f(obj.boat_name, ctx2);
+		const auto ctx3 = Context<System, ParentCtx>{ "ship_name", -1, &obj, parent_ctx };
+		f(obj.ship_name, ctx3);
+		const auto ctx4 = Context<System, ParentCtx>{ "airship_name", -1, &obj, parent_ctx };
+		f(obj.airship_name, ctx4);
+		const auto ctx8 = Context<System, ParentCtx>{ "title_name", -1, &obj, parent_ctx };
+		f(obj.title_name, ctx8);
+		const auto ctx9 = Context<System, ParentCtx>{ "gameover_name", -1, &obj, parent_ctx };
+		f(obj.gameover_name, ctx9);
+		const auto ctx10 = Context<System, ParentCtx>{ "system_name", -1, &obj, parent_ctx };
+		f(obj.system_name, ctx10);
+		const auto ctx11 = Context<System, ParentCtx>{ "system2_name", -1, &obj, parent_ctx };
+		f(obj.system2_name, ctx11);
+		const auto ctx14 = Context<System, ParentCtx>{ "title_music", -1, &obj, parent_ctx };
+		ForEachString(obj.title_music, f, &ctx14);
+		const auto ctx15 = Context<System, ParentCtx>{ "battle_music", -1, &obj, parent_ctx };
+		ForEachString(obj.battle_music, f, &ctx15);
+		const auto ctx16 = Context<System, ParentCtx>{ "battle_end_music", -1, &obj, parent_ctx };
+		ForEachString(obj.battle_end_music, f, &ctx16);
+		const auto ctx17 = Context<System, ParentCtx>{ "inn_music", -1, &obj, parent_ctx };
+		ForEachString(obj.inn_music, f, &ctx17);
+		const auto ctx18 = Context<System, ParentCtx>{ "boat_music", -1, &obj, parent_ctx };
+		ForEachString(obj.boat_music, f, &ctx18);
+		const auto ctx19 = Context<System, ParentCtx>{ "ship_music", -1, &obj, parent_ctx };
+		ForEachString(obj.ship_music, f, &ctx19);
+		const auto ctx20 = Context<System, ParentCtx>{ "airship_music", -1, &obj, parent_ctx };
+		ForEachString(obj.airship_music, f, &ctx20);
+		const auto ctx21 = Context<System, ParentCtx>{ "gameover_music", -1, &obj, parent_ctx };
+		ForEachString(obj.gameover_music, f, &ctx21);
+		const auto ctx22 = Context<System, ParentCtx>{ "cursor_se", -1, &obj, parent_ctx };
+		ForEachString(obj.cursor_se, f, &ctx22);
+		const auto ctx23 = Context<System, ParentCtx>{ "decision_se", -1, &obj, parent_ctx };
+		ForEachString(obj.decision_se, f, &ctx23);
+		const auto ctx24 = Context<System, ParentCtx>{ "cancel_se", -1, &obj, parent_ctx };
+		ForEachString(obj.cancel_se, f, &ctx24);
+		const auto ctx25 = Context<System, ParentCtx>{ "buzzer_se", -1, &obj, parent_ctx };
+		ForEachString(obj.buzzer_se, f, &ctx25);
+		const auto ctx26 = Context<System, ParentCtx>{ "battle_se", -1, &obj, parent_ctx };
+		ForEachString(obj.battle_se, f, &ctx26);
+		const auto ctx27 = Context<System, ParentCtx>{ "escape_se", -1, &obj, parent_ctx };
+		ForEachString(obj.escape_se, f, &ctx27);
+		const auto ctx28 = Context<System, ParentCtx>{ "enemy_attack_se", -1, &obj, parent_ctx };
+		ForEachString(obj.enemy_attack_se, f, &ctx28);
+		const auto ctx29 = Context<System, ParentCtx>{ "enemy_damaged_se", -1, &obj, parent_ctx };
+		ForEachString(obj.enemy_damaged_se, f, &ctx29);
+		const auto ctx30 = Context<System, ParentCtx>{ "actor_damaged_se", -1, &obj, parent_ctx };
+		ForEachString(obj.actor_damaged_se, f, &ctx30);
+		const auto ctx31 = Context<System, ParentCtx>{ "dodge_se", -1, &obj, parent_ctx };
+		ForEachString(obj.dodge_se, f, &ctx31);
+		const auto ctx32 = Context<System, ParentCtx>{ "enemy_death_se", -1, &obj, parent_ctx };
+		ForEachString(obj.enemy_death_se, f, &ctx32);
+		const auto ctx33 = Context<System, ParentCtx>{ "item_se", -1, &obj, parent_ctx };
+		ForEachString(obj.item_se, f, &ctx33);
+		const auto ctx44 = Context<System, ParentCtx>{ "battletest_background", -1, &obj, parent_ctx };
+		f(obj.battletest_background, ctx44);
+		for (int i = 0; i < static_cast<int>(obj.battletest_data.size()); ++i) {
+			const auto ctx45 = Context<System, ParentCtx>{ "battletest_data", i, &obj, parent_ctx };
+			ForEachString(obj.battletest_data[i], f, &ctx45);
+		}
+		const auto ctx53 = Context<System, ParentCtx>{ "frame_name", -1, &obj, parent_ctx };
+		f(obj.frame_name, ctx53);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

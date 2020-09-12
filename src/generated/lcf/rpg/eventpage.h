@@ -20,6 +20,7 @@
 #include "lcf/rpg/eventcommand.h"
 #include "lcf/rpg/eventpagecondition.h"
 #include "lcf/rpg/moveroute.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -192,6 +193,24 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const EventPage& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(EventPage& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<EventPage, ParentCtx>{ "condition", -1, &obj, parent_ctx };
+		ForEachString(obj.condition, f, &ctx1);
+		const auto ctx2 = Context<EventPage, ParentCtx>{ "character_name", -1, &obj, parent_ctx };
+		f(obj.character_name, ctx2);
+		const auto ctx14 = Context<EventPage, ParentCtx>{ "move_route", -1, &obj, parent_ctx };
+		ForEachString(obj.move_route, f, &ctx14);
+		for (int i = 0; i < static_cast<int>(obj.event_commands.size()); ++i) {
+			const auto ctx15 = Context<EventPage, ParentCtx>{ "event_commands", i, &obj, parent_ctx };
+			ForEachString(obj.event_commands[i], f, &ctx15);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

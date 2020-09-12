@@ -19,6 +19,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/itemanimation.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -203,6 +204,18 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Item& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Item& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Item, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx2 = Context<Item, ParentCtx>{ "description", -1, &obj, parent_ctx };
+		f(obj.description, ctx2);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

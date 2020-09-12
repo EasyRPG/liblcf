@@ -19,6 +19,7 @@
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -103,6 +104,32 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Actor& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Actor& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Actor, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx2 = Context<Actor, ParentCtx>{ "title", -1, &obj, parent_ctx };
+		f(obj.title, ctx2);
+		const auto ctx3 = Context<Actor, ParentCtx>{ "character_name", -1, &obj, parent_ctx };
+		f(obj.character_name, ctx3);
+		const auto ctx10 = Context<Actor, ParentCtx>{ "face_name", -1, &obj, parent_ctx };
+		f(obj.face_name, ctx10);
+		const auto ctx16 = Context<Actor, ParentCtx>{ "parameters", -1, &obj, parent_ctx };
+		ForEachString(obj.parameters, f, &ctx16);
+		const auto ctx20 = Context<Actor, ParentCtx>{ "initial_equipment", -1, &obj, parent_ctx };
+		ForEachString(obj.initial_equipment, f, &ctx20);
+		for (int i = 0; i < static_cast<int>(obj.skills.size()); ++i) {
+			const auto ctx26 = Context<Actor, ParentCtx>{ "skills", i, &obj, parent_ctx };
+			ForEachString(obj.skills[i], f, &ctx26);
+		}
+		const auto ctx28 = Context<Actor, ParentCtx>{ "skill_name", -1, &obj, parent_ctx };
+		f(obj.skill_name, ctx28);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

@@ -18,6 +18,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/rpg/troopmember.h"
 #include "lcf/rpg/trooppage.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -51,6 +52,24 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Troop& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Troop& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Troop, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		for (int i = 0; i < static_cast<int>(obj.members.size()); ++i) {
+			const auto ctx2 = Context<Troop, ParentCtx>{ "members", i, &obj, parent_ctx };
+			ForEachString(obj.members[i], f, &ctx2);
+		}
+		for (int i = 0; i < static_cast<int>(obj.pages.size()); ++i) {
+			const auto ctx6 = Context<Troop, ParentCtx>{ "pages", i, &obj, parent_ctx };
+			ForEachString(obj.pages[i], f, &ctx6);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

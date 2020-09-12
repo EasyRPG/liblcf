@@ -18,6 +18,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/rpg/learning.h"
 #include "lcf/rpg/parameters.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -67,6 +68,22 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Class& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Class& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Class, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx6 = Context<Class, ParentCtx>{ "parameters", -1, &obj, parent_ctx };
+		ForEachString(obj.parameters, f, &ctx6);
+		for (int i = 0; i < static_cast<int>(obj.skills.size()); ++i) {
+			const auto ctx11 = Context<Class, ParentCtx>{ "skills", i, &obj, parent_ctx };
+			ForEachString(obj.skills[i], f, &ctx11);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

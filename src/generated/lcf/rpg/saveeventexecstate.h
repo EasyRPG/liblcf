@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include <vector>
 #include "lcf/rpg/saveeventexecframe.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -80,6 +81,18 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveEventExecState& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(SaveEventExecState& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.stack.size()); ++i) {
+			const auto ctx1 = Context<SaveEventExecState, ParentCtx>{ "stack", i, &obj, parent_ctx };
+			ForEachString(obj.stack[i], f, &ctx1);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 
