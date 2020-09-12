@@ -16,6 +16,7 @@
 #include <stdint.h>
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -181,6 +182,26 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const State& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(State& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<State, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx30 = Context<State, ParentCtx>{ "message_actor", -1, &obj, parent_ctx };
+		f(obj.message_actor, ctx30);
+		const auto ctx31 = Context<State, ParentCtx>{ "message_enemy", -1, &obj, parent_ctx };
+		f(obj.message_enemy, ctx31);
+		const auto ctx32 = Context<State, ParentCtx>{ "message_already", -1, &obj, parent_ctx };
+		f(obj.message_already, ctx32);
+		const auto ctx33 = Context<State, ParentCtx>{ "message_affected", -1, &obj, parent_ctx };
+		f(obj.message_affected, ctx33);
+		const auto ctx34 = Context<State, ParentCtx>{ "message_recovery", -1, &obj, parent_ctx };
+		f(obj.message_recovery, ctx34);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

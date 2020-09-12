@@ -19,6 +19,7 @@
 #include "lcf/rpg/map.h"
 #include "lcf/rpg/mapinfo.h"
 #include "lcf/rpg/savemapevent.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -73,6 +74,18 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SaveMapInfo& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(SaveMapInfo& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.events.size()); ++i) {
+			const auto ctx5 = Context<SaveMapInfo, ParentCtx>{ "events", i, &obj, parent_ctx };
+			ForEachString(obj.events[i], f, &ctx5);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

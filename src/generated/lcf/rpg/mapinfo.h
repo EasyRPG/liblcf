@@ -20,6 +20,7 @@
 #include "lcf/rpg/encounter.h"
 #include "lcf/rpg/music.h"
 #include "lcf/rpg/rect.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -118,6 +119,26 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const MapInfo& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(MapInfo& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<MapInfo, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx9 = Context<MapInfo, ParentCtx>{ "music", -1, &obj, parent_ctx };
+		ForEachString(obj.music, f, &ctx9);
+		const auto ctx11 = Context<MapInfo, ParentCtx>{ "background_name", -1, &obj, parent_ctx };
+		f(obj.background_name, ctx11);
+		for (int i = 0; i < static_cast<int>(obj.encounters.size()); ++i) {
+			const auto ctx15 = Context<MapInfo, ParentCtx>{ "encounters", i, &obj, parent_ctx };
+			ForEachString(obj.encounters[i], f, &ctx15);
+		}
+		const auto ctx17 = Context<MapInfo, ParentCtx>{ "area_rect", -1, &obj, parent_ctx };
+		ForEachString(obj.area_rect, f, &ctx17);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

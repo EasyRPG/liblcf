@@ -15,6 +15,7 @@
 // Headers
 #include <vector>
 #include "lcf/rpg/movecommand.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -41,6 +42,18 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const MoveRoute& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(MoveRoute& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.move_commands.size()); ++i) {
+			const auto ctx1 = Context<MoveRoute, ParentCtx>{ "move_commands", i, &obj, parent_ctx };
+			ForEachString(obj.move_commands[i], f, &ctx1);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

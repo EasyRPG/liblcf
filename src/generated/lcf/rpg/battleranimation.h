@@ -17,6 +17,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battleranimationextension.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -56,6 +57,24 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattlerAnimation& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(BattlerAnimation& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<BattlerAnimation, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		for (int i = 0; i < static_cast<int>(obj.base_data.size()); ++i) {
+			const auto ctx3 = Context<BattlerAnimation, ParentCtx>{ "base_data", i, &obj, parent_ctx };
+			ForEachString(obj.base_data[i], f, &ctx3);
+		}
+		for (int i = 0; i < static_cast<int>(obj.weapon_data.size()); ++i) {
+			const auto ctx4 = Context<BattlerAnimation, ParentCtx>{ "weapon_data", i, &obj, parent_ctx };
+			ForEachString(obj.weapon_data[i], f, &ctx4);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

@@ -17,6 +17,7 @@
 #include <vector>
 #include "lcf/dbstring.h"
 #include "lcf/rpg/enemyaction.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -80,6 +81,22 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Enemy& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Enemy& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Enemy, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx2 = Context<Enemy, ParentCtx>{ "battler_name", -1, &obj, parent_ctx };
+		f(obj.battler_name, ctx2);
+		for (int i = 0; i < static_cast<int>(obj.actions.size()); ++i) {
+			const auto ctx21 = Context<Enemy, ParentCtx>{ "actions", i, &obj, parent_ctx };
+			ForEachString(obj.actions[i], f, &ctx21);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

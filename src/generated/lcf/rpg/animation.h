@@ -18,6 +18,7 @@
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/animationframe.h"
 #include "lcf/rpg/animationtiming.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -80,6 +81,26 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Animation& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Animation& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Animation, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx2 = Context<Animation, ParentCtx>{ "animation_name", -1, &obj, parent_ctx };
+		f(obj.animation_name, ctx2);
+		for (int i = 0; i < static_cast<int>(obj.timings.size()); ++i) {
+			const auto ctx4 = Context<Animation, ParentCtx>{ "timings", i, &obj, parent_ctx };
+			ForEachString(obj.timings[i], f, &ctx4);
+		}
+		for (int i = 0; i < static_cast<int>(obj.frames.size()); ++i) {
+			const auto ctx7 = Context<Animation, ParentCtx>{ "frames", i, &obj, parent_ctx };
+			ForEachString(obj.frames[i], f, &ctx7);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

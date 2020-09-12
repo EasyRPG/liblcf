@@ -17,6 +17,7 @@
 #include <vector>
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/battlecommand.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -148,6 +149,18 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const BattleCommands& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(BattleCommands& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.commands.size()); ++i) {
+			const auto ctx6 = Context<BattleCommands, ParentCtx>{ "commands", i, &obj, parent_ctx };
+			ForEachString(obj.commands[i], f, &ctx6);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

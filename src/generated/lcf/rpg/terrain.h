@@ -18,6 +18,7 @@
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/sound.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -155,6 +156,24 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Terrain& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Terrain& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		const auto ctx1 = Context<Terrain, ParentCtx>{ "name", -1, &obj, parent_ctx };
+		f(obj.name, ctx1);
+		const auto ctx4 = Context<Terrain, ParentCtx>{ "background_name", -1, &obj, parent_ctx };
+		f(obj.background_name, ctx4);
+		const auto ctx10 = Context<Terrain, ParentCtx>{ "footstep", -1, &obj, parent_ctx };
+		ForEachString(obj.footstep, f, &ctx10);
+		const auto ctx13 = Context<Terrain, ParentCtx>{ "background_a_name", -1, &obj, parent_ctx };
+		f(obj.background_a_name, ctx13);
+		const auto ctx19 = Context<Terrain, ParentCtx>{ "background_b_name", -1, &obj, parent_ctx };
+		f(obj.background_b_name, ctx19);
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

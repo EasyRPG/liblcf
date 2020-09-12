@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -38,6 +39,14 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const SavePanorama& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(SavePanorama& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 

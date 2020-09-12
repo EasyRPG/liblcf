@@ -33,6 +33,7 @@
 #include "lcf/rpg/terrain.h"
 #include "lcf/rpg/troop.h"
 #include "lcf/rpg/variable.h"
+#include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
 
@@ -92,6 +93,80 @@ namespace rpg {
 	}
 
 	std::ostream& operator<<(std::ostream& os, const Database& obj);
+
+	template <typename F, typename ParentCtx = Context<void,void>>
+	void ForEachString(Database& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.actors.size()); ++i) {
+			const auto ctx1 = Context<Database, ParentCtx>{ "actors", i, &obj, parent_ctx };
+			ForEachString(obj.actors[i], f, &ctx1);
+		}
+		for (int i = 0; i < static_cast<int>(obj.skills.size()); ++i) {
+			const auto ctx2 = Context<Database, ParentCtx>{ "skills", i, &obj, parent_ctx };
+			ForEachString(obj.skills[i], f, &ctx2);
+		}
+		for (int i = 0; i < static_cast<int>(obj.items.size()); ++i) {
+			const auto ctx3 = Context<Database, ParentCtx>{ "items", i, &obj, parent_ctx };
+			ForEachString(obj.items[i], f, &ctx3);
+		}
+		for (int i = 0; i < static_cast<int>(obj.enemies.size()); ++i) {
+			const auto ctx4 = Context<Database, ParentCtx>{ "enemies", i, &obj, parent_ctx };
+			ForEachString(obj.enemies[i], f, &ctx4);
+		}
+		for (int i = 0; i < static_cast<int>(obj.troops.size()); ++i) {
+			const auto ctx5 = Context<Database, ParentCtx>{ "troops", i, &obj, parent_ctx };
+			ForEachString(obj.troops[i], f, &ctx5);
+		}
+		for (int i = 0; i < static_cast<int>(obj.terrains.size()); ++i) {
+			const auto ctx6 = Context<Database, ParentCtx>{ "terrains", i, &obj, parent_ctx };
+			ForEachString(obj.terrains[i], f, &ctx6);
+		}
+		for (int i = 0; i < static_cast<int>(obj.attributes.size()); ++i) {
+			const auto ctx7 = Context<Database, ParentCtx>{ "attributes", i, &obj, parent_ctx };
+			ForEachString(obj.attributes[i], f, &ctx7);
+		}
+		for (int i = 0; i < static_cast<int>(obj.states.size()); ++i) {
+			const auto ctx8 = Context<Database, ParentCtx>{ "states", i, &obj, parent_ctx };
+			ForEachString(obj.states[i], f, &ctx8);
+		}
+		for (int i = 0; i < static_cast<int>(obj.animations.size()); ++i) {
+			const auto ctx9 = Context<Database, ParentCtx>{ "animations", i, &obj, parent_ctx };
+			ForEachString(obj.animations[i], f, &ctx9);
+		}
+		for (int i = 0; i < static_cast<int>(obj.chipsets.size()); ++i) {
+			const auto ctx10 = Context<Database, ParentCtx>{ "chipsets", i, &obj, parent_ctx };
+			ForEachString(obj.chipsets[i], f, &ctx10);
+		}
+		const auto ctx11 = Context<Database, ParentCtx>{ "terms", -1, &obj, parent_ctx };
+		ForEachString(obj.terms, f, &ctx11);
+		const auto ctx12 = Context<Database, ParentCtx>{ "system", -1, &obj, parent_ctx };
+		ForEachString(obj.system, f, &ctx12);
+		for (int i = 0; i < static_cast<int>(obj.switches.size()); ++i) {
+			const auto ctx13 = Context<Database, ParentCtx>{ "switches", i, &obj, parent_ctx };
+			ForEachString(obj.switches[i], f, &ctx13);
+		}
+		for (int i = 0; i < static_cast<int>(obj.variables.size()); ++i) {
+			const auto ctx14 = Context<Database, ParentCtx>{ "variables", i, &obj, parent_ctx };
+			ForEachString(obj.variables[i], f, &ctx14);
+		}
+		for (int i = 0; i < static_cast<int>(obj.commonevents.size()); ++i) {
+			const auto ctx15 = Context<Database, ParentCtx>{ "commonevents", i, &obj, parent_ctx };
+			ForEachString(obj.commonevents[i], f, &ctx15);
+		}
+		const auto ctx17 = Context<Database, ParentCtx>{ "battlecommands", -1, &obj, parent_ctx };
+		ForEachString(obj.battlecommands, f, &ctx17);
+		for (int i = 0; i < static_cast<int>(obj.classes.size()); ++i) {
+			const auto ctx18 = Context<Database, ParentCtx>{ "classes", i, &obj, parent_ctx };
+			ForEachString(obj.classes[i], f, &ctx18);
+		}
+		for (int i = 0; i < static_cast<int>(obj.battleranimations.size()); ++i) {
+			const auto ctx19 = Context<Database, ParentCtx>{ "battleranimations", i, &obj, parent_ctx };
+			ForEachString(obj.battleranimations[i], f, &ctx19);
+		}
+		(void)obj;
+		(void)f;
+		(void)parent_ctx;
+	}
+
 } // namespace rpg
 } // namespace lcf
 
