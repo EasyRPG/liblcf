@@ -357,6 +357,7 @@ struct Primitive<DBBitArray> {
 		stream.Write(ref);
 	}
 	static int LcfSize(const DBBitArray& ref, LcfWriter& stream) {
+		(void)stream;
 		return ref.size();
 	}
 	static void WriteXml(const DBBitArray& ref, XmlWriter& stream) {

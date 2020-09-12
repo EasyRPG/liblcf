@@ -29,6 +29,7 @@ class DBArray {
 	public:
 		using value_type = T;
 		using size_type = DBArrayAlloc::size_type;
+		using ssize_type = typename std::make_signed<size_type>::type;
 
 		using iterator = T*;
 		using const_iterator = const T*;
@@ -49,7 +50,7 @@ class DBArray {
 					 std::is_base_of<std::forward_iterator_tag, typename std::iterator_traits<Iter>::iterator_category>::value, int>::type = 0
 				 >
 		DBArray(Iter first, Iter last) {
-			construct(std::distance(first, last), [&](void* p) { new (p) T(*first); ++first; });
+			construct(static_cast<size_type>(std::distance(first, last)), [&](void* p) { new (p) T(*first); ++first; });
 		}
 
 		DBArray(std::initializer_list<T> ilist)
@@ -102,7 +103,7 @@ class DBArray {
 
 	private:
 		T* alloc(size_t count) {
-			return reinterpret_cast<T*>(DBArrayAlloc::alloc(count * sizeof(T), count, alignof(T)));
+			return reinterpret_cast<T*>(DBArrayAlloc::alloc(static_cast<size_type>(count * sizeof(T)), static_cast<size_type>(count), static_cast<size_type>(alignof(T))));
 		}
 
 		void free(void* p) {
