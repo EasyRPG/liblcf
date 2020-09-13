@@ -13,6 +13,5 @@ SaveMapInfo,void Fixup(const rpg::Map& map),
 SaveMapInfo,void Fixup(const rpg::MapInfo& map),"""lcf/rpg/mapinfo.h"""
 SaveMapInfo,void UnFixup(const rpg::Map& map),
 SaveMapInfo,void UnFixup(const rpg::MapInfo& map),
-SaveSystem,void Setup(),
 Parameters,void Setup(int final_level),
 System,void Init(),

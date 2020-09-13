@@ -61,7 +61,6 @@ namespace rpg {
 			"atb_wait"
 		);
 
-		void Setup();
 		int32_t scene = 0;
 		int32_t frame_count = 0;
 		std::string graphics_name;
