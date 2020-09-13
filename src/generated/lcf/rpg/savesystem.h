@@ -62,8 +62,6 @@ namespace rpg {
 		);
 
 		void Setup();
-		void Fixup();
-		void UnFixup();
 		int32_t scene = 0;
 		int32_t frame_count = 0;
 		std::string graphics_name;
