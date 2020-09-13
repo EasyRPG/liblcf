@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/savescreen.h"
 
-
 namespace lcf {
 namespace rpg {
 

@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/movecommand.h"
 
-
 namespace lcf {
 namespace rpg {
 

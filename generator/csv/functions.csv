@@ -1,6 +1,5 @@
 Structure,Method,Headers
 Actor,void Setup(),
-Chipset,void Init(),
 Save,void Setup(),
 SaveActor,void Setup(int actor_id),
 SaveActor,void Fixup(int actor_id),
@@ -14,4 +13,3 @@ SaveMapInfo,void Fixup(const rpg::MapInfo& map),"""lcf/rpg/mapinfo.h"""
 SaveMapInfo,void UnFixup(const rpg::Map& map),
 SaveMapInfo,void UnFixup(const rpg::MapInfo& map),
 Parameters,void Setup(int final_level),
-System,void Init(),

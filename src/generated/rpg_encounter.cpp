@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/encounter.h"
 
-
 namespace lcf {
 namespace rpg {
 

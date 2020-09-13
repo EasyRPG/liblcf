@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/battleranimationdata.h"
 
-
 namespace lcf {
 namespace rpg {
 

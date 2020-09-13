@@ -6,14 +6,6 @@
 constexpr {{ type }} lcf::rpg::{{ struct_name }}::{{ name }};
 {%- endfor %}
 {%- endif %}
-{% if struct_name is needs_ctor -%}
-/**
- * Constructor.
- */
-lcf::rpg::{{ struct_name }}::{{ struct_name }}() {
-	Init();
-}
-{%- endif %}
 namespace lcf {
 namespace rpg {
 {%- for field in fields[struct_name]|field_is_used %}

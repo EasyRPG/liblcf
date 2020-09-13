@@ -129,18 +129,6 @@ void rpg::Actor::Setup() {
 	parameters.Setup(max_final_level);
 }
 
-void rpg::Chipset::Init() {
-	terrain_data.resize(162, 1);
-	passable_data_lower.resize(162, 15);
-	passable_data_upper.resize(144, 15);
-	passable_data_upper.front() = 31;
-}
-
-void rpg::System::Init() {
-	party.resize(1, 1);
-	menu_commands.resize(1, 1);
-}
-
 void rpg::Parameters::Setup(int final_level) {
 	size_t level = 0;
 	if (final_level > 0) level = final_level;

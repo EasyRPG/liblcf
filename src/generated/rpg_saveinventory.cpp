@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/saveinventory.h"
 
-
 namespace lcf {
 namespace rpg {
 

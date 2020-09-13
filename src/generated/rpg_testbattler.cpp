@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/testbattler.h"
 
-
 namespace lcf {
 namespace rpg {
 

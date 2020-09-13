@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/saveeventexecstate.h"
 
-
 namespace lcf {
 namespace rpg {
 

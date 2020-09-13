@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/sound.h"
 
-
 namespace lcf {
 namespace rpg {
 

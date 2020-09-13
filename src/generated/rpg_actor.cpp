@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/actor.h"
 
-
 namespace lcf {
 namespace rpg {
 

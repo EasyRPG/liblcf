@@ -104,9 +104,22 @@ def pod_default(field):
     dfl = field.default
     ftype = field.type
 
-    # Not a POD, no default
-    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray') or ftype.startswith('DBBitArray'):
+    # remove empty quotes
+    if dfl == '' or dfl == '\'\'':
         return ""
+
+    # Not a POD, no default
+    if ftype.startswith('DBBitArray'):
+        return ""
+
+    # Inline python list syntax, if it parses, then convert to C++ initializer_list.
+    if ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray'):
+        try:
+            ilist = eval(dfl)
+            if isinstance(ilist, list):
+                return " = {" + ', '.join(str(x) for x in ilist) + "}"
+        except Exception as e:
+            pass
 
     if ftype == 'Boolean':
         dfl = dfl.lower()
@@ -344,10 +357,6 @@ def get_headers():
         struct_result += sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
     return result
 
-def needs_ctor(struct_name):
-    return struct_name in functions and any('Init()' in method
-                                    for method, hdrs in functions[struct_name])
-
 def type_is_db_string(ty):
     return ty == 'DBString'
 
@@ -484,7 +493,6 @@ def main(argv):
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
-    env.tests['needs_ctor'] = needs_ctor
     env.tests['monotonic_from_0'] = is_monotonic_from_0
     env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array

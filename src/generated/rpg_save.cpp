@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/save.h"
 
-
 namespace lcf {
 namespace rpg {
 

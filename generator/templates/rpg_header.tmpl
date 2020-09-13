@@ -55,9 +55,6 @@ namespace rpg {
 		{%- endif %}
 	{%- endfor %}
 	{% endif %}
-	{%- if struct_name is needs_ctor %}
-		{{ struct_name }}();
-	{%- endif %}
 	{%- for func in functions[struct_name] %}
 		{{ func.method }};
 	{%- endfor %}

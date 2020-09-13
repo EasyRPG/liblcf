@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/treemap.h"
 
-
 namespace lcf {
 namespace rpg {
 

@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/animationcelldata.h"
 
-
 namespace lcf {
 namespace rpg {
 

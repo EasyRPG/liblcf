@@ -12,12 +12,6 @@
 // Headers
 #include "lcf/rpg/system.h"
 
-/**
- * Constructor.
- */
-lcf::rpg::System::System() {
-	Init();
-}
 namespace lcf {
 namespace rpg {
 

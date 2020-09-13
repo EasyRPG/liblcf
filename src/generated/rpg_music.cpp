@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/music.h"
 
-
 namespace lcf {
 namespace rpg {
 

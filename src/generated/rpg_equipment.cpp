@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/equipment.h"
 
-
 namespace lcf {
 namespace rpg {
 

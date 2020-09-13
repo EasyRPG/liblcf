@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/variable.h"
 
-
 namespace lcf {
 namespace rpg {
 

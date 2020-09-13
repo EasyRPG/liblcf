@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/event.h"
 
-
 namespace lcf {
 namespace rpg {
 
