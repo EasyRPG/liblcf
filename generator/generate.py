@@ -106,6 +106,8 @@ def pod_default(field):
 
     # No default? Then just default construct using C++ syntax.
     if not dfl:
+        if ftype.startswith("UInt") or ftype.startswith("Int") or ftype.startswith("Double") or ftype.startswith("Boolean"):
+            raise RuntimeError(f"Type {ftype} requires a default value!")
         return ""
 
     # Not a POD, no default
