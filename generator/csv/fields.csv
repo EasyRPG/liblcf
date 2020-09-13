@@ -1,4 +1,4 @@
-#Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
+Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
 Learning,level,f,Int32,0x01,1,0,0,Integer
 Learning,skill_id,f,Ref<Skill>,0x02,1,0,0,Integer
 Actor,name,f,DBString,0x01,'',0,0,String
@@ -34,7 +34,7 @@ Actor,state_ranks,f,Vector<UInt8>,0x48,,1,0,Array - Short
 Actor,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
 Actor,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Actor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,1,Array - rpg::BattleCommand - RPG2003
-Sound,name,f,String,0x01,"(OFF)",1,0,String
+Sound,name,f,String,0x01,"""(OFF)""",1,0,String
 Sound,volume,f,Int32,0x03,100,0,0,Integer
 Sound,tempo,f,Int32,0x04,100,0,0,Integer
 Sound,balance,f,Int32,0x05,50,0,0,Integer
@@ -504,7 +504,7 @@ Terms,file,f,DBString,0x94,'',1,0,String
 Terms,exit_game_message,f,DBString,0x97,'',1,0,String
 Terms,yes,f,DBString,0x98,'',1,0,String
 Terms,no,f,DBString,0x99,'',1,0,String
-Music,name,f,String,0x01,"(OFF)",1,0,String
+Music,name,f,String,0x01,"""(OFF)""",1,0,String
 Music,fadein,f,Int32,0x02,0,0,0,Integer
 Music,volume,f,Int32,0x03,100,0,0,Integer
 Music,tempo,f,Int32,0x04,100,0,0,Integer

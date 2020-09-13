@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from __future__ import division
-
+import pandas as pd
+import numpy as np
 import sys
 import os
 import re
@@ -234,20 +234,15 @@ def merge_dicts(dicts):
 def process_file(filename, namedtup):
     # Mapping is: All elements of the line grouped by the first column
 
+    path = os.path.join(csv_dir, filename)
+    df = pd.read_csv(path, comment='#', dtype=np.str)
+    df = df.fillna("")
+
+    lines = [ list(r) for _i, r in df.iterrows() ]
+
     result = OrderedDict()
-
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        lines = []
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            lines.append(sline.split(','))
-
-        for k, g in groupby(lines, operator.itemgetter(0)):
-            result[k] = list(map(lambda x: namedtup(*x[1:]), list(g)))
+    for k, g in groupby(lines, operator.itemgetter(0)):
+        result[k] = list(map(lambda x: namedtup(*x[1:]), list(g)))
 
     return result
 
