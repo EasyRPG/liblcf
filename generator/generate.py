@@ -307,8 +307,8 @@ def get_flags(*filenames):
     results = list(map(lambda x: process_file(x, namedtuple("Flag", "field is2k3")), filenames))
     return merge_dicts(results)
 
-def get_setup(*filenames):
-    results = list(map(lambda x: process_file(x, namedtuple("Setup", "method headers")), filenames))
+def get_functions(*filenames):
+    results = list(map(lambda x: process_file(x, namedtuple("Function", "method headers")), filenames))
     return merge_dicts(results)
 
 def get_constants(filename='constants.csv'):
@@ -337,16 +337,16 @@ def get_headers():
             if not ftype:
                 continue
             headers.update(struct_headers(ftype, header_map))
-        if struct_name in setup:
-            for s in setup[struct_name]:
+        if struct_name in functions:
+            for s in functions[struct_name]:
                 if s.headers:
                     headers.update([s.headers])
         struct_result += sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
     return result
 
 def needs_ctor(struct_name):
-    return struct_name in setup and any('Init()' in method
-                                    for method, hdrs in setup[struct_name])
+    return struct_name in functions and any('Init()' in method
+                                    for method, hdrs in functions[struct_name])
 
 def type_is_db_string(ty):
     return ty == 'DBString'
@@ -462,14 +462,14 @@ def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
 
-    global structs, structs_flat, sfields, enums, flags, setup, constants, headers
+    global structs, structs_flat, sfields, enums, flags, functions, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
     structs, structs_flat = get_structs('structs.csv','structs_easyrpg.csv')
     sfields = get_fields('fields.csv','fields_easyrpg.csv')
     enums = get_enums('enums.csv','enums_easyrpg.csv')
     flags = get_flags('flags.csv')
-    setup = get_setup('setup.csv')
+    functions = get_functions('functions.csv')
     constants = get_constants()
     headers = get_headers()
 
@@ -497,7 +497,7 @@ def main(argv):
         fields=sfields,
         flags=flags,
         enums=enums,
-        setup=setup,
+        functions=functions,
         constants=constants,
         headers=headers
     )
