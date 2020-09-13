@@ -104,8 +104,8 @@ def pod_default(field):
     dfl = field.default
     ftype = field.type
 
-    # remove empty quotes
-    if dfl == '' or dfl == '\'\'':
+    # No default? Then just default construct using C++ syntax.
+    if not dfl:
         return ""
 
     # Not a POD, no default
