@@ -28,6 +28,9 @@ namespace lcf {
 namespace rpg {
 	class SaveActor {
 	public:
+		// Sentinel name used to denote that the default LDB name should be used.
+		static constexpr const char* kEmptyName = "\x1";
+
 		enum RowType {
 			RowType_front = 0,
 			RowType_back = 1
