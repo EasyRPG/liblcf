@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
-cmake_policy(SET CMP0048 NEW)
+cmake_policy(SET CMP0091 NEW) # Support MSVC_RUNTIME_LIBRARY
 
 project(liblcf VERSION 0.6.2 LANGUAGES CXX)
 
