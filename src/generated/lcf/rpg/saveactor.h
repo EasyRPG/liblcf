@@ -44,8 +44,8 @@ namespace rpg {
 		void Fixup(int actor_id);
 		void UnFixup();
 		int ID = 0;
-		std::string name;
-		std::string title;
+		std::string name = kEmptyName;
+		std::string title = kEmptyName;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
 		int32_t transparency = 0;
