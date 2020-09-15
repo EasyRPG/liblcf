@@ -41,8 +41,6 @@ namespace rpg {
 		);
 
 		void Setup(int actor_id);
-		void Fixup(int actor_id);
-		void UnFixup();
 		int ID = 0;
 		std::string name = kEmptyName;
 		std::string title = kEmptyName;

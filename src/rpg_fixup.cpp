@@ -31,54 +31,6 @@ void UnFixInt(T& val, U def) {
 
 namespace lcf {
 
-void rpg::SaveActor::Fixup(int actor_id) {
-	ID = actor_id;
-
-	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
-
-	if (name == "\x1") {
-		name = ToString(actor.name);
-	}
-	if (title == "\x1") {
-		title = ToString(actor.title);
-	}
-	if (sprite_name.empty()) {
-		sprite_name = ToString(actor.character_name);
-		sprite_id = actor.character_index;
-		transparency = actor.transparent ? 3 : 0;
-	}
-	if (face_name.empty()) {
-		face_name = ToString(actor.face_name);
-		face_id = actor.face_index;
-	}
-
-	if (status.size() < lcf::Data::states.size()) {
-		status.resize(lcf::Data::states.size());
-	}
-}
-
-void rpg::SaveActor::UnFixup() {
-	const rpg::Actor& actor = lcf::Data::actors[ID - 1];
-
-	if (name == actor.name) {
-		name = "\x1";
-	}
-	if (title == actor.title) {
-		title = "\x1";
-	}
-	if (sprite_name == actor.character_name
-			&& sprite_id == actor.character_index
-			&& transparency == (actor.transparent ? 3 : 0)) {
-		sprite_name.clear();
-		sprite_id = 0;
-		transparency = 0;
-	}
-	if (face_name == actor.face_name && face_id == actor.face_index) {
-		face_name.clear();
-		face_id = 0;
-	}
-}
-
 void rpg::SaveMapInfo::Fixup(const rpg::Map& map) {
 	FixInt(chipset_id, map.chipset_id);
 }
