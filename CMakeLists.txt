@@ -3,11 +3,12 @@ cmake_policy(SET CMP0091 NEW) # Support MSVC_RUNTIME_LIBRARY
 
 project(liblcf VERSION 0.6.2 LANGUAGES CXX)
 
-option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library" ON)
-option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended)" OFF)
-option(DISABLE_XML "Disable XML reading support (expat)" OFF)
-option(DISABLE_UPDATE_MIMEDB "Do not run update-mime-database after install" OFF)
-option(DISABLE_TOOLS "Do not build and install the tools" OFF)
+option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
+option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended, default: OFF)" OFF)
+option(DISABLE_XML "Disable XML reading support (expat, default: OFF)" OFF)
+option(DISABLE_UPDATE_MIMEDB "Do not run update-mime-database after install (default: ON)" OFF)
+option(DISABLE_TOOLS "Do not build and install the tools (default: OFF)" OFF)
+option(DISABLE_BENCHMARKS "Do not build the benchmarks (default: ON)" ON)
 
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
@@ -440,12 +441,14 @@ add_dependencies(check_lcf test_runner_lcf)
 add_dependencies(check check_lcf)
 
 # benchmarks
-file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
-foreach(i ${BENCH_FILES})
-	get_filename_component(name "${i}" NAME_WE)
-	add_executable(bench_${name} ${i})
-	target_link_libraries(bench_${name} lcf)
-endforeach()
+if(NOT DISABLE_BENCHMARKS)
+	file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
+	foreach(i ${BENCH_FILES})
+		get_filename_component(name "${i}" NAME_WE)
+		add_executable(bench_${name} ${i})
+		target_link_libraries(bench_${name} lcf)
+	endforeach()
+endif()
 
 # tools
 if(NOT DISABLE_TOOLS)
