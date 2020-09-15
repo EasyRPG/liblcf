@@ -348,8 +348,14 @@ endif()
 
 # expat
 if(NOT DISABLE_XML)
-	find_package(EXPAT)
-	target_link_libraries(lcf EXPAT::EXPAT)
+	find_package(expat)
+	if(expat_FOUND)
+		target_link_libraries(lcf expat::expat)
+	else()
+		# Fallback to old expat detection
+		find_package(EXPAT REQUIRED)
+		target_link_libraries(lcf EXPAT::EXPAT)
+	endif()
 	list(APPEND LIBLCF_DEPS "expat")
 	set(LCF_SUPPORT_XML "1")
 endif()

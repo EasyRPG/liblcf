@@ -80,9 +80,15 @@ if(LIBLCF_FOUND)
 				list(APPEND LIBLCF_LIBRARIES ${ICU_LIBRARIES})
 				list(APPEND LIBLCF_LINK_LIBRARIES ICU::i18n ICU::uc ICU::data)
 			elseif(dep STREQUAL "expat")
-				find_package(EXPAT REQUIRED QUIET)
+				find_package(expat QUIET)
+				if(expat_FOUND)
+					list(APPEND LIBLCF_LINK_LIBRARIES expat::expat)
+				else()
+					# Fallback to old expat detection
+					find_package(EXPAT REQUIRED QUIET)
+					list(APPEND LIBLCF_LINK_LIBRARIES EXPAT::EXPAT)
+				endif()
 				list(APPEND LIBLCF_LIBRARIES ${EXPAT_LIBRARIES})
-				list(APPEND LIBLCF_LINK_LIBRARIES EXPAT::EXPAT)
 			endif()
 		endforeach()
 
@@ -108,6 +114,10 @@ if(LIBLCF_FOUND)
 		if(NOT LIBLCF_LIBRARY_RELEASE AND NOT LIBLCF_LIBRARY_DEBUG)
 			set_property(TARGET liblcf::liblcf APPEND PROPERTY
 				IMPORTED_LOCATION "${LIBLCF_LIBRARY}")
+		endif()
+
+		if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.8")
+			target_compile_features(liblcf::liblcf PUBLIC cxx_std_14)
 		endif()
 
 		mark_as_advanced(LIBLCF_LIBRARY_DEPS LIBLCF_LINK_LIBRARIES)
