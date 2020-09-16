@@ -40,7 +40,6 @@ namespace rpg {
 			"back"
 		);
 
-		void Setup(int actor_id);
 		int ID = 0;
 		std::string name = kEmptyName;
 		std::string title = kEmptyName;
