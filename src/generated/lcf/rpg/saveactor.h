@@ -58,10 +58,10 @@ namespace rpg {
 		int32_t spirit_mod = 0;
 		int32_t agility_mod = 0;
 		std::vector<int16_t> skills;
-		std::vector<int16_t> equipped;
+		std::vector<int16_t> equipped = {0, 0, 0, 0, 0};
 		int32_t current_hp = -1;
 		int32_t current_sp = -1;
-		std::vector<int32_t> battle_commands;
+		std::vector<int32_t> battle_commands = {-1, -1, -1, -1, -1, -1, -1};
 		std::vector<int16_t> status;
 		bool changed_battle_commands = false;
 		int32_t class_id = -1;

@@ -868,10 +868,10 @@ SaveActor,spirit_mod,f,Int32,0x2B,0,0,0,int
 SaveActor,agility_mod,f,Int32,0x2C,0,0,0,int
 SaveActor,skills,t,Count<Vector<Int16>>,0x33,0,1,0,?
 SaveActor,skills,f,Vector<Int16>,0x34,,1,0,short[]
-SaveActor,equipped,f,Vector<Int16>,0x3D,,1,0,short[5]
+SaveActor,equipped,f,Vector<Int16>,0x3D,"[0]*5",1,0,short[5]
 SaveActor,current_hp,f,Int32,0x47,-1,0,0,int
 SaveActor,current_sp,f,Int32,0x48,-1,0,0,int
-SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,0,1,array of (uncompressed) int32
+SaveActor,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,"[-1]*7",1,1,array of (uncompressed) int32
 SaveActor,status,t,Count<Vector<Int16>>,0x51,0,0,0,?
 SaveActor,status,f,Vector<Int16>,0x52,,1,0,array of short
 SaveActor,changed_battle_commands,f,Boolean,0x53,False,0,0,bool
