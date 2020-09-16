@@ -18,6 +18,7 @@
 
 #define nssv_CONFIG_NO_EXCEPTIONS 1
 #define nssv_CONFIG_CONVERSION_STD_STRING 1
+#define nssv_CONFIG_SELECT_STRING_VIEW nssv_STRING_VIEW_NONSTD
 #include <lcf/third_party/string_view.h>
 
 namespace lcf {
