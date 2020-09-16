@@ -20,10 +20,6 @@
 
 namespace lcf {
 
-void rpg::SaveInventory::Setup() {
-	party = lcf::Data::system.party;
-}
-
 void rpg::SaveMapEvent::Setup(const rpg::Event& event) {
 	ID = event.ID;
 	position_x = event.x;

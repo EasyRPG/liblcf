@@ -1,7 +1,6 @@
 Structure,Method,Headers
 Actor,void Setup(),
 Save,void Setup(),
-SaveInventory,void Setup(),
 SaveMapEvent,void Setup(const rpg::Event& event),"""lcf/rpg/event.h"""
 SaveMapInfo,void Setup(),
 SaveMapInfo,void Setup(const rpg::Map& map),"""lcf/rpg/map.h"""
