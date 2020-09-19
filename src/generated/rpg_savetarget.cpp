@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/savetarget.h"
 
-
 namespace lcf {
 namespace rpg {
 

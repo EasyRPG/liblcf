@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/rect.h"
 
-
 namespace lcf {
 namespace rpg {
 

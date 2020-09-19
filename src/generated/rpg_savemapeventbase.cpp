@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/savemapeventbase.h"
 
-
 namespace lcf {
 namespace rpg {
 

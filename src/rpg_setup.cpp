@@ -89,49 +89,7 @@ void rpg::SaveMapInfo::Setup(const rpg::Map& map) {
 	parallax_vert_speed = map.parallax_sy;
 }
 
-void rpg::SaveSystem::Setup() {
-	const rpg::System& system = lcf::Data::system;
-	frame_count = 0;
-	face_name = "";
-	face_id = -1;
-	face_right = false;
-	face_flip = false;
-	music_stopping = false;
-	title_music = system.title_music;
-	battle_music = system.battle_music;
-	battle_end_music = system.battle_end_music;
-	inn_music = system.inn_music;
-	// current_music
-	// unknown1_music FIXME
-	// unknown2_music FIXME
-	// stored_music
-	boat_music = system.boat_music;
-	ship_music = system.ship_music;
-	airship_music = system.airship_music;
-	gameover_music = system.gameover_music;
-	cursor_se = system.cursor_se;
-	decision_se = system.decision_se;
-	cancel_se = system.cancel_se;
-	buzzer_se = system.buzzer_se;
-	battle_se = system.battle_se;
-	escape_se = system.escape_se;
-	enemy_attack_se = system.enemy_attack_se;
-	enemy_damaged_se = system.enemy_damaged_se;
-	actor_damaged_se = system.actor_damaged_se;
-	dodge_se = system.dodge_se;
-	enemy_death_se = system.enemy_death_se;
-	item_se = system.item_se;
-	teleport_allowed = true;
-	escape_allowed = true;
-	save_allowed = true;
-	menu_allowed = true;
-	background = "";
-	save_count = 0;
-	save_slot = -1;
-}
-
 void rpg::Save::Setup() {
-	system.Setup();
 	screen = rpg::SaveScreen();
 	pictures.clear();
 	actors.clear();
@@ -169,18 +127,6 @@ void rpg::Actor::Setup() {
 		exp_inflation = exp_inflation == -1 ? 30 : exp_inflation;
 	}
 	parameters.Setup(max_final_level);
-}
-
-void rpg::Chipset::Init() {
-	terrain_data.resize(162, 1);
-	passable_data_lower.resize(162, 15);
-	passable_data_upper.resize(144, 15);
-	passable_data_upper.front() = 31;
-}
-
-void rpg::System::Init() {
-	party.resize(1, 1);
-	menu_commands.resize(1, 1);
 }
 
 void rpg::Parameters::Setup(int final_level) {

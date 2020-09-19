@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from __future__ import division
-
+import pandas as pd
+import numpy as np
 import sys
 import os
 import re
@@ -104,9 +104,24 @@ def pod_default(field):
     dfl = field.default
     ftype = field.type
 
-    # Not a POD, no default
-    if dfl == '' or dfl == '\'\'' or ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray') or ftype.startswith('DBBitArray'):
+    # No default? Then just default construct using C++ syntax.
+    if not dfl:
+        if ftype.startswith("UInt") or ftype.startswith("Int") or ftype.startswith("Double") or ftype.startswith("Boolean"):
+            raise RuntimeError(f"Type {ftype} requires a default value!")
         return ""
+
+    # Not a POD, no default
+    if ftype.startswith('DBBitArray'):
+        return ""
+
+    # Inline python list syntax, if it parses, then convert to C++ initializer_list.
+    if ftype.startswith('Vector') or ftype.startswith('Array') or ftype.startswith('DBArray'):
+        try:
+            ilist = eval(dfl)
+            if isinstance(ilist, list):
+                return " = {" + ', '.join(str(x) for x in ilist) + "}"
+        except Exception as e:
+            pass
 
     if ftype == 'Boolean':
         dfl = dfl.lower()
@@ -234,20 +249,15 @@ def merge_dicts(dicts):
 def process_file(filename, namedtup):
     # Mapping is: All elements of the line grouped by the first column
 
+    path = os.path.join(csv_dir, filename)
+    df = pd.read_csv(path, comment='#', dtype=np.str)
+    df = df.fillna("")
+
+    lines = [ list(r) for _i, r in df.iterrows() ]
+
     result = OrderedDict()
-
-    with open(os.path.join(csv_dir, filename), 'r') as f:
-        lines = []
-        for line in f:
-            sline = line.strip()
-            if not sline:
-                continue
-            if sline.startswith("#"):
-                continue
-            lines.append(sline.split(','))
-
-        for k, g in groupby(lines, operator.itemgetter(0)):
-            result[k] = list(map(lambda x: namedtup(*x[1:]), list(g)))
+    for k, g in groupby(lines, operator.itemgetter(0)):
+        result[k] = list(map(lambda x: namedtup(*x[1:]), list(g)))
 
     return result
 
@@ -312,8 +322,8 @@ def get_flags(*filenames):
     results = list(map(lambda x: process_file(x, namedtuple("Flag", "field is2k3")), filenames))
     return merge_dicts(results)
 
-def get_setup(*filenames):
-    results = list(map(lambda x: process_file(x, namedtuple("Setup", "method headers")), filenames))
+def get_functions(*filenames):
+    results = list(map(lambda x: process_file(x, namedtuple("Function", "method headers")), filenames))
     return merge_dicts(results)
 
 def get_constants(filename='constants.csv'):
@@ -342,16 +352,12 @@ def get_headers():
             if not ftype:
                 continue
             headers.update(struct_headers(ftype, header_map))
-        if struct_name in setup:
-            for s in setup[struct_name]:
+        if struct_name in functions:
+            for s in functions[struct_name]:
                 if s.headers:
                     headers.update([s.headers])
         struct_result += sorted(x for x in headers if x[0] == '<') + sorted(x for x in headers if x[0] == '"')
     return result
-
-def needs_ctor(struct_name):
-    return struct_name in setup and any('Init()' in method
-                                    for method, hdrs in setup[struct_name])
 
 def type_is_db_string(ty):
     return ty == 'DBString'
@@ -467,14 +473,14 @@ def main(argv):
     if not os.path.exists(dest_dir):
         os.mkdir(dest_dir)
 
-    global structs, structs_flat, sfields, enums, flags, setup, constants, headers
+    global structs, structs_flat, sfields, enums, flags, functions, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
     structs, structs_flat = get_structs('structs.csv','structs_easyrpg.csv')
     sfields = get_fields('fields.csv','fields_easyrpg.csv')
     enums = get_enums('enums.csv','enums_easyrpg.csv')
     flags = get_flags('flags.csv')
-    setup = get_setup('setup.csv')
+    functions = get_functions('functions.csv')
     constants = get_constants()
     headers = get_headers()
 
@@ -489,7 +495,6 @@ def main(argv):
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
-    env.tests['needs_ctor'] = needs_ctor
     env.tests['monotonic_from_0'] = is_monotonic_from_0
     env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array
@@ -502,7 +507,7 @@ def main(argv):
         fields=sfields,
         flags=flags,
         enums=enums,
-        setup=setup,
+        functions=functions,
         constants=constants,
         headers=headers
     )

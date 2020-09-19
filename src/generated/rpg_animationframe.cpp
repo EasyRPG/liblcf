@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/animationframe.h"
 
-
 namespace lcf {
 namespace rpg {
 

@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/saveeventexecframe.h"
 
-
 namespace lcf {
 namespace rpg {
 

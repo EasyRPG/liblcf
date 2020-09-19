@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/switch.h"
 
-
 namespace lcf {
 namespace rpg {
 

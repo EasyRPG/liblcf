@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/enemyaction.h"
 
-
 namespace lcf {
 namespace rpg {
 

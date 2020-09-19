@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/trooppagecondition.h"
 
-
 namespace lcf {
 namespace rpg {
 

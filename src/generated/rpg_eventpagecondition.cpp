@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/eventpagecondition.h"
 
-
 namespace lcf {
 namespace rpg {
 

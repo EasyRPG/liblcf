@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/terrain.h"
 
-
 namespace lcf {
 namespace rpg {
 

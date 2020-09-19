@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/item.h"
 
-
 namespace lcf {
 namespace rpg {
 

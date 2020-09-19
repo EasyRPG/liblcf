@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/animationtiming.h"
 
-
 namespace lcf {
 namespace rpg {
 

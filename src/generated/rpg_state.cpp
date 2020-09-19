@@ -13,7 +13,6 @@
 #include "lcf/rpg/state.h"
 
 constexpr int lcf::rpg::State::kDeathID;
-
 namespace lcf {
 namespace rpg {
 

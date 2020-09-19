@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/savecommonevent.h"
 
-
 namespace lcf {
 namespace rpg {
 

@@ -1,4 +1,4 @@
-#Structure,Entry,Value,Index
+Structure,Entry,Value,Index
 EventCommand,Code,Maniac_GetSaveInfo,3001
 EventCommand,Code,Maniac_Save,3002
 EventCommand,Code,Maniac_Load,3003

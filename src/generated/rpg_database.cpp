@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/database.h"
 
-
 namespace lcf {
 namespace rpg {
 

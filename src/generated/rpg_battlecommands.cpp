@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/battlecommands.h"
 
-
 namespace lcf {
 namespace rpg {
 

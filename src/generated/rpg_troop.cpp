@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/troop.h"
 
-
 namespace lcf {
 namespace rpg {
 

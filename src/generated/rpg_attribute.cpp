@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/attribute.h"
 
-
 namespace lcf {
 namespace rpg {
 

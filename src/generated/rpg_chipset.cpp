@@ -12,12 +12,6 @@
 // Headers
 #include "lcf/rpg/chipset.h"
 
-/**
- * Constructor.
- */
-lcf::rpg::Chipset::Chipset() {
-	Init();
-}
 namespace lcf {
 namespace rpg {
 

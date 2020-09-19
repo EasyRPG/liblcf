@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/learning.h"
 
-
 namespace lcf {
 namespace rpg {
 

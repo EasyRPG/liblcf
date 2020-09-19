@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/start.h"
 
-
 namespace lcf {
 namespace rpg {
 

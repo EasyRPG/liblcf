@@ -176,8 +176,6 @@ namespace rpg {
 			"class"
 		);
 
-		System();
-		void Init();
 		int32_t ldb_id = 0;
 		DBString boat_name;
 		DBString ship_name;
@@ -189,8 +187,8 @@ namespace rpg {
 		DBString gameover_name;
 		DBString system_name;
 		DBString system2_name;
-		std::vector<int16_t> party;
-		std::vector<int16_t> menu_commands;
+		std::vector<int16_t> party = {1};
+		std::vector<int16_t> menu_commands = {1};
 		Music title_music;
 		Music battle_music;
 		Music battle_end_music;

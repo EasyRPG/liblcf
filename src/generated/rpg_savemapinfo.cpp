@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/savemapinfo.h"
 
-
 namespace lcf {
 namespace rpg {
 
