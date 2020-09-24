@@ -28,6 +28,9 @@ namespace lcf {
 namespace rpg {
 	class SaveActor {
 	public:
+		// Sentinel name used to denote that the default LDB name should be used.
+		static constexpr const char* kEmptyName = "\x1";
+
 		enum RowType {
 			RowType_front = 0,
 			RowType_back = 1
@@ -37,12 +40,9 @@ namespace rpg {
 			"back"
 		);
 
-		void Setup(int actor_id);
-		void Fixup(int actor_id);
-		void UnFixup();
 		int ID = 0;
-		std::string name;
-		std::string title;
+		std::string name = kEmptyName;
+		std::string title = kEmptyName;
 		std::string sprite_name;
 		int32_t sprite_id = 0;
 		int32_t transparency = 0;
@@ -57,10 +57,10 @@ namespace rpg {
 		int32_t spirit_mod = 0;
 		int32_t agility_mod = 0;
 		std::vector<int16_t> skills;
-		std::vector<int16_t> equipped;
+		std::vector<int16_t> equipped = {0, 0, 0, 0, 0};
 		int32_t current_hp = -1;
 		int32_t current_sp = -1;
-		std::vector<int32_t> battle_commands;
+		std::vector<int32_t> battle_commands = {-1, -1, -1, -1, -1, -1, -1};
 		std::vector<int16_t> status;
 		bool changed_battle_commands = false;
 		int32_t class_id = -1;

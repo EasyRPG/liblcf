@@ -163,7 +163,7 @@ static TypedField<rpg::SaveActor, std::vector<int32_t>> static_battle_commands(
 	&rpg::SaveActor::battle_commands,
 	LSD_Reader::ChunkSaveActor::battle_commands,
 	"battle_commands",
-	0,
+	1,
 	1
 );
 static CountField<rpg::SaveActor, std::vector<int16_t>> static_size_status(

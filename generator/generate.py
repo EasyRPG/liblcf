@@ -125,8 +125,6 @@ def pod_default(field):
 
     if ftype == 'Boolean':
         dfl = dfl.lower()
-    elif ftype == 'String':
-        dfl = '"' + dfl[1:-1] + '"'
     if '|' in dfl:
         dfl = -1
 

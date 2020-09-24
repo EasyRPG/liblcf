@@ -15,7 +15,6 @@
 // Headers
 #include "lcf/rpg/savemapeventbase.h"
 #include <stdint.h>
-#include "lcf/rpg/event.h"
 #include "lcf/rpg/saveeventexecstate.h"
 #include "lcf/context.h"
 #include <ostream>
@@ -28,7 +27,6 @@ namespace lcf {
 namespace rpg {
 	class SaveMapEvent : public SaveMapEventBase {
 	public:
-		void Setup(const rpg::Event& event);
 		int ID = 0;
 		bool waiting_execution = false;
 		int32_t original_move_route_index = 0;

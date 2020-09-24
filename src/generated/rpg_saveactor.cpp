@@ -12,6 +12,7 @@
 // Headers
 #include "lcf/rpg/saveactor.h"
 
+constexpr const char* lcf::rpg::SaveActor::kEmptyName;
 namespace lcf {
 namespace rpg {
 

@@ -20,53 +20,6 @@
 
 namespace lcf {
 
-void rpg::SaveActor::Setup(int actor_id) {
-	const rpg::Actor& actor = lcf::Data::actors[actor_id - 1];
-	ID = actor.ID;
-	name = ToString(actor.name);
-	title = ToString(actor.title);
-	sprite_name = ToString(actor.character_name);
-	sprite_id = actor.character_index;
-	transparency = actor.transparent ? 3 : 0;
-	face_name = ToString(actor.face_name);
-	face_id = actor.face_index;
-	level = actor.initial_level;
-	exp = 0;
-	hp_mod = 0;
-	sp_mod = 0;
-	attack_mod = 0;
-	defense_mod = 0;
-	spirit_mod = 0;
-	agility_mod = 0;
-	skills.clear();
-	equipped.clear();
-	equipped.push_back(actor.initial_equipment.weapon_id);
-	equipped.push_back(actor.initial_equipment.shield_id);
-	equipped.push_back(actor.initial_equipment.armor_id);
-	equipped.push_back(actor.initial_equipment.helmet_id);
-	equipped.push_back(actor.initial_equipment.accessory_id);
-	current_hp = 0;
-	current_sp = 0;
-	battle_commands.resize(7, -1);
-	status.resize(lcf::Data::states.size());
-	changed_battle_commands = false;
-	class_id = -1;
-	two_weapon = actor.two_weapon;
-	lock_equipment = actor.lock_equipment;
-	auto_battle = actor.auto_battle;
-	super_guard = actor.super_guard;
-}
-
-void rpg::SaveInventory::Setup() {
-	party = lcf::Data::system.party;
-}
-
-void rpg::SaveMapEvent::Setup(const rpg::Event& event) {
-	ID = event.ID;
-	position_x = event.x;
-	position_y = event.y;
-}
-
 void rpg::SaveMapInfo::Setup() {
 	position_x = 0;
 	position_y = 0;
@@ -94,8 +47,6 @@ void rpg::Save::Setup() {
 	pictures.clear();
 	actors.clear();
 	actors.resize(lcf::Data::actors.size());
-	for (int i = 1; i <= (int) actors.size(); i++)
-		actors[i - 1].Setup(i);
 	map_info.Setup();
 
 	party_location.move_speed = 4;

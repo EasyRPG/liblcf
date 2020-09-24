@@ -26,7 +26,6 @@ namespace lcf {
 namespace rpg {
 	class SaveInventory {
 	public:
-		void Setup();
 		std::vector<int16_t> party;
 		std::vector<int16_t> item_ids;
 		std::vector<uint8_t> item_counts;
