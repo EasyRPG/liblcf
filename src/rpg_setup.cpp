@@ -20,12 +20,6 @@
 
 namespace lcf {
 
-void rpg::SaveMapEvent::Setup(const rpg::Event& event) {
-	ID = event.ID;
-	position_x = event.x;
-	position_y = event.y;
-}
-
 void rpg::SaveMapInfo::Setup() {
 	position_x = 0;
 	position_y = 0;
