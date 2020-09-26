@@ -1,6 +1,4 @@
 Structure,Method,Headers
 Actor,void Setup(),
 Save,void Setup(),
-SaveMapInfo,void Setup(),
-SaveMapInfo,void Setup(const rpg::Map& map),"""lcf/rpg/map.h"""
 Parameters,void Setup(int final_level),
