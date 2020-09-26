@@ -135,13 +135,4 @@ std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::istream& filestream) {
 	return std::unique_ptr<rpg::Save>(save);
 }
 
-rpg::Save LSD_Reader::ClearDefaults(const rpg::Save& save_in, const rpg::MapInfo& map_info, const rpg::Map& map) {
-	auto save = save_in;
-
-	save.map_info.UnFixup(map);
-	save.map_info.UnFixup(map_info);
-
-	return save;
-}
-
 } //namespace lcf

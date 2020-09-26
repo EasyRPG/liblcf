@@ -17,7 +17,6 @@
 #include <string>
 #include <vector>
 #include "lcf/rpg/map.h"
-#include "lcf/rpg/mapinfo.h"
 #include "lcf/rpg/savemapevent.h"
 #include "lcf/context.h"
 #include <ostream>
@@ -32,10 +31,6 @@ namespace rpg {
 	public:
 		void Setup();
 		void Setup(const rpg::Map& map);
-		void Fixup(const rpg::Map& map);
-		void Fixup(const rpg::MapInfo& map);
-		void UnFixup(const rpg::Map& map);
-		void UnFixup(const rpg::MapInfo& map);
 		int32_t position_x = 0;
 		int32_t position_y = 0;
 		int32_t encounter_rate = -1;
