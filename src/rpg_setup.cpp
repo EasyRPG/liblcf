@@ -20,22 +20,6 @@
 
 namespace lcf {
 
-void rpg::Save::Setup() {
-	screen = rpg::SaveScreen();
-	pictures.clear();
-	actors.clear();
-	actors.resize(lcf::Data::actors.size());
-
-	party_location.move_speed = 4;
-	boat_location.vehicle = rpg::SaveVehicleLocation::VehicleType_skiff;
-	ship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_ship;
-	airship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_airship;
-
-	if (targets.empty()) {
-		targets.resize(1);
-	}
-}
-
 void rpg::Actor::Setup() {
 	int max_final_level = 0;
 	if (lcf::Data::system.ldb_id == 2003) {

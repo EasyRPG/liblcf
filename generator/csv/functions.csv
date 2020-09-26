@@ -1,4 +1,3 @@
 Structure,Method,Headers
 Actor,void Setup(),
-Save,void Setup(),
 Parameters,void Setup(int final_level),
