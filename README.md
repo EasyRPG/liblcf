@@ -1,4 +1,4 @@
-# liblcf
+# liblcfx
 
 liblcf is a library to handle RPG Maker 2000 and 2003 game data.
 It can read and write LCF and XML files.
