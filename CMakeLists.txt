@@ -55,7 +55,6 @@ set(LCF_SOURCES
 	src/reader_struct_impl.h
 	src/reader_util.cpp
 	src/reader_xml.cpp
-	src/rpg_fixup.cpp
 	src/rpg_setup.cpp
 	src/writer_lcf.cpp
 	src/writer_xml.cpp

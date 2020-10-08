@@ -20,45 +20,6 @@
 
 namespace lcf {
 
-void rpg::SaveMapInfo::Setup() {
-	position_x = 0;
-	position_y = 0;
-	lower_tiles.resize(144);
-	upper_tiles.resize(144);
-	for (int i = 0; i < 144; i++) {
-		lower_tiles[i] = i;
-		upper_tiles[i] = i;
-	}
-}
-
-void rpg::SaveMapInfo::Setup(const rpg::Map& map) {
-	chipset_id = map.chipset_id;
-	parallax_name = ToString(map.parallax_name);
-	parallax_horz = map.parallax_loop_x;
-	parallax_vert = map.parallax_loop_y;
-	parallax_horz_auto = map.parallax_auto_loop_x;
-	parallax_vert_auto = map.parallax_auto_loop_y;
-	parallax_horz_speed = map.parallax_sx;
-	parallax_vert_speed = map.parallax_sy;
-}
-
-void rpg::Save::Setup() {
-	screen = rpg::SaveScreen();
-	pictures.clear();
-	actors.clear();
-	actors.resize(lcf::Data::actors.size());
-	map_info.Setup();
-
-	party_location.move_speed = 4;
-	boat_location.vehicle = rpg::SaveVehicleLocation::VehicleType_skiff;
-	ship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_ship;
-	airship_location.vehicle = rpg::SaveVehicleLocation::VehicleType_airship;
-
-	if (targets.empty()) {
-		targets.resize(1);
-	}
-}
-
 void rpg::Actor::Setup() {
 	int max_final_level = 0;
 	if (lcf::Data::system.ldb_id == 2003) {
