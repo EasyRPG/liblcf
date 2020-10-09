@@ -30,7 +30,7 @@ namespace lcf {
 namespace rpg {
 	class Actor {
 	public:
-		void Setup();
+		void Setup(bool is2k3);
 		int ID = 0;
 		DBString name;
 		DBString title;

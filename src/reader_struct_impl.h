@@ -41,19 +41,21 @@ void Struct<S>::MakeTagMap() {
 
 template <typename T>
 struct StructDefault {
-	static T make() {
+	static T make(bool) {
 		return T();
 	}
 };
 
 template <>
 struct StructDefault<rpg::Actor> {
-	static rpg::Actor make() {
+	static rpg::Actor make(bool is2k3) {
 		auto actor = rpg::Actor();
-		actor.Setup();
+		actor.Setup(is2k3);
 		return actor;
 	}
 };
+
+
 
 template <class S>
 void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
@@ -106,7 +108,7 @@ template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 
-	auto ref = StructDefault<S>::make();
+	auto ref = StructDefault<S>::make(db_is2k3);
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
@@ -136,7 +138,7 @@ template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
 	const bool db_is2k3 = (Data::system.ldb_id == 2003);
 	int result = 0;
-	auto ref = StructDefault<S>::make();
+	auto ref = StructDefault<S>::make(db_is2k3);
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		if (!db_is2k3 && field->is2k3) {

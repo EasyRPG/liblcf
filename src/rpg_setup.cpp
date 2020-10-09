@@ -16,13 +16,12 @@
 #include "lcf/rpg/save.h"
 #include "lcf/rpg/chipset.h"
 #include "lcf/rpg/parameters.h"
-#include "lcf/data.h"
 
 namespace lcf {
 
-void rpg::Actor::Setup() {
+void rpg::Actor::Setup(bool is2k3) {
 	int max_final_level = 0;
-	if (lcf::Data::system.ldb_id == 2003) {
+	if (is2k3) {
 		max_final_level = 99;
 		if (final_level == -1) {
 			final_level = max_final_level;

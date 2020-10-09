@@ -79,9 +79,8 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 
 	// Delayed initialization of some actor fields because they are engine
 	// dependent
-	std::vector<rpg::Actor>::iterator it;
-	for (it = Data::actors.begin(); it != Data::actors.end(); ++it) {
-		(*it).Setup();
+	for (auto& actor: Data::actors) {
+		actor.Setup(Data::system.ldb_id == 2003);
 	}
 
 	return true;
