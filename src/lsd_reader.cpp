@@ -16,6 +16,7 @@
 #include "lcf/lsd/chunks.h"
 #include "lcf/rpg/save.h"
 #include "lcf/reader_util.h"
+#include "lcf/data.h"
 #include "reader_struct.h"
 
 namespace lcf {
@@ -96,7 +97,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, const std:
 }
 
 bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, const std::string &encoding) {
-	LcfWriter writer(filestream, encoding);
+	LcfWriter writer(filestream, Data::system.ldb_id == 2003, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return false;
@@ -110,7 +111,7 @@ bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, const std
 }
 
 bool LSD_Reader::SaveXml(std::ostream& filestream, const rpg::Save& save) {
-	XmlWriter writer(filestream);
+	XmlWriter writer(filestream, Data::system.ldb_id == 2003);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return false;

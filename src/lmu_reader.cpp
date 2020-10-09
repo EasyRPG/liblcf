@@ -15,6 +15,7 @@
 #include "lcf/lmu/chunks.h"
 #include "lcf/reader_lcf.h"
 #include "lcf/reader_util.h"
+#include "lcf/data.h"
 #include "reader_struct.h"
 
 namespace lcf {
@@ -82,7 +83,7 @@ std::unique_ptr<rpg::Map> LMU_Reader::Load(std::istream& filestream, const std::
 }
 
 bool LMU_Reader::Save(std::ostream& filestream, const rpg::Map& map, const std::string& encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, encoding);
+	LcfWriter writer(filestream, Data::system.ldb_id == 2003, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
 		return false;
@@ -101,7 +102,7 @@ bool LMU_Reader::Save(std::ostream& filestream, const rpg::Map& map, const std::
 }
 
 bool LMU_Reader::SaveXml(std::ostream& filestream, const rpg::Map& map) {
-	XmlWriter writer(filestream);
+	XmlWriter writer(filestream, Data::system.ldb_id == 2003);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.\n");
 		return false;

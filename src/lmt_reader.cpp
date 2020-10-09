@@ -76,7 +76,7 @@ bool LMT_Reader::Load(std::istream& filestream, const std::string &encoding) {
 }
 
 bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, encoding);
+	LcfWriter writer(filestream, Data::system.ldb_id == 2003, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;
@@ -94,7 +94,7 @@ bool LMT_Reader::Save(std::ostream& filestream, const std::string &encoding, Sav
 }
 
 bool LMT_Reader::SaveXml(std::ostream& filestream) {
-	XmlWriter writer(filestream);
+	XmlWriter writer(filestream, Data::system.ldb_id == 2003);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;

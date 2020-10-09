@@ -17,7 +17,6 @@
 #include "lcf/lsd/reader.h"
 #include "reader_struct.h"
 #include "lcf/rpg/save.h"
-#include "lcf/data.h"
 
 namespace lcf {
 
@@ -106,7 +105,7 @@ conditional_zero_writer(LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 
 	auto ref = StructDefault<S>::make(db_is2k3);
 	int last = -1;
@@ -136,7 +135,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 	int result = 0;
 	auto ref = StructDefault<S>::make(db_is2k3);
 	for (int i = 0; fields[i] != NULL; i++) {

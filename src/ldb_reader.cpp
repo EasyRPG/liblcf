@@ -87,7 +87,7 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 }
 
 bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, encoding);
+	LcfWriter writer(filestream, Data::system.ldb_id == 2003, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
@@ -105,7 +105,7 @@ bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, Sav
 }
 
 bool LDB_Reader::SaveXml(std::ostream& filestream) {
-	XmlWriter writer(filestream);
+	XmlWriter writer(filestream, Data::system.ldb_id == 2003);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;

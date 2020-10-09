@@ -30,8 +30,9 @@ public:
 	 * Constructs a new XML File Writer.
 	 *
 	 * @param filestream already opened filestream.
+	 * @param is2k3 Write in RPG2003 format.
 	 */
-	XmlWriter(std::ostream& filestream);
+	XmlWriter(std::ostream& filestream, bool is2k3);
 
 	/**
 	 * Destructor. Closes the opened file.
@@ -103,6 +104,9 @@ public:
 	 */
 	bool IsOk() const;
 
+	/** @return true if 2k3 format, false if 2k format */
+	bool Is2k3() const;
+
 protected:
 	/** File-stream managed by this Writer. */
 	std::ostream& stream;
@@ -110,6 +114,8 @@ protected:
 	int indent;
 	/** Indicates if writer cursor is at the beginning of the line. */
 	bool at_bol;
+	/** Writing 2k3 format */
+	bool is2k3;
 
 	/**
 	 * Writes an indentation to the stream.
@@ -126,6 +132,11 @@ protected:
 
 	void WriteString(StringView s);
 };
+
+inline bool XmlWriter::Is2k3() const {
+	return is2k3;
+}
+
 
 } //namespace lcf
 
