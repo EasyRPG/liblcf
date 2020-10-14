@@ -88,18 +88,29 @@ BattleCommands,death_teleport_id,f,Ref<Map>,0x1A,1,0,0,Integer
 BattleCommands,death_teleport_x,f,Int32,0x1B,0,0,0,Integer
 BattleCommands,death_teleport_y,f,Int32,0x1C,0,0,0,Integer
 BattleCommands,death_teleport_face,f,Enum<BattleCommands_Facing>,0x1D,0,0,0,Integer
-BattlerAnimationExtension,name,f,DBString,0x01,,0,0,String
-BattlerAnimationExtension,battler_name,f,DBString,0x02,,0,0,String
-BattlerAnimationExtension,battler_index,f,Int32,0x03,0,0,0,Integer
-BattlerAnimationExtension,animation_type,f,Enum<BattlerAnimationExtension_AnimType>,0x04,0,0,0,Integer
-BattlerAnimationExtension,animation_id,f,Ref<Animation>,0x05,1,0,0,Integer
-BattlerAnimation,name,f,DBString,0x01,,0,0,String
-BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,0,0,0,Integer
-BattlerAnimation,base_data,f,Array<BattlerAnimationExtension>,0x0A,,1,0,Array - rpg::BattlerAnimationExtension
-BattlerAnimation,weapon_data,f,Array<BattlerAnimationExtension>,0x0B,,1,0,Array - rpg::BattlerAnimationExtension
-BattlerAnimationData,move,f,Enum<BattlerAnimationData_Movement>,0x05,0,0,0,Integer
-BattlerAnimationData,after_image,f,Enum<BattlerAnimationData_AfterImage>,0x06,0,0,0,Integer
-BattlerAnimationData,pose,f,Int32,0x0E,-1,0,0,Integer
+BattlerAnimation,name,f,DBString,0x01,,0,1,String
+BattlerAnimation,speed,f,Enum<BattlerAnimation_Speed>,0x02,20,0,1,Integer
+BattlerAnimation,poses,f,Array<BattlerAnimationPose>,0x0A,,1,1,Array - rpg::BattlerAnimationPose
+BattlerAnimation,weapons,f,Array<BattlerAnimationWeapon>,0x0B,,1,1,Array - rpg::BattlerAnimationWeapon
+BattlerAnimationItemSkill,unknown02,f,Int32,0x02,0,0,1,
+BattlerAnimationItemSkill,type,f,Enum<BattlerAnimationItemSkill_AnimType>,0x03,0,0,1,
+BattlerAnimationItemSkill,weapon_animation_id,f,Ref<BattlerAnimationWeapon>,0x04,0,0,1,
+BattlerAnimationItemSkill,movement,f,Enum<BattlerAnimationItemSkill_Movement>,0x05,0,0,1,
+BattlerAnimationItemSkill,after_image,f,Enum<BattlerAnimationItemSkill_AfterImage>,0x06,0,0,1,
+BattlerAnimationItemSkill,attacks,f,Int32,0x07,0,0,1,
+BattlerAnimationItemSkill,ranged,f,Boolean,0x08,False,0,1,
+BattlerAnimationItemSkill,ranged_animation_id,f,Ref<BattlerAnimationWeapon>,0x09,0,0,1,
+BattlerAnimationItemSkill,ranged_speed,f,Enum<BattlerAnimationItemSkill_Speed>,0x0C,0,0,1,
+BattlerAnimationItemSkill,battle_animation_id,f,Ref<Animation>,0x0D,1,0,1,
+BattlerAnimationItemSkill,pose,f,Ref<BattlerAnimationPose>,0x0E,3,0,1,
+BattlerAnimationPose,name,f,DBString,0x01,,0,1,String
+BattlerAnimationPose,battler_name,f,DBString,0x02,,0,1,String
+BattlerAnimationPose,battler_index,f,Int32,0x03,0,0,1,Integer
+BattlerAnimationPose,animation_type,f,Enum<BattlerAnimationPose_AnimType>,0x04,0,0,1,Integer
+BattlerAnimationPose,battle_animation_id,f,Ref<Animation>,0x05,1,0,1,Integer
+BattlerAnimationWeapon,name,f,DBString,0x01,,0,1,String
+BattlerAnimationWeapon,weapon_name,f,DBString,0x02,,0,1,String
+BattlerAnimationWeapon,weapon_index,f,Int32,0x03,0,0,1,Integer
 Chipset,name,f,DBString,0x01,,0,0,String
 Chipset,chipset_name,f,DBString,0x02,,0,0,String
 Chipset,terrain_data,f,Vector<Int16>,0x03,[1]*162,0,0,Array - Short x 162
@@ -164,16 +175,7 @@ Skill,attribute_effects,t,DBBitArray,0x2B,,0,0,Integer
 Skill,attribute_effects,f,DBBitArray,0x2C,,1,0,Array - Flag
 Skill,affect_attr_defence,f,Boolean,0x2D,False,0,0,Flag
 Skill,battler_animation,f,Ref<Actor>,0x31,-1,0,1,Integer - RPG2003
-Skill,battler_animation_data,f,Array<BattlerAnimationData:Ref<Actor>>,0x32,,1,1,? - RPG2003
-ItemAnimation,type,f,Int32,0x03,0,0,0,
-ItemAnimation,weapon_anim,f,Int32,0x04,0,0,0,
-ItemAnimation,movement,f,Enum<ItemAnimation_Movement>,0x05,0,0,0,
-ItemAnimation,after_image,f,Enum<ItemAnimation_AfterImage>,0x06,0,0,0,
-ItemAnimation,attacks,f,Int32,0x07,0,0,0,
-ItemAnimation,ranged,f,Boolean,0x08,False,0,0,
-ItemAnimation,ranged_anim,f,Int32,0x09,0,0,0,
-ItemAnimation,ranged_speed,f,Enum<ItemAnimation_Speed>,0x0C,0,0,0,
-ItemAnimation,battle_anim,f,Ref<Animation>,0x0D,0,0,0,
+Skill,battler_animation_data,f,Array<BattlerAnimationItemSkill:Ref<Actor>>,0x32,,1,1,? - RPG2003
 Item,name,f,DBString,0x01,,0,0,String
 Item,description,f,DBString,0x02,,0,0,String
 Item,type,f,Enum<Item_Type>,0x03,0,1,0,Integer
@@ -224,7 +226,7 @@ Item,attribute_set,f,DBBitArray,0x42,,1,0,Array - Flag
 Item,state_chance,f,Int32,0x43,0,0,0,Integer
 Item,reverse_state_effect,f,Boolean,0x44,False,0,0,Flag
 Item,weapon_animation,f,Ref<Actor>,0x45,-1,0,1,Integer - RPG2003
-Item,animation_data,f,Array<ItemAnimation:Ref<Actor>>,0x46,,1,1,Array - RPG2003
+Item,animation_data,f,Array<BattlerAnimationItemSkill:Ref<Actor>>,0x46,,1,1,Array - RPG2003
 Item,use_skill,f,Boolean,0x47,False,0,1,Flag - RPG2003
 Item,class_set,t,DBBitArray,0x48,,0,1,Integer - RPG2003
 Item,class_set,f,DBBitArray,0x49,,1,1,Array - Flag - RPG2003
