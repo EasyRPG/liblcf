@@ -18,7 +18,7 @@
 #include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
-#include "lcf/rpg/battleranimationdata.h"
+#include "lcf/rpg/battleranimationitemskill.h"
 #include "lcf/rpg/sound.h"
 #include "lcf/context.h"
 #include <ostream>
@@ -102,7 +102,7 @@ namespace rpg {
 		DBBitArray attribute_effects;
 		bool affect_attr_defence = false;
 		int32_t battler_animation = -1;
-		std::vector<BattlerAnimationData> battler_animation_data;
+		std::vector<BattlerAnimationItemSkill> battler_animation_data;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);

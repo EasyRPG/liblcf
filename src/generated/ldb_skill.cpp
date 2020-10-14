@@ -263,7 +263,7 @@ static TypedField<rpg::Skill, int32_t> static_battler_animation(
 	0,
 	1
 );
-static TypedField<rpg::Skill, std::vector<rpg::BattlerAnimationData>> static_battler_animation_data(
+static TypedField<rpg::Skill, std::vector<rpg::BattlerAnimationItemSkill>> static_battler_animation_data(
 	&rpg::Skill::battler_animation_data,
 	LDB_Reader::ChunkSkill::battler_animation_data,
 	"battler_animation_data",

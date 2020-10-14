@@ -25,28 +25,28 @@ static TypedField<rpg::BattlerAnimation, DBString> static_name(
 	LDB_Reader::ChunkBattlerAnimation::name,
 	"name",
 	0,
-	0
+	1
 );
 static TypedField<rpg::BattlerAnimation, int32_t> static_speed(
 	&rpg::BattlerAnimation::speed,
 	LDB_Reader::ChunkBattlerAnimation::speed,
 	"speed",
 	0,
-	0
+	1
 );
-static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationExtension>> static_base_data(
-	&rpg::BattlerAnimation::base_data,
-	LDB_Reader::ChunkBattlerAnimation::base_data,
-	"base_data",
+static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationPose>> static_poses(
+	&rpg::BattlerAnimation::poses,
+	LDB_Reader::ChunkBattlerAnimation::poses,
+	"poses",
 	1,
-	0
+	1
 );
-static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationExtension>> static_weapon_data(
-	&rpg::BattlerAnimation::weapon_data,
-	LDB_Reader::ChunkBattlerAnimation::weapon_data,
-	"weapon_data",
+static TypedField<rpg::BattlerAnimation, std::vector<rpg::BattlerAnimationWeapon>> static_weapons(
+	&rpg::BattlerAnimation::weapons,
+	LDB_Reader::ChunkBattlerAnimation::weapons,
+	"weapons",
 	1,
-	0
+	1
 );
 
 
@@ -54,8 +54,8 @@ template <>
 Field<rpg::BattlerAnimation> const* Struct<rpg::BattlerAnimation>::fields[] = {
 	&static_name,
 	&static_speed,
-	&static_base_data,
-	&static_weapon_data,
+	&static_poses,
+	&static_weapons,
 	NULL
 };
 

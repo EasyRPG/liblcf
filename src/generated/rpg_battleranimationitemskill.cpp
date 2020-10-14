@@ -10,15 +10,23 @@
  */
 
 // Headers
-#include "lcf/rpg/battleranimationdata.h"
+#include "lcf/rpg/battleranimationitemskill.h"
 
 namespace lcf {
 namespace rpg {
 
-std::ostream& operator<<(std::ostream& os, const BattlerAnimationData& obj) {
-	os << "BattlerAnimationData{";
-	os << "move="<< obj.move;
+std::ostream& operator<<(std::ostream& os, const BattlerAnimationItemSkill& obj) {
+	os << "BattlerAnimationItemSkill{";
+	os << "unknown02="<< obj.unknown02;
+	os << ", type="<< obj.type;
+	os << ", weapon_animation_id="<< obj.weapon_animation_id;
+	os << ", movement="<< obj.movement;
 	os << ", after_image="<< obj.after_image;
+	os << ", attacks="<< obj.attacks;
+	os << ", ranged="<< obj.ranged;
+	os << ", ranged_animation_id="<< obj.ranged_animation_id;
+	os << ", ranged_speed="<< obj.ranged_speed;
+	os << ", battle_animation_id="<< obj.battle_animation_id;
 	os << ", pose="<< obj.pose;
 	os << "}";
 	return os;

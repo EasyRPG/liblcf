@@ -16,13 +16,12 @@
 #include "lcf/rpg/attribute.h"
 #include "lcf/rpg/battlecommand.h"
 #include "lcf/rpg/battlecommands.h"
-#include "lcf/rpg/battleranimationextension.h"
 #include "lcf/rpg/battleranimation.h"
-#include "lcf/rpg/battleranimationdata.h"
+#include "lcf/rpg/battleranimationitemskill.h"
+#include "lcf/rpg/battleranimationpose.h"
 #include "lcf/rpg/chipset.h"
 #include "lcf/rpg/commonevent.h"
 #include "lcf/rpg/skill.h"
-#include "lcf/rpg/itemanimation.h"
 #include "lcf/rpg/item.h"
 #include "lcf/rpg/enemyaction.h"
 #include "lcf/rpg/terrain.h"
@@ -54,16 +53,16 @@ constexpr decltype(BattleCommands::kBattleTypeTags) BattleCommands::kBattleTypeT
 constexpr decltype(BattleCommands::kWindowSizeTags) BattleCommands::kWindowSizeTags;
 constexpr decltype(BattleCommands::kTransparencyTags) BattleCommands::kTransparencyTags;
 constexpr decltype(BattleCommands::kFacingTags) BattleCommands::kFacingTags;
-constexpr decltype(BattlerAnimationExtension::kAnimTypeTags) BattlerAnimationExtension::kAnimTypeTags;
-constexpr decltype(BattlerAnimationData::kMovementTags) BattlerAnimationData::kMovementTags;
-constexpr decltype(BattlerAnimationData::kAfterImageTags) BattlerAnimationData::kAfterImageTags;
+constexpr decltype(BattlerAnimation::kPoseTags) BattlerAnimation::kPoseTags;
+constexpr decltype(BattlerAnimationItemSkill::kSpeedTags) BattlerAnimationItemSkill::kSpeedTags;
+constexpr decltype(BattlerAnimationItemSkill::kAnimTypeTags) BattlerAnimationItemSkill::kAnimTypeTags;
+constexpr decltype(BattlerAnimationItemSkill::kMovementTags) BattlerAnimationItemSkill::kMovementTags;
+constexpr decltype(BattlerAnimationItemSkill::kAfterImageTags) BattlerAnimationItemSkill::kAfterImageTags;
+constexpr decltype(BattlerAnimationPose::kAnimTypeTags) BattlerAnimationPose::kAnimTypeTags;
 constexpr decltype(Chipset::kAnimTypeTags) Chipset::kAnimTypeTags;
 constexpr decltype(Skill::kTypeTags) Skill::kTypeTags;
 constexpr decltype(Skill::kSpTypeTags) Skill::kSpTypeTags;
 constexpr decltype(Skill::kScopeTags) Skill::kScopeTags;
-constexpr decltype(ItemAnimation::kMovementTags) ItemAnimation::kMovementTags;
-constexpr decltype(ItemAnimation::kAfterImageTags) ItemAnimation::kAfterImageTags;
-constexpr decltype(ItemAnimation::kSpeedTags) ItemAnimation::kSpeedTags;
 constexpr decltype(Item::kTypeTags) Item::kTypeTags;
 constexpr decltype(Item::kTrajectoryTags) Item::kTrajectoryTags;
 constexpr decltype(Item::kTargetTags) Item::kTargetTags;

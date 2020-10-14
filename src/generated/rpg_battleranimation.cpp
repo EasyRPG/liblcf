@@ -19,14 +19,14 @@ std::ostream& operator<<(std::ostream& os, const BattlerAnimation& obj) {
 	os << "BattlerAnimation{";
 	os << "name="<< obj.name;
 	os << ", speed="<< obj.speed;
-	os << ", base_data=";
-	for (size_t i = 0; i < obj.base_data.size(); ++i) {
-		os << (i == 0 ? "[" : ", ") << obj.base_data[i];
+	os << ", poses=";
+	for (size_t i = 0; i < obj.poses.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.poses[i];
 	}
 	os << "]";
-	os << ", weapon_data=";
-	for (size_t i = 0; i < obj.weapon_data.size(); ++i) {
-		os << (i == 0 ? "[" : ", ") << obj.weapon_data[i];
+	os << ", weapons=";
+	for (size_t i = 0; i < obj.weapons.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.weapons[i];
 	}
 	os << "]";
 	os << "}";

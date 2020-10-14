@@ -367,7 +367,7 @@ static TypedField<rpg::Item, int32_t> static_weapon_animation(
 	0,
 	1
 );
-static TypedField<rpg::Item, std::vector<rpg::ItemAnimation>> static_animation_data(
+static TypedField<rpg::Item, std::vector<rpg::BattlerAnimationItemSkill>> static_animation_data(
 	&rpg::Item::animation_data,
 	LDB_Reader::ChunkItem::animation_data,
 	"animation_data",
