@@ -174,6 +174,13 @@ static TypedField<rpg::Actor, int32_t> static_class_id(
 	0,
 	1
 );
+static TypedField<rpg::Actor, int32_t> static_unknown3A(
+	&rpg::Actor::unknown3A,
+	LDB_Reader::ChunkActor::unknown3A,
+	"unknown3A",
+	0,
+	1
+);
 static TypedField<rpg::Actor, int32_t> static_battle_x(
 	&rpg::Actor::battle_x,
 	LDB_Reader::ChunkActor::battle_x,
@@ -201,6 +208,13 @@ static TypedField<rpg::Actor, std::vector<rpg::Learning>> static_skills(
 	"skills",
 	1,
 	0
+);
+static TypedField<rpg::Actor, int32_t> static_unknown40(
+	&rpg::Actor::unknown40,
+	LDB_Reader::ChunkActor::unknown40,
+	"unknown40",
+	0,
+	1
 );
 static TypedField<rpg::Actor, bool> static_rename_skill(
 	&rpg::Actor::rename_skill,
@@ -275,10 +289,12 @@ Field<rpg::Actor> const* Struct<rpg::Actor>::fields[] = {
 	&static_initial_equipment,
 	&static_unarmed_animation,
 	&static_class_id,
+	&static_unknown3A,
 	&static_battle_x,
 	&static_battle_y,
 	&static_battler_animation,
 	&static_skills,
+	&static_unknown40,
 	&static_rename_skill,
 	&static_skill_name,
 	&static_size_state_ranks,

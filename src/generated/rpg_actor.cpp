@@ -39,6 +39,7 @@ std::ostream& operator<<(std::ostream& os, const Actor& obj) {
 	os << ", initial_equipment="<< obj.initial_equipment;
 	os << ", unarmed_animation="<< obj.unarmed_animation;
 	os << ", class_id="<< obj.class_id;
+	os << ", unknown3A="<< obj.unknown3A;
 	os << ", battle_x="<< obj.battle_x;
 	os << ", battle_y="<< obj.battle_y;
 	os << ", battler_animation="<< obj.battler_animation;
@@ -47,6 +48,7 @@ std::ostream& operator<<(std::ostream& os, const Actor& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.skills[i];
 	}
 	os << "]";
+	os << ", unknown40="<< obj.unknown40;
 	os << ", rename_skill="<< obj.rename_skill;
 	os << ", skill_name="<< obj.skill_name;
 	os << ", state_ranks=";

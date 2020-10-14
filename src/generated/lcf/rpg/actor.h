@@ -54,10 +54,12 @@ namespace rpg {
 		Equipment initial_equipment;
 		int32_t unarmed_animation = 1;
 		int32_t class_id = 0;
+		int32_t unknown3A = 0;
 		int32_t battle_x = 220;
 		int32_t battle_y = 120;
 		int32_t battler_animation = 1;
 		std::vector<Learning> skills;
+		int32_t unknown40 = 0;
 		bool rename_skill = false;
 		DBString skill_name;
 		std::vector<uint8_t> state_ranks;
@@ -88,10 +90,12 @@ namespace rpg {
 		&& l.initial_equipment == r.initial_equipment
 		&& l.unarmed_animation == r.unarmed_animation
 		&& l.class_id == r.class_id
+		&& l.unknown3A == r.unknown3A
 		&& l.battle_x == r.battle_x
 		&& l.battle_y == r.battle_y
 		&& l.battler_animation == r.battler_animation
 		&& l.skills == r.skills
+		&& l.unknown40 == r.unknown40
 		&& l.rename_skill == r.rename_skill
 		&& l.skill_name == r.skill_name
 		&& l.state_ranks == r.state_ranks
@@ -120,11 +124,11 @@ namespace rpg {
 		const auto ctx20 = Context<Actor, ParentCtx>{ "initial_equipment", -1, &obj, parent_ctx };
 		ForEachString(obj.initial_equipment, f, &ctx20);
 		for (int i = 0; i < static_cast<int>(obj.skills.size()); ++i) {
-			const auto ctx26 = Context<Actor, ParentCtx>{ "skills", i, &obj, parent_ctx };
-			ForEachString(obj.skills[i], f, &ctx26);
+			const auto ctx27 = Context<Actor, ParentCtx>{ "skills", i, &obj, parent_ctx };
+			ForEachString(obj.skills[i], f, &ctx27);
 		}
-		const auto ctx28 = Context<Actor, ParentCtx>{ "skill_name", -1, &obj, parent_ctx };
-		f(obj.skill_name, ctx28);
+		const auto ctx30 = Context<Actor, ParentCtx>{ "skill_name", -1, &obj, parent_ctx };
+		f(obj.skill_name, ctx30);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;
