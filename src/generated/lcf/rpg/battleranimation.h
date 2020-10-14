@@ -30,9 +30,9 @@ namespace rpg {
 	class BattlerAnimation {
 	public:
 		enum Speed {
-			Speed_slow = 0,
-			Speed_normal = 8,
-			Speed_fast = 14
+			Speed_slow = 20,
+			Speed_medium = 14,
+			Speed_fast = 8
 		};
 		enum Pose {
 			Pose_Idle = 0,

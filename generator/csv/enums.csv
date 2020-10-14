@@ -35,9 +35,9 @@ BattleCommands,Facing,up,1
 BattleCommands,Facing,right,2
 BattleCommands,Facing,down,3
 BattleCommands,Facing,left,4
-BattlerAnimation,Speed,slow,0
-BattlerAnimation,Speed,normal,8
-BattlerAnimation,Speed,fast,14
+BattlerAnimation,Speed,slow,20
+BattlerAnimation,Speed,medium,14
+BattlerAnimation,Speed,fast,8
 BattlerAnimation,Pose,Idle,0
 BattlerAnimation,Pose,AttackRight,1
 BattlerAnimation,Pose,AttackLeft,2
