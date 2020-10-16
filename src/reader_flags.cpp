@@ -12,7 +12,6 @@
 #include "lcf/rpg/eventpagecondition.h"
 #include "lcf/rpg/terrain.h"
 #include "lcf/rpg/savepicture.h"
-#include "lcf/data.h"
 
 #include "ldb_trooppagecondition_flags.h"
 #include "ldb_terrain_flags.h"
@@ -51,7 +50,7 @@ void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
 
 template <class S>
 void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 
 	uint8_t byte = 0;
 	int bitidx = 0;
@@ -76,8 +75,8 @@ void Flags<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 }
 
 template <class S>
-int Flags<S>::LcfSize(const S& /* obj */, LcfWriter& /* stream */) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+int Flags<S>::LcfSize(const S& /* obj */, LcfWriter& stream) {
+	const bool db_is2k3 = stream.Is2k3();
 	int num_bits = 0;
 	for (size_t i = 0; i < num_flags; ++i) {
 		const auto flag_is2k3 = flags_is2k3[i];
@@ -92,7 +91,7 @@ int Flags<S>::LcfSize(const S& /* obj */, LcfWriter& /* stream */) {
 
 template <class S>
 void Flags<S>::WriteXml(const S& obj, XmlWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 	stream.BeginElement(name);
 	for (size_t i = 0; i < num_flags; ++i) {
 		const auto flag_is2k3 = flags_is2k3[i];

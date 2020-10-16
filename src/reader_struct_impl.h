@@ -17,7 +17,6 @@
 #include "lcf/lsd/reader.h"
 #include "reader_struct.h"
 #include "lcf/rpg/save.h"
-#include "lcf/data.h"
 
 namespace lcf {
 
@@ -41,19 +40,21 @@ void Struct<S>::MakeTagMap() {
 
 template <typename T>
 struct StructDefault {
-	static T make() {
+	static T make(bool) {
 		return T();
 	}
 };
 
 template <>
 struct StructDefault<rpg::Actor> {
-	static rpg::Actor make() {
+	static rpg::Actor make(bool is2k3) {
 		auto actor = rpg::Actor();
-		actor.Setup();
+		actor.Setup(is2k3);
 		return actor;
 	}
 };
+
+
 
 template <class S>
 void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
@@ -104,9 +105,9 @@ conditional_zero_writer(LcfWriter& stream) {
 
 template <class S>
 void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 
-	auto ref = StructDefault<S>::make();
+	auto ref = StructDefault<S>::make(db_is2k3);
 	int last = -1;
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
@@ -118,7 +119,7 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 					  << " after " << last
 					  << " in struct " << name
 					  << std::endl;
-		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref)) {
+		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref, db_is2k3)) {
 			continue;
 		}
 		stream.WriteInt(field->id);
@@ -134,16 +135,16 @@ void Struct<S>::WriteLcf(const S& obj, LcfWriter& stream) {
 
 template <class S>
 int Struct<S>::LcfSize(const S& obj, LcfWriter& stream) {
-	const bool db_is2k3 = (Data::system.ldb_id == 2003);
+	const bool db_is2k3 = stream.Is2k3();
 	int result = 0;
-	auto ref = StructDefault<S>::make();
+	auto ref = StructDefault<S>::make(db_is2k3);
 	for (int i = 0; fields[i] != NULL; i++) {
 		const Field<S>* field = fields[i];
 		if (!db_is2k3 && field->is2k3) {
 			continue;
 		}
 		//printf("%s\n", field->name);
-		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref)) {
+		if (!field->isPresentIfDefault(db_is2k3) && field->IsDefault(obj, ref, db_is2k3)) {
 			continue;
 		}
 		result += LcfReader::IntSize(field->id);

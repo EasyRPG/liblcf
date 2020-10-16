@@ -36,9 +36,10 @@ public:
 	 * Constructs a new File Writer.
 	 *
 	 * @param filestream already opened filestream.
+	 * @param is2k3 Write in RPG2003 format.
 	 * @param encoding name of the encoding.
 	 */
-	LcfWriter(std::ostream& filestream, std::string encoding = "");
+	LcfWriter(std::ostream& filestream, bool is2k3, std::string encoding = "");
 
 	/**
 	 * Destructor. Closes the opened file.
@@ -117,11 +118,16 @@ public:
 	 */
 	std::string Decode(StringView str_to_encode);
 
+	/** @return true if 2k3 format, false if 2k format */
+	bool Is2k3() const;
+
 private:
 	/** File-stream managed by this Writer. */
 	std::ostream& stream;
 	/** Encoder object */
 	Encoder encoder;
+	/** Writing 2k3 format */
+	bool is2k3;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
@@ -159,6 +165,10 @@ private:
 	static void SwapByteOrder(double &d);
 
 };
+
+inline bool LcfWriter::Is2k3() const {
+	return is2k3;
+}
 
 } //namespace lcf
 

@@ -17,10 +17,11 @@
 
 namespace lcf {
 
-XmlWriter::XmlWriter(std::ostream& filestream) :
+XmlWriter::XmlWriter(std::ostream& filestream, bool is2k3) :
 	stream(filestream),
 	indent(0),
-	at_bol(true)
+	at_bol(true),
+	is2k3(is2k3)
 {
 	stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }

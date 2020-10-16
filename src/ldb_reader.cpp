@@ -79,16 +79,15 @@ bool LDB_Reader::Load(std::istream& filestream, const std::string& encoding) {
 
 	// Delayed initialization of some actor fields because they are engine
 	// dependent
-	std::vector<rpg::Actor>::iterator it;
-	for (it = Data::actors.begin(); it != Data::actors.end(); ++it) {
-		(*it).Setup();
+	for (auto& actor: Data::actors) {
+		actor.Setup(Data::system.ldb_id == 2003);
 	}
 
 	return true;
 }
 
 bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, encoding);
+	LcfWriter writer(filestream, Data::system.ldb_id == 2003, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
@@ -106,7 +105,7 @@ bool LDB_Reader::Save(std::ostream& filestream, const std::string& encoding, Sav
 }
 
 bool LDB_Reader::SaveXml(std::ostream& filestream) {
-	XmlWriter writer(filestream);
+	XmlWriter writer(filestream, Data::system.ldb_id == 2003);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
