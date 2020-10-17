@@ -9,7 +9,6 @@
 #include <string>
 
 #include <lcf/context.h>
-#include <lcf/data.h>
 #include <lcf/ldb/reader.h>
 #include <lcf/lmt/reader.h>
 #include <lcf/lmu/reader.h>
@@ -121,11 +120,13 @@ int main(int argc, char** argv) {
 	bool rc = false;
 
 	if (HasExt(path, ".ldb")) {
-		rc = lcf::LDB_Reader::Load(path, encoding);
-		if (rc) Dump(lcf::Data::data);
+		auto file = lcf::LDB_Reader::Load(path, encoding);
+		rc = bool(file);
+		if (rc) Dump(*file);
 	} else if (HasExt(path, ".lmt")) {
-		rc = !lcf::LMT_Reader::Load(path, encoding);
-		if (rc) Dump(lcf::Data::treemap);
+		auto file = lcf::LMT_Reader::Load(path, encoding);
+		rc = bool(file);
+		if (rc) Dump(*file);
 	} else if (HasExt(path, ".lmu")) {
 		auto file = lcf::LMU_Reader::Load(path, encoding);
 		rc = bool(file);
