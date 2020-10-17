@@ -42,7 +42,6 @@ liblcf_la_LDFLAGS = \
 	$(AM_LDFLAGS) \
 	-no-undefined
 liblcf_la_SOURCES = \
-	src/data.cpp \
 	src/dbarray.cpp \
 	src/encoder.cpp \
 	src/ini.cpp \
@@ -201,7 +200,6 @@ liblcf_la_SOURCES = \
 
 lcfinclude_HEADERS = \
 	src/lcf/context.h \
-	src/lcf/data.h \
 	src/lcf/dbarray.h \
 	src/lcf/dbarrayalloc.h \
 	src/lcf/dbbitarray.h \

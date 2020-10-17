@@ -10,7 +10,7 @@ AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_MACRO_DIR([builds/autoconf/m4])
-AC_CONFIG_SRCDIR([src/data.cpp])
+AC_CONFIG_SRCDIR([src/ldb_reader.cpp])
 AC_LANG([C++])
 
 # Checks for programs.

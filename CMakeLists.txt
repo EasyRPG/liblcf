@@ -34,7 +34,6 @@ set(CMAKE_CXX_EXTENSIONS ON)
 add_library(lcf)
 
 set(LCF_SOURCES
-	src/data.cpp
 	src/dbarray.cpp
 	src/encoder.cpp
 	src/ini.cpp
@@ -194,7 +193,6 @@ set(LCF_SOURCES
 
 set(LCF_HEADERS
 	src/lcf/context.h
-	src/lcf/data.h
 	src/lcf/dbarray.h
 	src/lcf/dbarrayalloc.h
 	src/lcf/dbbitarray.h
