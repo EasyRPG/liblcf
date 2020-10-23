@@ -236,7 +236,45 @@ namespace LDB_Reader {
 			death_teleport_face = 0x1D
 		};
 	};
-	struct ChunkBattlerAnimationExtension {
+	struct ChunkBattlerAnimation {
+		enum Index {
+			/** String */
+			name = 0x01,
+			/** Integer */
+			speed = 0x02,
+			/** Array - rpg::BattlerAnimationPose */
+			poses = 0x0A,
+			/** Array - rpg::BattlerAnimationWeapon */
+			weapons = 0x0B
+		};
+	};
+	struct ChunkBattlerAnimationItemSkill {
+		enum Index {
+			/**  */
+			unknown02 = 0x02,
+			/**  */
+			type = 0x03,
+			/**  */
+			weapon_animation_id = 0x04,
+			/**  */
+			movement = 0x05,
+			/**  */
+			after_image = 0x06,
+			/**  */
+			attacks = 0x07,
+			/**  */
+			ranged = 0x08,
+			/**  */
+			ranged_animation_id = 0x09,
+			/**  */
+			ranged_speed = 0x0C,
+			/**  */
+			battle_animation_id = 0x0D,
+			/**  */
+			pose = 0x0E
+		};
+	};
+	struct ChunkBattlerAnimationPose {
 		enum Index {
 			/** String */
 			name = 0x01,
@@ -247,29 +285,17 @@ namespace LDB_Reader {
 			/** Integer */
 			animation_type = 0x04,
 			/** Integer */
-			animation_id = 0x05
+			battle_animation_id = 0x05
 		};
 	};
-	struct ChunkBattlerAnimation {
+	struct ChunkBattlerAnimationWeapon {
 		enum Index {
 			/** String */
 			name = 0x01,
+			/** String */
+			weapon_name = 0x02,
 			/** Integer */
-			speed = 0x02,
-			/** Array - rpg::BattlerAnimationExtension */
-			base_data = 0x0A,
-			/** Array - rpg::BattlerAnimationExtension */
-			weapon_data = 0x0B
-		};
-	};
-	struct ChunkBattlerAnimationData {
-		enum Index {
-			/** Integer */
-			move = 0x05,
-			/** Integer */
-			after_image = 0x06,
-			/** Integer */
-			pose = 0x0E
+			weapon_index = 0x03
 		};
 	};
 	struct ChunkChipset {
@@ -416,28 +442,6 @@ namespace LDB_Reader {
 			battler_animation = 0x31,
 			/** ? - RPG2003 */
 			battler_animation_data = 0x32
-		};
-	};
-	struct ChunkItemAnimation {
-		enum Index {
-			/**  */
-			type = 0x03,
-			/**  */
-			weapon_anim = 0x04,
-			/**  */
-			movement = 0x05,
-			/**  */
-			after_image = 0x06,
-			/**  */
-			attacks = 0x07,
-			/**  */
-			ranged = 0x08,
-			/**  */
-			ranged_anim = 0x09,
-			/**  */
-			ranged_speed = 0x0C,
-			/**  */
-			battle_anim = 0x0D
 		};
 	};
 	struct ChunkItem {

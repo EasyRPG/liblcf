@@ -58,14 +58,19 @@ template <>
 Field<rpg::BattlerAnimation> const* Struct<rpg::BattlerAnimation>::fields[];
 
 template <>
-const char* const Struct<rpg::BattlerAnimationData>::name;
+const char* const Struct<rpg::BattlerAnimationItemSkill>::name;
 template <>
-Field<rpg::BattlerAnimationData> const* Struct<rpg::BattlerAnimationData>::fields[];
+Field<rpg::BattlerAnimationItemSkill> const* Struct<rpg::BattlerAnimationItemSkill>::fields[];
 
 template <>
-const char* const Struct<rpg::BattlerAnimationExtension>::name;
+const char* const Struct<rpg::BattlerAnimationPose>::name;
 template <>
-Field<rpg::BattlerAnimationExtension> const* Struct<rpg::BattlerAnimationExtension>::fields[];
+Field<rpg::BattlerAnimationPose> const* Struct<rpg::BattlerAnimationPose>::fields[];
+
+template <>
+const char* const Struct<rpg::BattlerAnimationWeapon>::name;
+template <>
+Field<rpg::BattlerAnimationWeapon> const* Struct<rpg::BattlerAnimationWeapon>::fields[];
 
 template <>
 const char* const Struct<rpg::Chipset>::name;
@@ -131,11 +136,6 @@ template <>
 const char* const Struct<rpg::Item>::name;
 template <>
 Field<rpg::Item> const* Struct<rpg::Item>::fields[];
-
-template <>
-const char* const Struct<rpg::ItemAnimation>::name;
-template <>
-Field<rpg::ItemAnimation> const* Struct<rpg::ItemAnimation>::fields[];
 
 template <>
 const char* const Struct<rpg::Learning>::name;

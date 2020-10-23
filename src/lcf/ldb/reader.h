@@ -30,8 +30,6 @@
 #include "lcf/rpg/class.h"
 #include "lcf/rpg/battlecommand.h"
 #include "lcf/rpg/battleranimation.h"
-#include "lcf/rpg/battleranimationdata.h"
-#include "lcf/rpg/itemanimation.h"
 #include "lcf/rpg/parameters.h"
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/database.h"

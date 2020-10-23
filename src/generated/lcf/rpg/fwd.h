@@ -23,8 +23,9 @@ namespace rpg {
 	class BattleCommand;
 	class BattleCommands;
 	class BattlerAnimation;
-	class BattlerAnimationData;
-	class BattlerAnimationExtension;
+	class BattlerAnimationItemSkill;
+	class BattlerAnimationPose;
+	class BattlerAnimationWeapon;
 	class Chipset;
 	class Class;
 	class CommonEvent;
@@ -38,7 +39,6 @@ namespace rpg {
 	class EventPage;
 	class EventPageCondition;
 	class Item;
-	class ItemAnimation;
 	class Learning;
 	class Map;
 	class MapInfo;

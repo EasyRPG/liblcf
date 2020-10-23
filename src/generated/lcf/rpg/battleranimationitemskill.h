@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-#ifndef LCF_RPG_ITEMANIMATION_H
-#define LCF_RPG_ITEMANIMATION_H
+#ifndef LCF_RPG_BATTLERANIMATIONITEMSKILL_H
+#define LCF_RPG_BATTLERANIMATIONITEMSKILL_H
 
 // Headers
 #include <stdint.h>
@@ -20,12 +20,30 @@
 #include <type_traits>
 
 /**
- * rpg::ItemAnimation class.
+ * rpg::BattlerAnimationItemSkill class.
  */
 namespace lcf {
 namespace rpg {
-	class ItemAnimation {
+	class BattlerAnimationItemSkill {
 	public:
+		enum Speed {
+			Speed_fast = 0,
+			Speed_medium = 1,
+			Speed_slow = 2
+		};
+		static constexpr auto kSpeedTags = lcf::makeEnumTags<Speed>(
+			"fast",
+			"medium",
+			"slow"
+		);
+		enum AnimType {
+			AnimType_weapon = 0,
+			AnimType_battle = 1
+		};
+		static constexpr auto kAnimTypeTags = lcf::makeEnumTags<AnimType>(
+			"weapon",
+			"battle"
+		);
 		enum Movement {
 			Movement_none = 0,
 			Movement_step = 1,
@@ -46,61 +64,59 @@ namespace rpg {
 			"none",
 			"add"
 		);
-		enum Speed {
-			Speed_fast = 0,
-			Speed_medium = 1,
-			Speed_slow = 2
-		};
-		static constexpr auto kSpeedTags = lcf::makeEnumTags<Speed>(
-			"fast",
-			"medium",
-			"slow"
-		);
 
 		int ID = 0;
+		int32_t unknown02 = 0;
 		int32_t type = 0;
-		int32_t weapon_anim = 0;
+		int32_t weapon_animation_id = 0;
 		int32_t movement = 0;
 		int32_t after_image = 0;
 		int32_t attacks = 0;
 		bool ranged = false;
-		int32_t ranged_anim = 0;
+		int32_t ranged_animation_id = 0;
 		int32_t ranged_speed = 0;
-		int32_t battle_anim = 0;
+		int32_t battle_animation_id = 1;
+		int32_t pose = 3;
 	};
-	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::Movement code) {
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::Speed code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
-	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::AfterImage code) {
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::AnimType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
-	inline std::ostream& operator<<(std::ostream& os, ItemAnimation::Speed code) {
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::Movement code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::AfterImage code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
 
-	inline bool operator==(const ItemAnimation& l, const ItemAnimation& r) {
-		return l.type == r.type
-		&& l.weapon_anim == r.weapon_anim
+	inline bool operator==(const BattlerAnimationItemSkill& l, const BattlerAnimationItemSkill& r) {
+		return l.unknown02 == r.unknown02
+		&& l.type == r.type
+		&& l.weapon_animation_id == r.weapon_animation_id
 		&& l.movement == r.movement
 		&& l.after_image == r.after_image
 		&& l.attacks == r.attacks
 		&& l.ranged == r.ranged
-		&& l.ranged_anim == r.ranged_anim
+		&& l.ranged_animation_id == r.ranged_animation_id
 		&& l.ranged_speed == r.ranged_speed
-		&& l.battle_anim == r.battle_anim;
+		&& l.battle_animation_id == r.battle_animation_id
+		&& l.pose == r.pose;
 	}
 
-	inline bool operator!=(const ItemAnimation& l, const ItemAnimation& r) {
+	inline bool operator!=(const BattlerAnimationItemSkill& l, const BattlerAnimationItemSkill& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const ItemAnimation& obj);
+	std::ostream& operator<<(std::ostream& os, const BattlerAnimationItemSkill& obj);
 
 	template <typename F, typename ParentCtx = Context<void,void>>
-	void ForEachString(ItemAnimation& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+	void ForEachString(BattlerAnimationItemSkill& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

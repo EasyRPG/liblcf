@@ -18,7 +18,7 @@
 #include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
-#include "lcf/rpg/itemanimation.h"
+#include "lcf/rpg/battleranimationitemskill.h"
 #include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
@@ -125,7 +125,7 @@ namespace rpg {
 		int32_t state_chance = 0;
 		bool reverse_state_effect = false;
 		int32_t weapon_animation = -1;
-		std::vector<ItemAnimation> animation_data;
+		std::vector<BattlerAnimationItemSkill> animation_data;
 		bool use_skill = false;
 		DBBitArray class_set;
 		int32_t ranged_trajectory = 0;
