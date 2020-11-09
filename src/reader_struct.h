@@ -102,17 +102,17 @@ struct TypeReader {};
 
 template <class T>
 struct TypeReader<T, Category::Void> {
-	static void ReadLcf(T& ref, LcfReader& stream, uint32_t length) {
+	static void ReadLcf(T&, LcfReader& stream, uint32_t length) {
 		stream.Seek(length, LcfReader::FromCurrent);
 	}
-	static void WriteLcf(const T& ref, LcfWriter& stream) {
+	static void WriteLcf(const T&, LcfWriter&) {
 	}
-	static int LcfSize(const T& ref, LcfWriter& stream) {
+	static int LcfSize(const T&, LcfWriter&) {
 		return 0;
 	}
-	static void WriteXml(const T& ref, XmlWriter& stream) {
+	static void WriteXml(const T&, XmlWriter&) {
 	}
-	static void BeginXml(T& ref, XmlReader& stream) {
+	static void BeginXml(T&, XmlReader&) {
 	}
 	static void ParseXml(T& /* ref */, const std::string& /* data */) {
 		//no-op
