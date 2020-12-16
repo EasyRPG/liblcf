@@ -909,6 +909,132 @@ static TypedField<rpg::Terms, DBString> static_no(
 	1,
 	0
 );
+static TypedField<rpg::Terms, DBString> static_easyrpg_item_number_separator(
+	&rpg::Terms::easyrpg_item_number_separator,
+	LDB_Reader::ChunkTerms::easyrpg_item_number_separator,
+	"easyrpg_item_number_separator",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_skill_cost_separator(
+	&rpg::Terms::easyrpg_skill_cost_separator,
+	LDB_Reader::ChunkTerms::easyrpg_skill_cost_separator,
+	"easyrpg_skill_cost_separator",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_equipment_arrow(
+	&rpg::Terms::easyrpg_equipment_arrow,
+	LDB_Reader::ChunkTerms::easyrpg_equipment_arrow,
+	"easyrpg_equipment_arrow",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_name(
+	&rpg::Terms::easyrpg_status_scene_name,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_name,
+	"easyrpg_status_scene_name",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_class(
+	&rpg::Terms::easyrpg_status_scene_class,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_class,
+	"easyrpg_status_scene_class",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_title(
+	&rpg::Terms::easyrpg_status_scene_title,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_title,
+	"easyrpg_status_scene_title",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_condition(
+	&rpg::Terms::easyrpg_status_scene_condition,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_condition,
+	"easyrpg_status_scene_condition",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_front(
+	&rpg::Terms::easyrpg_status_scene_front,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_front,
+	"easyrpg_status_scene_front",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_status_scene_back(
+	&rpg::Terms::easyrpg_status_scene_back,
+	LDB_Reader::ChunkTerms::easyrpg_status_scene_back,
+	"easyrpg_status_scene_back",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_order_scene_confirm(
+	&rpg::Terms::easyrpg_order_scene_confirm,
+	LDB_Reader::ChunkTerms::easyrpg_order_scene_confirm,
+	"easyrpg_order_scene_confirm",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_order_scene_redo(
+	&rpg::Terms::easyrpg_order_scene_redo,
+	LDB_Reader::ChunkTerms::easyrpg_order_scene_redo,
+	"easyrpg_order_scene_redo",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_double_attack(
+	&rpg::Terms::easyrpg_battle2k3_double_attack,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_double_attack,
+	"easyrpg_battle2k3_double_attack",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_defend(
+	&rpg::Terms::easyrpg_battle2k3_defend,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_defend,
+	"easyrpg_battle2k3_defend",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_observe(
+	&rpg::Terms::easyrpg_battle2k3_observe,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_observe,
+	"easyrpg_battle2k3_observe",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_charge(
+	&rpg::Terms::easyrpg_battle2k3_charge,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_charge,
+	"easyrpg_battle2k3_charge",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_selfdestruct(
+	&rpg::Terms::easyrpg_battle2k3_selfdestruct,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_selfdestruct,
+	"easyrpg_battle2k3_selfdestruct",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_escape(
+	&rpg::Terms::easyrpg_battle2k3_escape,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_escape,
+	"easyrpg_battle2k3_escape",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_special_combat_back(
+	&rpg::Terms::easyrpg_battle2k3_special_combat_back,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_special_combat_back,
+	"easyrpg_battle2k3_special_combat_back",
+	0,
+	1
+);
 
 
 template <>
@@ -1040,6 +1166,24 @@ Field<rpg::Terms> const* Struct<rpg::Terms>::fields[] = {
 	&static_exit_game_message,
 	&static_yes,
 	&static_no,
+	&static_easyrpg_item_number_separator,
+	&static_easyrpg_skill_cost_separator,
+	&static_easyrpg_equipment_arrow,
+	&static_easyrpg_status_scene_name,
+	&static_easyrpg_status_scene_class,
+	&static_easyrpg_status_scene_title,
+	&static_easyrpg_status_scene_condition,
+	&static_easyrpg_status_scene_front,
+	&static_easyrpg_status_scene_back,
+	&static_easyrpg_order_scene_confirm,
+	&static_easyrpg_order_scene_redo,
+	&static_easyrpg_battle2k3_double_attack,
+	&static_easyrpg_battle2k3_defend,
+	&static_easyrpg_battle2k3_observe,
+	&static_easyrpg_battle2k3_charge,
+	&static_easyrpg_battle2k3_selfdestruct,
+	&static_easyrpg_battle2k3_escape,
+	&static_easyrpg_battle2k3_special_combat_back,
 	NULL
 };
 

@@ -12,6 +12,7 @@
 // Headers
 #include "lcf/rpg/terms.h"
 
+constexpr const char* lcf::rpg::Terms::kDefaultTerm;
 namespace lcf {
 namespace rpg {
 
@@ -144,6 +145,24 @@ std::ostream& operator<<(std::ostream& os, const Terms& obj) {
 	os << ", exit_game_message="<< obj.exit_game_message;
 	os << ", yes="<< obj.yes;
 	os << ", no="<< obj.no;
+	os << ", easyrpg_item_number_separator="<< obj.easyrpg_item_number_separator;
+	os << ", easyrpg_skill_cost_separator="<< obj.easyrpg_skill_cost_separator;
+	os << ", easyrpg_equipment_arrow="<< obj.easyrpg_equipment_arrow;
+	os << ", easyrpg_status_scene_name="<< obj.easyrpg_status_scene_name;
+	os << ", easyrpg_status_scene_class="<< obj.easyrpg_status_scene_class;
+	os << ", easyrpg_status_scene_title="<< obj.easyrpg_status_scene_title;
+	os << ", easyrpg_status_scene_condition="<< obj.easyrpg_status_scene_condition;
+	os << ", easyrpg_status_scene_front="<< obj.easyrpg_status_scene_front;
+	os << ", easyrpg_status_scene_back="<< obj.easyrpg_status_scene_back;
+	os << ", easyrpg_order_scene_confirm="<< obj.easyrpg_order_scene_confirm;
+	os << ", easyrpg_order_scene_redo="<< obj.easyrpg_order_scene_redo;
+	os << ", easyrpg_battle2k3_double_attack="<< obj.easyrpg_battle2k3_double_attack;
+	os << ", easyrpg_battle2k3_defend="<< obj.easyrpg_battle2k3_defend;
+	os << ", easyrpg_battle2k3_observe="<< obj.easyrpg_battle2k3_observe;
+	os << ", easyrpg_battle2k3_charge="<< obj.easyrpg_battle2k3_charge;
+	os << ", easyrpg_battle2k3_selfdestruct="<< obj.easyrpg_battle2k3_selfdestruct;
+	os << ", easyrpg_battle2k3_escape="<< obj.easyrpg_battle2k3_escape;
+	os << ", easyrpg_battle2k3_special_combat_back="<< obj.easyrpg_battle2k3_special_combat_back;
 	os << "}";
 	return os;
 }

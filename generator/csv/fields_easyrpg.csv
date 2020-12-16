@@ -1,3 +1,21 @@
 Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
-Save,easyrpg_data,f,SaveEasyRpgData,0xc8,,0,0,Additional save data written by EasyRPG Player
+Save,easyrpg_data,f,SaveEasyRpgData,0xC8,,0,0,Additional save data written by EasyRPG Player
 SaveEasyRpgData,version,,Int32,1,0,0,0,Savegame version
+Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
+Terms,easyrpg_skill_cost_separator,f,DBString,0xC9,DBString(kDefaultTerm),0,0,Skill cost separator
+Terms,easyrpg_equipment_arrow,f,DBString,0xCA,DBString(kDefaultTerm),0,0,Equipment window arrow
+Terms,easyrpg_status_scene_name,f,DBString,0xCB,DBString(kDefaultTerm),0,1,Status scene Name
+Terms,easyrpg_status_scene_class,f,DBString,0xCC,DBString(kDefaultTerm),0,1,Status scene Class
+Terms,easyrpg_status_scene_title,f,DBString,0xCD,DBString(kDefaultTerm),0,1,Status scene Title
+Terms,easyrpg_status_scene_condition,f,DBString,0xCE,DBString(kDefaultTerm),0,1,Status scene Condition
+Terms,easyrpg_status_scene_front,f,DBString,0xCF,DBString(kDefaultTerm),0,1,Status scene Front
+Terms,easyrpg_status_scene_back,f,DBString,0xD0,DBString(kDefaultTerm),0,1,Status scene Back
+Terms,easyrpg_order_scene_confirm,f,DBString,0xD1,DBString(kDefaultTerm),0,1,Order scene Confirm
+Terms,easyrpg_order_scene_redo,f,DBString,0xD2,DBString(kDefaultTerm),0,1,Order scene Redo
+Terms,easyrpg_battle2k3_double_attack,f,DBString,0xD3,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Double attack notification
+Terms,easyrpg_battle2k3_defend,f,DBString,0xD4,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Defend notification
+Terms,easyrpg_battle2k3_observe,f,DBString,0xD5,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Observe notification
+Terms,easyrpg_battle2k3_charge,f,DBString,0xD6,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Charge notification
+Terms,easyrpg_battle2k3_selfdestruct,f,DBString,0xD7,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Self-Destruct notification
+Terms,easyrpg_battle2k3_escape,f,DBString,0xD8,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Escape notification
+Terms,easyrpg_battle2k3_special_combat_back,f,DBString,0xD9,,0,1,Message for back and pincer attack

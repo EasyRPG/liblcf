@@ -25,6 +25,9 @@ namespace lcf {
 namespace rpg {
 	class Terms {
 	public:
+		// Sentinel name used to denote that the default hardcoded term should be used.
+		static constexpr const char* kDefaultTerm = "default_term";
+
 		DBString encounter;
 		DBString special_combat;
 		DBString escape_success;
@@ -152,6 +155,24 @@ namespace rpg {
 		DBString exit_game_message;
 		DBString yes;
 		DBString no;
+		DBString easyrpg_item_number_separator = DBString(kDefaultTerm);
+		DBString easyrpg_skill_cost_separator = DBString(kDefaultTerm);
+		DBString easyrpg_equipment_arrow = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_name = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_class = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_title = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_condition = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_front = DBString(kDefaultTerm);
+		DBString easyrpg_status_scene_back = DBString(kDefaultTerm);
+		DBString easyrpg_order_scene_confirm = DBString(kDefaultTerm);
+		DBString easyrpg_order_scene_redo = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_double_attack = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_defend = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_observe = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_charge = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_selfdestruct = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_escape = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_special_combat_back;
 	};
 
 	inline bool operator==(const Terms& l, const Terms& r) {
@@ -281,7 +302,25 @@ namespace rpg {
 		&& l.file == r.file
 		&& l.exit_game_message == r.exit_game_message
 		&& l.yes == r.yes
-		&& l.no == r.no;
+		&& l.no == r.no
+		&& l.easyrpg_item_number_separator == r.easyrpg_item_number_separator
+		&& l.easyrpg_skill_cost_separator == r.easyrpg_skill_cost_separator
+		&& l.easyrpg_equipment_arrow == r.easyrpg_equipment_arrow
+		&& l.easyrpg_status_scene_name == r.easyrpg_status_scene_name
+		&& l.easyrpg_status_scene_class == r.easyrpg_status_scene_class
+		&& l.easyrpg_status_scene_title == r.easyrpg_status_scene_title
+		&& l.easyrpg_status_scene_condition == r.easyrpg_status_scene_condition
+		&& l.easyrpg_status_scene_front == r.easyrpg_status_scene_front
+		&& l.easyrpg_status_scene_back == r.easyrpg_status_scene_back
+		&& l.easyrpg_order_scene_confirm == r.easyrpg_order_scene_confirm
+		&& l.easyrpg_order_scene_redo == r.easyrpg_order_scene_redo
+		&& l.easyrpg_battle2k3_double_attack == r.easyrpg_battle2k3_double_attack
+		&& l.easyrpg_battle2k3_defend == r.easyrpg_battle2k3_defend
+		&& l.easyrpg_battle2k3_observe == r.easyrpg_battle2k3_observe
+		&& l.easyrpg_battle2k3_charge == r.easyrpg_battle2k3_charge
+		&& l.easyrpg_battle2k3_selfdestruct == r.easyrpg_battle2k3_selfdestruct
+		&& l.easyrpg_battle2k3_escape == r.easyrpg_battle2k3_escape
+		&& l.easyrpg_battle2k3_special_combat_back == r.easyrpg_battle2k3_special_combat_back;
 	}
 
 	inline bool operator!=(const Terms& l, const Terms& r) {
@@ -546,6 +585,42 @@ namespace rpg {
 		f(obj.yes, ctx126);
 		const auto ctx127 = Context<Terms, ParentCtx>{ "no", -1, &obj, parent_ctx };
 		f(obj.no, ctx127);
+		const auto ctx128 = Context<Terms, ParentCtx>{ "easyrpg_item_number_separator", -1, &obj, parent_ctx };
+		f(obj.easyrpg_item_number_separator, ctx128);
+		const auto ctx129 = Context<Terms, ParentCtx>{ "easyrpg_skill_cost_separator", -1, &obj, parent_ctx };
+		f(obj.easyrpg_skill_cost_separator, ctx129);
+		const auto ctx130 = Context<Terms, ParentCtx>{ "easyrpg_equipment_arrow", -1, &obj, parent_ctx };
+		f(obj.easyrpg_equipment_arrow, ctx130);
+		const auto ctx131 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_name", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_name, ctx131);
+		const auto ctx132 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_class", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_class, ctx132);
+		const auto ctx133 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_title", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_title, ctx133);
+		const auto ctx134 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_condition", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_condition, ctx134);
+		const auto ctx135 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_front", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_front, ctx135);
+		const auto ctx136 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_back", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_back, ctx136);
+		const auto ctx137 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_confirm", -1, &obj, parent_ctx };
+		f(obj.easyrpg_order_scene_confirm, ctx137);
+		const auto ctx138 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_redo", -1, &obj, parent_ctx };
+		f(obj.easyrpg_order_scene_redo, ctx138);
+		const auto ctx139 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_double_attack", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_double_attack, ctx139);
+		const auto ctx140 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_defend", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_defend, ctx140);
+		const auto ctx141 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_observe", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_observe, ctx141);
+		const auto ctx142 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_charge", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_charge, ctx142);
+		const auto ctx143 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_selfdestruct", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_selfdestruct, ctx143);
+		const auto ctx144 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_escape", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_escape, ctx144);
+		const auto ctx145 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_special_combat_back", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_special_combat_back, ctx145);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;
