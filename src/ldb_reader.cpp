@@ -77,17 +77,19 @@ std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(std::istream& filestream, c
 	db->ldb_header = header;
 	TypeReader<rpg::Database>::ReadLcf(*db, reader, 0);
 
+	const auto engine = GetEngineVersion(*db);
 	// Delayed initialization of some actor fields because they are engine
 	// dependent
 	for (auto& actor: db->actors) {
-		actor.Setup(db->system.ldb_id == 2003);
+		actor.Setup(engine == EngineVersion::e2k3);
 	}
 
 	return db;
 }
 
 bool LDB_Reader::Save(std::ostream& filestream, const lcf::rpg::Database& db, const std::string& encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, db.system.ldb_id == 2003, encoding);
+	const auto engine = GetEngineVersion(db);
+	LcfWriter writer(filestream, engine, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
@@ -105,7 +107,8 @@ bool LDB_Reader::Save(std::ostream& filestream, const lcf::rpg::Database& db, co
 }
 
 bool LDB_Reader::SaveXml(std::ostream& filestream, const lcf::rpg::Database& db) {
-	XmlWriter writer(filestream, db.system.ldb_id == 2003);
+	const auto engine = GetEngineVersion(db);
+	XmlWriter writer(filestream, engine);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.\n");
 		return false;
@@ -126,10 +129,11 @@ std::unique_ptr<lcf::rpg::Database> LDB_Reader::LoadXml(std::istream& filestream
 	reader.SetHandler(new RootXmlHandler<rpg::Database>(*db, "LDB"));
 	reader.Parse();
 
+	const auto engine = GetEngineVersion(*db);
 	// Delayed initialization of some actor fields because they are engine
 	// dependent
 	for (auto& actor: db->actors) {
-		actor.Setup(db->system.ldb_id == 2003);
+		actor.Setup(engine == EngineVersion::e2k3);
 	}
 
 	return db;

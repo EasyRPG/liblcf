@@ -35,12 +35,12 @@ namespace LMU_Reader {
 	/**
 	 * Saves map.
 	 */
-	bool Save(const std::string& filename, const rpg::Map& map, bool is2k3, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(const std::string& filename, const rpg::Map& map, EngineVersion engine, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
 	 */
-	bool SaveXml(const std::string& filename, const rpg::Map& map, bool is2k3);
+	bool SaveXml(const std::string& filename, const rpg::Map& map, EngineVersion engine);
 
 	/**
 	 * Loads map as XML.
@@ -55,12 +55,12 @@ namespace LMU_Reader {
 	/**
 	 * Saves map.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Map& map, bool is2k3, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const rpg::Map& map, EngineVersion engine, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const rpg::Map& map, bool is2k3);
+	bool SaveXml(std::ostream& filestream, const rpg::Map& map, EngineVersion engine);
 
 	/**
 	 * Loads map as XML.

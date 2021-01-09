@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <stdint.h>
 #include "lcf/string_view.h"
+#include "lcf/saveopt.h"
 #include "lcf/span.h"
 
 namespace lcf {
@@ -30,9 +31,9 @@ public:
 	 * Constructs a new XML File Writer.
 	 *
 	 * @param filestream already opened filestream.
-	 * @param is2k3 Write in RPG2003 format.
+	 * @param engine Which engine format to write.
 	 */
-	XmlWriter(std::ostream& filestream, bool is2k3);
+	XmlWriter(std::ostream& filestream, EngineVersion engine);
 
 	/**
 	 * Destructor. Closes the opened file.
@@ -114,8 +115,8 @@ protected:
 	int indent;
 	/** Indicates if writer cursor is at the beginning of the line. */
 	bool at_bol;
-	/** Writing 2k3 format */
-	bool is2k3;
+	/** Writing which engine format */
+	EngineVersion engine;
 
 	/**
 	 * Writes an indentation to the stream.
@@ -134,9 +135,8 @@ protected:
 };
 
 inline bool XmlWriter::Is2k3() const {
-	return is2k3;
+	return engine == EngineVersion::e2k3;
 }
-
 
 } //namespace lcf
 

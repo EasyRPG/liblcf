@@ -63,6 +63,7 @@ liblcf_la_SOURCES = \
 	src/reader_util.cpp \
 	src/reader_xml.cpp \
 	src/rpg_setup.cpp \
+	src/saveopt.cpp \
 	src/writer_lcf.cpp \
 	src/writer_xml.cpp \
 	src/generated/fwd_struct_impl.h \

@@ -50,7 +50,7 @@ std::string GetFilename(const std::string& str);
 FileCategories GetFilecategory(const std::string& in_file);
 FileTypes GetFiletype(const std::string& in_file, std::string& out_extension);
 void PrintReaderError(const std::string data);
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, bool is2k3);
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine);
 
 int main(int argc, char** argv)
 {
@@ -72,14 +72,14 @@ int main(int argc, char** argv)
 	std::string extension;
 	unsigned int errors = 0;
 
-	bool is2k3 = true;
+	lcf::EngineVersion engine = lcf::EngineVersion::e2k3;
 	for (int i = 1; i < argc; ++i) {
 		if (!std::strcmp(argv[i], "--2k")) {
-			is2k3 = false;
+			engine = lcf::EngineVersion::e2k;
 			continue;
 		}
 		if (!std::strcmp(argv[i], "--2k3")) {
-			is2k3 = true;
+			engine = lcf::EngineVersion::e2k3;
 			continue;
 		}
 		if (category == FileCategory_Invalid) {
@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 		outfile = GetFilename(*it);
 		type = GetFiletype(*it, extension);
 		outfile += extension;
-		if (ReaderWriteToFile(*it, outfile, type, is2k3) != 0) {
+		if (ReaderWriteToFile(*it, outfile, type, engine) != 0) {
 			errors++;
 		}
 	}
@@ -241,7 +241,7 @@ void PrintReaderError(const std::string data)
 	}
 
 /** Takes data from in and writes converted data into out using liblcf. */
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, bool is2k3)
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine)
 {
 	std::string path = GetPath(in) + "/";
 	std::string encoding = "";
@@ -280,14 +280,14 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 		{
 			auto file = lcf::LMU_Reader::Load(in, encoding);
 			LCFXML_ERROR(file == nullptr, "LMU load");
-			LCFXML_ERROR(!lcf::LMU_Reader::SaveXml(out, *file, is2k3), "LMU XML save");
+			LCFXML_ERROR(!lcf::LMU_Reader::SaveXml(out, *file, engine), "LMU XML save");
 			break;
 		}
 		case FileType_LCF_SaveData:
 		{
 			auto file = lcf::LSD_Reader::Load(in, encoding);
 			LCFXML_ERROR(file == nullptr, "LSD load");
-			LCFXML_ERROR(!lcf::LSD_Reader::SaveXml(out, *file, is2k3), "LSD XML save");
+			LCFXML_ERROR(!lcf::LSD_Reader::SaveXml(out, *file, engine), "LSD XML save");
 			break;
 		}
 		case FileType_LCF_Database:
@@ -301,21 +301,21 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 		{
 			auto file = lcf::LMT_Reader::Load(in, encoding);
 			LCFXML_ERROR(file == nullptr, "LMT load");
-			LCFXML_ERROR(!lcf::LMT_Reader::SaveXml(out, *file, is2k3), "LMT XML save");
+			LCFXML_ERROR(!lcf::LMT_Reader::SaveXml(out, *file, engine), "LMT XML save");
 			break;
 		}
 		case FileType_XML_MapUnit:
 		{
 			auto file = lcf::LMU_Reader::LoadXml(in);
 			LCFXML_ERROR(file == nullptr, "LMU XML load");
-			LCFXML_ERROR(!lcf::LMU_Reader::Save(out, *file, is2k3, encoding), "LMU save");
+			LCFXML_ERROR(!lcf::LMU_Reader::Save(out, *file, engine, encoding), "LMU save");
 			break;
 		}
 		case FileType_XML_SaveData:
 		{
 			auto file = lcf::LSD_Reader::LoadXml(in);
 			LCFXML_ERROR(file == nullptr, "LSD XML load");
-			LCFXML_ERROR(!lcf::LSD_Reader::Save(out, *file, is2k3, encoding), "LSD save");
+			LCFXML_ERROR(!lcf::LSD_Reader::Save(out, *file, engine, encoding), "LSD save");
 			break;
 		}
 		case FileType_XML_Database:
@@ -329,7 +329,7 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 		{
 			auto file = lcf::LMT_Reader::LoadXml(in);
 			LCFXML_ERROR(file == nullptr, "LMT XML load");
-			LCFXML_ERROR(!lcf::LMT_Reader::Save(out, *file, is2k3, encoding), "LMT save");
+			LCFXML_ERROR(!lcf::LMT_Reader::Save(out, *file, engine, encoding), "LMT save");
 			break;
 		}
 		case FileType_Invalid:

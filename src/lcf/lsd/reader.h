@@ -16,6 +16,7 @@
 #include <ctime>
 #include <stdint.h>
 #include "lcf/rpg/save.h"
+#include "lcf/saveopt.h"
 
 namespace lcf {
 
@@ -51,12 +52,12 @@ namespace LSD_Reader {
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(const std::string& filename, const rpg::Save& save, bool is2k3, const std::string &encoding);
+	bool Save(const std::string& filename, const rpg::Save& save, EngineVersion engine, const std::string &encoding);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(const std::string& filename, const rpg::Save& save, bool is2k3);
+	bool SaveXml(const std::string& filename, const rpg::Save& save, EngineVersion engine);
 
 	/**
 	 * Loads Savegame as XML.
@@ -71,12 +72,12 @@ namespace LSD_Reader {
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Save& save, bool is2k3, const std::string &encoding);
+	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, const std::string &encoding);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const rpg::Save& save, bool is2k3);
+	bool SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine);
 
 	/**
 	 * Loads Savegame as XML.

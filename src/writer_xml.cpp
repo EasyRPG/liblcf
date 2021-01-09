@@ -10,6 +10,7 @@
 #include <ostream>
 #include <vector>
 
+#include "lcf/saveopt.h"
 #include "lcf/writer_xml.h"
 #include "lcf/dbstring.h"
 #include "lcf/dbarray.h"
@@ -17,11 +18,11 @@
 
 namespace lcf {
 
-XmlWriter::XmlWriter(std::ostream& filestream, bool is2k3) :
+XmlWriter::XmlWriter(std::ostream& filestream, EngineVersion engine) :
 	stream(filestream),
 	indent(0),
 	at_bol(true),
-	is2k3(is2k3)
+	engine(engine)
 {
 	stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 }

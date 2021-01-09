@@ -11,6 +11,9 @@
 #define LCF_SAVEOPT_H
 
 namespace lcf {
+namespace rpg {
+class Database;
+};
 
 /**
  * Options to configure how LDB file is saved
@@ -24,6 +27,16 @@ constexpr SaveOpt operator|(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) | int(
 constexpr SaveOpt operator&(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) & int(r)); }
 constexpr SaveOpt operator^(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) ^ int(r)); }
 constexpr SaveOpt operator~(SaveOpt l) { return SaveOpt(~int(l)); }
+
+/**
+ * Which LCF file format to write
+ */
+enum class EngineVersion {
+	e2k = 0,
+	e2k3 = 1
+};
+
+EngineVersion GetEngineVersion(const lcf::rpg::Database& db);
 
 } //namespace lcf
 

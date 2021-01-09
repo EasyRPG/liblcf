@@ -27,22 +27,22 @@ std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(const std::string& filename,
 	return LMT_Reader::Load(stream, encoding);
 }
 
-bool LMT_Reader::Save(const std::string& filename, const lcf::rpg::TreeMap& tmap, bool is2k3, const std::string& encoding, SaveOpt opt) {
+bool LMT_Reader::Save(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string& encoding, SaveOpt opt) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMT file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
 		return false;
 	}
-	return LMT_Reader::Save(stream, tmap, is2k3, encoding, opt);
+	return LMT_Reader::Save(stream, tmap, engine, encoding, opt);
 }
 
-bool LMT_Reader::SaveXml(const std::string& filename, const lcf::rpg::TreeMap& tmap, bool is2k3) {
+bool LMT_Reader::SaveXml(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine) {
 	std::ofstream stream(filename.c_str(), std::ios::binary);
 	if (!stream.is_open()) {
 		fprintf(stderr, "Failed to open LMT XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
 		return false;
 	}
-	return LMT_Reader::SaveXml(stream, tmap, is2k3);
+	return LMT_Reader::SaveXml(stream, tmap, engine);
 }
 
 std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::LoadXml(const std::string& filename) {
@@ -75,8 +75,8 @@ std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(std::istream& filestream, co
 	return tmap;
 }
 
-bool LMT_Reader::Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, bool is2k3, const std::string &encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, is2k3, encoding);
+bool LMT_Reader::Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string &encoding, SaveOpt opt) {
+	LcfWriter writer(filestream, engine, encoding);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;
@@ -93,8 +93,8 @@ bool LMT_Reader::Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, b
 	return true;
 }
 
-bool LMT_Reader::SaveXml(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, bool is2k3) {
-	XmlWriter writer(filestream, is2k3);
+bool LMT_Reader::SaveXml(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine) {
+	XmlWriter writer(filestream, engine);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;

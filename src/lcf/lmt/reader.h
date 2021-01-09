@@ -30,12 +30,12 @@ namespace LMT_Reader {
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(const std::string& filename, const lcf::rpg::TreeMap& tmap, bool is2k3, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.
 	 */
-	bool SaveXml(const std::string& filename, const lcf::rpg::TreeMap& tmap, bool is2k3);
+	bool SaveXml(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine);
 
 	/**
 	 * Loads Map Tree as XML.
@@ -50,12 +50,12 @@ namespace LMT_Reader {
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, bool is2k3, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string &encoding, SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, bool is2k3);
+	bool SaveXml(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine);
 
 	/**
 	 * Loads Map Tree as XML.
