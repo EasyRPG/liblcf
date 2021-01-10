@@ -13,10 +13,10 @@
 
 namespace lcf {
 
-LcfWriter::LcfWriter(std::ostream& filestream, bool is2k3, std::string encoding)
+LcfWriter::LcfWriter(std::ostream& filestream, EngineVersion engine, std::string encoding)
 	: stream(filestream)
 	, encoder(std::move(encoding))
-	, is2k3(is2k3)
+	, engine(engine)
 {
 }
 

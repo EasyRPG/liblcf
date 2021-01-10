@@ -34,7 +34,6 @@ set(CMAKE_CXX_EXTENSIONS ON)
 add_library(lcf)
 
 set(LCF_SOURCES
-	src/data.cpp
 	src/dbarray.cpp
 	src/encoder.cpp
 	src/ini.cpp
@@ -56,6 +55,7 @@ set(LCF_SOURCES
 	src/reader_util.cpp
 	src/reader_xml.cpp
 	src/rpg_setup.cpp
+	src/saveopt.cpp
 	src/writer_lcf.cpp
 	src/writer_xml.cpp
 	src/generated/fwd_struct_impl.h
@@ -194,7 +194,6 @@ set(LCF_SOURCES
 
 set(LCF_HEADERS
 	src/lcf/context.h
-	src/lcf/data.h
 	src/lcf/dbarray.h
 	src/lcf/dbarrayalloc.h
 	src/lcf/dbbitarray.h

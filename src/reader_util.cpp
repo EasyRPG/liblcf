@@ -36,7 +36,6 @@
 #include <sstream>
 #include <vector>
 
-#include "lcf/data.h"
 #include "lcf/inireader.h"
 #include "lcf/ldb/reader.h"
 #include "lcf/reader_util.h"
@@ -98,55 +97,58 @@ std::string ReaderUtil::DetectEncoding(StringView data) {
 
 std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #if LCF_SUPPORT_ICU
+	// Populate db->terms and db->system or will empty by default even if load fails
+	auto db = LDB_Reader::Load(filestream, "");
+
+	if (!db) {
+		return {};
+	}
+
 	std::ostringstream text;
-
-	// Populate Data::terms and Data::system or will empty by default even if load fails
-	LDB_Reader::Load(filestream, "");
-
 	text <<
-	Data::terms.menu_save <<
-	Data::terms.menu_quit <<
-	Data::terms.new_game <<
-	Data::terms.load_game <<
-	Data::terms.exit_game <<
-	Data::terms.status <<
-	Data::terms.row <<
-	Data::terms.order <<
-	Data::terms.wait_on <<
-	Data::terms.wait_off <<
-	Data::terms.level <<
-	Data::terms.health_points <<
-	Data::terms.spirit_points <<
-	Data::terms.normal_status <<
-	Data::terms.exp_short <<
-	Data::terms.lvl_short <<
-	Data::terms.hp_short <<
-	Data::terms.sp_short <<
-	Data::terms.sp_cost <<
-	Data::terms.attack <<
-	Data::terms.defense <<
-	Data::terms.spirit <<
-	Data::terms.agility <<
-	Data::terms.weapon <<
-	Data::terms.shield <<
-	Data::terms.armor <<
-	Data::terms.helmet <<
-	Data::terms.accessory <<
-	Data::terms.save_game_message <<
-	Data::terms.load_game_message <<
-	Data::terms.file <<
-	Data::terms.exit_game_message <<
-	Data::terms.yes <<
-	Data::terms.no <<
-	Data::system.boat_name <<
-	Data::system.ship_name <<
-	Data::system.airship_name <<
-	Data::system.title_name <<
-	Data::system.gameover_name <<
-	Data::system.system_name <<
-	Data::system.system2_name <<
-	Data::system.battletest_background <<
-	Data::system.frame_name;
+	db->terms.menu_save <<
+	db->terms.menu_quit <<
+	db->terms.new_game <<
+	db->terms.load_game <<
+	db->terms.exit_game <<
+	db->terms.status <<
+	db->terms.row <<
+	db->terms.order <<
+	db->terms.wait_on <<
+	db->terms.wait_off <<
+	db->terms.level <<
+	db->terms.health_points <<
+	db->terms.spirit_points <<
+	db->terms.normal_status <<
+	db->terms.exp_short <<
+	db->terms.lvl_short <<
+	db->terms.hp_short <<
+	db->terms.sp_short <<
+	db->terms.sp_cost <<
+	db->terms.attack <<
+	db->terms.defense <<
+	db->terms.spirit <<
+	db->terms.agility <<
+	db->terms.weapon <<
+	db->terms.shield <<
+	db->terms.armor <<
+	db->terms.helmet <<
+	db->terms.accessory <<
+	db->terms.save_game_message <<
+	db->terms.load_game_message <<
+	db->terms.file <<
+	db->terms.exit_game_message <<
+	db->terms.yes <<
+	db->terms.no <<
+	db->system.boat_name <<
+	db->system.ship_name <<
+	db->system.airship_name <<
+	db->system.title_name <<
+	db->system.gameover_name <<
+	db->system.system_name <<
+	db->system.system2_name <<
+	db->system.battletest_background <<
+	db->system.frame_name;
 
 	return ReaderUtil::DetectEncodings(text.str());
 #else

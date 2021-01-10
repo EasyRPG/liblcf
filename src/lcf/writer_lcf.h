@@ -23,6 +23,7 @@
 #include <stdint.h>
 #include "lcf/reader_util.h"
 #include "lcf/encoder.h"
+#include "lcf/saveopt.h"
 
 namespace lcf {
 
@@ -36,10 +37,10 @@ public:
 	 * Constructs a new File Writer.
 	 *
 	 * @param filestream already opened filestream.
-	 * @param is2k3 Write in RPG2003 format.
+	 * @param engine Which format to write.
 	 * @param encoding name of the encoding.
 	 */
-	LcfWriter(std::ostream& filestream, bool is2k3, std::string encoding = "");
+	LcfWriter(std::ostream& filestream, EngineVersion engine, std::string encoding = "");
 
 	/**
 	 * Destructor. Closes the opened file.
@@ -127,7 +128,7 @@ private:
 	/** Encoder object */
 	Encoder encoder;
 	/** Writing 2k3 format */
-	bool is2k3;
+	EngineVersion engine;
 
 	/**
 	 * Converts a 16bit signed integer to/from little-endian.
@@ -167,7 +168,7 @@ private:
 };
 
 inline bool LcfWriter::Is2k3() const {
-	return is2k3;
+	return engine == EngineVersion::e2k3;
 }
 
 } //namespace lcf

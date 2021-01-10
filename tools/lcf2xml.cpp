@@ -16,6 +16,7 @@
 #include <lcf/lmu/reader.h>
 #include <lcf/lsd/reader.h>
 #include <lcf/reader_util.h>
+#include <lcf/reader_lcf.h>
 
 #ifndef _WIN32
 #include <dirent.h>
@@ -49,14 +50,16 @@ std::string GetFilename(const std::string& str);
 FileCategories GetFilecategory(const std::string& in_file);
 FileTypes GetFiletype(const std::string& in_file, std::string& out_extension);
 void PrintReaderError(const std::string data);
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type);
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine);
 
 int main(int argc, char** argv)
 {
 	if (argc <= 1)
 	{
 		std::cerr << "LCF2XML - Converts RPG Maker 2000/2003 Files into XML and vice versa" << std::endl;
-		std::cerr << "Usage: " << argv[0] << " file1 [... fileN]" << std::endl;
+		std::cerr << "Usage: " << argv[0] << "[--2k] [--2k3] file1 [... fileN]" << std::endl;
+		std::cerr << "\t--2k: Treat files as RPG 2000" << std::endl;
+		std::cerr << "\t--2k3: Treat files as RPG 2003 (default)" << std::endl;
 
 		return 1;
 	}
@@ -69,7 +72,16 @@ int main(int argc, char** argv)
 	std::string extension;
 	unsigned int errors = 0;
 
+	lcf::EngineVersion engine = lcf::EngineVersion::e2k3;
 	for (int i = 1; i < argc; ++i) {
+		if (!std::strcmp(argv[i], "--2k")) {
+			engine = lcf::EngineVersion::e2k;
+			continue;
+		}
+		if (!std::strcmp(argv[i], "--2k3")) {
+			engine = lcf::EngineVersion::e2k3;
+			continue;
+		}
 		if (category == FileCategory_Invalid) {
 			category = GetFilecategory(argv[i]);
 			if (category == FileCategory_Invalid) {
@@ -88,7 +100,7 @@ int main(int argc, char** argv)
 		outfile = GetFilename(*it);
 		type = GetFiletype(*it, extension);
 		outfile += extension;
-		if (ReaderWriteToFile(*it, outfile, type) != 0) {
+		if (ReaderWriteToFile(*it, outfile, type, engine) != 0) {
 			errors++;
 		}
 	}
@@ -229,7 +241,7 @@ void PrintReaderError(const std::string data)
 	}
 
 /** Takes data from in and writes converted data into out using liblcf. */
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type)
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine)
 {
 	std::string path = GetPath(in) + "/";
 	std::string encoding = "";
@@ -266,54 +278,58 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 	{
 		case FileType_LCF_MapUnit:
 		{
-			std::unique_ptr<lcf::rpg::Map> file = lcf::LMU_Reader::Load(in, encoding);
-			LCFXML_ERROR(file.get() == NULL, "LMU load");
-			LCFXML_ERROR(!lcf::LMU_Reader::SaveXml(out, *file), "LMU XML save");
+			auto file = lcf::LMU_Reader::Load(in, encoding);
+			LCFXML_ERROR(file == nullptr, "LMU load");
+			LCFXML_ERROR(!lcf::LMU_Reader::SaveXml(out, *file, engine), "LMU XML save");
 			break;
 		}
 		case FileType_LCF_SaveData:
 		{
-			std::unique_ptr<lcf::rpg::Save> file = lcf::LSD_Reader::Load(in, encoding);
-			LCFXML_ERROR(file.get() == NULL, "LSD load");
-			LCFXML_ERROR(!lcf::LSD_Reader::SaveXml(out, *file), "LSD XML save");
+			auto file = lcf::LSD_Reader::Load(in, encoding);
+			LCFXML_ERROR(file == nullptr, "LSD load");
+			LCFXML_ERROR(!lcf::LSD_Reader::SaveXml(out, *file, engine), "LSD XML save");
 			break;
 		}
 		case FileType_LCF_Database:
 		{
-			LCFXML_ERROR(!lcf::LDB_Reader::Load(in, encoding), "LDB load");
-			LCFXML_ERROR(!lcf::LDB_Reader::SaveXml(out), "LDB XML save");
+			auto file = lcf::LDB_Reader::Load(in, encoding);
+			LCFXML_ERROR(file.get() == nullptr, "LDB load");
+			LCFXML_ERROR(!lcf::LDB_Reader::SaveXml(out, *file), "LDB XML save");
 			break;
 		}
 		case FileType_LCF_MapTree:
 		{
-			LCFXML_ERROR(!lcf::LMT_Reader::Load(in, encoding), "LMT load");
-			LCFXML_ERROR(!lcf::LMT_Reader::SaveXml(out), "LMT XML save");
+			auto file = lcf::LMT_Reader::Load(in, encoding);
+			LCFXML_ERROR(file == nullptr, "LMT load");
+			LCFXML_ERROR(!lcf::LMT_Reader::SaveXml(out, *file, engine), "LMT XML save");
 			break;
 		}
 		case FileType_XML_MapUnit:
 		{
-			std::unique_ptr<lcf::rpg::Map> file = lcf::LMU_Reader::LoadXml(in);
-			LCFXML_ERROR(file.get() == NULL, "LMU XML load");
-			LCFXML_ERROR(!lcf::LMU_Reader::Save(out, *file, encoding), "LMU save");
+			auto file = lcf::LMU_Reader::LoadXml(in);
+			LCFXML_ERROR(file == nullptr, "LMU XML load");
+			LCFXML_ERROR(!lcf::LMU_Reader::Save(out, *file, engine, encoding), "LMU save");
 			break;
 		}
 		case FileType_XML_SaveData:
 		{
-			std::unique_ptr<lcf::rpg::Save> file = lcf::LSD_Reader::LoadXml(in);
-			LCFXML_ERROR(file.get() == NULL, "LSD XML load");
-			LCFXML_ERROR(!lcf::LSD_Reader::Save(out, *file, encoding), "LSD save");
+			auto file = lcf::LSD_Reader::LoadXml(in);
+			LCFXML_ERROR(file == nullptr, "LSD XML load");
+			LCFXML_ERROR(!lcf::LSD_Reader::Save(out, *file, engine, encoding), "LSD save");
 			break;
 		}
 		case FileType_XML_Database:
 		{
-			LCFXML_ERROR(!lcf::LDB_Reader::LoadXml(in), "LDB XML load");
-			LCFXML_ERROR(!lcf::LDB_Reader::Save(out, encoding), "LDB save");
+			auto file = lcf::LDB_Reader::LoadXml(in);
+			LCFXML_ERROR(file == nullptr, "LDB XML load");
+			LCFXML_ERROR(!lcf::LDB_Reader::Save(out, *file, encoding), "LDB save");
 			break;
 		}
 		case FileType_XML_MapTree:
 		{
-			LCFXML_ERROR(!lcf::LMT_Reader::LoadXml(in), "LMT XML load");
-			LCFXML_ERROR(!lcf::LMT_Reader::Save(out, encoding), "LMT save");
+			auto file = lcf::LMT_Reader::LoadXml(in);
+			LCFXML_ERROR(file == nullptr, "LMT XML load");
+			LCFXML_ERROR(!lcf::LMT_Reader::Save(out, *file, engine, encoding), "LMT save");
 			break;
 		}
 		case FileType_Invalid:
