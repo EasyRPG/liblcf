@@ -338,8 +338,14 @@ lcf2xml_CPPFLAGS = $(liblcf_la_CPPFLAGS)
 lcf2xml_CXXFLAGS = $(liblcf_la_CXXFLAGS)
 lcf2xml_LDADD = liblcf.la
 
+lcfstrings_SOURCES = tools/lcfstrings.cpp
+lcfstrings_CPPFLAGS = $(liblcf_la_CPPFLAGS)
+lcfstrings_CXXFLAGS = $(liblcf_la_CXXFLAGS)
+lcfstrings_LDADD = liblcf.la
+
 tools =
 if ENABLE_TOOLS
+tools += lcfstrings
 if SUPPORT_XML
 tools += lcf2xml
 endif
