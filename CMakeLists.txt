@@ -6,12 +6,25 @@ endif()
 
 project(liblcf VERSION 0.6.2 LANGUAGES CXX)
 
+# Deprecation handling. Remove these lines one release later.
+SET(new_params "LIBLCF_WITH_ICU;LIBLCF_WITH_XML;LIBLCF_UPDATE_MIMEDB;LIBLCF_ENABLE_TOOLS;LIBLCF_ENABLE_BENCHMARKS")
+SET(old_params "DISABLE_ICU;DISABLE_XML;DISABLE_UPDATE_MIMEDB;DISABLE_TOOLS;DISABLE_BENCHMARKS")
+
+foreach(x IN LISTS old_params)
+	if(DEFINED ${x})
+		list(FIND old_params ${x} index)
+		list(GET new_params ${index} new_value)
+		message(FATAL_ERROR "${x} was renamed to ${new_value} and the logic inverted.")
+	endif()
+endforeach()
+
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
-option(DISABLE_ICU "Disable ICU encoding detection (fallback to iconv, not recommended, default: OFF)" OFF)
-option(DISABLE_XML "Disable XML reading support (expat, default: OFF)" OFF)
-option(DISABLE_UPDATE_MIMEDB "Do not run update-mime-database after install (default: ON)" OFF)
-option(DISABLE_TOOLS "Do not build and install the tools (default: OFF)" OFF)
-option(DISABLE_BENCHMARKS "Do not build the benchmarks (default: ON)" ON)
+option(LIBLCF_WITH_ICU "ICU encoding detection (when OFF fallback to iconv, not recommended, default: ON)" ON)
+option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
+option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
+option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ON)
+option(LIBLCF_ENABLE_TESTS "Whetner to build the unit tests (default: ON)" ON)
+option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)" OFF)
 
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
@@ -339,19 +352,19 @@ set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
 set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # icu or fallback to iconv
-if(DISABLE_ICU)
-	find_package(Iconv REQUIRED)
-	target_link_libraries(lcf Iconv::Iconv)
-else()
+if(LIBLCF_WITH_ICU)
 	find_package(ICU COMPONENTS i18n uc data REQUIRED)
 	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
 	set(LCF_SUPPORT_ICU "1")
+else()
+	find_package(Iconv REQUIRED)
+	target_link_libraries(lcf Iconv::Iconv)
 endif()
 
 # expat
-if(NOT DISABLE_XML)
-	find_package(expat)
+if(LIBLCF_WITH_XML)
+	find_package(expat CONFIG)
 	if(expat_FOUND)
 		target_link_libraries(lcf expat::expat)
 	else()
@@ -364,7 +377,7 @@ if(NOT DISABLE_XML)
 endif()
 
 # mime types
-if(NOT DISABLE_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
+if(LIBLCF_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 	find_program(UPDATE_MIME_DATABASE update-mime-database)
 endif()
 
@@ -430,7 +443,7 @@ install(
 	FILES ${CMAKE_CURRENT_SOURCE_DIR}/mime/${PROJECT_NAME}.xml
 	DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
 )
-if(NOT DISABLE_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
+if(LIBLCF_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
 	install(CODE
 		"execute_process(COMMAND ${UPDATE_MIME_DATABASE}
 			\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/mime)"
@@ -438,19 +451,21 @@ if(NOT DISABLE_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
 endif()
 
 # tests
-file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
-add_executable(test_runner_lcf EXCLUDE_FROM_ALL ${TEST_FILES})
-set_target_properties(test_runner_lcf PROPERTIES OUTPUT_NAME "test_runner")
-target_link_libraries(test_runner_lcf lcf)
-add_custom_target(check_lcf COMMAND test_runner_lcf)
-if(NOT TARGET check)
-	add_custom_target(check)
+if(LIBLCF_ENABLE_TESTS)
+	file(GLOB TEST_FILES ${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp)
+	add_executable(test_runner_lcf EXCLUDE_FROM_ALL ${TEST_FILES})
+	set_target_properties(test_runner_lcf PROPERTIES OUTPUT_NAME "test_runner")
+	target_link_libraries(test_runner_lcf lcf)
+	add_custom_target(check_lcf COMMAND test_runner_lcf)
+	if(NOT TARGET check)
+		add_custom_target(check)
+	endif()
+	add_dependencies(check_lcf test_runner_lcf)
+	add_dependencies(check check_lcf)
 endif()
-add_dependencies(check_lcf test_runner_lcf)
-add_dependencies(check check_lcf)
 
 # benchmarks
-if(NOT DISABLE_BENCHMARKS)
+if(LIBLCF_ENABLE_BENCHMARKS)
 	file(GLOB BENCH_FILES ${CMAKE_CURRENT_SOURCE_DIR}/bench/*.cpp)
 	foreach(i ${BENCH_FILES})
 		get_filename_component(name "${i}" NAME_WE)
@@ -460,11 +475,11 @@ if(NOT DISABLE_BENCHMARKS)
 endif()
 
 # tools
-if(NOT DISABLE_TOOLS)
+if(LIBLCF_ENABLE_TOOLS)
 	add_custom_target(tools)
 	add_dependencies(tools lcf)
 	list(APPEND TOOLS lcfstrings)
-	if(NOT DISABLE_XML)
+	if(LIBLCF_WITH_XML)
 		list(APPEND TOOLS lcf2xml)
 	endif()
 	foreach(tool ${TOOLS})
