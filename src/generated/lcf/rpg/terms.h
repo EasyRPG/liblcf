@@ -28,6 +28,7 @@ namespace rpg {
 		// Sentinel name used to denote that the default hardcoded term should be used.
 		static constexpr const char* kDefaultTerm = "default_term";
 
+		static std::string TermOrDefault(const DBString& db_term, StringView default_term);
 		DBString encounter;
 		DBString special_combat;
 		DBString escape_success;

@@ -321,8 +321,22 @@ def get_flags(*filenames):
     return merge_dicts(results)
 
 def get_functions(*filenames):
-    results = list(map(lambda x: process_file(x, namedtuple("Function", "method headers")), filenames))
-    return merge_dicts(results)
+    Function = namedtuple("Function", "method static headers")
+
+    results = list(map(lambda x: process_file(x, Function), filenames))
+
+    processed_result = OrderedDict()
+
+    for k, field in merge_dicts(results).items():
+        processed_result[k] = []
+        for elem in field:
+            elem = Function(
+                elem.method,
+                elem.static == 't',
+                elem.headers)
+            processed_result[k].append(elem)
+
+    return processed_result
 
 def get_constants(filename='constants.csv'):
     return process_file(filename, namedtuple("Constant", "name type value comment"))
