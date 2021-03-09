@@ -56,7 +56,7 @@ namespace rpg {
 	{%- endfor %}
 	{% endif %}
 	{%- for func in functions[struct_name] %}
-		{{ func.method }};
+		{%+ if func.static %}static {% endif %}{{ func.method }};
 	{%- endfor %}
 	{%- if has_id %}
 		int ID = 0;

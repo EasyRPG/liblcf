@@ -1141,7 +1141,43 @@ namespace LDB_Reader {
 			/** String */
 			yes = 0x98,
 			/** String */
-			no = 0x99
+			no = 0x99,
+			/** Item number separator */
+			easyrpg_item_number_separator = 0xC8,
+			/** Skill cost separator */
+			easyrpg_skill_cost_separator = 0xC9,
+			/** Equipment window arrow */
+			easyrpg_equipment_arrow = 0xCA,
+			/** Status scene Name */
+			easyrpg_status_scene_name = 0xCB,
+			/** Status scene Class */
+			easyrpg_status_scene_class = 0xCC,
+			/** Status scene Title */
+			easyrpg_status_scene_title = 0xCD,
+			/** Status scene Condition */
+			easyrpg_status_scene_condition = 0xCE,
+			/** Status scene Front */
+			easyrpg_status_scene_front = 0xCF,
+			/** Status scene Back */
+			easyrpg_status_scene_back = 0xD0,
+			/** Order scene Confirm */
+			easyrpg_order_scene_confirm = 0xD1,
+			/** Order scene Redo */
+			easyrpg_order_scene_redo = 0xD2,
+			/** RPG Maker 2003 battle monster Double attack notification */
+			easyrpg_battle2k3_double_attack = 0xD3,
+			/** RPG Maker 2003 battle monster Defend notification */
+			easyrpg_battle2k3_defend = 0xD4,
+			/** RPG Maker 2003 battle monster Observe notification */
+			easyrpg_battle2k3_observe = 0xD5,
+			/** RPG Maker 2003 battle monster Charge notification */
+			easyrpg_battle2k3_charge = 0xD6,
+			/** RPG Maker 2003 battle monster Self-Destruct notification */
+			easyrpg_battle2k3_selfdestruct = 0xD7,
+			/** RPG Maker 2003 battle monster Escape notification */
+			easyrpg_battle2k3_escape = 0xD8,
+			/** Message for back and pincer attack */
+			easyrpg_battle2k3_special_combat_back = 0xD9
 		};
 	};
 	struct ChunkMusic {

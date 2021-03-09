@@ -1,3 +1,4 @@
-Structure,Method,Headers
-Actor,void Setup(bool is2k3),
-Parameters,void Setup(int final_level),
+Structure,Method,Static,Headers
+Actor,void Setup(bool is2k3),f,
+Parameters,void Setup(int final_level),f,
+Terms,"std::string TermOrDefault(const DBString& db_term, StringView default_term)",t,
