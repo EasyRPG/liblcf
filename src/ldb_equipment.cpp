@@ -33,7 +33,7 @@ void RawStruct<rpg::Equipment>::ReadLcf(rpg::Equipment& ref, LcfReader& stream, 
 		chunk_info.ID = 0x33;
 		chunk_info.length = length;
 
-		stream.Skip(chunk_info);
+		stream.Skip(chunk_info, "Equipment");
 
 		return;
 	}
