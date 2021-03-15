@@ -41,7 +41,9 @@ set(LCF_SOURCES
 	src/lmt_treemap.cpp
 	src/lmu_movecommand.cpp
 	src/lmu_reader.cpp
+	src/log.h
 	src/lsd_reader.cpp
+	src/log_handler.cpp
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
 	src/reader_struct.h
@@ -208,6 +210,7 @@ set(LCF_HEADERS
 	src/lcf/lmt/reader.h
 	src/lcf/lmu/reader.h
 	src/lcf/lsd/reader.h
+	src/lcf/log_handler.h
 	src/lcf/reader_lcf.h
 	src/lcf/reader_util.h
 	src/lcf/reader_xml.h

@@ -13,6 +13,7 @@
 #include <limits>
 
 #include "lcf/reader_lcf.h"
+#include "log.h"
 
 namespace lcf {
 // Statics
@@ -276,7 +277,7 @@ int LcfReader::Peek() {
 }
 
 void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info, const char* where) {
-	fprintf(stderr, "Skipped Chunk %02X (%" PRIu32 " byte) in lcf at %" PRIX32 " (%s)\n",
+	Log::Debug("Skipped Chunk %02X (%" PRIu32 " byte) in lcf at %" PRIX32 " (%s)\n",
 			chunk_info.ID, chunk_info.length, Tell(), where);
 
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
