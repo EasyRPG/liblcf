@@ -161,7 +161,15 @@ namespace LSD_Reader {
 			/**  */
 			save_slot = 0x84,
 			/** ATB mode of RPG 2003 battle system. */
-			atb_mode = 0x8C
+			atb_mode = 0x8C,
+			/** FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2) */
+			maniac_frameskip = 0x88,
+			/** FatalMix Picture Limit */
+			maniac_picture_limit = 0x89,
+			/** Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1) */
+			maniac_options = 0x8A,
+			/** JoyLeft, JoyRight, JoyUp, JoyDown, Joy1, ... Joy12 */
+			maniac_joypad_bindings = 0x8B
 		};
 	};
 	struct ChunkSaveScreen {
@@ -655,7 +663,17 @@ namespace LSD_Reader {
 			/** size of the 0x16 vector - indention level */
 			subcommand_path_size = 0x15,
 			/** byte For each indention level in the script; an ID is stored there which corresponds to the branch to take in case a command allows multiple branches. For example; the Show Choice command would write the result of the choice (for example 2 for the third item) into the current indention level's entry in this array; and the script processor would later look for the Case subcommand with the corresponding ID; if any; and jump to that one (if none found; it would jump to the End Case subcommand). Once the jump is executed; the ID is set to 255 (probably a protection mechanism even though there should normally not be multiple subcommands with the same ID). */
-			subcommand_path = 0x16
+			subcommand_path = 0x16,
+			/** Event info bitfield */
+			maniac_event_info = 0x0E,
+			/** Event ID */
+			maniac_event_id = 0x0F,
+			/** Page ID when it is a map event */
+			maniac_event_page_id = 0x10,
+			/** Amount of loop info groups */
+			maniac_loop_info_size = 0x11,
+			/** One group of (Current loop count, end loop value) for each identation */
+			maniac_loop_info = 0x12
 		};
 	};
 	struct ChunkSaveEventExecState {

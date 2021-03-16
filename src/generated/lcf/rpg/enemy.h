@@ -50,6 +50,7 @@ namespace rpg {
 		std::vector<uint8_t> state_ranks;
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<EnemyAction> actions;
+		int32_t maniac_unarmed_animation = 1;
 	};
 
 	inline bool operator==(const Enemy& l, const Enemy& r) {
@@ -73,7 +74,8 @@ namespace rpg {
 		&& l.levitate == r.levitate
 		&& l.state_ranks == r.state_ranks
 		&& l.attribute_ranks == r.attribute_ranks
-		&& l.actions == r.actions;
+		&& l.actions == r.actions
+		&& l.maniac_unarmed_animation == r.maniac_unarmed_animation;
 	}
 
 	inline bool operator!=(const Enemy& l, const Enemy& r) {

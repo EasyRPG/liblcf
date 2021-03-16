@@ -123,6 +123,19 @@ namespace rpg {
 			MoveSpeed_double = 5,
 			MoveSpeed_fourfold = 6
 		};
+		enum ManiacEventInfo {
+			ManiacEventInfo_action = 0,
+			ManiacEventInfo_touched = 1,
+			ManiacEventInfo_collision = 2,
+			ManiacEventInfo_auto_start = 3,
+			ManiacEventInfo_parallel = 4,
+			ManiacEventInfo_called = 5,
+			ManiacEventInfo_battle_start = 6,
+			ManiacEventInfo_battle_parallel = 7,
+			ManiacEventInfo_map_event = 16,
+			ManiacEventInfo_common_event = 32,
+			ManiacEventInfo_battle_event = 64
+		};
 
 		int ID = 0;
 		EventPageCondition condition;
@@ -166,6 +179,10 @@ namespace rpg {
 		return os;
 	}
 	inline std::ostream& operator<<(std::ostream& os, EventPage::MoveSpeed code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, EventPage::ManiacEventInfo code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}

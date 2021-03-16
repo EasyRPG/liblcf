@@ -67,6 +67,41 @@ static TypedField<rpg::SaveEventExecFrame, std::vector<uint8_t>> static_subcomma
 	1,
 	0
 );
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_maniac_event_info(
+	&rpg::SaveEventExecFrame::maniac_event_info,
+	LSD_Reader::ChunkSaveEventExecFrame::maniac_event_info,
+	"maniac_event_info",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_maniac_event_id(
+	&rpg::SaveEventExecFrame::maniac_event_id,
+	LSD_Reader::ChunkSaveEventExecFrame::maniac_event_id,
+	"maniac_event_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_maniac_event_page_id(
+	&rpg::SaveEventExecFrame::maniac_event_page_id,
+	LSD_Reader::ChunkSaveEventExecFrame::maniac_event_page_id,
+	"maniac_event_page_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecFrame, int32_t> static_maniac_loop_info_size(
+	&rpg::SaveEventExecFrame::maniac_loop_info_size,
+	LSD_Reader::ChunkSaveEventExecFrame::maniac_loop_info_size,
+	"maniac_loop_info_size",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecFrame, std::vector<int32_t>> static_maniac_loop_info(
+	&rpg::SaveEventExecFrame::maniac_loop_info,
+	LSD_Reader::ChunkSaveEventExecFrame::maniac_loop_info,
+	"maniac_loop_info",
+	0,
+	0
+);
 
 
 template <>
@@ -78,6 +113,11 @@ Field<rpg::SaveEventExecFrame> const* Struct<rpg::SaveEventExecFrame>::fields[] 
 	&static_triggered_by_decision_key,
 	&static_size_subcommand_path,
 	&static_subcommand_path,
+	&static_maniac_event_info,
+	&static_maniac_event_id,
+	&static_maniac_event_page_id,
+	&static_maniac_loop_info_size,
+	&static_maniac_loop_info,
 	NULL
 };
 
