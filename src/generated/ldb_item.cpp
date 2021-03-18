@@ -408,6 +408,13 @@ static TypedField<rpg::Item, int32_t> static_ranged_target(
 	0,
 	0
 );
+static TypedField<rpg::Item, DBString> static_easyrpg_using_message(
+	&rpg::Item::easyrpg_using_message,
+	LDB_Reader::ChunkItem::easyrpg_using_message,
+	"easyrpg_using_message",
+	0,
+	0
+);
 
 
 template <>
@@ -468,6 +475,7 @@ Field<rpg::Item> const* Struct<rpg::Item>::fields[] = {
 	&static_class_set,
 	&static_ranged_trajectory,
 	&static_ranged_target,
+	&static_easyrpg_using_message,
 	NULL
 };
 

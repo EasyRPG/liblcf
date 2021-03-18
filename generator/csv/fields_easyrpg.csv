@@ -11,6 +11,8 @@ SaveSystem,maniac_frameskip,,Int32,0x88,0,0,0,"FatalMix Frameskip (0=None, 1=1/5
 SaveSystem,maniac_picture_limit,,Int32,0x89,0,0,0,FatalMix Picture Limit
 SaveSystem,maniac_options,,Vector<UInt8>,0x8A,,0,0,"Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1)"
 SaveSystem,maniac_joypad_bindings,,Vector<UInt8>,0x8B,,0,0,"JoyLeft, JoyRight, JoyUp, JoyDown, Joy1, ... Joy12"
+Skill,easyrpg_battle2k3_message,f,DBString,0xC9,DBString(kDefaultMessage),0,1,RPG Maker 2003 battle skill start notification
+Item,easyrpg_using_message,f,DBString,0xC9,DBString(kDefaultMessage),0,0,Item usage message in battle
 Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
 Terms,easyrpg_skill_cost_separator,f,DBString,0xC9,DBString(kDefaultTerm),0,0,Skill cost separator
 Terms,easyrpg_equipment_arrow,f,DBString,0xCA,DBString(kDefaultTerm),0,0,Equipment window arrow
@@ -29,3 +31,5 @@ Terms,easyrpg_battle2k3_charge,f,DBString,0xD6,DBString(kDefaultTerm),0,1,RPG Ma
 Terms,easyrpg_battle2k3_selfdestruct,f,DBString,0xD7,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Self-Destruct notification
 Terms,easyrpg_battle2k3_escape,f,DBString,0xD8,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle monster Escape notification
 Terms,easyrpg_battle2k3_special_combat_back,f,DBString,0xD9,,0,1,Message for back and pincer attack
+Terms,easyrpg_battle2k3_skill,f,DBString,0xDA,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general skill start notification
+Terms,easyrpg_battle2k3_item,f,DBString,0xDB,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general item start notification

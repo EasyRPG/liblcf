@@ -12,6 +12,7 @@
 // Headers
 #include "lcf/rpg/item.h"
 
+constexpr const char* lcf::rpg::Item::kDefaultMessage;
 namespace lcf {
 namespace rpg {
 
@@ -89,6 +90,7 @@ std::ostream& operator<<(std::ostream& os, const Item& obj) {
 	os << "]";
 	os << ", ranged_trajectory="<< obj.ranged_trajectory;
 	os << ", ranged_target="<< obj.ranged_target;
+	os << ", easyrpg_using_message="<< obj.easyrpg_using_message;
 	os << "}";
 	return os;
 }

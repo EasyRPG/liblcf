@@ -174,6 +174,8 @@ namespace rpg {
 		DBString easyrpg_battle2k3_selfdestruct = DBString(kDefaultTerm);
 		DBString easyrpg_battle2k3_escape = DBString(kDefaultTerm);
 		DBString easyrpg_battle2k3_special_combat_back;
+		DBString easyrpg_battle2k3_skill = DBString(kDefaultTerm);
+		DBString easyrpg_battle2k3_item = DBString(kDefaultTerm);
 	};
 
 	inline bool operator==(const Terms& l, const Terms& r) {
@@ -321,7 +323,9 @@ namespace rpg {
 		&& l.easyrpg_battle2k3_charge == r.easyrpg_battle2k3_charge
 		&& l.easyrpg_battle2k3_selfdestruct == r.easyrpg_battle2k3_selfdestruct
 		&& l.easyrpg_battle2k3_escape == r.easyrpg_battle2k3_escape
-		&& l.easyrpg_battle2k3_special_combat_back == r.easyrpg_battle2k3_special_combat_back;
+		&& l.easyrpg_battle2k3_special_combat_back == r.easyrpg_battle2k3_special_combat_back
+		&& l.easyrpg_battle2k3_skill == r.easyrpg_battle2k3_skill
+		&& l.easyrpg_battle2k3_item == r.easyrpg_battle2k3_item;
 	}
 
 	inline bool operator!=(const Terms& l, const Terms& r) {
@@ -622,6 +626,10 @@ namespace rpg {
 		f(obj.easyrpg_battle2k3_escape, ctx144);
 		const auto ctx145 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_special_combat_back", -1, &obj, parent_ctx };
 		f(obj.easyrpg_battle2k3_special_combat_back, ctx145);
+		const auto ctx146 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_skill", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_skill, ctx146);
+		const auto ctx147 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_item", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_item, ctx147);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

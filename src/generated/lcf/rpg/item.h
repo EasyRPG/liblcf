@@ -30,6 +30,9 @@ namespace lcf {
 namespace rpg {
 	class Item {
 	public:
+		// Sentinel name used to denote that the default item start message should be used.
+		static constexpr const char* kDefaultMessage = "default_message";
+
 		enum Type {
 			Type_normal = 0,
 			Type_weapon = 1,
@@ -130,6 +133,7 @@ namespace rpg {
 		DBBitArray class_set;
 		int32_t ranged_trajectory = 0;
 		int32_t ranged_target = 0;
+		DBString easyrpg_using_message = DBString(kDefaultMessage);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Item::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -196,7 +200,8 @@ namespace rpg {
 		&& l.use_skill == r.use_skill
 		&& l.class_set == r.class_set
 		&& l.ranged_trajectory == r.ranged_trajectory
-		&& l.ranged_target == r.ranged_target;
+		&& l.ranged_target == r.ranged_target
+		&& l.easyrpg_using_message == r.easyrpg_using_message;
 	}
 
 	inline bool operator!=(const Item& l, const Item& r) {
@@ -211,6 +216,8 @@ namespace rpg {
 		f(obj.name, ctx1);
 		const auto ctx2 = Context<Item, ParentCtx>{ "description", -1, &obj, parent_ctx };
 		f(obj.description, ctx2);
+		const auto ctx53 = Context<Item, ParentCtx>{ "easyrpg_using_message", -1, &obj, parent_ctx };
+		f(obj.easyrpg_using_message, ctx53);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

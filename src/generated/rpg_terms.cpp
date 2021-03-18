@@ -163,6 +163,8 @@ std::ostream& operator<<(std::ostream& os, const Terms& obj) {
 	os << ", easyrpg_battle2k3_selfdestruct="<< obj.easyrpg_battle2k3_selfdestruct;
 	os << ", easyrpg_battle2k3_escape="<< obj.easyrpg_battle2k3_escape;
 	os << ", easyrpg_battle2k3_special_combat_back="<< obj.easyrpg_battle2k3_special_combat_back;
+	os << ", easyrpg_battle2k3_skill="<< obj.easyrpg_battle2k3_skill;
+	os << ", easyrpg_battle2k3_item="<< obj.easyrpg_battle2k3_item;
 	os << "}";
 	return os;
 }
