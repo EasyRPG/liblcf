@@ -233,7 +233,13 @@ namespace LDB_Reader {
 			/** Integer */
 			death_teleport_y = 0x1C,
 			/** Integer */
-			death_teleport_face = 0x1D
+			death_teleport_face = 0x1D,
+			/** Default ATB mode of RPG 2003 battle system */
+			easyrpg_default_atb_mode = 0xC8,
+			/** If the row command should be enabled in RPG Maker 2003 battles */
+			easyrpg_enable_battle_row_command = 0xC9,
+			/** If alternative and gauge style battles should behave like traditional style battles */
+			easyrpg_sequential_order = 0xCA
 		};
 	};
 	struct ChunkBattlerAnimation {
@@ -443,7 +449,17 @@ namespace LDB_Reader {
 			/** ? - RPG2003 */
 			battler_animation_data = 0x32,
 			/** RPG Maker 2003 battle skill start notification */
-			easyrpg_battle2k3_message = 0xC9
+			easyrpg_battle2k3_message = 0xC9,
+			/** If the skill bypasses reflect states. Useful for physical skills and skills which are meant to remove positive states from enemies */
+			easyrpg_ignore_reflect = 0xCA,
+			/** Separate accuracy value for state inflictions */
+			easyrpg_state_hit = 0xCB,
+			/** Separate accuracy value for attribute shifts */
+			easyrpg_attribute_hit = 0xCC,
+			/** If the skill should bypass skill restrictions by states */
+			easyrpg_ignore_restrict_skill = 0xCD,
+			/** If the skill should bypass magic restrictions by states */
+			easyrpg_ignore_restrict_magic = 0xCE
 		};
 	};
 	struct ChunkItem {
@@ -561,7 +577,9 @@ namespace LDB_Reader {
 			/** Integer */
 			ranged_target = 0x4C,
 			/** Item usage message in battle */
-			easyrpg_using_message = 0xC9
+			easyrpg_using_message = 0xC9,
+			/** How many the player can carry of this item */
+			easyrpg_max_count = 0xCA
 		};
 	};
 	struct ChunkEnemyAction {
@@ -1337,7 +1355,39 @@ namespace LDB_Reader {
 			/** Flag - RPG2003 */
 			invert_animations = 0x65,
 			/** When false the title is skipped and the game starts directly. In TestPlay mode skips directly to the Load scene. Added in RPG Maker 2003 v1.11 */
-			show_title = 0x6F
+			show_title = 0x6F,
+			/** Which EXP formula to use: 0=Default 1=2k 2=2k3 */
+			easyrpg_alternative_exp = 0xC8,
+			/** If auto battling should be allowed */
+			easyrpg_enable_auto_battle = 0xC9,
+			/** Absolute maximum HP value actors can have */
+			easyrpg_max_actor_hp = 0xCA,
+			/** Absolute maximum HP value enemies can have */
+			easyrpg_max_enemy_hp = 0xCB,
+			/** How much damage can an attack inflict at most */
+			easyrpg_max_damage = 0xCC,
+			/** Absolute maximum EXP value actors can have */
+			easyrpg_max_exp = 0xCD,
+			/** Absolute maximum level actors can reach */
+			easyrpg_max_level = 0xCE,
+			/** If attack/defense/spirit/agility can be absorbed */
+			easyrpg_enable_stat_absorbing = 0xCF,
+			/** How many savegame slots should be shown in the savegame scene */
+			easyrpg_max_savefiles = 0xD0,
+			/** How many items of a kind the player can carry. Can be overridden per item with the easyrpg_max_count setting of an item */
+			easyrpg_max_item_count = 0xD1,
+			/** Minimum value a variable can have */
+			easyrpg_variable_min_value = 0xD2,
+			/** Maximum value a variable can have */
+			easyrpg_variable_max_value = 0xD3,
+			/** Absolute maximum SP value actors can have */
+			easyrpg_max_actor_sp = 0xD4,
+			/** Absolute maximum SP value enemies can have */
+			easyrpg_max_enemy_sp = 0xD5,
+			/** Absolute maximum value a base stat can have */
+			easyrpg_max_stat_base_value = 0xD6,
+			/** Absolute maximum value a battle stat can have */
+			easyrpg_max_stat_battle_value = 0xD7
 		};
 	};
 	struct ChunkSwitch {

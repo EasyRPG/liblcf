@@ -415,6 +415,13 @@ static TypedField<rpg::Item, DBString> static_easyrpg_using_message(
 	0,
 	0
 );
+static TypedField<rpg::Item, int32_t> static_easyrpg_max_count(
+	&rpg::Item::easyrpg_max_count,
+	LDB_Reader::ChunkItem::easyrpg_max_count,
+	"easyrpg_max_count",
+	0,
+	0
+);
 
 
 template <>
@@ -476,6 +483,7 @@ Field<rpg::Item> const* Struct<rpg::Item>::fields[] = {
 	&static_ranged_trajectory,
 	&static_ranged_target,
 	&static_easyrpg_using_message,
+	&static_easyrpg_max_count,
 	NULL
 };
 

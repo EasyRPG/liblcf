@@ -100,6 +100,9 @@ namespace rpg {
 		int32_t death_teleport_x = 0;
 		int32_t death_teleport_y = 0;
 		int32_t death_teleport_face = 0;
+		int32_t easyrpg_default_atb_mode = 0;
+		bool easyrpg_enable_battle_row_command = true;
+		bool easyrpg_sequential_order = false;
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Placement code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -141,7 +144,10 @@ namespace rpg {
 		&& l.death_teleport_id == r.death_teleport_id
 		&& l.death_teleport_x == r.death_teleport_x
 		&& l.death_teleport_y == r.death_teleport_y
-		&& l.death_teleport_face == r.death_teleport_face;
+		&& l.death_teleport_face == r.death_teleport_face
+		&& l.easyrpg_default_atb_mode == r.easyrpg_default_atb_mode
+		&& l.easyrpg_enable_battle_row_command == r.easyrpg_enable_battle_row_command
+		&& l.easyrpg_sequential_order == r.easyrpg_sequential_order;
 	}
 
 	inline bool operator!=(const BattleCommands& l, const BattleCommands& r) {

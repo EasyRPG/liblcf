@@ -84,6 +84,22 @@ std::ostream& operator<<(std::ostream& os, const System& obj) {
 	os << ", frame_name="<< obj.frame_name;
 	os << ", invert_animations="<< obj.invert_animations;
 	os << ", show_title="<< obj.show_title;
+	os << ", easyrpg_alternative_exp="<< obj.easyrpg_alternative_exp;
+	os << ", easyrpg_enable_auto_battle="<< obj.easyrpg_enable_auto_battle;
+	os << ", easyrpg_max_actor_hp="<< obj.easyrpg_max_actor_hp;
+	os << ", easyrpg_max_enemy_hp="<< obj.easyrpg_max_enemy_hp;
+	os << ", easyrpg_max_damage="<< obj.easyrpg_max_damage;
+	os << ", easyrpg_max_exp="<< obj.easyrpg_max_exp;
+	os << ", easyrpg_max_level="<< obj.easyrpg_max_level;
+	os << ", easyrpg_enable_stat_absorbing="<< obj.easyrpg_enable_stat_absorbing;
+	os << ", easyrpg_max_savefiles="<< obj.easyrpg_max_savefiles;
+	os << ", easyrpg_max_item_count="<< obj.easyrpg_max_item_count;
+	os << ", easyrpg_variable_min_value="<< obj.easyrpg_variable_min_value;
+	os << ", easyrpg_variable_max_value="<< obj.easyrpg_variable_max_value;
+	os << ", easyrpg_max_actor_sp="<< obj.easyrpg_max_actor_sp;
+	os << ", easyrpg_max_enemy_sp="<< obj.easyrpg_max_enemy_sp;
+	os << ", easyrpg_max_stat_base_value="<< obj.easyrpg_max_stat_base_value;
+	os << ", easyrpg_max_stat_battle_value="<< obj.easyrpg_max_stat_battle_value;
 	os << "}";
 	return os;
 }

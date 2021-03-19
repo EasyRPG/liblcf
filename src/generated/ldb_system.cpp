@@ -417,6 +417,118 @@ static TypedField<rpg::System, bool> static_show_title(
 	0,
 	1
 );
+static TypedField<rpg::System, int32_t> static_easyrpg_alternative_exp(
+	&rpg::System::easyrpg_alternative_exp,
+	LDB_Reader::ChunkSystem::easyrpg_alternative_exp,
+	"easyrpg_alternative_exp",
+	0,
+	0
+);
+static TypedField<rpg::System, bool> static_easyrpg_enable_auto_battle(
+	&rpg::System::easyrpg_enable_auto_battle,
+	LDB_Reader::ChunkSystem::easyrpg_enable_auto_battle,
+	"easyrpg_enable_auto_battle",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_actor_hp(
+	&rpg::System::easyrpg_max_actor_hp,
+	LDB_Reader::ChunkSystem::easyrpg_max_actor_hp,
+	"easyrpg_max_actor_hp",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_enemy_hp(
+	&rpg::System::easyrpg_max_enemy_hp,
+	LDB_Reader::ChunkSystem::easyrpg_max_enemy_hp,
+	"easyrpg_max_enemy_hp",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_damage(
+	&rpg::System::easyrpg_max_damage,
+	LDB_Reader::ChunkSystem::easyrpg_max_damage,
+	"easyrpg_max_damage",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_exp(
+	&rpg::System::easyrpg_max_exp,
+	LDB_Reader::ChunkSystem::easyrpg_max_exp,
+	"easyrpg_max_exp",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_level(
+	&rpg::System::easyrpg_max_level,
+	LDB_Reader::ChunkSystem::easyrpg_max_level,
+	"easyrpg_max_level",
+	0,
+	0
+);
+static TypedField<rpg::System, bool> static_easyrpg_enable_stat_absorbing(
+	&rpg::System::easyrpg_enable_stat_absorbing,
+	LDB_Reader::ChunkSystem::easyrpg_enable_stat_absorbing,
+	"easyrpg_enable_stat_absorbing",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_savefiles(
+	&rpg::System::easyrpg_max_savefiles,
+	LDB_Reader::ChunkSystem::easyrpg_max_savefiles,
+	"easyrpg_max_savefiles",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_item_count(
+	&rpg::System::easyrpg_max_item_count,
+	LDB_Reader::ChunkSystem::easyrpg_max_item_count,
+	"easyrpg_max_item_count",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_variable_min_value(
+	&rpg::System::easyrpg_variable_min_value,
+	LDB_Reader::ChunkSystem::easyrpg_variable_min_value,
+	"easyrpg_variable_min_value",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_variable_max_value(
+	&rpg::System::easyrpg_variable_max_value,
+	LDB_Reader::ChunkSystem::easyrpg_variable_max_value,
+	"easyrpg_variable_max_value",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_actor_sp(
+	&rpg::System::easyrpg_max_actor_sp,
+	LDB_Reader::ChunkSystem::easyrpg_max_actor_sp,
+	"easyrpg_max_actor_sp",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_enemy_sp(
+	&rpg::System::easyrpg_max_enemy_sp,
+	LDB_Reader::ChunkSystem::easyrpg_max_enemy_sp,
+	"easyrpg_max_enemy_sp",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_stat_base_value(
+	&rpg::System::easyrpg_max_stat_base_value,
+	LDB_Reader::ChunkSystem::easyrpg_max_stat_base_value,
+	"easyrpg_max_stat_base_value",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_max_stat_battle_value(
+	&rpg::System::easyrpg_max_stat_battle_value,
+	LDB_Reader::ChunkSystem::easyrpg_max_stat_battle_value,
+	"easyrpg_max_stat_battle_value",
+	0,
+	0
+);
 
 
 template <>
@@ -478,6 +590,22 @@ Field<rpg::System> const* Struct<rpg::System>::fields[] = {
 	&static_frame_name,
 	&static_invert_animations,
 	&static_show_title,
+	&static_easyrpg_alternative_exp,
+	&static_easyrpg_enable_auto_battle,
+	&static_easyrpg_max_actor_hp,
+	&static_easyrpg_max_enemy_hp,
+	&static_easyrpg_max_damage,
+	&static_easyrpg_max_exp,
+	&static_easyrpg_max_level,
+	&static_easyrpg_enable_stat_absorbing,
+	&static_easyrpg_max_savefiles,
+	&static_easyrpg_max_item_count,
+	&static_easyrpg_variable_min_value,
+	&static_easyrpg_variable_max_value,
+	&static_easyrpg_max_actor_sp,
+	&static_easyrpg_max_enemy_sp,
+	&static_easyrpg_max_stat_base_value,
+	&static_easyrpg_max_stat_battle_value,
 	NULL
 };
 

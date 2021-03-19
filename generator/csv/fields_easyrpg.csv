@@ -11,8 +11,17 @@ SaveSystem,maniac_frameskip,,Int32,0x88,0,0,0,"FatalMix Frameskip (0=None, 1=1/5
 SaveSystem,maniac_picture_limit,,Int32,0x89,0,0,0,FatalMix Picture Limit
 SaveSystem,maniac_options,,Vector<UInt8>,0x8A,,0,0,"Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1)"
 SaveSystem,maniac_joypad_bindings,,Vector<UInt8>,0x8B,,0,0,"JoyLeft, JoyRight, JoyUp, JoyDown, Joy1, ... Joy12"
+BattleCommands,easyrpg_default_atb_mode,f,Enum<SaveSystem_AtbMode>,0xC8,0,0,1,Default ATB mode of RPG 2003 battle system
+BattleCommands,easyrpg_enable_battle_row_command,f,Boolean,0xC9,True,0,1,If the row command should be enabled in RPG Maker 2003 battles
+BattleCommands,easyrpg_sequential_order,f,Boolean,0xCA,False,0,1,If alternative and gauge style battles should behave like traditional style battles
 Skill,easyrpg_battle2k3_message,f,DBString,0xC9,DBString(kDefaultMessage),0,1,RPG Maker 2003 battle skill start notification
+Skill,easyrpg_ignore_reflect,f,Boolean,0xCA,False,0,1,If the skill bypasses reflect states. Useful for physical skills and skills which are meant to remove positive states from enemies
+Skill,easyrpg_state_hit,f,Int32,0xCB,-1,0,0,Separate accuracy value for state inflictions
+Skill,easyrpg_attribute_hit,f,Int32,0xCC,-1,0,0,Separate accuracy value for attribute shifts
+Skill,easyrpg_ignore_restrict_skill,f,Boolean,0xCD,False,0,0,If the skill should bypass skill restrictions by states
+Skill,easyrpg_ignore_restrict_magic,f,Boolean,0xCE,False,0,0,If the skill should bypass magic restrictions by states
 Item,easyrpg_using_message,f,DBString,0xC9,DBString(kDefaultMessage),0,0,Item usage message in battle
+Item,easyrpg_max_count,f,Int32,0xCA,-1,0,0,How many the player can carry of this item
 Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
 Terms,easyrpg_skill_cost_separator,f,DBString,0xC9,DBString(kDefaultTerm),0,0,Skill cost separator
 Terms,easyrpg_equipment_arrow,f,DBString,0xCA,DBString(kDefaultTerm),0,0,Equipment window arrow
@@ -33,3 +42,19 @@ Terms,easyrpg_battle2k3_escape,f,DBString,0xD8,DBString(kDefaultTerm),0,1,RPG Ma
 Terms,easyrpg_battle2k3_special_combat_back,f,DBString,0xD9,,0,1,Message for back and pincer attack
 Terms,easyrpg_battle2k3_skill,f,DBString,0xDA,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general skill start notification
 Terms,easyrpg_battle2k3_item,f,DBString,0xDB,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general item start notification
+System,easyrpg_alternative_exp,f,Int32,0xC8,0,0,0,Which EXP formula to use: 0=Default 1=2k 2=2k3
+System,easyrpg_enable_auto_battle,f,Boolean,0xC9,True,0,0,If auto battling should be allowed
+System,easyrpg_max_actor_hp,f,Int32,0xCA,-1,0,0,Absolute maximum HP value actors can have
+System,easyrpg_max_enemy_hp,f,Int32,0xCB,-1,0,0,Absolute maximum HP value enemies can have
+System,easyrpg_max_damage,f,Int32,0xCC,-1,0,0,How much damage can an attack inflict at most
+System,easyrpg_max_exp,f,Int32,0xCD,-1,0,0,Absolute maximum EXP value actors can have
+System,easyrpg_max_level,f,Int32,0xCE,-1,0,0,Absolute maximum level actors can reach
+System,easyrpg_enable_stat_absorbing,f,Boolean,0xCF,False,0,0,If attack/defense/spirit/agility can be absorbed
+System,easyrpg_max_savefiles,f,Int32,0xD0,15,0,0,How many savegame slots should be shown in the savegame scene
+System,easyrpg_max_item_count,f,Int32,0xD1,-1,0,0,How many items of a kind the player can carry. Can be overridden per item with the easyrpg_max_count setting of an item
+System,easyrpg_variable_min_value,f,Int32,0xD2,0,0,0,Minimum value a variable can have
+System,easyrpg_variable_max_value,f,Int32,0xD3,0,0,0,Maximum value a variable can have
+System,easyrpg_max_actor_sp,f,Int32,0xD4,-1,0,0,Absolute maximum SP value actors can have
+System,easyrpg_max_enemy_sp,f,Int32,0xD5,-1,0,0,Absolute maximum SP value enemies can have
+System,easyrpg_max_stat_base_value,f,Int32,0xD6,-1,0,0,Absolute maximum value a base stat can have
+System,easyrpg_max_stat_battle_value,f,Int32,0xD7,-1,0,0,Absolute maximum value a battle stat can have

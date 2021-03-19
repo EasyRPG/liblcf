@@ -231,6 +231,22 @@ namespace rpg {
 		DBString frame_name;
 		bool invert_animations = false;
 		bool show_title = true;
+		int32_t easyrpg_alternative_exp = 0;
+		bool easyrpg_enable_auto_battle = true;
+		int32_t easyrpg_max_actor_hp = -1;
+		int32_t easyrpg_max_enemy_hp = -1;
+		int32_t easyrpg_max_damage = -1;
+		int32_t easyrpg_max_exp = -1;
+		int32_t easyrpg_max_level = -1;
+		bool easyrpg_enable_stat_absorbing = false;
+		int32_t easyrpg_max_savefiles = 15;
+		int32_t easyrpg_max_item_count = -1;
+		int32_t easyrpg_variable_min_value = 0;
+		int32_t easyrpg_variable_max_value = 0;
+		int32_t easyrpg_max_actor_sp = -1;
+		int32_t easyrpg_max_enemy_sp = -1;
+		int32_t easyrpg_max_stat_base_value = -1;
+		int32_t easyrpg_max_stat_battle_value = -1;
 	};
 	inline std::ostream& operator<<(std::ostream& os, System::FadeOut code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -316,7 +332,23 @@ namespace rpg {
 		&& l.show_frame == r.show_frame
 		&& l.frame_name == r.frame_name
 		&& l.invert_animations == r.invert_animations
-		&& l.show_title == r.show_title;
+		&& l.show_title == r.show_title
+		&& l.easyrpg_alternative_exp == r.easyrpg_alternative_exp
+		&& l.easyrpg_enable_auto_battle == r.easyrpg_enable_auto_battle
+		&& l.easyrpg_max_actor_hp == r.easyrpg_max_actor_hp
+		&& l.easyrpg_max_enemy_hp == r.easyrpg_max_enemy_hp
+		&& l.easyrpg_max_damage == r.easyrpg_max_damage
+		&& l.easyrpg_max_exp == r.easyrpg_max_exp
+		&& l.easyrpg_max_level == r.easyrpg_max_level
+		&& l.easyrpg_enable_stat_absorbing == r.easyrpg_enable_stat_absorbing
+		&& l.easyrpg_max_savefiles == r.easyrpg_max_savefiles
+		&& l.easyrpg_max_item_count == r.easyrpg_max_item_count
+		&& l.easyrpg_variable_min_value == r.easyrpg_variable_min_value
+		&& l.easyrpg_variable_max_value == r.easyrpg_variable_max_value
+		&& l.easyrpg_max_actor_sp == r.easyrpg_max_actor_sp
+		&& l.easyrpg_max_enemy_sp == r.easyrpg_max_enemy_sp
+		&& l.easyrpg_max_stat_base_value == r.easyrpg_max_stat_base_value
+		&& l.easyrpg_max_stat_battle_value == r.easyrpg_max_stat_battle_value;
 	}
 
 	inline bool operator!=(const System& l, const System& r) {

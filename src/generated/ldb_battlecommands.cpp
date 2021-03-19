@@ -125,6 +125,27 @@ static TypedField<rpg::BattleCommands, int32_t> static_death_teleport_face(
 	0,
 	0
 );
+static TypedField<rpg::BattleCommands, int32_t> static_easyrpg_default_atb_mode(
+	&rpg::BattleCommands::easyrpg_default_atb_mode,
+	LDB_Reader::ChunkBattleCommands::easyrpg_default_atb_mode,
+	"easyrpg_default_atb_mode",
+	0,
+	1
+);
+static TypedField<rpg::BattleCommands, bool> static_easyrpg_enable_battle_row_command(
+	&rpg::BattleCommands::easyrpg_enable_battle_row_command,
+	LDB_Reader::ChunkBattleCommands::easyrpg_enable_battle_row_command,
+	"easyrpg_enable_battle_row_command",
+	0,
+	1
+);
+static TypedField<rpg::BattleCommands, bool> static_easyrpg_sequential_order(
+	&rpg::BattleCommands::easyrpg_sequential_order,
+	LDB_Reader::ChunkBattleCommands::easyrpg_sequential_order,
+	"easyrpg_sequential_order",
+	0,
+	1
+);
 
 
 template <>
@@ -144,6 +165,9 @@ Field<rpg::BattleCommands> const* Struct<rpg::BattleCommands>::fields[] = {
 	&static_death_teleport_x,
 	&static_death_teleport_y,
 	&static_death_teleport_face,
+	&static_easyrpg_default_atb_mode,
+	&static_easyrpg_enable_battle_row_command,
+	&static_easyrpg_sequential_order,
 	NULL
 };
 

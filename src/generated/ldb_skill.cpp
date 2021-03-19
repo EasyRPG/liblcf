@@ -277,6 +277,41 @@ static TypedField<rpg::Skill, DBString> static_easyrpg_battle2k3_message(
 	0,
 	1
 );
+static TypedField<rpg::Skill, bool> static_easyrpg_ignore_reflect(
+	&rpg::Skill::easyrpg_ignore_reflect,
+	LDB_Reader::ChunkSkill::easyrpg_ignore_reflect,
+	"easyrpg_ignore_reflect",
+	0,
+	1
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_state_hit(
+	&rpg::Skill::easyrpg_state_hit,
+	LDB_Reader::ChunkSkill::easyrpg_state_hit,
+	"easyrpg_state_hit",
+	0,
+	0
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_attribute_hit(
+	&rpg::Skill::easyrpg_attribute_hit,
+	LDB_Reader::ChunkSkill::easyrpg_attribute_hit,
+	"easyrpg_attribute_hit",
+	0,
+	0
+);
+static TypedField<rpg::Skill, bool> static_easyrpg_ignore_restrict_skill(
+	&rpg::Skill::easyrpg_ignore_restrict_skill,
+	LDB_Reader::ChunkSkill::easyrpg_ignore_restrict_skill,
+	"easyrpg_ignore_restrict_skill",
+	0,
+	0
+);
+static TypedField<rpg::Skill, bool> static_easyrpg_ignore_restrict_magic(
+	&rpg::Skill::easyrpg_ignore_restrict_magic,
+	LDB_Reader::ChunkSkill::easyrpg_ignore_restrict_magic,
+	"easyrpg_ignore_restrict_magic",
+	0,
+	0
+);
 
 
 template <>
@@ -318,6 +353,11 @@ Field<rpg::Skill> const* Struct<rpg::Skill>::fields[] = {
 	&static_battler_animation,
 	&static_battler_animation_data,
 	&static_easyrpg_battle2k3_message,
+	&static_easyrpg_ignore_reflect,
+	&static_easyrpg_state_hit,
+	&static_easyrpg_attribute_hit,
+	&static_easyrpg_ignore_restrict_skill,
+	&static_easyrpg_ignore_restrict_magic,
 	NULL
 };
 

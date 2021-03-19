@@ -107,6 +107,11 @@ namespace rpg {
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationItemSkill> battler_animation_data;
 		DBString easyrpg_battle2k3_message = DBString(kDefaultMessage);
+		bool easyrpg_ignore_reflect = false;
+		int32_t easyrpg_state_hit = -1;
+		int32_t easyrpg_attribute_hit = -1;
+		bool easyrpg_ignore_restrict_skill = false;
+		bool easyrpg_ignore_restrict_magic = false;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -156,7 +161,12 @@ namespace rpg {
 		&& l.affect_attr_defence == r.affect_attr_defence
 		&& l.battler_animation == r.battler_animation
 		&& l.battler_animation_data == r.battler_animation_data
-		&& l.easyrpg_battle2k3_message == r.easyrpg_battle2k3_message;
+		&& l.easyrpg_battle2k3_message == r.easyrpg_battle2k3_message
+		&& l.easyrpg_ignore_reflect == r.easyrpg_ignore_reflect
+		&& l.easyrpg_state_hit == r.easyrpg_state_hit
+		&& l.easyrpg_attribute_hit == r.easyrpg_attribute_hit
+		&& l.easyrpg_ignore_restrict_skill == r.easyrpg_ignore_restrict_skill
+		&& l.easyrpg_ignore_restrict_magic == r.easyrpg_ignore_restrict_magic;
 	}
 
 	inline bool operator!=(const Skill& l, const Skill& r) {

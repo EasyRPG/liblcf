@@ -65,6 +65,11 @@ std::ostream& operator<<(std::ostream& os, const Skill& obj) {
 	}
 	os << "]";
 	os << ", easyrpg_battle2k3_message="<< obj.easyrpg_battle2k3_message;
+	os << ", easyrpg_ignore_reflect="<< obj.easyrpg_ignore_reflect;
+	os << ", easyrpg_state_hit="<< obj.easyrpg_state_hit;
+	os << ", easyrpg_attribute_hit="<< obj.easyrpg_attribute_hit;
+	os << ", easyrpg_ignore_restrict_skill="<< obj.easyrpg_ignore_restrict_skill;
+	os << ", easyrpg_ignore_restrict_magic="<< obj.easyrpg_ignore_restrict_magic;
 	os << "}";
 	return os;
 }
