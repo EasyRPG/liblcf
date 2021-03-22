@@ -50,6 +50,7 @@ std::ostream& operator<<(std::ostream& os, const Enemy& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.actions[i];
 	}
 	os << "]";
+	os << ", maniac_unarmed_animation="<< obj.maniac_unarmed_animation;
 	os << "}";
 	return os;
 }

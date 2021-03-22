@@ -637,7 +637,9 @@ namespace LDB_Reader {
 			/** Array - Short */
 			attribute_ranks = 0x22,
 			/** Array - rpg::EnemyAction */
-			actions = 0x2A
+			actions = 0x2A,
+			/** Animation for normal enemy attacks */
+			maniac_unarmed_animation = 0x0F
 		};
 	};
 	struct ChunkTroopMember {

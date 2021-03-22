@@ -18,3 +18,14 @@ EventCommand,Code,Maniac_ControlGlobalSave,3016
 EventCommand,Code,Maniac_ChangePictureId,3017
 EventCommand,Code,Maniac_SetGameOption,3018
 EventCommand,Code,Maniac_CallCommand,3019
+EventPage,ManiacEventInfo,action,0
+EventPage,ManiacEventInfo,touched,1
+EventPage,ManiacEventInfo,collision,2
+EventPage,ManiacEventInfo,auto_start,3
+EventPage,ManiacEventInfo,parallel,4
+EventPage,ManiacEventInfo,called,5
+EventPage,ManiacEventInfo,battle_start,6
+EventPage,ManiacEventInfo,battle_parallel,7
+EventPage,ManiacEventInfo,map_event,16
+EventPage,ManiacEventInfo,common_event,32
+EventPage,ManiacEventInfo,battle_event,64

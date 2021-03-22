@@ -116,6 +116,10 @@ namespace rpg {
 		int32_t save_count = 0;
 		int32_t save_slot = 1;
 		int32_t atb_mode = 0;
+		int32_t maniac_frameskip = 0;
+		int32_t maniac_picture_limit = 0;
+		std::vector<uint8_t> maniac_options;
+		std::vector<uint8_t> maniac_joypad_bindings;
 	};
 	inline std::ostream& operator<<(std::ostream& os, SaveSystem::Scene code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -181,7 +185,11 @@ namespace rpg {
 		&& l.background == r.background
 		&& l.save_count == r.save_count
 		&& l.save_slot == r.save_slot
-		&& l.atb_mode == r.atb_mode;
+		&& l.atb_mode == r.atb_mode
+		&& l.maniac_frameskip == r.maniac_frameskip
+		&& l.maniac_picture_limit == r.maniac_picture_limit
+		&& l.maniac_options == r.maniac_options
+		&& l.maniac_joypad_bindings == r.maniac_joypad_bindings;
 	}
 
 	inline bool operator!=(const SaveSystem& l, const SaveSystem& r) {

@@ -25,13 +25,6 @@
 #include "lcf/reader_util.h"
 #include "lcf/encoder.h"
 
-/*
- * Calls SkipDebug() instead of Skip() for debug builds.
- */
-#ifdef _DEBUG
-	#define Skip(x) SkipDebug(x, __FILE__)
-#endif
-
 namespace lcf {
 
 /**
@@ -189,17 +182,6 @@ public:
 	 */
 	int Peek();
 
-#ifdef _DEBUG
-	/**
-	 * The skip-function for debug builds.
-	 * Same as Skip() but also dumps the content of the
-	 * skipped chunk to stderr.
-	 *
-	 * @param chunk_info chunk that will be skipped.
-	 * @param srclife name of the calling cpp-file.
-	 */
-	void SkipDebug(const struct LcfReader::Chunk& chunk_info, const char* srcfile);
-#else
 	/**
 	 * Skips a chunk (seeks chunk_info.length bytes from
 	 * the current stream position).
@@ -207,9 +189,9 @@ public:
 	 * skipped chunk to stderr.
 	 *
 	 * @param chunk_info chunk that will be skipped.
+	 * @param where name of the caller that caused the skip, for finding unknown chunks
 	 */
-	void Skip(const struct LcfReader::Chunk& chunk_info);
-#endif
+	void Skip(const struct LcfReader::Chunk& chunk_info, const char* where);
 
 	/**
 	 * Encodes a string to UTF-8 using the set encoding

@@ -417,6 +417,34 @@ static TypedField<rpg::SaveSystem, int32_t> static_atb_mode(
 	0,
 	1
 );
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_frameskip(
+	&rpg::SaveSystem::maniac_frameskip,
+	LSD_Reader::ChunkSaveSystem::maniac_frameskip,
+	"maniac_frameskip",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_picture_limit(
+	&rpg::SaveSystem::maniac_picture_limit,
+	LSD_Reader::ChunkSaveSystem::maniac_picture_limit,
+	"maniac_picture_limit",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, std::vector<uint8_t>> static_maniac_options(
+	&rpg::SaveSystem::maniac_options,
+	LSD_Reader::ChunkSaveSystem::maniac_options,
+	"maniac_options",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, std::vector<uint8_t>> static_maniac_joypad_bindings(
+	&rpg::SaveSystem::maniac_joypad_bindings,
+	LSD_Reader::ChunkSaveSystem::maniac_joypad_bindings,
+	"maniac_joypad_bindings",
+	0,
+	0
+);
 
 
 template <>
@@ -478,6 +506,10 @@ Field<rpg::SaveSystem> const* Struct<rpg::SaveSystem>::fields[] = {
 	&static_save_count,
 	&static_save_slot,
 	&static_atb_mode,
+	&static_maniac_frameskip,
+	&static_maniac_picture_limit,
+	&static_maniac_options,
+	&static_maniac_joypad_bindings,
 	NULL
 };
 
