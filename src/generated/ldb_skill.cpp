@@ -270,6 +270,13 @@ static TypedField<rpg::Skill, std::vector<rpg::BattlerAnimationItemSkill>> stati
 	1,
 	1
 );
+static TypedField<rpg::Skill, DBString> static_easyrpg_battle2k3_message(
+	&rpg::Skill::easyrpg_battle2k3_message,
+	LDB_Reader::ChunkSkill::easyrpg_battle2k3_message,
+	"easyrpg_battle2k3_message",
+	0,
+	1
+);
 
 
 template <>
@@ -310,6 +317,7 @@ Field<rpg::Skill> const* Struct<rpg::Skill>::fields[] = {
 	&static_affect_attr_defence,
 	&static_battler_animation,
 	&static_battler_animation_data,
+	&static_easyrpg_battle2k3_message,
 	NULL
 };
 

@@ -1035,6 +1035,20 @@ static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_special_combat_
 	0,
 	1
 );
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_skill(
+	&rpg::Terms::easyrpg_battle2k3_skill,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_skill,
+	"easyrpg_battle2k3_skill",
+	0,
+	1
+);
+static TypedField<rpg::Terms, DBString> static_easyrpg_battle2k3_item(
+	&rpg::Terms::easyrpg_battle2k3_item,
+	LDB_Reader::ChunkTerms::easyrpg_battle2k3_item,
+	"easyrpg_battle2k3_item",
+	0,
+	1
+);
 
 
 template <>
@@ -1184,6 +1198,8 @@ Field<rpg::Terms> const* Struct<rpg::Terms>::fields[] = {
 	&static_easyrpg_battle2k3_selfdestruct,
 	&static_easyrpg_battle2k3_escape,
 	&static_easyrpg_battle2k3_special_combat_back,
+	&static_easyrpg_battle2k3_skill,
+	&static_easyrpg_battle2k3_item,
 	NULL
 };
 

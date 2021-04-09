@@ -441,7 +441,9 @@ namespace LDB_Reader {
 			/** Integer - RPG2003 */
 			battler_animation = 0x31,
 			/** ? - RPG2003 */
-			battler_animation_data = 0x32
+			battler_animation_data = 0x32,
+			/** RPG Maker 2003 battle skill start notification */
+			easyrpg_battle2k3_message = 0xC9
 		};
 	};
 	struct ChunkItem {
@@ -557,7 +559,9 @@ namespace LDB_Reader {
 			/** Integer */
 			ranged_trajectory = 0x4B,
 			/** Integer */
-			ranged_target = 0x4C
+			ranged_target = 0x4C,
+			/** Item usage message in battle */
+			easyrpg_using_message = 0xC9
 		};
 	};
 	struct ChunkEnemyAction {
@@ -1179,7 +1183,11 @@ namespace LDB_Reader {
 			/** RPG Maker 2003 battle monster Escape notification */
 			easyrpg_battle2k3_escape = 0xD8,
 			/** Message for back and pincer attack */
-			easyrpg_battle2k3_special_combat_back = 0xD9
+			easyrpg_battle2k3_special_combat_back = 0xD9,
+			/** RPG Maker 2003 battle general skill start notification */
+			easyrpg_battle2k3_skill = 0xDA,
+			/** RPG Maker 2003 battle general item start notification */
+			easyrpg_battle2k3_item = 0xDB
 		};
 	};
 	struct ChunkMusic {

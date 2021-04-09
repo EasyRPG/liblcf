@@ -31,6 +31,9 @@ namespace lcf {
 namespace rpg {
 	class Skill {
 	public:
+		// Sentinel name used to denote that the default skill start message should be used.
+		static constexpr const char* kDefaultMessage = "default_message";
+
 		enum Type {
 			Type_normal = 0,
 			Type_teleport = 1,
@@ -103,6 +106,7 @@ namespace rpg {
 		bool affect_attr_defence = false;
 		int32_t battler_animation = -1;
 		std::vector<BattlerAnimationItemSkill> battler_animation_data;
+		DBString easyrpg_battle2k3_message = DBString(kDefaultMessage);
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -151,7 +155,8 @@ namespace rpg {
 		&& l.attribute_effects == r.attribute_effects
 		&& l.affect_attr_defence == r.affect_attr_defence
 		&& l.battler_animation == r.battler_animation
-		&& l.battler_animation_data == r.battler_animation_data;
+		&& l.battler_animation_data == r.battler_animation_data
+		&& l.easyrpg_battle2k3_message == r.easyrpg_battle2k3_message;
 	}
 
 	inline bool operator!=(const Skill& l, const Skill& r) {
@@ -172,6 +177,8 @@ namespace rpg {
 		f(obj.using_message2, ctx4);
 		const auto ctx13 = Context<Skill, ParentCtx>{ "sound_effect", -1, &obj, parent_ctx };
 		ForEachString(obj.sound_effect, f, &ctx13);
+		const auto ctx35 = Context<Skill, ParentCtx>{ "easyrpg_battle2k3_message", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_message, ctx35);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

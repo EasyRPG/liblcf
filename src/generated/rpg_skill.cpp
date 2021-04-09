@@ -12,6 +12,7 @@
 // Headers
 #include "lcf/rpg/skill.h"
 
+constexpr const char* lcf::rpg::Skill::kDefaultMessage;
 namespace lcf {
 namespace rpg {
 
@@ -63,6 +64,7 @@ std::ostream& operator<<(std::ostream& os, const Skill& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.battler_animation_data[i];
 	}
 	os << "]";
+	os << ", easyrpg_battle2k3_message="<< obj.easyrpg_battle2k3_message;
 	os << "}";
 	return os;
 }
