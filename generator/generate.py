@@ -248,7 +248,7 @@ def process_file(filename, namedtup):
     # Mapping is: All elements of the line grouped by the first column
 
     path = os.path.join(csv_dir, filename)
-    df = pd.read_csv(path, comment='#', dtype=np.str)
+    df = pd.read_csv(path, comment='#', dtype=str)
     df = df.fillna("")
 
     lines = [ list(r) for _i, r in df.iterrows() ]
