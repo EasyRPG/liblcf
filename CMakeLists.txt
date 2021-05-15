@@ -1,23 +1,23 @@
-cmake_minimum_required(VERSION 3.7)
-
-if(POLICY CMP0091)
-	cmake_policy(SET CMP0091 NEW) # Support MSVC_RUNTIME_LIBRARY
+cmake_minimum_required(VERSION 3.10...3.20 FATAL_ERROR)
+if(${CMAKE_VERSION} VERSION_LESS 3.12)
+	# Use most recent policies, even for older cmake
+	cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
 project(liblcf VERSION 0.6.2 LANGUAGES CXX)
 
 # Deprecation handling. Remove these lines one release later.
-SET(new_params "LIBLCF_WITH_ICU;LIBLCF_WITH_XML;LIBLCF_UPDATE_MIMEDB;LIBLCF_ENABLE_TOOLS;LIBLCF_ENABLE_BENCHMARKS")
+SET(new_params "WITH_ICU;WITH_XML;UPDATE_MIMEDB;ENABLE_TOOLS;ENABLE_BENCHMARKS")
 SET(old_params "DISABLE_ICU;DISABLE_XML;DISABLE_UPDATE_MIMEDB;DISABLE_TOOLS;DISABLE_BENCHMARKS")
-
 foreach(x IN LISTS old_params)
 	if(DEFINED ${x})
 		list(FIND old_params ${x} index)
 		list(GET new_params ${index} new_value)
-		message(FATAL_ERROR "${x} was renamed to ${new_value} and the logic inverted.")
+		message(FATAL_ERROR "${x} was renamed to LIBLCF_${new_value} and the logic inverted.")
 	endif()
 endforeach()
 
+# Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
 option(LIBLCF_WITH_ICU "ICU encoding detection (when OFF fallback to iconv, not recommended, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
@@ -29,18 +29,7 @@ option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)"
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
-
 include(ConfigureWindows)
-
-# Doxygen
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-	add_custom_target(liblcf_doc
-		${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/builds/Doxyfile
-		DEPENDS lcf
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/builds
-		COMMENT "Generating API documentation with Doxygen" VERBATIM)
-endif()
 
 # C++14 is required
 set(CMAKE_CXX_STANDARD 14)
@@ -48,8 +37,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 # lcf library files
-add_library(lcf)
-
 set(LCF_SOURCES
 	src/dbarray.cpp
 	src/encoder.cpp
@@ -309,11 +296,7 @@ set(LCF_HEADERS
 	src/lcf/third_party/string_view.h
 )
 
-list(TRANSFORM LCF_SOURCES PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(TRANSFORM LCF_HEADERS PREPEND ${CMAKE_CURRENT_SOURCE_DIR}/)
-list(APPEND LCF_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
-
-target_sources(lcf PRIVATE ${LCF_SOURCES} ${LCF_HEADERS})
+add_library(lcf ${LCF_SOURCES} ${LCF_HEADERS})
 
 # IDE source grouping
 foreach(SG LDB LMT LMU LSD RPG THIRD_PARTY)
@@ -383,6 +366,7 @@ if(LIBLCF_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 endif()
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake.config.h.in" "src/lcf/config.h" @ONLY)
+target_sources(lcf PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
 # .so version
 set_property(TARGET lcf PROPERTY SOVERSION 0)
@@ -399,7 +383,6 @@ set(LCF_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
 if(IS_ABSOLUTE ${LCF_INCLUDEDIR})
 	file(RELATIVE_PATH LCF_INCLUDEDIR ${CMAKE_INSTALL_PREFIX} ${LCF_INCLUDEDIR})
 endif()
-
 set(PACKAGE_TARNAME ${PROJECT_NAME})
 set(PACKAGE_VERSION ${PROJECT_VERSION})
 set(prefix "${CMAKE_INSTALL_PREFIX}")
@@ -435,8 +418,6 @@ install(
 install(
 	FILES
 	  ${CMAKE_CURRENT_BINARY_DIR}/builds/liblcf-config.cmake
-	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindEXPAT.cmake
-	  ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/FindICU.cmake
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf)
 
 # mime types
@@ -489,4 +470,16 @@ if(LIBLCF_ENABLE_TOOLS)
 		add_dependencies(tools ${tool})
 		install(TARGETS ${tool} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 	endforeach()
+endif()
+
+# Doxygen documentation
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+	add_custom_target(liblcf_doc
+		${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/builds/Doxyfile
+		DEPENDS lcf
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/builds
+		COMMENT "Generating API documentation with Doxygen" VERBATIM)
+else()
+	message(STATUS "This means no API documentation is generated.")
 endif()

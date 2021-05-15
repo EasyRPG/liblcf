@@ -10,10 +10,7 @@ mimedbdir = $(datadir)/mime/packages
 mimedb_DATA = mime/liblcf.xml
 
 cmakeconfigdir = $(libdir)/cmake/liblcf
-cmakeconfig_DATA = \
-	builds/liblcf-config.cmake \
-	builds/cmake/Modules/FindEXPAT.cmake \
-	builds/cmake/Modules/FindICU.cmake
+cmakeconfig_DATA = builds/liblcf-config.cmake
 
 lcfincludedir = $(includedir)/lcf
 lcfldbincludedir = $(includedir)/lcf/ldb

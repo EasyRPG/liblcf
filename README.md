@@ -67,7 +67,7 @@ https://wiki.easyrpg.org/development/compiling/liblcf/autotools
 Building requirements:
 
 - pkg-config (Not on Windows)
-- CMake
+- CMake >= 3.10
 
 Step-by-step instructions:
 
