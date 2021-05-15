@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 liblcf authors
+ * Copyright (c) 2021 liblcf authors
  * This file is released under the MIT License
  * http://opensource.org/licenses/MIT
  */

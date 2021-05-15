@@ -39,10 +39,14 @@ sed -i "1,1 s/2014-2[0-9][0-9][0-9]/2014-$year/" COPYING
 # update copyright years, but filter out external sources
 echo "Updating source files…"
 
-find src tests -maxdepth 1 -type f \
-    -a \( -name "*.h" -o -name "*.cpp" \) \
+find src tests -maxdepth 3 \
+  \( -path src/generated -o -path src/lcf/third_party \) -prune \
+  -o -type f -a \( -name "*.h" -o -name "*.cpp" \) \
     -a \! \( -name "ini*" -o -name "doctest*" \) \
   -exec sed -i "/liblcf\. Copyright/,1 s/2[0-9][0-9][0-9]/$year/" {} +
+
+find tools -maxdepth 1 -type f -a \( -name "*.h" -o -name "*.cpp" \) \
+  -exec sed -i "/Copyright/,1 s/2[0-9][0-9][0-9]/$year/" {} +
 
 # updating header for generated source files
 grep -q "liblcf\. Copyright.*$year" generator/templates/copyright.tmpl ||
