@@ -59,8 +59,8 @@ BattlerAnimationItemSkill,Movement,none,0
 BattlerAnimationItemSkill,Movement,step,1
 BattlerAnimationItemSkill,Movement,jump,2
 BattlerAnimationItemSkill,Movement,move,3
-BattlerAnimationItemSkill,AfterImage,none,0
-BattlerAnimationItemSkill,AfterImage,add,1
+BattlerAnimationItemSkill,Afterimage,none,0
+BattlerAnimationItemSkill,Afterimage,add,1
 BattlerAnimationPose,AnimType,character,0
 BattlerAnimationPose,AnimType,battle,1
 Chipset,AnimType,reciprocating,0

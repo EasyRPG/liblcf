@@ -56,11 +56,11 @@ namespace rpg {
 			"jump",
 			"move"
 		);
-		enum AfterImage {
-			AfterImage_none = 0,
-			AfterImage_add = 1
+		enum Afterimage {
+			Afterimage_none = 0,
+			Afterimage_add = 1
 		};
-		static constexpr auto kAfterImageTags = lcf::makeEnumTags<AfterImage>(
+		static constexpr auto kAfterimageTags = lcf::makeEnumTags<Afterimage>(
 			"none",
 			"add"
 		);
@@ -90,7 +90,7 @@ namespace rpg {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
-	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::AfterImage code) {
+	inline std::ostream& operator<<(std::ostream& os, BattlerAnimationItemSkill::Afterimage code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}

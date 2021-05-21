@@ -57,7 +57,7 @@ constexpr decltype(BattlerAnimation::kPoseTags) BattlerAnimation::kPoseTags;
 constexpr decltype(BattlerAnimationItemSkill::kSpeedTags) BattlerAnimationItemSkill::kSpeedTags;
 constexpr decltype(BattlerAnimationItemSkill::kAnimTypeTags) BattlerAnimationItemSkill::kAnimTypeTags;
 constexpr decltype(BattlerAnimationItemSkill::kMovementTags) BattlerAnimationItemSkill::kMovementTags;
-constexpr decltype(BattlerAnimationItemSkill::kAfterImageTags) BattlerAnimationItemSkill::kAfterImageTags;
+constexpr decltype(BattlerAnimationItemSkill::kAfterimageTags) BattlerAnimationItemSkill::kAfterimageTags;
 constexpr decltype(BattlerAnimationPose::kAnimTypeTags) BattlerAnimationPose::kAnimTypeTags;
 constexpr decltype(Chipset::kAnimTypeTags) Chipset::kAnimTypeTags;
 constexpr decltype(Skill::kTypeTags) Skill::kTypeTags;
