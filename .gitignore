@@ -68,3 +68,6 @@ Makefile
 
 # tests
 test_runner*
+
+# GitHub
+/.github/
