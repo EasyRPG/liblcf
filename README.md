@@ -99,7 +99,7 @@ Available options:
 
 * File an issue at https://github.com/EasyRPG/liblcf/issues
 * Open a thread at https://community.easyrpg.org/
-* Chat with us via IRC: [#easyrpg at irc.freenode.net]
+* Chat with us via IRC: [#easyrpg at irc.libera.chat]
 
 
 ## License
@@ -117,7 +117,7 @@ See the source code comment headers for license details.
 [Expat]: https://libexpat.github.io
 [ICU]: http://icu-project.org
 [vcpkg]: https://github.com/Microsoft/vcpkg
-[#easyrpg at irc.freenode.net]: https://kiwiirc.com/nextclient/#ircs://irc.freenode.net/#easyrpg?nick=rpgguest??
+[#easyrpg at irc.libera.chat]: https://kiwiirc.com/nextclient/#ircs://irc.libera.chat/#easyrpg?nick=rpgguest??
 [COPYING]: COPYING
 [inih]: https://github.com/benhoyt/inih
 [string-view-lite]: https://github.com/martinmoene/string-view-lite
