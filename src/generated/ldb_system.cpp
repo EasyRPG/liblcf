@@ -424,10 +424,10 @@ static TypedField<rpg::System, int32_t> static_easyrpg_alternative_exp(
 	0,
 	0
 );
-static TypedField<rpg::System, bool> static_easyrpg_enable_auto_battle(
-	&rpg::System::easyrpg_enable_auto_battle,
-	LDB_Reader::ChunkSystem::easyrpg_enable_auto_battle,
-	"easyrpg_enable_auto_battle",
+static TypedField<rpg::System, std::vector<int16_t>> static_easyrpg_battle_options(
+	&rpg::System::easyrpg_battle_options,
+	LDB_Reader::ChunkSystem::easyrpg_battle_options,
+	"easyrpg_battle_options",
 	0,
 	0
 );
@@ -591,7 +591,7 @@ Field<rpg::System> const* Struct<rpg::System>::fields[] = {
 	&static_invert_animations,
 	&static_show_title,
 	&static_easyrpg_alternative_exp,
-	&static_easyrpg_enable_auto_battle,
+	&static_easyrpg_battle_options,
 	&static_easyrpg_max_actor_hp,
 	&static_easyrpg_max_enemy_hp,
 	&static_easyrpg_max_damage,

@@ -43,7 +43,7 @@ Terms,easyrpg_battle2k3_special_combat_back,f,DBString,0xD9,,0,1,Message for bac
 Terms,easyrpg_battle2k3_skill,f,DBString,0xDA,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general skill start notification
 Terms,easyrpg_battle2k3_item,f,DBString,0xDB,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general item start notification
 System,easyrpg_alternative_exp,f,Int32,0xC8,0,0,0,Which EXP formula to use: 0=Default 1=2k 2=2k3
-System,easyrpg_enable_auto_battle,f,Boolean,0xC9,True,0,0,If auto battling should be allowed
+System,easyrpg_battle_options,f,Vector<Int16>,0xC9,"[0,1,2]",0,0,Available battle options where 0=Battle 1=AutoBattle 2=Escape
 System,easyrpg_max_actor_hp,f,Int32,0xCA,-1,0,0,Absolute maximum HP value actors can have
 System,easyrpg_max_enemy_hp,f,Int32,0xCB,-1,0,0,Absolute maximum HP value enemies can have
 System,easyrpg_max_damage,f,Int32,0xCC,-1,0,0,How much damage can an attack inflict at most

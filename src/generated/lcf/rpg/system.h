@@ -232,7 +232,7 @@ namespace rpg {
 		bool invert_animations = false;
 		bool show_title = true;
 		int32_t easyrpg_alternative_exp = 0;
-		bool easyrpg_enable_auto_battle = true;
+		std::vector<int16_t> easyrpg_battle_options = {0, 1, 2};
 		int32_t easyrpg_max_actor_hp = -1;
 		int32_t easyrpg_max_enemy_hp = -1;
 		int32_t easyrpg_max_damage = -1;
@@ -334,7 +334,7 @@ namespace rpg {
 		&& l.invert_animations == r.invert_animations
 		&& l.show_title == r.show_title
 		&& l.easyrpg_alternative_exp == r.easyrpg_alternative_exp
-		&& l.easyrpg_enable_auto_battle == r.easyrpg_enable_auto_battle
+		&& l.easyrpg_battle_options == r.easyrpg_battle_options
 		&& l.easyrpg_max_actor_hp == r.easyrpg_max_actor_hp
 		&& l.easyrpg_max_enemy_hp == r.easyrpg_max_enemy_hp
 		&& l.easyrpg_max_damage == r.easyrpg_max_damage

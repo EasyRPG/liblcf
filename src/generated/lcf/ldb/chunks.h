@@ -1358,8 +1358,8 @@ namespace LDB_Reader {
 			show_title = 0x6F,
 			/** Which EXP formula to use: 0=Default 1=2k 2=2k3 */
 			easyrpg_alternative_exp = 0xC8,
-			/** If auto battling should be allowed */
-			easyrpg_enable_auto_battle = 0xC9,
+			/** Available battle options where 0=Battle 1=AutoBattle 2=Escape */
+			easyrpg_battle_options = 0xC9,
 			/** Absolute maximum HP value actors can have */
 			easyrpg_max_actor_hp = 0xCA,
 			/** Absolute maximum HP value enemies can have */

@@ -85,7 +85,11 @@ std::ostream& operator<<(std::ostream& os, const System& obj) {
 	os << ", invert_animations="<< obj.invert_animations;
 	os << ", show_title="<< obj.show_title;
 	os << ", easyrpg_alternative_exp="<< obj.easyrpg_alternative_exp;
-	os << ", easyrpg_enable_auto_battle="<< obj.easyrpg_enable_auto_battle;
+	os << ", easyrpg_battle_options=";
+	for (size_t i = 0; i < obj.easyrpg_battle_options.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_battle_options[i];
+	}
+	os << "]";
 	os << ", easyrpg_max_actor_hp="<< obj.easyrpg_max_actor_hp;
 	os << ", easyrpg_max_enemy_hp="<< obj.easyrpg_max_enemy_hp;
 	os << ", easyrpg_max_damage="<< obj.easyrpg_max_damage;
