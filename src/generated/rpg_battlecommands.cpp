@@ -39,6 +39,7 @@ std::ostream& operator<<(std::ostream& os, const BattleCommands& obj) {
 	os << ", easyrpg_default_atb_mode="<< obj.easyrpg_default_atb_mode;
 	os << ", easyrpg_enable_battle_row_command="<< obj.easyrpg_enable_battle_row_command;
 	os << ", easyrpg_sequential_order="<< obj.easyrpg_sequential_order;
+	os << ", easyrpg_disable_row_feature="<< obj.easyrpg_disable_row_feature;
 	os << "}";
 	return os;
 }

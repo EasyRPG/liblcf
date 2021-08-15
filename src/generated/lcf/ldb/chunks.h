@@ -93,7 +93,33 @@ namespace LDB_Reader {
 			/** Array - Short */
 			attribute_ranks = 0x4A,
 			/** Array - rpg::BattleCommand - RPG2003 */
-			battle_commands = 0x50
+			battle_commands = 0x50,
+			/** Default autobattle AI behavior of the actor */
+			easyrpg_actorai = 0xC9,
+			/** If the actor is protected against critical hits */
+			easyrpg_prevent_critical = 0xCA,
+			/** If the actor has an increased evasion rate */
+			easyrpg_raise_evasion = 0xCB,
+			/** If the actor is immune to attribute downshifts */
+			easyrpg_immune_to_attribute_downshifts = 0xCC,
+			/** If the actors unarmed physical attacks ignore evasion */
+			easyrpg_ignore_evasion = 0xCD,
+			/** Hit rate of the actor on unarmed attacks */
+			easyrpg_unarmed_hit = 0xCE,
+			/** States inflicted by unarmed normal attacks of the actor */
+			easyrpg_unarmed_state_set_size = 0xCF,
+			/** States inflicted by unarmed normal attacks of the actor */
+			easyrpg_unarmed_state_set = 0xD0,
+			/** State infliction probability by unarmed normal attacks of the actor */
+			easyrpg_unarmed_state_chance = 0xD1,
+			/** Attributes used by unarmed normal attacks of the actor */
+			easyrpg_unarmed_attribute_set_size = 0xD2,
+			/** Attributes used by unarmed normal attacks of the actor */
+			easyrpg_unarmed_attribute_set = 0xD3,
+			/** If the actors unarmed physical attacks hits twice */
+			easyrpg_dual_attack = 0xD4,
+			/** If the actors unarmed physical targets the entire enemy party */
+			easyrpg_attack_all = 0xD5
 		};
 	};
 	struct ChunkSound {
@@ -239,7 +265,9 @@ namespace LDB_Reader {
 			/** If the row command should be enabled in RPG Maker 2003 battles */
 			easyrpg_enable_battle_row_command = 0xC9,
 			/** If alternative and gauge style battles should behave like traditional style battles */
-			easyrpg_sequential_order = 0xCA
+			easyrpg_sequential_order = 0xCA,
+			/** If the row feature should be disabled in RPG Maker 2003 games */
+			easyrpg_disable_row_feature = 0xCB
 		};
 	};
 	struct ChunkBattlerAnimation {
@@ -461,7 +489,19 @@ namespace LDB_Reader {
 			/** If the skill should bypass magic restrictions by states */
 			easyrpg_ignore_restrict_magic = 0xCE,
 			/** If the skill can absorb attack/defense/spirit/agility */
-			easyrpg_enable_stat_absorbing = 0xCF
+			easyrpg_enable_stat_absorbing = 0xCF,
+			/** If the skill should be affected by avoid attack states */
+			easyrpg_affected_by_evade_all_physical_attacks = 0xD0,
+			/** Critical hit rate percentage for the skill. If negative then the battler critical hit rate is used */
+			easyrpg_critical_hit_chance = 0xD1,
+			/** If the skill is affected by row modifiers */
+			easyrpg_affected_by_row_modifiers = 0xD2,
+			/** If the HP usage of the skill is a fixed number or in percent of the maximum HP */
+			easyrpg_hp_type = 0xD3,
+			/** How much percent of the maximum HP does the usage of the skill cost */
+			easyrpg_hp_percent = 0xD4,
+			/** How much HP does the usage of the skill cost */
+			easyrpg_hp_cost = 0xD5
 		};
 	};
 	struct ChunkItem {
@@ -662,8 +702,34 @@ namespace LDB_Reader {
 			attribute_ranks = 0x22,
 			/** Array - rpg::EnemyAction */
 			actions = 0x2A,
-			/** Animation for normal enemy attacks */
-			maniac_unarmed_animation = 0x0F
+			/** Animation for normal enemy attacks (Maniac Patch only) */
+			maniac_unarmed_animation = 0x0F,
+			/** Default AI behavior of the enemy */
+			easyrpg_enemyai = 0xC9,
+			/** If the enemy is protected against critical hits */
+			easyrpg_prevent_critical = 0xCA,
+			/** If the enemy has an increased evasion rate */
+			easyrpg_raise_evasion = 0xCB,
+			/** If the enemy is immune to attribute downshifts */
+			easyrpg_immune_to_attribute_downshifts = 0xCC,
+			/** If the enemies unarmed physical attacks ignore evasion */
+			easyrpg_ignore_evasion = 0xCD,
+			/** Hit rate of the enemy on normal attacks */
+			easyrpg_hit = 0xCE,
+			/** States inflicted by normal attacks of the enemy */
+			easyrpg_state_set_size = 0xCF,
+			/** States inflicted by normal attacks of the enemy */
+			easyrpg_state_set = 0xD0,
+			/** State infliction probability by normal attacks of the enemy */
+			easyrpg_state_chance = 0xD1,
+			/** Attributes used by normal attacks of the enemy */
+			easyrpg_attribute_set_size = 0xD2,
+			/** Attributes used by normal attacks of the enemy */
+			easyrpg_attribute_set = 0xD3,
+			/** If the enemies defend action quarters instead of halves HP damage */
+			easyrpg_super_guard = 0xD4,
+			/** If the enemies unarmed physical targets the entire player party */
+			easyrpg_attack_all = 0xD5
 		};
 	};
 	struct ChunkTroopMember {
@@ -821,7 +887,11 @@ namespace LDB_Reader {
 			/** Integer - RPG2003 */
 			grid_elongation = 0x2F,
 			/** Integer - RPG2003 */
-			grid_inclination = 0x30
+			grid_inclination = 0x30,
+			/** If the terrain damage is a percentage */
+			easyrpg_damage_in_percent = 0xC8,
+			/** If the terrain damage can kill the actors */
+			easyrpg_damage_can_kill = 0xC9
 		};
 	};
 	struct ChunkState {
@@ -909,7 +979,11 @@ namespace LDB_Reader {
 			/** Integer */
 			sp_change_map_steps = 0x43,
 			/** Integer */
-			sp_change_map_val = 0x44
+			sp_change_map_val = 0x44,
+			/** States cleared on infliction by this state */
+			easyrpg_immune_states_size = 0xC8,
+			/** States cleared on infliction by this state */
+			easyrpg_immune_states = 0xC9
 		};
 	};
 	struct ChunkTerms {
@@ -1387,7 +1461,17 @@ namespace LDB_Reader {
 			/** Absolute maximum value a base stat can have */
 			easyrpg_max_stat_base_value = 0xD5,
 			/** Absolute maximum value a battle stat can have */
-			easyrpg_max_stat_battle_value = 0xD6
+			easyrpg_max_stat_battle_value = 0xD6,
+			/** If the RPG Maker 2000 battle system should be used in RPG Maker 2003 games */
+			easyrpg_use_rpg2k_battle_system = 0xD7,
+			/** If RPG Maker 2000 battles in RPG Maker 2003 games should use the RPG2kE strings */
+			easyrpg_battle_use_rpg2ke_strings = 0xD8,
+			/** If the RPG Maker 2000 battle commands should be used in RPG Maker 2003 games */
+			easyrpg_use_rpg2k_battle_commands = 0xD9,
+			/** System default actor AI */
+			easyrpg_default_actorai = 0xDA,
+			/** System default enemy AI */
+			easyrpg_default_enemyai = 0xDB
 		};
 	};
 	struct ChunkSwitch {

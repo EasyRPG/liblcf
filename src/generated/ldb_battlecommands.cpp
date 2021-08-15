@@ -146,6 +146,13 @@ static TypedField<rpg::BattleCommands, bool> static_easyrpg_sequential_order(
 	0,
 	1
 );
+static TypedField<rpg::BattleCommands, bool> static_easyrpg_disable_row_feature(
+	&rpg::BattleCommands::easyrpg_disable_row_feature,
+	LDB_Reader::ChunkBattleCommands::easyrpg_disable_row_feature,
+	"easyrpg_disable_row_feature",
+	0,
+	1
+);
 
 
 template <>
@@ -168,6 +175,7 @@ Field<rpg::BattleCommands> const* Struct<rpg::BattleCommands>::fields[] = {
 	&static_easyrpg_default_atb_mode,
 	&static_easyrpg_enable_battle_row_command,
 	&static_easyrpg_sequential_order,
+	&static_easyrpg_disable_row_feature,
 	NULL
 };
 

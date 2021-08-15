@@ -319,6 +319,48 @@ static TypedField<rpg::Skill, bool> static_easyrpg_enable_stat_absorbing(
 	0,
 	0
 );
+static TypedField<rpg::Skill, bool> static_easyrpg_affected_by_evade_all_physical_attacks(
+	&rpg::Skill::easyrpg_affected_by_evade_all_physical_attacks,
+	LDB_Reader::ChunkSkill::easyrpg_affected_by_evade_all_physical_attacks,
+	"easyrpg_affected_by_evade_all_physical_attacks",
+	0,
+	1
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_critical_hit_chance(
+	&rpg::Skill::easyrpg_critical_hit_chance,
+	LDB_Reader::ChunkSkill::easyrpg_critical_hit_chance,
+	"easyrpg_critical_hit_chance",
+	0,
+	0
+);
+static TypedField<rpg::Skill, bool> static_easyrpg_affected_by_row_modifiers(
+	&rpg::Skill::easyrpg_affected_by_row_modifiers,
+	LDB_Reader::ChunkSkill::easyrpg_affected_by_row_modifiers,
+	"easyrpg_affected_by_row_modifiers",
+	0,
+	1
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_hp_type(
+	&rpg::Skill::easyrpg_hp_type,
+	LDB_Reader::ChunkSkill::easyrpg_hp_type,
+	"easyrpg_hp_type",
+	0,
+	1
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_hp_percent(
+	&rpg::Skill::easyrpg_hp_percent,
+	LDB_Reader::ChunkSkill::easyrpg_hp_percent,
+	"easyrpg_hp_percent",
+	0,
+	1
+);
+static TypedField<rpg::Skill, int32_t> static_easyrpg_hp_cost(
+	&rpg::Skill::easyrpg_hp_cost,
+	LDB_Reader::ChunkSkill::easyrpg_hp_cost,
+	"easyrpg_hp_cost",
+	0,
+	0
+);
 
 
 template <>
@@ -366,6 +408,12 @@ Field<rpg::Skill> const* Struct<rpg::Skill>::fields[] = {
 	&static_easyrpg_ignore_restrict_skill,
 	&static_easyrpg_ignore_restrict_magic,
 	&static_easyrpg_enable_stat_absorbing,
+	&static_easyrpg_affected_by_evade_all_physical_attacks,
+	&static_easyrpg_critical_hit_chance,
+	&static_easyrpg_affected_by_row_modifiers,
+	&static_easyrpg_hp_type,
+	&static_easyrpg_hp_percent,
+	&static_easyrpg_hp_cost,
 	NULL
 };
 

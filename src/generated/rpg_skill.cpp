@@ -71,6 +71,12 @@ std::ostream& operator<<(std::ostream& os, const Skill& obj) {
 	os << ", easyrpg_ignore_restrict_skill="<< obj.easyrpg_ignore_restrict_skill;
 	os << ", easyrpg_ignore_restrict_magic="<< obj.easyrpg_ignore_restrict_magic;
 	os << ", easyrpg_enable_stat_absorbing="<< obj.easyrpg_enable_stat_absorbing;
+	os << ", easyrpg_affected_by_evade_all_physical_attacks="<< obj.easyrpg_affected_by_evade_all_physical_attacks;
+	os << ", easyrpg_critical_hit_chance="<< obj.easyrpg_critical_hit_chance;
+	os << ", easyrpg_affected_by_row_modifiers="<< obj.easyrpg_affected_by_row_modifiers;
+	os << ", easyrpg_hp_type="<< obj.easyrpg_hp_type;
+	os << ", easyrpg_hp_percent="<< obj.easyrpg_hp_percent;
+	os << ", easyrpg_hp_cost="<< obj.easyrpg_hp_cost;
 	os << "}";
 	return os;
 }

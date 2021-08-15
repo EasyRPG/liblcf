@@ -246,6 +246,11 @@ namespace rpg {
 		int32_t easyrpg_max_enemy_sp = -1;
 		int32_t easyrpg_max_stat_base_value = -1;
 		int32_t easyrpg_max_stat_battle_value = -1;
+		bool easyrpg_use_rpg2k_battle_system = false;
+		bool easyrpg_battle_use_rpg2ke_strings = false;
+		bool easyrpg_use_rpg2k_battle_commands = false;
+		int32_t easyrpg_default_actorai = -1;
+		int32_t easyrpg_default_enemyai = -1;
 	};
 	inline std::ostream& operator<<(std::ostream& os, System::FadeOut code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -346,7 +351,12 @@ namespace rpg {
 		&& l.easyrpg_max_actor_sp == r.easyrpg_max_actor_sp
 		&& l.easyrpg_max_enemy_sp == r.easyrpg_max_enemy_sp
 		&& l.easyrpg_max_stat_base_value == r.easyrpg_max_stat_base_value
-		&& l.easyrpg_max_stat_battle_value == r.easyrpg_max_stat_battle_value;
+		&& l.easyrpg_max_stat_battle_value == r.easyrpg_max_stat_battle_value
+		&& l.easyrpg_use_rpg2k_battle_system == r.easyrpg_use_rpg2k_battle_system
+		&& l.easyrpg_battle_use_rpg2ke_strings == r.easyrpg_battle_use_rpg2ke_strings
+		&& l.easyrpg_use_rpg2k_battle_commands == r.easyrpg_use_rpg2k_battle_commands
+		&& l.easyrpg_default_actorai == r.easyrpg_default_actorai
+		&& l.easyrpg_default_enemyai == r.easyrpg_default_enemyai;
 	}
 
 	inline bool operator!=(const System& l, const System& r) {

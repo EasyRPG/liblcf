@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <vector>
+#include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/rpg/enemyaction.h"
 #include "lcf/context.h"
@@ -51,6 +52,17 @@ namespace rpg {
 		std::vector<uint8_t> attribute_ranks;
 		std::vector<EnemyAction> actions;
 		int32_t maniac_unarmed_animation = 1;
+		int32_t easyrpg_enemyai = -1;
+		bool easyrpg_prevent_critical = false;
+		bool easyrpg_raise_evasion = false;
+		bool easyrpg_immune_to_attribute_downshifts = false;
+		bool easyrpg_ignore_evasion = false;
+		int32_t easyrpg_hit = -1;
+		DBBitArray easyrpg_state_set;
+		int32_t easyrpg_state_chance = 0;
+		DBBitArray easyrpg_attribute_set;
+		bool easyrpg_super_guard = false;
+		bool easyrpg_attack_all = false;
 	};
 
 	inline bool operator==(const Enemy& l, const Enemy& r) {
@@ -75,7 +87,18 @@ namespace rpg {
 		&& l.state_ranks == r.state_ranks
 		&& l.attribute_ranks == r.attribute_ranks
 		&& l.actions == r.actions
-		&& l.maniac_unarmed_animation == r.maniac_unarmed_animation;
+		&& l.maniac_unarmed_animation == r.maniac_unarmed_animation
+		&& l.easyrpg_enemyai == r.easyrpg_enemyai
+		&& l.easyrpg_prevent_critical == r.easyrpg_prevent_critical
+		&& l.easyrpg_raise_evasion == r.easyrpg_raise_evasion
+		&& l.easyrpg_immune_to_attribute_downshifts == r.easyrpg_immune_to_attribute_downshifts
+		&& l.easyrpg_ignore_evasion == r.easyrpg_ignore_evasion
+		&& l.easyrpg_hit == r.easyrpg_hit
+		&& l.easyrpg_state_set == r.easyrpg_state_set
+		&& l.easyrpg_state_chance == r.easyrpg_state_chance
+		&& l.easyrpg_attribute_set == r.easyrpg_attribute_set
+		&& l.easyrpg_super_guard == r.easyrpg_super_guard
+		&& l.easyrpg_attack_all == r.easyrpg_attack_all;
 	}
 
 	inline bool operator!=(const Enemy& l, const Enemy& r) {

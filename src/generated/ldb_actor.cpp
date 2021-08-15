@@ -249,6 +249,95 @@ static TypedField<rpg::Actor, std::vector<int32_t>> static_battle_commands(
 	1,
 	1
 );
+static TypedField<rpg::Actor, int32_t> static_easyrpg_actorai(
+	&rpg::Actor::easyrpg_actorai,
+	LDB_Reader::ChunkActor::easyrpg_actorai,
+	"easyrpg_actorai",
+	0,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_prevent_critical(
+	&rpg::Actor::easyrpg_prevent_critical,
+	LDB_Reader::ChunkActor::easyrpg_prevent_critical,
+	"easyrpg_prevent_critical",
+	0,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_raise_evasion(
+	&rpg::Actor::easyrpg_raise_evasion,
+	LDB_Reader::ChunkActor::easyrpg_raise_evasion,
+	"easyrpg_raise_evasion",
+	0,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_immune_to_attribute_downshifts(
+	&rpg::Actor::easyrpg_immune_to_attribute_downshifts,
+	LDB_Reader::ChunkActor::easyrpg_immune_to_attribute_downshifts,
+	"easyrpg_immune_to_attribute_downshifts",
+	0,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_ignore_evasion(
+	&rpg::Actor::easyrpg_ignore_evasion,
+	LDB_Reader::ChunkActor::easyrpg_ignore_evasion,
+	"easyrpg_ignore_evasion",
+	0,
+	0
+);
+static TypedField<rpg::Actor, int32_t> static_easyrpg_unarmed_hit(
+	&rpg::Actor::easyrpg_unarmed_hit,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_hit,
+	"easyrpg_unarmed_hit",
+	0,
+	0
+);
+static SizeField<rpg::Actor, DBBitArray> static_size_easyrpg_unarmed_state_set(
+	&rpg::Actor::easyrpg_unarmed_state_set,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_state_set_size,
+	0,
+	0
+);
+static TypedField<rpg::Actor, DBBitArray> static_easyrpg_unarmed_state_set(
+	&rpg::Actor::easyrpg_unarmed_state_set,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_state_set,
+	"easyrpg_unarmed_state_set",
+	1,
+	0
+);
+static TypedField<rpg::Actor, int32_t> static_easyrpg_unarmed_state_chance(
+	&rpg::Actor::easyrpg_unarmed_state_chance,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_state_chance,
+	"easyrpg_unarmed_state_chance",
+	0,
+	0
+);
+static SizeField<rpg::Actor, DBBitArray> static_size_easyrpg_unarmed_attribute_set(
+	&rpg::Actor::easyrpg_unarmed_attribute_set,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_attribute_set_size,
+	0,
+	0
+);
+static TypedField<rpg::Actor, DBBitArray> static_easyrpg_unarmed_attribute_set(
+	&rpg::Actor::easyrpg_unarmed_attribute_set,
+	LDB_Reader::ChunkActor::easyrpg_unarmed_attribute_set,
+	"easyrpg_unarmed_attribute_set",
+	1,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_dual_attack(
+	&rpg::Actor::easyrpg_dual_attack,
+	LDB_Reader::ChunkActor::easyrpg_dual_attack,
+	"easyrpg_dual_attack",
+	0,
+	0
+);
+static TypedField<rpg::Actor, bool> static_easyrpg_attack_all(
+	&rpg::Actor::easyrpg_attack_all,
+	LDB_Reader::ChunkActor::easyrpg_attack_all,
+	"easyrpg_attack_all",
+	0,
+	0
+);
 
 
 template <>
@@ -286,6 +375,19 @@ Field<rpg::Actor> const* Struct<rpg::Actor>::fields[] = {
 	&static_size_attribute_ranks,
 	&static_attribute_ranks,
 	&static_battle_commands,
+	&static_easyrpg_actorai,
+	&static_easyrpg_prevent_critical,
+	&static_easyrpg_raise_evasion,
+	&static_easyrpg_immune_to_attribute_downshifts,
+	&static_easyrpg_ignore_evasion,
+	&static_easyrpg_unarmed_hit,
+	&static_size_easyrpg_unarmed_state_set,
+	&static_easyrpg_unarmed_state_set,
+	&static_easyrpg_unarmed_state_chance,
+	&static_size_easyrpg_unarmed_attribute_set,
+	&static_easyrpg_unarmed_attribute_set,
+	&static_easyrpg_dual_attack,
+	&static_easyrpg_attack_all,
 	NULL
 };
 

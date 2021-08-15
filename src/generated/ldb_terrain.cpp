@@ -244,6 +244,20 @@ static TypedField<rpg::Terrain, int32_t> static_grid_inclination(
 	0,
 	1
 );
+static TypedField<rpg::Terrain, bool> static_easyrpg_damage_in_percent(
+	&rpg::Terrain::easyrpg_damage_in_percent,
+	LDB_Reader::ChunkTerrain::easyrpg_damage_in_percent,
+	"easyrpg_damage_in_percent",
+	0,
+	0
+);
+static TypedField<rpg::Terrain, bool> static_easyrpg_damage_can_kill(
+	&rpg::Terrain::easyrpg_damage_can_kill,
+	LDB_Reader::ChunkTerrain::easyrpg_damage_can_kill,
+	"easyrpg_damage_can_kill",
+	0,
+	0
+);
 
 
 template <>
@@ -280,6 +294,8 @@ Field<rpg::Terrain> const* Struct<rpg::Terrain>::fields[] = {
 	&static_grid_top_y,
 	&static_grid_elongation,
 	&static_grid_inclination,
+	&static_easyrpg_damage_in_percent,
+	&static_easyrpg_damage_can_kill,
 	NULL
 };
 

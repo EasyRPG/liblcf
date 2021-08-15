@@ -64,6 +64,25 @@ std::ostream& operator<<(std::ostream& os, const Actor& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.battle_commands[i];
 	}
 	os << "]";
+	os << ", easyrpg_actorai="<< obj.easyrpg_actorai;
+	os << ", easyrpg_prevent_critical="<< obj.easyrpg_prevent_critical;
+	os << ", easyrpg_raise_evasion="<< obj.easyrpg_raise_evasion;
+	os << ", easyrpg_immune_to_attribute_downshifts="<< obj.easyrpg_immune_to_attribute_downshifts;
+	os << ", easyrpg_ignore_evasion="<< obj.easyrpg_ignore_evasion;
+	os << ", easyrpg_unarmed_hit="<< obj.easyrpg_unarmed_hit;
+	os << ", easyrpg_unarmed_state_set=";
+	for (size_t i = 0; i < obj.easyrpg_unarmed_state_set.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_unarmed_state_set[i];
+	}
+	os << "]";
+	os << ", easyrpg_unarmed_state_chance="<< obj.easyrpg_unarmed_state_chance;
+	os << ", easyrpg_unarmed_attribute_set=";
+	for (size_t i = 0; i < obj.easyrpg_unarmed_attribute_set.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_unarmed_attribute_set[i];
+	}
+	os << "]";
+	os << ", easyrpg_dual_attack="<< obj.easyrpg_dual_attack;
+	os << ", easyrpg_attack_all="<< obj.easyrpg_attack_all;
 	os << "}";
 	return os;
 }

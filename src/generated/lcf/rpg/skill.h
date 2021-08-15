@@ -70,6 +70,14 @@ namespace rpg {
 			"ally",
 			"party"
 		);
+		enum HpType {
+			HpType_cost = 0,
+			HpType_percent = 1
+		};
+		static constexpr auto kHpTypeTags = lcf::makeEnumTags<HpType>(
+			"cost",
+			"percent"
+		);
 
 		int ID = 0;
 		DBString name;
@@ -113,6 +121,12 @@ namespace rpg {
 		bool easyrpg_ignore_restrict_skill = false;
 		bool easyrpg_ignore_restrict_magic = false;
 		bool easyrpg_enable_stat_absorbing = false;
+		bool easyrpg_affected_by_evade_all_physical_attacks = false;
+		int32_t easyrpg_critical_hit_chance = 0;
+		bool easyrpg_affected_by_row_modifiers = false;
+		int32_t easyrpg_hp_type = 0;
+		int32_t easyrpg_hp_percent = 0;
+		int32_t easyrpg_hp_cost = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -123,6 +137,10 @@ namespace rpg {
 		return os;
 	}
 	inline std::ostream& operator<<(std::ostream& os, Skill::Scope code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, Skill::HpType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
@@ -168,7 +186,13 @@ namespace rpg {
 		&& l.easyrpg_attribute_hit == r.easyrpg_attribute_hit
 		&& l.easyrpg_ignore_restrict_skill == r.easyrpg_ignore_restrict_skill
 		&& l.easyrpg_ignore_restrict_magic == r.easyrpg_ignore_restrict_magic
-		&& l.easyrpg_enable_stat_absorbing == r.easyrpg_enable_stat_absorbing;
+		&& l.easyrpg_enable_stat_absorbing == r.easyrpg_enable_stat_absorbing
+		&& l.easyrpg_affected_by_evade_all_physical_attacks == r.easyrpg_affected_by_evade_all_physical_attacks
+		&& l.easyrpg_critical_hit_chance == r.easyrpg_critical_hit_chance
+		&& l.easyrpg_affected_by_row_modifiers == r.easyrpg_affected_by_row_modifiers
+		&& l.easyrpg_hp_type == r.easyrpg_hp_type
+		&& l.easyrpg_hp_percent == r.easyrpg_hp_percent
+		&& l.easyrpg_hp_cost == r.easyrpg_hp_cost;
 	}
 
 	inline bool operator!=(const Skill& l, const Skill& r) {

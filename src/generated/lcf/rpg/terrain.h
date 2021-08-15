@@ -96,6 +96,8 @@ namespace rpg {
 		int32_t grid_top_y = 120;
 		int32_t grid_elongation = 392;
 		int32_t grid_inclination = 16000;
+		bool easyrpg_damage_in_percent = false;
+		bool easyrpg_damage_can_kill = false;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Terrain::BushDepth code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -148,7 +150,9 @@ namespace rpg {
 		&& l.grid_location == r.grid_location
 		&& l.grid_top_y == r.grid_top_y
 		&& l.grid_elongation == r.grid_elongation
-		&& l.grid_inclination == r.grid_inclination;
+		&& l.grid_inclination == r.grid_inclination
+		&& l.easyrpg_damage_in_percent == r.easyrpg_damage_in_percent
+		&& l.easyrpg_damage_can_kill == r.easyrpg_damage_can_kill;
 	}
 
 	inline bool operator!=(const Terrain& l, const Terrain& r) {
