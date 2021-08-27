@@ -6,17 +6,6 @@ endif()
 
 project(liblcf VERSION 0.6.2 LANGUAGES CXX)
 
-# Deprecation handling. Remove these lines one release later.
-SET(new_params "WITH_ICU;WITH_XML;UPDATE_MIMEDB;ENABLE_TOOLS;ENABLE_BENCHMARKS")
-SET(old_params "DISABLE_ICU;DISABLE_XML;DISABLE_UPDATE_MIMEDB;DISABLE_TOOLS;DISABLE_BENCHMARKS")
-foreach(x IN LISTS old_params)
-	if(DEFINED ${x})
-		list(FIND old_params ${x} index)
-		list(GET new_params ${index} new_value)
-		message(FATAL_ERROR "${x} was renamed to LIBLCF_${new_value} and the logic inverted.")
-	endif()
-endforeach()
-
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
 option(LIBLCF_WITH_ICU "ICU encoding detection (when OFF fallback to iconv, not recommended, default: ON)" ON)
