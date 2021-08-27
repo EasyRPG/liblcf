@@ -1,8 +1,8 @@
 #.rst:
-# FindLCF
+# liblcf-config
 # -------
 #
-# Find the native liblcf headers and library.
+# Exports the native liblcf headers and library.
 #
 # Imported Targets
 # ^^^^^^^^^^^^^^^^
@@ -26,26 +26,47 @@
 # ``LIBLCF_VERSION_STRING``
 #   version of liblcf
 
-find_package(PkgConfig QUIET)
+# Compute the installation prefix relative to this file.
+get_filename_component(_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_FILE}" PATH)
+# Use original install prefix when loaded through a
+# cross-prefix symbolic link such as /lib -> /usr/lib.
+get_filename_component(_realCurr "${_IMPORT_PREFIX}" REALPATH)
+get_filename_component(_realOrig "@CMAKE_INSTALL_FULL_LIBDIR@/cmake/liblcf" REALPATH)
+if(_realCurr STREQUAL _realOrig)
+	set(_IMPORT_PREFIX "${_realOrig}")
+endif()
+unset(_realOrig)
+unset(_realCurr)
+# peel layers until above library directory
+get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
+get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
+get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
+# debian multiarch has one layer more
+if(_IMPORT_PREFIX MATCHES ".+/lib$")
+	get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
+endif()
+if(_IMPORT_PREFIX STREQUAL "/")
+	set(_IMPORT_PREFIX "")
+endif()
 
-pkg_check_modules(PC_LIBLCF QUIET lcf)
-
-# Look for the header file.
-find_path(LIBLCF_INCLUDE_DIR
-	NAMES "lcf/reader_lcf.h"
-	PATH_SUFFIXES liblcf lcf
-	HINTS ${PC_LIBLCF_INCLUDE_DIRS})
+# Set the header file directory.
+set(LIBLCF_INCLUDE_DIR "${_IMPORT_PREFIX}/@CMAKE_INSTALL_INCLUDEDIR@"
+	CACHE PATH "LCF include directory")
 
 # Look for the library.
 # Allow LIBLCF_LIBRARY to be set manually, as the location of the liblcf library
 if(NOT LIBLCF_LIBRARY)
 	find_library(LIBLCF_LIBRARY_RELEASE
-		NAMES lcf liblcf
-		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+		NAMES lcf
+		PATHS ${_IMPORT_PREFIX}/@CMAKE_INSTALL_LIBDIR@
+		DOC "LCF library (release)"
+		NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
 
 	find_library(LIBLCF_LIBRARY_DEBUG
-		NAMES lcf@CMAKE_DEBUG_POSTFIX@ liblcf@CMAKE_DEBUG_POSTFIX@
-		HINTS ${PC_LIBLCF_LIBRARY_DIRS})
+		NAMES lcf@CMAKE_DEBUG_POSTFIX@
+		PATHS ${_IMPORT_PREFIX}/@CMAKE_INSTALL_LIBDIR@
+		DOC "LCF library (debug)"
+		NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
 
 	include(SelectLibraryConfigurations)
 	select_library_configurations(LIBLCF)
@@ -107,10 +128,8 @@ if(LIBLCF_FOUND)
 				IMPORTED_LOCATION "${LIBLCF_LIBRARY}")
 		endif()
 
-		if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.8")
-			set_property(TARGET liblcf::liblcf APPEND PROPERTY
-				COMPILE_FEATURES cxx_std_14)
-		endif()
+		set_property(TARGET liblcf::liblcf APPEND PROPERTY
+			COMPILE_FEATURES cxx_std_14)
 
 		mark_as_advanced(LIBLCF_LINK_LIBRARIES)
 	endif()

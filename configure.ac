@@ -70,7 +70,26 @@ AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
-# liblcf-config.cmake (use empty postfix)
+# liblcf-config.cmake
+AC_PROG_SED
+AC_PROG_GREP
+# remove the (exec_)prefix from includedir and libdir
+prefix_remover_sed="$SED -e s%^\${\(exec_\)\{0,1\}prefix}%% \
+  -e s%^${prefix}%% -e s%^${exec_prefix}%% -e s%^/%%"
+sub_incdir=`AS_ECHO(${includedir}) | ${prefix_remover_sed}`
+sub_libdir=`AS_ECHO(${libdir}) | ${prefix_remover_sed}`
+# concatenate, if not absolute path
+full_libdir=${libdir}
+AS_IF([AS_ECHO(${libdir}) | $GREP -v "^/" >/dev/null], [
+	AS_IF([test "x${exec_prefix}" != "xNONE"],
+		[full_libdir="${exec_prefix}/${sub_libdir}"],
+	[test "x${prefix}" != "xNONE"],
+		[full_libdir="${prefix}/${sub_libdir}"],
+	[full_libdir="${ac_default_prefix}/${sub_libdir}"])
+])
+AC_SUBST([CMAKE_INSTALL_INCLUDEDIR], [$sub_incdir])
+AC_SUBST([CMAKE_INSTALL_LIBDIR], [$sub_libdir])
+AC_SUBST([CMAKE_INSTALL_FULL_LIBDIR], [$full_libdir])
 AC_SUBST([CMAKE_DEBUG_POSTFIX])
 
 # Files to generate
