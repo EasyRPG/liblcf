@@ -692,15 +692,15 @@ namespace LSD_Reader {
 			keyinput_variable = 0x16,
 			/**  */
 			keyinput_all_directions = 0x17,
-			/**  */
+			/** Maniac: Mouse Left (Bit 1) */
 			keyinput_decision = 0x18,
-			/**  */
+			/** Maniac: Mouse Right (Bit 1) */
 			keyinput_cancel = 0x19,
 			/** In RM2k Value this is keyinput_shift */
 			keyinput_2kshift_2k3numbers = 0x1A,
 			/** In Value keyinput_down */
 			keyinput_2kdown_2k3operators = 0x1B,
-			/** In Value keyinput_left */
+			/** In Value keyinput_left; Maniac: Mouse Middle (Bit 1) */
 			keyinput_2kleft_2k3shift = 0x1C,
 			/** Only in Value */
 			keyinput_2kright = 0x1D,
@@ -710,13 +710,13 @@ namespace LSD_Reader {
 			wait_time = 0x1F,
 			/**  */
 			keyinput_time_variable = 0x20,
-			/**  */
+			/** Maniac: Mouse Scroll Down (Bit 1) */
 			keyinput_2k3down = 0x23,
 			/**  */
 			keyinput_2k3left = 0x24,
 			/**  */
 			keyinput_2k3right = 0x25,
-			/**  */
+			/** Maniac: Mouse Scroll Up (Bit 1) */
 			keyinput_2k3up = 0x26,
 			/**  */
 			keyinput_timed = 0x29,

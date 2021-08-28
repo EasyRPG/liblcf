@@ -69,49 +69,49 @@ static TypedField<rpg::SaveEventExecState, bool> static_keyinput_all_directions(
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_decision(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_decision(
 	&rpg::SaveEventExecState::keyinput_decision,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_decision,
 	"keyinput_decision",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_cancel(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_cancel(
 	&rpg::SaveEventExecState::keyinput_cancel,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_cancel,
 	"keyinput_cancel",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2kshift_2k3numbers(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2kshift_2k3numbers(
 	&rpg::SaveEventExecState::keyinput_2kshift_2k3numbers,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2kshift_2k3numbers,
 	"keyinput_2kshift_2k3numbers",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2kdown_2k3operators(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2kdown_2k3operators(
 	&rpg::SaveEventExecState::keyinput_2kdown_2k3operators,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2kdown_2k3operators,
 	"keyinput_2kdown_2k3operators",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2kleft_2k3shift(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2kleft_2k3shift(
 	&rpg::SaveEventExecState::keyinput_2kleft_2k3shift,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2kleft_2k3shift,
 	"keyinput_2kleft_2k3shift",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2kright(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2kright(
 	&rpg::SaveEventExecState::keyinput_2kright,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2kright,
 	"keyinput_2kright",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2kup(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2kup(
 	&rpg::SaveEventExecState::keyinput_2kup,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2kup,
 	"keyinput_2kup",
@@ -132,28 +132,28 @@ static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_time_variabl
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2k3down(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2k3down(
 	&rpg::SaveEventExecState::keyinput_2k3down,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2k3down,
 	"keyinput_2k3down",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2k3left(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2k3left(
 	&rpg::SaveEventExecState::keyinput_2k3left,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2k3left,
 	"keyinput_2k3left",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2k3right(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2k3right(
 	&rpg::SaveEventExecState::keyinput_2k3right,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2k3right,
 	"keyinput_2k3right",
 	0,
 	0
 );
-static TypedField<rpg::SaveEventExecState, bool> static_keyinput_2k3up(
+static TypedField<rpg::SaveEventExecState, int32_t> static_keyinput_2k3up(
 	&rpg::SaveEventExecState::keyinput_2k3up,
 	LSD_Reader::ChunkSaveEventExecState::keyinput_2k3up,
 	"keyinput_2k3up",
