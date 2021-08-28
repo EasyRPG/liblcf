@@ -924,19 +924,19 @@ SaveEventExecState,wait_movement,f,Boolean,0x0D,False,0,0,Whether Wait for all m
 SaveEventExecState,keyinput_wait,f,Boolean,0x15,False,0,0,
 SaveEventExecState,keyinput_variable,f,UInt8,0x16,0,0,0,
 SaveEventExecState,keyinput_all_directions,f,Boolean,0x17,False,0,0,
-SaveEventExecState,keyinput_decision,f,Boolean,0x18,False,0,0,
-SaveEventExecState,keyinput_cancel,f,Boolean,0x19,False,0,0,
-SaveEventExecState,keyinput_2kshift_2k3numbers,f,Boolean,0x1A,False,0,0,In RM2k Value this is keyinput_shift
-SaveEventExecState,keyinput_2kdown_2k3operators,f,Boolean,0x1B,False,0,0,In Value keyinput_down
-SaveEventExecState,keyinput_2kleft_2k3shift,f,Boolean,0x1C,False,0,0,In Value keyinput_left
-SaveEventExecState,keyinput_2kright,f,Boolean,0x1D,False,0,0,Only in Value
-SaveEventExecState,keyinput_2kup,f,Boolean,0x1E,False,0,0,Only in Value
+SaveEventExecState,keyinput_decision,f,Int32,0x18,0,0,0,Maniac: Mouse Left (Bit 1)
+SaveEventExecState,keyinput_cancel,f,Int32,0x19,0,0,0,Maniac: Mouse Right (Bit 1)
+SaveEventExecState,keyinput_2kshift_2k3numbers,f,Int32,0x1A,0,0,0,In RM2k Value this is keyinput_shift
+SaveEventExecState,keyinput_2kdown_2k3operators,f,Int32,0x1B,0,0,0,In Value keyinput_down
+SaveEventExecState,keyinput_2kleft_2k3shift,f,Int32,0x1C,0,0,0,In Value keyinput_left; Maniac: Mouse Middle (Bit 1)
+SaveEventExecState,keyinput_2kright,f,Int32,0x1D,0,0,0,Only in Value
+SaveEventExecState,keyinput_2kup,f,Int32,0x1E,0,0,0,Only in Value
 SaveEventExecState,wait_time,f,Int32,0x1F,0,0,0,int
 SaveEventExecState,keyinput_time_variable,f,Int32,0x20,0,0,0,
-SaveEventExecState,keyinput_2k3down,f,Boolean,0x23,False,0,0,
-SaveEventExecState,keyinput_2k3left,f,Boolean,0x24,False,0,0,
-SaveEventExecState,keyinput_2k3right,f,Boolean,0x25,False,0,0,
-SaveEventExecState,keyinput_2k3up,f,Boolean,0x26,False,0,0,
+SaveEventExecState,keyinput_2k3down,f,Int32,0x23,0,0,0,Maniac: Mouse Scroll Down (Bit 1)
+SaveEventExecState,keyinput_2k3left,f,Int32,0x24,0,0,0,
+SaveEventExecState,keyinput_2k3right,f,Int32,0x25,0,0,0,
+SaveEventExecState,keyinput_2k3up,f,Int32,0x26,0,0,0,Maniac: Mouse Scroll Up (Bit 1)
 SaveEventExecState,keyinput_timed,f,Boolean,0x29,False,0,0,
 SaveEventExecState,wait_key_enter,f,Boolean,0x2a,False,0,0,Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press.
 SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
