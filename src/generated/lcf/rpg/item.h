@@ -134,6 +134,7 @@ namespace rpg {
 		int32_t ranged_trajectory = 0;
 		int32_t ranged_target = 0;
 		DBString easyrpg_using_message = DBString(kDefaultMessage);
+		int32_t easyrpg_max_count = -1;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Item::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -201,7 +202,8 @@ namespace rpg {
 		&& l.class_set == r.class_set
 		&& l.ranged_trajectory == r.ranged_trajectory
 		&& l.ranged_target == r.ranged_target
-		&& l.easyrpg_using_message == r.easyrpg_using_message;
+		&& l.easyrpg_using_message == r.easyrpg_using_message
+		&& l.easyrpg_max_count == r.easyrpg_max_count;
 	}
 
 	inline bool operator!=(const Item& l, const Item& r) {

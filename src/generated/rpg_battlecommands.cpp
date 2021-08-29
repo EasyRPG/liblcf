@@ -36,6 +36,9 @@ std::ostream& operator<<(std::ostream& os, const BattleCommands& obj) {
 	os << ", death_teleport_x="<< obj.death_teleport_x;
 	os << ", death_teleport_y="<< obj.death_teleport_y;
 	os << ", death_teleport_face="<< obj.death_teleport_face;
+	os << ", easyrpg_default_atb_mode="<< obj.easyrpg_default_atb_mode;
+	os << ", easyrpg_enable_battle_row_command="<< obj.easyrpg_enable_battle_row_command;
+	os << ", easyrpg_sequential_order="<< obj.easyrpg_sequential_order;
 	os << "}";
 	return os;
 }
