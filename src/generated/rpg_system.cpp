@@ -95,7 +95,6 @@ std::ostream& operator<<(std::ostream& os, const System& obj) {
 	os << ", easyrpg_max_damage="<< obj.easyrpg_max_damage;
 	os << ", easyrpg_max_exp="<< obj.easyrpg_max_exp;
 	os << ", easyrpg_max_level="<< obj.easyrpg_max_level;
-	os << ", easyrpg_enable_stat_absorbing="<< obj.easyrpg_enable_stat_absorbing;
 	os << ", easyrpg_max_savefiles="<< obj.easyrpg_max_savefiles;
 	os << ", easyrpg_max_item_count="<< obj.easyrpg_max_item_count;
 	os << ", easyrpg_variable_min_value="<< obj.easyrpg_variable_min_value;

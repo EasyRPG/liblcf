@@ -466,13 +466,6 @@ static TypedField<rpg::System, int32_t> static_easyrpg_max_level(
 	0,
 	0
 );
-static TypedField<rpg::System, bool> static_easyrpg_enable_stat_absorbing(
-	&rpg::System::easyrpg_enable_stat_absorbing,
-	LDB_Reader::ChunkSystem::easyrpg_enable_stat_absorbing,
-	"easyrpg_enable_stat_absorbing",
-	0,
-	0
-);
 static TypedField<rpg::System, int32_t> static_easyrpg_max_savefiles(
 	&rpg::System::easyrpg_max_savefiles,
 	LDB_Reader::ChunkSystem::easyrpg_max_savefiles,
@@ -597,7 +590,6 @@ Field<rpg::System> const* Struct<rpg::System>::fields[] = {
 	&static_easyrpg_max_damage,
 	&static_easyrpg_max_exp,
 	&static_easyrpg_max_level,
-	&static_easyrpg_enable_stat_absorbing,
 	&static_easyrpg_max_savefiles,
 	&static_easyrpg_max_item_count,
 	&static_easyrpg_variable_min_value,

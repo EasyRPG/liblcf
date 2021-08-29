@@ -459,7 +459,9 @@ namespace LDB_Reader {
 			/** If the skill should bypass skill restrictions by states */
 			easyrpg_ignore_restrict_skill = 0xCD,
 			/** If the skill should bypass magic restrictions by states */
-			easyrpg_ignore_restrict_magic = 0xCE
+			easyrpg_ignore_restrict_magic = 0xCE,
+			/** If the skill can absorb attack/defense/spirit/agility */
+			easyrpg_enable_stat_absorbing = 0xCF
 		};
 	};
 	struct ChunkItem {
@@ -1370,24 +1372,22 @@ namespace LDB_Reader {
 			easyrpg_max_exp = 0xCD,
 			/** Absolute maximum level actors can reach */
 			easyrpg_max_level = 0xCE,
-			/** If attack/defense/spirit/agility can be absorbed */
-			easyrpg_enable_stat_absorbing = 0xCF,
 			/** How many savegame slots should be shown in the savegame scene */
-			easyrpg_max_savefiles = 0xD0,
+			easyrpg_max_savefiles = 0xCF,
 			/** How many items of a kind the player can carry. Can be overridden per item with the easyrpg_max_count setting of an item */
-			easyrpg_max_item_count = 0xD1,
+			easyrpg_max_item_count = 0xD0,
 			/** Minimum value a variable can have */
-			easyrpg_variable_min_value = 0xD2,
+			easyrpg_variable_min_value = 0xD1,
 			/** Maximum value a variable can have */
-			easyrpg_variable_max_value = 0xD3,
+			easyrpg_variable_max_value = 0xD2,
 			/** Absolute maximum SP value actors can have */
-			easyrpg_max_actor_sp = 0xD4,
+			easyrpg_max_actor_sp = 0xD3,
 			/** Absolute maximum SP value enemies can have */
-			easyrpg_max_enemy_sp = 0xD5,
+			easyrpg_max_enemy_sp = 0xD4,
 			/** Absolute maximum value a base stat can have */
-			easyrpg_max_stat_base_value = 0xD6,
+			easyrpg_max_stat_base_value = 0xD5,
 			/** Absolute maximum value a battle stat can have */
-			easyrpg_max_stat_battle_value = 0xD7
+			easyrpg_max_stat_battle_value = 0xD6
 		};
 	};
 	struct ChunkSwitch {

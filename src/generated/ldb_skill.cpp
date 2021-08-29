@@ -312,6 +312,13 @@ static TypedField<rpg::Skill, bool> static_easyrpg_ignore_restrict_magic(
 	0,
 	0
 );
+static TypedField<rpg::Skill, bool> static_easyrpg_enable_stat_absorbing(
+	&rpg::Skill::easyrpg_enable_stat_absorbing,
+	LDB_Reader::ChunkSkill::easyrpg_enable_stat_absorbing,
+	"easyrpg_enable_stat_absorbing",
+	0,
+	0
+);
 
 
 template <>
@@ -358,6 +365,7 @@ Field<rpg::Skill> const* Struct<rpg::Skill>::fields[] = {
 	&static_easyrpg_attribute_hit,
 	&static_easyrpg_ignore_restrict_skill,
 	&static_easyrpg_ignore_restrict_magic,
+	&static_easyrpg_enable_stat_absorbing,
 	NULL
 };
 

@@ -112,6 +112,7 @@ namespace rpg {
 		int32_t easyrpg_attribute_hit = -1;
 		bool easyrpg_ignore_restrict_skill = false;
 		bool easyrpg_ignore_restrict_magic = false;
+		bool easyrpg_enable_stat_absorbing = false;
 	};
 	inline std::ostream& operator<<(std::ostream& os, Skill::Type code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -166,7 +167,8 @@ namespace rpg {
 		&& l.easyrpg_state_hit == r.easyrpg_state_hit
 		&& l.easyrpg_attribute_hit == r.easyrpg_attribute_hit
 		&& l.easyrpg_ignore_restrict_skill == r.easyrpg_ignore_restrict_skill
-		&& l.easyrpg_ignore_restrict_magic == r.easyrpg_ignore_restrict_magic;
+		&& l.easyrpg_ignore_restrict_magic == r.easyrpg_ignore_restrict_magic
+		&& l.easyrpg_enable_stat_absorbing == r.easyrpg_enable_stat_absorbing;
 	}
 
 	inline bool operator!=(const Skill& l, const Skill& r) {

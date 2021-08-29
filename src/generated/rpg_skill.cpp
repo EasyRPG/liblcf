@@ -70,6 +70,7 @@ std::ostream& operator<<(std::ostream& os, const Skill& obj) {
 	os << ", easyrpg_attribute_hit="<< obj.easyrpg_attribute_hit;
 	os << ", easyrpg_ignore_restrict_skill="<< obj.easyrpg_ignore_restrict_skill;
 	os << ", easyrpg_ignore_restrict_magic="<< obj.easyrpg_ignore_restrict_magic;
+	os << ", easyrpg_enable_stat_absorbing="<< obj.easyrpg_enable_stat_absorbing;
 	os << "}";
 	return os;
 }

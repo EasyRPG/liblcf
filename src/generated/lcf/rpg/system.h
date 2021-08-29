@@ -238,7 +238,6 @@ namespace rpg {
 		int32_t easyrpg_max_damage = -1;
 		int32_t easyrpg_max_exp = -1;
 		int32_t easyrpg_max_level = -1;
-		bool easyrpg_enable_stat_absorbing = false;
 		int32_t easyrpg_max_savefiles = 15;
 		int32_t easyrpg_max_item_count = -1;
 		int32_t easyrpg_variable_min_value = 0;
@@ -340,7 +339,6 @@ namespace rpg {
 		&& l.easyrpg_max_damage == r.easyrpg_max_damage
 		&& l.easyrpg_max_exp == r.easyrpg_max_exp
 		&& l.easyrpg_max_level == r.easyrpg_max_level
-		&& l.easyrpg_enable_stat_absorbing == r.easyrpg_enable_stat_absorbing
 		&& l.easyrpg_max_savefiles == r.easyrpg_max_savefiles
 		&& l.easyrpg_max_item_count == r.easyrpg_max_item_count
 		&& l.easyrpg_variable_min_value == r.easyrpg_variable_min_value
