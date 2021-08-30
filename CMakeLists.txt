@@ -336,17 +336,19 @@ set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
 set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 # icu or fallback to iconv
+set(LCF_SUPPORT_ICU 0)
 if(LIBLCF_WITH_ICU)
 	find_package(ICU COMPONENTS i18n uc data REQUIRED)
 	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
-	set(LCF_SUPPORT_ICU "1")
+	set(LCF_SUPPORT_ICU 1)
 else()
 	find_package(Iconv REQUIRED)
 	target_link_libraries(lcf Iconv::Iconv)
 endif()
 
 # expat
+set(LCF_SUPPORT_XML 0)
 if(LIBLCF_WITH_XML)
 	find_package(expat CONFIG)
 	if(expat_FOUND)
@@ -357,7 +359,7 @@ if(LIBLCF_WITH_XML)
 		target_link_libraries(lcf EXPAT::EXPAT)
 	endif()
 	list(APPEND LIBLCF_DEPS "expat")
-	set(LCF_SUPPORT_XML "1")
+	set(LCF_SUPPORT_XML 1)
 endif()
 
 # mime types
@@ -365,7 +367,7 @@ if(LIBLCF_UPDATE_MIMEDB AND NOT CMAKE_CROSSCOMPILING)
 	find_program(UPDATE_MIME_DATABASE update-mime-database)
 endif()
 
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake.config.h.in" "src/lcf/config.h" @ONLY)
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/builds/config.h.in" "src/lcf/config.h" @ONLY)
 target_sources(lcf PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 
 # .so version

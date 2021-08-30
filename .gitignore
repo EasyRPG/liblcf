@@ -9,12 +9,9 @@
 .dirstamp
 Makefile.in
 aclocal.m4
-config.h
-config.h.in
 config.log
 config.status
 configure
-liblcf-*.tar.*
 libtool
 stamp-h1
 *.la
@@ -22,7 +19,6 @@ stamp-h1
 
 # cmake build method
 bin/
-builds/liblcf-config.cmake
 CMakeCache.txt
 CMakeFiles/
 *.cmake
@@ -65,6 +61,11 @@ Makefile
 *.a
 *.o
 *.pc
+config.h
+builds/liblcf-config.cmake
 
 # tests
 test_runner*
+
+# distribution archives
+liblcf-*.tar.*

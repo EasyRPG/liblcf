@@ -24,13 +24,13 @@ AM_CONDITIONAL(CROSS_COMPILING,[test "x$cross_compiling" = "xyes"])
 AC_SUBST([LCF_SUPPORT_ICU],[0])
 AC_ARG_ENABLE([icu],[AS_HELP_STRING([--disable-icu],[Disable ICU encoding detection (fallback to iconv) [default=no]])])
 AS_IF([test "x$enable_icu" != "xno"],[
-	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[AC_SUBST([LCF_SUPPORT_ICU],[1])])
+	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[LCF_SUPPORT_ICU=1])
 ])
 
 AC_SUBST([LCF_SUPPORT_XML],[0])
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat) [default=no]])])
 AS_IF([test "x$enable_xml" != "xno"],[
-	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_SUBST([LCF_SUPPORT_XML],[1])])
+	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[LCF_SUPPORT_XML=1])
 ])
 AM_CONDITIONAL(SUPPORT_XML,[test $LCF_SUPPORT_XML == 1])
 
@@ -77,6 +77,6 @@ AC_SUBST([CMAKE_DEBUG_POSTFIX])
 AC_CONFIG_FILES([Makefile
                  builds/liblcf.pc
                  builds/liblcf-config.cmake
-                 autogen/lcf/config.h:builds/autoconf.config.h.in])
+                 src/lcf/config.h:builds/config.h.in])
 
 AC_OUTPUT
