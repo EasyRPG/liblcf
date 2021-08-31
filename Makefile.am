@@ -23,7 +23,7 @@ lcfthirdpartyincludedir = $(includedir)/lcf/third_party
 lib_LTLIBRARIES = liblcf.la
 liblcf_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I$(builddir)/autogen \
+	-I$(builddir)/src \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
 liblcf_la_CXXFLAGS = \
@@ -307,7 +307,7 @@ lcfthirdpartyinclude_HEADERS = \
 	src/lcf/third_party/span.h \
 	src/lcf/third_party/string_view.h
 
-nodist_lcfinclude_HEADERS = autogen/lcf/config.h
+nodist_lcfinclude_HEADERS = src/lcf/config.h
 
 check_PROGRAMS = test_runner
 test_runner_SOURCES = \

@@ -24,13 +24,13 @@ AM_CONDITIONAL(CROSS_COMPILING,[test "x$cross_compiling" = "xyes"])
 AC_SUBST([LCF_SUPPORT_ICU],[0])
 AC_ARG_ENABLE([icu],[AS_HELP_STRING([--disable-icu],[Disable ICU encoding detection (fallback to iconv) [default=no]])])
 AS_IF([test "x$enable_icu" != "xno"],[
-	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[AC_SUBST([LCF_SUPPORT_ICU],[1])])
+	AX_PKG_CHECK_MODULES([ICU],[],[icu-i18n],[LCF_SUPPORT_ICU=1])
 ])
 
 AC_SUBST([LCF_SUPPORT_XML],[0])
 AC_ARG_ENABLE([xml],[AS_HELP_STRING([--disable-xml],[Disable XML reading support (expat) [default=no]])])
 AS_IF([test "x$enable_xml" != "xno"],[
-	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[AC_SUBST([LCF_SUPPORT_XML],[1])])
+	AX_PKG_CHECK_MODULES([EXPAT],[],[expat >= 2.1],[LCF_SUPPORT_XML=1])
 ])
 AM_CONDITIONAL(SUPPORT_XML,[test $LCF_SUPPORT_XML == 1])
 
@@ -70,13 +70,32 @@ AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
-# liblcf-config.cmake (use empty postfix)
+# liblcf-config.cmake
+AC_PROG_SED
+AC_PROG_GREP
+# remove the (exec_)prefix from includedir and libdir
+prefix_remover_sed="$SED -e s%^\${\(exec_\)\{0,1\}prefix}%% \
+  -e s%^${prefix}%% -e s%^${exec_prefix}%% -e s%^/%%"
+sub_incdir=`AS_ECHO(${includedir}) | ${prefix_remover_sed}`
+sub_libdir=`AS_ECHO(${libdir}) | ${prefix_remover_sed}`
+# concatenate, if not absolute path
+full_libdir=${libdir}
+AS_IF([AS_ECHO(${libdir}) | $GREP -v "^/" >/dev/null], [
+	AS_IF([test "x${exec_prefix}" != "xNONE"],
+		[full_libdir="${exec_prefix}/${sub_libdir}"],
+	[test "x${prefix}" != "xNONE"],
+		[full_libdir="${prefix}/${sub_libdir}"],
+	[full_libdir="${ac_default_prefix}/${sub_libdir}"])
+])
+AC_SUBST([CMAKE_INSTALL_INCLUDEDIR], [$sub_incdir])
+AC_SUBST([CMAKE_INSTALL_LIBDIR], [$sub_libdir])
+AC_SUBST([CMAKE_INSTALL_FULL_LIBDIR], [$full_libdir])
 AC_SUBST([CMAKE_DEBUG_POSTFIX])
 
 # Files to generate
 AC_CONFIG_FILES([Makefile
                  builds/liblcf.pc
                  builds/liblcf-config.cmake
-                 autogen/lcf/config.h:builds/autoconf.config.h.in])
+                 src/lcf/config.h:builds/config.h.in])
 
 AC_OUTPUT
