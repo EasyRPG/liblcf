@@ -313,7 +313,11 @@ namespace LSD_Reader {
 			/** How much the picture is currently rotated. */
 			current_rotation = 0x34,
 			/** Current wave effect for picture. */
-			current_waver = 0x35
+			current_waver = 0x35,
+			/** How to flip the picture */
+			easyrpg_flip = 0xC8,
+			/** Blend mode to use for blit. See Bitmap::BlendMode */
+			easyrpg_blend_mode = 0xC9
 		};
 	};
 	struct ChunkSavePartyLocation {

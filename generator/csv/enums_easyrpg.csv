@@ -29,3 +29,7 @@ EventPage,ManiacEventInfo,battle_parallel,7
 EventPage,ManiacEventInfo,map_event,16
 EventPage,ManiacEventInfo,common_event,32
 EventPage,ManiacEventInfo,battle_event,64
+SavePicture,EasyRpgFlip,none,0
+SavePicture,EasyRpgFlip,x,1
+SavePicture,EasyRpgFlip,y,2
+SavePicture,EasyRpgFlip,both,3
