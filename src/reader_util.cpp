@@ -75,8 +75,8 @@ std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	return outs;
 }
 
-std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
-	std::vector<std::string> encodings = DetectEncodings(filestream);
+std::string ReaderUtil::DetectEncoding(lcf::rpg::Database& db) {
+	std::vector<std::string> encodings = DetectEncodings(db);
 
 	if (encodings.empty()) {
 		return "";
@@ -85,70 +85,54 @@ std::string ReaderUtil::DetectEncoding(std::istream& filestream) {
 	return encodings.front();
 }
 
-std::string ReaderUtil::DetectEncoding(StringView data) {
-	std::vector<std::string> encodings = DetectEncodings(data);
-
-	if (encodings.empty()) {
-		return "";
-	}
-
-	return encodings.front();
-}
-
-std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
+std::vector<std::string> ReaderUtil::DetectEncodings(lcf::rpg::Database& db) {
 #if LCF_SUPPORT_ICU
-	// Populate db->terms and db->system or will empty by default even if load fails
-	auto db = LDB_Reader::Load(filestream, "");
-
-	if (!db) {
-		return {};
-	}
-
 	std::ostringstream text;
-	text <<
-	db->terms.menu_save <<
-	db->terms.menu_quit <<
-	db->terms.new_game <<
-	db->terms.load_game <<
-	db->terms.exit_game <<
-	db->terms.status <<
-	db->terms.row <<
-	db->terms.order <<
-	db->terms.wait_on <<
-	db->terms.wait_off <<
-	db->terms.level <<
-	db->terms.health_points <<
-	db->terms.spirit_points <<
-	db->terms.normal_status <<
-	db->terms.exp_short <<
-	db->terms.lvl_short <<
-	db->terms.hp_short <<
-	db->terms.sp_short <<
-	db->terms.sp_cost <<
-	db->terms.attack <<
-	db->terms.defense <<
-	db->terms.spirit <<
-	db->terms.agility <<
-	db->terms.weapon <<
-	db->terms.shield <<
-	db->terms.armor <<
-	db->terms.helmet <<
-	db->terms.accessory <<
-	db->terms.save_game_message <<
-	db->terms.load_game_message <<
-	db->terms.file <<
-	db->terms.exit_game_message <<
-	db->terms.yes <<
-	db->terms.no <<
-	db->system.boat_name <<
-	db->system.ship_name <<
-	db->system.airship_name <<
-	db->system.title_name <<
-	db->system.gameover_name <<
-	db->system.system_name <<
-	db->system.system2_name <<
-	db->system.battletest_background <<
-	db->system.frame_name;
+
+	auto append = [](const auto& s) {
+		return ToString(s) + " ";
+	};
+
+	lcf::rpg::ForEachString(db.system, [&](const auto& val, const auto& ctx) {
+		text << append(val);
+	});
+
+	// Cannot use ForEachString here for Terms:
+	// Too much untranslated garbage data in there, even in default database
+	for (const auto& s: {
+		db.terms.menu_save,
+		db.terms.menu_quit,
+		db.terms.new_game,
+		db.terms.load_game,
+		db.terms.exit_game,
+		db.terms.status,
+		db.terms.row,
+		db.terms.order,
+		db.terms.wait_on,
+		db.terms.wait_off,
+		db.terms.level,
+		db.terms.health_points,
+		db.terms.spirit_points,
+		db.terms.normal_status,
+		db.terms.sp_cost,
+		db.terms.attack,
+		db.terms.defense,
+		db.terms.spirit,
+		db.terms.agility,
+		db.terms.weapon,
+		db.terms.shield,
+		db.terms.armor,
+		db.terms.helmet,
+		db.terms.accessory,
+		db.terms.save_game_message,
+		db.terms.load_game_message,
+		db.terms.exit_game_message,
+		db.terms.file,
+		db.terms.yes,
+		db.terms.no
+	}) {
+		text << append(s);
+	}
 
 	return ReaderUtil::DetectEncodings(text.str());
 #else
@@ -156,43 +140,53 @@ std::vector<std::string> ReaderUtil::DetectEncodings(std::istream& filestream) {
 #endif
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(StringView data) {
+std::string ReaderUtil::DetectEncoding(StringView string) {
+	std::vector<std::string> encodings = DetectEncodings(string);
+
+	if (encodings.empty()) {
+		return "";
+	}
+
+	return encodings.front();
+}
+
+std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 std::vector<std::string> encodings;
 #if LCF_SUPPORT_ICU
-	if (!data.empty()) {
+	if (!string.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
 		UCharsetDetector* detector = ucsdet_open(&status);
 
-		auto s = std::string(data);
+		auto s = std::string(string);
 		ucsdet_setText(detector, s.c_str(), s.length(), &status);
 
 		int32_t matches_count;
 		const UCharsetMatch** matches = ucsdet_detectAll(detector, &matches_count, &status);
 
-		if (matches != NULL) {
+		if (matches != nullptr) {
 			// Collect all candidates, most confident comes first
 			for (int i = 0; i < matches_count; ++i) {
 				std::string encoding = ucsdet_getName(matches[i], &status);
 
 				// Fixes to ensure proper Windows encodings
 				if (encoding == "Shift_JIS") {
-					encodings.push_back("ibm-943_P15A-2003"); // Japanese with \ as backslash
+					encodings.emplace_back("ibm-943_P15A-2003"); // Japanese with \ as backslash
 				} else if (encoding == "EUC-KR") {
-					encodings.push_back("windows-949-2000"); // Korean with \ as backlash
+					encodings.emplace_back("windows-949-2000"); // Korean with \ as backlash
 				} else if (encoding == "GB18030") {
-					encodings.push_back("windows-936-2000"); // Simplified Chinese
+					encodings.emplace_back("windows-936-2000"); // Simplified Chinese
 				} else if (encoding == "ISO-8859-1" || encoding == "windows-1252") {
-					encodings.push_back("ibm-5348_P100-1997"); // Occidental with Euro
+					encodings.emplace_back("ibm-5348_P100-1997"); // Occidental with Euro
 				} else if (encoding == "ISO-8859-2" || encoding == "windows-1250") {
-					encodings.push_back("ibm-5346_P100-1998"); // Central Europe with Euro
+					encodings.emplace_back("ibm-5346_P100-1998"); // Central Europe with Euro
 				} else if (encoding == "ISO-8859-5" || encoding == "windows-1251") {
-					encodings.push_back("ibm-5347_P100-1998"); // Cyrillic with Euro
+					encodings.emplace_back("ibm-5347_P100-1998"); // Cyrillic with Euro
 				} else if (encoding == "ISO-8859-6" || encoding == "windows-1256") {
-					encodings.push_back("ibm-9448_X100-2005"); // Arabic with Euro + 8 chars
+					encodings.emplace_back("ibm-9448_X100-2005"); // Arabic with Euro + 8 chars
 				} else if (encoding == "ISO-8859-7" || encoding == "windows-1253") {
-					encodings.push_back("ibm-5349_P100-1998"); // Greek with Euro
+					encodings.emplace_back("ibm-5349_P100-1998"); // Greek with Euro
 				} else if (encoding == "ISO-8859-8" || encoding == "windows-1255") {
-					encodings.push_back("ibm-9447_P100-2002"); // Hebrew with Euro
+					encodings.emplace_back("ibm-9447_P100-2002"); // Hebrew with Euro
 				} else {
 					encodings.push_back(encoding);
 				}
@@ -205,8 +199,8 @@ std::vector<std::string> encodings;
 	return encodings;
 }
 
-std::string ReaderUtil::GetEncoding(const std::string& ini_file) {
-	INIReader ini(ini_file);
+std::string ReaderUtil::GetEncoding(StringView ini_file) {
+	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
 		if (!encoding.empty()) {
