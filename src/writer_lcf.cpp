@@ -20,10 +20,6 @@ LcfWriter::LcfWriter(std::ostream& filestream, EngineVersion engine, std::string
 {
 }
 
-LcfWriter::~LcfWriter() {
-
-}
-
 void LcfWriter::Write(const void *ptr, size_t size, size_t nmemb) {
 	stream.write(reinterpret_cast<const char*>(ptr), size*nmemb);
 	assert(stream.good());

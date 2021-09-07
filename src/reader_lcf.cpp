@@ -25,9 +25,6 @@ LcfReader::LcfReader(std::istream& filestream, std::string encoding)
 	offset = filestream.tellg();
 }
 
-LcfReader::~LcfReader() {
-}
-
 size_t LcfReader::Read0(void *ptr, size_t size, size_t nmemb) {
 	if (size == 0) { //avoid division by 0
 		return 0;

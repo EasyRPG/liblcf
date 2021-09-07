@@ -27,17 +27,17 @@ namespace LSD_Reader {
 	/**
 	 * Converts from UNIX timestamp to Delphi's TDateTime format.
 	 */
-	double ToTDateTime(std::time_t const t);
+	double ToTDateTime(std::time_t t);
 
 	/**
 	 * Converts from Delphi's TDateTime format to UNIX timestamp.
 	 */
-	std::time_t ToUnixTimestamp(double const ms);
+	std::time_t ToUnixTimestamp(double ms);
 
 	/**
 	 * Returns current system time encoded in Delphi's TDateTime format.
 	 */
-	double GenerateTimestamp(std::time_t const t = std::time(NULL));
+	double GenerateTimestamp(std::time_t t = std::time(nullptr));
 
 	/**
 	 * Increment the save save_count and update the timestamp.
@@ -47,32 +47,32 @@ namespace LSD_Reader {
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(const std::string& filename, const std::string &encoding);
+	std::unique_ptr<rpg::Save> Load(StringView filename, StringView encoding = "");
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(const std::string& filename, const rpg::Save& save, EngineVersion engine, const std::string &encoding);
+	bool Save(StringView filename, const rpg::Save& save, EngineVersion engine, StringView encoding = "");
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(const std::string& filename, const rpg::Save& save, EngineVersion engine);
+	bool SaveXml(StringView filename, const rpg::Save& save, EngineVersion engine);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<rpg::Save> LoadXml(const std::string& filename);
+	std::unique_ptr<rpg::Save> LoadXml(StringView filename);
 
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(std::istream& filestream, const std::string &encoding);
+	std::unique_ptr<rpg::Save> Load(std::istream& filestream, StringView encoding = "");
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, const std::string &encoding);
+	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, StringView encoding = "");
 
 	/*
 	 * Saves Savegame as XML.

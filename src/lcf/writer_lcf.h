@@ -43,11 +43,6 @@ public:
 	LcfWriter(std::ostream& filestream, EngineVersion engine, std::string encoding = "");
 
 	/**
-	 * Destructor. Closes the opened file.
-	 */
-	~LcfWriter();
-
-	/**
 	 * Writes raw data to the stream (fwrite() wrapper).
 	 *
 	 * @param ptr pointer to buffer.

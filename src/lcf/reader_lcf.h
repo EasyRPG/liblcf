@@ -38,12 +38,7 @@ public:
 	 * @param filestream already opened filestream.
 	 * @param encoding name of the encoding.
 	 */
-	LcfReader(std::istream& filestream, std::string encoding = "");
-
-	/**
-	 * Destructor. Closes the opened file.
-	 */
-	~LcfReader();
+	explicit LcfReader(std::istream& filestream, std::string encoding = "");
 
 	/**
 	 * Returns the last set error.

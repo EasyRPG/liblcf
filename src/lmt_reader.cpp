@@ -18,44 +18,44 @@
 
 namespace lcf {
 
-std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(const std::string& filename, const std::string& encoding) {
-	std::ifstream stream(filename.c_str(), std::ios::binary);
+std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(StringView filename, StringView encoding) {
+	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LMT file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LMT file `%s' for reading : %s\n", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LMT_Reader::Load(stream, encoding);
 }
 
-bool LMT_Reader::Save(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string& encoding, SaveOpt opt) {
-	std::ofstream stream(filename.c_str(), std::ios::binary);
+bool LMT_Reader::Save(StringView filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, StringView encoding, SaveOpt opt) {
+	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LMT file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LMT file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LMT_Reader::Save(stream, tmap, engine, encoding, opt);
 }
 
-bool LMT_Reader::SaveXml(const std::string& filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine) {
-	std::ofstream stream(filename.c_str(), std::ios::binary);
+bool LMT_Reader::SaveXml(StringView filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine) {
+	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LMT XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LMT XML file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LMT_Reader::SaveXml(stream, tmap, engine);
 }
 
-std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::LoadXml(const std::string& filename) {
-	std::ifstream stream(filename.c_str(), std::ios::binary);
+std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::LoadXml(StringView filename) {
+	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LMT XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LMT XML file `%s' for reading : %s\n", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LMT_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(std::istream& filestream, const std::string &encoding) {
-	LcfReader reader(filestream, encoding);
+std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(std::istream& filestream, StringView encoding) {
+	LcfReader reader(filestream, ToString(encoding));
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return nullptr;
@@ -75,8 +75,8 @@ std::unique_ptr<lcf::rpg::TreeMap> LMT_Reader::Load(std::istream& filestream, co
 	return tmap;
 }
 
-bool LMT_Reader::Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, const std::string &encoding, SaveOpt opt) {
-	LcfWriter writer(filestream, engine, encoding);
+bool LMT_Reader::Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, StringView encoding, SaveOpt opt) {
+	LcfWriter writer(filestream, engine, ToString(encoding));
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map tree file.\n");
 		return false;

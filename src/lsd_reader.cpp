@@ -20,16 +20,16 @@
 
 namespace lcf {
 
-double LSD_Reader::ToTDateTime(std::time_t const t) {
+double LSD_Reader::ToTDateTime(std::time_t t) {
 	// 25569 is UnixDateDelta: number of days between 1970-01-01 and 1900-01-01
 	return(t / 86400.0 + 25569.0);
 }
 
-std::time_t LSD_Reader::ToUnixTimestamp(double const ms) {
+std::time_t LSD_Reader::ToUnixTimestamp(double ms) {
 	return(std::time_t(ms * 86400.0 - 25569.0 * 86400.0 + 0.5));
 }
 
-double LSD_Reader::GenerateTimestamp(std::time_t const t) {
+double LSD_Reader::GenerateTimestamp(std::time_t t) {
 	return ToTDateTime(t);
 }
 
@@ -39,44 +39,44 @@ void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version) {
 	save.easyrpg_data.version = version;
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(const std::string& filename, const std::string& encoding) {
-	std::ifstream stream(filename.c_str(), std::ios::binary);
+std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView encoding) {
+	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LSD file `%s' for reading : %s\n", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LSD_Reader::Load(stream, encoding);
 }
 
-bool LSD_Reader::Save(const std::string& filename, const rpg::Save& save, EngineVersion engine, const std::string& encoding) {
-	std::ofstream stream(filename.c_str(), std::ios::binary);
+bool LSD_Reader::Save(StringView filename, const rpg::Save& save, EngineVersion engine, StringView encoding) {
+	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LSD file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LSD_Reader::Save(stream, save, engine, encoding);
 }
 
-bool LSD_Reader::SaveXml(const std::string& filename, const rpg::Save& save, EngineVersion engine) {
-	std::ofstream stream(filename.c_str(), std::ios::binary);
+bool LSD_Reader::SaveXml(StringView filename, const rpg::Save& save, EngineVersion engine) {
+	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD XML file `%s' for writing : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LSD XML file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LSD_Reader::SaveXml(stream, save, engine);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(const std::string& filename) {
-	std::ifstream stream(filename.c_str(), std::ios::binary);
+std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(StringView filename) {
+	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD XML file `%s' for reading : %s\n", filename.c_str(), strerror(errno));
+		fprintf(stderr, "Failed to open LSD XML file `%s' for reading : %s\n", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LSD_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, const std::string &encoding) {
-	LcfReader reader(filestream, encoding);
+std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView encoding) {
+	LcfReader reader(filestream, ToString(encoding));
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return std::unique_ptr<rpg::Save>();
@@ -95,8 +95,8 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, const std:
 	return std::unique_ptr<rpg::Save>(save);
 }
 
-bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, const std::string &encoding) {
-	LcfWriter writer(filestream, engine, encoding);
+bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, StringView encoding) {
+	LcfWriter writer(filestream, engine, ToString(encoding));
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return false;
