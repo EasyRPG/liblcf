@@ -31,12 +31,14 @@ namespace rpg {
 		enum Effect {
 			Effect_none = 0,
 			Effect_rotation = 1,
-			Effect_wave = 2
+			Effect_wave = 2,
+			Effect_maniac_fixed_angle = 3
 		};
 		static constexpr auto kEffectTags = lcf::makeEnumTags<Effect>(
 			"none",
 			"rotation",
-			"wave"
+			"wave",
+			"maniac_fixed_angle"
 		);
 		enum MapLayer {
 			MapLayer_none = 0,
@@ -79,6 +81,18 @@ namespace rpg {
 			"weather",
 			"windows_and_status",
 			"timers"
+		);
+		enum EasyRpgFlip {
+			EasyRpgFlip_none = 0,
+			EasyRpgFlip_x = 1,
+			EasyRpgFlip_y = 2,
+			EasyRpgFlip_both = 3
+		};
+		static constexpr auto kEasyRpgFlipTags = lcf::makeEnumTags<EasyRpgFlip>(
+			"none",
+			"x",
+			"y",
+			"both"
 		);
 
 		int ID = 0;
@@ -136,6 +150,8 @@ namespace rpg {
 		int32_t time_left = 0;
 		double current_rotation = 0.0;
 		int32_t current_waver = 0;
+		int32_t easyrpg_flip = 0;
+		int32_t easyrpg_blend_mode = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, SavePicture::Effect code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -146,6 +162,10 @@ namespace rpg {
 		return os;
 	}
 	inline std::ostream& operator<<(std::ostream& os, SavePicture::BattleLayer code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SavePicture::EasyRpgFlip code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
@@ -198,7 +218,9 @@ namespace rpg {
 		&& l.finish_effect_power == r.finish_effect_power
 		&& l.time_left == r.time_left
 		&& l.current_rotation == r.current_rotation
-		&& l.current_waver == r.current_waver;
+		&& l.current_waver == r.current_waver
+		&& l.easyrpg_flip == r.easyrpg_flip
+		&& l.easyrpg_blend_mode == r.easyrpg_blend_mode;
 	}
 
 	inline bool operator!=(const SavePicture& l, const SavePicture& r) {

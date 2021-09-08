@@ -97,6 +97,7 @@ constexpr decltype(SaveSystem::kAtbModeTags) SaveSystem::kAtbModeTags;
 constexpr decltype(SavePicture::kEffectTags) SavePicture::kEffectTags;
 constexpr decltype(SavePicture::kMapLayerTags) SavePicture::kMapLayerTags;
 constexpr decltype(SavePicture::kBattleLayerTags) SavePicture::kBattleLayerTags;
+constexpr decltype(SavePicture::kEasyRpgFlipTags) SavePicture::kEasyRpgFlipTags;
 constexpr decltype(SavePartyLocation::kVehicleTypeTags) SavePartyLocation::kVehicleTypeTags;
 constexpr decltype(SavePartyLocation::kPanStateTags) SavePartyLocation::kPanStateTags;
 constexpr decltype(SaveVehicleLocation::kVehicleTypeTags) SaveVehicleLocation::kVehicleTypeTags;

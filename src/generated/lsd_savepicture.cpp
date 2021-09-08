@@ -286,6 +286,20 @@ static TypedField<rpg::SavePicture, int32_t> static_current_waver(
 	0,
 	0
 );
+static TypedField<rpg::SavePicture, int32_t> static_easyrpg_flip(
+	&rpg::SavePicture::easyrpg_flip,
+	LSD_Reader::ChunkSavePicture::easyrpg_flip,
+	"easyrpg_flip",
+	0,
+	1
+);
+static TypedField<rpg::SavePicture, int32_t> static_easyrpg_blend_mode(
+	&rpg::SavePicture::easyrpg_blend_mode,
+	LSD_Reader::ChunkSavePicture::easyrpg_blend_mode,
+	"easyrpg_blend_mode",
+	0,
+	1
+);
 
 
 template <>
@@ -328,6 +342,8 @@ Field<rpg::SavePicture> const* Struct<rpg::SavePicture>::fields[] = {
 	&static_time_left,
 	&static_current_rotation,
 	&static_current_waver,
+	&static_easyrpg_flip,
+	&static_easyrpg_blend_mode,
 	NULL
 };
 

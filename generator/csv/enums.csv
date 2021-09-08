@@ -133,6 +133,7 @@ SavePartyLocation,PanState,follow,1
 SavePicture,Effect,none,0
 SavePicture,Effect,rotation,1
 SavePicture,Effect,wave,2
+SavePicture,Effect,maniac_fixed_angle,3
 SavePicture,MapLayer,none,0
 SavePicture,MapLayer,parallax,1
 SavePicture,MapLayer,tilemap_below,2
