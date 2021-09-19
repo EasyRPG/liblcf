@@ -15,6 +15,9 @@
 #include "lcf/string_view.h"
 
 namespace lcf {
+namespace rpg {
+	class Database;
+}
 
 /**
  * ReaderUtil namespace.
@@ -29,42 +32,42 @@ namespace ReaderUtil {
 	std::string CodepageToEncoding(int codepage);
 
 	/**
-	 * Detects the encoding based on text analysis.
+	 * Detects the encoding of the database based on text analysis.
 	 *
-	 * @param filestream stream containing the database file
+	 * @param db Database to process
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(std::istream& filestream);
+	std::string DetectEncoding(lcf::rpg::Database& db);
 
 	/**
-	 * Detects the encoding based on text analysis.
+	 * Detects the encoding of the database based on text analysis.
+	 * Returns a vector of possible candidates, highest candidate being at the beginning.
 	 *
-	 * @param filestream stream containing the database file
+	 * @param db Database to process
+	 *
+	 * @return list of encodings or empty if not detected
+	 */
+	std::vector<std::string> DetectEncodings(lcf::rpg::Database& db);
+
+	/**
+	 * Detects the encoding of a string based on text analysis.
+	 *
+	 * @param string encoded data of a few hundred bytes
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
 	std::string DetectEncoding(StringView data);
 
 	/**
-	 * Detects the encoding based on text analysis and returns a vector with
-	 * possible candidates, highest candidate being at the beginning.
-	 *
-	 * @param filestream stream containing the database file
-	 *
-	 * @return list of encodings or empty if not detected
-	 */
-	std::vector<std::string> DetectEncodings(std::istream& filestream);
-
-	/**
-	 * Detects the encoding based on text analysis and returns a vector with
-	 * possible candidates, highest candidate being at the beginning.
+	 * Detects the encoding of a string based on text analysis.
+	 * Returns a vector of possible candidates, highest candidate being at the beginning.
 	 *
 	 * @param string encoded data of a few hundred bytes
 	 *
 	 * @return list of encodings or empty if not detected
 	 */
-	std::vector<std::string> DetectEncodings(StringView data);
+	std::vector<std::string> DetectEncodings(StringView string);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -73,7 +76,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not found.
 	 */
-	std::string GetEncoding(const std::string& ini_file);
+	std::string GetEncoding(StringView ini_file);
 
 	/**
 	 * Returns the encoding set in the ini file.

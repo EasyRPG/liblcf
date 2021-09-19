@@ -30,32 +30,32 @@ namespace LMU_Reader {
 	/**
 	 * Loads map.
 	 */
-	std::unique_ptr<rpg::Map> Load(const std::string& filename, const std::string& encoding);
+	std::unique_ptr<rpg::Map> Load(StringView filename, StringView encoding = "");
 
 	/**
 	 * Saves map.
 	 */
-	bool Save(const std::string& filename, const rpg::Map& map, EngineVersion engine, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(StringView filename, const rpg::Map& map, EngineVersion engine, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
 	 */
-	bool SaveXml(const std::string& filename, const rpg::Map& map, EngineVersion engine);
+	bool SaveXml(StringView filename, const rpg::Map& map, EngineVersion engine);
 
 	/**
 	 * Loads map as XML.
 	 */
-	std::unique_ptr<rpg::Map> LoadXml(const std::string& filename);
+	std::unique_ptr<rpg::Map> LoadXml(StringView filename);
 
 	/**
 	 * Loads map.
 	 */
-	std::unique_ptr<rpg::Map> Load(std::istream& filestream, const std::string& encoding);
+	std::unique_ptr<rpg::Map> Load(std::istream& filestream, StringView encoding = "");
 
 	/**
 	 * Saves map.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Map& map, EngineVersion engine, const std::string& encoding, SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const rpg::Map& map, EngineVersion engine, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves map as XML.
