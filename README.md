@@ -109,8 +109,11 @@ See the file [COPYING] for copying conditions.
 
 ### 3rd party software
 
-liblcf code includes a copy of [inih] under New BSD license.
-liblcf code includes a copy of [string-view-lite] and [span-lite] under Boost Software License, Version 1.0.
+liblcf includes code of the following 3rd party software:
+
+- [inih] under New BSD license.
+- [string-view-lite] and [span-lite] under Boost Software License, Version 1.0.
+
 See the source code comment headers for license details.
 
 
