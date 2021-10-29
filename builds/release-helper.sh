@@ -2,7 +2,9 @@
 
 # release-helper.sh - maintainer utility script to change
 # the library version and update all copyright dates
-# by carstene1ns 2020, released under the MIT license
+# by carstene1ns 2021, released under the MIT license
+
+set -e
 
 year=$(date +%Y)
 version=$1

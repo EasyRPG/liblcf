@@ -41,8 +41,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.6.2.tar.xz # unpack the tarball
-    cd liblcf-0.6.2            # enter in the package directory
+    tar xf liblcf-0.7.0.tar.xz # unpack the tarball
+    cd liblcf-0.7.0            # enter in the package directory
     ./configure --prefix /usr  # find libraries, set options
     make                       # compile the library
     sudo make install          # install system-wide
@@ -71,8 +71,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.6.2.tar.xz            # unpack the tarball
-    cd liblcf-0.6.2                       # enter in the package directory
+    tar xf liblcf-0.7.0.tar.xz            # unpack the tarball
+    cd liblcf-0.7.0                       # enter in the package directory
     cmake . -DCMAKE_BUILD_TYPE=Release    # configure project
     cmake --build .                       # compile the library
     sudo cmake --build . --target install # install system-wide
@@ -109,8 +109,11 @@ See the file [COPYING] for copying conditions.
 
 ### 3rd party software
 
-liblcf code includes a copy of [inih] under New BSD license.
-liblcf code includes a copy of [string-view-lite] and [span-lite] under Boost Software License, Version 1.0.
+liblcf includes code of the following 3rd party software:
+
+- [inih] under New BSD license.
+- [string-view-lite] and [span-lite] under Boost Software License, Version 1.0.
+
 See the source code comment headers for license details.
 
 
