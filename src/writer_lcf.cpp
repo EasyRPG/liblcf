@@ -161,12 +161,11 @@ void LcfWriter::SwapByteOrder(uint32_t& ui)
 
 void LcfWriter::SwapByteOrder(double& d)
 {
-	uint32_t *p = reinterpret_cast<uint32_t *>(&d);
-	SwapByteOrder(p[0]);
-	SwapByteOrder(p[1]);
-	uint32_t tmp = p[0];
-	p[0] = p[1];
-	p[1] = tmp;
+	char *p = reinterpret_cast<char*>(&d);
+	std::swap(p[0], p[7]);
+	std::swap(p[1], p[6]);
+	std::swap(p[2], p[5]);
+	std::swap(p[3], p[4]);
 }
 #else
 void LcfWriter::SwapByteOrder(uint16_t& /* us */) {}
