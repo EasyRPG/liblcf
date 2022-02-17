@@ -51,6 +51,25 @@ std::ostream& operator<<(std::ostream& os, const Enemy& obj) {
 	}
 	os << "]";
 	os << ", maniac_unarmed_animation="<< obj.maniac_unarmed_animation;
+	os << ", easyrpg_enemyai="<< obj.easyrpg_enemyai;
+	os << ", easyrpg_prevent_critical="<< obj.easyrpg_prevent_critical;
+	os << ", easyrpg_raise_evasion="<< obj.easyrpg_raise_evasion;
+	os << ", easyrpg_immune_to_attribute_downshifts="<< obj.easyrpg_immune_to_attribute_downshifts;
+	os << ", easyrpg_ignore_evasion="<< obj.easyrpg_ignore_evasion;
+	os << ", easyrpg_hit="<< obj.easyrpg_hit;
+	os << ", easyrpg_state_set=";
+	for (size_t i = 0; i < obj.easyrpg_state_set.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_state_set[i];
+	}
+	os << "]";
+	os << ", easyrpg_state_chance="<< obj.easyrpg_state_chance;
+	os << ", easyrpg_attribute_set=";
+	for (size_t i = 0; i < obj.easyrpg_attribute_set.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_attribute_set[i];
+	}
+	os << "]";
+	os << ", easyrpg_super_guard="<< obj.easyrpg_super_guard;
+	os << ", easyrpg_attack_all="<< obj.easyrpg_attack_all;
 	os << "}";
 	return os;
 }

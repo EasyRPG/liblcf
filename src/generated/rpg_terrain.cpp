@@ -57,6 +57,8 @@ std::ostream& operator<<(std::ostream& os, const Terrain& obj) {
 	os << ", grid_top_y="<< obj.grid_top_y;
 	os << ", grid_elongation="<< obj.grid_elongation;
 	os << ", grid_inclination="<< obj.grid_inclination;
+	os << ", easyrpg_damage_in_percent="<< obj.easyrpg_damage_in_percent;
+	os << ", easyrpg_damage_can_kill="<< obj.easyrpg_damage_can_kill;
 	os << "}";
 	return os;
 }

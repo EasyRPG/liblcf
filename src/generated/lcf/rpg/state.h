@@ -14,6 +14,7 @@
 
 // Headers
 #include <stdint.h>
+#include "lcf/dbbitarray.h"
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/context.h"
@@ -114,6 +115,7 @@ namespace rpg {
 		int32_t sp_change_val = 0;
 		int32_t sp_change_map_steps = 0;
 		int32_t sp_change_map_val = 0;
+		DBBitArray easyrpg_immune_states;
 	};
 	inline std::ostream& operator<<(std::ostream& os, State::Persistence code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -174,7 +176,8 @@ namespace rpg {
 		&& l.sp_change_max == r.sp_change_max
 		&& l.sp_change_val == r.sp_change_val
 		&& l.sp_change_map_steps == r.sp_change_map_steps
-		&& l.sp_change_map_val == r.sp_change_map_val;
+		&& l.sp_change_map_val == r.sp_change_map_val
+		&& l.easyrpg_immune_states == r.easyrpg_immune_states;
 	}
 
 	inline bool operator!=(const State& l, const State& r) {

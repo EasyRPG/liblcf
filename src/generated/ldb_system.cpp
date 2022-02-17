@@ -522,6 +522,41 @@ static TypedField<rpg::System, int32_t> static_easyrpg_max_stat_battle_value(
 	0,
 	0
 );
+static TypedField<rpg::System, bool> static_easyrpg_use_rpg2k_battle_system(
+	&rpg::System::easyrpg_use_rpg2k_battle_system,
+	LDB_Reader::ChunkSystem::easyrpg_use_rpg2k_battle_system,
+	"easyrpg_use_rpg2k_battle_system",
+	0,
+	1
+);
+static TypedField<rpg::System, bool> static_easyrpg_battle_use_rpg2ke_strings(
+	&rpg::System::easyrpg_battle_use_rpg2ke_strings,
+	LDB_Reader::ChunkSystem::easyrpg_battle_use_rpg2ke_strings,
+	"easyrpg_battle_use_rpg2ke_strings",
+	0,
+	1
+);
+static TypedField<rpg::System, bool> static_easyrpg_use_rpg2k_battle_commands(
+	&rpg::System::easyrpg_use_rpg2k_battle_commands,
+	LDB_Reader::ChunkSystem::easyrpg_use_rpg2k_battle_commands,
+	"easyrpg_use_rpg2k_battle_commands",
+	0,
+	1
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_default_actorai(
+	&rpg::System::easyrpg_default_actorai,
+	LDB_Reader::ChunkSystem::easyrpg_default_actorai,
+	"easyrpg_default_actorai",
+	0,
+	0
+);
+static TypedField<rpg::System, int32_t> static_easyrpg_default_enemyai(
+	&rpg::System::easyrpg_default_enemyai,
+	LDB_Reader::ChunkSystem::easyrpg_default_enemyai,
+	"easyrpg_default_enemyai",
+	0,
+	0
+);
 
 
 template <>
@@ -598,6 +633,11 @@ Field<rpg::System> const* Struct<rpg::System>::fields[] = {
 	&static_easyrpg_max_enemy_sp,
 	&static_easyrpg_max_stat_base_value,
 	&static_easyrpg_max_stat_battle_value,
+	&static_easyrpg_use_rpg2k_battle_system,
+	&static_easyrpg_battle_use_rpg2ke_strings,
+	&static_easyrpg_use_rpg2k_battle_commands,
+	&static_easyrpg_default_actorai,
+	&static_easyrpg_default_enemyai,
 	NULL
 };
 

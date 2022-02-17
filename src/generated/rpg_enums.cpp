@@ -63,6 +63,7 @@ constexpr decltype(Chipset::kAnimTypeTags) Chipset::kAnimTypeTags;
 constexpr decltype(Skill::kTypeTags) Skill::kTypeTags;
 constexpr decltype(Skill::kSpTypeTags) Skill::kSpTypeTags;
 constexpr decltype(Skill::kScopeTags) Skill::kScopeTags;
+constexpr decltype(Skill::kHpTypeTags) Skill::kHpTypeTags;
 constexpr decltype(Item::kTypeTags) Item::kTypeTags;
 constexpr decltype(Item::kTrajectoryTags) Item::kTrajectoryTags;
 constexpr decltype(Item::kTargetTags) Item::kTargetTags;

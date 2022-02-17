@@ -314,6 +314,19 @@ static TypedField<rpg::State, int32_t> static_sp_change_map_val(
 	0,
 	0
 );
+static SizeField<rpg::State, DBBitArray> static_size_easyrpg_immune_states(
+	&rpg::State::easyrpg_immune_states,
+	LDB_Reader::ChunkState::easyrpg_immune_states_size,
+	0,
+	0
+);
+static TypedField<rpg::State, DBBitArray> static_easyrpg_immune_states(
+	&rpg::State::easyrpg_immune_states,
+	LDB_Reader::ChunkState::easyrpg_immune_states,
+	"easyrpg_immune_states",
+	1,
+	0
+);
 
 
 template <>
@@ -360,6 +373,8 @@ Field<rpg::State> const* Struct<rpg::State>::fields[] = {
 	&static_sp_change_val,
 	&static_sp_change_map_steps,
 	&static_sp_change_map_val,
+	&static_size_easyrpg_immune_states,
+	&static_easyrpg_immune_states,
 	NULL
 };
 

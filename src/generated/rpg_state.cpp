@@ -60,6 +60,11 @@ std::ostream& operator<<(std::ostream& os, const State& obj) {
 	os << ", sp_change_val="<< obj.sp_change_val;
 	os << ", sp_change_map_steps="<< obj.sp_change_map_steps;
 	os << ", sp_change_map_val="<< obj.sp_change_map_val;
+	os << ", easyrpg_immune_states=";
+	for (size_t i = 0; i < obj.easyrpg_immune_states.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.easyrpg_immune_states[i];
+	}
+	os << "]";
 	os << "}";
 	return os;
 }

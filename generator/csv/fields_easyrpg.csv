@@ -1,6 +1,5 @@
 Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
 Save,easyrpg_data,f,SaveEasyRpgData,0xC8,,0,0,Additional save data written by EasyRPG Player
-Enemy,maniac_unarmed_animation,f,Ref<Animation>,0x0F,1,0,0,Animation for normal enemy attacks
 SaveEasyRpgData,version,,Int32,0x01,0,0,0,Savegame version
 SaveEventExecFrame,maniac_event_info,f,Ref<ManiacEventInfo>,0x0E,0,0,0,Event info bitfield
 SaveEventExecFrame,maniac_event_id,f,Int32,0x0F,0,0,0,Event ID
@@ -16,6 +15,34 @@ SaveSystem,maniac_joypad_bindings,,Vector<UInt8>,0x8B,,0,0,"JoyLeft, JoyRight, J
 BattleCommands,easyrpg_default_atb_mode,f,Enum<SaveSystem_AtbMode>,0xC8,0,0,1,Default ATB mode of RPG 2003 battle system
 BattleCommands,easyrpg_enable_battle_row_command,f,Boolean,0xC9,True,0,1,If the row command should be enabled in RPG Maker 2003 battles
 BattleCommands,easyrpg_sequential_order,f,Boolean,0xCA,False,0,1,If alternative and gauge style battles should behave like traditional style battles
+BattleCommands,easyrpg_disable_row_feature,f,Boolean,0xCB,False,0,1,If the row feature should be disabled in RPG Maker 2003 games
+Actor,easyrpg_actorai,f,Int32,0xC9,-1,0,0,Default autobattle AI behavior of the actor
+Actor,easyrpg_prevent_critical,f,Boolean,0xCA,False,0,0,If the actor is protected against critical hits
+Actor,easyrpg_raise_evasion,f,Boolean,0xCB,False,0,0,If the actor has an increased evasion rate
+Actor,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the actor is immune to attribute downshifts
+Actor,easyrpg_ignore_evasion,f,Boolean,0xCD,False,0,0,If the actors unarmed physical attacks ignore evasion
+Actor,easyrpg_unarmed_hit,f,Int32,0xCE,-1,0,0,Hit rate of the actor on unarmed attacks
+Actor,easyrpg_unarmed_state_set,t,DBBitArray,0xCF,,0,0,States inflicted by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_state_set,f,DBBitArray,0xD0,,1,0,States inflicted by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_state_chance,f,Int32,0xD1,0,0,0,State infliction probability by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_attribute_set,t,DBBitArray,0xD2,,0,0,Attributes used by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_attribute_set,f,DBBitArray,0xD3,,1,0,Attributes used by unarmed normal attacks of the actor
+Actor,easyrpg_dual_attack,f,Boolean,0xD4,False,0,0,If the actors unarmed physical attacks hits twice
+Actor,easyrpg_attack_all,f,Boolean,0xD5,False,0,0,If the actors unarmed physical targets the entire enemy party
+Enemy,maniac_unarmed_animation,f,Ref<Animation>,0x0F,1,0,0,Animation for normal enemy attacks (Maniac Patch only)
+Enemy,easyrpg_enemyai,f,Int32,0xC9,-1,0,0,Default AI behavior of the enemy
+Enemy,easyrpg_prevent_critical,f,Boolean,0xCA,False,0,0,If the enemy is protected against critical hits
+Enemy,easyrpg_raise_evasion,f,Boolean,0xCB,False,0,0,If the enemy has an increased evasion rate
+Enemy,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the enemy is immune to attribute downshifts
+Enemy,easyrpg_ignore_evasion,f,Boolean,0xCD,False,0,0,If the enemies unarmed physical attacks ignore evasion
+Enemy,easyrpg_hit,f,Int32,0xCE,-1,0,0,Hit rate of the enemy on normal attacks
+Enemy,easyrpg_state_set,t,DBBitArray,0xCF,,0,0,States inflicted by normal attacks of the enemy
+Enemy,easyrpg_state_set,f,DBBitArray,0xD0,,1,0,States inflicted by normal attacks of the enemy
+Enemy,easyrpg_state_chance,f,Int32,0xD1,0,0,0,State infliction probability by normal attacks of the enemy
+Enemy,easyrpg_attribute_set,t,DBBitArray,0xD2,,0,0,Attributes used by normal attacks of the enemy
+Enemy,easyrpg_attribute_set,f,DBBitArray,0xD3,,1,0,Attributes used by normal attacks of the enemy
+Enemy,easyrpg_super_guard,f,Boolean,0xD4,False,0,0,If the enemies defend action quarters instead of halves HP damage
+Enemy,easyrpg_attack_all,f,Boolean,0xD5,False,0,0,If the enemies unarmed physical targets the entire player party
 Skill,easyrpg_battle2k3_message,f,DBString,0xC9,DBString(kDefaultMessage),0,1,RPG Maker 2003 battle skill start notification
 Skill,easyrpg_ignore_reflect,f,Boolean,0xCA,False,0,1,If the skill bypasses reflect states. Useful for physical skills and skills which are meant to remove positive states from enemies
 Skill,easyrpg_state_hit,f,Int32,0xCB,-1,0,0,Separate accuracy value for state inflictions
@@ -23,8 +50,18 @@ Skill,easyrpg_attribute_hit,f,Int32,0xCC,-1,0,0,Separate accuracy value for attr
 Skill,easyrpg_ignore_restrict_skill,f,Boolean,0xCD,False,0,0,If the skill should bypass skill restrictions by states
 Skill,easyrpg_ignore_restrict_magic,f,Boolean,0xCE,False,0,0,If the skill should bypass magic restrictions by states
 Skill,easyrpg_enable_stat_absorbing,f,Boolean,0xCF,False,0,0,If the skill can absorb attack/defense/spirit/agility
+Skill,easyrpg_affected_by_evade_all_physical_attacks,f,Boolean,0xD0,False,0,1,If the skill should be affected by avoid attack states
+Skill,easyrpg_critical_hit_chance,f,Int32,0xD1,0,0,0,Critical hit rate percentage for the skill. If negative then the battler critical hit rate is used
+Skill,easyrpg_affected_by_row_modifiers,f,Boolean,0xD2,False,0,1,If the skill is affected by row modifiers
+Skill,easyrpg_hp_type,f,Enum<Skill_SpType>,0xD3,0,0,1,If the HP usage of the skill is a fixed number or in percent of the maximum HP
+Skill,easyrpg_hp_percent,f,Int32,0xD4,0,0,1,How much percent of the maximum HP does the usage of the skill cost
+Skill,easyrpg_hp_cost,f,Int32,0xD5,0,0,0,How much HP does the usage of the skill cost
 Item,easyrpg_using_message,f,DBString,0xC9,DBString(kDefaultMessage),0,0,Item usage message in battle
 Item,easyrpg_max_count,f,Int32,0xCA,-1,0,0,How many the player can carry of this item
+State,easyrpg_immune_states,t,DBBitArray,0xC8,,0,0,States cleared on infliction by this state
+State,easyrpg_immune_states,f,DBBitArray,0xC9,,1,0,States cleared on infliction by this state
+Terrain,easyrpg_damage_in_percent,f,Boolean,0xC8,False,0,0,If the terrain damage is a percentage
+Terrain,easyrpg_damage_can_kill,f,Boolean,0xC9,False,0,0,If the terrain damage can kill the actors
 Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
 Terms,easyrpg_skill_cost_separator,f,DBString,0xC9,DBString(kDefaultTerm),0,0,Skill cost separator
 Terms,easyrpg_equipment_arrow,f,DBString,0xCA,DBString(kDefaultTerm),0,0,Equipment window arrow
@@ -60,3 +97,8 @@ System,easyrpg_max_actor_sp,f,Int32,0xD3,-1,0,0,Absolute maximum SP value actors
 System,easyrpg_max_enemy_sp,f,Int32,0xD4,-1,0,0,Absolute maximum SP value enemies can have
 System,easyrpg_max_stat_base_value,f,Int32,0xD5,-1,0,0,Absolute maximum value a base stat can have
 System,easyrpg_max_stat_battle_value,f,Int32,0xD6,-1,0,0,Absolute maximum value a battle stat can have
+System,easyrpg_use_rpg2k_battle_system,f,Boolean,0xD7,False,0,1,If the RPG Maker 2000 battle system should be used in RPG Maker 2003 games
+System,easyrpg_battle_use_rpg2ke_strings,f,Boolean,0xD8,False,0,1,If RPG Maker 2000 battles in RPG Maker 2003 games should use the RPG2kE strings
+System,easyrpg_use_rpg2k_battle_commands,f,Boolean,0xD9,False,0,1,If the RPG Maker 2000 battle commands should be used in RPG Maker 2003 games
+System,easyrpg_default_actorai,f,Int32,0xDA,-1,0,0,System default actor AI
+System,easyrpg_default_enemyai,f,Int32,0xDB,-1,0,0,System default enemy AI
