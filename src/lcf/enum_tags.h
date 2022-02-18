@@ -22,7 +22,7 @@ template <typename E, size_t N>
 class EnumTags {
 	public:
 		static constexpr size_t num_tags = N;
-		using int_type = typename std::make_signed<typename std::underlying_type<E>::type>::type;
+		using int_type = typename std::make_unsigned<typename std::underlying_type<E>::type>::type;
 		using iterator = char const * const *;
 		using reverse_iterator = std::reverse_iterator<iterator>;
 
