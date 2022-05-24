@@ -15,6 +15,7 @@
 #   include <unicode/ucnv.h>
 #   include <unicode/normalizer2.h>
 #   include <unicode/unistr.h>
+#   include <unicode/locid.h>
 #else
 #   ifdef _MSC_VER
 #		error MSVC builds require ICU
@@ -370,7 +371,7 @@ std::string ReaderUtil::Recode(StringView str_to_encode,
 
 std::string ReaderUtil::Normalize(StringView str) {
 #if LCF_SUPPORT_ICU
-	icu::UnicodeString uni = icu::UnicodeString(str.data(), str.length(), "utf-8").toLower();
+	icu::UnicodeString uni = icu::UnicodeString(str.data(), str.length(), "utf-8").toLower(icu::Locale::getRoot());
 	UErrorCode err = U_ZERO_ERROR;
 	std::string res;
 	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
