@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj) {
 	os << ", position_x="<< obj.position_x;
 	os << ", position_y="<< obj.position_y;
 	os << ", direction="<< obj.direction;
-	os << ", sprite_direction="<< obj.sprite_direction;
+	os << ", facing="<< obj.facing;
 	os << ", anim_frame="<< obj.anim_frame;
 	os << ", transparency="<< obj.transparency;
 	os << ", remaining_step="<< obj.remaining_step;
@@ -35,9 +35,9 @@ std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj) {
 	os << ", move_route="<< obj.move_route;
 	os << ", move_route_overwrite="<< obj.move_route_overwrite;
 	os << ", move_route_index="<< obj.move_route_index;
-	os << ", move_route_repeated="<< obj.move_route_repeated;
-	os << ", sprite_transparent="<< obj.sprite_transparent;
-	os << ", route_through="<< obj.route_through;
+	os << ", move_route_finished="<< obj.move_route_finished;
+	os << ", sprite_hidden="<< obj.sprite_hidden;
+	os << ", move_route_through="<< obj.move_route_through;
 	os << ", anim_paused="<< obj.anim_paused;
 	os << ", through="<< obj.through;
 	os << ", stop_count="<< obj.stop_count;
