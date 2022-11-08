@@ -224,6 +224,7 @@ System,FadeIn,instantaneous,20
 System,FadeIn,none,21
 System,Stretch,stretch,0
 System,Stretch,tiled,1
+System,Stretch,easyrpg_none,2
 System,Font,gothic,0
 System,Font,mincho,1
 System,BattleFormation,terrain,0

@@ -300,6 +300,13 @@ static TypedField<rpg::SavePicture, int32_t> static_easyrpg_blend_mode(
 	0,
 	1
 );
+static TypedField<rpg::SavePicture, int32_t> static_easyrpg_type(
+	&rpg::SavePicture::easyrpg_type,
+	LSD_Reader::ChunkSavePicture::easyrpg_type,
+	"easyrpg_type",
+	0,
+	1
+);
 
 
 template <>
@@ -344,6 +351,7 @@ Field<rpg::SavePicture> const* Struct<rpg::SavePicture>::fields[] = {
 	&static_current_waver,
 	&static_easyrpg_flip,
 	&static_easyrpg_blend_mode,
+	&static_easyrpg_type,
 	NULL
 };
 

@@ -65,6 +65,7 @@ std::ostream& operator<<(std::ostream& os, const SavePicture& obj) {
 	os << ", current_waver="<< obj.current_waver;
 	os << ", easyrpg_flip="<< obj.easyrpg_flip;
 	os << ", easyrpg_blend_mode="<< obj.easyrpg_blend_mode;
+	os << ", easyrpg_type="<< obj.easyrpg_type;
 	os << "}";
 	return os;
 }

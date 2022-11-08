@@ -317,7 +317,9 @@ namespace LSD_Reader {
 			/** How to flip the picture */
 			easyrpg_flip = 0xC8,
 			/** Blend mode to use for blit. See Bitmap::BlendMode */
-			easyrpg_blend_mode = 0xC9
+			easyrpg_blend_mode = 0xC9,
+			/** Type of this picture */
+			easyrpg_type = 0xCA
 		};
 	};
 	struct ChunkSavePartyLocation {
@@ -985,7 +987,45 @@ namespace LSD_Reader {
 	struct ChunkSaveEasyRpgData {
 		enum Index {
 			/** Savegame version */
-			version = 0x01
+			version = 0x01,
+			/** User generated windows e.g. through ShowStringPicture */
+			windows = 0x02
+		};
+	};
+	struct ChunkSaveEasyRpgWindow {
+		enum Index {
+			/** Texts to render */
+			texts = 0x01,
+			/** Window width (px) */
+			width = 0x02,
+			/** Window height (px) */
+			height = 0x03,
+			/**  */
+			system_name = 0x04,
+			/**  */
+			message_stretch = 0x05,
+			/** Various window settings */
+			flags = 0x06
+		};
+	};
+	struct ChunkSaveEasyRpgText {
+		enum Index {
+			/** Text to render */
+			text = 0x01,
+			/**  */
+			position_x = 0x02,
+			/**  */
+			position_y = 0x03,
+			/** Font to use for rendering */
+			font_name = 0x04,
+			/** Font size */
+			font_size = 0x05,
+			/** Additional spacing between letters */
+			letter_spacing = 0x06,
+			/** Additional spacing between lines */
+			line_spacing = 0x07,
+			/** Various text settings */
+			flags = 0x08
 		};
 	};
 }

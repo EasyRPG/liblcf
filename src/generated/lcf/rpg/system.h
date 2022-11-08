@@ -129,11 +129,13 @@ namespace rpg {
 		);
 		enum Stretch {
 			Stretch_stretch = 0,
-			Stretch_tiled = 1
+			Stretch_tiled = 1,
+			Stretch_easyrpg_none = 2
 		};
 		static constexpr auto kStretchTags = lcf::makeEnumTags<Stretch>(
 			"stretch",
-			"tiled"
+			"tiled",
+			"easyrpg_none"
 		);
 		enum Font {
 			Font_gothic = 0,

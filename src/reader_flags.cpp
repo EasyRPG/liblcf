@@ -17,6 +17,8 @@
 #include "ldb_terrain_flags.h"
 #include "lmu_eventpagecondition_flags.h"
 #include "lsd_savepicture_flags.h"
+#include "lsd_saveeasyrpgtext_flags.h"
+#include "lsd_saveeasyrpgwindow_flags.h"
 
 namespace lcf {
 // Templates
@@ -141,9 +143,12 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 #pragma warning (disable : 4661)
 #endif
 
+// Do not forget to add new Flags here
 template class Flags<rpg::TroopPageCondition::Flags>;
 template class Flags<rpg::EventPageCondition::Flags>;
 template class Flags<rpg::Terrain::Flags>;
 template class Flags<rpg::SavePicture::Flags>;
+template class Flags<rpg::SaveEasyRpgText::Flags>;
+template class Flags<rpg::SaveEasyRpgWindow::Flags>;
 
 } //namespace lcf

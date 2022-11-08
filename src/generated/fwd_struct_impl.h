@@ -198,6 +198,16 @@ template <>
 Field<rpg::SaveEasyRpgData> const* Struct<rpg::SaveEasyRpgData>::fields[];
 
 template <>
+const char* const Struct<rpg::SaveEasyRpgText>::name;
+template <>
+Field<rpg::SaveEasyRpgText> const* Struct<rpg::SaveEasyRpgText>::fields[];
+
+template <>
+const char* const Struct<rpg::SaveEasyRpgWindow>::name;
+template <>
+Field<rpg::SaveEasyRpgWindow> const* Struct<rpg::SaveEasyRpgWindow>::fields[];
+
+template <>
 const char* const Struct<rpg::SaveEventExecFrame>::name;
 template <>
 Field<rpg::SaveEventExecFrame> const* Struct<rpg::SaveEventExecFrame>::fields[];

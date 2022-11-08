@@ -488,10 +488,10 @@ def main(argv):
     global structs, structs_flat, sfields, enums, flags, functions, constants, headers
     global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
-    structs, structs_flat = get_structs('structs.csv','structs_easyrpg.csv')
-    sfields = get_fields('fields.csv','fields_easyrpg.csv')
-    enums = get_enums('enums.csv','enums_easyrpg.csv')
-    flags = get_flags('flags.csv')
+    structs, structs_flat = get_structs('structs.csv', 'structs_easyrpg.csv')
+    sfields = get_fields('fields.csv', 'fields_easyrpg.csv')
+    enums = get_enums('enums.csv', 'enums_easyrpg.csv')
+    flags = get_flags('flags.csv', 'flags_easyrpg.csv')
     functions = get_functions('functions.csv')
     constants = get_constants()
     headers = get_headers()
