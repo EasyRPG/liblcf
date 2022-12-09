@@ -55,10 +55,10 @@ static TypedField<rpg::SaveMapEvent, int32_t> static_direction(
 	1,
 	0
 );
-static TypedField<rpg::SaveMapEvent, int32_t> static_sprite_direction(
-	&rpg::SaveMapEvent::sprite_direction,
-	LSD_Reader::ChunkSaveMapEvent::sprite_direction,
-	"sprite_direction",
+static TypedField<rpg::SaveMapEvent, int32_t> static_facing(
+	&rpg::SaveMapEvent::facing,
+	LSD_Reader::ChunkSaveMapEvent::facing,
+	"facing",
 	1,
 	0
 );
@@ -146,24 +146,24 @@ static TypedField<rpg::SaveMapEvent, int32_t> static_move_route_index(
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEvent, bool> static_move_route_repeated(
-	&rpg::SaveMapEvent::move_route_repeated,
-	LSD_Reader::ChunkSaveMapEvent::move_route_repeated,
-	"move_route_repeated",
+static TypedField<rpg::SaveMapEvent, bool> static_move_route_finished(
+	&rpg::SaveMapEvent::move_route_finished,
+	LSD_Reader::ChunkSaveMapEvent::move_route_finished,
+	"move_route_finished",
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEvent, bool> static_sprite_transparent(
-	&rpg::SaveMapEvent::sprite_transparent,
-	LSD_Reader::ChunkSaveMapEvent::sprite_transparent,
-	"sprite_transparent",
+static TypedField<rpg::SaveMapEvent, bool> static_sprite_hidden(
+	&rpg::SaveMapEvent::sprite_hidden,
+	LSD_Reader::ChunkSaveMapEvent::sprite_hidden,
+	"sprite_hidden",
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEvent, bool> static_route_through(
-	&rpg::SaveMapEvent::route_through,
-	LSD_Reader::ChunkSaveMapEvent::route_through,
-	"route_through",
+static TypedField<rpg::SaveMapEvent, bool> static_move_route_through(
+	&rpg::SaveMapEvent::move_route_through,
+	LSD_Reader::ChunkSaveMapEvent::move_route_through,
+	"move_route_through",
 	0,
 	0
 );
@@ -330,7 +330,7 @@ Field<rpg::SaveMapEvent> const* Struct<rpg::SaveMapEvent>::fields[] = {
 	&static_position_x,
 	&static_position_y,
 	&static_direction,
-	&static_sprite_direction,
+	&static_facing,
 	&static_anim_frame,
 	&static_transparency,
 	&static_remaining_step,
@@ -343,9 +343,9 @@ Field<rpg::SaveMapEvent> const* Struct<rpg::SaveMapEvent>::fields[] = {
 	&static_move_route,
 	&static_move_route_overwrite,
 	&static_move_route_index,
-	&static_move_route_repeated,
-	&static_sprite_transparent,
-	&static_route_through,
+	&static_move_route_finished,
+	&static_sprite_hidden,
+	&static_move_route_through,
 	&static_anim_paused,
 	&static_through,
 	&static_stop_count,

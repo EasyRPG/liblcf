@@ -94,7 +94,7 @@ namespace rpg {
 			MovePicture = 11120,
 			ErasePicture = 11130,
 			ShowBattleAnimation = 11210,
-			SpriteTransparency = 11310,
+			PlayerVisibility = 11310,
 			FlashSprite = 11320,
 			MoveEvent = 11330,
 			ProceedWithMovement = 11340,

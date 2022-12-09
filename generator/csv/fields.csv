@@ -943,8 +943,8 @@ SaveMapEventBase,active,f,Boolean,0x01,True,0,0,Flag
 SaveMapEventBase,map_id,f,Int32,0x0B,0,1,0,?
 SaveMapEventBase,position_x,f,Int32,0x0C,0,1,0,?
 SaveMapEventBase,position_y,f,Int32,0x0D,0,1,0,?
-SaveMapEventBase,direction,f,Int32,0x15,2,1,0,Facing direction
-SaveMapEventBase,sprite_direction,f,Int32,0x16,2,1,0,Sprite direction
+SaveMapEventBase,direction,f,Int32,0x15,2,1,0,Sprite direction
+SaveMapEventBase,facing,f,Int32,0x16,2,1,0,Facing direction
 SaveMapEventBase,anim_frame,f,Int32,0x17,1,0,0,?
 SaveMapEventBase,transparency,f,Int32,0x18,0,0,0,0 or 3 - Transparency level of the current event page
 SaveMapEventBase,remaining_step,f,Int32,0x1F,0,0,0,From 0 to 255 - Remaining distance of the current move
@@ -957,9 +957,9 @@ SaveMapEventBase,move_speed,f,Int32,0x25,4,1,0,
 SaveMapEventBase,move_route,f,MoveRoute,0x29,,1,0,chunks: rpg::MoveRoute
 SaveMapEventBase,move_route_overwrite,f,Boolean,0x2A,False,0,0,Use custom move route
 SaveMapEventBase,move_route_index,f,Int32,0x2B,0,0,0,Index of MoveEvent command route
-SaveMapEventBase,move_route_repeated,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
-SaveMapEventBase,sprite_transparent,f,Boolean,0x2E,False,0,0,bool
-SaveMapEventBase,route_through,f,Boolean,0x2F,False,0,0,Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly)
+SaveMapEventBase,move_route_finished,f,Boolean,0x2C,False,0,0,Boolean - Repeating move route has been completed at least once
+SaveMapEventBase,sprite_hidden,f,Boolean,0x2E,False,0,0,When true the sprite is not displayed
+SaveMapEventBase,move_route_through,f,Boolean,0x2F,False,0,0,Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly)
 SaveMapEventBase,anim_paused,f,Int32,0x30,0,0,0,?
 SaveMapEventBase,through,f,Boolean,0x33,False,0,0,Can go through anything
 SaveMapEventBase,stop_count,f,Int32,0x34,0,0,0,?

@@ -55,10 +55,10 @@ static TypedField<rpg::SaveMapEventBase, int32_t> static_direction(
 	1,
 	0
 );
-static TypedField<rpg::SaveMapEventBase, int32_t> static_sprite_direction(
-	&rpg::SaveMapEventBase::sprite_direction,
-	LSD_Reader::ChunkSaveMapEventBase::sprite_direction,
-	"sprite_direction",
+static TypedField<rpg::SaveMapEventBase, int32_t> static_facing(
+	&rpg::SaveMapEventBase::facing,
+	LSD_Reader::ChunkSaveMapEventBase::facing,
+	"facing",
 	1,
 	0
 );
@@ -146,24 +146,24 @@ static TypedField<rpg::SaveMapEventBase, int32_t> static_move_route_index(
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEventBase, bool> static_move_route_repeated(
-	&rpg::SaveMapEventBase::move_route_repeated,
-	LSD_Reader::ChunkSaveMapEventBase::move_route_repeated,
-	"move_route_repeated",
+static TypedField<rpg::SaveMapEventBase, bool> static_move_route_finished(
+	&rpg::SaveMapEventBase::move_route_finished,
+	LSD_Reader::ChunkSaveMapEventBase::move_route_finished,
+	"move_route_finished",
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEventBase, bool> static_sprite_transparent(
-	&rpg::SaveMapEventBase::sprite_transparent,
-	LSD_Reader::ChunkSaveMapEventBase::sprite_transparent,
-	"sprite_transparent",
+static TypedField<rpg::SaveMapEventBase, bool> static_sprite_hidden(
+	&rpg::SaveMapEventBase::sprite_hidden,
+	LSD_Reader::ChunkSaveMapEventBase::sprite_hidden,
+	"sprite_hidden",
 	0,
 	0
 );
-static TypedField<rpg::SaveMapEventBase, bool> static_route_through(
-	&rpg::SaveMapEventBase::route_through,
-	LSD_Reader::ChunkSaveMapEventBase::route_through,
-	"route_through",
+static TypedField<rpg::SaveMapEventBase, bool> static_move_route_through(
+	&rpg::SaveMapEventBase::move_route_through,
+	LSD_Reader::ChunkSaveMapEventBase::move_route_through,
+	"move_route_through",
 	0,
 	0
 );
@@ -302,7 +302,7 @@ Field<rpg::SaveMapEventBase> const* Struct<rpg::SaveMapEventBase>::fields[] = {
 	&static_position_x,
 	&static_position_y,
 	&static_direction,
-	&static_sprite_direction,
+	&static_facing,
 	&static_anim_frame,
 	&static_transparency,
 	&static_remaining_step,
@@ -315,9 +315,9 @@ Field<rpg::SaveMapEventBase> const* Struct<rpg::SaveMapEventBase>::fields[] = {
 	&static_move_route,
 	&static_move_route_overwrite,
 	&static_move_route_index,
-	&static_move_route_repeated,
-	&static_sprite_transparent,
-	&static_route_through,
+	&static_move_route_finished,
+	&static_sprite_hidden,
+	&static_move_route_through,
 	&static_anim_paused,
 	&static_through,
 	&static_stop_count,

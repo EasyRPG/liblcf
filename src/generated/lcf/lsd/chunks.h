@@ -330,10 +330,10 @@ namespace LSD_Reader {
 			position_x = 0x0C,
 			/** ? */
 			position_y = 0x0D,
-			/** Facing direction */
-			direction = 0x15,
 			/** Sprite direction */
-			sprite_direction = 0x16,
+			direction = 0x15,
+			/** Facing direction */
+			facing = 0x16,
 			/** ? */
 			anim_frame = 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
@@ -359,11 +359,11 @@ namespace LSD_Reader {
 			/** Index of MoveEvent command route */
 			move_route_index = 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated = 0x2C,
-			/** bool */
-			sprite_transparent = 0x2E,
+			move_route_finished = 0x2C,
+			/** When true the sprite is not displayed */
+			sprite_hidden = 0x2E,
 			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
-			route_through = 0x2F,
+			move_route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */
@@ -444,10 +444,10 @@ namespace LSD_Reader {
 			position_x = 0x0C,
 			/** ? */
 			position_y = 0x0D,
-			/** Facing direction */
-			direction = 0x15,
 			/** Sprite direction */
-			sprite_direction = 0x16,
+			direction = 0x15,
+			/** Facing direction */
+			facing = 0x16,
 			/** ? */
 			anim_frame = 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
@@ -473,11 +473,11 @@ namespace LSD_Reader {
 			/** Index of MoveEvent command route */
 			move_route_index = 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated = 0x2C,
-			/** bool */
-			sprite_transparent = 0x2E,
+			move_route_finished = 0x2C,
+			/** When true the sprite is not displayed */
+			sprite_hidden = 0x2E,
 			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
-			route_through = 0x2F,
+			move_route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */
@@ -738,10 +738,10 @@ namespace LSD_Reader {
 			position_x = 0x0C,
 			/** ? */
 			position_y = 0x0D,
-			/** Facing direction */
-			direction = 0x15,
 			/** Sprite direction */
-			sprite_direction = 0x16,
+			direction = 0x15,
+			/** Facing direction */
+			facing = 0x16,
 			/** ? */
 			anim_frame = 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
@@ -767,11 +767,11 @@ namespace LSD_Reader {
 			/** Index of MoveEvent command route */
 			move_route_index = 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated = 0x2C,
-			/** bool */
-			sprite_transparent = 0x2E,
+			move_route_finished = 0x2C,
+			/** When true the sprite is not displayed */
+			sprite_hidden = 0x2E,
 			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
-			route_through = 0x2F,
+			move_route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */
@@ -820,10 +820,10 @@ namespace LSD_Reader {
 			position_x = 0x0C,
 			/** ? */
 			position_y = 0x0D,
-			/** Facing direction */
-			direction = 0x15,
 			/** Sprite direction */
-			sprite_direction = 0x16,
+			direction = 0x15,
+			/** Facing direction */
+			facing = 0x16,
 			/** ? */
 			anim_frame = 0x17,
 			/** 0 or 3 - Transparency level of the current event page */
@@ -849,11 +849,11 @@ namespace LSD_Reader {
 			/** Index of MoveEvent command route */
 			move_route_index = 0x2B,
 			/** Boolean - Repeating move route has been completed at least once */
-			move_route_repeated = 0x2C,
-			/** bool */
-			sprite_transparent = 0x2E,
+			move_route_finished = 0x2C,
+			/** When true the sprite is not displayed */
+			sprite_hidden = 0x2E,
 			/** Whether the move route (MoveEvent or defined route) activated through mode. Almost the same as 0x33 (through). 0x2F represents that by MoveEvent the through mode has been activated; but 0x33 is what's actually checked for collisions. In several cases; 0x33 will be changed to indicate a condition in which an event or the hero is in through mode through other means than a MoveEvent; which can be: an event with an empty page being activated; player pressing Ctrl in test play; hero entering or exiting a vehicle (only very briefly) */
-			route_through = 0x2F,
+			move_route_through = 0x2F,
 			/** ? */
 			anim_paused = 0x30,
 			/** Can go through anything */

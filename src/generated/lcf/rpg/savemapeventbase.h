@@ -33,7 +33,7 @@ namespace rpg {
 		int32_t position_x = 0;
 		int32_t position_y = 0;
 		int32_t direction = 2;
-		int32_t sprite_direction = 2;
+		int32_t facing = 2;
 		int32_t anim_frame = 1;
 		int32_t transparency = 0;
 		int32_t remaining_step = 0;
@@ -46,9 +46,9 @@ namespace rpg {
 		MoveRoute move_route;
 		bool move_route_overwrite = false;
 		int32_t move_route_index = 0;
-		bool move_route_repeated = false;
-		bool sprite_transparent = false;
-		bool route_through = false;
+		bool move_route_finished = false;
+		bool sprite_hidden = false;
+		bool move_route_through = false;
 		int32_t anim_paused = 0;
 		bool through = false;
 		int32_t stop_count = 0;
@@ -75,7 +75,7 @@ namespace rpg {
 		&& l.position_x == r.position_x
 		&& l.position_y == r.position_y
 		&& l.direction == r.direction
-		&& l.sprite_direction == r.sprite_direction
+		&& l.facing == r.facing
 		&& l.anim_frame == r.anim_frame
 		&& l.transparency == r.transparency
 		&& l.remaining_step == r.remaining_step
@@ -88,9 +88,9 @@ namespace rpg {
 		&& l.move_route == r.move_route
 		&& l.move_route_overwrite == r.move_route_overwrite
 		&& l.move_route_index == r.move_route_index
-		&& l.move_route_repeated == r.move_route_repeated
-		&& l.sprite_transparent == r.sprite_transparent
-		&& l.route_through == r.route_through
+		&& l.move_route_finished == r.move_route_finished
+		&& l.sprite_hidden == r.sprite_hidden
+		&& l.move_route_through == r.move_route_through
 		&& l.anim_paused == r.anim_paused
 		&& l.through == r.through
 		&& l.stop_count == r.stop_count

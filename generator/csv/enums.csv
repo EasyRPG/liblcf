@@ -407,7 +407,7 @@ EventCommand,Code,ShowPicture,11110
 EventCommand,Code,MovePicture,11120
 EventCommand,Code,ErasePicture,11130
 EventCommand,Code,ShowBattleAnimation,11210
-EventCommand,Code,SpriteTransparency,11310
+EventCommand,Code,PlayerVisibility,11310
 EventCommand,Code,FlashSprite,11320
 EventCommand,Code,MoveEvent,11330
 EventCommand,Code,ProceedWithMovement,11340
