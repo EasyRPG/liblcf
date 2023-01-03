@@ -1,0 +1,74 @@
+{
+	"version": 4,
+	"configurePresets": [
+		{
+			"name": "base",
+			"displayName": "base preset",
+			"hidden": true,
+			"binaryDir": "${sourceDir}/build/${presetName}",
+			"cacheVariables": {
+				"BUILD_SHARED_LIBS": "OFF",
+				"CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+			}
+		},
+		{
+			"name": "type-debug",
+			"displayName": "build Debug",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+		{
+			"name": "type-relwithdebinfo",
+			"displayName": "build RelWithDebInfo",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "ReleaseWithDebInfo"
+			}
+		},
+		{
+			"name": "type-release",
+			"displayName": "build release",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+		{
+			"name": "win-base",
+			"displayName": "windows base preset",
+			"hidden": true,
+			"toolchainFile": "$env{EASYRPG_BUILDSCRIPTS}/windows/vcpkg/scripts/buildsystems/vcpkg.cmake",
+			"inherits": "base",
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		},
+		{
+			"name": "dkp",
+			"displayName": "devkitPro base preset",
+			"hidden": true,
+			"inherits": "base",
+			"cacheVariables": {
+				"LIBLCF_ENABLE_TOOLS": "OFF"
+			}
+		},
+		{
+			"name": "android",
+			"displayName": "Android base preset",
+			"hidden": true,
+			"inherits": "base",
+			"toolchainFile": "$env{$ANDROID_NDK}/build/cmake/android.toolchain.cmake",
+			"cacheVariables": {
+				"ANDROID_PLATFORM": "android-21",
+				"LIBLCF_ENABLE_TOOLS": "OFF"
+			},
+			"environment": {
+				"ANDROID_NDK": "$env{EASYRPG_BUILDSCRIPTS}/android/android-sdk/ndk/21.4.7075529"
+			}
+		}
+	]
+}

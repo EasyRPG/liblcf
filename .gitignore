@@ -27,6 +27,7 @@ CMakeFiles/
 CMakeDoxyfile.in
 install_manifest.txt
 Testing/
+build/
 
 # msvc / Windows
 *.vcxproj*
