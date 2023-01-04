@@ -62,7 +62,8 @@ Makefile
 *.o
 *.pc
 config.h
-builds/liblcf-config.cmake
+liblcf-config.cmake
+liblcf-config-version.cmake
 
 # tests
 test_runner*

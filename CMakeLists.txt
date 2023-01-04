@@ -299,14 +299,15 @@ endforeach()
 # includes
 target_include_directories(
 	lcf PUBLIC
-	${CMAKE_CURRENT_BINARY_DIR}/src
-	${CMAKE_CURRENT_SOURCE_DIR}/src
-	${CMAKE_CURRENT_SOURCE_DIR}/src/generated
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/generated>
+	$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
 )
 
 # Optimize floating point math functions into intrinsics and don't check or set errno (i.e. sqrt(-1))
 if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-	target_compile_options(lcf PUBLIC "-fno-math-errno")
+	target_compile_options(lcf PRIVATE "-fno-math-errno")
 endif()
 
 # endianess checking
@@ -323,6 +324,9 @@ set_property(TARGET lcf PROPERTY DEBUG_POSTFIX "${CMAKE_DEBUG_POSTFIX}")
 
 # Export symbols for DLL
 set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+# Name of the exported library
+set_property(TARGET lcf PROPERTY EXPORT_NAME liblcf)
 
 # icu or fallback to iconv
 set(LCF_SUPPORT_ICU 0)
@@ -384,10 +388,9 @@ string(REPLACE ";" " " AX_PACKAGE_REQUIRES_PRIVATE "${LIBLCF_DEPS}")
 configure_file(builds/${PROJECT_NAME}.pc.in builds/${PROJECT_NAME}.pc @ONLY)
 
 # Cmake-config file generation
-configure_file(builds/${PROJECT_NAME}-config.cmake.in builds/${PROJECT_NAME}-config.cmake @ONLY)
-
 install(
 	TARGETS lcf
+	EXPORT lcf-export
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
@@ -407,9 +410,27 @@ install(
 )
 
 install(
-	FILES
-	  ${CMAKE_CURRENT_BINARY_DIR}/builds/liblcf-config.cmake
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf)
+	EXPORT lcf-export FILE liblcf-targets.cmake
+	NAMESPACE liblcf:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+	${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/liblcf-config.cmake.in
+	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
+	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+)
+
+write_basic_package_version_file(
+	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
+	COMPATIBILITY ExactVersion
+)
+
+install(FILES
+	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
+	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+)
 
 # mime types
 install(
