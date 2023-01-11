@@ -1,0 +1,15 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+if(@LCF_SUPPORT_ICU@)
+	find_dependency(ICU COMPONENTS i18n uc data REQUIRED)
+else()
+	find_dependency(Iconv REQUIRED)
+endif()
+
+if(@LCF_SUPPORT_XML@)
+	find_dependency(expat CONFIG REQUIRED)
+endif()
+
+include(${CMAKE_CURRENT_LIST_DIR}/liblcf-targets.cmake)

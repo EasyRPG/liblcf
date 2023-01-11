@@ -1,0 +1,9 @@
+# For simplicity reasons depend on pkg-config when liblcf was compiled with autotools
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(PkgConfig REQUIRED QUIET)
+
+pkg_check_modules(liblcf REQUIRED QUIET IMPORTED_TARGET liblcf=@PACKAGE_VERSION@)
+
+add_library(liblcf::liblcf ALIAS PkgConfig::liblcf)
