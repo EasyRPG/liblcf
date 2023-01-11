@@ -302,7 +302,7 @@ target_include_directories(
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/generated>
-	$<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
+	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 # Optimize floating point math functions into intrinsics and don't check or set errno (i.e. sqrt(-1))
