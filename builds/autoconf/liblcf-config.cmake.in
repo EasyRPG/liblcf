@@ -1,9 +1,19 @@
-# For simplicity reasons depend on pkg-config when liblcf was compiled with autotools
+# For "simplicity" reasons depend on pkg-config when liblcf was compiled with autotools
 
 include(CMakeFindDependencyMacro)
 
 find_dependency(PkgConfig REQUIRED QUIET)
 
 pkg_check_modules(liblcf REQUIRED QUIET IMPORTED_TARGET liblcf=@PACKAGE_VERSION@)
+
+get_property(library_name TARGET PkgConfig::liblcf PROPERTY INTERFACE_LINK_LIBRARIES)
+
+if (library_name MATCHES ".a$")
+       list(REMOVE_ITEM liblcf_STATIC_LIBRARIES lcf)
+       set_property(TARGET PkgConfig::liblcf APPEND PROPERTY
+               INTERFACE_LINK_LIBRARIES "${liblcf_STATIC_LIBRARIES}")
+       set_property(TARGET PkgConfig::liblcf APPEND PROPERTY
+               INTERFACE_LINK_DIRECTORIES "${liblcf_STATIC_LIBRARY_DIRS}")
+endif()
 
 add_library(liblcf::liblcf ALIAS PkgConfig::liblcf)
