@@ -297,6 +297,8 @@ foreach(SG LDB LMT LMU LSD RPG THIRD_PARTY)
 endforeach()
 
 # includes
+include(GNUInstallDirs)
+
 target_include_directories(
 	lcf PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
@@ -367,7 +369,6 @@ target_sources(lcf PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 set_property(TARGET lcf PROPERTY SOVERSION 0)
 
 # installation
-include(GNUInstallDirs)
 
 # pkg-config file generation
 set(LCF_LIBDIR ${CMAKE_INSTALL_LIBDIR})
