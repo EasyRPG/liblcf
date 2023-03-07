@@ -38,7 +38,7 @@ void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
 			stream.Read(byte);
 			bitidx = 0;
 		}
-		obj.flags[i] |= (byte >> bitidx) & 1;
+		obj.flags[i] = (byte >> bitidx) & 1;
 		++bitidx;
 	}
 #ifdef LCF_DEBUG_TRACE
