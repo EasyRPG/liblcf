@@ -18,6 +18,11 @@ namespace rpg {
 std::ostream& operator<<(std::ostream& os, const SaveEasyRpgData& obj) {
 	os << "SaveEasyRpgData{";
 	os << "version="<< obj.version;
+	os << ", windows=";
+	for (size_t i = 0; i < obj.windows.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.windows[i];
+	}
+	os << "]";
 	os << "}";
 	return os;
 }

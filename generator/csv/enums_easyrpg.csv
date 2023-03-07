@@ -33,5 +33,7 @@ SavePicture,EasyRpgFlip,none,0
 SavePicture,EasyRpgFlip,x,1
 SavePicture,EasyRpgFlip,y,2
 SavePicture,EasyRpgFlip,both,3
+SavePicture,EasyRpgType,default,0
+SavePicture,EasyRpgType,window,1
 Skill,HpType,cost,0
 Skill,HpType,percent,1

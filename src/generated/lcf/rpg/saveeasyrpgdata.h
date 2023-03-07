@@ -14,6 +14,8 @@
 
 // Headers
 #include <stdint.h>
+#include <vector>
+#include "lcf/rpg/saveeasyrpgwindow.h"
 #include "lcf/context.h"
 #include <ostream>
 #include <type_traits>
@@ -26,10 +28,12 @@ namespace rpg {
 	class SaveEasyRpgData {
 	public:
 		int32_t version = 0;
+		std::vector<SaveEasyRpgWindow> windows;
 	};
 
 	inline bool operator==(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
-		return l.version == r.version;
+		return l.version == r.version
+		&& l.windows == r.windows;
 	}
 
 	inline bool operator!=(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
@@ -40,6 +44,10 @@ namespace rpg {
 
 	template <typename F, typename ParentCtx = Context<void,void>>
 	void ForEachString(SaveEasyRpgData& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
+		for (int i = 0; i < static_cast<int>(obj.windows.size()); ++i) {
+			const auto ctx2 = Context<SaveEasyRpgData, ParentCtx>{ "windows", i, &obj, parent_ctx };
+			ForEachString(obj.windows[i], f, &ctx2);
+		}
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

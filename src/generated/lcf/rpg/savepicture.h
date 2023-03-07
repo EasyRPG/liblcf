@@ -94,6 +94,14 @@ namespace rpg {
 			"y",
 			"both"
 		);
+		enum EasyRpgType {
+			EasyRpgType_default = 0,
+			EasyRpgType_window = 1
+		};
+		static constexpr auto kEasyRpgTypeTags = lcf::makeEnumTags<EasyRpgType>(
+			"default",
+			"window"
+		);
 
 		int ID = 0;
 		std::string name;
@@ -152,6 +160,7 @@ namespace rpg {
 		int32_t current_waver = 0;
 		int32_t easyrpg_flip = 0;
 		int32_t easyrpg_blend_mode = 0;
+		int32_t easyrpg_type = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, SavePicture::Effect code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -166,6 +175,10 @@ namespace rpg {
 		return os;
 	}
 	inline std::ostream& operator<<(std::ostream& os, SavePicture::EasyRpgFlip code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
+	inline std::ostream& operator<<(std::ostream& os, SavePicture::EasyRpgType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
@@ -220,7 +233,8 @@ namespace rpg {
 		&& l.current_rotation == r.current_rotation
 		&& l.current_waver == r.current_waver
 		&& l.easyrpg_flip == r.easyrpg_flip
-		&& l.easyrpg_blend_mode == r.easyrpg_blend_mode;
+		&& l.easyrpg_blend_mode == r.easyrpg_blend_mode
+		&& l.easyrpg_type == r.easyrpg_type;
 	}
 
 	inline bool operator!=(const SavePicture& l, const SavePicture& r) {

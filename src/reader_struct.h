@@ -36,6 +36,8 @@
 #include "lcf/rpg/rect.h"
 #include "lcf/rpg/savepicture.h"
 #include "lcf/rpg/terms.h"
+#include "lcf/rpg/saveeasyrpgtext.h"
+#include "lcf/rpg/saveeasyrpgwindow.h"
 
 namespace lcf {
 
@@ -61,10 +63,13 @@ struct TypeCategory {
 	static const Category::Index value = Category::Struct;
 };
 
+// Do not forget to add new Flags here
 template <> struct TypeCategory<rpg::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
 template <> struct TypeCategory<rpg::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::Terrain::Flags>				{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::SavePicture::Flags>			{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::Terrain::Flags>			{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::SavePicture::Flags>		{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::SaveEasyRpgText::Flags>	{ static const Category::Index value = Category::Flags; };
+template <> struct TypeCategory<rpg::SaveEasyRpgWindow::Flags>	{ static const Category::Index value = Category::Flags; };
 
 template <> struct TypeCategory<rpg::Equipment>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<rpg::EventCommand>				{ static const Category::Index value = Category::RawStruct; };

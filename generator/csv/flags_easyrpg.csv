@@ -1,0 +1,7 @@
+Structure,Field,Is2k3
+SaveEasyRpgWindow,draw_frame,0
+SaveEasyRpgWindow,border_margin,0
+SaveEasyRpgText,draw_gradient,0
+SaveEasyRpgText,draw_shadow,0
+SaveEasyRpgText,bold,0
+SaveEasyRpgText,italic,0
