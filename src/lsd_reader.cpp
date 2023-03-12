@@ -33,10 +33,11 @@ double LSD_Reader::GenerateTimestamp(std::time_t t) {
 	return ToTDateTime(t);
 }
 
-void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version) {
+void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version, int32_t codepage) {
 	++save.system.save_count;
 	save.title.timestamp = LSD_Reader::GenerateTimestamp();
 	save.easyrpg_data.version = version;
+	save.easyrpg_data.codepage = codepage;
 }
 
 std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView encoding) {
@@ -77,6 +78,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(StringView filename) {
 
 std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView encoding) {
 	LcfReader reader(filestream, ToString(encoding));
+
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return std::unique_ptr<rpg::Save>();
@@ -90,13 +92,36 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView
 	if (header != "LcfSaveData") {
 		fprintf(stderr, "Warning: This header is not LcfSaveData and might not be a valid RPG2000 save.\n");
 	}
-	rpg::Save* save = new rpg::Save();
+
+	auto pos = reader.Tell();
+
+	std::unique_ptr<rpg::Save> save(new rpg::Save());
 	Struct<rpg::Save>::ReadLcf(*save, reader);
-	return std::unique_ptr<rpg::Save>(save);
+
+	if (save->easyrpg_data.codepage > 0) {
+		filestream.clear();
+		filestream.seekg(pos, std::ios_base::beg);
+		LcfReader reader2(filestream, std::to_string(save->easyrpg_data.codepage));
+		if (!reader2.IsOk()) {
+			LcfReader::SetError("Couldn't parse save file.\n");
+			return std::unique_ptr<rpg::Save>();
+		}
+		Struct<rpg::Save>::ReadLcf(*save, reader2);
+	}
+
+	return save;
 }
 
 bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, StringView encoding) {
-	LcfWriter writer(filestream, engine, ToString(encoding));
+	std::string enc;
+
+	if (save.easyrpg_data.codepage > 0) {
+		enc = std::to_string(save.easyrpg_data.codepage);
+	} else {
+		enc = ToString(encoding);
+	}
+
+	LcfWriter writer(filestream, engine, enc);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.\n");
 		return false;

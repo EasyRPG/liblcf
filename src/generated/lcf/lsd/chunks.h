@@ -988,8 +988,10 @@ namespace LSD_Reader {
 		enum Index {
 			/** Savegame version */
 			version = 0x01,
+			/** Codepage used to store text in the savegame data */
+			codepage = 0x02,
 			/** User generated windows e.g. through ShowStringPicture */
-			windows = 0x02
+			windows = 0x64
 		};
 	};
 	struct ChunkSaveEasyRpgWindow {
