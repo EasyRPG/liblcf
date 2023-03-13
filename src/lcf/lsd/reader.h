@@ -42,7 +42,7 @@ namespace LSD_Reader {
 	/**
 	 * Increment the save save_count and update the timestamp.
 	 */
-	void PrepareSave(rpg::Save& save, int32_t version = 0);
+	void PrepareSave(rpg::Save& save, int32_t version = 0, int32_t codepage = 0);
 
 	/**
 	 * Loads Savegame.

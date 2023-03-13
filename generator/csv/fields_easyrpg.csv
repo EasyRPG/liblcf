@@ -1,7 +1,8 @@
 Structure,Field,Size Field?,Type,Index,Default Value,PersistIfDefault,Is2k3,Comment
 Save,easyrpg_data,f,SaveEasyRpgData,0xC8,,0,0,Additional save data written by EasyRPG Player
 SaveEasyRpgData,version,,Int32,0x01,0,0,0,Savegame version
-SaveEasyRpgData,windows,,Array<SaveEasyRpgWindow>,0x02,,0,0,User generated windows e.g. through ShowStringPicture
+SaveEasyRpgData,codepage,,Int32,0x02,0,0,0,Codepage used to store text in the savegame data
+SaveEasyRpgData,windows,,Array<SaveEasyRpgWindow>,0x64,,0,0,User generated windows e.g. through ShowStringPicture
 SaveEventExecFrame,maniac_event_info,f,Ref<ManiacEventInfo>,0x0E,0,0,0,Event info bitfield
 SaveEventExecFrame,maniac_event_id,f,Int32,0x0F,0,0,0,Event ID
 SaveEventExecFrame,maniac_event_page_id,f,Int32,0x10,0,0,0,Page ID when it is a map event

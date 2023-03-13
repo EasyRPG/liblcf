@@ -41,6 +41,11 @@ static std::string filterUtf8Compatible(std::string enc) {
 		return "";
 	}
 #endif
+
+	if (enc == "utf-8" || enc == "UTF-8" || enc == "65001") {
+		return "";
+	}
+
 	return enc;
 }
 
@@ -76,6 +81,7 @@ void Encoder::Init() {
 	if (_encoding.empty()) {
 		return;
 	}
+
 #if LCF_SUPPORT_ICU
 	auto code_page = atoi(_encoding.c_str());
 	const auto& storage_encoding = code_page > 0

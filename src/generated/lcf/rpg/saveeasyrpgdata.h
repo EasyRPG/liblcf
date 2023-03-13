@@ -28,11 +28,13 @@ namespace rpg {
 	class SaveEasyRpgData {
 	public:
 		int32_t version = 0;
+		int32_t codepage = 0;
 		std::vector<SaveEasyRpgWindow> windows;
 	};
 
 	inline bool operator==(const SaveEasyRpgData& l, const SaveEasyRpgData& r) {
 		return l.version == r.version
+		&& l.codepage == r.codepage
 		&& l.windows == r.windows;
 	}
 
@@ -45,8 +47,8 @@ namespace rpg {
 	template <typename F, typename ParentCtx = Context<void,void>>
 	void ForEachString(SaveEasyRpgData& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
 		for (int i = 0; i < static_cast<int>(obj.windows.size()); ++i) {
-			const auto ctx2 = Context<SaveEasyRpgData, ParentCtx>{ "windows", i, &obj, parent_ctx };
-			ForEachString(obj.windows[i], f, &ctx2);
+			const auto ctx3 = Context<SaveEasyRpgData, ParentCtx>{ "windows", i, &obj, parent_ctx };
+			ForEachString(obj.windows[i], f, &ctx3);
 		}
 		(void)obj;
 		(void)f;

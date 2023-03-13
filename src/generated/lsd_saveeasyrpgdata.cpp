@@ -27,6 +27,13 @@ static TypedField<rpg::SaveEasyRpgData, int32_t> static_version(
 	0,
 	0
 );
+static TypedField<rpg::SaveEasyRpgData, int32_t> static_codepage(
+	&rpg::SaveEasyRpgData::codepage,
+	LSD_Reader::ChunkSaveEasyRpgData::codepage,
+	"codepage",
+	0,
+	0
+);
 static TypedField<rpg::SaveEasyRpgData, std::vector<rpg::SaveEasyRpgWindow>> static_windows(
 	&rpg::SaveEasyRpgData::windows,
 	LSD_Reader::ChunkSaveEasyRpgData::windows,
@@ -39,6 +46,7 @@ static TypedField<rpg::SaveEasyRpgData, std::vector<rpg::SaveEasyRpgWindow>> sta
 template <>
 Field<rpg::SaveEasyRpgData> const* Struct<rpg::SaveEasyRpgData>::fields[] = {
 	&static_version,
+	&static_codepage,
 	&static_windows,
 	NULL
 };
