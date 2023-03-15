@@ -85,8 +85,6 @@ void XmlWriter::WriteString(StringView val) {
 				break;
 			case '\n':
 				stream.put(c);
-				at_bol = true;
-				Indent();
 				break;
 			case '\r':
 			case '\t':
