@@ -106,6 +106,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView
 			LcfReader::SetError("Couldn't parse save file.\n");
 			return std::unique_ptr<rpg::Save>();
 		}
+		save.reset(new rpg::Save());
 		Struct<rpg::Save>::ReadLcf(*save, reader2);
 	}
 
