@@ -162,6 +162,8 @@ namespace LSD_Reader {
 			save_slot = 0x84,
 			/** ATB mode of RPG 2003 battle system. */
 			atb_mode = 0x8C,
+			/** rpg::Strings */
+			maniac_strings = 0x24,
 			/** FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2) */
 			maniac_frameskip = 0x88,
 			/** FatalMix Picture Limit */
