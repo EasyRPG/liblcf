@@ -25,6 +25,7 @@ SaveEasyRpgText,font_size,f,Int32,0x05,12,0,0,Font size
 SaveEasyRpgText,letter_spacing,f,Int32,0x06,0,0,0,Additional spacing between letters
 SaveEasyRpgText,line_spacing,f,Int32,0x07,4,0,0,Additional spacing between lines
 SaveEasyRpgText,flags,f,SaveEasyRpgText_Flags,0x08,3,0,0,Various text settings
+SaveSystem,maniac_strings,f,Vector<DBString>,0x24,,0,0,rpg::Strings
 SaveSystem,maniac_frameskip,,Int32,0x88,0,0,0,"FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2)"
 SaveSystem,maniac_picture_limit,,Int32,0x89,0,0,0,FatalMix Picture Limit
 SaveSystem,maniac_options,,Vector<UInt8>,0x8A,,0,0,"Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1)"

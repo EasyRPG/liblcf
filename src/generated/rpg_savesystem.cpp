@@ -80,6 +80,11 @@ std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 	os << ", save_count="<< obj.save_count;
 	os << ", save_slot="<< obj.save_slot;
 	os << ", atb_mode="<< obj.atb_mode;
+	os << ", maniac_strings=";
+	for (size_t i = 0; i < obj.maniac_strings.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.maniac_strings[i];
+	}
+	os << "]";
 	os << ", maniac_frameskip="<< obj.maniac_frameskip;
 	os << ", maniac_picture_limit="<< obj.maniac_picture_limit;
 	os << ", maniac_options=";

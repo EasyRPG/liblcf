@@ -417,6 +417,13 @@ static TypedField<rpg::SaveSystem, int32_t> static_atb_mode(
 	0,
 	1
 );
+static TypedField<rpg::SaveSystem, std::vector<DBString>> static_maniac_strings(
+	&rpg::SaveSystem::maniac_strings,
+	LSD_Reader::ChunkSaveSystem::maniac_strings,
+	"maniac_strings",
+	0,
+	0
+);
 static TypedField<rpg::SaveSystem, int32_t> static_maniac_frameskip(
 	&rpg::SaveSystem::maniac_frameskip,
 	LSD_Reader::ChunkSaveSystem::maniac_frameskip,
@@ -506,6 +513,7 @@ Field<rpg::SaveSystem> const* Struct<rpg::SaveSystem>::fields[] = {
 	&static_save_count,
 	&static_save_slot,
 	&static_atb_mode,
+	&static_maniac_strings,
 	&static_maniac_frameskip,
 	&static_maniac_picture_limit,
 	&static_maniac_options,

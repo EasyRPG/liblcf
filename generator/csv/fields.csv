@@ -589,7 +589,7 @@ Database,animations,f,Array<Animation>,0x13,,1,0,rpg::Animation
 Database,chipsets,f,Array<Chipset>,0x14,,1,0,rpg::Chipset
 Database,terms,f,Terms,0x15,,1,0,rpg::Terms
 Database,system,f,System,0x16,,1,0,rpg::System
-Database,switches,f,Array<Switch>,0x17,,1,0,rpg::Switchs
+Database,switches,f,Array<Switch>,0x17,,1,0,rpg::Switches
 Database,variables,f,Array<Variable>,0x18,,1,0,rpg::Variables
 Database,commonevents,f,Array<CommonEvent>,0x19,,1,0,rpg::CommonEvent
 Database,version,f,DatabaseVersion,0x1A,0,0,0,Indicates version of database. When 1 the database was converted to RPG Maker 2000 v1.61

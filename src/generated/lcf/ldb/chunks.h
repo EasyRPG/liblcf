@@ -1512,7 +1512,7 @@ namespace LDB_Reader {
 			terms = 0x15,
 			/** rpg::System */
 			system = 0x16,
-			/** rpg::Switchs */
+			/** rpg::Switches */
 			switches = 0x17,
 			/** rpg::Variables */
 			variables = 0x18,
