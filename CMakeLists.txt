@@ -28,6 +28,7 @@ set(CMAKE_CXX_EXTENSIONS ON)
 # lcf library files
 set(LCF_SOURCES
 	src/dbarray.cpp
+	src/dbstring_struct.cpp
 	src/encoder.cpp
 	src/ini.cpp
 	src/inireader.cpp

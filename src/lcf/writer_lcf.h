@@ -83,6 +83,13 @@ public:
 	void WriteInt(int val);
 
 	/**
+	 * Write a compressed 64bit unsigned integer to the stream.
+	 *
+	 * @return The integer.
+	 */
+	void WriteUInt64(uint64_t val);
+
+	/**
 	 * Write a vector of primitive values to the stream.
 	 *
 	 * @param buffer vector to write.

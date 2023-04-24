@@ -10,6 +10,7 @@
 #include <cstdarg>
 #include <cstdio>
 #include <istream>
+#include <limits>
 
 #include "lcf/reader_lcf.h"
 
@@ -100,6 +101,27 @@ int LcfReader::ReadInt() {
 	return loops > 5 ? 0 : value;
 }
 
+uint64_t LcfReader::ReadUInt64() {
+	uint64_t value = 0;
+	unsigned char temp = 0;
+	int loops = 0;
+	do {
+		value <<= 7;
+		if (Read0(&temp, 1, 1) == 0) {
+			assert(value == 0);
+			return 0;
+		}
+		value |= static_cast<uint64_t>(temp & 0x7F);
+
+		if (loops > 9) {
+			fprintf(stderr, "Invalid compressed integer at %" PRIu32 "\n", Tell());
+		}
+		++loops;
+	} while (temp & 0x80);
+
+	return loops > 9 ? 0 : value;
+}
+
 template <>
 void LcfReader::Read<int32_t>(int32_t& ref) {
 	ref = ReadInt();
@@ -112,7 +134,7 @@ void LcfReader::Read<double>(double& ref) {
 }
 
 template <>
-void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
+void LcfReader::Read<bool>(std::vector<bool>& buffer, size_t size) {
 	buffer.clear();
 
 	for (unsigned i = 0; i < size; ++i) {
@@ -123,7 +145,7 @@ void LcfReader::Read<bool>(std::vector<bool> &buffer, size_t size) {
 }
 
 template <>
-void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
+void LcfReader::Read<uint8_t>(std::vector<uint8_t>& buffer, size_t size) {
 	buffer.clear();
 
 	for (unsigned int i = 0; i < size; ++i) {
@@ -134,7 +156,7 @@ void LcfReader::Read<uint8_t>(std::vector<uint8_t> &buffer, size_t size) {
 }
 
 template <>
-void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
+void LcfReader::Read<int16_t>(std::vector<int16_t>& buffer, size_t size) {
 	buffer.clear();
 	size_t items = size / 2;
 	for (unsigned int i = 0; i < items; ++i) {
@@ -150,7 +172,7 @@ void LcfReader::Read<int16_t>(std::vector<int16_t> &buffer, size_t size) {
 }
 
 template <>
-void LcfReader::Read<int32_t>(std::vector<int32_t> &buffer, size_t size) {
+void LcfReader::Read<int32_t>(std::vector<int32_t>& buffer, size_t size) {
 	buffer.clear();
 	size_t items = size / 4;
 	for (unsigned int i = 0; i < items; ++i) {
@@ -166,7 +188,7 @@ void LcfReader::Read<int32_t>(std::vector<int32_t> &buffer, size_t size) {
 }
 
 template <>
-void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
+void LcfReader::Read<uint32_t>(std::vector<uint32_t>& buffer, size_t size) {
 	buffer.clear();
 	size_t items = size / 4;
 	for (unsigned int i = 0; i < items; ++i) {
@@ -181,7 +203,7 @@ void LcfReader::Read<uint32_t>(std::vector<uint32_t> &buffer, size_t size) {
 	}
 }
 
-void LcfReader::ReadBits(DBBitArray &buffer, size_t size) {
+void LcfReader::ReadBits(DBBitArray& buffer, size_t size) {
 	buffer = DBBitArray(size);
 	for (size_t i = 0; i < size; ++i) {
 		uint8_t val;
@@ -201,8 +223,6 @@ void LcfReader::ReadString(DBString& ref, size_t size) {
 	ReadString(tmp, size);
 	ref = DBString(tmp);
 }
-
-
 
 bool LcfReader::IsOk() const {
 	return stream.good() && encoder.IsOk();
@@ -295,6 +315,15 @@ void LcfReader::Encode(std::string& str) {
 }
 
 int LcfReader::IntSize(unsigned int x) {
+	int result = 0;
+	do {
+		x >>= 7;
+		result++;
+	} while (x != 0);
+	return result;
+}
+
+int LcfReader::UInt64Size(uint64_t x) {
 	int result = 0;
 	do {
 		x >>= 7;

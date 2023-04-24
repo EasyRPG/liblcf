@@ -42,6 +42,7 @@ liblcf_la_LDFLAGS = \
 	-no-undefined
 liblcf_la_SOURCES = \
 	src/dbarray.cpp \
+	src/dbstring_struct.cpp \
 	src/encoder.cpp \
 	src/ini.cpp \
 	src/inireader.cpp \

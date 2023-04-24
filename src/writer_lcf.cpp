@@ -54,6 +54,12 @@ void LcfWriter::WriteInt(int val) {
 			Write<uint8_t>((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
 }
 
+void LcfWriter::WriteUInt64(uint64_t value) {
+	for (int i = 56; i >= 0; i -= 7)
+		if (value >= (1LL << i) || i == 0)
+			Write<uint8_t>((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
+}
+
 template <>
 void LcfWriter::Write<int32_t>(int32_t val) {
 	WriteInt(val);

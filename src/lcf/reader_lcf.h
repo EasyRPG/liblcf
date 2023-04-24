@@ -130,6 +130,13 @@ public:
 	int ReadInt();
 
 	/**
+	 * Reads a compressed 64bit unsigned integer from the stream.
+	 *
+	 * @return The decompressed integer.
+	 */
+	uint64_t ReadUInt64();
+
+	/**
 	 * Reads a string.
 	 *
 	 * @param size string length.
@@ -203,6 +210,14 @@ public:
 	 * @return the compressed size.
 	 */
 	static int IntSize(unsigned int x);
+
+	/**
+	 * Calculates the size of a compressed 64bit unsigned integer
+	 *
+	 * @param x the integer.
+	 * @return the compressed size.
+	 */
+	static int UInt64Size(uint64_t x);
 
 	/** @return a buffer which can be reused for parsing */
 	std::vector<int32_t>& IntBuffer();
