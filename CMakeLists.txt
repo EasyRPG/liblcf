@@ -4,7 +4,7 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
 	cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
-project(liblcf VERSION 0.7.0 LANGUAGES CXX)
+project(liblcf VERSION 0.8 LANGUAGES CXX)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
