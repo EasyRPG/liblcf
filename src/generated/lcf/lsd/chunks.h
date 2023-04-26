@@ -429,7 +429,7 @@ namespace LSD_Reader {
 			/** speed in the scrolls of the screen - shown in sixteenth pixels. */
 			pan_speed = 0x79,
 			/** int: sum of terrain.encounter_rate for each step */
-			encounter_steps = 0x7C,
+			total_encounter_rate = 0x7C,
 			/** Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame. */
 			encounter_calling = 0x7D,
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
@@ -911,7 +911,7 @@ namespace LSD_Reader {
 			/** int */
 			position_y = 0x02,
 			/** int */
-			encounter_rate = 0x03,
+			encounter_steps = 0x03,
 			/** int */
 			chipset_id = 0x05,
 			/** ? array */

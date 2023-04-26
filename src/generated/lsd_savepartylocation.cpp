@@ -377,10 +377,10 @@ static TypedField<rpg::SavePartyLocation, int32_t> static_pan_speed(
 	0,
 	0
 );
-static TypedField<rpg::SavePartyLocation, int32_t> static_encounter_steps(
-	&rpg::SavePartyLocation::encounter_steps,
-	LSD_Reader::ChunkSavePartyLocation::encounter_steps,
-	"encounter_steps",
+static TypedField<rpg::SavePartyLocation, int32_t> static_total_encounter_rate(
+	&rpg::SavePartyLocation::total_encounter_rate,
+	LSD_Reader::ChunkSavePartyLocation::total_encounter_rate,
+	"total_encounter_rate",
 	0,
 	0
 );
@@ -460,7 +460,7 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_pan_finish_x,
 	&static_pan_finish_y,
 	&static_pan_speed,
-	&static_encounter_steps,
+	&static_total_encounter_rate,
 	&static_encounter_calling,
 	&static_map_save_count,
 	&static_database_save_count,

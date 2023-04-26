@@ -109,7 +109,7 @@ namespace rpg {
 			KeyInputProc = 11610,
 			ChangeMapTileset = 11710,
 			ChangePBG = 11720,
-			ChangeEncounterRate = 11740,
+			ChangeEncounterSteps = 11740,
 			TileSubstitution = 11750,
 			TeleportTargets = 11810,
 			ChangeTeleportAccess = 11820,
@@ -175,7 +175,14 @@ namespace rpg {
 			Maniac_ControlGlobalSave = 3016,
 			Maniac_ChangePictureId = 3017,
 			Maniac_SetGameOption = 3018,
-			Maniac_CallCommand = 3019
+			Maniac_CallCommand = 3019,
+			Maniac_ControlStrings = 3020,
+			Maniac_GetGameInfo = 3021,
+			Maniac_EditPicture = 3025,
+			Maniac_WritePicture = 3026,
+			Maniac_AddMoveRoute = 3027,
+			Maniac_EditTile = 3028,
+			Maniac_ControlTextProcessing = 3029
 		};
 
 		int32_t code = 0;

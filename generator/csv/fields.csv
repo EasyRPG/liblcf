@@ -844,7 +844,7 @@ SavePartyLocation,pan_current_y,f,Int32,0x71,kPanYDefault,0,0,Number of 1/16 pix
 SavePartyLocation,pan_finish_x,f,Int32,0x72,kPanXDefault,0,0,Number of 1/16 pixels to the left of player when current scroll finishes
 SavePartyLocation,pan_finish_y,f,Int32,0x73,kPanYDefault,0,0,Number of 1/16 pixels above the player when current scroll finishes.
 SavePartyLocation,pan_speed,f,Int32,0x79,kPanSpeedDefault,0,0,speed in the scrolls of the screen - shown in sixteenth pixels.
-SavePartyLocation,encounter_steps,f,Int32,0x7C,0,0,0,int: sum of terrain.encounter_rate for each step
+SavePartyLocation,total_encounter_rate,f,Int32,0x7C,0,0,0,int: sum of terrain.encounter_rate for each step
 SavePartyLocation,encounter_calling,f,Boolean,0x7D,False,0,0,Similar to 0x6C - is used to signal a different piece of code that an encounter is to be triggered; which may be cancelled by other conditions such as the player starting to interact with an event during the same frame.
 SavePartyLocation,map_save_count,f,Int32,0x83,0,0,0,Mirrors save_count of current map. On mismatch events are not continued after load.
 SavePartyLocation,database_save_count,f,Int32,0x84,0,0,0,?
@@ -984,7 +984,7 @@ SaveMapEvent,triggered_by_decision_key,f,Boolean,0x67,False,0,0,If true; this ev
 SaveMapEvent,parallel_event_execstate,f,SaveEventExecState,0x6C,,1,0,chunks
 SaveMapInfo,position_x,f,Int32,0x01,0,0,0,int
 SaveMapInfo,position_y,f,Int32,0x02,0,0,0,int
-SaveMapInfo,encounter_rate,f,Int32,0x03,-1,0,0,int
+SaveMapInfo,encounter_steps,f,Int32,0x03,-1,0,0,int
 SaveMapInfo,chipset_id,f,Int32,0x05,0,0,0,int
 SaveMapInfo,events,f,Array<SaveMapEvent>,0x0B,,1,0,? array
 SaveMapInfo,lower_tiles,f,Vector<UInt8>,0x15,"[x for x in range(0, 144)]",1,0,? [00 01 02 ... 8E 8F]

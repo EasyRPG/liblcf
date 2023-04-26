@@ -18,6 +18,13 @@ EventCommand,Code,Maniac_ControlGlobalSave,3016
 EventCommand,Code,Maniac_ChangePictureId,3017
 EventCommand,Code,Maniac_SetGameOption,3018
 EventCommand,Code,Maniac_CallCommand,3019
+EventCommand,Code,Maniac_ControlStrings,3020
+EventCommand,Code,Maniac_GetGameInfo,3021
+EventCommand,Code,Maniac_EditPicture,3025
+EventCommand,Code,Maniac_WritePicture,3026
+EventCommand,Code,Maniac_AddMoveRoute,3027
+EventCommand,Code,Maniac_EditTile,3028
+EventCommand,Code,Maniac_ControlTextProcessing,3029
 EventPage,ManiacEventInfo,action,0
 EventPage,ManiacEventInfo,touched,1
 EventPage,ManiacEventInfo,collision,2

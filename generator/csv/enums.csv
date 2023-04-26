@@ -423,7 +423,7 @@ EventCommand,Code,PlayMovie,11560
 EventCommand,Code,KeyInputProc,11610
 EventCommand,Code,ChangeMapTileset,11710
 EventCommand,Code,ChangePBG,11720
-EventCommand,Code,ChangeEncounterRate,11740
+EventCommand,Code,ChangeEncounterSteps,11740
 EventCommand,Code,TileSubstitution,11750
 EventCommand,Code,TeleportTargets,11810
 EventCommand,Code,ChangeTeleportAccess,11820
