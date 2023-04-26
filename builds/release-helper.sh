@@ -11,9 +11,10 @@ version=$1
 
 if [[ ! -z $version ]]; then
 
-  if [[ ! $version =~ ^[0-9]\.[0-9]\.[0-9]$ ]]; then
+  if [[ ! $version =~ ^[0-9](\.[0-9]){1,3}$ ]]; then
 
     echo "Invalid version argument. Only digits and dots allowed."
+    echo "Example: 0.8 or 0.7.0.1"
     exit 1
 
   fi
@@ -39,6 +40,8 @@ echo "Updating License…"
 sed -i "1,1 s/2014-2[0-9][0-9][0-9]/2014-$year/" COPYING
 
 cat << EOF
+
+${red}Please check ${bold}README.md${reset}${red} file for whitespace problems.${reset}
 
 If everything is ready and committed, use these commands to publish the git tag:
 $ git tag -a (-s) $version -m "Codename \"\fancy codename\""

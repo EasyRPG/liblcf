@@ -1,7 +1,9 @@
 ACLOCAL_AMFLAGS = --install -I builds/autoconf/m4
 
 EXTRA_DIST = AUTHORS.md README.md generator \
-	CMakeLists.txt builds/cmake mime builds/Doxyfile
+	CMakeLists.txt CMakePresets.json builds/cmake \
+	mime builds/Doxyfile builds/release-helper.sh \
+	builds/sources2buildsystem.pl
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = builds/liblcf.pc
@@ -320,12 +322,21 @@ lcfthirdpartyinclude_HEADERS = \
 
 nodist_lcfinclude_HEADERS = src/lcf/config.h
 
+# These are used by CMake
+EXTRA_DIST += \
+	bench/readldb.cpp
+
 check_PROGRAMS = test_runner
 test_runner_SOURCES = \
+	tests/dbarray.cpp \
+	tests/dbbitarray.cpp \
+	tests/dbstring.cpp \
 	tests/doctest.h \
-	tests/time_stamp.cpp \
 	tests/flag_set.cpp \
-	tests/test_main.cpp
+	tests/test_main.cpp \
+	tests/time_stamp.cpp \
+	tests/span.cpp \
+	tests/string_view.cpp
 test_runner_CPPFLAGS = \
 	-I$(srcdir)/src \
 	-I$(srcdir)/src/generated
