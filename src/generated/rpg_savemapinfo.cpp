@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& os, const SaveMapInfo& obj) {
 	os << "SaveMapInfo{";
 	os << "position_x="<< obj.position_x;
 	os << ", position_y="<< obj.position_y;
-	os << ", encounter_rate="<< obj.encounter_rate;
+	os << ", encounter_steps="<< obj.encounter_steps;
 	os << ", chipset_id="<< obj.chipset_id;
 	os << ", events=";
 	for (size_t i = 0; i < obj.events.size(); ++i) {

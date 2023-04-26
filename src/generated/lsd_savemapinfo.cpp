@@ -34,10 +34,10 @@ static TypedField<rpg::SaveMapInfo, int32_t> static_position_y(
 	0,
 	0
 );
-static TypedField<rpg::SaveMapInfo, int32_t> static_encounter_rate(
-	&rpg::SaveMapInfo::encounter_rate,
-	LSD_Reader::ChunkSaveMapInfo::encounter_rate,
-	"encounter_rate",
+static TypedField<rpg::SaveMapInfo, int32_t> static_encounter_steps(
+	&rpg::SaveMapInfo::encounter_steps,
+	LSD_Reader::ChunkSaveMapInfo::encounter_steps,
+	"encounter_steps",
 	0,
 	0
 );
@@ -124,7 +124,7 @@ template <>
 Field<rpg::SaveMapInfo> const* Struct<rpg::SaveMapInfo>::fields[] = {
 	&static_position_x,
 	&static_position_y,
-	&static_encounter_rate,
+	&static_encounter_steps,
 	&static_chipset_id,
 	&static_events,
 	&static_lower_tiles,

@@ -32,7 +32,7 @@ std::ostream& operator<<(std::ostream& os, const SavePartyLocation& obj) {
 	os << ", pan_finish_x="<< obj.pan_finish_x;
 	os << ", pan_finish_y="<< obj.pan_finish_y;
 	os << ", pan_speed="<< obj.pan_speed;
-	os << ", encounter_steps="<< obj.encounter_steps;
+	os << ", total_encounter_rate="<< obj.total_encounter_rate;
 	os << ", encounter_calling="<< obj.encounter_calling;
 	os << ", map_save_count="<< obj.map_save_count;
 	os << ", database_save_count="<< obj.database_save_count;

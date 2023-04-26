@@ -67,7 +67,7 @@ namespace rpg {
 		int32_t pan_finish_x = kPanXDefault;
 		int32_t pan_finish_y = kPanYDefault;
 		int32_t pan_speed = kPanSpeedDefault;
-		int32_t encounter_steps = 0;
+		int32_t total_encounter_rate = 0;
 		bool encounter_calling = false;
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
@@ -94,7 +94,7 @@ namespace rpg {
 		&& l.pan_finish_x == r.pan_finish_x
 		&& l.pan_finish_y == r.pan_finish_y
 		&& l.pan_speed == r.pan_speed
-		&& l.encounter_steps == r.encounter_steps
+		&& l.total_encounter_rate == r.total_encounter_rate
 		&& l.encounter_calling == r.encounter_calling
 		&& l.map_save_count == r.map_save_count
 		&& l.database_save_count == r.database_save_count;

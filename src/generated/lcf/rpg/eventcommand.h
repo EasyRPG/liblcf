@@ -109,7 +109,7 @@ namespace rpg {
 			KeyInputProc = 11610,
 			ChangeMapTileset = 11710,
 			ChangePBG = 11720,
-			ChangeEncounterRate = 11740,
+			ChangeEncounterSteps = 11740,
 			TileSubstitution = 11750,
 			TeleportTargets = 11810,
 			ChangeTeleportAccess = 11820,
