@@ -8,6 +8,29 @@ set -e
 
 year=$(date +%Y)
 version=$1
+verbose=${2:-quiet}
+
+# helpers
+reset="\e[0m"
+red="\e[31m"
+yellow="\e[33m"
+blue="\e[36m"
+bold="\e[1m"
+function print_file() {
+  if [ $verbose == "verbose" ]; then
+    echo -e "$yellow  $file:$reset"
+  else
+    echo -e "$yellow  $file$reset"
+  fi
+}
+
+function print_verbose() {
+  if [ $verbose == "verbose" ]; then
+    echo -ne "$blue"
+    grep "$1" $2
+    echo -e "$reset"
+  fi
+}
 
 if [[ ! -z $version ]]; then
 
@@ -21,15 +44,20 @@ if [[ ! -z $version ]]; then
 
   echo "Updating Version in:"
 
-  echo "  CMakeLists.txt"
-  sed -i "/liblcf VERSION/,1 s/[0-9]\.[0-9]\.[0-9]/$version/" CMakeLists.txt
+  file=CMakeLists.txt
+  print_file
+  sed -i "/liblcf VERSION/,1 s/[0-9]\(.[0-9]\)\{1,2\}/$version/" $file
+  print_verbose 'liblcf VERSION' $file
 
-  echo "  configure.ac"
-  sed -i "/AC_INIT/,1 s/[0-9]\.[0-9]\.[0-9]/$version/" configure.ac
+  file=configure.ac
+  print_file
+  sed -i "/AC_INIT/,1 s/[0-9]\(.[0-9]\)\{1,2\}/$version/" $file
+  print_verbose 'AC_INIT' $file
 
-  echo "  README.md"
-  sed -i "s/\(liblcf-\)[0-9]\.[0-9]\.[0-9]/\1$version/g" README.md
-
+  file=README.md
+  print_file
+  sed -i "s/\(liblcf-\)[0-9]\(.[0-9]\)\{1,2\}/\1$version/g" $file
+  print_verbose 'liblcf-' $file
 else
 
   echo "No new version argument, only updating copyright years!"
@@ -37,13 +65,19 @@ else
 fi
 
 echo "Updating License…"
-sed -i "1,1 s/2014-2[0-9][0-9][0-9]/2014-$year/" COPYING
 
-cat << EOF
+file=COPYING
+print_file
+sed -i "1,1 s/2014-2[0-9][0-9][0-9]/2014-$year/" $file
+print_verbose '2014-' $file
+
+echo -e "$(
+cat << EOM
 
 ${red}Please check ${bold}README.md${reset}${red} file for whitespace problems.${reset}
 
 If everything is ready and committed, use these commands to publish the git tag:
-$ git tag -a (-s) $version -m "Codename \"\fancy codename\""
+$ git tag -a (-s) $version -m "Codename \"fancy codename\""
 $ git push (-n) --tags upstream
-EOF
+EOM
+)"
