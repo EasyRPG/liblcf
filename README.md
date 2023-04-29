@@ -41,8 +41,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.7.0.tar.xz # unpack the tarball
-    cd liblcf-0.7.0            # enter in the package directory
+    tar xf liblcf-0.8.tar.xz   # unpack the tarball
+    cd liblcf-0.8              # enter in the package directory
     ./configure --prefix /usr  # find libraries, set options
     make                       # compile the library
     sudo make install          # install system-wide
@@ -71,8 +71,8 @@ Building requirements:
 
 Step-by-step instructions:
 
-    tar xf liblcf-0.7.0.tar.xz            # unpack the tarball
-    cd liblcf-0.7.0                       # enter in the package directory
+    tar xf liblcf-0.8.tar.xz              # unpack the tarball
+    cd liblcf-0.8                         # enter in the package directory
     cmake . -DCMAKE_BUILD_TYPE=Release    # configure project
     cmake --build .                       # compile the library
     sudo cmake --build . --target install # install system-wide

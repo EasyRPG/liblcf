@@ -5,6 +5,7 @@
 			"name": "base",
 			"displayName": "base preset",
 			"hidden": true,
+			"generator": "Ninja",
 			"binaryDir": "${sourceDir}/build/${presetName}",
 			"cacheVariables": {
 				"BUILD_SHARED_LIBS": "OFF",
