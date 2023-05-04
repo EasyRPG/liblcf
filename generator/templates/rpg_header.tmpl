@@ -73,7 +73,6 @@ namespace rpg {
 				};
 				std::array<bool, {{ flags[struct_name]|num_flags }}> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept
 			{%- for flag in flags[struct_name] %}
 				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})

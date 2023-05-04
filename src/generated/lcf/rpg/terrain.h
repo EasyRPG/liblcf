@@ -84,7 +84,6 @@ namespace rpg {
 				};
 				std::array<bool, 4> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept: back_party(false), back_enemies(false), lateral_party(false), lateral_enemies(false)
 			{}
 		} special_flags;

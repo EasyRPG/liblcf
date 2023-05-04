@@ -57,7 +57,6 @@ namespace rpg {
 				};
 				std::array<bool, 7> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept: switch_a(false), switch_b(false), variable(false), item(false), actor(false), timer(false), timer2(false)
 			{}
 		} flags;

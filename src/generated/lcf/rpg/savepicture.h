@@ -141,7 +141,6 @@ namespace rpg {
 				};
 				std::array<bool, 7> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept: erase_on_map_change(true), erase_on_battle_end(false), unused_bit(false), unused_bit2(false), affected_by_tint(false), affected_by_flash(true), affected_by_shake(true)
 			{}
 		} flags;
