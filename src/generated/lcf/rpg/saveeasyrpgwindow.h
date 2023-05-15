@@ -44,7 +44,6 @@ namespace rpg {
 				};
 				std::array<bool, 2> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept: draw_frame(true), border_margin(true)
 			{}
 		} flags;

@@ -44,7 +44,6 @@ namespace rpg {
 				};
 				std::array<bool, 4> flags;
 			};
-			//TODO: Should try to switch to member initializers when we upgrade to VS2017.
 			Flags() noexcept: draw_gradient(true), draw_shadow(true), bold(false), italic(false)
 			{}
 		} flags;
