@@ -57,7 +57,7 @@ namespace {
 		char buf[4096];
 		int const result = vsnprintf(buf, sizeof(buf), fmt, args);
 		if (result < 0) {
-			return std::string();
+			return {};
 		}
 
 		return std::string(buf, static_cast<unsigned int>(result) < sizeof(buf) ? result : sizeof(buf));
@@ -80,6 +80,16 @@ void Warning(const char* fmt, ...) {
 		va_start(args, fmt);
 		auto msg = format_string(fmt, args);
 		LogHandler::output_fn(LogHandler::Level::Warning, msg);
+		va_end(args);
+	}
+}
+
+void Error(const char* fmt, ...) {
+	if (static_cast<int>(LogHandler::Level::Error) >= static_cast<int>(LogHandler::level)) {
+		va_list args;
+		va_start(args, fmt);
+		auto msg = format_string(fmt, args);
+		LogHandler::output_fn(LogHandler::Level::Error, msg);
 		va_end(args);
 	}
 }

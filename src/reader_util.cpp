@@ -34,6 +34,7 @@
 #include "lcf/inireader.h"
 #include "lcf/ldb/reader.h"
 #include "lcf/reader_util.h"
+#include "log.h"
 
 namespace lcf {
 
@@ -275,7 +276,7 @@ std::string ReaderUtil::Normalize(StringView str) {
 	if (U_FAILURE(err)) {
 		static bool err_reported = false;
 		if (!err_reported) {
-			fprintf(stderr, "Normalizer2::getNFKCInstance failed (%s). \"nrm\" is probably missing in the ICU data file. Unicode normalization will not work!\n", u_errorName(err));
+			Log::Warning("Normalizer2::getNFKCInstance failed (%s). \"nrm\" is probably missing in the ICU data file. Unicode normalization will not work!", u_errorName(err));
 			err_reported = true;
 		}
 		uni.toUTF8String(res);

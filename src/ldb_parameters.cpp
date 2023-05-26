@@ -79,7 +79,7 @@ public:
 		else if (strcmp(name, "agility") == 0)
 			field = &ref.agility;
 		else {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 			field = NULL;
 		}
 	}

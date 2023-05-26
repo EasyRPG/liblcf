@@ -8,6 +8,7 @@
  */
 
 #include "lcf/dbstring.h"
+#include "log.h"
 #include "reader_struct.h"
 #include <iostream>
 
@@ -43,7 +44,7 @@ struct RawStruct<std::vector<DBString> > {
 void RawStruct<DBString>::ReadLcf(DBString& ref, LcfReader& stream, uint32_t length) {
 	stream.ReadString(ref, length);
 #ifdef LCF_DEBUG_TRACE
-	printf("  %s\n", ref.c_str());
+	fprintf(stderr, "  %s\n", ref.c_str());
 #endif
 }
 
@@ -106,9 +107,7 @@ void RawStruct<std::vector<DBString>>::ReadLcf(std::vector<DBString>& ref, LcfRe
 	}
 
 	if (stream.Tell() != endpos) {
-#ifdef LCF_DEBUG_TRACE
-		fprintf(stderr, "Misaligned!\n");
-#endif
+		Log::Warning("vector<string> Misaligned at 0x" PRIx32 "", stream.Tell());
 		stream.Seek(endpos);
 	}
 }
@@ -177,7 +176,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
 		if (strcmp(name, "item") != 0) {
-			stream.Error("Expecting %s but got %s", "item", name);
+			Log::Error("XML: Expecting %s but got %s", "item", name);
 			return;
 		}
 
@@ -191,7 +190,7 @@ public:
 		}
 
 		if (id <= last_id || id < -1) {
-			stream.Error("Bad Id %d / %d", id, last_id);
+			Log::Error("XML: Bad Id %d / %d", id, last_id);
 			return;
 		}
 

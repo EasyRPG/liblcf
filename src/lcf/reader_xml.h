@@ -55,11 +55,6 @@ public:
 	bool IsOk() const;
 
 	/**
-	 * Reports a parsing error.
-	 */
-	void Error(const char* fmt, ...);
-
-	/**
 	 * Parses the XML file.
 	 */
 	void Parse();

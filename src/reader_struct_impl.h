@@ -17,6 +17,7 @@
 #include "lcf/lsd/reader.h"
 #include "reader_struct.h"
 #include "lcf/rpg/save.h"
+#include "log.h"
 
 namespace lcf {
 
@@ -72,13 +73,13 @@ void Struct<S>::ReadLcf(S& obj, LcfReader& stream) {
 		auto it = field_map.find(chunk_info.ID);
 		if (it != field_map.end()) {
 #ifdef LCF_DEBUG_TRACE
-			printf("0x%02x (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s\n", chunk_info.ID, chunk_info.length, stream.Tell(), it->second->name);
+			fprintf(stderr, "0x%02x (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s\n", chunk_info.ID, chunk_info.length, stream.Tell(), it->second->name);
 #endif
 			const uint32_t off = stream.Tell();
 			it->second->ReadLcf(obj, stream, chunk_info.length);
 			const uint32_t bytes_read = stream.Tell() - off;
 			if (bytes_read != chunk_info.length) {
-				fprintf(stderr, "%s: Corrupted Chunk 0x%02" PRIx32 " (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s : Read %" PRIu32 " bytes! Reseting...\n",
+				Log::Warning("%s: Corrupted Chunk 0x%02" PRIx32 " (size: %" PRIu32 ", pos: 0x%" PRIx32 "): %s : Read %" PRIu32 " bytes!",
 						Struct<S>::name, chunk_info.ID, chunk_info.length, off, it->second->name, bytes_read);
 				stream.Seek(off + chunk_info.length);
 			}
@@ -198,7 +199,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
 		if (strcmp(name, Struct<S>::name) != 0)
-			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
+			Log::Error("XML: Expecting %s but got %s", Struct<S>::name, name);
 		Struct<S>::IDReader::ReadIDXml(ref, atts);
 		stream.SetHandler(new StructXmlHandler<S>(ref));
 	}
@@ -259,7 +260,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** atts) {
 		if (strcmp(name, Struct<S>::name) != 0)
-			stream.Error("Expecting %s but got %s", Struct<S>::name, name);
+			Log::Error("XML: Expecting %s but got %s", Struct<S>::name, name);
 		ref.resize(ref.size() + 1);
 		S& obj = ref.back();
 		Struct<S>::IDReader::ReadIDXml(obj, atts);

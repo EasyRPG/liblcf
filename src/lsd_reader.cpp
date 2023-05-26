@@ -44,7 +44,7 @@ void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version, int32_t codepage)
 std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView encoding) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		lcf::Log::Warning("Failed to open LSD file '%s' for reading : %s", ToString(filename).c_str(), strerror(errno));
+		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LSD_Reader::Load(stream, encoding);
@@ -53,7 +53,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView enco
 bool LSD_Reader::Save(StringView filename, const rpg::Save& save, EngineVersion engine, StringView encoding) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
+		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LSD_Reader::Save(stream, save, engine, encoding);
@@ -62,7 +62,7 @@ bool LSD_Reader::Save(StringView filename, const rpg::Save& save, EngineVersion 
 bool LSD_Reader::SaveXml(StringView filename, const rpg::Save& save, EngineVersion engine) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD XML file `%s' for writing : %s\n", ToString(filename).c_str(), strerror(errno));
+		Log::Error("Failed to open LSD XML file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
 	return LSD_Reader::SaveXml(stream, save, engine);
@@ -71,7 +71,7 @@ bool LSD_Reader::SaveXml(StringView filename, const rpg::Save& save, EngineVersi
 std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(StringView filename) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
-		fprintf(stderr, "Failed to open LSD XML file `%s' for reading : %s\n", ToString(filename).c_str(), strerror(errno));
+		Log::Error("Failed to open LSD XML file `%s' for reading : %s", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
 	return LSD_Reader::LoadXml(stream);
@@ -81,17 +81,17 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView
 	LcfReader reader(filestream, ToString(encoding));
 
 	if (!reader.IsOk()) {
-		LcfReader::SetError("Couldn't parse save file.\n");
-		return std::unique_ptr<rpg::Save>();
+		LcfReader::SetError("Couldn't parse save file.");
+		return {};
 	}
 	std::string header;
 	reader.ReadString(header, reader.ReadInt());
 	if (header.length() != 11) {
-		LcfReader::SetError("This is not a valid RPG2000 save.\n");
-		return std::unique_ptr<rpg::Save>();
+		LcfReader::SetError("This is not a valid RPG2000 save.");
+		return {};
 	}
 	if (header != "LcfSaveData") {
-		fprintf(stderr, "Warning: This header is not LcfSaveData and might not be a valid RPG2000 save.\n");
+		Log::Warning("Header %s != LcfSaveData and might not be a valid RPG2000 save.", header.c_str());
 	}
 
 	auto pos = reader.Tell();
@@ -104,8 +104,8 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView
 		filestream.seekg(pos, std::ios_base::beg);
 		LcfReader reader2(filestream, std::to_string(save->easyrpg_data.codepage));
 		if (!reader2.IsOk()) {
-			LcfReader::SetError("Couldn't parse save file.\n");
-			return std::unique_ptr<rpg::Save>();
+			LcfReader::SetError("Couldn't parse save file.");
+			return {};
 		}
 		save.reset(new rpg::Save());
 		Struct<rpg::Save>::ReadLcf(*save, reader2);
@@ -139,7 +139,7 @@ bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVer
 bool LSD_Reader::SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine) {
 	XmlWriter writer(filestream, engine);
 	if (!writer.IsOk()) {
-		LcfReader::SetError("Couldn't parse save file.\n");
+		LcfReader::SetError("Couldn't parse save file.");
 		return false;
 	}
 
@@ -152,8 +152,8 @@ bool LSD_Reader::SaveXml(std::ostream& filestream, const rpg::Save& save, Engine
 std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::istream& filestream) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
-		LcfReader::SetError("Couldn't parse save file.\n");
-		return std::unique_ptr<rpg::Save>();
+		LcfReader::SetError("Couldn't parse save file.");
+		return {};
 	}
 
 	rpg::Save* save = new rpg::Save();

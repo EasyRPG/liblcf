@@ -46,7 +46,7 @@ void Flags<S>::ReadLcf(S& obj, LcfReader& stream, uint32_t length) {
 	for (size_t i = 0; i < obj.flags.size(); ++i) {
 		x |= (obj.flags[i] << i);
 	}
-	printf("0x%lx\n", x);
+	fprintf(stderr, "0x%lx\n", x);
 #endif
 }
 
@@ -118,7 +118,7 @@ public:
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		const auto idx = Flags<S>::idx(name);
 		if (idx < 0) {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 			field = NULL;
 			return;
 		}

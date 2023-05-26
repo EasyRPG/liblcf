@@ -9,8 +9,10 @@
 
 #include <cstdarg>
 #include <cstdio>
+#include <iomanip>
 #include <istream>
 #include <limits>
+#include <sstream>
 
 #include "lcf/reader_lcf.h"
 #include "log.h"
@@ -49,7 +51,7 @@ void LcfReader::Read(void *ptr, size_t size, size_t nmemb) {
 	Read0(ptr, size, nmemb);
 #else
 	if (Read0(ptr, size, nmemb) != nmemb) {
-		fprintf(stderr, "Read error at %" PRIu32 ". The file is probably corrupted\n", Tell());
+		Log::Warning("Read error at %" PRIu32 ". The file is probably corrupted", Tell());
 	}
 #endif
 }
@@ -94,7 +96,7 @@ int LcfReader::ReadInt() {
 		value |= temp & 0x7F;
 
 		if (loops > 5) {
-			fprintf(stderr, "Invalid compressed integer at %" PRIu32 "\n", Tell());
+			Log::Warning("Invalid compressed integer at %" PRIu32 "", Tell());
 		}
 		++loops;
 	} while (temp & 0x80);
@@ -115,7 +117,7 @@ uint64_t LcfReader::ReadUInt64() {
 		value |= static_cast<uint64_t>(temp & 0x7F);
 
 		if (loops > 9) {
-			fprintf(stderr, "Invalid compressed integer at %" PRIu32 "\n", Tell());
+			Log::Warning("Invalid compressed integer at %" PRIu32 "", Tell());
 		}
 		++loops;
 	} while (temp & 0x80);
@@ -277,21 +279,27 @@ int LcfReader::Peek() {
 }
 
 void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info, const char* where) {
-	Log::Debug("Skipped Chunk %02X (%" PRIu32 " byte) in lcf at %" PRIX32 " (%s)\n",
+	Log::Debug("Skipped Chunk %02X (%" PRIu32 " byte) in lcf at %" PRIX32 " (%s)",
 			chunk_info.ID, chunk_info.length, Tell(), where);
+
+	std::stringstream ss;
+	ss << std::hex;
 
 	for (uint32_t i = 0; i < chunk_info.length; ++i) {
 		uint8_t byte;
 		LcfReader::Read(byte);
-		fprintf(stderr, "%02X ", byte);
+		ss << std::setfill('0') << std::setw(2) << (int)byte << " ";
 		if ((i+1) % 16 == 0) {
-			fprintf(stderr, "\n");
+			Log::Debug(ss.str().c_str());
+			ss.str("");
 		}
 		if (Eof()) {
 			break;
 		}
 	}
-	fprintf(stderr, "\n");
+	if (!ss.str().empty()) {
+		Log::Debug(ss.str().c_str());
+	}
 }
 
 void LcfReader::SetError(const char* fmt, ...) {
@@ -302,7 +310,7 @@ void LcfReader::SetError(const char* fmt, ...) {
 	vsprintf(str, fmt, args);
 
 	error_str = str;
-	//Output::ErrorStr((std::string)str);
+	Log::Error("%s", error_str.c_str());
 
 	va_end(args);
 }
