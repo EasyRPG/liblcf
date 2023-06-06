@@ -76,8 +76,8 @@ public:
 	}
 };
 
-void RawStruct<DBString>::BeginXml(DBString& /* ref */, XmlReader&  /* stream */) {
-	// no-op
+void RawStruct<DBString>::BeginXml(DBString& ref, XmlReader& stream) {
+	stream.SetHandler(new DbStringXmlHandler(ref));
 }
 
 void RawStruct<std::vector<DBString>>::ReadLcf(std::vector<DBString>& ref, LcfReader& stream, uint32_t length) {
