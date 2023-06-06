@@ -50,7 +50,7 @@ std::string GetFilename(const std::string& str);
 FileCategories GetFilecategory(const std::string& in_file);
 FileTypes GetFiletype(const std::string& in_file, std::string& out_extension);
 void PrintReaderError(const std::string data);
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine);
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine, std::string encoding);
 
 int main(int argc, char** argv)
 {
@@ -60,12 +60,14 @@ int main(int argc, char** argv)
 		std::cerr << "Usage: " << argv[0] << "[--2k] [--2k3] file1 [... fileN]" << std::endl;
 		std::cerr << "\t--2k: Treat files as RPG 2000" << std::endl;
 		std::cerr << "\t--2k3: Treat files as RPG 2003 (default)" << std::endl;
+		std::cerr << "\t--encoding N: Use encoding N as the file encoding" << std::endl; 
 
 		return 1;
 	}
 
 	std::vector<std::string> infiles;
 	std::string outfile;
+	std::string encoding;
 
 	FileCategories category = FileCategory_Invalid;
 	FileTypes type;
@@ -80,6 +82,10 @@ int main(int argc, char** argv)
 		}
 		if (!std::strcmp(argv[i], "--2k3")) {
 			engine = lcf::EngineVersion::e2k3;
+			continue;
+		}
+		if (!std::strcmp(argv[i], "--encoding") && (++i < argc)) {
+			encoding = argv[i];
 			continue;
 		}
 		if (category == FileCategory_Invalid) {
@@ -100,7 +106,7 @@ int main(int argc, char** argv)
 		outfile = GetFilename(*it);
 		type = GetFiletype(*it, extension);
 		outfile += extension;
-		if (ReaderWriteToFile(*it, outfile, type, engine) != 0) {
+		if (ReaderWriteToFile(*it, outfile, type, engine, encoding) != 0) {
 			errors++;
 		}
 	}
@@ -241,41 +247,39 @@ void PrintReaderError(const std::string data)
 	}
 
 /** Takes data from in and writes converted data into out using liblcf. */
-int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine)
+int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine, std::string encoding)
 {
 	std::string path = GetPath(in) + "/";
-	std::string encoding = "";
 
+	if (encoding.empty()) {
 #ifdef _WIN32
-	encoding = lcf::ReaderUtil::GetEncoding(path + "RPG_RT.ini");
+		encoding = lcf::ReaderUtil::GetEncoding(path + "RPG_RT.ini");
 #else
-	DIR* dir = opendir(path.c_str());
-	if (dir) {
-		struct dirent* ent;
-		while ((ent = ::readdir(dir)) != NULL) {
-			if (ent->d_name[0] == '.') { continue; }
-			std::string name = ent->d_name;
+		DIR* dir = opendir(path.c_str());
+		if (dir) {
+			struct dirent* ent;
+			while ((ent = ::readdir(dir)) != NULL) {
+				if (ent->d_name[0] == '.') { continue; }
+				std::string name = ent->d_name;
 
-			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+				std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 
-			if (name == "rpg_rt.ini") {
-				encoding = lcf::ReaderUtil::GetEncoding(path + ent->d_name);
-				closedir(dir);
-				goto dirsuccess;
-				break;
+				if (name == "rpg_rt.ini") {
+					encoding = lcf::ReaderUtil::GetEncoding(path + ent->d_name);
+					break;
+				}
 			}
+			closedir(dir);
 		}
-		closedir(dir);
-	}
-	else {
-		std::cerr << "Failed opening directory " << path << std::endl;
+		else {
+			std::cerr << "Failed opening directory " << path << std::endl;
+		}
+#endif
 	}
 
 	if (encoding.empty()) {
 		encoding = lcf::ReaderUtil::GetLocaleEncoding();
 	}
-	dirsuccess:
-#endif
 
 	switch (in_type)
 	{
