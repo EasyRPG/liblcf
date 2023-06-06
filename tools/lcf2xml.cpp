@@ -271,6 +271,9 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 		std::cerr << "Failed opening directory " << path << std::endl;
 	}
 
+	if (encoding.empty()) {
+		encoding = lcf::ReaderUtil::GetLocaleEncoding();
+	}
 	dirsuccess:
 #endif
 
