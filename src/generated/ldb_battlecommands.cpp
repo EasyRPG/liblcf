@@ -153,6 +153,20 @@ static TypedField<rpg::BattleCommands, bool> static_easyrpg_disable_row_feature(
 	0,
 	1
 );
+static TypedField<rpg::BattleCommands, int32_t> static_easyrpg_fixed_actor_facing_direction(
+	&rpg::BattleCommands::easyrpg_fixed_actor_facing_direction,
+	LDB_Reader::ChunkBattleCommands::easyrpg_fixed_actor_facing_direction,
+	"easyrpg_fixed_actor_facing_direction",
+	0,
+	1
+);
+static TypedField<rpg::BattleCommands, int32_t> static_easyrpg_fixed_enemy_facing_direction(
+	&rpg::BattleCommands::easyrpg_fixed_enemy_facing_direction,
+	LDB_Reader::ChunkBattleCommands::easyrpg_fixed_enemy_facing_direction,
+	"easyrpg_fixed_enemy_facing_direction",
+	0,
+	1
+);
 
 
 template <>
@@ -176,6 +190,8 @@ Field<rpg::BattleCommands> const* Struct<rpg::BattleCommands>::fields[] = {
 	&static_easyrpg_enable_battle_row_command,
 	&static_easyrpg_sequential_order,
 	&static_easyrpg_disable_row_feature,
+	&static_easyrpg_fixed_actor_facing_direction,
+	&static_easyrpg_fixed_enemy_facing_direction,
 	NULL
 };
 
