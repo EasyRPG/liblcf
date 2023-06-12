@@ -104,6 +104,8 @@ namespace rpg {
 		bool easyrpg_enable_battle_row_command = true;
 		bool easyrpg_sequential_order = false;
 		bool easyrpg_disable_row_feature = false;
+		int32_t easyrpg_fixed_actor_facing_direction = 0;
+		int32_t easyrpg_fixed_enemy_facing_direction = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, BattleCommands::Placement code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -149,7 +151,9 @@ namespace rpg {
 		&& l.easyrpg_default_atb_mode == r.easyrpg_default_atb_mode
 		&& l.easyrpg_enable_battle_row_command == r.easyrpg_enable_battle_row_command
 		&& l.easyrpg_sequential_order == r.easyrpg_sequential_order
-		&& l.easyrpg_disable_row_feature == r.easyrpg_disable_row_feature;
+		&& l.easyrpg_disable_row_feature == r.easyrpg_disable_row_feature
+		&& l.easyrpg_fixed_actor_facing_direction == r.easyrpg_fixed_actor_facing_direction
+		&& l.easyrpg_fixed_enemy_facing_direction == r.easyrpg_fixed_enemy_facing_direction;
 	}
 
 	inline bool operator!=(const BattleCommands& l, const BattleCommands& r) {

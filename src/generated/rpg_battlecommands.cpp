@@ -40,6 +40,8 @@ std::ostream& operator<<(std::ostream& os, const BattleCommands& obj) {
 	os << ", easyrpg_enable_battle_row_command="<< obj.easyrpg_enable_battle_row_command;
 	os << ", easyrpg_sequential_order="<< obj.easyrpg_sequential_order;
 	os << ", easyrpg_disable_row_feature="<< obj.easyrpg_disable_row_feature;
+	os << ", easyrpg_fixed_actor_facing_direction="<< obj.easyrpg_fixed_actor_facing_direction;
+	os << ", easyrpg_fixed_enemy_facing_direction="<< obj.easyrpg_fixed_enemy_facing_direction;
 	os << "}";
 	return os;
 }

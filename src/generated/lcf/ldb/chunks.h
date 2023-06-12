@@ -267,7 +267,11 @@ namespace LDB_Reader {
 			/** If alternative and gauge style battles should behave like traditional style battles */
 			easyrpg_sequential_order = 0xCA,
 			/** If the row feature should be disabled in RPG Maker 2003 games */
-			easyrpg_disable_row_feature = 0xCB
+			easyrpg_disable_row_feature = 0xCB,
+			/** If actor facing direction shouldn't ever change during battle (0=Disabled, 1=Always flipped, 2=Never flipped) */
+			easyrpg_fixed_actor_facing_direction = 0xCC,
+			/** If enemy facing direction shouldn't ever change during battle (0=Disabled, 1=Always flipped, 2=Never flipped) */
+			easyrpg_fixed_enemy_facing_direction = 0xCD
 		};
 	};
 	struct ChunkBattlerAnimation {
