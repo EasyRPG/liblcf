@@ -199,7 +199,7 @@ def struct_headers(ty, header_map):
         return struct_headers(m.group(2), header_map)
 
     if re.match(r'Ref<(.*)>', ty):
-        return []
+        return ['<stdint.h>']
 
     if re.match(r'Enum<(.*)>', ty):
         return ['"lcf/enum_tags.h"']

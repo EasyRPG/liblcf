@@ -11,6 +11,9 @@
 
 #ifndef LCF_RPG_ENCOUNTER_H
 #define LCF_RPG_ENCOUNTER_H
+
+// Headers
+#include <stdint.h>
 #include "lcf/context.h"
 #include <ostream>
 #include <type_traits>

@@ -13,6 +13,7 @@
 #define LCF_RPG_COMMONEVENT_H
 
 // Headers
+#include <stdint.h>
 #include <vector>
 #include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
