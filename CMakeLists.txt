@@ -322,7 +322,11 @@ if (NOT CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 endif()
 
 # endianess checking
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL 3.20)
+	if (CMAKE_CXX_BYTE_ORDER STREQUAL "BIG_ENDIAN")
+		target_compile_definitions(lcf PRIVATE WORDS_BIGENDIAN=1)
+	endif()
+else()
 	include(TestBigEndian)
 	test_big_endian(WORDS_BIGENDIAN)
 	if(WORDS_BIGENDIAN)
