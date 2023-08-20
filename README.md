@@ -92,6 +92,10 @@ must be installed with [vcpkg].
 LCF2XML is a small tool to convert RPG Maker 2000 and 2003 data format
 (LMU, LMT, LDB, LSD, ...) to XML and vice-versa.
 
+### LCFSTRINGS
+
+LCFSTRINGS is a small tool to list the strings used for the text and filenames from LMU, LMT, LDB and LSD files.
+
 
 ## Bug reporting
 
