@@ -34,6 +34,8 @@ BattleCommands,easyrpg_default_atb_mode,f,Enum<SaveSystem_AtbMode>,0xC8,0,0,1,De
 BattleCommands,easyrpg_enable_battle_row_command,f,Boolean,0xC9,True,0,1,If the row command should be enabled in RPG Maker 2003 battles
 BattleCommands,easyrpg_sequential_order,f,Boolean,0xCA,False,0,1,If alternative and gauge style battles should behave like traditional style battles
 BattleCommands,easyrpg_disable_row_feature,f,Boolean,0xCB,False,0,1,If the row feature should be disabled in RPG Maker 2003 games
+BattleCommands,easyrpg_fixed_actor_facing_direction,f,Int32,0xCC,0,0,1,"If actor facing direction shouldn't ever change during battle. Applies only to Normal and Initiative battle types (0=Disabled, 1=Always flipped, 2=Never flipped)"
+BattleCommands,easyrpg_fixed_enemy_facing_direction,f,Int32,0xCD,0,0,1,"If enemy facing direction shouldn't ever change during battle. Applies only to Normal and Initiative battle types (0=Disabled, 1=Always flipped, 2=Never flipped)"
 Actor,easyrpg_actorai,f,Int32,0xC9,-1,0,0,Default autobattle AI behavior of the actor
 Actor,easyrpg_prevent_critical,f,Boolean,0xCA,False,0,0,If the actor is protected against critical hits
 Actor,easyrpg_raise_evasion,f,Boolean,0xCB,False,0,0,If the actor has an increased evasion rate
