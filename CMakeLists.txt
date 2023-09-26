@@ -12,7 +12,8 @@ option(LIBLCF_WITH_ICU "ICU encoding detection (when OFF fallback to iconv, not 
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
 option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ON)
-option(LIBLCF_ENABLE_TESTS "Whetner to build the unit tests (default: ON)" ON)
+option(LIBLCF_ENABLE_TESTS "Whether to build the unit tests (default: ON)" ON)
+option(LIBLCF_ENABLE_PYTHON "Whether to build the python library (default: ON)" ON)
 option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)" OFF)
 
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
@@ -496,6 +497,16 @@ if(LIBLCF_ENABLE_TOOLS)
 		add_dependencies(tools ${tool})
 		install(TARGETS ${tool} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 	endforeach()
+endif()
+
+# python
+if (LIBLCF_ENABLE_PYTHON)
+	execute_process(COMMAND python -m venv ${CMAKE_CURRENT_BINARY_DIR}/python/venv)
+	execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/python/venv/bin/python -m pip install pybind11)
+	FILE(GLOB pybind11_DIR ${CMAKE_CURRENT_BINARY_DIR}/python/venv/lib/python*/site-packages/pybind11/share/cmake/pybind11)
+	find_package(pybind11 CONFIG REQUIRED)
+	pybind11_add_module(pylcf2xml python/pylcf2xml.cpp)
+	target_link_libraries(pylcf2xml PUBLIC lcf)
 endif()
 
 # Doxygen documentation
