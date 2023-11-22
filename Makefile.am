@@ -332,6 +332,7 @@ test_runner_SOURCES = \
 	tests/dbbitarray.cpp \
 	tests/dbstring.cpp \
 	tests/doctest.h \
+	tests/enum_tags.cpp \
 	tests/flag_set.cpp \
 	tests/test_main.cpp \
 	tests/time_stamp.cpp \
@@ -342,6 +343,7 @@ test_runner_CPPFLAGS = \
 	-I$(srcdir)/src/generated
 test_runner_CXXFLAGS = \
 	-std=gnu++17 \
+	-DDOCTEST_CONFIG_TREAT_CHAR_STAR_AS_STRING=1 \
 	$(EXPAT_CXXFLAGS) \
 	$(ICU_CXXFLAGS)
 test_runner_LDADD = \

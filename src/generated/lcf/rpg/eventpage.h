@@ -123,6 +123,14 @@ namespace rpg {
 			MoveSpeed_double = 5,
 			MoveSpeed_fourfold = 6
 		};
+		static constexpr auto kMoveSpeedTags = lcf::EnumTags{
+			MoveSpeed_eighth, "eighth",
+			MoveSpeed_quarter, "quarter",
+			MoveSpeed_half, "half",
+			MoveSpeed_normal, "normal",
+			MoveSpeed_double, "double",
+			MoveSpeed_fourfold, "fourfold"
+		};
 		enum ManiacEventInfo {
 			ManiacEventInfo_action = 0,
 			ManiacEventInfo_touched = 1,
@@ -135,6 +143,19 @@ namespace rpg {
 			ManiacEventInfo_map_event = 16,
 			ManiacEventInfo_common_event = 32,
 			ManiacEventInfo_battle_event = 64
+		};
+		static constexpr auto kManiacEventInfoTags = lcf::EnumTags{
+			ManiacEventInfo_action, "action",
+			ManiacEventInfo_touched, "touched",
+			ManiacEventInfo_collision, "collision",
+			ManiacEventInfo_auto_start, "auto_start",
+			ManiacEventInfo_parallel, "parallel",
+			ManiacEventInfo_called, "called",
+			ManiacEventInfo_battle_start, "battle_start",
+			ManiacEventInfo_battle_parallel, "battle_parallel",
+			ManiacEventInfo_map_event, "map_event",
+			ManiacEventInfo_common_event, "common_event",
+			ManiacEventInfo_battle_event, "battle_event"
 		};
 
 		int ID = 0;

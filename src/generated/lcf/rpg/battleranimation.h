@@ -34,6 +34,11 @@ namespace rpg {
 			Speed_medium = 14,
 			Speed_fast = 8
 		};
+		static constexpr auto kSpeedTags = lcf::EnumTags{
+			Speed_slow, "slow",
+			Speed_medium, "medium",
+			Speed_fast, "fast"
+		};
 		enum Pose {
 			Pose_Idle = 0,
 			Pose_AttackRight = 1,
