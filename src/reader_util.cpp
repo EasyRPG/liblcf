@@ -16,18 +16,11 @@
 #   include <unicode/normalizer2.h>
 #   include <unicode/unistr.h>
 #   include <unicode/locid.h>
-#else
-#   ifdef _MSC_VER
-#		error MSVC builds require ICU
-#	endif
 #endif
 
 #ifdef _WIN32
 #   include <windows.h>
 #else
-#   if !LCF_SUPPORT_ICU
-#       include <iconv.h>
-#   endif
 #   include <locale>
 #endif
 
@@ -37,6 +30,7 @@
 #include <sstream>
 #include <vector>
 
+#include "lcf/encoder.h"
 #include "lcf/inireader.h"
 #include "lcf/ldb/reader.h"
 #include "lcf/reader_util.h"
@@ -48,39 +42,23 @@ namespace ReaderUtil {
 
 std::string ReaderUtil::CodepageToEncoding(int codepage) {
 	if (codepage == 0)
-		return std::string();
+		return {};
 
 	if (codepage == 932) {
-#if LCF_SUPPORT_ICU
 		return "ibm-943_P15A-2003";
-#else
-		return "SHIFT_JIS";
-#endif
 	}
 	if (codepage == 949) {
-#if LCF_SUPPORT_ICU
 		return "windows-949-2000";
-#else
-		return "cp949";
-#endif
 	}
-	std::ostringstream out;
-#if LCF_SUPPORT_ICU
-	out << "windows-" << codepage;
-#else
-	out << "CP" << codepage;
-#endif
 
-	// Looks like a valid codepage
-	std::string outs = out.str();
-	return outs;
+	return "windows-" + std::to_string(codepage);
 }
 
 std::string ReaderUtil::DetectEncoding(lcf::rpg::Database& db) {
 	std::vector<std::string> encodings = DetectEncodings(db);
 
 	if (encodings.empty()) {
-		return "";
+		return {};
 	}
 
 	return encodings.front();
@@ -137,7 +115,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(lcf::rpg::Database& db) {
 
 	return ReaderUtil::DetectEncodings(text.str());
 #else
-	return std::vector<std::string>();
+	return {"windows-1252"};
 #endif
 }
 
@@ -145,14 +123,14 @@ std::string ReaderUtil::DetectEncoding(StringView string) {
 	std::vector<std::string> encodings = DetectEncodings(string);
 
 	if (encodings.empty()) {
-		return "";
+		return {};
 	}
 
 	return encodings.front();
 }
 
 std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
-std::vector<std::string> encodings;
+	std::vector<std::string> encodings;
 #if LCF_SUPPORT_ICU
 	if (!string.empty()) {
 		UErrorCode status = U_ZERO_ERROR;
@@ -195,6 +173,8 @@ std::vector<std::string> encodings;
 		}
 		ucsdet_close(detector);
 	}
+#else
+	encodings.push_back("windows-1252");
 #endif
 
 	return encodings;
@@ -208,7 +188,7 @@ std::string ReaderUtil::GetEncoding(StringView ini_file) {
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
-	return std::string();
+	return {};
 }
 
 std::string ReaderUtil::GetEncoding(std::istream& filestream) {
@@ -219,7 +199,7 @@ std::string ReaderUtil::GetEncoding(std::istream& filestream) {
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
-	return std::string();
+	return {};
 }
 
 std::string ReaderUtil::GetLocaleEncoding() {
@@ -280,93 +260,10 @@ std::string ReaderUtil::GetLocaleEncoding() {
 }
 
 std::string ReaderUtil::Recode(StringView str_to_encode, StringView source_encoding) {
-	return ReaderUtil::Recode(str_to_encode, source_encoding, "UTF-8");
-}
-
-std::string ReaderUtil::Recode(StringView str_to_encode,
-                               StringView src_enc,
-                               StringView dst_enc) {
-
-	if (src_enc.empty() || dst_enc.empty() || str_to_encode.empty()) {
-		return ToString(str_to_encode);
-	}
-
-	auto src_cp = SvAtoi(src_enc);
-	const auto& src_enc_str = src_cp > 0
-		? ReaderUtil::CodepageToEncoding(src_cp)
-		: ToString(src_enc);
-
-	auto dst_cp = SvAtoi(dst_enc);
-	const auto& dst_enc_str = dst_cp > 0
-		? ReaderUtil::CodepageToEncoding(dst_cp)
-		: ToString(dst_enc);
-
-#if LCF_SUPPORT_ICU
-	auto status = U_ZERO_ERROR;
-	auto conv_from = ucnv_open(src_enc_str.c_str(), &status);
-
-	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
-		fprintf(stderr, "liblcf:  ucnv_open() error for source encoding \"%s\": %s\n", src_enc_str.c_str(), u_errorName(status));
-		return std::string();
-	}
-	status = U_ZERO_ERROR;
-	auto conv_from_sg = makeScopeGuard([&]() { ucnv_close(conv_from); });
-
-	auto conv_to = ucnv_open(dst_enc_str.c_str(), &status);
-
-	if (status != U_ZERO_ERROR && status != U_AMBIGUOUS_ALIAS_WARNING) {
-		fprintf(stderr, "liblcf:  ucnv_open() error for dest encoding \"%s\": %s\n", dst_enc_str.c_str(), u_errorName(status));
-		return std::string();
-	}
-	auto conv_to_sg = makeScopeGuard([&]() { ucnv_close(conv_to); });
-	status = U_ZERO_ERROR;
-
-	std::string result(str_to_encode.size() * 4, '\0');
-	auto* src = str_to_encode.data();
-	auto* dst = &result.front();
-
-	ucnv_convertEx(conv_to, conv_from,
-			&dst, dst + result.size(),
-			&src, src + str_to_encode.size(),
-			nullptr, nullptr, nullptr, nullptr,
-			true, true,
-			&status);
-
-	if (U_FAILURE(status)) {
-		fprintf(stderr, "liblcf: ucnv_convertEx() error when encoding \"%.*s\": %s\n", (int)str_to_encode.length(), str_to_encode.data(), u_errorName(status));
-		return std::string();
-	}
-
-	result.resize(dst - result.c_str());
-	result.shrink_to_fit();
-
-	return result;
-#else
-	iconv_t cd = iconv_open(dst_enc_str.c_str(), src_enc_str.c_str());
-	if (cd == (iconv_t)-1)
-		return ToString(str_to_encode);
-	char *src = const_cast<char *>(str_to_encode.data());
-	size_t src_left = str_to_encode.size();
-	size_t dst_size = str_to_encode.size() * 5 + 10;
-	char *dst = new char[dst_size];
-	size_t dst_left = dst_size;
-#    ifdef ICONV_CONST
-	char ICONV_CONST *p = src;
-#    else
-	char *p = src;
-#    endif
-	char *q = dst;
-	size_t status = iconv(cd, &p, &src_left, &q, &dst_left);
-	iconv_close(cd);
-	if (status == (size_t) -1 || src_left > 0) {
-		delete[] dst;
-		return std::string();
-	}
-	*q++ = '\0';
-	std::string result(dst);
-	delete[] dst;
-	return result;
-#endif
+	lcf::Encoder enc(ToString(source_encoding));
+	std::string out = ToString(str_to_encode);
+	enc.Encode(out);
+	return out;
 }
 
 std::string ReaderUtil::Normalize(StringView str) {

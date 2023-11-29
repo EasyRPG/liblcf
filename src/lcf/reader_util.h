@@ -105,25 +105,12 @@ namespace ReaderUtil {
 	std::string Recode(StringView str_to_encode, StringView source_encoding);
 
 	/**
-	 * Converts a string between encodings.
-	 *
-	 * @param str_to_encode the string to convert.
-	 * @param src_enc the source encoding.
-	 * @param dst_enc the destination encoding.
-	 * @return the recoded string.
-	 */
-	std::string Recode(StringView str_to_encode,
-					   StringView src_enc,
-					   StringView dst_enc);
-
-	/**
 	 * Converts a UTF-8 string to lowercase and then decomposes it.
-	 * 
+	 *
 	 * @param str the string to normalize.
 	 * @return the normalized string.
 	 */
 	std::string Normalize(StringView str);
-
 
 	/**
 	 * Helper function that returns an element from a vector using a 1-based
