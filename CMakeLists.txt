@@ -8,7 +8,7 @@ project(liblcf VERSION 0.8 LANGUAGES CXX)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
-option(LIBLCF_WITH_ICU "ICU encoding handling (disable only for testing purposes, default: ON)" ON)
+option(LIBLCF_WITH_ICU "ICU encoding handling (when disabled only windows-1252 is supported, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
 option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ON)

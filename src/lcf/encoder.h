@@ -52,14 +52,15 @@ class Encoder {
 
 		UConverter* _conv_storage = nullptr;
 		UConverter* _conv_runtime = nullptr;
-		std::vector<char> _buffer;
 #else
-		void Init() {}
+		void Init();
 		void Reset() {}
-		void Convert(std::string&, void*, void*) {}
-		void* _conv_storage = nullptr;
-		void* _conv_runtime = nullptr;
+		void Convert(std::string& str, int conv_dst, int conv_src);
+
+		int _conv_storage = 0;
+		int _conv_runtime = 0;
 #endif
+		std::vector<char> _buffer;
 		std::string _encoding;
 };
 

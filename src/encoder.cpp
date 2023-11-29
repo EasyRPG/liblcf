@@ -18,9 +18,7 @@
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
 #else
-#   ifdef _MSC_VER
-#       error MSVC builds require ICU
-#   endif
+#   include <cstdint>
 #endif
 
 #ifdef _WIN32
@@ -73,7 +71,6 @@ void Encoder::Decode(std::string& str) {
 	Convert(str, _conv_storage, _conv_runtime);
 }
 
-#if LCF_SUPPORT_ICU
 void Encoder::Init() {
 	if (_encoding.empty()) {
 		return;
@@ -84,6 +81,7 @@ void Encoder::Init() {
 		? ReaderUtil::CodepageToEncoding(code_page)
 		: _encoding;
 
+#if LCF_SUPPORT_ICU
 	auto status = U_ZERO_ERROR;
 	constexpr auto runtime_encoding = "UTF-8";
 	auto conv_runtime = ucnv_open(runtime_encoding, &status);
@@ -106,8 +104,17 @@ void Encoder::Init() {
 
 	_conv_runtime = conv_runtime;
 	_conv_storage = conv_storage;
+#else
+	if (storage_encoding != "windows-1252") {
+		return;
+	}
+
+	_conv_runtime = 65001;
+	_conv_storage = 1252;
+#endif
 }
 
+#if LCF_SUPPORT_ICU
 void Encoder::Reset() {
 	if (_conv_runtime) {
 		ucnv_close(_conv_runtime);
@@ -143,7 +150,64 @@ void Encoder::Convert(std::string& str, UConverter* conv_dst, UConverter* conv_s
 
 	str.assign(_buffer.data(), dst_p);
 }
+#else
+void Encoder::Convert(std::string& str, int conv_dst, int) {
+	if (str.empty()) {
+		return;
+	}
+
+	size_t buf_idx = 0;
+
+	if (conv_dst == 65001) {
+		// From 1252 to UTF-8
+		// Based on https://stackoverflow.com/q/4059775/
+		_buffer.resize(str.size() * 2 + 1);
+
+		for (unsigned char ch: str) {
+			if (ch < 0x80) {
+				_buffer[buf_idx] = static_cast<char>(ch);
+			} else {
+				_buffer[buf_idx] = static_cast<char>(0xC0 | (ch >> 6));
+				++buf_idx;
+				_buffer[buf_idx] = static_cast<char>(0x80 | (ch & 0x3F));
+			}
+
+			++buf_idx;
+		}
+	} else {
+		// From UTF-8 to 1252
+		// Based on https://stackoverflow.com/q/23689733/
+		_buffer.resize(str.size() + 1);
+		uint32_t codepoint;
+
+		for (size_t str_idx = 0; str_idx < str.size(); ++str_idx) {
+			unsigned char ch = str[str_idx];
+			if (ch <= 0x7F) {
+				codepoint = ch;
+			} else if (ch <= 0xBF) {
+				codepoint = (codepoint << 6) | (ch & 0x3F);
+			} else if (ch <= 0xDF) {
+				codepoint = ch & 0x1F;
+			} else if (ch <= 0xEF) {
+				codepoint = ch & 0x0F;
+			} else {
+				codepoint = ch & 0x07;
+			}
+			++str_idx;
+			ch = str[str_idx];
+			if (((ch & 0xC0) != 0x80) && (codepoint <= 0x10ffff)) {
+				if (codepoint <= 255) {
+					_buffer[buf_idx] = static_cast<char>(codepoint);
+				} else {
+					_buffer[buf_idx] = '?';
+				}
+			}
+			++buf_idx;
+		}
+	}
+
+	str.assign(_buffer.data(), buf_idx);
+}
 #endif
 
 } //namespace lcf
-
