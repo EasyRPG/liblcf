@@ -52,6 +52,16 @@ namespace rpg {
 			"{{ field.0 }}"{%- if not loop.last %},{% endif %}
 		{%- endfor %}
 		);
+		{%- else %}
+		static constexpr auto k{{ name }}Tags = lcf::EnumTags{
+		{%- for field in enum %}
+			{%- if name != "Code" %}
+			{{ name }}_{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}
+			{%- else %}
+			{{ name }}::{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}
+			{%- endif %}
+		{%- endfor %}
+		};
 		{%- endif %}
 	{%- endfor %}
 	{% endif %}

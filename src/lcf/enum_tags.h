@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <array>
 #include <cstring>
+#include <tuple>
 
 namespace lcf {
 
@@ -22,24 +23,54 @@ template <typename E, size_t N>
 class EnumTags {
 	public:
 		static constexpr size_t num_tags = N;
-		using int_type = typename std::make_unsigned<typename std::underlying_type<E>::type>::type;
-		using iterator = char const * const *;
+		using int_type = typename std::underlying_type<E>::type;
+
+		struct EnumItem {
+			int_type value;
+			const char* name;
+
+			constexpr EnumItem() noexcept : value(), name() {}
+			constexpr EnumItem(int_type value, const char* name) noexcept : value(value), name(name) {}
+		};
+
+		using iterator = EnumItem const *;
 		using reverse_iterator = std::reverse_iterator<iterator>;
 
-        template <size_t... LN>
-		explicit constexpr EnumTags(const char (&...literals)[LN]) : _tags{{literals...}} {}
+		template<typename... Args>
+		explicit constexpr EnumTags(Args const&...args) noexcept {
+			using FirstElemT = std::tuple_element_t<0, std::tuple<Args...>>;
 
-		constexpr const char* tag(E etag) const { return tag(int_type(etag)); }
-		constexpr const char* tag(int_type idx) const { return _tags[idx]; }
+			if constexpr (std::is_array_v<FirstElemT>) {
+				// Passed in via makeEnumTags
+				AddMonotonicTag<0>(args...);
+				monotonic_from_zero = true;
+				return;
+			} else {
+				// Passed in as {A, "A", B, "B", ...} (for non-monotonic enums)
+				AddTag<0>(args...);
+				int_type i = 0;
+				for (const auto& it : _tags) {
+					if (it.value != i) {
+						monotonic_from_zero = false;
+					}
+					++i;
+				}
+			}
+		}
 
-		constexpr const char* operator[](E etag) const { return tag(etag); }
-		constexpr const char* operator[](int_type idx) const { return tag(idx); }
+		constexpr const char* tag(int_type value) const;
+		constexpr const char* tag(E etag) const;
 
+		constexpr const char* operator[](E etag) const;
+		constexpr const char* operator[](int_type value) const;
+
+		bool has_etag(const char* tag) const;
 		bool etag(const char* tag, E& result) const;
 		E etagOr(const char* tag, E other) const;
-		int_type idx(const char* tag) const;
 
-		const std::array<const char*, num_tags>& tags() const { return _tags; }
+		const std::array<EnumItem, num_tags>& tags() const { return _tags; }
+
+		constexpr bool is_monotonic_from_zero() const { return monotonic_from_zero; }
 
 		constexpr iterator begin() const { return iterator(_tags.data()); }
 		constexpr iterator end() const { return iterator(_tags.data() + size()); }
@@ -50,11 +81,33 @@ class EnumTags {
 		reverse_iterator rbegin() const { return reverse_iterator(end()); }
 		reverse_iterator rend() const { return reverse_iterator(begin()); }
 
-		static constexpr size_t size() { return num_tags; }
+		constexpr size_t size() const { return num_tags; }
 
 	private:
-		const std::array<const char*, num_tags> _tags;
+		template<std::size_t I, typename... Next>
+		constexpr void AddTag(E value, const char* name, Next const&...next) noexcept {
+			_tags[I] = {int_type(value), name};
+
+			if constexpr (sizeof...(Next) > 0) {
+				AddTag<I + 1>(next...);
+			}
+		}
+
+		template<std::size_t I, typename... Next>
+		constexpr void AddMonotonicTag(const char* name, Next const&...next) noexcept {
+			_tags[I] = {I, name};
+
+			if constexpr (sizeof...(Next) > 0) {
+				AddMonotonicTag<I + 1>(next...);
+			}
+		}
+
+		std::array<EnumItem, num_tags> _tags;
+		bool monotonic_from_zero = true;
 };
+
+template<typename ValueType, typename... Next>
+EnumTags(ValueType const&, const char*, Next const&...) -> EnumTags<ValueType, (sizeof...(Next) + 2) / 2>;
 
 template <typename E, size_t... N>
 constexpr EnumTags<E,sizeof...(N)> makeEnumTags(const char (&...literals)[N]) {
@@ -62,29 +115,71 @@ constexpr EnumTags<E,sizeof...(N)> makeEnumTags(const char (&...literals)[N]) {
 }
 
 template <typename E, size_t N>
-inline typename EnumTags<E, N>::int_type EnumTags<E, N>::idx(const char* tag) const {
-	for (size_t i = 0; i < _tags.size(); ++i) {
-		if (std::strcmp(_tags[i], tag) == 0) {
-			return i;
+inline constexpr const char* EnumTags<E, N>::tag(E etag) const {
+	return tag(int_type(etag));
+}
+
+template <typename E, size_t N>
+inline constexpr const char* EnumTags<E, N>::tag(int_type value) const {
+	if (monotonic_from_zero) {
+		if (value < 0 || value >= N) {
+			return nullptr;
+		} else {
+			return _tags[value].name;
 		}
 	}
-	return -1;
+
+	for (const auto& it: _tags) {
+		if (it.value == value) {
+			return it.name;
+		}
+	}
+
+	return nullptr;
+}
+
+template <typename E, size_t N>
+inline constexpr const char* EnumTags<E, N>::operator[](E etag) const {
+	return tag(etag);
+}
+
+template <typename E, size_t N>
+inline constexpr const char* EnumTags<E, N>::operator[](int_type value) const {
+	return tag(value);
+}
+
+template <typename E, size_t N>
+inline bool EnumTags<E, N>::has_etag(const char* tag) const {
+	for (size_t i = 0; i < _tags.size(); ++i) {
+		if (std::strcmp(_tags[i].name, tag) == 0) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 template <typename E, size_t N>
 inline bool EnumTags<E, N>::etag(const char* tag, E& result) const {
-	auto i = idx(tag);
-	if (i < 0) {
-		return false;
+	for (size_t i = 0; i < _tags.size(); ++i) {
+		if (std::strcmp(_tags[i].name, tag) == 0) {
+			result = E(_tags[i].value);
+			return true;
+		}
 	}
-	result = E(i);
-	return true;
+
+	return false;
 }
 
 template <typename E, size_t N>
 inline E EnumTags<E, N>::etagOr(const char* tag, E other) const {
-	auto i = idx(tag);
-	return (i >= 0) ? E(i) : other;
+	for (size_t i = 0; i < _tags.size(); ++i) {
+		if (std::strcmp(_tags[i].name, tag) == 0) {
+			return E(_tags[i].value);
+		}
+	}
+
+	return other;
 }
 
 } //namespace lcf
