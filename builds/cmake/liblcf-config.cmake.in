@@ -4,8 +4,6 @@ include(CMakeFindDependencyMacro)
 
 if(@LCF_SUPPORT_ICU@)
 	find_dependency(ICU COMPONENTS i18n uc data REQUIRED)
-else()
-	find_dependency(Iconv REQUIRED)
 endif()
 
 if(@LCF_SUPPORT_XML@)

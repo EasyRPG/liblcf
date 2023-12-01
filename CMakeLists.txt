@@ -8,7 +8,7 @@ project(liblcf VERSION 0.8 LANGUAGES CXX)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
-option(LIBLCF_WITH_ICU "ICU encoding detection (when OFF fallback to iconv, not recommended, default: ON)" ON)
+option(LIBLCF_WITH_ICU "ICU encoding handling (when disabled only windows-1252 is supported, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
 option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ON)
@@ -343,16 +343,13 @@ set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 # Name of the exported library
 set_property(TARGET lcf PROPERTY EXPORT_NAME liblcf)
 
-# icu or fallback to iconv
+# icu
 set(LCF_SUPPORT_ICU 0)
 if(LIBLCF_WITH_ICU)
 	find_package(ICU COMPONENTS i18n uc data REQUIRED)
 	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
 	list(APPEND LIBLCF_DEPS "icu-i18n")
 	set(LCF_SUPPORT_ICU 1)
-else()
-	find_package(Iconv REQUIRED)
-	target_link_libraries(lcf Iconv::Iconv)
 endif()
 
 # expat

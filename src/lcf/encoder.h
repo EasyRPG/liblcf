@@ -12,6 +12,10 @@
 #include <vector>
 #include <string>
 
+#if LCF_SUPPORT_ICU
+class UConverter;
+#endif
+
 namespace lcf {
 
 class Encoder {
@@ -23,19 +27,39 @@ class Encoder {
 
 		~Encoder();
 
+		/**
+		 * Converts from the specified encoding to UTF-8
+		 *
+		 * @param str String to encode to UTF-8
+		 */
 		void Encode(std::string& str);
+
+		/**
+		 * Converts from UTF-8 to the specified encoding
+		 *
+		 * @param str String to decode from UTF-8
+		 */
 		void Decode(std::string& str);
 
 		bool IsOk() const;
 
 		const std::string& GetEncoding() const;
 	private:
+#if LCF_SUPPORT_ICU
 		void Init();
 		void Reset();
-		void Convert(std::string& str, void* conv_dst, void* conv_src);
-	private:
-		void* _conv_storage = nullptr;
-		void* _conv_runtime = nullptr;
+		void Convert(std::string& str, UConverter* conv_dst, UConverter* conv_src);
+
+		UConverter* _conv_storage = nullptr;
+		UConverter* _conv_runtime = nullptr;
+#else
+		void Init();
+		void Reset() {}
+		void Convert(std::string& str, int conv_dst, int conv_src);
+
+		int _conv_storage = 0;
+		int _conv_runtime = 0;
+#endif
 		std::vector<char> _buffer;
 		std::string _encoding;
 };
