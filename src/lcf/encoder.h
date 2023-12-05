@@ -9,6 +9,8 @@
 
 #ifndef LCF_ENCODER_H
 #define LCF_ENCODER_H
+
+#include "lcf/config.h"
 #include <vector>
 #include <string>
 
