@@ -16,7 +16,7 @@
 namespace lcf {
 namespace LogHandler {
 namespace {
-	void DefaultHandler(lcf::LogHandler::Level level, StringView message) {
+	void DefaultHandler(LogHandler::Level level, StringView message, UserData) {
 		switch (level) {
 			case Level::Debug:
 				std::cerr << "Debug: ";
@@ -35,13 +35,16 @@ namespace {
 
 	Level level = Level::Debug;
 	LogHandlerFn output_fn = DefaultHandler;
+	UserData output_userdata = nullptr;
 }
 
-void SetHandler(LogHandlerFn fn) {
+void SetHandler(LogHandlerFn fn, UserData userdata) {
 	if (!fn) {
 		output_fn = DefaultHandler;
+		output_userdata = nullptr;
 	} else {
 		output_fn = fn;
+		output_userdata = userdata;
 	}
 }
 
@@ -60,7 +63,7 @@ namespace {
 			return {};
 		}
 
-		return std::string(buf, static_cast<unsigned int>(result) < sizeof(buf) ? result : sizeof(buf));
+		return {buf, static_cast<unsigned int>(result) < sizeof(buf) ? result : sizeof(buf)};
 	}
 }
 
@@ -69,7 +72,7 @@ void Debug(const char* fmt, ...) {
 		va_list args;
 		va_start(args, fmt);
 		auto msg = format_string(fmt, args);
-		LogHandler::output_fn(LogHandler::Level::Debug, msg);
+		LogHandler::output_fn(LogHandler::Level::Debug, msg, LogHandler::output_userdata);
 		va_end(args);
 	}
 }
@@ -79,7 +82,7 @@ void Warning(const char* fmt, ...) {
 		va_list args;
 		va_start(args, fmt);
 		auto msg = format_string(fmt, args);
-		LogHandler::output_fn(LogHandler::Level::Warning, msg);
+		LogHandler::output_fn(LogHandler::Level::Warning, msg, LogHandler::output_userdata);
 		va_end(args);
 	}
 }
@@ -89,7 +92,7 @@ void Error(const char* fmt, ...) {
 		va_list args;
 		va_start(args, fmt);
 		auto msg = format_string(fmt, args);
-		LogHandler::output_fn(LogHandler::Level::Error, msg);
+		LogHandler::output_fn(LogHandler::Level::Error, msg, LogHandler::output_userdata);
 		va_end(args);
 	}
 }

@@ -11,6 +11,7 @@
 #define LCF_OUTPUT_H
 
 #include "string_view.h"
+#include "enum_tags.h"
 
 namespace lcf {
 namespace LogHandler {
@@ -22,15 +23,24 @@ enum class Level {
 	Highest
 };
 
-using LogHandlerFn = void (*)(Level level, StringView message);
+static constexpr auto kLevelTags = lcf::makeEnumTags<Level>(
+	"Debug",
+	"Warning",
+	"Error",
+	"Highest"
+);
+
+using UserData = void*;
+using LogHandlerFn = void (*)(Level level, StringView message, UserData userdata);
 
 /**
  * Sets the output handler for all lcf logging.
  * The default handler prints to standard error.
  *
  * @param fn New output handler. nullptr for default handler.
+ * @param userdata Passed to the log handler function. Is not touched by liblcf.
  */
-void SetHandler(LogHandlerFn fn);
+void SetHandler(LogHandlerFn fn, UserData userdata = nullptr);
 
 /**
  * Only report issues that have at least this log level.
