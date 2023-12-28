@@ -307,6 +307,20 @@ static TypedField<rpg::SavePicture, int32_t> static_easyrpg_type(
 	0,
 	1
 );
+static TypedField<rpg::SavePicture, double> static_maniac_current_magnify_height(
+	&rpg::SavePicture::maniac_current_magnify_height,
+	LSD_Reader::ChunkSavePicture::maniac_current_magnify_height,
+	"maniac_current_magnify_height",
+	0,
+	1
+);
+static TypedField<rpg::SavePicture, int32_t> static_maniac_finish_magnify_height(
+	&rpg::SavePicture::maniac_finish_magnify_height,
+	LSD_Reader::ChunkSavePicture::maniac_finish_magnify_height,
+	"maniac_finish_magnify_height",
+	0,
+	1
+);
 
 
 template <>
@@ -352,6 +366,8 @@ Field<rpg::SavePicture> const* Struct<rpg::SavePicture>::fields[] = {
 	&static_easyrpg_flip,
 	&static_easyrpg_blend_mode,
 	&static_easyrpg_type,
+	&static_maniac_current_magnify_height,
+	&static_maniac_finish_magnify_height,
 	NULL
 };
 
