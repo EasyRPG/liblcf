@@ -5,6 +5,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 defaults:
   run:
     shell: bash
@@ -20,24 +24,22 @@ jobs:
       fail-fast: false
       matrix:
         image:
-          - debian:10     # CMake 3.13.4 - g++ 8.3.0  - oldstable
           - ubuntu:20.04  # CMake 3.16.3 - g++ 9.3.0  - LTS
-          - debian:11     # CMake 3.18.4 - g++ 10.2.1 - stable
+          - debian:11     # CMake 3.18.4 - g++ 10.2.1 - oldstable
           - ubuntu:22.04  # CMake 3.22.1 - g++ 11.2.0 - LTS
+          - debian:12     # CMake 3.25.1 - g++ 12.2.0 - stable
+
     steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.8.0
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Install dependencies
         run: |
           export DEBIAN_FRONTEND="noninteractive"
           apt-get update
           apt-get install -y --no-install-recommends --no-install-suggests \
-            build-essential cmake ninja-build git \
+            ca-certificates build-essential cmake ninja-build git \
             libicu-dev libexpat1-dev
+
+      - name: Clone Repository
+        uses: actions/checkout@v4
 
       - name: Compile
         run: |
@@ -47,9 +49,7 @@ jobs:
 
       - name: Install
         run: |
-          export DESTDIR=$PWD/local-install
-          # cmake < 3.16 does not support '--install'
-          cmake --build build --target install
+          cmake --install build
 
       - name: Test
         run: cmake --build build --target check
