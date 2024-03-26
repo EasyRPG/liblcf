@@ -107,7 +107,7 @@ void RawStruct<std::vector<DBString>>::ReadLcf(std::vector<DBString>& ref, LcfRe
 	}
 
 	if (stream.Tell() != endpos) {
-		Log::Warning("vector<string> Misaligned at 0x" PRIx32 "", stream.Tell());
+		Log::Warning("vector<string> Misaligned at 0x%" PRIx32 "", stream.Tell());
 		stream.Seek(endpos);
 	}
 }

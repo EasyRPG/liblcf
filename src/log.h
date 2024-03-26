@@ -12,14 +12,22 @@
 
 #include "lcf/log_handler.h"
 
+#ifdef __GNUG__
+	#define LIKE_PRINTF __attribute__((format(printf, 1, 2)))
+#else
+	#define LIKE_PRINTF
+#endif
+
 namespace lcf {
 namespace Log {
 
-void Debug(const char* fmt, ...);
-void Warning(const char* fmt, ...);
-void Error(const char* fmt, ...);
+void Debug(const char* fmt, ...) LIKE_PRINTF;
+void Warning(const char* fmt, ...) LIKE_PRINTF;
+void Error(const char* fmt, ...) LIKE_PRINTF;
 
 } // namespace Log
 } // namespace lcf
+
+#undef LIKE_PRINTF
 
 #endif
