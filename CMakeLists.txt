@@ -1,24 +1,21 @@
-cmake_minimum_required(VERSION 3.10...3.20 FATAL_ERROR)
-if(${CMAKE_VERSION} VERSION_LESS 3.12)
-	# Use most recent policies, even for older cmake
-	cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
-endif()
+cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
 
 project(liblcf VERSION 0.8 LANGUAGES CXX)
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
+include(ConfigureWindows)
+include(MiscUtils)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
 option(LIBLCF_WITH_ICU "ICU encoding handling (when disabled only windows-1252 is supported, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
-option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ON)
-option(LIBLCF_ENABLE_TESTS "Whetner to build the unit tests (default: ON)" ON)
+option(LIBLCF_ENABLE_TOOLS "Whether to build the tools (default: ON)" ${LIBLCF_MAIN_PROJECT})
+option(LIBLCF_ENABLE_TESTS "Whether to build the unit tests (default: ON)" ${LIBLCF_MAIN_PROJECT})
 option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)" OFF)
-
+option(LIBLCF_ENABLE_INSTALL "Whether to add an install target (default: ON)" ${LIBLCF_MAIN_PROJECT})
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
-include(ConfigureWindows)
 
 # C++17 is required
 set(CMAKE_CXX_STANDARD 17)
@@ -379,80 +376,83 @@ target_sources(lcf PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
 set_property(TARGET lcf PROPERTY SOVERSION 0)
 
 # installation
+if(LIBLCF_ENABLE_INSTALL)
 
-# pkg-config file generation
-set(LCF_LIBDIR ${CMAKE_INSTALL_LIBDIR})
-if(IS_ABSOLUTE ${LCF_LIBDIR})
-	file(RELATIVE_PATH LCF_LIBDIR ${CMAKE_INSTALL_PREFIX} ${LCF_LIBDIR})
-endif()
-set(LCF_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
-if(IS_ABSOLUTE ${LCF_INCLUDEDIR})
-	file(RELATIVE_PATH LCF_INCLUDEDIR ${CMAKE_INSTALL_PREFIX} ${LCF_INCLUDEDIR})
-endif()
-set(PACKAGE_TARNAME ${PROJECT_NAME})
-set(PACKAGE_VERSION ${PROJECT_VERSION})
-set(prefix "${CMAKE_INSTALL_PREFIX}")
-set(exec_prefix "\${prefix}")
-set(libdir "\${exec_prefix}/${LCF_LIBDIR}")
-set(includedir "\${prefix}/${LCF_INCLUDEDIR}")
-string(REPLACE ";" " " AX_PACKAGE_REQUIRES_PRIVATE "${LIBLCF_DEPS}")
-configure_file(builds/${PROJECT_NAME}.pc.in builds/${PROJECT_NAME}.pc @ONLY)
+	# pkg-config file generation
+	set(LCF_LIBDIR ${CMAKE_INSTALL_LIBDIR})
+	if(IS_ABSOLUTE ${LCF_LIBDIR})
+		file(RELATIVE_PATH LCF_LIBDIR ${CMAKE_INSTALL_PREFIX} ${LCF_LIBDIR})
+	endif()
+	set(LCF_INCLUDEDIR ${CMAKE_INSTALL_INCLUDEDIR})
+	if(IS_ABSOLUTE ${LCF_INCLUDEDIR})
+		file(RELATIVE_PATH LCF_INCLUDEDIR ${CMAKE_INSTALL_PREFIX} ${LCF_INCLUDEDIR})
+	endif()
+	set(PACKAGE_TARNAME ${PROJECT_NAME})
+	set(PACKAGE_VERSION ${PROJECT_VERSION})
+	set(prefix "${CMAKE_INSTALL_PREFIX}")
+	set(exec_prefix "\${prefix}")
+	set(libdir "\${exec_prefix}/${LCF_LIBDIR}")
+	set(includedir "\${prefix}/${LCF_INCLUDEDIR}")
+	string(REPLACE ";" " " AX_PACKAGE_REQUIRES_PRIVATE "${LIBLCF_DEPS}")
+	configure_file(builds/${PROJECT_NAME}.pc.in builds/${PROJECT_NAME}.pc @ONLY)
 
-# Cmake-config file generation
-install(
-	TARGETS lcf
-	EXPORT lcf-export
-	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+	# Cmake-config file generation
+	install(
+		TARGETS lcf
+		EXPORT lcf-export
+		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+		RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-set(LCF_INSTALL_HEADERS ${LCF_HEADERS} ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
-foreach(S ldb lmt lmu lsd rpg third_party)
-	set(SUBDIR_HEADERS ${LCF_INSTALL_HEADERS})
-	list(FILTER SUBDIR_HEADERS INCLUDE REGEX "/${S}/")
-	install(FILES ${SUBDIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/${S})
-	list(REMOVE_ITEM LCF_INSTALL_HEADERS ${SUBDIR_HEADERS})
-endforeach()
-install(FILES ${LCF_INSTALL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
+	set(LCF_INSTALL_HEADERS ${LCF_HEADERS} ${CMAKE_CURRENT_BINARY_DIR}/src/lcf/config.h)
+	foreach(S ldb lmt lmu lsd rpg third_party)
+		set(SUBDIR_HEADERS ${LCF_INSTALL_HEADERS})
+		list(FILTER SUBDIR_HEADERS INCLUDE REGEX "/${S}/")
+		install(FILES ${SUBDIR_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf/${S})
+		list(REMOVE_ITEM LCF_INSTALL_HEADERS ${SUBDIR_HEADERS})
+	endforeach()
+	install(FILES ${LCF_INSTALL_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lcf)
 
-install(
-	FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
-)
-
-install(
-	EXPORT lcf-export FILE liblcf-targets.cmake
-	NAMESPACE liblcf:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
-)
-
-include(CMakePackageConfigHelpers)
-configure_package_config_file(
-	${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/liblcf-config.cmake.in
-	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
-	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
-)
-
-write_basic_package_version_file(
-	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
-	COMPATIBILITY ExactVersion
-)
-
-install(FILES
-	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
-	${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
-)
-
-# mime types
-install(
-	FILES ${CMAKE_CURRENT_SOURCE_DIR}/mime/${PROJECT_NAME}.xml
-	DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
-)
-if(LIBLCF_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
-	install(CODE
-		"execute_process(COMMAND ${UPDATE_MIME_DATABASE}
-			\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/mime)"
+	install(
+		FILES ${CMAKE_CURRENT_BINARY_DIR}/builds/${PROJECT_NAME}.pc
+		DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 	)
+
+	install(
+		EXPORT lcf-export FILE liblcf-targets.cmake
+		NAMESPACE liblcf:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+	)
+
+	include(CMakePackageConfigHelpers)
+	configure_package_config_file(
+		${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/liblcf-config.cmake.in
+		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
+		INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+	)
+
+	write_basic_package_version_file(
+		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
+		COMPATIBILITY ExactVersion
+	)
+
+	install(FILES
+		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
+		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
+	)
+
+	# mime types
+	install(
+		FILES ${CMAKE_CURRENT_SOURCE_DIR}/mime/${PROJECT_NAME}.xml
+		DESTINATION ${CMAKE_INSTALL_DATADIR}/mime/packages
+	)
+	if(LIBLCF_UPDATE_MIMEDB AND UPDATE_MIME_DATABASE)
+		install(CODE
+			"execute_process(COMMAND ${UPDATE_MIME_DATABASE}
+				\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/mime)"
+		)
+	endif()
+
 endif()
 
 # tests
@@ -492,7 +492,9 @@ if(LIBLCF_ENABLE_TOOLS)
 		add_executable(${tool} tools/${tool}.cpp)
 		target_link_libraries(${tool} lcf)
 		add_dependencies(tools ${tool})
-		install(TARGETS ${tool} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+		if(LIBLCF_ENABLE_INSTALL)
+			install(TARGETS ${tool} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+		endif()
 	endforeach()
 endif()
 
