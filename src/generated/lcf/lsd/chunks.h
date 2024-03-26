@@ -321,7 +321,11 @@ namespace LSD_Reader {
 			/** Blend mode to use for blit. See Bitmap::BlendMode */
 			easyrpg_blend_mode = 0xC9,
 			/** Type of this picture */
-			easyrpg_type = 0xCA
+			easyrpg_type = 0xCA,
+			/** Current zoom level of picture (y direction). */
+			maniac_current_magnify_height = 0x0A,
+			/** Final zoom level to animate picture to (y direction). */
+			maniac_finish_magnify_height = 0x24
 		};
 	};
 	struct ChunkSavePartyLocation {

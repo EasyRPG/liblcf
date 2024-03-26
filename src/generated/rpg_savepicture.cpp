@@ -66,6 +66,8 @@ std::ostream& operator<<(std::ostream& os, const SavePicture& obj) {
 	os << ", easyrpg_flip="<< obj.easyrpg_flip;
 	os << ", easyrpg_blend_mode="<< obj.easyrpg_blend_mode;
 	os << ", easyrpg_type="<< obj.easyrpg_type;
+	os << ", maniac_current_magnify_height="<< obj.maniac_current_magnify_height;
+	os << ", maniac_finish_magnify_height="<< obj.maniac_finish_magnify_height;
 	os << "}";
 	return os;
 }
