@@ -56,7 +56,7 @@ void LcfWriter::WriteInt(int val) {
 
 void LcfWriter::WriteUInt64(uint64_t value) {
 	for (int i = 56; i >= 0; i -= 7)
-		if (value >= (1LL << i) || i == 0)
+		if (value >= (1ULL << i) || i == 0)
 			Write<uint8_t>((uint8_t)(((value >> i) & 0x7F) | (i > 0 ? 0x80 : 0)));
 }
 

@@ -290,7 +290,7 @@ void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info, const char* wher
 		LcfReader::Read(byte);
 		ss << std::setfill('0') << std::setw(2) << (int)byte << " ";
 		if ((i+1) % 16 == 0) {
-			Log::Debug(ss.str().c_str());
+			Log::Debug("%s", ss.str().c_str());
 			ss.str("");
 		}
 		if (Eof()) {
@@ -298,7 +298,7 @@ void LcfReader::Skip(const struct LcfReader::Chunk& chunk_info, const char* wher
 		}
 	}
 	if (!ss.str().empty()) {
-		Log::Debug(ss.str().c_str());
+		Log::Debug("%s", ss.str().c_str());
 	}
 }
 
