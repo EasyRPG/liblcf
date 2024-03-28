@@ -12,6 +12,7 @@
 #include "lcf/reader_lcf.h"
 #include "lcf/reader_xml.h"
 #include "lcf/dbstring.h"
+#include "log.h"
 
 // Expat callbacks
 #if LCF_SUPPORT_XML
@@ -59,14 +60,6 @@ bool XmlReader::IsOk() const {
 	return (stream.good() && parser != NULL);
 }
 
-void XmlReader::Error(const char* fmt, ...) {
-	va_list ap;
-	va_start(ap, fmt);
-	vfprintf(stderr, fmt, ap);
-	fputc('\n', stderr);
-	va_end(ap);
-}
-
 void XmlReader::Parse() {
 #if LCF_SUPPORT_XML
 	static const int bufsize = 4096;
@@ -75,7 +68,7 @@ void XmlReader::Parse() {
 		int len = stream.read(reinterpret_cast<char*>(buffer),bufsize).gcount();
 		int result = XML_ParseBuffer(parser, len, len <= 0);
 		if (result == 0)
-			Error("%s", XML_ErrorString(XML_GetErrorCode(parser)));
+			Log::Error("XML: %s", XML_ErrorString(XML_GetErrorCode(parser)));
 	}
 #endif
 }

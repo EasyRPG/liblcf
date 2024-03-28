@@ -38,6 +38,7 @@
 #include "lcf/rpg/terms.h"
 #include "lcf/rpg/saveeasyrpgtext.h"
 #include "lcf/rpg/saveeasyrpgwindow.h"
+#include "log.h"
 
 namespace lcf {
 
@@ -184,7 +185,7 @@ struct Primitive {
 		// FIXME: Bug #174
 		if (length != LcfSizeT<T>::value) {
 			dif = length - LcfSizeT<T>::value;
-			fprintf(stderr, "Reading Primitive of incorrect size %" PRIu32 " (expected %" PRIu32 ") at %" PRIX32 "\n",
+			Log::Warning("Reading Primitive of incorrect size %" PRIu32 " (expected %" PRIu32 ") at %" PRIX32 "",
 				length, LcfSizeT<T>::value, stream.Tell());
 		}
 
@@ -195,9 +196,7 @@ struct Primitive {
 
 		if (dif != 0) {
 			// Fix incorrect read pointer position
-#ifdef LCF_DEBUG_TRACE
-			printf("Invalid %s at %X\n", typeid(T).name(), stream.Tell());
-#endif
+			Log::Warning("Invalid %s at %X", typeid(T).name(), stream.Tell());
 			stream.Seek(dif, LcfReader::FromCurrent);
 		}
 	}
@@ -237,11 +236,11 @@ struct Primitive<std::vector<T>> {
 		stream.Read(ref, length);
 #ifdef LCF_DEBUG_TRACE
 		typename std::vector<T>::iterator it;
-		printf("  ");
+		fprintf(stderr, "  ");
 		for (it = ref.begin(); it != ref.end(); ++it) {
-			printf("%d, ", static_cast<int>(*it));
+			fprintf(stderr, "%d, ", static_cast<int>(*it));
 		}
-		printf("\n");
+		fprintf(stderr, "\n");
 #endif
 	}
 	static void WriteLcf(const std::vector<T>& ref, LcfWriter& stream) {
@@ -267,13 +266,11 @@ struct Primitive<int32_t> {
 		if (length >= 1 && length <= 5) {
 			ref = stream.ReadInt();
 #ifdef LCF_DEBUG_TRACE
-			printf("  %d\n", ref);
+			fprintf(stderr, "  %d\n", ref);
 #endif
 		} else {
 			ref = 0;
-#ifdef LCF_DEBUG_TRACE
-			printf("Invalid integer at %X\n", stream.Tell());
-#endif
+			Log::Warning("Invalid integer at %X", stream.Tell());
 			stream.Seek(length, LcfReader::FromCurrent);
 		}
 
@@ -300,7 +297,7 @@ struct Primitive<std::string> {
 	static void ReadLcf(std::string& ref, LcfReader& stream, uint32_t length) {
 		stream.ReadString(ref, length);
 #ifdef LCF_DEBUG_TRACE
-		printf("  %s\n", ref.c_str());
+		fprintf(stderr, "  %s\n", ref.c_str());
 #endif
 	}
 	static void WriteLcf(const std::string& ref, LcfWriter& stream) {
@@ -325,11 +322,11 @@ struct Primitive<DBBitArray> {
 	static void ReadLcf(DBBitArray& ref, LcfReader& stream, uint32_t length) {
 		stream.ReadBits(ref, length);
 #ifdef LCF_DEBUG_TRACE
-		printf("  ");
+		fprintf(stderr, "  ");
 		for (auto& b: ref) {
-			print("%d", static_cast<int>(b));
+			fprintf(stderr, "%d", static_cast<int>(b));
 		}
-		printf("\n");
+		fprintf(stderr, "\n");
 #endif
 	}
 	static void WriteLcf(const DBBitArray& ref, LcfWriter& stream) {
@@ -773,7 +770,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, this->name) != 0)
-			stream.Error("Expecting %s but got %s", this->name, name);
+			Log::Error("XML: Expecting %s but got %s", this->name, name);
 		stream.SetHandler(handler);
 	}
 
@@ -793,7 +790,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, this->name) != 0)
-			stream.Error("Expecting %s but got %s", this->name, name);
+			Log::Error("XML: Expecting %s but got %s", this->name, name);
 		TypeReader<S>::BeginXml(ref, stream);
 	}
 

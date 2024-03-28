@@ -9,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include "log.h"
 #include "reader_struct.h"
 #include "lcf/rpg/eventcommand.h"
 
@@ -108,7 +109,7 @@ public:
 		else if (strcmp(name, "parameters") == 0)
 			field = Parameters;
 		else {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 			field = None;
 		}
 	}
@@ -161,7 +162,7 @@ void RawStruct<std::vector<rpg::EventCommand> >::ReadLcf(
 
 		if (stream.Tell() >= endpos) {
 			stream.Seek(endpos, LcfReader::FromStart);
-			fprintf(stderr, "Event command corrupted at %" PRIu32 "\n", stream.Tell());
+			Log::Warning("Event command corrupted at %" PRIu32 "", stream.Tell());
 			for (;;) {
 				// Try finding the real end of the event command (4 0-bytes)
 				int i = 0;
@@ -216,7 +217,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "EventCommand") != 0)
-			stream.Error("Expecting %s but got %s", "EventCommand", name);
+			Log::Error("XML: Expecting %s but got %s", "EventCommand", name);
 		ref.resize(ref.size() + 1);
 		rpg::EventCommand& obj = ref.back();
 		stream.SetHandler(new EventCommandXmlHandler(obj));

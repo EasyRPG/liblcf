@@ -158,7 +158,7 @@ public:
 		else if (strcmp(name, "parameter_string") == 0)
 			parameter_string = true;
 		else {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 			field = NULL;
 			parameter_string = false;
 		}
@@ -218,7 +218,7 @@ public:
 
 	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
 		if (strcmp(name, "MoveCommand") != 0)
-			stream.Error("Expecting %s but got %s", "MoveCommand", name);
+			Log::Error("XML: Expecting %s but got %s", "MoveCommand", name);
 		ref.resize(ref.size() + 1);
 		rpg::MoveCommand& obj = ref.back();
 		stream.SetHandler(new MoveCommandXmlHandler(obj));

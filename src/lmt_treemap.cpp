@@ -9,6 +9,7 @@
 
 #include "lcf/lmt/reader.h"
 #include "lcf/lmt/chunks.h"
+#include "log.h"
 #include "reader_struct.h"
 
 namespace lcf {
@@ -89,7 +90,7 @@ public:
 		else if (strcmp(name, "start") == 0)
 			Struct<rpg::Start>::BeginXml(ref.start, stream);
 		else {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 		}
 	}
 	void EndElement(XmlReader& /* stream */, const char* /* name */) {

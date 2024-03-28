@@ -10,6 +10,7 @@
 #include "lcf/encoder.h"
 #include "lcf/reader_util.h"
 #include "lcf/scope_guard.h"
+#include "log.h"
 #include <cstdio>
 #include <cstdlib>
 
@@ -86,7 +87,7 @@ void Encoder::Init() {
 	auto conv_runtime = ucnv_open(runtime_encoding, &status);
 
 	if (conv_runtime == nullptr) {
-		fprintf(stderr, "liblcf:  ucnv_open() error for encoding \"%s\": %s\n", runtime_encoding, u_errorName(status));
+		Log::Error("ucnv_open() error for encoding \"%s\": %s", runtime_encoding, u_errorName(status));
 		return;
 	}
 	status = U_ZERO_ERROR;
@@ -95,7 +96,7 @@ void Encoder::Init() {
 	auto conv_storage = ucnv_open(storage_encoding.c_str(), &status);
 
 	if (conv_storage == nullptr) {
-		fprintf(stderr, "liblcf:  ucnv_open() error for dest encoding \"%s\": %s\n", storage_encoding.c_str(), u_errorName(status));
+		Log::Error("ucnv_open() error for dest encoding \"%s\": %s", storage_encoding.c_str(), u_errorName(status));
 		return;
 	}
 
@@ -143,7 +144,7 @@ void Encoder::Convert(std::string& str, UConverter* conv_dst, UConverter* conv_s
 			&status);
 
 	if (U_FAILURE(status)) {
-		fprintf(stderr, "liblcf: ucnv_convertEx() error when encoding \"%s\": %s\n", src.c_str(), u_errorName(status));
+		Log::Error("ucnv_convertEx() error when encoding \"%s\": %s", src.c_str(), u_errorName(status));
 		_buffer.clear();
 	}
 

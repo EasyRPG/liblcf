@@ -9,6 +9,7 @@
 
 #include "lcf/ldb/reader.h"
 #include "lcf/ldb/chunks.h"
+#include "log.h"
 #include "reader_struct.h"
 
 namespace lcf {
@@ -27,7 +28,7 @@ struct RawStruct<rpg::Equipment> {
  */
 void RawStruct<rpg::Equipment>::ReadLcf(rpg::Equipment& ref, LcfReader& stream, uint32_t length) {
 	if (length != 10) {
-		fprintf(stderr, "Equipment has incorrect size %" PRIu32 " (expected 10)\n", length);
+		Log::Warning("Equipment has incorrect size %" PRIu32 " (expected 10)", length);
 
 		LcfReader::Chunk chunk_info;
 		chunk_info.ID = 0x33;
@@ -85,7 +86,7 @@ public:
 		else if (strcmp(name, "accessory_id") == 0)
 			field = &ref.accessory_id;
 		else {
-			stream.Error("Unrecognized field '%s'", name);
+			Log::Error("XML: Unrecognized field '%s'", name);
 			field = NULL;
 		}
 	}
