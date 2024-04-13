@@ -293,6 +293,13 @@ static TypedField<rpg::SaveMapEventBase, int32_t> static_flash_time_left(
 	0,
 	0
 );
+static TypedField<rpg::SaveMapEventBase, int32_t> static_easyrpg_move_failure_count(
+	&rpg::SaveMapEventBase::easyrpg_move_failure_count,
+	LSD_Reader::ChunkSaveMapEventBase::easyrpg_move_failure_count,
+	"easyrpg_move_failure_count",
+	0,
+	0
+);
 
 
 template <>
@@ -336,6 +343,7 @@ Field<rpg::SaveMapEventBase> const* Struct<rpg::SaveMapEventBase>::fields[] = {
 	&static_flash_blue,
 	&static_flash_current_level,
 	&static_flash_time_left,
+	&static_easyrpg_move_failure_count,
 	NULL
 };
 
