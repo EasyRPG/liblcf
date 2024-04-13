@@ -293,6 +293,13 @@ static TypedField<rpg::SaveVehicleLocation, int32_t> static_flash_time_left(
 	0,
 	0
 );
+static TypedField<rpg::SaveVehicleLocation, int32_t> static_easyrpg_move_failure_count(
+	&rpg::SaveVehicleLocation::easyrpg_move_failure_count,
+	LSD_Reader::ChunkSaveVehicleLocation::easyrpg_move_failure_count,
+	"easyrpg_move_failure_count",
+	0,
+	0
+);
 static TypedField<rpg::SaveVehicleLocation, int32_t> static_vehicle(
 	&rpg::SaveVehicleLocation::vehicle,
 	LSD_Reader::ChunkSaveVehicleLocation::vehicle,
@@ -371,6 +378,7 @@ Field<rpg::SaveVehicleLocation> const* Struct<rpg::SaveVehicleLocation>::fields[
 	&static_flash_blue,
 	&static_flash_current_level,
 	&static_flash_time_left,
+	&static_easyrpg_move_failure_count,
 	&static_vehicle,
 	&static_remaining_ascent,
 	&static_remaining_descent,

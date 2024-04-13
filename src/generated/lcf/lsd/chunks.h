@@ -408,6 +408,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/** Tracks how often the current move operation in a move route failed */
+			easyrpg_move_failure_count = 0xC9,
 			/**  */
 			boarding = 0x65,
 			/**  */
@@ -522,6 +524,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/** Tracks how often the current move operation in a move route failed */
+			easyrpg_move_failure_count = 0xC9,
 			/** Which vehicle */
 			vehicle = 0x65,
 			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
@@ -815,7 +819,9 @@ namespace LSD_Reader {
 			/** double */
 			flash_current_level = 0x54,
 			/** int */
-			flash_time_left = 0x55
+			flash_time_left = 0x55,
+			/** Tracks how often the current move operation in a move route failed */
+			easyrpg_move_failure_count = 0xC9
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -898,6 +904,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/** Tracks how often the current move operation in a move route failed */
+			easyrpg_move_failure_count = 0xC9,
 			/** If true; this event is waiting for foreground execution. */
 			waiting_execution = 0x65,
 			/** Index of custom move route */

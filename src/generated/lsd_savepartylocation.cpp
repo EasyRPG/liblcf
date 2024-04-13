@@ -293,6 +293,13 @@ static TypedField<rpg::SavePartyLocation, int32_t> static_flash_time_left(
 	0,
 	0
 );
+static TypedField<rpg::SavePartyLocation, int32_t> static_easyrpg_move_failure_count(
+	&rpg::SavePartyLocation::easyrpg_move_failure_count,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_move_failure_count,
+	"easyrpg_move_failure_count",
+	0,
+	0
+);
 static TypedField<rpg::SavePartyLocation, bool> static_boarding(
 	&rpg::SavePartyLocation::boarding,
 	LSD_Reader::ChunkSavePartyLocation::boarding,
@@ -448,6 +455,7 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_flash_blue,
 	&static_flash_current_level,
 	&static_flash_time_left,
+	&static_easyrpg_move_failure_count,
 	&static_boarding,
 	&static_aboard,
 	&static_vehicle,
