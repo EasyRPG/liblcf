@@ -27,7 +27,6 @@ set(LCF_SOURCES
 	src/dbarray.cpp
 	src/dbstring_struct.cpp
 	src/encoder.cpp
-	src/ini.cpp
 	src/inireader.cpp
 	src/ldb_equipment.cpp
 	src/ldb_eventcommand.cpp
@@ -201,7 +200,6 @@ set(LCF_HEADERS
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
 	src/lcf/flag_set.h
-	src/lcf/ini.h
 	src/lcf/inireader.h
 	src/lcf/ldb/reader.h
 	src/lcf/lmt/reader.h
@@ -343,6 +341,10 @@ set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 # Name of the exported library
 set_property(TARGET lcf PROPERTY EXPORT_NAME liblcf)
 
+# inih
+find_package(inih REQUIRED)
+target_link_libraries(lcf inih::inih)
+
 # icu
 set(LCF_SUPPORT_ICU 0)
 if(LIBLCF_WITH_ICU)
@@ -380,7 +382,6 @@ set_property(TARGET lcf PROPERTY SOVERSION 0)
 
 # installation
 if(LIBLCF_ENABLE_INSTALL)
-
 	# pkg-config file generation
 	set(LCF_LIBDIR ${CMAKE_INSTALL_LIBDIR})
 	if(IS_ABSOLUTE ${LCF_LIBDIR})
@@ -441,6 +442,7 @@ if(LIBLCF_ENABLE_INSTALL)
 	install(FILES
 		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config.cmake
 		${CMAKE_CURRENT_BINARY_DIR}/liblcf-config-version.cmake
+		${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules/Findinih.cmake
 		DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblcf
 	)
 

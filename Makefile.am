@@ -34,9 +34,11 @@ liblcf_la_CXXFLAGS = \
 	-std=gnu++17 \
 	-fno-math-errno \
 	$(AM_CXXFLAGS) \
+	$(INIH_CFLAGS) \
 	$(EXPAT_CFLAGS) \
 	$(ICU_CFLAGS)
 liblcf_la_LIBADD = \
+	$(INIH_LIBS) \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
 liblcf_la_LDFLAGS = \
@@ -46,7 +48,6 @@ liblcf_la_SOURCES = \
 	src/dbarray.cpp \
 	src/dbstring_struct.cpp \
 	src/encoder.cpp \
-	src/ini.cpp \
 	src/inireader.cpp \
 	src/ldb_equipment.cpp \
 	src/ldb_eventcommand.cpp \
@@ -219,7 +220,6 @@ lcfinclude_HEADERS = \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
 	src/lcf/flag_set.h \
-	src/lcf/ini.h \
 	src/lcf/inireader.h \
 	src/lcf/log_handler.h \
 	src/lcf/reader_lcf.h \
@@ -347,10 +347,12 @@ test_runner_CPPFLAGS = \
 test_runner_CXXFLAGS = \
 	-std=gnu++17 \
 	-DDOCTEST_CONFIG_TREAT_CHAR_STAR_AS_STRING=1 \
+	$(INIH_CXXFLAGS) \
 	$(EXPAT_CXXFLAGS) \
 	$(ICU_CXXFLAGS)
 test_runner_LDADD = \
 	liblcf.la \
+	$(INIH_LIBS) \
 	$(EXPAT_LIBS) \
 	$(ICU_LIBS)
 test_runner_LDFLAGS = -no-install
