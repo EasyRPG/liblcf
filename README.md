@@ -14,6 +14,7 @@ Documentation is available at the documentation wiki: https://wiki.easyrpg.org
 
 ## Requirements
 
+- [inih] for INI file reading. (required)
 - [Expat] for XML reading support.
 - [ICU] for character encoding detection and conversion (recommended).
 

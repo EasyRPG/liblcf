@@ -50,6 +50,11 @@ build/
 # IntelliJ / CLion
 .idea/
 
+# VS Code
+.vscode/
+.cache/
+compile_commands.json
+
 # doxygen generated files
 /doc/
 
@@ -72,3 +77,4 @@ test_runner*
 
 # distribution archives
 liblcf-*.tar.*
+

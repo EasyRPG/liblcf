@@ -36,7 +36,7 @@ jobs:
           apt-get update
           apt-get install -y --no-install-recommends --no-install-suggests \
             ca-certificates build-essential cmake ninja-build git \
-            libicu-dev libexpat1-dev
+            libicu-dev libexpat1-dev libinih-dev
 
       - name: Clone Repository
         uses: actions/checkout@v4
