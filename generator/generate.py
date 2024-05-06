@@ -312,7 +312,12 @@ def get_enums(*filenames):
     for k, v in merge_dicts(results).items():
         new_result[k] = OrderedDict()
         for kk, gg in groupby(v, operator.attrgetter("entry")):
-            new_result[k][kk] = list(map(lambda x: (x.value, x.index), gg))
+            list_of = list(map(lambda x: (x.value, x.index), gg))
+            if kk in new_result[k]:
+                for elem in list_of:
+                    new_result[k][kk].append(elem)
+            else:
+                new_result[k][kk] = list_of
 
     return new_result
 
