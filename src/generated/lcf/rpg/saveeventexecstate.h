@@ -15,6 +15,7 @@
 // Headers
 #include <stdint.h>
 #include <vector>
+#include "lcf/dbstring.h"
 #include "lcf/rpg/saveeventexecframe.h"
 #include "lcf/context.h"
 #include <ostream>
@@ -49,6 +50,9 @@ namespace rpg {
 		int32_t keyinput_2k3up = 0;
 		bool keyinput_timed = false;
 		bool wait_key_enter = false;
+		bool easyrpg_active = false;
+		DBString easyrpg_string;
+		std::vector<int32_t> easyrpg_parameters;
 	};
 
 	inline bool operator==(const SaveEventExecState& l, const SaveEventExecState& r) {
@@ -73,7 +77,10 @@ namespace rpg {
 		&& l.keyinput_2k3right == r.keyinput_2k3right
 		&& l.keyinput_2k3up == r.keyinput_2k3up
 		&& l.keyinput_timed == r.keyinput_timed
-		&& l.wait_key_enter == r.wait_key_enter;
+		&& l.wait_key_enter == r.wait_key_enter
+		&& l.easyrpg_active == r.easyrpg_active
+		&& l.easyrpg_string == r.easyrpg_string
+		&& l.easyrpg_parameters == r.easyrpg_parameters;
 	}
 
 	inline bool operator!=(const SaveEventExecState& l, const SaveEventExecState& r) {
@@ -88,6 +95,8 @@ namespace rpg {
 			const auto ctx1 = Context<SaveEventExecState, ParentCtx>{ "stack", i, &obj, parent_ctx };
 			ForEachString(obj.stack[i], f, &ctx1);
 		}
+		const auto ctx24 = Context<SaveEventExecState, ParentCtx>{ "easyrpg_string", -1, &obj, parent_ctx };
+		f(obj.easyrpg_string, ctx24);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;
