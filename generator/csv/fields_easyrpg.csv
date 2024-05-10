@@ -8,6 +8,9 @@ SaveEventExecFrame,maniac_event_id,f,Int32,0x0F,0,0,0,Event ID
 SaveEventExecFrame,maniac_event_page_id,f,Int32,0x10,0,0,0,Page ID when it is a map event
 SaveEventExecFrame,maniac_loop_info_size,f,Int32,0x11,0,0,0,Amount of loop info groups
 SaveEventExecFrame,maniac_loop_info,f,Vector<Int32>,0x12,,0,0,"One group of (Current loop count, end loop value) for each identation"
+SaveEventExecState,easyrpg_active,f,Boolean,0xC9,False,0,0,When true state of an event is preserved in easyrpg_string and easyrpg_parameters
+SaveEventExecState,easyrpg_string,f,DBString,0xCA,,0,0,Preserved string data of an event
+SaveEventExecState,easyrpg_parameters,f,Vector<Int32>,0xCB,,0,0,Preserved int parameter of an event
 SavePicture,easyrpg_flip,f,Enum<EasyRpgFlip>,0xC8,0,0,1,How to flip the picture
 SavePicture,easyrpg_blend_mode,f,Int32,0xC9,0,0,1,Blend mode to use for blit. See Bitmap::BlendMode
 SavePicture,easyrpg_type,f,Enum<EasyRpgPictureType>,0xCA,0,0,1,Type of this picture

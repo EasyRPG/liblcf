@@ -737,7 +737,13 @@ namespace LSD_Reader {
 			/**  */
 			keyinput_timed = 0x29,
 			/** Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press. */
-			wait_key_enter = 0x2A
+			wait_key_enter = 0x2A,
+			/**  */
+			easyrpg_active = 0xC9,
+			/**  */
+			easyrpg_string = 0xCA,
+			/**  */
+			easyrpg_parameters = 0xCB
 		};
 	};
 	struct ChunkSaveMapEventBase {
