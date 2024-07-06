@@ -441,7 +441,11 @@ namespace LSD_Reader {
 			/** Mirrors save_count of current map. On mismatch events are not continued after load. */
 			map_save_count = 0x83,
 			/** ? */
-			database_save_count = 0x84
+			database_save_count = 0x84,
+			/** horizontal speed in the scrolls of the screen. */
+			maniac_horizontal_pan_speed = 0x8D,
+			/** vertical speed in the scrolls of the screen. */
+			maniac_vertical_pan_speed = 0x8E
 		};
 	};
 	struct ChunkSaveVehicleLocation {

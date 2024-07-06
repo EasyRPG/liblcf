@@ -412,6 +412,20 @@ static TypedField<rpg::SavePartyLocation, int32_t> static_database_save_count(
 	0,
 	0
 );
+static TypedField<rpg::SavePartyLocation, double> static_maniac_horizontal_pan_speed(
+	&rpg::SavePartyLocation::maniac_horizontal_pan_speed,
+	LSD_Reader::ChunkSavePartyLocation::maniac_horizontal_pan_speed,
+	"maniac_horizontal_pan_speed",
+	0,
+	0
+);
+static TypedField<rpg::SavePartyLocation, double> static_maniac_vertical_pan_speed(
+	&rpg::SavePartyLocation::maniac_vertical_pan_speed,
+	LSD_Reader::ChunkSavePartyLocation::maniac_vertical_pan_speed,
+	"maniac_vertical_pan_speed",
+	0,
+	0
+);
 
 
 template <>
@@ -472,6 +486,8 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_encounter_calling,
 	&static_map_save_count,
 	&static_database_save_count,
+	&static_maniac_horizontal_pan_speed,
+	&static_maniac_vertical_pan_speed,
 	NULL
 };
 
