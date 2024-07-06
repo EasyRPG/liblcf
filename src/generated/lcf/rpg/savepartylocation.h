@@ -71,6 +71,8 @@ namespace rpg {
 		bool encounter_calling = false;
 		int32_t map_save_count = 0;
 		int32_t database_save_count = 0;
+		double maniac_horizontal_pan_speed = 0.0;
+		double maniac_vertical_pan_speed = 0.0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, SavePartyLocation::VehicleType code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -97,7 +99,9 @@ namespace rpg {
 		&& l.total_encounter_rate == r.total_encounter_rate
 		&& l.encounter_calling == r.encounter_calling
 		&& l.map_save_count == r.map_save_count
-		&& l.database_save_count == r.database_save_count;
+		&& l.database_save_count == r.database_save_count
+		&& l.maniac_horizontal_pan_speed == r.maniac_horizontal_pan_speed
+		&& l.maniac_vertical_pan_speed == r.maniac_vertical_pan_speed;
 	}
 
 	inline bool operator!=(const SavePartyLocation& l, const SavePartyLocation& r) {
