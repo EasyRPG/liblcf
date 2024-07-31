@@ -3,6 +3,7 @@ EventCommand,Code,EasyRpg_TriggerEventAt,2002
 EventCommand,Code,EasyRpg_CallMovementAction,2050
 EventCommand,Code,EasyRpg_WaitForSingleMovement,2051
 EventCommand,Code,EasyRpg_AnimateVariable,2052
+EventCommand,Code,EasyRpg_SetInterpreterFlag,2053
 EventCommand,Code,EasyRpg_SpawnMapEvent,2056
 EventCommand,Code,Maniac_GetSaveInfo,3001
 EventCommand,Code,Maniac_Save,3002
