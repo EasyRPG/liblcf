@@ -1,10 +1,15 @@
 Structure,Entry,Value,Index
 EventCommand,Code,EasyRpg_TriggerEventAt,2002
+EventCommand,Code,EasyRpg_SmartMoveRoute,2003
+EventCommand,Code,EasyRpg_SmartStepToward,2004
 EventCommand,Code,EasyRpg_CallMovementAction,2050
 EventCommand,Code,EasyRpg_WaitForSingleMovement,2051
 EventCommand,Code,EasyRpg_AnimateVariable,2052
 EventCommand,Code,EasyRpg_SetInterpreterFlag,2053
-EventCommand,Code,EasyRpg_SpawnMapEvent,2056
+EventCommand,Code,EasyRpg_ProcessJson,2055
+EventCommand,Code,EasyRpg_CloneMapEvent,2056
+EventCommand,Code,EasyRpg_DestroyMapEvent,2057
+EventCommand,Code,EasyRpg_StringPictureMenu,2058
 EventCommand,Code,Maniac_GetSaveInfo,3001
 EventCommand,Code,Maniac_Save,3002
 EventCommand,Code,Maniac_Load,3003
