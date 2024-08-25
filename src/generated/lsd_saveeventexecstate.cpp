@@ -174,6 +174,27 @@ static TypedField<rpg::SaveEventExecState, bool> static_wait_key_enter(
 	0,
 	0
 );
+static TypedField<rpg::SaveEventExecState, bool> static_easyrpg_active(
+	&rpg::SaveEventExecState::easyrpg_active,
+	LSD_Reader::ChunkSaveEventExecState::easyrpg_active,
+	"easyrpg_active",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecState, DBString> static_easyrpg_string(
+	&rpg::SaveEventExecState::easyrpg_string,
+	LSD_Reader::ChunkSaveEventExecState::easyrpg_string,
+	"easyrpg_string",
+	0,
+	0
+);
+static TypedField<rpg::SaveEventExecState, std::vector<int32_t>> static_easyrpg_parameters(
+	&rpg::SaveEventExecState::easyrpg_parameters,
+	LSD_Reader::ChunkSaveEventExecState::easyrpg_parameters,
+	"easyrpg_parameters",
+	0,
+	0
+);
 
 
 template <>
@@ -200,6 +221,9 @@ Field<rpg::SaveEventExecState> const* Struct<rpg::SaveEventExecState>::fields[] 
 	&static_keyinput_2k3up,
 	&static_keyinput_timed,
 	&static_wait_key_enter,
+	&static_easyrpg_active,
+	&static_easyrpg_string,
+	&static_easyrpg_parameters,
 	NULL
 };
 
