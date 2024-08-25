@@ -268,12 +268,16 @@ struct Primitive<int32_t> {
 #ifdef LCF_DEBUG_TRACE
 			fprintf(stderr, "  %d\n", ref);
 #endif
+		} else if (length == 0) {
+			ref = 0;
+#ifdef LCF_DEBUG_TRACE
+			fprintf(stderr, "  %d\n", ref);
+#endif
 		} else {
 			ref = 0;
 			Log::Warning("Invalid integer at %X", stream.Tell());
 			stream.Seek(length, LcfReader::FromCurrent);
 		}
-
 	}
 	static void WriteLcf(const int32_t& ref, LcfWriter& stream) {
 		stream.WriteInt(ref);
