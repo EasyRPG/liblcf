@@ -196,7 +196,7 @@ struct Primitive {
 
 		if (dif != 0) {
 			// Fix incorrect read pointer position
-			Log::Warning("Invalid %s at %" PRIX32 "", typeid(T).name(), stream.Tell());
+			Log::Warning("Invalid Primitive at %" PRIX32 "", stream.Tell());
 			stream.Seek(dif, LcfReader::FromCurrent);
 		}
 	}
