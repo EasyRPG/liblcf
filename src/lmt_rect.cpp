@@ -60,7 +60,7 @@ private:
 	uint32_t* field;
 public:
 	RectXmlHandler(rpg::Rect& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		if (strcmp(name, "l") == 0)
 			field = &ref.l;
 		else if (strcmp(name, "t") == 0)

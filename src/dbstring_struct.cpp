@@ -66,7 +66,7 @@ private:
 public:
 	DbStringXmlHandler(DBString& ref) :
 		ref(ref) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* /* name */, const char** /* atts */) {
 		// no-op
 	}
 	void EndElement(XmlReader& /* stream */, const char* /* name */) {
