@@ -115,7 +115,7 @@ public:
 	FlagsXmlHandler(S& obj) : obj(obj), field(NULL) {
 	}
 
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		const auto idx = Flags<S>::idx(name);
 		if (idx < 0) {
 			Log::Error("XML: Unrecognized field '%s'", name);

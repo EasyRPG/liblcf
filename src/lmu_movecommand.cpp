@@ -146,7 +146,7 @@ private:
 public:
 	MoveCommandXmlHandler(rpg::MoveCommand& ref) :
 		ref(ref), field(NULL), parameter_string(false) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		if (strcmp(name, "command_id") == 0)
 			field = &ref.command_id;
 		else if (strcmp(name, "parameter_a") == 0)

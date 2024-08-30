@@ -65,7 +65,7 @@ private:
 	std::vector<int16_t>* field;
 public:
 	ParametersXmlHandler(rpg::Parameters& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		if (strcmp(name, "maxhp") == 0)
 			field = &ref.maxhp;
 		else if (strcmp(name, "maxsp") == 0)

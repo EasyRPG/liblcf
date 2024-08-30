@@ -74,7 +74,7 @@ private:
 	int16_t* field;
 public:
 	EquipmentXmlHandler(rpg::Equipment& ref) : ref(ref), field(NULL) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		if (strcmp(name, "weapon_id") == 0)
 			field = &ref.weapon_id;
 		else if (strcmp(name, "shield_id") == 0)

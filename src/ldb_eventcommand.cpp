@@ -99,7 +99,7 @@ private:
 	} field;
 public:
 	EventCommandXmlHandler(rpg::EventCommand& ref) : ref(ref), field(None) {}
-	void StartElement(XmlReader& stream, const char* name, const char** /* atts */) {
+	void StartElement(XmlReader& /* stream */, const char* name, const char** /* atts */) {
 		if (strcmp(name, "code") == 0)
 			field = Code;
 		else if (strcmp(name, "indent") == 0)
