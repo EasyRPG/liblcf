@@ -36,6 +36,8 @@ std::ostream& operator<<(std::ostream& os, const SavePartyLocation& obj) {
 	os << ", encounter_calling="<< obj.encounter_calling;
 	os << ", map_save_count="<< obj.map_save_count;
 	os << ", database_save_count="<< obj.database_save_count;
+	os << ", maniac_horizontal_pan_speed="<< obj.maniac_horizontal_pan_speed;
+	os << ", maniac_vertical_pan_speed="<< obj.maniac_vertical_pan_speed;
 	os << "}";
 	return os;
 }
