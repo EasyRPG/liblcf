@@ -135,7 +135,7 @@ Class,attribute_ranks,t,Vector<UInt8>,0x49,,0,0,Integer
 Class,attribute_ranks,f,Vector<UInt8>,0x4A,,1,0,Array - Short
 Class,battle_commands,f,Vector<Ref<BattleCommand:Int32>>,0x50,,1,0,Array - Uint32
 CommonEvent,name,f,DBString,0x01,,0,0,String
-CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,0,0,0,Integer
+CommonEvent,trigger,f,Enum<CommonEvent_Trigger>,0x0B,5,0,0,Integer
 CommonEvent,switch_flag,f,Boolean,0x0C,False,0,0,Flag
 CommonEvent,switch_id,f,Ref<Switch>,0x0D,1,0,0,Integer
 CommonEvent,event_commands,t,Vector<EventCommand>,0x15,,1,0,Integer
