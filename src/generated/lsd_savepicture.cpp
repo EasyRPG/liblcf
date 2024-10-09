@@ -312,14 +312,14 @@ static TypedField<rpg::SavePicture, double> static_maniac_current_magnify_height
 	LSD_Reader::ChunkSavePicture::maniac_current_magnify_height,
 	"maniac_current_magnify_height",
 	0,
-	1
+	0
 );
 static TypedField<rpg::SavePicture, int32_t> static_maniac_finish_magnify_height(
 	&rpg::SavePicture::maniac_finish_magnify_height,
 	LSD_Reader::ChunkSavePicture::maniac_finish_magnify_height,
 	"maniac_finish_magnify_height",
 	0,
-	1
+	0
 );
 
 

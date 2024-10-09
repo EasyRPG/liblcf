@@ -442,9 +442,9 @@ namespace LSD_Reader {
 			map_save_count = 0x83,
 			/** ? */
 			database_save_count = 0x84,
-			/** horizontal speed in the scrolls of the screen. */
+			/** horizontal speed in the scrolls of the screen */
 			maniac_horizontal_pan_speed = 0x8D,
-			/** vertical speed in the scrolls of the screen. */
+			/** vertical speed in the scrolls of the screen */
 			maniac_vertical_pan_speed = 0x8E
 		};
 	};
