@@ -238,7 +238,7 @@ static TypedField<rpg::Enemy, DBBitArray> static_easyrpg_state_set(
 	&rpg::Enemy::easyrpg_state_set,
 	LDB_Reader::ChunkEnemy::easyrpg_state_set,
 	"easyrpg_state_set",
-	1,
+	0,
 	0
 );
 static TypedField<rpg::Enemy, int32_t> static_easyrpg_state_chance(
@@ -258,7 +258,7 @@ static TypedField<rpg::Enemy, DBBitArray> static_easyrpg_attribute_set(
 	&rpg::Enemy::easyrpg_attribute_set,
 	LDB_Reader::ChunkEnemy::easyrpg_attribute_set,
 	"easyrpg_attribute_set",
-	1,
+	0,
 	0
 );
 static TypedField<rpg::Enemy, bool> static_easyrpg_super_guard(

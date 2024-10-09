@@ -324,7 +324,7 @@ static TypedField<rpg::State, DBBitArray> static_easyrpg_immune_states(
 	&rpg::State::easyrpg_immune_states,
 	LDB_Reader::ChunkState::easyrpg_immune_states,
 	"easyrpg_immune_states",
-	1,
+	0,
 	0
 );
 

@@ -301,7 +301,7 @@ static TypedField<rpg::Actor, DBBitArray> static_easyrpg_unarmed_state_set(
 	&rpg::Actor::easyrpg_unarmed_state_set,
 	LDB_Reader::ChunkActor::easyrpg_unarmed_state_set,
 	"easyrpg_unarmed_state_set",
-	1,
+	0,
 	0
 );
 static TypedField<rpg::Actor, int32_t> static_easyrpg_unarmed_state_chance(
@@ -321,7 +321,7 @@ static TypedField<rpg::Actor, DBBitArray> static_easyrpg_unarmed_attribute_set(
 	&rpg::Actor::easyrpg_unarmed_attribute_set,
 	LDB_Reader::ChunkActor::easyrpg_unarmed_attribute_set,
 	"easyrpg_unarmed_attribute_set",
-	1,
+	0,
 	0
 );
 static TypedField<rpg::Actor, bool> static_easyrpg_dual_attack(
