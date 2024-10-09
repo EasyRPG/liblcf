@@ -42,7 +42,7 @@ namespace rpg {
 
 		int ID = 0;
 		DBString name;
-		int32_t trigger = 0;
+		int32_t trigger = 5;
 		bool switch_flag = false;
 		int32_t switch_id = 1;
 		std::vector<EventCommand> event_commands;
