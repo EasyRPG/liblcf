@@ -51,10 +51,10 @@ Actor,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the act
 Actor,easyrpg_ignore_evasion,f,Boolean,0xCD,False,0,0,If the actors unarmed physical attacks ignore evasion
 Actor,easyrpg_unarmed_hit,f,Int32,0xCE,-1,0,0,Hit rate of the actor on unarmed attacks
 Actor,easyrpg_unarmed_state_set,t,DBBitArray,0xCF,,0,0,States inflicted by unarmed normal attacks of the actor
-Actor,easyrpg_unarmed_state_set,f,DBBitArray,0xD0,,1,0,States inflicted by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_state_set,f,DBBitArray,0xD0,,0,0,States inflicted by unarmed normal attacks of the actor
 Actor,easyrpg_unarmed_state_chance,f,Int32,0xD1,0,0,0,State infliction probability by unarmed normal attacks of the actor
 Actor,easyrpg_unarmed_attribute_set,t,DBBitArray,0xD2,,0,0,Attributes used by unarmed normal attacks of the actor
-Actor,easyrpg_unarmed_attribute_set,f,DBBitArray,0xD3,,1,0,Attributes used by unarmed normal attacks of the actor
+Actor,easyrpg_unarmed_attribute_set,f,DBBitArray,0xD3,,0,0,Attributes used by unarmed normal attacks of the actor
 Actor,easyrpg_dual_attack,f,Boolean,0xD4,False,0,0,If the actors unarmed physical attacks hits twice
 Actor,easyrpg_attack_all,f,Boolean,0xD5,False,0,0,If the actors unarmed physical targets the entire enemy party
 Enemy,maniac_unarmed_animation,f,Ref<Animation>,0x0F,1,0,0,Animation for normal enemy attacks (Maniac Patch only)
@@ -65,10 +65,10 @@ Enemy,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the ene
 Enemy,easyrpg_ignore_evasion,f,Boolean,0xCD,False,0,0,If the enemies unarmed physical attacks ignore evasion
 Enemy,easyrpg_hit,f,Int32,0xCE,-1,0,0,Hit rate of the enemy on normal attacks
 Enemy,easyrpg_state_set,t,DBBitArray,0xCF,,0,0,States inflicted by normal attacks of the enemy
-Enemy,easyrpg_state_set,f,DBBitArray,0xD0,,1,0,States inflicted by normal attacks of the enemy
+Enemy,easyrpg_state_set,f,DBBitArray,0xD0,,0,0,States inflicted by normal attacks of the enemy
 Enemy,easyrpg_state_chance,f,Int32,0xD1,0,0,0,State infliction probability by normal attacks of the enemy
 Enemy,easyrpg_attribute_set,t,DBBitArray,0xD2,,0,0,Attributes used by normal attacks of the enemy
-Enemy,easyrpg_attribute_set,f,DBBitArray,0xD3,,1,0,Attributes used by normal attacks of the enemy
+Enemy,easyrpg_attribute_set,f,DBBitArray,0xD3,,0,0,Attributes used by normal attacks of the enemy
 Enemy,easyrpg_super_guard,f,Boolean,0xD4,False,0,0,If the enemies defend action quarters instead of halves HP damage
 Enemy,easyrpg_attack_all,f,Boolean,0xD5,False,0,0,If the enemies unarmed physical targets the entire player party
 Skill,easyrpg_battle2k3_message,f,DBString,0xC9,DBString(kDefaultMessage),0,1,RPG Maker 2003 battle skill start notification
@@ -87,7 +87,7 @@ Skill,easyrpg_hp_cost,f,Int32,0xD5,0,0,0,How much HP does the usage of the skill
 Item,easyrpg_using_message,f,DBString,0xC9,DBString(kDefaultMessage),0,0,Item usage message in battle
 Item,easyrpg_max_count,f,Int32,0xCA,-1,0,0,How many the player can carry of this item
 State,easyrpg_immune_states,t,DBBitArray,0xC8,,0,0,States cleared on infliction by this state
-State,easyrpg_immune_states,f,DBBitArray,0xC9,,1,0,States cleared on infliction by this state
+State,easyrpg_immune_states,f,DBBitArray,0xC9,,0,0,States cleared on infliction by this state
 Terrain,easyrpg_damage_in_percent,f,Boolean,0xC8,False,0,0,If the terrain damage is a percentage
 Terrain,easyrpg_damage_can_kill,f,Boolean,0xC9,False,0,0,If the terrain damage can kill the actors
 Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
