@@ -14,8 +14,8 @@ SaveEventExecState,easyrpg_parameters,f,Vector<Int32>,0xCB,,0,0,Preserved int pa
 SavePicture,easyrpg_flip,f,Enum<EasyRpgFlip>,0xC8,0,0,1,How to flip the picture
 SavePicture,easyrpg_blend_mode,f,Int32,0xC9,0,0,1,Blend mode to use for blit. See Bitmap::BlendMode
 SavePicture,easyrpg_type,f,Enum<EasyRpgPictureType>,0xCA,0,0,1,Type of this picture
-SavePicture,maniac_current_magnify_height,f,Double,0x0A,100.0,0,1,Current zoom level of picture (y direction).
-SavePicture,maniac_finish_magnify_height,f,Int32,0x24,100,0,1,Final zoom level to animate picture to (y direction).
+SavePicture,maniac_current_magnify_height,f,Double,0x0A,100.0,0,0,Current zoom level of picture (y direction).
+SavePicture,maniac_finish_magnify_height,f,Int32,0x24,100,0,0,Final zoom level to animate picture to (y direction).
 SaveEasyRpgWindow,texts,f,Array<SaveEasyRpgText>,0x01,,0,0,Texts to render
 SaveEasyRpgWindow,width,f,Int32,0x02,0,0,0,Window width (px)
 SaveEasyRpgWindow,height,f,Int32,0x03,0,0,0,Window height (px)
