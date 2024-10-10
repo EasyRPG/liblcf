@@ -17,6 +17,9 @@ option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)"
 option(LIBLCF_ENABLE_INSTALL "Whether to add an install target (default: ON)" ${LIBLCF_MAIN_PROJECT})
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
+# Dependencies provided by CMake Presets
+list(APPEND CMAKE_PREFIX_PATH "${LIBLCF_PREFIX_PATH_APPEND}")
+
 # C++17 is required
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

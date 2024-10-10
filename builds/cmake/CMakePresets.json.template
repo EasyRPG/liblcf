@@ -18,7 +18,7 @@
 			"displayName": "Linux",
 			"toolchainFile": "${sourceDir}/builds/cmake/LinuxToolchain.cmake",
 			"cacheVariables": {
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/linux-static"
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/linux-static"
 			}
 		},
 		{
@@ -53,7 +53,7 @@
 			"name": "macos",
 			"displayName": "macOS",
 			"cacheVariables": {
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/osx",
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/osx",
 				"CMAKE_OSX_DEPLOYMENT_TARGET": "10.9"
 			},
 			"condition": {
@@ -68,7 +68,7 @@
 			"toolchainFile": "$env{EASYRPG_BUILDSCRIPTS}/emscripten/emsdk-portable/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
 			"cacheVariables": {
 				"LIBLCF_ENABLE_TOOLS": "OFF",
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/emscripten",
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/emscripten",
 				"CMAKE_FIND_ROOT_PATH": "$env{EASYRPG_BUILDSCRIPTS}/emscripten"
 			}
 		},
@@ -77,7 +77,7 @@
 			"displayName": "Nintendo 3DS",
 			"toolchainFile": "$env{DEVKITPRO}/cmake/3DS.cmake",
 			"cacheVariables": {
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/3ds"
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/3ds"
 			},
 			"inherits": "dkp-user"
 		},
@@ -86,7 +86,7 @@
 			"displayName": "Nintendo Switch",
 			"toolchainFile": "$env{DEVKITPRO}/cmake/Switch.cmake",
 			"cacheVariables": {
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/switch"
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/switch"
 			},
 			"inherits": "dkp-user"
 		},
@@ -95,7 +95,7 @@
 			"displayName": "Nintendo Wii",
 			"toolchainFile": "$env{DEVKITPRO}/cmake/Wii.cmake",
 			"cacheVariables": {
-				"CMAKE_PREFIX_PATH": "$env{EASYRPG_BUILDSCRIPTS}/wii"
+				"LIBLCF_PREFIX_PATH_APPEND": "$env{EASYRPG_BUILDSCRIPTS}/wii"
 			},
 			"inherits": "dkp-user"
 		},
