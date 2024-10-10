@@ -14,9 +14,14 @@
 #include <cstdio>
 #include <cstdlib>
 
-#if LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU == 1
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
+#elif LCF_SUPPORT_ICU == 2
+#	ifndef _WIN32
+#		error "icu.h only supported on Windows"
+#	endif
+#	include <icu.h>
 #else
 #   include <cstdint>
 #endif

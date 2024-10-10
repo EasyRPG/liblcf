@@ -17,6 +17,9 @@ option(LIBLCF_ENABLE_BENCHMARKS "Whether to build the benchmarks (default: OFF)"
 option(LIBLCF_ENABLE_INSTALL "Whether to add an install target (default: ON)" ${LIBLCF_MAIN_PROJECT})
 set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Override CMAKE_DEBUG_POSTFIX.")
 
+# Dependencies provided by CMake Presets
+list(APPEND CMAKE_PREFIX_PATH "${LIBLCF_PREFIX_PATH_APPEND}")
+
 # C++17 is required
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -348,10 +351,23 @@ target_link_libraries(lcf inih::inih)
 # icu
 set(LCF_SUPPORT_ICU 0)
 if(LIBLCF_WITH_ICU)
-	find_package(ICU COMPONENTS i18n uc data REQUIRED)
-	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
-	list(APPEND LIBLCF_DEPS "icu-i18n")
-	set(LCF_SUPPORT_ICU 1)
+	find_package(ICU COMPONENTS i18n uc data)
+	if(ICU_FOUND)
+		target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
+		list(APPEND LIBLCF_DEPS "icu-i18n")
+		set(LCF_SUPPORT_ICU 1)
+	else()
+		if(NOT WIN32)
+			message(FATAL_ERROR "ICU not found. Use LCF_SUPPORT_ICU=0 to disable ICU support (not recommended).")
+		endif()
+
+		message(STATUS "ICU not found. Using the system library.")
+		message(STATUS "This build will only work on Windows 10 Version 1903 (May 2019) and newer!")
+
+		target_link_libraries(lcf icu)
+		set(LCF_SUPPORT_ICU 2)
+		list(APPEND LIBLCF_DEPS "icu")
+	endif()
 endif()
 
 # expat
