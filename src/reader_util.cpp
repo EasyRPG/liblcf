@@ -10,12 +10,16 @@
 #include "lcf/config.h"
 #include "lcf/scope_guard.h"
 
-#if LCF_SUPPORT_ICU
+#if LCF_SUPPORT_ICU == 1
 #   include <unicode/ucsdet.h>
 #   include <unicode/ucnv.h>
 #   include <unicode/normalizer2.h>
-#   include <unicode/unistr.h>
-#   include <unicode/locid.h>
+#   include <unicode/ustring.h>
+#elif LCF_SUPPORT_ICU == 2
+#	ifndef _WIN32
+#		error "icu.h only supported on Windows"
+#	endif
+#	include <icu.h>
 #endif
 
 #ifdef _WIN32
@@ -268,27 +272,74 @@ std::string ReaderUtil::Recode(StringView str_to_encode, StringView source_encod
 }
 
 std::string ReaderUtil::Normalize(StringView str) {
+	if (str.empty()) {
+		return {};
+	}
+
 #if LCF_SUPPORT_ICU
-	icu::UnicodeString uni = icu::UnicodeString(str.data(), str.length(), "utf-8").toLower(icu::Locale::getRoot());
 	UErrorCode err = U_ZERO_ERROR;
-	std::string res;
-	const icu::Normalizer2* norm = icu::Normalizer2::getNFKCInstance(err);
+
+	auto log_warning = [err, &str](const char* func_name) {
+		Log::Error("%s failed while normalizing \"%s\": %s", func_name, std::string(str).c_str(), u_errorName(err));
+		return std::string(str);
+	};
+
+	std::vector<UChar> uni(str.length() + 1); // including \0
+	int32_t uni_length; // length in utf-16
+	u_strFromUTF8Lenient(uni.data(), uni.size(), &uni_length, str.data(), str.length(), &err);
+	if (U_FAILURE(err)) {
+		return log_warning("u_strFromUTF8Lenient");
+	}
+
+	uni_length = u_strToLower(uni.data(), uni.size(), uni.data(), uni_length, "", &err);
+	if (U_FAILURE(err)) {
+		return log_warning("u_strToLower");
+	}
+
+	std::vector<char> res;
+	int res_capac = uni.size() * 4 + 1; // a codepoint in utf-8 is at most 4 bytes
+	res.resize(res_capac);
+
+	const UNormalizer2* norm = unorm2_getNFKCInstance(&err);
 	if (U_FAILURE(err)) {
 		static bool err_reported = false;
 		if (!err_reported) {
-			Log::Warning("Normalizer2::getNFKCInstance failed (%s). \"nrm\" is probably missing in the ICU data file. Unicode normalization will not work!", u_errorName(err));
+			Log::Error("Normalizer2::getNFKCInstance failed (%s). \"nrm\" is probably missing in the ICU data file. Unicode normalization will not work!", u_errorName(err));
 			err_reported = true;
 		}
-		uni.toUTF8String(res);
-		return res;
+		err = U_ZERO_ERROR;
+
+		// error handling: return the lowercased string
+		u_strToUTF8(res.data(), res_capac, &uni_length, uni.data(), uni_length, &err);
+		if (U_FAILURE(err)) {
+			return log_warning("u_strToUTF8 (1)");
+		}
+
+		return std::string(res.data(), uni_length);
 	}
-	icu::UnicodeString f = norm->normalize(uni, err);
+
+	std::vector<UChar> uni_norm(uni_length * 2 + 1); // * 2 for cases where the normalization is larger than the input
+	auto uni_norm_length = unorm2_normalize(norm, uni.data(), uni_length, uni_norm.data(), uni_norm.size(), &err);
+
 	if (U_FAILURE(err)) {
-		uni.toUTF8String(res);
+		log_warning("unorm2_normalize");
+
+		err = U_ZERO_ERROR;
+
+		// error handling: return the lowercased string
+		u_strToUTF8(res.data(), res_capac, &uni_length, uni.data(), uni_length, &err);
+		if (U_FAILURE(err)) {
+			return log_warning("u_strToUTF8 (2)");
+		}
 	} else {
-		f.toUTF8String(res);
+		// success: return the lowercased and normalized string
+		u_strToUTF8(res.data(), res_capac, &uni_length, uni_norm.data(), uni_norm_length, &err);
+		if (U_FAILURE(err)) {
+			return log_warning("u_strToUTF8 (3)");
+		}
 	}
-	return res;
+
+	return std::string(res.data(), uni_length);
 #else
 	auto result = std::string(str);
 	std::transform(result.begin(), result.end(), result.begin(), tolower);

@@ -348,10 +348,23 @@ target_link_libraries(lcf inih::inih)
 # icu
 set(LCF_SUPPORT_ICU 0)
 if(LIBLCF_WITH_ICU)
-	find_package(ICU COMPONENTS i18n uc data REQUIRED)
-	target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
-	list(APPEND LIBLCF_DEPS "icu-i18n")
-	set(LCF_SUPPORT_ICU 1)
+	find_package(ICU COMPONENTS i18n uc data)
+	if(ICU_FOUND)
+		target_link_libraries(lcf ICU::i18n ICU::uc ICU::data)
+		list(APPEND LIBLCF_DEPS "icu-i18n")
+		set(LCF_SUPPORT_ICU 1)
+	else()
+		if(NOT WIN32)
+			message(FATAL_ERROR "ICU not found. Use LCF_SUPPORT_ICU=0 to disable ICU support (not recommended).")
+		endif()
+
+		message(STATUS "ICU not found. Using the system library.")
+		message(STATUS "This build will only work on Windows 10 Version 1903 (May 2019) and newer!")
+
+		target_link_libraries(lcf icu)
+		set(LCF_SUPPORT_ICU 2)
+		list(APPEND LIBLCF_DEPS "icu")
+	endif()
 endif()
 
 # expat
