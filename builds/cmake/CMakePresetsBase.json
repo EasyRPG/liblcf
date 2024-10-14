@@ -17,7 +17,8 @@
 			"displayName": "build Debug",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_BUILD_TYPE": "Debug"
+				"CMAKE_BUILD_TYPE": "Debug",
+				"CMAKE_CONFIGURATION_TYPES": "Debug"
 			}
 		},
 		{
@@ -25,7 +26,8 @@
 			"displayName": "build RelWithDebInfo",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_BUILD_TYPE": "ReleaseWithDebInfo"
+				"CMAKE_BUILD_TYPE": "RelWithDebInfo",
+				"CMAKE_CONFIGURATION_TYPES": "RelWithDebInfo"
 			}
 		},
 		{
@@ -33,7 +35,8 @@
 			"displayName": "build release",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_BUILD_TYPE": "Release"
+				"CMAKE_BUILD_TYPE": "Release",
+				"CMAKE_CONFIGURATION_TYPES": "Release"
 			}
 		},
 		{
