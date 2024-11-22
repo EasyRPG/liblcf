@@ -23,9 +23,13 @@ class ScopeGuard {
 		ScopeGuard(const ScopeGuard&) = delete;
 		ScopeGuard& operator=(const ScopeGuard&) = delete;
 
-		ScopeGuard(ScopeGuard&& o)
+		ScopeGuard(ScopeGuard&& o) noexcept
 			: _f(std::move(o._f)), _active(true) { o._active = false; }
-		ScopeGuard& operator=(ScopeGuard&&) = delete;
+		ScopeGuard& operator=(ScopeGuard&& o) noexcept {
+			_f = std::move(o._f);
+			o._active = false;
+			return *this;
+		};
 
 		~ScopeGuard() { Fire(); }
 
