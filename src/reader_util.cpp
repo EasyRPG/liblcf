@@ -142,13 +142,32 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 		UCharsetDetector* detector = ucsdet_open(&status);
 
 		auto s = std::string(string);
-		ucsdet_setText(detector, s.c_str(), s.length(), &status);
 
+		int confidence = 0;
 		int32_t matches_count;
-		const UCharsetMatch** matches = ucsdet_detectAll(detector, &matches_count, &status);
+		const UCharsetMatch** matches = nullptr;
+
+		while (true) {
+			ucsdet_setText(detector, s.c_str(), s.length(), &status);
+			matches = ucsdet_detectAll(detector, &matches_count, &status);
+
+			if (!matches || matches_count < 1) {
+				break;
+			}
+
+			confidence = ucsdet_getConfidence(matches[0], &status);
+
+			if (confidence > 70 || s.length() > 100) {
+				break;
+			}
+
+			// Concatenating the string to itself increases the confidence (for short strings)
+			s += s;
+		}
 
 		if (matches != nullptr) {
 			// Collect all candidates, most confident comes first
+
 			for (int i = 0; i < matches_count; ++i) {
 				std::string encoding = ucsdet_getName(matches[i], &status);
 
@@ -171,6 +190,8 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 					encodings.emplace_back("ibm-5349_P100-1998"); // Greek with Euro
 				} else if (encoding == "ISO-8859-8" || encoding == "windows-1255") {
 					encodings.emplace_back("ibm-9447_P100-2002"); // Hebrew with Euro
+				} else if (encoding == "UTF-16BE" || encoding == "UTF-16LE") {
+					// ignore encodings that are obviously wrong
 				} else {
 					encodings.push_back(encoding);
 				}
