@@ -77,7 +77,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(lcf::rpg::Database& db) {
 		return ToString(s) + " ";
 	};
 
-	lcf::rpg::ForEachString(db.system, [&](const auto& val, const auto& ctx) {
+	lcf::rpg::ForEachString(db.system, [&](const auto& val, const auto&) {
 		text << append(val);
 	});
 

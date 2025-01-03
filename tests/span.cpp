@@ -36,6 +36,7 @@ TEST_SUITE_BEGIN("Span");
 
 TEST_CASE_TEMPLATE("Construct", T, int, double, std::string) {
 	Span<T> x;
+	(void)x;
 }
 
 TEST_SUITE_END();

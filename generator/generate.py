@@ -467,11 +467,6 @@ def generate():
                         type=filetype
                     ))
 
-    filepath = os.path.join(tmp_dir, 'rpg_enums.cpp')
-
-    with openToRender(filepath) as f:
-        f.write(enums_tmpl.render())
-
     for dirname, subdirlist, filelist in os.walk(tmp_dir, topdown=False):
         subdir = os.path.relpath(dirname, tmp_dir)
 
@@ -534,7 +529,6 @@ def main(argv):
     rpg_header_tmpl = env.get_template('rpg_header.tmpl', globals=globals)
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
-    enums_tmpl = env.get_template('rpg_enums.tmpl', globals=globals)
     fwd_tmpl = env.get_template('fwd.tmpl', globals=globals)
     fwd_struct_tmpl = env.get_template('fwd_struct.tmpl', globals=globals)
 

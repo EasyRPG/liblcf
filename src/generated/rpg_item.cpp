@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/item.h"
 
-constexpr const char* lcf::rpg::Item::kDefaultMessage;
 namespace lcf {
 namespace rpg {
 

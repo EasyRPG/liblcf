@@ -29,7 +29,6 @@ class DBBitProxy {
 
 		constexpr DBBitProxy() = default;
 
-		DBBitProxy& operator=(const DBBitProxy& x) noexcept = default;
 		DBBitProxy& operator=(bool x) noexcept {
 			auto& byte = _base[_idx / CHAR_BIT];
 			auto bit = _idx % CHAR_BIT;

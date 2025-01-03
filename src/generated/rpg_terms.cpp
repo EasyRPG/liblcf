@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/terms.h"
 
-constexpr const char* lcf::rpg::Terms::kDefaultTerm;
 namespace lcf {
 namespace rpg {
 

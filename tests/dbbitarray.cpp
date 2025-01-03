@@ -150,10 +150,6 @@ TEST_CASE("Copy") {
 	REQUIRE_EQ(a, ca);
 	REQUIRE_EQ(b, ca);
 
-	b = b;
-	REQUIRE_EQ(a, ca);
-	REQUIRE_EQ(b, ca);
-
 	DBBitArray c(b);
 	REQUIRE_EQ(a, ca);
 	REQUIRE_EQ(b, ca);
@@ -169,10 +165,6 @@ TEST_CASE("Move") {
 	DBBitArray b = {true};
 
 	b = std::move(a);
-	REQUIRE_EQ(a, n);
-	REQUIRE_EQ(b, ca);
-
-	b = std::move(b);
 	REQUIRE_EQ(a, n);
 	REQUIRE_EQ(b, ca);
 

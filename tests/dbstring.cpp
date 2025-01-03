@@ -23,7 +23,7 @@ TEST_CASE("ConstructDef") {
 }
 
 template <typename T>
-void testConstruct(const T& init) {
+void testConstruct(const T&) {
 }
 
 TEST_CASE_TEMPLATE("Construct", T, StringView, std::string, char*, DBString) {
@@ -121,10 +121,6 @@ TEST_CASE("Copy") {
 	REQUIRE_EQ(a, "a");
 	REQUIRE_EQ(b, "a");
 
-	b = b;
-	REQUIRE_EQ(a, "a");
-	REQUIRE_EQ(b, "a");
-
 	DBString c(b);
 	REQUIRE_EQ(a, "a");
 	REQUIRE_EQ(b, "a");
@@ -136,10 +132,6 @@ TEST_CASE("Move") {
 	DBString b("b");
 
 	b = std::move(a);
-	REQUIRE_EQ(a, "");
-	REQUIRE_EQ(b, "a");
-
-	b = std::move(b);
 	REQUIRE_EQ(a, "");
 	REQUIRE_EQ(b, "a");
 

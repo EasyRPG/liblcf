@@ -122,7 +122,7 @@ inline constexpr const char* EnumTags<E, N>::tag(E etag) const {
 template <typename E, size_t N>
 inline constexpr const char* EnumTags<E, N>::tag(int_type value) const {
 	if (monotonic_from_zero) {
-		if (value < 0 || value >= N) {
+		if (value < 0 || static_cast<size_t>(value) >= N) {
 			return nullptr;
 		} else {
 			return _tags[value].name;
