@@ -1,11 +1,7 @@
 {% include "copyright.tmpl" %}
 // Headers
 #include "lcf/rpg/{{ filename }}.h"
-{% if struct_name in constants -%}
-{%- for name, type, value, comment in constants[struct_name] %}
-constexpr {{ type }} lcf::rpg::{{ struct_name }}::{{ name }};
-{%- endfor %}
-{%- endif %}
+
 namespace lcf {
 namespace rpg {
 {%- for field in fields[struct_name]|field_is_used %}

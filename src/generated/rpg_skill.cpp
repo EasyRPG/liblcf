@@ -12,7 +12,6 @@
 // Headers
 #include "lcf/rpg/skill.h"
 
-constexpr const char* lcf::rpg::Skill::kDefaultMessage;
 namespace lcf {
 namespace rpg {
 

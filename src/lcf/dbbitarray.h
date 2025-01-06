@@ -29,7 +29,6 @@ class DBBitProxy {
 
 		constexpr DBBitProxy() = default;
 
-		DBBitProxy& operator=(const DBBitProxy& x) noexcept = default;
 		DBBitProxy& operator=(bool x) noexcept {
 			auto& byte = _base[_idx / CHAR_BIT];
 			auto bit = _idx % CHAR_BIT;
@@ -92,8 +91,8 @@ class DBBitProxyIterator {
 		DBBitProxyIterator operator--(int) { auto iter = *this; --(*this); return iter; }
 
 		void swap(DBBitProxyIterator& o) {
-			std::swap(_proxy._base, o._base);
-			std::swap(_proxy._idx, o._idx);
+			std::swap(_proxy._base, o._proxy._base);
+			std::swap(_proxy._idx, o._proxy._idx);
 		}
 
 		friend bool operator==(DBBitProxyIterator l, DBBitProxyIterator r) { return l->index() == r->index(); }

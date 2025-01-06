@@ -13,7 +13,6 @@
 namespace lcf {
 
 const DBArrayAlloc::size_type DBArrayAlloc::_empty_buf[2] = { 0, 0 };
-constexpr DBString::size_type DBString::npos;
 
 static ptrdiff_t HeaderSize(size_t align) {
 	return std::max(sizeof(DBArrayAlloc::size_type), align);

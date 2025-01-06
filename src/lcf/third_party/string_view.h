@@ -12,7 +12,7 @@
 #define NONSTD_SV_LITE_H_INCLUDED
 
 #define string_view_lite_MAJOR  1
-#define string_view_lite_MINOR  4
+#define string_view_lite_MINOR  8
 #define string_view_lite_PATCH  0
 
 #define string_view_lite_VERSION  nssv_STRINGIFY(string_view_lite_MAJOR) "." nssv_STRINGIFY(string_view_lite_MINOR) "." nssv_STRINGIFY(string_view_lite_PATCH)
@@ -26,12 +26,22 @@
 #define nssv_STRING_VIEW_NONSTD   1
 #define nssv_STRING_VIEW_STD      2
 
-#if !defined( nssv_CONFIG_SELECT_STRING_VIEW )
-# define nssv_CONFIG_SELECT_STRING_VIEW  ( nssv_HAVE_STD_STRING_VIEW ? nssv_STRING_VIEW_STD : nssv_STRING_VIEW_NONSTD )
+// tweak header support:
+
+#ifdef __has_include
+# if __has_include(<nonstd/string_view.tweak.hpp>)
+#  include <nonstd/string_view.tweak.hpp>
+# endif
+#define nssv_HAVE_TWEAK_HEADER  1
+#else
+#define nssv_HAVE_TWEAK_HEADER  0
+//# pragma message("string_view.hpp: Note: Tweak header not supported.")
 #endif
 
-#if defined( nssv_CONFIG_SELECT_STD_STRING_VIEW ) || defined( nssv_CONFIG_SELECT_NONSTD_STRING_VIEW )
-# error nssv_CONFIG_SELECT_STD_STRING_VIEW and nssv_CONFIG_SELECT_NONSTD_STRING_VIEW are deprecated and removed, please use nssv_CONFIG_SELECT_STRING_VIEW=nssv_STRING_VIEW_...
+// string_view selection and configuration:
+
+#if !defined( nssv_CONFIG_SELECT_STRING_VIEW )
+# define nssv_CONFIG_SELECT_STRING_VIEW  ( nssv_HAVE_STD_STRING_VIEW ? nssv_STRING_VIEW_STD : nssv_STRING_VIEW_NONSTD )
 #endif
 
 #ifndef  nssv_CONFIG_STD_SV_OPERATOR
@@ -55,17 +65,28 @@
 # define nssv_CONFIG_CONVERSION_STD_STRING_FREE_FUNCTIONS  1
 #endif
 
+#ifndef  nssv_CONFIG_NO_STREAM_INSERTION
+# define nssv_CONFIG_NO_STREAM_INSERTION  0
+#endif
+
+#ifndef  nssv_CONFIG_CONSTEXPR11_STD_SEARCH
+# define nssv_CONFIG_CONSTEXPR11_STD_SEARCH  1
+#endif
+
 // Control presence of exception handling (try and auto discover):
 
 #ifndef nssv_CONFIG_NO_EXCEPTIONS
-# if defined(__cpp_exceptions) || defined(__EXCEPTIONS) || defined(_CPPUNWIND)
+# if defined(_MSC_VER)
+#  include <cstddef>    // for _HAS_EXCEPTIONS
+# endif
+# if defined(__cpp_exceptions) || defined(__EXCEPTIONS) || (_HAS_EXCEPTIONS)
 #  define nssv_CONFIG_NO_EXCEPTIONS  0
 # else
 #  define nssv_CONFIG_NO_EXCEPTIONS  1
 # endif
 #endif
 
-// C++ language version detection (C++20 is speculative):
+// C++ language version detection (C++23 is speculative):
 // Note: VC14.0/1900 (VS2015) lacks too much from C++14.
 
 #ifndef   nssv_CPLUSPLUS
@@ -81,7 +102,8 @@
 #define nssv_CPP11_OR_GREATER_ ( nssv_CPLUSPLUS >= 201103L )
 #define nssv_CPP14_OR_GREATER  ( nssv_CPLUSPLUS >= 201402L )
 #define nssv_CPP17_OR_GREATER  ( nssv_CPLUSPLUS >= 201703L )
-#define nssv_CPP20_OR_GREATER  ( nssv_CPLUSPLUS >= 202000L )
+#define nssv_CPP20_OR_GREATER  ( nssv_CPLUSPLUS >= 202002L )
+#define nssv_CPP23_OR_GREATER  ( nssv_CPLUSPLUS >= 202300L )
 
 // use C++17 std::string_view if available and requested:
 
@@ -111,6 +133,8 @@
 // Extensions for std::string:
 
 #if nssv_CONFIG_CONVERSION_STD_STRING_FREE_FUNCTIONS
+
+#include <string>
 
 namespace nonstd {
 
@@ -142,22 +166,22 @@ inline namespace literals {
 inline namespace string_view_literals {
 
 
-constexpr std::string_view operator "" _sv( const char* str, size_t len ) noexcept  // (1)
+constexpr std::string_view operator ""_sv( const char* str, size_t len ) noexcept  // (1)
 {
     return std::string_view{ str, len };
 }
 
-constexpr std::u16string_view operator "" _sv( const char16_t* str, size_t len ) noexcept  // (2)
+constexpr std::u16string_view operator ""_sv( const char16_t* str, size_t len ) noexcept  // (2)
 {
     return std::u16string_view{ str, len };
 }
 
-constexpr std::u32string_view operator "" _sv( const char32_t* str, size_t len ) noexcept  // (3)
+constexpr std::u32string_view operator ""_sv( const char32_t* str, size_t len ) noexcept  // (3)
 {
     return std::u32string_view{ str, len };
 }
 
-constexpr std::wstring_view operator "" _sv( const wchar_t* str, size_t len ) noexcept  // (4)
+constexpr std::wstring_view operator ""_sv( const wchar_t* str, size_t len ) noexcept  // (4)
 {
     return std::wstring_view{ str, len };
 }
@@ -221,16 +245,21 @@ using std::operator<<;
 
 #define nssv_COMPILER_VERSION( major, minor, patch )  ( 10 * ( 10 * (major) + (minor) ) + (patch) )
 
-#if defined(__clang__)
-# define nssv_COMPILER_CLANG_VERSION  nssv_COMPILER_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+#if defined( __apple_build_version__ )
+# define nssv_COMPILER_APPLECLANG_VERSION  nssv_COMPILER_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
+# define nssv_COMPILER_CLANG_VERSION       0
+#elif defined( __clang__ )
+# define nssv_COMPILER_APPLECLANG_VERSION  0
+# define nssv_COMPILER_CLANG_VERSION       nssv_COMPILER_VERSION(__clang_major__, __clang_minor__, __clang_patchlevel__)
 #else
-# define nssv_COMPILER_CLANG_VERSION    0
+# define nssv_COMPILER_APPLECLANG_VERSION  0
+# define nssv_COMPILER_CLANG_VERSION       0
 #endif
 
 #if defined(__GNUC__) && !defined(__clang__)
 # define nssv_COMPILER_GNUC_VERSION  nssv_COMPILER_VERSION(__GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__)
 #else
-# define nssv_COMPILER_GNUC_VERSION    0
+# define nssv_COMPILER_GNUC_VERSION  0
 #endif
 
 // half-open range [lo..hi):
@@ -244,7 +273,7 @@ using std::operator<<;
 # define nssv_HAS_CPP0X  0
 #endif
 
-// Unless defined otherwise below, consider VC14 as C++11 for variant-lite:
+// Unless defined otherwise below, consider VC14 as C++11 for string-view-lite:
 
 #if nssv_COMPILER_MSVC_VER >= 1900
 # undef  nssv_CPP11_OR_GREATER
@@ -266,6 +295,8 @@ using std::operator<<;
 #define nssv_HAVE_CONSTEXPR_11          nssv_CPP11_140
 #define nssv_HAVE_EXPLICIT_CONVERSION   nssv_CPP11_140
 #define nssv_HAVE_INLINE_NAMESPACE      nssv_CPP11_140
+#define nssv_HAVE_IS_DEFAULT            nssv_CPP11_140
+#define nssv_HAVE_IS_DELETE             nssv_CPP11_140
 #define nssv_HAVE_NOEXCEPT              nssv_CPP11_140
 #define nssv_HAVE_NULLPTR               nssv_CPP11_100
 #define nssv_HAVE_REF_QUALIFIER         nssv_CPP11_140
@@ -291,6 +322,45 @@ using std::operator<<;
 // Presence of C++ library features:
 
 #define nssv_HAVE_STD_HASH              nssv_CPP11_120
+
+// Presence of compiler intrinsics:
+
+// Providing char-type specializations for compare() and length() that
+// use compiler intrinsics can improve compile- and run-time performance.
+//
+// The challenge is in using the right combinations of builtin availability
+// and its constexpr-ness.
+//
+// | compiler | __builtin_memcmp (constexpr) | memcmp  (constexpr) |
+// |----------|------------------------------|---------------------|
+// | clang    | 4.0              (>= 4.0   ) | any     (?        ) |
+// | clang-a  | 9.0              (>= 9.0   ) | any     (?        ) |
+// | gcc      | any              (constexpr) | any     (?        ) |
+// | msvc     | >= 14.2 C++17    (>= 14.2  ) | any     (?        ) |
+
+#define nssv_HAVE_BUILTIN_VER     ( (nssv_CPP17_000 && nssv_COMPILER_MSVC_VERSION >= 142) || nssv_COMPILER_GNUC_VERSION > 0 || nssv_COMPILER_CLANG_VERSION >= 400 || nssv_COMPILER_APPLECLANG_VERSION >= 900 )
+#define nssv_HAVE_BUILTIN_CE      (  nssv_HAVE_BUILTIN_VER )
+
+#define nssv_HAVE_BUILTIN_MEMCMP  ( (nssv_HAVE_CONSTEXPR_14 && nssv_HAVE_BUILTIN_CE) || !nssv_HAVE_CONSTEXPR_14 )
+#define nssv_HAVE_BUILTIN_STRLEN  ( (nssv_HAVE_CONSTEXPR_11 && nssv_HAVE_BUILTIN_CE) || !nssv_HAVE_CONSTEXPR_11 )
+
+#ifdef __has_builtin
+# define nssv_HAVE_BUILTIN( x )  __has_builtin( x )
+#else
+# define nssv_HAVE_BUILTIN( x )  0
+#endif
+
+#if nssv_HAVE_BUILTIN(__builtin_memcmp) || nssv_HAVE_BUILTIN_VER
+# define nssv_BUILTIN_MEMCMP  __builtin_memcmp
+#else
+# define nssv_BUILTIN_MEMCMP  memcmp
+#endif
+
+#if nssv_HAVE_BUILTIN(__builtin_strlen) || nssv_HAVE_BUILTIN_VER
+# define nssv_BUILTIN_STRLEN  __builtin_strlen
+#else
+# define nssv_BUILTIN_STRLEN  strlen
+#endif
 
 // C++ feature usage:
 
@@ -350,8 +420,11 @@ using std::operator<<;
 #include <cassert>
 #include <iterator>
 #include <limits>
-#include <ostream>
 #include <string>   // std::char_traits<>
+
+#if ! nssv_CONFIG_NO_STREAM_INSERTION
+# include <ostream>
+#endif
 
 #if ! nssv_CONFIG_NO_EXCEPTIONS
 # include <stdexcept>
@@ -367,9 +440,9 @@ using std::operator<<;
 # pragma clang diagnostic ignored "-Wreserved-user-defined-literal"
 # pragma clang diagnostic push
 # pragma clang diagnostic ignored "-Wuser-defined-literals"
-#elif defined(__GNUC__)
-# pragma  GCC  diagnostic push
-# pragma  GCC  diagnostic ignored "-Wliteral-suffix"
+#elif nssv_COMPILER_GNUC_VERSION >= 480
+#  pragma  GCC  diagnostic push
+#  pragma  GCC  diagnostic ignored "-Wliteral-suffix"
 #endif // __clang__
 
 #if nssv_COMPILER_MSVC_VERSION >= 140
@@ -384,8 +457,8 @@ using std::operator<<;
 
 #if defined(__clang__)
 # define nssv_RESTORE_WARNINGS()  _Pragma("clang diagnostic pop")
-#elif defined(__GNUC__)
-# define nssv_RESTORE_WARNINGS()  _Pragma("GCC diagnostic pop")
+#elif nssv_COMPILER_GNUC_VERSION >= 480
+#  define nssv_RESTORE_WARNINGS()  _Pragma("GCC diagnostic pop")
 #elif nssv_COMPILER_MSVC_VERSION >= 140
 # define nssv_RESTORE_WARNINGS()  __pragma(warning(pop ))
 #else
@@ -405,54 +478,9 @@ nssv_DISABLE_MSVC_WARNINGS( 4455 26481 26472 )
 
 namespace nonstd { namespace sv_lite {
 
-#if nssv_CPP11_OR_GREATER
-
-namespace detail {
-
-#if nssv_CPP14_OR_GREATER
-
-template< typename CharT >
-inline constexpr std::size_t length( CharT * s )
-{
-    std::size_t result = 0;
-    while ( *s++ != '\0' )
-    {
-       ++result;
-    }
-    return result;
-}
-
-#elif defined(__OPTIMIZE__) // nssv_CPP14_OR_GREATER
-
-// gcc, clang provide __OPTIMIZE__
-// Expect tail call optimization to make length() non-recursive:
-
-template< typename CharT >
-inline constexpr std::size_t length( CharT * s, std::size_t result = 0 )
-{
-    return *s == '\0' ? result : length( s + 1, result + 1 );
-}
-
-#else // nssv_CPP14_OR_GREATER
-
-// non-constexpr, non-recursive:
-
-template< typename CharT >
-inline std::size_t length( CharT * s )
-{
-    std::size_t result = 0;
-    while ( *s++ != '\0' )
-    {
-       ++result;
-    }
-    return result;
-}
-
-#endif // nssv_CPP14_OR_GREATER
-
-} // namespace detail
-
-#endif // nssv_CPP11_OR_GREATER
+//
+// basic_string_view declaration:
+//
 
 template
 <
@@ -460,6 +488,120 @@ template
     class Traits = std::char_traits<CharT>
 >
 class basic_string_view;
+
+namespace detail {
+
+// support constexpr comparison in C++14;
+// for C++17 and later, use provided traits:
+
+template< typename CharT >
+inline nssv_constexpr14 int compare( CharT const * s1, CharT const * s2, std::size_t count )
+{
+    while ( count-- != 0 )
+    {
+        if ( *s1 < *s2 ) return -1;
+        if ( *s1 > *s2 ) return +1;
+        ++s1; ++s2;
+    }
+    return 0;
+}
+
+#if nssv_HAVE_BUILTIN_MEMCMP
+
+// specialization of compare() for char, see also generic compare() above:
+
+inline nssv_constexpr14 int compare( char const * s1, char const * s2, std::size_t count )
+{
+    return nssv_BUILTIN_MEMCMP( s1, s2, count );
+}
+
+#endif
+
+#if nssv_HAVE_BUILTIN_STRLEN
+
+// specialization of length() for char, see also generic length() further below:
+
+inline nssv_constexpr std::size_t length( char const * s )
+{
+    return nssv_BUILTIN_STRLEN( s );
+}
+
+#endif
+
+#if defined(__OPTIMIZE__)
+
+// gcc, clang provide __OPTIMIZE__
+// Expect tail call optimization to make length() non-recursive:
+
+template< typename CharT >
+inline nssv_constexpr std::size_t length( CharT * s, std::size_t result = 0 )
+{
+    return *s == '\0' ? result : length( s + 1, result + 1 );
+}
+
+#else // OPTIMIZE
+
+// non-recursive:
+
+template< typename CharT >
+inline nssv_constexpr14 std::size_t length( CharT * s )
+{
+    std::size_t result = 0;
+    while ( *s++ != '\0' )
+    {
+       ++result;
+    }
+    return result;
+}
+
+#endif // OPTIMIZE
+
+#if nssv_CPP11_OR_GREATER && ! nssv_CPP17_OR_GREATER
+#if defined(__OPTIMIZE__)
+
+// gcc, clang provide __OPTIMIZE__
+// Expect tail call optimization to make search() non-recursive:
+
+template< class CharT, class Traits = std::char_traits<CharT> >
+constexpr const CharT* search( basic_string_view<CharT, Traits> haystack, basic_string_view<CharT, Traits> needle )
+{
+    return haystack.starts_with( needle ) ? haystack.begin() :
+        haystack.empty() ? haystack.end() : search( haystack.substr(1), needle );
+}
+
+#else // OPTIMIZE
+
+// non-recursive:
+
+#if nssv_CONFIG_CONSTEXPR11_STD_SEARCH
+
+template< class CharT, class Traits = std::char_traits<CharT> >
+constexpr const CharT* search( basic_string_view<CharT, Traits> haystack, basic_string_view<CharT, Traits> needle )
+{
+    return std::search( haystack.begin(), haystack.end(), needle.begin(), needle.end() );
+}
+
+#else // nssv_CONFIG_CONSTEXPR11_STD_SEARCH
+
+template< class CharT, class Traits = std::char_traits<CharT> >
+nssv_constexpr14 const CharT* search( basic_string_view<CharT, Traits> haystack, basic_string_view<CharT, Traits> needle )
+{
+    while ( needle.size() <= haystack.size() )
+    {
+        if  ( haystack.starts_with(needle) )
+        {
+            return haystack.cbegin();
+        }
+        haystack = basic_string_view<CharT, Traits>{ haystack.begin() + 1, haystack.size() - 1U };
+    }
+    return haystack.cend();
+}
+#endif // nssv_CONFIG_CONSTEXPR11_STD_SEARCH
+
+#endif // OPTIMIZE
+#endif // nssv_CPP11_OR_GREATER && ! nssv_CPP17_OR_GREATER
+
+} // namespace detail
 
 //
 // basic_string_view:
@@ -477,7 +619,6 @@ public:
 
     typedef Traits traits_type;
     typedef CharT  value_type;
-    using char_type = value_type; // <- LIBLCF HACK: to workaround bug in older versions of fmtlib for Player: https://github.com/fmtlib/fmt/issues/1539
 
     typedef CharT       * pointer;
     typedef CharT const * const_pointer;
@@ -487,7 +628,7 @@ public:
     typedef const_pointer iterator;
     typedef const_pointer const_iterator;
     typedef std::reverse_iterator< const_iterator > reverse_iterator;
-    typedef	std::reverse_iterator< const_iterator > const_reverse_iterator;
+    typedef std::reverse_iterator< const_iterator > const_reverse_iterator;
 
     typedef std::size_t     size_type;
     typedef std::ptrdiff_t  difference_type;
@@ -523,6 +664,14 @@ public:
         , size_( Traits::length(s) )
 #endif
     {}
+
+#if  nssv_HAVE_NULLPTR
+# if nssv_HAVE_IS_DELETE
+    nssv_constexpr basic_string_view( std::nullptr_t ) nssv_noexcept = delete;
+# else
+    private: nssv_constexpr basic_string_view( std::nullptr_t ) nssv_noexcept; public:
+# endif
+#endif
 
     // Assignment:
 
@@ -605,9 +754,9 @@ public:
 
     nssv_constexpr14 void swap( basic_string_view & other ) nssv_noexcept
     {
-        using std::swap;
-        swap( data_, other.data_ );
-        swap( size_, other.size_ );
+        const basic_string_view tmp(other);
+        other = *this;
+        *this = tmp;
     }
 
     // 24.4.2.6 String operations:
@@ -646,7 +795,11 @@ public:
 
     nssv_constexpr14 int compare( basic_string_view other ) const nssv_noexcept // (1)
     {
+#if nssv_CPP17_OR_GREATER
         if ( const int result = Traits::compare( data(), other.data(), (std::min)( size(), other.size() ) ) )
+#else
+        if ( const int result = detail::compare( data(), other.data(), (std::min)( size(), other.size() ) ) )
+#endif
         {
             return result;
         }
@@ -721,21 +874,26 @@ public:
     {
         return assert( v.size() == 0 || v.data() != nssv_nullptr )
             , pos >= size()
-            ? npos
-            : to_pos( std::search( cbegin() + pos, cend(), v.cbegin(), v.cend(), Traits::eq ) );
+            ? npos : to_pos(
+#if nssv_CPP11_OR_GREATER && ! nssv_CPP17_OR_GREATER
+                detail::search( substr(pos), v )
+#else
+                std::search( cbegin() + pos, cend(), v.cbegin(), v.cend(), Traits::eq )
+#endif
+            );
     }
 
-    nssv_constexpr14 size_type find( CharT c, size_type pos = 0 ) const nssv_noexcept  // (2)
+    nssv_constexpr size_type find( CharT c, size_type pos = 0 ) const nssv_noexcept  // (2)
     {
         return find( basic_string_view( &c, 1 ), pos );
     }
 
-    nssv_constexpr14 size_type find( CharT const * s, size_type pos, size_type n ) const  // (3)
+    nssv_constexpr size_type find( CharT const * s, size_type pos, size_type n ) const  // (3)
     {
         return find( basic_string_view( s, n ), pos );
     }
 
-    nssv_constexpr14 size_type find( CharT const * s, size_type pos = 0 ) const  // (4)
+    nssv_constexpr size_type find( CharT const * s, size_type pos = 0 ) const  // (4)
     {
         return find( basic_string_view( s ), pos );
     }
@@ -980,37 +1138,37 @@ template< class CharT, class Traits >
 nssv_constexpr bool operator== (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) == 0 ; }
+{ return lhs.size() == rhs.size() && lhs.compare( rhs ) == 0; }
 
 template< class CharT, class Traits >
 nssv_constexpr bool operator!= (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) != 0 ; }
+{ return !( lhs == rhs ); }
 
 template< class CharT, class Traits >
 nssv_constexpr bool operator< (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) < 0 ; }
+{ return lhs.compare( rhs ) < 0; }
 
 template< class CharT, class Traits >
 nssv_constexpr bool operator<= (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) <= 0 ; }
+{ return lhs.compare( rhs ) <= 0; }
 
 template< class CharT, class Traits >
 nssv_constexpr bool operator> (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) > 0 ; }
+{ return lhs.compare( rhs ) > 0; }
 
 template< class CharT, class Traits >
 nssv_constexpr bool operator>= (
     basic_string_view <CharT, Traits> lhs,
     basic_string_view <CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) >= 0 ; }
+{ return lhs.compare( rhs ) >= 0; }
 
 // Let S be basic_string_view<CharT, Traits>, and sv be an instance of S.
 // Implementations shall provide sufficient additional overloads marked
@@ -1019,7 +1177,7 @@ nssv_constexpr bool operator>= (
 
 #if ! nssv_CPP11_OR_GREATER || nssv_BETWEEN( nssv_COMPILER_MSVC_VERSION, 100, 141 )
 
-// accomodate for older compilers:
+// accommodate for older compilers:
 
 // ==
 
@@ -1027,13 +1185,13 @@ template< class CharT, class Traits>
 nssv_constexpr bool operator==(
     basic_string_view<CharT, Traits> lhs,
     CharT const * rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) == 0; }
+{ return lhs.size() == detail::length( rhs ) && lhs.compare( rhs ) == 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator==(
     CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
-{ return rhs.compare( lhs ) == 0; }
+{ return detail::length( lhs ) == rhs.size() && rhs.compare( lhs ) == 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator==(
@@ -1052,38 +1210,38 @@ nssv_constexpr bool operator==(
 template< class CharT, class Traits>
 nssv_constexpr bool operator!=(
     basic_string_view<CharT, Traits> lhs,
-    char const * rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) != 0; }
+    CharT const * rhs ) nssv_noexcept
+{ return !( lhs == rhs ); }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator!=(
-    char const * lhs,
+    CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
-{ return rhs.compare( lhs ) != 0; }
+{ return !( lhs == rhs ); }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator!=(
     basic_string_view<CharT, Traits> lhs,
     std::basic_string<CharT, Traits> rhs ) nssv_noexcept
-{ return lhs.size() != rhs.size() && lhs.compare( rhs ) != 0; }
+{ return !( lhs == rhs ); }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator!=(
     std::basic_string<CharT, Traits> rhs,
     basic_string_view<CharT, Traits> lhs ) nssv_noexcept
-{ return lhs.size() != rhs.size() || rhs.compare( lhs ) != 0; }
+{ return !( lhs == rhs ); }
 
 // <
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator<(
     basic_string_view<CharT, Traits> lhs,
-    char const * rhs ) nssv_noexcept
+    CharT const * rhs ) nssv_noexcept
 { return lhs.compare( rhs ) < 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator<(
-    char const * lhs,
+    CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
 { return rhs.compare( lhs ) > 0; }
 
@@ -1104,12 +1262,12 @@ nssv_constexpr bool operator<(
 template< class CharT, class Traits>
 nssv_constexpr bool operator<=(
     basic_string_view<CharT, Traits> lhs,
-    char const * rhs ) nssv_noexcept
+    CharT const * rhs ) nssv_noexcept
 { return lhs.compare( rhs ) <= 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator<=(
-    char const * lhs,
+    CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
 { return rhs.compare( lhs ) >= 0; }
 
@@ -1130,12 +1288,12 @@ nssv_constexpr bool operator<=(
 template< class CharT, class Traits>
 nssv_constexpr bool operator>(
     basic_string_view<CharT, Traits> lhs,
-    char const * rhs ) nssv_noexcept
+    CharT const * rhs ) nssv_noexcept
 { return lhs.compare( rhs ) > 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator>(
-    char const * lhs,
+    CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
 { return rhs.compare( lhs ) < 0; }
 
@@ -1156,12 +1314,12 @@ nssv_constexpr bool operator>(
 template< class CharT, class Traits>
 nssv_constexpr bool operator>=(
     basic_string_view<CharT, Traits> lhs,
-    char const * rhs ) nssv_noexcept
+    CharT const * rhs ) nssv_noexcept
 { return lhs.compare( rhs ) >= 0; }
 
 template< class CharT, class Traits>
 nssv_constexpr bool operator>=(
-    char const * lhs,
+    CharT const * lhs,
     basic_string_view<CharT, Traits> rhs ) nssv_noexcept
 { return rhs.compare( lhs ) <= 0; }
 
@@ -1181,7 +1339,7 @@ nssv_constexpr bool operator>=(
 
 #define nssv_BASIC_STRING_VIEW_I(T,U)  typename std::decay< basic_string_view<T,U> >::type
 
-#if nssv_BETWEEN( nssv_COMPILER_MSVC_VERSION, 140, 150 )
+#if defined(_MSC_VER)       // issue 40
 # define nssv_MSVC_ORDER(x)  , int=x
 #else
 # define nssv_MSVC_ORDER(x)  /*, int=x*/
@@ -1193,7 +1351,7 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator==(
          basic_string_view  <CharT, Traits> lhs,
     nssv_BASIC_STRING_VIEW_I(CharT, Traits) rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) == 0; }
+{ return lhs.size() == rhs.size() && lhs.compare( rhs ) == 0; }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator==(
@@ -1207,13 +1365,13 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator!= (
          basic_string_view  < CharT, Traits > lhs,
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) rhs ) nssv_noexcept
-{ return lhs.size() != rhs.size() || lhs.compare( rhs ) != 0 ; }
+{ return !( lhs == rhs ); }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator!= (
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) lhs,
          basic_string_view  < CharT, Traits > rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) != 0 ; }
+{ return !( lhs == rhs ); }
 
 // <
 
@@ -1221,13 +1379,13 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator< (
          basic_string_view  < CharT, Traits > lhs,
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) < 0 ; }
+{ return lhs.compare( rhs ) < 0; }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator< (
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) lhs,
          basic_string_view  < CharT, Traits > rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) < 0 ; }
+{ return lhs.compare( rhs ) < 0; }
 
 // <=
 
@@ -1235,13 +1393,13 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator<= (
          basic_string_view  < CharT, Traits > lhs,
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) <= 0 ; }
+{ return lhs.compare( rhs ) <= 0; }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator<= (
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) lhs,
          basic_string_view  < CharT, Traits > rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) <= 0 ; }
+{ return lhs.compare( rhs ) <= 0; }
 
 // >
 
@@ -1249,13 +1407,13 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator> (
          basic_string_view  < CharT, Traits > lhs,
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) > 0 ; }
+{ return lhs.compare( rhs ) > 0; }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator> (
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) lhs,
          basic_string_view  < CharT, Traits > rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) > 0 ; }
+{ return lhs.compare( rhs ) > 0; }
 
 // >=
 
@@ -1263,13 +1421,13 @@ template< class CharT, class Traits  nssv_MSVC_ORDER(1) >
 nssv_constexpr bool operator>= (
          basic_string_view  < CharT, Traits > lhs,
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) >= 0 ; }
+{ return lhs.compare( rhs ) >= 0; }
 
 template< class CharT, class Traits  nssv_MSVC_ORDER(2) >
 nssv_constexpr bool operator>= (
     nssv_BASIC_STRING_VIEW_I( CharT, Traits ) lhs,
          basic_string_view  < CharT, Traits > rhs ) nssv_noexcept
-{ return lhs.compare( rhs ) >= 0 ; }
+{ return lhs.compare( rhs ) >= 0; }
 
 #undef nssv_MSVC_ORDER
 #undef nssv_BASIC_STRING_VIEW_I
@@ -1277,6 +1435,8 @@ nssv_constexpr bool operator>= (
 #endif // compiler-dependent approach to comparisons
 
 // 24.4.4 Inserters and extractors:
+
+#if ! nssv_CONFIG_NO_STREAM_INSERTION
 
 namespace detail {
 
@@ -1292,7 +1452,7 @@ Stream & write_to_stream( Stream & os, View const & sv )
 {
     typename Stream::sentry sentry( os );
 
-    if ( !os )
+    if ( !sentry )
         return os;
 
     const std::streamsize length = static_cast<std::streamsize>( sv.length() );
@@ -1326,6 +1486,8 @@ operator<<(
 {
     return detail::write_to_stream( os, sv );
 }
+
+#endif // nssv_CONFIG_NO_STREAM_INSERTION
 
 // Several typedefs for common character types are provided:
 
@@ -1374,22 +1536,22 @@ nssv_constexpr nonstd::sv_lite::wstring_view operator "" sv( const wchar_t* str,
 
 #if nssv_CONFIG_USR_SV_OPERATOR
 
-nssv_constexpr nonstd::sv_lite::string_view operator "" _sv( const char* str, size_t len ) nssv_noexcept  // (1)
+nssv_constexpr nonstd::sv_lite::string_view operator ""_sv( const char* str, size_t len ) nssv_noexcept  // (1)
 {
     return nonstd::sv_lite::string_view{ str, len };
 }
 
-nssv_constexpr nonstd::sv_lite::u16string_view operator "" _sv( const char16_t* str, size_t len ) nssv_noexcept  // (2)
+nssv_constexpr nonstd::sv_lite::u16string_view operator ""_sv( const char16_t* str, size_t len ) nssv_noexcept  // (2)
 {
     return nonstd::sv_lite::u16string_view{ str, len };
 }
 
-nssv_constexpr nonstd::sv_lite::u32string_view operator "" _sv( const char32_t* str, size_t len ) nssv_noexcept  // (3)
+nssv_constexpr nonstd::sv_lite::u32string_view operator ""_sv( const char32_t* str, size_t len ) nssv_noexcept  // (3)
 {
     return nonstd::sv_lite::u32string_view{ str, len };
 }
 
-nssv_constexpr nonstd::sv_lite::wstring_view operator "" _sv( const wchar_t* str, size_t len ) nssv_noexcept  // (4)
+nssv_constexpr nonstd::sv_lite::wstring_view operator ""_sv( const wchar_t* str, size_t len ) nssv_noexcept  // (4)
 {
     return nonstd::sv_lite::wstring_view{ str, len };
 }
@@ -1475,7 +1637,9 @@ using sv_lite::operator<=;
 using sv_lite::operator>;
 using sv_lite::operator>=;
 
+#if ! nssv_CONFIG_NO_STREAM_INSERTION
 using sv_lite::operator<<;
+#endif
 
 #if nssv_CONFIG_CONVERSION_STD_STRING_FREE_FUNCTIONS
 using sv_lite::to_string;

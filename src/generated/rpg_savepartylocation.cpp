@@ -12,9 +12,6 @@
 // Headers
 #include "lcf/rpg/savepartylocation.h"
 
-constexpr int lcf::rpg::SavePartyLocation::kPanXDefault;
-constexpr int lcf::rpg::SavePartyLocation::kPanYDefault;
-constexpr int lcf::rpg::SavePartyLocation::kPanSpeedDefault;
 namespace lcf {
 namespace rpg {
 
