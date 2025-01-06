@@ -8,7 +8,7 @@ include(MiscUtils)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
-option(LIBLCF_WITH_INIH "INI parsing support, (inih, default: ON)" ON)
+option(LIBLCF_WITH_INIH "INI parsing support (inih, required when building EasyRPG Player, default: ON)" ON)
 option(LIBLCF_WITH_ICU "ICU encoding handling (when disabled only windows-1252 is supported, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
@@ -293,8 +293,6 @@ set(LCF_HEADERS
 	src/lcf/third_party/string_view.h
 )
 
-
-
 set(LCF_SUPPORT_INIH 0)
 if(LIBLCF_WITH_INIH)
 	list(APPEND LCF_SOURCES
@@ -359,6 +357,8 @@ set_property(TARGET lcf PROPERTY EXPORT_NAME liblcf)
 if (LCF_SUPPORT_INIH)
 	find_package(inih REQUIRED)
 	target_link_libraries(lcf inih::inih)
+else()
+	message(STATUS "inih is disabled. This component is required when building EasyRPG Player.")
 endif ()
 
 # icu

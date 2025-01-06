@@ -14,9 +14,9 @@ Documentation is available at the documentation wiki: https://wiki.easyrpg.org
 
 ## Requirements
 
-- [inih] for INI file reading. (required)
+- [inih] for INI file reading. (required when building EasyRPG Player)
 - [Expat] for XML reading support.
-- [ICU] for character encoding detection and conversion (recommended).
+- [ICU] for character encoding detection and conversion (recommended). When disabled only Windows-1252 is supported.
 
 
 ## Source code
