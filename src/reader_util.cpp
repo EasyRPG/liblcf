@@ -206,6 +206,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 	return encodings;
 }
 
+#if LCF_SUPPORT_INIH
 std::string ReaderUtil::GetEncoding(StringView ini_file) {
 	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {
@@ -227,6 +228,7 @@ std::string ReaderUtil::GetEncoding(std::istream& filestream) {
 	}
 	return {};
 }
+#endif
 
 std::string ReaderUtil::GetLocaleEncoding() {
 #ifdef _WIN32
