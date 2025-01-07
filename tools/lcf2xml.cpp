@@ -250,7 +250,7 @@ void PrintReaderError(const std::string data)
 int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine, std::string encoding)
 {
 	std::string path = GetPath(in) + "/";
-#if LCF_SUPPORT_INIH
+#if LCF_SUPPORT_INI
 	if (encoding.empty()) {
 #ifdef _WIN32
 		encoding = lcf::ReaderUtil::GetEncoding(path + "RPG_RT.ini");

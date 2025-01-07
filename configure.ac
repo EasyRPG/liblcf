@@ -36,6 +36,13 @@ AS_IF([test "x$enable_xml" != "xno"],[
 ])
 AM_CONDITIONAL(SUPPORT_XML,[test $LCF_SUPPORT_XML == 1])
 
+AC_SUBST([LCF_SUPPORT_INI],[0])
+AC_ARG_ENABLE([ini],[AS_HELP_STRING([--disable-ini],[Disable INI reading support (inih) [default=no]])])
+AS_IF([test "x$enable_ini" != "xno"],[
+	AX_PKG_CHECK_MODULES([EXPAT],[],[ini >= 2.1],[LCF_SUPPORT_INI=1])
+])
+AM_CONDITIONAL(SUPPORT_INI,[test $LCF_SUPPORT_INI == 1])
+
 # Tools
 AC_ARG_ENABLE([tools],[AS_HELP_STRING([--disable-tools],[Do not build and install the tools [default=no]])])
 AM_CONDITIONAL(ENABLE_TOOLS,[test "x$enable_tools" != "xno"])

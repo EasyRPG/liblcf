@@ -206,7 +206,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 	return encodings;
 }
 
-#if LCF_SUPPORT_INIH
+#if LCF_SUPPORT_INI
 std::string ReaderUtil::GetEncoding(StringView ini_file) {
 	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {

@@ -68,7 +68,7 @@ namespace ReaderUtil {
 	 * @return list of encodings or empty if not detected
 	 */
 	std::vector<std::string> DetectEncodings(StringView string);
-#if LCF_SUPPORT_INIH
+#if LCF_SUPPORT_INI
 	/**
 	 * Returns the encoding set in the ini file.
 	 *
