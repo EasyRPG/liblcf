@@ -21,8 +21,6 @@ LT_INIT([win32-dll])
 AM_CONDITIONAL(CROSS_COMPILING,[test "x$cross_compiling" = "xyes"])
 
 # Checks for libraries.
-AX_PKG_CHECK_MODULES([INIH],[],[inih],[])
-
 AC_SUBST([LCF_SUPPORT_ICU],[0])
 AC_ARG_ENABLE([icu],[AS_HELP_STRING([--disable-icu],[Disable ICU encoding handling (only windows-1252 supported) [default=no]])])
 AS_IF([test "x$enable_icu" != "xno"],[
@@ -39,7 +37,7 @@ AM_CONDITIONAL(SUPPORT_XML,[test $LCF_SUPPORT_XML == 1])
 AC_SUBST([LCF_SUPPORT_INI],[0])
 AC_ARG_ENABLE([ini],[AS_HELP_STRING([--disable-ini],[Disable INI reading support (inih) [default=no]])])
 AS_IF([test "x$enable_ini" != "xno"],[
-	AX_PKG_CHECK_MODULES([EXPAT],[],[ini >= 2.1],[LCF_SUPPORT_INI=1])
+	AX_PKG_CHECK_MODULES([INIH],[],[inih],[LCF_SUPPORT_INI=1])
 ])
 AM_CONDITIONAL(SUPPORT_INI,[test $LCF_SUPPORT_INI == 1])
 

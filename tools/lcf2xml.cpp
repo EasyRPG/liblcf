@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 		std::cerr << "Usage: " << argv[0] << "[--2k] [--2k3] file1 [... fileN]" << std::endl;
 		std::cerr << "\t--2k: Treat files as RPG 2000" << std::endl;
 		std::cerr << "\t--2k3: Treat files as RPG 2003 (default)" << std::endl;
-		std::cerr << "\t--encoding N: Use encoding N as the file encoding" << std::endl; 
+		std::cerr << "\t--encoding N: Use encoding N as the file encoding" << std::endl;
 
 		return 1;
 	}
@@ -250,6 +250,7 @@ void PrintReaderError(const std::string data)
 int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes in_type, lcf::EngineVersion engine, std::string encoding)
 {
 	std::string path = GetPath(in) + "/";
+
 	if (encoding.empty()) {
 #ifdef _WIN32
 		encoding = lcf::ReaderUtil::GetEncoding(path + "RPG_RT.ini");
@@ -275,7 +276,7 @@ int ReaderWriteToFile(const std::string& in, const std::string& out, FileTypes i
 		}
 #endif
 	}
-	
+
 	if (encoding.empty()) {
 		encoding = lcf::ReaderUtil::GetLocaleEncoding();
 	}

@@ -48,7 +48,6 @@ liblcf_la_SOURCES = \
 	src/dbarray.cpp \
 	src/dbstring_struct.cpp \
 	src/encoder.cpp \
-	src/inireader.cpp \
 	src/ldb_equipment.cpp \
 	src/ldb_eventcommand.cpp \
 	src/ldb_parameters.cpp \
@@ -219,7 +218,6 @@ lcfinclude_HEADERS = \
 	src/lcf/encoder.h \
 	src/lcf/enum_tags.h \
 	src/lcf/flag_set.h \
-	src/lcf/inireader.h \
 	src/lcf/log_handler.h \
 	src/lcf/reader_lcf.h \
 	src/lcf/reader_util.h \
@@ -230,6 +228,11 @@ lcfinclude_HEADERS = \
 	src/lcf/string_view.h \
 	src/lcf/writer_lcf.h \
 	src/lcf/writer_xml.h
+
+if SUPPORT_INI
+liblcf_la_SOURCES += src/inireader.cpp
+lcfinclude_HEADERS += src/lcf/inireader.h
+endif
 
 lcfldbinclude_HEADERS = \
 	src/lcf/ldb/reader.h \
