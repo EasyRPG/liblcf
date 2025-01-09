@@ -207,6 +207,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 }
 
 std::string ReaderUtil::GetEncoding(StringView ini_file) {
+#if LCF_SUPPORT_INI
 	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
@@ -214,10 +215,14 @@ std::string ReaderUtil::GetEncoding(StringView ini_file) {
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
+#else
+	Log::Warning("Could not get encoding from ini file, disabled in this liblcf build.");
+#endif
 	return {};
 }
 
 std::string ReaderUtil::GetEncoding(std::istream& filestream) {
+#if LCF_SUPPORT_INI
 	INIReader ini(filestream);
 	if (ini.ParseError() != -1) {
 		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
@@ -225,6 +230,9 @@ std::string ReaderUtil::GetEncoding(std::istream& filestream) {
 			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
 		}
 	}
+#else
+	Log::Warning("Could not get encoding from ini file, disabled in this liblcf build.");
+#endif
 	return {};
 }
 

@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 		std::cerr << "Usage: " << argv[0] << "[--2k] [--2k3] file1 [... fileN]" << std::endl;
 		std::cerr << "\t--2k: Treat files as RPG 2000" << std::endl;
 		std::cerr << "\t--2k3: Treat files as RPG 2003 (default)" << std::endl;
-		std::cerr << "\t--encoding N: Use encoding N as the file encoding" << std::endl; 
+		std::cerr << "\t--encoding N: Use encoding N as the file encoding" << std::endl;
 
 		return 1;
 	}

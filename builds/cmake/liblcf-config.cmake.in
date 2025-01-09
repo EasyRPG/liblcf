@@ -5,7 +5,9 @@ include(CMakeFindDependencyMacro)
 # Required to find our installed Findinih.cmake
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
 
-find_dependency(inih REQUIRED)
+if(@LCF_SUPPORT_INI@)
+	find_dependency(inih REQUIRED)
+endif()
 
 if(@LCF_SUPPORT_ICU@ EQUAL 1)
 	find_dependency(ICU COMPONENTS i18n uc data REQUIRED)

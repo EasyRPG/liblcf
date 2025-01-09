@@ -8,6 +8,7 @@ include(MiscUtils)
 
 # Compilation options
 option(BUILD_SHARED_LIBS "Build shared library, disable for building the static library (default: ON)" ON)
+option(LIBLCF_WITH_INI "INI parsing support (inih, required when building EasyRPG Player, default: ON)" ON)
 option(LIBLCF_WITH_ICU "ICU encoding handling (when disabled only windows-1252 is supported, default: ON)" ON)
 option(LIBLCF_WITH_XML "XML reading support (expat, default: ON)" ON)
 option(LIBLCF_UPDATE_MIMEDB "Whether to run update-mime-database after install (default: ON)" ON)
@@ -30,7 +31,6 @@ set(LCF_SOURCES
 	src/dbarray.cpp
 	src/dbstring_struct.cpp
 	src/encoder.cpp
-	src/inireader.cpp
 	src/ldb_equipment.cpp
 	src/ldb_eventcommand.cpp
 	src/ldb_parameters.cpp
@@ -202,7 +202,6 @@ set(LCF_HEADERS
 	src/lcf/encoder.h
 	src/lcf/enum_tags.h
 	src/lcf/flag_set.h
-	src/lcf/inireader.h
 	src/lcf/ldb/reader.h
 	src/lcf/lmt/reader.h
 	src/lcf/lmu/reader.h
@@ -294,6 +293,17 @@ set(LCF_HEADERS
 	src/lcf/third_party/string_view.h
 )
 
+set(LCF_SUPPORT_INI 0)
+if(LIBLCF_WITH_INI)
+	list(APPEND LCF_SOURCES
+		src/inireader.cpp
+	)
+	list(APPEND LCF_HEADERS
+		src/lcf/inireader.h
+	)
+	set(LCF_SUPPORT_INI 1)
+endif()
+
 add_library(lcf ${LCF_SOURCES} ${LCF_HEADERS})
 
 # IDE source grouping
@@ -344,8 +354,12 @@ set_property(TARGET lcf PROPERTY WINDOWS_EXPORT_ALL_SYMBOLS ON)
 set_property(TARGET lcf PROPERTY EXPORT_NAME liblcf)
 
 # inih
-find_package(inih REQUIRED)
-target_link_libraries(lcf inih::inih)
+if (LCF_SUPPORT_INI)
+	find_package(inih REQUIRED)
+	target_link_libraries(lcf inih::inih)
+else()
+	message(STATUS "inih is disabled. This component is required when building EasyRPG Player.")
+endif ()
 
 # icu
 set(LCF_SUPPORT_ICU 0)

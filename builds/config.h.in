@@ -5,3 +5,6 @@
 
 /* Enable XML reading support (expat) */
 #define LCF_SUPPORT_XML @LCF_SUPPORT_XML@
+
+/* Enable INI reading support (INIH) */
+#define LCF_SUPPORT_INI @LCF_SUPPORT_INI@
