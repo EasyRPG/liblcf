@@ -400,6 +400,9 @@ def is_monotonic_from_0(enum):
         expected += 1
     return True
 
+def is_scoped_enum(enum_name):
+    return enum_name == "Code"
+
 def openToRender(path):
     subdir = os.path.dirname(path)
     if not os.path.exists(subdir):
@@ -531,6 +534,7 @@ def main(argv):
     env.filters["flag_set"] = flag_set
     env.filters["flags_for"] = flags_for
     env.tests['monotonic_from_0'] = is_monotonic_from_0
+    env.tests['scoped_enum'] = is_scoped_enum
     env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array
     env.tests['is_array_of_struct'] = type_is_array_of_struct
