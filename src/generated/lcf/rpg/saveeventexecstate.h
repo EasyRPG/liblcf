@@ -28,6 +28,45 @@ namespace lcf {
 namespace rpg {
 	class SaveEventExecState {
 	public:
+		enum class RuntimeFlags {
+			conf_override_active = 0x01,
+			patch_destiny_on = 0x10,
+			patch_destiny_off = 0x20,
+			patch_dynrpg_on = 0x40,
+			patch_dynrpg_off = 0x80,
+			patch_maniac_on = 0x100,
+			patch_maniac_of = 0x200,
+			patch_common_this_event_on = 0x400,
+			patch_common_this_event_off = 0x800,
+			patch_unlock_pics_on = 0x1000,
+			patch_unlock_pics_off = 0x2000,
+			patch_keypatch_on = 0x4000,
+			patch_keypatch_off = 0x8000,
+			patch_rpg2k3_cmds_on = 0x10000,
+			patch_rpg2k3_cmds_off = 0x20000,
+			use_rpg2k_battle_system_on = 0x40000,
+			use_rpg2k_battle_system_off = 0x80000
+		};
+		static constexpr auto kRuntimeFlagsTags = lcf::EnumTags{
+			RuntimeFlags::conf_override_active, "conf_override_active",
+			RuntimeFlags::patch_destiny_on, "patch_destiny_on",
+			RuntimeFlags::patch_destiny_off, "patch_destiny_off",
+			RuntimeFlags::patch_dynrpg_on, "patch_dynrpg_on",
+			RuntimeFlags::patch_dynrpg_off, "patch_dynrpg_off",
+			RuntimeFlags::patch_maniac_on, "patch_maniac_on",
+			RuntimeFlags::patch_maniac_of, "patch_maniac_of",
+			RuntimeFlags::patch_common_this_event_on, "patch_common_this_event_on",
+			RuntimeFlags::patch_common_this_event_off, "patch_common_this_event_off",
+			RuntimeFlags::patch_unlock_pics_on, "patch_unlock_pics_on",
+			RuntimeFlags::patch_unlock_pics_off, "patch_unlock_pics_off",
+			RuntimeFlags::patch_keypatch_on, "patch_keypatch_on",
+			RuntimeFlags::patch_keypatch_off, "patch_keypatch_off",
+			RuntimeFlags::patch_rpg2k3_cmds_on, "patch_rpg2k3_cmds_on",
+			RuntimeFlags::patch_rpg2k3_cmds_off, "patch_rpg2k3_cmds_off",
+			RuntimeFlags::use_rpg2k_battle_system_on, "use_rpg2k_battle_system_on",
+			RuntimeFlags::use_rpg2k_battle_system_off, "use_rpg2k_battle_system_off"
+		};
+
 		std::vector<SaveEventExecFrame> stack;
 		bool show_message = false;
 		bool abort_on_escape = false;
@@ -50,10 +89,15 @@ namespace rpg {
 		int32_t keyinput_2k3up = 0;
 		bool keyinput_timed = false;
 		bool wait_key_enter = false;
+		uint32_t easyrpg_runtime_flags = 0;
 		bool easyrpg_active = false;
 		DBString easyrpg_string;
 		std::vector<int32_t> easyrpg_parameters;
 	};
+	inline std::ostream& operator<<(std::ostream& os, SaveEventExecState::RuntimeFlags code) {
+		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
+		return os;
+	}
 
 	inline bool operator==(const SaveEventExecState& l, const SaveEventExecState& r) {
 		return l.stack == r.stack
@@ -78,6 +122,7 @@ namespace rpg {
 		&& l.keyinput_2k3up == r.keyinput_2k3up
 		&& l.keyinput_timed == r.keyinput_timed
 		&& l.wait_key_enter == r.wait_key_enter
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags
 		&& l.easyrpg_active == r.easyrpg_active
 		&& l.easyrpg_string == r.easyrpg_string
 		&& l.easyrpg_parameters == r.easyrpg_parameters;
@@ -95,8 +140,8 @@ namespace rpg {
 			const auto ctx1 = Context<SaveEventExecState, ParentCtx>{ "stack", i, &obj, parent_ctx };
 			ForEachString(obj.stack[i], f, &ctx1);
 		}
-		const auto ctx24 = Context<SaveEventExecState, ParentCtx>{ "easyrpg_string", -1, &obj, parent_ctx };
-		f(obj.easyrpg_string, ctx24);
+		const auto ctx25 = Context<SaveEventExecState, ParentCtx>{ "easyrpg_string", -1, &obj, parent_ctx };
+		f(obj.easyrpg_string, ctx25);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

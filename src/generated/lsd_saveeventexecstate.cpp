@@ -174,6 +174,13 @@ static TypedField<rpg::SaveEventExecState, bool> static_wait_key_enter(
 	0,
 	0
 );
+static TypedField<rpg::SaveEventExecState, uint32_t> static_easyrpg_runtime_flags(
+	&rpg::SaveEventExecState::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSaveEventExecState::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 static TypedField<rpg::SaveEventExecState, bool> static_easyrpg_active(
 	&rpg::SaveEventExecState::easyrpg_active,
 	LSD_Reader::ChunkSaveEventExecState::easyrpg_active,
@@ -221,6 +228,7 @@ Field<rpg::SaveEventExecState> const* Struct<rpg::SaveEventExecState>::fields[] 
 	&static_keyinput_2k3up,
 	&static_keyinput_timed,
 	&static_wait_key_enter,
+	&static_easyrpg_runtime_flags,
 	&static_easyrpg_active,
 	&static_easyrpg_string,
 	&static_easyrpg_parameters,

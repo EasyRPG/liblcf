@@ -408,6 +408,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/**  */
+			easyrpg_runtime_flags = 0xC8,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
 			/**  */
@@ -528,6 +530,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/**  */
+			easyrpg_runtime_flags = 0xC8,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
 			/** Which vehicle */
@@ -693,7 +697,9 @@ namespace LSD_Reader {
 			/** Amount of loop info groups */
 			maniac_loop_info_size = 0x11,
 			/** One group of (Current loop count, end loop value) for each identation */
-			maniac_loop_info = 0x12
+			maniac_loop_info = 0x12,
+			/**  */
+			easyrpg_runtime_flags = 0xC8
 		};
 	};
 	struct ChunkSaveEventExecState {
@@ -742,6 +748,8 @@ namespace LSD_Reader {
 			keyinput_timed = 0x29,
 			/** Used for a wait command WaitForKeyInput rm2k3 feature to wait for decision key press. */
 			wait_key_enter = 0x2A,
+			/**  */
+			easyrpg_runtime_flags = 0xC8,
 			/** When true state of an event is preserved in easyrpg_string and easyrpg_parameters */
 			easyrpg_active = 0xC9,
 			/** Preserved string data of an event */
@@ -830,6 +838,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/**  */
+			easyrpg_runtime_flags = 0xC8,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9
 		};
@@ -914,6 +924,8 @@ namespace LSD_Reader {
 			flash_current_level = 0x54,
 			/** int */
 			flash_time_left = 0x55,
+			/**  */
+			easyrpg_runtime_flags = 0xC8,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
 			/** If true; this event is waiting for foreground execution. */

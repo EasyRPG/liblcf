@@ -293,6 +293,13 @@ static TypedField<rpg::SavePartyLocation, int32_t> static_flash_time_left(
 	0,
 	0
 );
+static TypedField<rpg::SavePartyLocation, uint32_t> static_easyrpg_runtime_flags(
+	&rpg::SavePartyLocation::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 static TypedField<rpg::SavePartyLocation, int32_t> static_easyrpg_move_failure_count(
 	&rpg::SavePartyLocation::easyrpg_move_failure_count,
 	LSD_Reader::ChunkSavePartyLocation::easyrpg_move_failure_count,
@@ -469,6 +476,7 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_flash_blue,
 	&static_flash_current_level,
 	&static_flash_time_left,
+	&static_easyrpg_runtime_flags,
 	&static_easyrpg_move_failure_count,
 	&static_boarding,
 	&static_aboard,
