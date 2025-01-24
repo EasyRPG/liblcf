@@ -392,7 +392,7 @@ def type_is_array_of_struct(ty):
 def is_monotonic_from_0(enum):
     expected = 0
     for (val, idx) in enum:
-        if int(idx) != expected:
+        if int(idx, 0) != expected:
             return False
         expected += 1
     return True
