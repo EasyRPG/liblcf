@@ -43,6 +43,7 @@ std::ostream& operator<<(std::ostream& os, const SaveEventExecState& obj) {
 	os << ", keyinput_2k3up="<< obj.keyinput_2k3up;
 	os << ", keyinput_timed="<< obj.keyinput_timed;
 	os << ", wait_key_enter="<< obj.wait_key_enter;
+	os << ", easyrpg_runtime_flags="<< obj.easyrpg_runtime_flags;
 	os << ", easyrpg_active="<< obj.easyrpg_active;
 	os << ", easyrpg_string="<< obj.easyrpg_string;
 	os << ", easyrpg_parameters=";

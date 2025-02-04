@@ -37,9 +37,9 @@ namespace rpg {
 	{% endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
-		enum {% if name == "Code" -%} class {% endif -%} {{ name }} {
+		enum {% if name is scoped_enum -%} class {% endif -%} {{ name }} {
 		{%- for field in enum %}
-			{%- if name != "Code" %}
+			{%- if name is not scoped_enum %}
 			{{ name }}_{{ field.0 }}
 			{%- else %}
 			{{ field.0 }}
@@ -55,7 +55,7 @@ namespace rpg {
 		{%- else %}
 		static constexpr auto k{{ name }}Tags = lcf::EnumTags{
 		{%- for field in enum %}
-			{%- if name != "Code" %}
+			{%- if name is not scoped_enum %}
 			{{ name }}_{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}
 			{%- else %}
 			{{ name }}::{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}

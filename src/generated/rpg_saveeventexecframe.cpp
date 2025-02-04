@@ -39,6 +39,7 @@ std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.maniac_loop_info[i];
 	}
 	os << "]";
+	os << ", easyrpg_runtime_flags="<< obj.easyrpg_runtime_flags;
 	os << "}";
 	return os;
 }

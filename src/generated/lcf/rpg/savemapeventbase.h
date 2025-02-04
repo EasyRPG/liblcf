@@ -67,7 +67,9 @@ namespace rpg {
 		int32_t flash_blue = -1;
 		double flash_current_level = 0.0;
 		int32_t flash_time_left = 0;
+		uint32_t easyrpg_runtime_flags = 0;
 		int32_t easyrpg_move_failure_count = 0;
+		uint32_t easyrpg_clone_map_id = 0;
 	};
 
 	inline bool operator==(const SaveMapEventBase& l, const SaveMapEventBase& r) {
@@ -110,7 +112,9 @@ namespace rpg {
 		&& l.flash_blue == r.flash_blue
 		&& l.flash_current_level == r.flash_current_level
 		&& l.flash_time_left == r.flash_time_left
-		&& l.easyrpg_move_failure_count == r.easyrpg_move_failure_count;
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags
+		&& l.easyrpg_move_failure_count == r.easyrpg_move_failure_count
+		&& l.easyrpg_clone_map_id == r.easyrpg_clone_map_id;
 	}
 
 	inline bool operator!=(const SaveMapEventBase& l, const SaveMapEventBase& r) {
