@@ -100,7 +100,7 @@ liblcf_la_SOURCES = \
 	src/generated/ldb_system.cpp \
 	src/generated/ldb_terms.cpp \
 	src/generated/ldb_terrain.cpp \
-	src/generated/ldb_terrain_flags.h \
+	src/generated/ldb_terrain_special_flags.h \
 	src/generated/ldb_testbattler.cpp \
 	src/generated/ldb_troop.cpp \
 	src/generated/ldb_troopmember.cpp \

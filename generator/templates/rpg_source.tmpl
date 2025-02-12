@@ -1,3 +1,7 @@
+{#
+This template generates the sources (*.cpp) for all the chunks in the "rpg" folder.
+These are files for chunks like Actor, Class and Event.
+-#}
 {% include "copyright.tmpl" %}
 // Headers
 #include "lcf/rpg/{{ filename }}.h"
@@ -8,7 +12,7 @@ namespace rpg {
 {%- if not field.size %}
 {%- if field.type.endswith("_Flags") %}
 
-std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::Flags& obj) {
+std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::{{ field.type }}& obj) {
 	for (size_t i = 0; i < obj.flags.size(); ++i) {
 		os << (i == 0 ? "[" : ", ") << obj.flags[i];
 	}

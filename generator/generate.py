@@ -90,7 +90,7 @@ def cpp_type(ty, prefix=True):
 
     m = re.match(r'(.*)_Flags$', ty)
     if m:
-        ty = m.expand(r'\1::Flags')
+        ty = m.expand(r'\1::\1_Flags')
         if prefix:
             ty = 'rpg::' + ty
         return ty
@@ -148,6 +148,9 @@ def flag_set(field, bit):
         res = False
 
     return str(res).lower()
+
+def flags_for(typ):
+    return flags[typ[:-6]]
 
 def filter_structs_without_codes(structs):
     for struct in structs:
@@ -426,6 +429,8 @@ def generate():
             structs=sorted([x.name for x in structs_flat])
         ))
 
+    flag_fields = []
+
     for filetype, structlist in structs.items():
         for struct in structlist:
             filename = struct.name.lower()
@@ -442,8 +447,8 @@ def generate():
                         type=filetype
                     ))
 
-
-            filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
+            struct_header = os.path.join('lcf', 'rpg', '%s.h' % filename)
+            filepath = os.path.join(tmp_dir, struct_header)
             with openToRender(filepath) as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,
@@ -459,13 +464,30 @@ def generate():
                     filename=filename
                 ))
 
-            if struct.name in flags:
-                filepath = os.path.join(tmp_dir, '%s_%s_flags.h' % (filetype, filename))
+            struct_flag_fields = [s for s in sfields[struct.name] if s.type.endswith("_Flags")]
+            for flag_field in struct_flag_fields:
+                header_file = '%s_%s_%s.h' % (filetype, filename, flag_field.name)
+                filepath = os.path.join(tmp_dir, header_file)
+                flag_fields.append(dict(struct_name=struct.name, struct_header=struct_header, field_name=flag_field.type, flag_header=header_file))
                 with openToRender(filepath) as f:
                     f.write(flags_tmpl.render(
                         struct_name=struct.name,
-                        type=filetype
+                        type=filetype,
+                        flag_name=flag_field.type,
+                        flag_item=flags[flag_field.type[:-6]]
                     ))
+
+    filepath = os.path.join(tmp_dir, 'fwd_flags_impl.h')
+    with openToRender(filepath) as f:
+        f.write(flags_fwd_tmpl.render(
+            flags=flag_fields
+        ))
+
+    filepath = os.path.join(tmp_dir, 'fwd_flags_instance.h')
+    with openToRender(filepath) as f:
+        f.write(flags_instance_tmpl.render(
+            flags=flag_fields
+        ))
 
     for dirname, subdirlist, filelist in os.walk(tmp_dir, topdown=False):
         subdir = os.path.relpath(dirname, tmp_dir)
@@ -486,7 +508,7 @@ def main(argv):
         os.mkdir(dest_dir)
 
     global structs, structs_flat, sfields, enums, flags, functions, constants, headers
-    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
+    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, flags_fwd_tmpl, flags_instance_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
     structs, structs_flat = get_structs('structs.csv', 'structs_easyrpg.csv')
     sfields = get_fields('fields.csv', 'fields_easyrpg.csv')
@@ -507,6 +529,7 @@ def main(argv):
     env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
+    env.filters["flags_for"] = flags_for
     env.tests['monotonic_from_0'] = is_monotonic_from_0
     env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array
@@ -529,6 +552,8 @@ def main(argv):
     rpg_header_tmpl = env.get_template('rpg_header.tmpl', globals=globals)
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
+    flags_fwd_tmpl = env.get_template('flag_fwd.tmpl', globals=globals)
+    flags_instance_tmpl = env.get_template('flag_instance.tmpl', globals=globals)
     fwd_tmpl = env.get_template('fwd.tmpl', globals=globals)
     fwd_struct_tmpl = env.get_template('fwd_struct.tmpl', globals=globals)
 

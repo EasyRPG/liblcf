@@ -1,0 +1,15 @@
+{#
+This template generates "fwd_flags_instance.h" which is included by "reader_flags.cpp"
+to instantiate the templates used by "Flags"
+-#}
+{% include "copyright.tmpl" %}
+
+{%- for flag in flags %}
+#include "{{ flag.flag_header }}"
+{%- endfor %}
+
+namespace lcf {
+{%- for flag in flags %}
+template class Flags<rpg::{{ flag.struct_name }}::{{ flag.field_name }}>;
+{%- endfor %}
+}

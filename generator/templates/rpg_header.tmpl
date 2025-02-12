@@ -1,3 +1,7 @@
+{#
+This template generates the headers (*.h) for all the chunks in the "rpg" folder.
+These are files for chunks like Actor, Class and Event.
+-#}
 {% include "copyright.tmpl" %}
 #ifndef LCF_RPG_{{ struct_name|upper }}_H
 #define LCF_RPG_{{ struct_name|upper }}_H
@@ -74,16 +78,16 @@ namespace rpg {
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 		{%- if field.type.endswith("_Flags") %}
-		struct Flags {
+		struct {{ field.type }} {
 			union {
 				struct {
-				{%- for flag in flags[struct_name] %}
+				{%- for flag in field.type|flags_for %}
 					bool {{ flag.field }};
 				{%- endfor %}
 				};
 				std::array<bool, {{ flags[struct_name]|num_flags }}> flags;
 			};
-			Flags() noexcept
+			{{ field.type }}() noexcept
 			{%- for flag in flags[struct_name] %}
 				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})
 			{%- endfor %}
@@ -107,15 +111,15 @@ namespace rpg {
 	{%- if not field.size %}
 	{%- if field.type.endswith("_Flags") %}
 
-	inline bool operator==(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+	inline bool operator==(const {{ struct_name }}::{{ field.type }}& l, const {{ struct_name }}::{{ field.type }}& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+	inline bool operator!=(const {{ struct_name }}::{{ field.type }}& l, const {{ struct_name }}::{{ field.type }}& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::{{ field.type }}& obj);
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}

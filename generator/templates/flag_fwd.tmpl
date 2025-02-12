@@ -1,0 +1,13 @@
+{#
+This template generates "fwd_flags_impl.h" which is included by "reader_struct.h"
+and is used to declare the templates used by "Flags"
+-#}
+{% include "copyright.tmpl" %}
+
+{%- for flag in flags %}
+#include "{{ flag.struct_header }}"
+{%- endfor %}
+
+{%- for flag in flags %}
+template <> struct lcf::TypeCategory<lcf::rpg::{{ flag.struct_name }}::{{ flag.field_name }}> { static const Category::Index value = Category::Flags; };
+{%- endfor %}
