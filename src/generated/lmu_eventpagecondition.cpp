@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::EventPageCondition>::name = "EventPageCondition";
-static TypedField<rpg::EventPageCondition, rpg::EventPageCondition::Flags> static_flags(
+static TypedField<rpg::EventPageCondition, rpg::EventPageCondition::EventPageCondition_Flags> static_flags(
 	&rpg::EventPageCondition::flags,
 	LMU_Reader::ChunkEventPageCondition::flags,
 	"flags",

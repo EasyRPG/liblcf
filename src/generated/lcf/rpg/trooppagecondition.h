@@ -26,7 +26,7 @@ namespace lcf {
 namespace rpg {
 	class TroopPageCondition {
 	public:
-		struct Flags {
+		struct TroopPageCondition_Flags {
 			union {
 				struct {
 					bool switch_a;
@@ -42,7 +42,7 @@ namespace rpg {
 				};
 				std::array<bool, 10> flags;
 			};
-			Flags() noexcept: switch_a(false), switch_b(false), variable(false), turn(false), fatigue(false), enemy_hp(false), actor_hp(false), turn_enemy(false), turn_actor(false), command_actor(false)
+			TroopPageCondition_Flags() noexcept: switch_a(false), switch_b(false), variable(false), turn(false), fatigue(false), enemy_hp(false), actor_hp(false), turn_enemy(false), turn_actor(false), command_actor(false)
 			{}
 		} flags;
 		int32_t switch_a_id = 1;
@@ -69,15 +69,15 @@ namespace rpg {
 		int32_t command_id = 1;
 	};
 
-	inline bool operator==(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
+	inline bool operator==(const TroopPageCondition::TroopPageCondition_Flags& l, const TroopPageCondition::TroopPageCondition_Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const TroopPageCondition::Flags& l, const TroopPageCondition::Flags& r) {
+	inline bool operator!=(const TroopPageCondition::TroopPageCondition_Flags& l, const TroopPageCondition::TroopPageCondition_Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const TroopPageCondition::Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const TroopPageCondition::TroopPageCondition_Flags& obj);
 
 	inline bool operator==(const TroopPageCondition& l, const TroopPageCondition& r) {
 		return l.flags == r.flags

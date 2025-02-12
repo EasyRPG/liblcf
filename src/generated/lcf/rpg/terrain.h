@@ -74,7 +74,7 @@ namespace rpg {
 		bool background_b_scrollv = false;
 		int32_t background_b_scrollh_speed = 0;
 		int32_t background_b_scrollv_speed = 0;
-		struct Flags {
+		struct Terrain_Flags {
 			union {
 				struct {
 					bool back_party;
@@ -84,7 +84,7 @@ namespace rpg {
 				};
 				std::array<bool, 4> flags;
 			};
-			Flags() noexcept: back_party(false), back_enemies(false), lateral_party(false), lateral_enemies(false)
+			Terrain_Flags() noexcept: back_party(false), back_enemies(false), lateral_party(false), lateral_enemies(false)
 			{}
 		} special_flags;
 		int32_t special_back_party = 15;
@@ -107,15 +107,15 @@ namespace rpg {
 		return os;
 	}
 
-	inline bool operator==(const Terrain::Flags& l, const Terrain::Flags& r) {
+	inline bool operator==(const Terrain::Terrain_Flags& l, const Terrain::Terrain_Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const Terrain::Flags& l, const Terrain::Flags& r) {
+	inline bool operator!=(const Terrain::Terrain_Flags& l, const Terrain::Terrain_Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const Terrain::Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const Terrain::Terrain_Flags& obj);
 
 	inline bool operator==(const Terrain& l, const Terrain& r) {
 		return l.name == r.name

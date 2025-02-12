@@ -21,10 +21,10 @@ namespace lcf {
 // Read TroopPageCondition.
 
 template <>
-char const* const Flags<rpg::TroopPageCondition::Flags>::name = "TroopPageCondition_Flags";
+char const* const Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>::name = "TroopPageCondition_TroopPageCondition_Flags";
 
 template <>
-decltype(Flags<rpg::TroopPageCondition::Flags>::flag_names) Flags<rpg::TroopPageCondition::Flags>::flag_names = {
+decltype(Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>::flag_names) Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>::flag_names = {
 	"switch_a",
 	"switch_b",
 	"variable",
@@ -38,7 +38,7 @@ decltype(Flags<rpg::TroopPageCondition::Flags>::flag_names) Flags<rpg::TroopPage
 };
 
 template <>
-decltype(Flags<rpg::TroopPageCondition::Flags>::flags_is2k3) Flags<rpg::TroopPageCondition::Flags>::flags_is2k3 = {
+decltype(Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>::flags_is2k3) Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>::flags_is2k3 = {
 	0,
 	0,
 	0,
