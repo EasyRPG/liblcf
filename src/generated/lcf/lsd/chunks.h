@@ -410,6 +410,10 @@ namespace LSD_Reader {
 			flash_time_left = 0x55,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
+			/** The original map id of a cloned event */
+			easyrpg_clone_map_id = 0xCA,
+			/** The original event id of a cloned event */
+			easyrpg_clone_event_id = 0xCB,
 			/**  */
 			boarding = 0x65,
 			/**  */
@@ -530,6 +534,10 @@ namespace LSD_Reader {
 			flash_time_left = 0x55,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
+			/** The original map id of a cloned event */
+			easyrpg_clone_map_id = 0xCA,
+			/** The original event id of a cloned event */
+			easyrpg_clone_event_id = 0xCB,
 			/** Which vehicle */
 			vehicle = 0x65,
 			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
@@ -831,7 +839,11 @@ namespace LSD_Reader {
 			/** int */
 			flash_time_left = 0x55,
 			/** Tracks how often the current move operation in a move route failed */
-			easyrpg_move_failure_count = 0xC9
+			easyrpg_move_failure_count = 0xC9,
+			/** The original map id of a cloned event */
+			easyrpg_clone_map_id = 0xCA,
+			/** The original event id of a cloned event */
+			easyrpg_clone_event_id = 0xCB
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -916,6 +928,10 @@ namespace LSD_Reader {
 			flash_time_left = 0x55,
 			/** Tracks how often the current move operation in a move route failed */
 			easyrpg_move_failure_count = 0xC9,
+			/** The original map id of a cloned event */
+			easyrpg_clone_map_id = 0xCA,
+			/** The original event id of a cloned event */
+			easyrpg_clone_event_id = 0xCB,
 			/** If true; this event is waiting for foreground execution. */
 			waiting_execution = 0x65,
 			/** Index of custom move route */
