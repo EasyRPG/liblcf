@@ -85,7 +85,7 @@ namespace rpg {
 					bool {{ flag.field }};
 				{%- endfor %}
 				};
-				std::array<bool, {{ flags[struct_name]|num_flags }}> flags;
+				std::array<bool, {{ field.type|flags_for|length }}> flags;
 			};
 			{{ field.type }}() noexcept
 			{%- for flag in flags[struct_name] %}
