@@ -9,5 +9,5 @@ and is used to declare the templates used by "Flags"
 {%- endfor %}
 
 {%- for flag in flags %}
-template <> struct lcf::TypeCategory<lcf::rpg::{{ flag.struct_name }}::{{ flag.field_name }}> { static const Category::Index value = Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::{{ flag.struct_name }}::{{ flag.field_name }}> { static const lcf::Category::Index value = lcf::Category::Flags; };
 {%- endfor %}

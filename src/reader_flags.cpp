@@ -8,7 +8,6 @@
  */
 
 #include "reader_struct.h"
-#include "fwd_flags_instance.h"
 
 namespace lcf {
 // Templates
@@ -133,5 +132,6 @@ void Flags<S>::BeginXml(S& obj, XmlReader& stream) {
 #pragma warning (disable : 4661)
 #endif
 
-
 } //namespace lcf
+
+#include "fwd_flags_instance.h"

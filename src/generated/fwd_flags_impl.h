@@ -15,9 +15,9 @@
 #include "lcf/rpg/savepicture.h"
 #include "lcf/rpg/saveeasyrpgwindow.h"
 #include "lcf/rpg/saveeasyrpgtext.h"
-template <> struct lcf::TypeCategory<lcf::rpg::TroopPageCondition::TroopPageCondition_Flags> { static const Category::Index value = Category::Flags; };
-template <> struct lcf::TypeCategory<lcf::rpg::Terrain::Terrain_Flags> { static const Category::Index value = Category::Flags; };
-template <> struct lcf::TypeCategory<lcf::rpg::EventPageCondition::EventPageCondition_Flags> { static const Category::Index value = Category::Flags; };
-template <> struct lcf::TypeCategory<lcf::rpg::SavePicture::SavePicture_Flags> { static const Category::Index value = Category::Flags; };
-template <> struct lcf::TypeCategory<lcf::rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags> { static const Category::Index value = Category::Flags; };
-template <> struct lcf::TypeCategory<lcf::rpg::SaveEasyRpgText::SaveEasyRpgText_Flags> { static const Category::Index value = Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::TroopPageCondition::TroopPageCondition_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::Terrain::Terrain_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::EventPageCondition::EventPageCondition_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::SavePicture::SavePicture_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
+template <> struct lcf::TypeCategory<lcf::rpg::SaveEasyRpgText::SaveEasyRpgText_Flags> { static const lcf::Category::Index value = lcf::Category::Flags; };
