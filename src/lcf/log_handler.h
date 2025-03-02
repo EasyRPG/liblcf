@@ -31,7 +31,7 @@ static constexpr auto kLevelTags = lcf::makeEnumTags<Level>(
 );
 
 using UserData = void*;
-using LogHandlerFn = void (*)(Level level, StringView message, UserData userdata);
+using LogHandlerFn = void (*)(Level level, std::string_view message, UserData userdata);
 
 /**
  * Sets the output handler for all lcf logging.

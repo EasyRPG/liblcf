@@ -57,7 +57,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not detected.
 	 */
-	std::string DetectEncoding(StringView data);
+	std::string DetectEncoding(std::string_view data);
 
 	/**
 	 * Detects the encoding of a string based on text analysis.
@@ -67,7 +67,7 @@ namespace ReaderUtil {
 	 *
 	 * @return list of encodings or empty if not detected
 	 */
-	std::vector<std::string> DetectEncodings(StringView string);
+	std::vector<std::string> DetectEncodings(std::string_view string);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -76,7 +76,7 @@ namespace ReaderUtil {
 	 *
 	 * @return encoding or empty string if not found.
 	 */
-	std::string GetEncoding(StringView ini_file);
+	std::string GetEncoding(std::string_view ini_file);
 
 	/**
 	 * Returns the encoding set in the ini file.
@@ -102,7 +102,7 @@ namespace ReaderUtil {
 	 *
 	 * @return the recoded string.
 	 */
-	std::string Recode(StringView str_to_encode, StringView source_encoding);
+	std::string Recode(std::string_view str_to_encode, std::string_view source_encoding);
 
 	/**
 	 * Converts a UTF-8 string to lowercase and then decomposes it.
@@ -110,7 +110,7 @@ namespace ReaderUtil {
 	 * @param str the string to normalize.
 	 * @return the normalized string.
 	 */
-	std::string Normalize(StringView str);
+	std::string Normalize(std::string_view str);
 
 	/**
 	 * Helper function that returns an element from a vector using a 1-based

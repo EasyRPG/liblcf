@@ -131,7 +131,7 @@ protected:
 	template <class ArrayType>
 	void WriteVector(const ArrayType& val);
 
-	void WriteString(StringView s);
+	void WriteString(std::string_view s);
 };
 
 inline bool XmlWriter::Is2k3() const {

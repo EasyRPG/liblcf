@@ -25,32 +25,32 @@ namespace LMT_Reader {
 	/**
 	 * Loads Map Tree.
 	 */
-	std::unique_ptr<lcf::rpg::TreeMap> Load(StringView filename, StringView encoding = "");
+	std::unique_ptr<lcf::rpg::TreeMap> Load(std::string_view filename, std::string_view encoding = "");
 
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(StringView filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::string_view filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine, std::string_view encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.
 	 */
-	bool SaveXml(StringView filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine);
+	bool SaveXml(std::string_view filename, const lcf::rpg::TreeMap& tmap, EngineVersion engine);
 
 	/**
 	 * Loads Map Tree as XML.
 	 */
-	std::unique_ptr<lcf::rpg::TreeMap> LoadXml(StringView filename);
+	std::unique_ptr<lcf::rpg::TreeMap> LoadXml(std::string_view filename);
 
 	/**
 	 * Loads Map Tree.
 	 */
-	std::unique_ptr<lcf::rpg::TreeMap> Load(std::istream& filestream, StringView encoding = "");
+	std::unique_ptr<lcf::rpg::TreeMap> Load(std::istream& filestream, std::string_view encoding = "");
 
 	/**
 	 * Saves Map Tree.
 	 */
-	bool Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const lcf::rpg::TreeMap& tmap, EngineVersion engine, std::string_view encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Map Tree as XML.

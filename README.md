@@ -117,7 +117,7 @@ See the file [COPYING] for copying conditions.
 liblcf includes code of the following 3rd party software:
 
 - [inih] under New BSD license.
-- [string-view-lite] and [span-lite] under Boost Software License, Version 1.0.
+- [span-lite] under Boost Software License, Version 1.0.
 
 See the source code comment headers for license details.
 

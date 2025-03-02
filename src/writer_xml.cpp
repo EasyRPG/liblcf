@@ -70,7 +70,7 @@ void XmlWriter::Write<double>(const double& val) {
 	stream << val;
 }
 
-void XmlWriter::WriteString(StringView val) {
+void XmlWriter::WriteString(std::string_view val) {
 	Indent();
 	for (auto c: val) {
 		switch (c) {

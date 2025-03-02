@@ -41,7 +41,7 @@ void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version, int32_t codepage)
 	save.easyrpg_data.codepage = codepage;
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView encoding) {
+std::unique_ptr<rpg::Save> LSD_Reader::Load(std::string_view filename, std::string_view encoding) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -50,7 +50,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(StringView filename, StringView enco
 	return LSD_Reader::Load(stream, encoding);
 }
 
-bool LSD_Reader::Save(StringView filename, const rpg::Save& save, EngineVersion engine, StringView encoding) {
+bool LSD_Reader::Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -59,7 +59,7 @@ bool LSD_Reader::Save(StringView filename, const rpg::Save& save, EngineVersion 
 	return LSD_Reader::Save(stream, save, engine, encoding);
 }
 
-bool LSD_Reader::SaveXml(StringView filename, const rpg::Save& save, EngineVersion engine) {
+bool LSD_Reader::SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD XML file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
@@ -68,7 +68,7 @@ bool LSD_Reader::SaveXml(StringView filename, const rpg::Save& save, EngineVersi
 	return LSD_Reader::SaveXml(stream, save, engine);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(StringView filename) {
+std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::string_view filename) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD XML file `%s' for reading : %s", ToString(filename).c_str(), strerror(errno));
@@ -77,7 +77,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(StringView filename) {
 	return LSD_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView encoding) {
+std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, std::string_view encoding) {
 	LcfReader reader(filestream, ToString(encoding));
 
 	if (!reader.IsOk()) {
@@ -114,7 +114,7 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, StringView
 	return save;
 }
 
-bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, StringView encoding) {
+bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding) {
 	std::string enc;
 
 	if (save.easyrpg_data.codepage > 0) {

@@ -119,7 +119,7 @@ public:
 	 * @param str_to_encode UTF-8 string to encode.
 	 * @return native version of string.
 	 */
-	std::string Decode(StringView str_to_encode);
+	std::string Decode(std::string_view str_to_encode);
 
 	/** @return true if 2k3 format, false if 2k format */
 	bool Is2k3() const;

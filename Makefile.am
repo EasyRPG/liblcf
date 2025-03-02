@@ -327,8 +327,7 @@ lcfrpginclude_HEADERS = \
 	src/generated/lcf/rpg/variable.h
 
 lcfthirdpartyinclude_HEADERS = \
-	src/lcf/third_party/span.h \
-	src/lcf/third_party/string_view.h
+	src/lcf/third_party/span.h
 
 nodist_lcfinclude_HEADERS = src/lcf/config.h
 

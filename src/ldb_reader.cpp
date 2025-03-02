@@ -23,7 +23,7 @@ void LDB_Reader::PrepareSave(rpg::Database& db) {
 	++db.system.save_count;
 }
 
-std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(StringView filename, StringView encoding) {
+std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(std::string_view filename, std::string_view encoding) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LDB file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -32,7 +32,7 @@ std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(StringView filename, String
 	return LDB_Reader::Load(stream, encoding);
 }
 
-bool LDB_Reader::Save(StringView filename, const lcf::rpg::Database& db, StringView encoding, SaveOpt opt) {
+bool LDB_Reader::Save(std::string_view filename, const lcf::rpg::Database& db, std::string_view encoding, SaveOpt opt) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LDB file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
@@ -41,7 +41,7 @@ bool LDB_Reader::Save(StringView filename, const lcf::rpg::Database& db, StringV
 	return LDB_Reader::Save(stream, db, encoding, opt);
 }
 
-bool LDB_Reader::SaveXml(StringView filename, const lcf::rpg::Database& db) {
+bool LDB_Reader::SaveXml(std::string_view filename, const lcf::rpg::Database& db) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LDB XML file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
@@ -50,7 +50,7 @@ bool LDB_Reader::SaveXml(StringView filename, const lcf::rpg::Database& db) {
 	return LDB_Reader::SaveXml(stream, db);
 }
 
-std::unique_ptr<lcf::rpg::Database> LDB_Reader::LoadXml(StringView filename) {
+std::unique_ptr<lcf::rpg::Database> LDB_Reader::LoadXml(std::string_view filename) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LDB XML file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -59,7 +59,7 @@ std::unique_ptr<lcf::rpg::Database> LDB_Reader::LoadXml(StringView filename) {
 	return LDB_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(std::istream& filestream, StringView encoding) {
+std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(std::istream& filestream, std::string_view encoding) {
 	LcfReader reader(filestream, ToString(encoding));
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse database file.");
@@ -88,7 +88,7 @@ std::unique_ptr<lcf::rpg::Database> LDB_Reader::Load(std::istream& filestream, S
 	return db;
 }
 
-bool LDB_Reader::Save(std::ostream& filestream, const lcf::rpg::Database& db, StringView encoding, SaveOpt opt) {
+bool LDB_Reader::Save(std::ostream& filestream, const lcf::rpg::Database& db, std::string_view encoding, SaveOpt opt) {
 	const auto engine = GetEngineVersion(db);
 	LcfWriter writer(filestream, engine, ToString(encoding));
 	if (!writer.IsOk()) {

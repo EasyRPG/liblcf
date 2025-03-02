@@ -16,7 +16,7 @@
 namespace lcf {
 namespace LogHandler {
 namespace {
-	void DefaultHandler(LogHandler::Level level, StringView message, UserData) {
+	void DefaultHandler(LogHandler::Level level, std::string_view message, UserData) {
 		switch (level) {
 			case Level::Debug:
 				std::cerr << "Debug: ";

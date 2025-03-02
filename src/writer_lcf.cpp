@@ -144,7 +144,7 @@ bool LcfWriter::IsOk() const {
 	return stream.good() && encoder.IsOk();
 }
 
-std::string LcfWriter::Decode(StringView str) {
+std::string LcfWriter::Decode(std::string_view str) {
 	auto copy = std::string(str);
 	encoder.Decode(copy);
 	return copy;
