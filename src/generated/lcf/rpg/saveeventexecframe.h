@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEEVENTEXECFRAME_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <vector>
 #include "lcf/rpg/eventcommand.h"
@@ -38,7 +39,27 @@ namespace rpg {
 		int32_t maniac_event_page_id = 0;
 		int32_t maniac_loop_info_size = 0;
 		std::vector<int32_t> maniac_loop_info;
+		struct EasyRpgFrameRuntime_Flags {
+			union {
+				struct {
+					bool reserved_1;
+				};
+				std::array<bool, 1> flags;
+			};
+			EasyRpgFrameRuntime_Flags() noexcept
+			{}
+		} easyrpg_runtime_flags;
 	};
+
+	inline bool operator==(const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& l, const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& l, const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& r) {
+		return !(l == r);
+	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& obj);
 
 	inline bool operator==(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {
 		return l.commands == r.commands
@@ -50,7 +71,8 @@ namespace rpg {
 		&& l.maniac_event_id == r.maniac_event_id
 		&& l.maniac_event_page_id == r.maniac_event_page_id
 		&& l.maniac_loop_info_size == r.maniac_loop_info_size
-		&& l.maniac_loop_info == r.maniac_loop_info;
+		&& l.maniac_loop_info == r.maniac_loop_info
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags;
 	}
 
 	inline bool operator!=(const SaveEventExecFrame& l, const SaveEventExecFrame& r) {

@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEEVENTEXECSTATE_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <vector>
 #include "lcf/dbstring.h"
@@ -53,7 +54,46 @@ namespace rpg {
 		bool easyrpg_active = false;
 		DBString easyrpg_string;
 		std::vector<int32_t> easyrpg_parameters;
+		struct EasyRpgStateRuntime_Flags {
+			union {
+				struct {
+					bool conf_override_active;
+					bool reserved_1;
+					bool reserved_2;
+					bool reserved_3;
+					bool patch_destiny_on;
+					bool patch_destiny_off;
+					bool patch_dynrpg_on;
+					bool patch_dynrpg_off;
+					bool patch_maniac_on;
+					bool patch_maniac_off;
+					bool patch_common_this_event_on;
+					bool patch_common_this_event_off;
+					bool patch_unlock_pics_on;
+					bool patch_unlock_pics_off;
+					bool patch_keypatch_on;
+					bool patch_keypatch_off;
+					bool patch_rpg2k3_cmds_on;
+					bool patch_rpg2k3_cmds_off;
+					bool use_rpg2k_battle_system_on;
+					bool use_rpg2k_battle_system_off;
+				};
+				std::array<bool, 20> flags;
+			};
+			EasyRpgStateRuntime_Flags() noexcept
+			{}
+		} easyrpg_runtime_flags;
 	};
+
+	inline bool operator==(const SaveEventExecState::EasyRpgStateRuntime_Flags& l, const SaveEventExecState::EasyRpgStateRuntime_Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const SaveEventExecState::EasyRpgStateRuntime_Flags& l, const SaveEventExecState::EasyRpgStateRuntime_Flags& r) {
+		return !(l == r);
+	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveEventExecState::EasyRpgStateRuntime_Flags& obj);
 
 	inline bool operator==(const SaveEventExecState& l, const SaveEventExecState& r) {
 		return l.stack == r.stack
@@ -80,7 +120,8 @@ namespace rpg {
 		&& l.wait_key_enter == r.wait_key_enter
 		&& l.easyrpg_active == r.easyrpg_active
 		&& l.easyrpg_string == r.easyrpg_string
-		&& l.easyrpg_parameters == r.easyrpg_parameters;
+		&& l.easyrpg_parameters == r.easyrpg_parameters
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags;
 	}
 
 	inline bool operator!=(const SaveEventExecState& l, const SaveEventExecState& r) {

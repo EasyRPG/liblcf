@@ -414,6 +414,8 @@ namespace LSD_Reader {
 			easyrpg_clone_map_id = 0xCA,
 			/** The original event id of a cloned event */
 			easyrpg_clone_event_id = 0xCB,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC,
 			/**  */
 			boarding = 0x65,
 			/**  */
@@ -538,6 +540,8 @@ namespace LSD_Reader {
 			easyrpg_clone_map_id = 0xCA,
 			/** The original event id of a cloned event */
 			easyrpg_clone_event_id = 0xCB,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC,
 			/** Which vehicle */
 			vehicle = 0x65,
 			/** From 0 to 255 - In flying vehicles; remaining distance to ascend */
@@ -701,7 +705,9 @@ namespace LSD_Reader {
 			/** Amount of loop info groups */
 			maniac_loop_info_size = 0x11,
 			/** One group of (Current loop count, end loop value) for each identation */
-			maniac_loop_info = 0x12
+			maniac_loop_info = 0x12,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC
 		};
 	};
 	struct ChunkSaveEventExecState {
@@ -755,7 +761,9 @@ namespace LSD_Reader {
 			/** Preserved string data of an event */
 			easyrpg_string = 0xCA,
 			/** Preserved int parameter of an event */
-			easyrpg_parameters = 0xCB
+			easyrpg_parameters = 0xCB,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC
 		};
 	};
 	struct ChunkSaveMapEventBase {
@@ -843,7 +851,9 @@ namespace LSD_Reader {
 			/** The original map id of a cloned event */
 			easyrpg_clone_map_id = 0xCA,
 			/** The original event id of a cloned event */
-			easyrpg_clone_event_id = 0xCB
+			easyrpg_clone_event_id = 0xCB,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC
 		};
 	};
 	struct ChunkSaveMapEvent {
@@ -932,6 +942,8 @@ namespace LSD_Reader {
 			easyrpg_clone_map_id = 0xCA,
 			/** The original event id of a cloned event */
 			easyrpg_clone_event_id = 0xCB,
+			/** Runtime changes to the engine config */
+			easyrpg_runtime_flags = 0xCC,
 			/** If true; this event is waiting for foreground execution. */
 			waiting_execution = 0x65,
 			/** Index of custom move route */

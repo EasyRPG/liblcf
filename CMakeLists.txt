@@ -41,8 +41,8 @@ set(LCF_SOURCES
 	src/lmu_movecommand.cpp
 	src/lmu_reader.cpp
 	src/log.h
-	src/lsd_reader.cpp
 	src/log_handler.cpp
+	src/lsd_reader.cpp
 	src/reader_flags.cpp
 	src/reader_lcf.cpp
 	src/reader_struct.h
@@ -54,6 +54,8 @@ set(LCF_SOURCES
 	src/saveopt.cpp
 	src/writer_lcf.cpp
 	src/writer_xml.cpp
+	src/generated/fwd_flags_impl.h
+	src/generated/fwd_flags_instance.h
 	src/generated/fwd_struct_impl.h
 	src/generated/ldb_actor.cpp
 	src/generated/ldb_animation.cpp
@@ -109,10 +111,13 @@ set(LCF_SOURCES
 	src/generated/lsd_saveeasyrpgwindow.cpp
 	src/generated/lsd_saveeasyrpgwindow_flags.h
 	src/generated/lsd_saveeventexecframe.cpp
+	src/generated/lsd_saveeventexecframe_easyrpg_runtime_flags.h
 	src/generated/lsd_saveeventexecstate.cpp
+	src/generated/lsd_saveeventexecstate_easyrpg_runtime_flags.h
 	src/generated/lsd_saveinventory.cpp
 	src/generated/lsd_savemapevent.cpp
 	src/generated/lsd_savemapeventbase.cpp
+	src/generated/lsd_savemapeventbase_easyrpg_runtime_flags.h
 	src/generated/lsd_savemapinfo.cpp
 	src/generated/lsd_savepanorama.cpp
 	src/generated/lsd_savepartylocation.cpp
@@ -205,8 +210,8 @@ set(LCF_HEADERS
 	src/lcf/ldb/reader.h
 	src/lcf/lmt/reader.h
 	src/lcf/lmu/reader.h
-	src/lcf/lsd/reader.h
 	src/lcf/log_handler.h
+	src/lcf/lsd/reader.h
 	src/lcf/reader_lcf.h
 	src/lcf/reader_util.h
 	src/lcf/reader_xml.h

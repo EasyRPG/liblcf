@@ -195,6 +195,13 @@ static TypedField<rpg::SaveEventExecState, std::vector<int32_t>> static_easyrpg_
 	0,
 	0
 );
+static TypedField<rpg::SaveEventExecState, rpg::SaveEventExecState::EasyRpgStateRuntime_Flags> static_easyrpg_runtime_flags(
+	&rpg::SaveEventExecState::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSaveEventExecState::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 
 
 template <>
@@ -224,6 +231,7 @@ Field<rpg::SaveEventExecState> const* Struct<rpg::SaveEventExecState>::fields[] 
 	&static_easyrpg_active,
 	&static_easyrpg_string,
 	&static_easyrpg_parameters,
+	&static_easyrpg_runtime_flags,
 	NULL
 };
 
