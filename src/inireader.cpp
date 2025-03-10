@@ -124,10 +124,18 @@ long INIReader::GetInteger(std::string_view section, std::string_view name, long
 
 double INIReader::GetReal(std::string_view section, std::string_view name, double default_value) const
 {
+	std::string valstr = std::string(Get(section, name, ""));
+	const char* value = valstr.c_str();
+	char* end;
+	double n = strtod(value, &end);
+	return end > value ? n : default_value;
+/*
+	// FIXME: std::from_chars<double> not supported by clang and old g++ versions
 	std::string_view valstr = Get(section, name, "");
 	double n;
 	auto ec = std::from_chars(valstr.data(), valstr.data() + valstr.size(), n).ec;
 	return ec == std::errc() ? n : default_value;
+*/
 }
 
 bool INIReader::GetBoolean(std::string_view section, std::string_view name, bool default_value) const
