@@ -88,7 +88,7 @@ namespace rpg {
 				std::array<bool, {{ field.type|flags_for|length }}> flags;
 			};
 			{{ field.type }}() noexcept
-			{%- for flag in flags[struct_name] %}
+			{%- for flag in field.type|flags_for %}
 				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})
 			{%- endfor %}
 			{}

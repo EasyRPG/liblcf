@@ -78,7 +78,7 @@ namespace rpg {
 				};
 				std::array<bool, 1> flags;
 			};
-			EasyRpgEventRuntime_Flags() noexcept
+			EasyRpgEventRuntime_Flags() noexcept: reserved_1(false)
 			{}
 		} easyrpg_runtime_flags;
 	};

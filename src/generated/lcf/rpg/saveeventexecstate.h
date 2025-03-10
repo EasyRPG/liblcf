@@ -80,7 +80,7 @@ namespace rpg {
 				};
 				std::array<bool, 20> flags;
 			};
-			EasyRpgStateRuntime_Flags() noexcept
+			EasyRpgStateRuntime_Flags() noexcept: conf_override_active(false), reserved_1(false), reserved_2(false), reserved_3(false), patch_destiny_on(false), patch_destiny_off(false), patch_dynrpg_on(false), patch_dynrpg_off(false), patch_maniac_on(false), patch_maniac_off(false), patch_common_this_event_on(false), patch_common_this_event_off(false), patch_unlock_pics_on(false), patch_unlock_pics_off(false), patch_keypatch_on(false), patch_keypatch_off(false), patch_rpg2k3_cmds_on(false), patch_rpg2k3_cmds_off(false), use_rpg2k_battle_system_on(false), use_rpg2k_battle_system_off(false)
 			{}
 		} easyrpg_runtime_flags;
 	};
