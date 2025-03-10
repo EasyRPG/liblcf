@@ -210,9 +210,9 @@ std::string ReaderUtil::GetEncoding(std::string_view ini_file) {
 #if LCF_SUPPORT_INI
 	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {
-		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
+		auto encoding = ini.Get("EasyRPG", "Encoding", "");
 		if (!encoding.empty()) {
-			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
+			return ReaderUtil::CodepageToEncoding(atoi(std::string(encoding).c_str()));
 		}
 	}
 #else
@@ -225,9 +225,9 @@ std::string ReaderUtil::GetEncoding(std::istream& filestream) {
 #if LCF_SUPPORT_INI
 	INIReader ini(filestream);
 	if (ini.ParseError() != -1) {
-		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
+		auto encoding = ini.Get("EasyRPG", "Encoding", "");
 		if (!encoding.empty()) {
-			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
+			return ReaderUtil::CodepageToEncoding(atoi(std::string(encoding).c_str()));
 		}
 	}
 #else

@@ -45,7 +45,7 @@ class Encoder {
 
 		bool IsOk() const;
 
-		const std::string& GetEncoding() const;
+		std::string_view GetEncoding() const;
 	private:
 #if LCF_SUPPORT_ICU
 		void Init();
@@ -67,7 +67,7 @@ class Encoder {
 };
 
 
-inline const std::string& Encoder::GetEncoding() const {
+inline std::string_view Encoder::GetEncoding() const {
 	return _encoding;
 }
 
