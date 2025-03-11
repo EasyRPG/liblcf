@@ -13,8 +13,22 @@ if(@LCF_SUPPORT_ICU@ EQUAL 1)
 	find_dependency(ICU COMPONENTS i18n uc data REQUIRED)
 endif()
 
-if(@LCF_SUPPORT_XML@)
+if(@LCF_SUPPORT_XML@ EQUAL 1)
 	find_dependency(expat CONFIG REQUIRED)
+elseif(@LCF_SUPPORT_XML@ EQUAL 2)
+	# Fallback to old expat detection
+	find_dependency(EXPAT REQUIRED)
+endif()
+
+## Create aliases for common expat target names
+# The config file creates expat::expat
+if (TARGET expat::expat AND NOT TARGET EXPAT::EXPAT)
+	add_library(EXPAT::EXPAT ALIAS expat::expat)
+endif()
+
+# The find module creates EXPAT::EXPAT
+if (TARGET EXPAT::EXPAT AND NOT TARGET expat::expat)
+	add_library(expat::expat ALIAS EXPAT::EXPAT)
 endif()
 
 include(${CMAKE_CURRENT_LIST_DIR}/liblcf-targets.cmake)
