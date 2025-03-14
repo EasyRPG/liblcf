@@ -34,7 +34,7 @@ namespace rpg {
 		int32_t font_size = 12;
 		int32_t letter_spacing = 0;
 		int32_t line_spacing = 4;
-		struct SaveEasyRpgText_Flags {
+		struct Flags {
 			union {
 				struct {
 					bool draw_gradient;
@@ -44,20 +44,20 @@ namespace rpg {
 				};
 				std::array<bool, 4> flags;
 			};
-			SaveEasyRpgText_Flags() noexcept: draw_gradient(true), draw_shadow(true), bold(false), italic(false)
+			Flags() noexcept: draw_gradient(true), draw_shadow(true), bold(false), italic(false)
 			{}
 		} flags;
 	};
 
-	inline bool operator==(const SaveEasyRpgText::SaveEasyRpgText_Flags& l, const SaveEasyRpgText::SaveEasyRpgText_Flags& r) {
+	inline bool operator==(const SaveEasyRpgText::Flags& l, const SaveEasyRpgText::Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const SaveEasyRpgText::SaveEasyRpgText_Flags& l, const SaveEasyRpgText::SaveEasyRpgText_Flags& r) {
+	inline bool operator!=(const SaveEasyRpgText::Flags& l, const SaveEasyRpgText::Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgText::SaveEasyRpgText_Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgText::Flags& obj);
 
 	inline bool operator==(const SaveEasyRpgText& l, const SaveEasyRpgText& r) {
 		return l.text == r.text

@@ -181,7 +181,7 @@ static TypedField<rpg::Terrain, int32_t> static_background_b_scrollv_speed(
 	0,
 	1
 );
-static TypedField<rpg::Terrain, rpg::Terrain::Terrain_Flags> static_special_flags(
+static TypedField<rpg::Terrain, rpg::Terrain::Flags> static_special_flags(
 	&rpg::Terrain::special_flags,
 	LDB_Reader::ChunkTerrain::special_flags,
 	"special_flags",

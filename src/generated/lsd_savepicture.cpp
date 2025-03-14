@@ -188,7 +188,7 @@ static TypedField<rpg::SavePicture, int32_t> static_battle_layer(
 	0,
 	0
 );
-static TypedField<rpg::SavePicture, rpg::SavePicture::SavePicture_Flags> static_flags(
+static TypedField<rpg::SavePicture, rpg::SavePicture::Flags> static_flags(
 	&rpg::SavePicture::flags,
 	LSD_Reader::ChunkSavePicture::flags,
 	"flags",

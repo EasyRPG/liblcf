@@ -55,7 +55,7 @@ static TypedField<rpg::SaveEasyRpgWindow, int32_t> static_message_stretch(
 	0,
 	0
 );
-static TypedField<rpg::SaveEasyRpgWindow, rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags> static_flags(
+static TypedField<rpg::SaveEasyRpgWindow, rpg::SaveEasyRpgWindow::Flags> static_flags(
 	&rpg::SaveEasyRpgWindow::flags,
 	LSD_Reader::ChunkSaveEasyRpgWindow::flags,
 	"flags",

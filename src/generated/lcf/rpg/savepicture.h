@@ -128,7 +128,7 @@ namespace rpg {
 		bool spritesheet_play_once = false;
 		int32_t map_layer = 7;
 		int32_t battle_layer = 0;
-		struct SavePicture_Flags {
+		struct Flags {
 			union {
 				struct {
 					bool erase_on_map_change;
@@ -141,7 +141,7 @@ namespace rpg {
 				};
 				std::array<bool, 7> flags;
 			};
-			SavePicture_Flags() noexcept: erase_on_map_change(true), erase_on_battle_end(false), unused_bit(false), unused_bit2(false), affected_by_tint(false), affected_by_flash(true), affected_by_shake(true)
+			Flags() noexcept: erase_on_map_change(true), erase_on_battle_end(false), unused_bit(false), unused_bit2(false), affected_by_tint(false), affected_by_flash(true), affected_by_shake(true)
 			{}
 		} flags;
 		double finish_x = 0.0;
@@ -184,15 +184,15 @@ namespace rpg {
 		return os;
 	}
 
-	inline bool operator==(const SavePicture::SavePicture_Flags& l, const SavePicture::SavePicture_Flags& r) {
+	inline bool operator==(const SavePicture::Flags& l, const SavePicture::Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const SavePicture::SavePicture_Flags& l, const SavePicture::SavePicture_Flags& r) {
+	inline bool operator!=(const SavePicture::Flags& l, const SavePicture::Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const SavePicture::SavePicture_Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const SavePicture::Flags& obj);
 
 	inline bool operator==(const SavePicture& l, const SavePicture& r) {
 		return l.name == r.name

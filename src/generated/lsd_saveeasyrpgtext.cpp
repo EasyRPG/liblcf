@@ -69,7 +69,7 @@ static TypedField<rpg::SaveEasyRpgText, int32_t> static_line_spacing(
 	0,
 	0
 );
-static TypedField<rpg::SaveEasyRpgText, rpg::SaveEasyRpgText::SaveEasyRpgText_Flags> static_flags(
+static TypedField<rpg::SaveEasyRpgText, rpg::SaveEasyRpgText::Flags> static_flags(
 	&rpg::SaveEasyRpgText::flags,
 	LSD_Reader::ChunkSaveEasyRpgText::flags,
 	"flags",

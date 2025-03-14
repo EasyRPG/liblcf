@@ -15,7 +15,7 @@
 namespace lcf {
 namespace rpg {
 
-std::ostream& operator<<(std::ostream& os, const SavePicture::SavePicture_Flags& obj) {
+std::ostream& operator<<(std::ostream& os, const SavePicture::Flags& obj) {
 	for (size_t i = 0; i < obj.flags.size(); ++i) {
 		os << (i == 0 ? "[" : ", ") << obj.flags[i];
 	}

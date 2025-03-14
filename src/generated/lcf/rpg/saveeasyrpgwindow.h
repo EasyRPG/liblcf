@@ -36,7 +36,7 @@ namespace rpg {
 		int32_t height = 0;
 		DBString system_name;
 		int32_t message_stretch = 0;
-		struct SaveEasyRpgWindow_Flags {
+		struct Flags {
 			union {
 				struct {
 					bool draw_frame;
@@ -44,20 +44,20 @@ namespace rpg {
 				};
 				std::array<bool, 2> flags;
 			};
-			SaveEasyRpgWindow_Flags() noexcept: draw_frame(true), border_margin(true)
+			Flags() noexcept: draw_frame(true), border_margin(true)
 			{}
 		} flags;
 	};
 
-	inline bool operator==(const SaveEasyRpgWindow::SaveEasyRpgWindow_Flags& l, const SaveEasyRpgWindow::SaveEasyRpgWindow_Flags& r) {
+	inline bool operator==(const SaveEasyRpgWindow::Flags& l, const SaveEasyRpgWindow::Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const SaveEasyRpgWindow::SaveEasyRpgWindow_Flags& l, const SaveEasyRpgWindow::SaveEasyRpgWindow_Flags& r) {
+	inline bool operator!=(const SaveEasyRpgWindow::Flags& l, const SaveEasyRpgWindow::Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgWindow::SaveEasyRpgWindow_Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const SaveEasyRpgWindow::Flags& obj);
 
 	inline bool operator==(const SaveEasyRpgWindow& l, const SaveEasyRpgWindow& r) {
 		return l.texts == r.texts

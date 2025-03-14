@@ -21,10 +21,10 @@ namespace lcf {
 // Read Terrain.
 
 template <>
-char const* const Flags<rpg::Terrain::Terrain_Flags>::name = "Terrain_Terrain_Flags";
+char const* const Flags<rpg::Terrain::Flags>::name = "Terrain_Flags";
 
 template <>
-decltype(Flags<rpg::Terrain::Terrain_Flags>::flag_names) Flags<rpg::Terrain::Terrain_Flags>::flag_names = {
+decltype(Flags<rpg::Terrain::Flags>::flag_names) Flags<rpg::Terrain::Flags>::flag_names = {
 	"back_party",
 	"back_enemies",
 	"lateral_party",
@@ -32,7 +32,7 @@ decltype(Flags<rpg::Terrain::Terrain_Flags>::flag_names) Flags<rpg::Terrain::Ter
 };
 
 template <>
-decltype(Flags<rpg::Terrain::Terrain_Flags>::flags_is2k3) Flags<rpg::Terrain::Terrain_Flags>::flags_is2k3 = {
+decltype(Flags<rpg::Terrain::Flags>::flags_is2k3) Flags<rpg::Terrain::Flags>::flags_is2k3 = {
 	1,
 	1,
 	1,

@@ -44,7 +44,7 @@ namespace rpg {
 			"not_equal"
 		);
 
-		struct EventPageCondition_Flags {
+		struct Flags {
 			union {
 				struct {
 					bool switch_a;
@@ -57,7 +57,7 @@ namespace rpg {
 				};
 				std::array<bool, 7> flags;
 			};
-			EventPageCondition_Flags() noexcept: switch_a(false), switch_b(false), variable(false), item(false), actor(false), timer(false), timer2(false)
+			Flags() noexcept: switch_a(false), switch_b(false), variable(false), item(false), actor(false), timer(false), timer2(false)
 			{}
 		} flags;
 		int32_t switch_a_id = 1;
@@ -75,15 +75,15 @@ namespace rpg {
 		return os;
 	}
 
-	inline bool operator==(const EventPageCondition::EventPageCondition_Flags& l, const EventPageCondition::EventPageCondition_Flags& r) {
+	inline bool operator==(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const EventPageCondition::EventPageCondition_Flags& l, const EventPageCondition::EventPageCondition_Flags& r) {
+	inline bool operator!=(const EventPageCondition::Flags& l, const EventPageCondition::Flags& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const EventPageCondition::EventPageCondition_Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const EventPageCondition::Flags& obj);
 
 	inline bool operator==(const EventPageCondition& l, const EventPageCondition& r) {
 		return l.flags == r.flags

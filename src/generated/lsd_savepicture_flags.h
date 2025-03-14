@@ -21,10 +21,10 @@ namespace lcf {
 // Read SavePicture.
 
 template <>
-char const* const Flags<rpg::SavePicture::SavePicture_Flags>::name = "SavePicture_SavePicture_Flags";
+char const* const Flags<rpg::SavePicture::Flags>::name = "SavePicture_Flags";
 
 template <>
-decltype(Flags<rpg::SavePicture::SavePicture_Flags>::flag_names) Flags<rpg::SavePicture::SavePicture_Flags>::flag_names = {
+decltype(Flags<rpg::SavePicture::Flags>::flag_names) Flags<rpg::SavePicture::Flags>::flag_names = {
 	"erase_on_map_change",
 	"erase_on_battle_end",
 	"unused_bit",
@@ -35,7 +35,7 @@ decltype(Flags<rpg::SavePicture::SavePicture_Flags>::flag_names) Flags<rpg::Save
 };
 
 template <>
-decltype(Flags<rpg::SavePicture::SavePicture_Flags>::flags_is2k3) Flags<rpg::SavePicture::SavePicture_Flags>::flags_is2k3 = {
+decltype(Flags<rpg::SavePicture::Flags>::flags_is2k3) Flags<rpg::SavePicture::Flags>::flags_is2k3 = {
 	1,
 	1,
 	1,

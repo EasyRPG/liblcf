@@ -20,7 +20,7 @@ namespace lcf {
 
 template <>
 char const* const Struct<rpg::TroopPageCondition>::name = "TroopPageCondition";
-static TypedField<rpg::TroopPageCondition, rpg::TroopPageCondition::TroopPageCondition_Flags> static_flags(
+static TypedField<rpg::TroopPageCondition, rpg::TroopPageCondition::Flags> static_flags(
 	&rpg::TroopPageCondition::flags,
 	LDB_Reader::ChunkTroopPageCondition::flags,
 	"flags",

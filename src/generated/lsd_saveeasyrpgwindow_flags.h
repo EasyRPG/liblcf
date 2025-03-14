@@ -21,16 +21,16 @@ namespace lcf {
 // Read SaveEasyRpgWindow.
 
 template <>
-char const* const Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>::name = "SaveEasyRpgWindow_SaveEasyRpgWindow_Flags";
+char const* const Flags<rpg::SaveEasyRpgWindow::Flags>::name = "SaveEasyRpgWindow_Flags";
 
 template <>
-decltype(Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>::flag_names) Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>::flag_names = {
+decltype(Flags<rpg::SaveEasyRpgWindow::Flags>::flag_names) Flags<rpg::SaveEasyRpgWindow::Flags>::flag_names = {
 	"draw_frame",
 	"border_margin"
 };
 
 template <>
-decltype(Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>::flags_is2k3) Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>::flags_is2k3 = {
+decltype(Flags<rpg::SaveEasyRpgWindow::Flags>::flags_is2k3) Flags<rpg::SaveEasyRpgWindow::Flags>::flags_is2k3 = {
 	0,
 	0
 };

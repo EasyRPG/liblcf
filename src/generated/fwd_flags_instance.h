@@ -20,13 +20,13 @@
 #include "lsd_saveeasyrpgtext_flags.h"
 
 namespace lcf {
-template class Flags<rpg::TroopPageCondition::TroopPageCondition_Flags>;
-template class Flags<rpg::Terrain::Terrain_Flags>;
-template class Flags<rpg::EventPageCondition::EventPageCondition_Flags>;
-template class Flags<rpg::SavePicture::SavePicture_Flags>;
+template class Flags<rpg::TroopPageCondition::Flags>;
+template class Flags<rpg::Terrain::Flags>;
+template class Flags<rpg::EventPageCondition::Flags>;
+template class Flags<rpg::SavePicture::Flags>;
 template class Flags<rpg::SaveEventExecFrame::EasyRpgFrameRuntime_Flags>;
 template class Flags<rpg::SaveEventExecState::EasyRpgStateRuntime_Flags>;
 template class Flags<rpg::SaveMapEventBase::EasyRpgEventRuntime_Flags>;
-template class Flags<rpg::SaveEasyRpgWindow::SaveEasyRpgWindow_Flags>;
-template class Flags<rpg::SaveEasyRpgText::SaveEasyRpgText_Flags>;
+template class Flags<rpg::SaveEasyRpgWindow::Flags>;
+template class Flags<rpg::SaveEasyRpgText::Flags>;
 }
