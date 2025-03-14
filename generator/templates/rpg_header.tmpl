@@ -78,17 +78,17 @@ namespace rpg {
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 		{%- if field.type.endswith("_Flags") %}
-		struct {{ field.type }} {
+		struct {{ field|flag_type(struct_name) }} {
 			union {
 				struct {
-				{%- for flag in field.type|flags_for %}
+				{%- for flag in field|flags_for %}
 					bool {{ flag.field }};
 				{%- endfor %}
 				};
-				std::array<bool, {{ field.type|flags_for|length }}> flags;
+				std::array<bool, {{ field|flags_for|length }}> flags;
 			};
-			{{ field.type }}() noexcept
-			{%- for flag in field.type|flags_for %}
+			{{ field|flag_type(struct_name) }}() noexcept
+			{%- for flag in field|flags_for %}
 				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})
 			{%- endfor %}
 			{}
@@ -110,16 +110,17 @@ namespace rpg {
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 	{%- if field.type.endswith("_Flags") %}
+	{%- set field_type = field|flag_type(struct_name) %}
 
-	inline bool operator==(const {{ struct_name }}::{{ field.type }}& l, const {{ struct_name }}::{{ field.type }}& r) {
+	inline bool operator==(const {{ struct_name }}::{{ field_type }}& l, const {{ struct_name }}::{{ field_type }}& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const {{ struct_name }}::{{ field.type }}& l, const {{ struct_name }}::{{ field.type }}& r) {
+	inline bool operator!=(const {{ struct_name }}::{{ field_type }}& l, const {{ struct_name }}::{{ field_type }}& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::{{ field.type }}& obj);
+	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::{{ field_type }}& obj);
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}

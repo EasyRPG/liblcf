@@ -90,15 +90,19 @@ def cpp_type(ty, prefix=True):
 
     m = re.match(r'(.*)_Flags$', ty)
     if m:
-        ty = m.expand(r'\1::\1_Flags')
-        if prefix:
-            ty = 'rpg::' + ty
-        return ty
+        raise ValueError("use flag_type for flags")
 
     if prefix:
         ty = 'rpg::' + ty
 
     return ty
+
+def flag_type(field, struct_name):
+    field_type = field.type
+    # Backward compatibility: When Struct Name = Flag Name only emit "Flags"
+    if struct_name == field.type[:-6]:
+        field_type = "Flags"
+    return field_type
 
 def pod_default(field):
     dfl = field.default
@@ -146,8 +150,8 @@ def flag_set(field, bit):
 
     return str(res).lower()
 
-def flags_for(typ):
-    return flags[typ[:-6]]
+def flags_for(field):
+    return flags[field.type[:-6]]
 
 def filter_structs_without_codes(structs):
     for struct in structs:
@@ -468,12 +472,14 @@ def generate():
             for flag_field in struct_flag_fields:
                 header_file = '%s_%s_%s.h' % (filetype, filename, flag_field.name)
                 filepath = os.path.join(tmp_dir, header_file)
-                flag_fields.append(dict(struct_name=struct.name, struct_header=struct_header, field_name=flag_field.type, flag_header=header_file))
+                field_name = flag_type(flag_field, struct.name)
+                flag_fields.append(dict(struct_name=struct.name, struct_header=struct_header, field_name=field_name, flag_header=header_file))
+
                 with openToRender(filepath) as f:
                     f.write(flags_tmpl.render(
-                        struct_name=struct.name,
+                        struct_name=flag_fields[-1]["struct_name"],
                         type=filetype,
-                        flag_name=flag_field.type,
+                        flag_name=flag_fields[-1]["field_name"],
                         flag_item=flags[flag_field.type[:-6]]
                     ))
 
@@ -521,6 +527,7 @@ def main(argv):
     # Setup Jinja
     env.filters["lcf_type"] = lcf_type
     env.filters["cpp_type"] = cpp_type
+    env.filters["flag_type"] = flag_type
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
