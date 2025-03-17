@@ -90,15 +90,19 @@ def cpp_type(ty, prefix=True):
 
     m = re.match(r'(.*)_Flags$', ty)
     if m:
-        ty = m.expand(r'\1::Flags')
-        if prefix:
-            ty = 'rpg::' + ty
-        return ty
+        raise ValueError("use flag_type for flags")
 
     if prefix:
         ty = 'rpg::' + ty
 
     return ty
+
+def flag_type(field, struct_name):
+    field_type = field.type
+    # Backward compatibility: When Struct Name = Flag Name only emit "Flags"
+    if struct_name == field.type[:-6]:
+        field_type = "Flags"
+    return field_type
 
 def pod_default(field):
     dfl = field.default
@@ -133,9 +137,6 @@ def pod_default(field):
 
     return " = " + str(dfl)
 
-def num_flags(flag):
-    return len(flag)
-
 def flag_size(flag):
     return (len(flag) + 7) // 8
 
@@ -148,6 +149,9 @@ def flag_set(field, bit):
         res = False
 
     return str(res).lower()
+
+def flags_for(field):
+    return flags[field.type[:-6]]
 
 def filter_structs_without_codes(structs):
     for struct in structs:
@@ -392,10 +396,13 @@ def type_is_array_of_struct(ty):
 def is_monotonic_from_0(enum):
     expected = 0
     for (val, idx) in enum:
-        if int(idx) != expected:
+        if int(idx, 0) != expected:
             return False
         expected += 1
     return True
+
+def is_scoped_enum(enum_name):
+    return enum_name == "Code"
 
 def openToRender(path):
     subdir = os.path.dirname(path)
@@ -426,6 +433,8 @@ def generate():
             structs=sorted([x.name for x in structs_flat])
         ))
 
+    flag_fields = []
+
     for filetype, structlist in structs.items():
         for struct in structlist:
             filename = struct.name.lower()
@@ -442,8 +451,8 @@ def generate():
                         type=filetype
                     ))
 
-
-            filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
+            struct_header = os.path.join('lcf', 'rpg', '%s.h' % filename)
+            filepath = os.path.join(tmp_dir, struct_header)
             with openToRender(filepath) as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,
@@ -459,13 +468,32 @@ def generate():
                     filename=filename
                 ))
 
-            if struct.name in flags:
-                filepath = os.path.join(tmp_dir, '%s_%s_flags.h' % (filetype, filename))
+            struct_flag_fields = [s for s in sfields[struct.name] if s.type.endswith("_Flags")]
+            for flag_field in struct_flag_fields:
+                header_file = '%s_%s_%s.h' % (filetype, filename, flag_field.name)
+                filepath = os.path.join(tmp_dir, header_file)
+                field_name = flag_type(flag_field, struct.name)
+                flag_fields.append(dict(struct_name=struct.name, struct_header=struct_header, field_name=field_name, flag_header=header_file))
+
                 with openToRender(filepath) as f:
                     f.write(flags_tmpl.render(
-                        struct_name=struct.name,
-                        type=filetype
+                        struct_name=flag_fields[-1]["struct_name"],
+                        type=filetype,
+                        flag_name=flag_fields[-1]["field_name"],
+                        flag_item=flags[flag_field.type[:-6]]
                     ))
+
+    filepath = os.path.join(tmp_dir, 'fwd_flags_impl.h')
+    with openToRender(filepath) as f:
+        f.write(flags_fwd_tmpl.render(
+            flags=flag_fields
+        ))
+
+    filepath = os.path.join(tmp_dir, 'fwd_flags_instance.h')
+    with openToRender(filepath) as f:
+        f.write(flags_instance_tmpl.render(
+            flags=flag_fields
+        ))
 
     for dirname, subdirlist, filelist in os.walk(tmp_dir, topdown=False):
         subdir = os.path.relpath(dirname, tmp_dir)
@@ -486,7 +514,7 @@ def main(argv):
         os.mkdir(dest_dir)
 
     global structs, structs_flat, sfields, enums, flags, functions, constants, headers
-    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
+    global chunk_tmpl, lcf_struct_tmpl, rpg_header_tmpl, rpg_source_tmpl, flags_tmpl, flags_fwd_tmpl, flags_instance_tmpl, enums_tmpl, fwd_tmpl, fwd_struct_tmpl
 
     structs, structs_flat = get_structs('structs.csv', 'structs_easyrpg.csv')
     sfields = get_fields('fields.csv', 'fields_easyrpg.csv')
@@ -499,15 +527,17 @@ def main(argv):
     # Setup Jinja
     env.filters["lcf_type"] = lcf_type
     env.filters["cpp_type"] = cpp_type
+    env.filters["flag_type"] = flag_type
     env.filters["pod_default"] = pod_default
     env.filters["struct_has_code"] = filter_structs_without_codes
     env.filters["field_is_used"] = filter_unused_fields
     env.filters["field_is_written"] = filter_unwritten_fields
     env.filters["field_is_not_size"] = filter_size_fields
-    env.filters["num_flags"] = num_flags
     env.filters["flag_size"] = flag_size
     env.filters["flag_set"] = flag_set
+    env.filters["flags_for"] = flags_for
     env.tests['monotonic_from_0'] = is_monotonic_from_0
+    env.tests['scoped_enum'] = is_scoped_enum
     env.tests['is_db_string'] = type_is_db_string
     env.tests['is_array'] = type_is_array
     env.tests['is_array_of_struct'] = type_is_array_of_struct
@@ -529,6 +559,8 @@ def main(argv):
     rpg_header_tmpl = env.get_template('rpg_header.tmpl', globals=globals)
     rpg_source_tmpl = env.get_template('rpg_source.tmpl', globals=globals)
     flags_tmpl = env.get_template('flag_reader.tmpl', globals=globals)
+    flags_fwd_tmpl = env.get_template('flag_fwd.tmpl', globals=globals)
+    flags_instance_tmpl = env.get_template('flag_instance.tmpl', globals=globals)
     fwd_tmpl = env.get_template('fwd.tmpl', globals=globals)
     fwd_struct_tmpl = env.get_template('fwd_struct.tmpl', globals=globals)
 

@@ -300,6 +300,27 @@ static TypedField<rpg::SaveVehicleLocation, int32_t> static_easyrpg_move_failure
 	0,
 	0
 );
+static TypedField<rpg::SaveVehicleLocation, uint32_t> static_easyrpg_clone_map_id(
+	&rpg::SaveVehicleLocation::easyrpg_clone_map_id,
+	LSD_Reader::ChunkSaveVehicleLocation::easyrpg_clone_map_id,
+	"easyrpg_clone_map_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveVehicleLocation, uint32_t> static_easyrpg_clone_event_id(
+	&rpg::SaveVehicleLocation::easyrpg_clone_event_id,
+	LSD_Reader::ChunkSaveVehicleLocation::easyrpg_clone_event_id,
+	"easyrpg_clone_event_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveVehicleLocation, rpg::SaveVehicleLocation::EasyRpgEventRuntime_Flags> static_easyrpg_runtime_flags(
+	&rpg::SaveVehicleLocation::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSaveVehicleLocation::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 static TypedField<rpg::SaveVehicleLocation, int32_t> static_vehicle(
 	&rpg::SaveVehicleLocation::vehicle,
 	LSD_Reader::ChunkSaveVehicleLocation::vehicle,
@@ -379,6 +400,9 @@ Field<rpg::SaveVehicleLocation> const* Struct<rpg::SaveVehicleLocation>::fields[
 	&static_flash_current_level,
 	&static_flash_time_left,
 	&static_easyrpg_move_failure_count,
+	&static_easyrpg_clone_map_id,
+	&static_easyrpg_clone_event_id,
+	&static_easyrpg_runtime_flags,
 	&static_vehicle,
 	&static_remaining_ascent,
 	&static_remaining_descent,

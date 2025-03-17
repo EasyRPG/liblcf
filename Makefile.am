@@ -58,8 +58,8 @@ liblcf_la_SOURCES = \
 	src/lmu_movecommand.cpp \
 	src/lmu_reader.cpp \
 	src/log.h \
-	src/lsd_reader.cpp \
 	src/log_handler.cpp \
+	src/lsd_reader.cpp \
 	src/reader_flags.cpp \
 	src/reader_lcf.cpp \
 	src/reader_struct.h \
@@ -71,6 +71,8 @@ liblcf_la_SOURCES = \
 	src/saveopt.cpp \
 	src/writer_lcf.cpp \
 	src/writer_xml.cpp \
+	src/generated/fwd_flags_impl.h \
+	src/generated/fwd_flags_instance.h \
 	src/generated/fwd_struct_impl.h \
 	src/generated/ldb_actor.cpp \
 	src/generated/ldb_animation.cpp \
@@ -100,7 +102,7 @@ liblcf_la_SOURCES = \
 	src/generated/ldb_system.cpp \
 	src/generated/ldb_terms.cpp \
 	src/generated/ldb_terrain.cpp \
-	src/generated/ldb_terrain_flags.h \
+	src/generated/ldb_terrain_special_flags.h \
 	src/generated/ldb_testbattler.cpp \
 	src/generated/ldb_troop.cpp \
 	src/generated/ldb_troopmember.cpp \
@@ -126,10 +128,13 @@ liblcf_la_SOURCES = \
 	src/generated/lsd_saveeasyrpgwindow.cpp \
 	src/generated/lsd_saveeasyrpgwindow_flags.h \
 	src/generated/lsd_saveeventexecframe.cpp \
+	src/generated/lsd_saveeventexecframe_easyrpg_runtime_flags.h \
 	src/generated/lsd_saveeventexecstate.cpp \
+	src/generated/lsd_saveeventexecstate_easyrpg_runtime_flags.h \
 	src/generated/lsd_saveinventory.cpp \
 	src/generated/lsd_savemapevent.cpp \
 	src/generated/lsd_savemapeventbase.cpp \
+	src/generated/lsd_savemapeventbase_easyrpg_runtime_flags.h \
 	src/generated/lsd_savemapinfo.cpp \
 	src/generated/lsd_savepanorama.cpp \
 	src/generated/lsd_savepartylocation.cpp \

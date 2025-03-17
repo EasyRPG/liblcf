@@ -1,7 +1,6 @@
 Structure,Entry,Value,Index
 EventCommand,Code,EasyRpg_TriggerEventAt,2002
-EventCommand,Code,EasyRpg_SmartMoveRoute,2003
-EventCommand,Code,EasyRpg_SmartStepToward,2004
+EventCommand,Code,EasyRpg_Pathfinder,2003
 EventCommand,Code,EasyRpg_CallMovementAction,2050
 EventCommand,Code,EasyRpg_WaitForSingleMovement,2051
 EventCommand,Code,EasyRpg_AnimateVariable,2052

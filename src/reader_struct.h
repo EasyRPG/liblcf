@@ -16,7 +16,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <memory>
 #include <cstring>
 #include <cstdlib>
 #include <cinttypes>
@@ -25,19 +24,13 @@
 #include "lcf/writer_lcf.h"
 #include "lcf/reader_xml.h"
 #include "lcf/writer_xml.h"
-#include "lcf/rpg/eventpagecondition.h"
-#include "lcf/rpg/trooppagecondition.h"
-#include "lcf/rpg/terrain.h"
 #include "lcf/rpg/equipment.h"
 #include "lcf/rpg/parameters.h"
 #include "lcf/rpg/eventcommand.h"
 #include "lcf/rpg/movecommand.h"
 #include "lcf/rpg/treemap.h"
 #include "lcf/rpg/rect.h"
-#include "lcf/rpg/savepicture.h"
 #include "lcf/rpg/terms.h"
-#include "lcf/rpg/saveeasyrpgtext.h"
-#include "lcf/rpg/saveeasyrpgwindow.h"
 #include "log.h"
 
 namespace lcf {
@@ -63,14 +56,6 @@ template <class T>
 struct TypeCategory {
 	static const Category::Index value = Category::Struct;
 };
-
-// Do not forget to add new Flags here
-template <> struct TypeCategory<rpg::TroopPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::EventPageCondition::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::Terrain::Flags>			{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::SavePicture::Flags>		{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::SaveEasyRpgText::Flags>	{ static const Category::Index value = Category::Flags; };
-template <> struct TypeCategory<rpg::SaveEasyRpgWindow::Flags>	{ static const Category::Index value = Category::Flags; };
 
 template <> struct TypeCategory<rpg::Equipment>					{ static const Category::Index value = Category::RawStruct; };
 template <> struct TypeCategory<rpg::EventCommand>				{ static const Category::Index value = Category::RawStruct; };
@@ -805,5 +790,7 @@ private:
 };
 
 } //namespace lcf
+
+#include "fwd_flags_impl.h"
 
 #endif

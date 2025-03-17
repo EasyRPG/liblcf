@@ -15,6 +15,14 @@
 namespace lcf {
 namespace rpg {
 
+std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame::EasyRpgFrameRuntime_Flags& obj) {
+	for (size_t i = 0; i < obj.flags.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.flags[i];
+	}
+	os << "]";
+	return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame& obj) {
 	os << "SaveEventExecFrame{";
 	os << "commands=";
@@ -39,6 +47,7 @@ std::ostream& operator<<(std::ostream& os, const SaveEventExecFrame& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.maniac_loop_info[i];
 	}
 	os << "]";
+	os << ", easyrpg_runtime_flags="<< obj.easyrpg_runtime_flags;
 	os << "}";
 	return os;
 }

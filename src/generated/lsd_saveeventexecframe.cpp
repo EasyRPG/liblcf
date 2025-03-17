@@ -102,6 +102,13 @@ static TypedField<rpg::SaveEventExecFrame, std::vector<int32_t>> static_maniac_l
 	0,
 	0
 );
+static TypedField<rpg::SaveEventExecFrame, rpg::SaveEventExecFrame::EasyRpgFrameRuntime_Flags> static_easyrpg_runtime_flags(
+	&rpg::SaveEventExecFrame::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSaveEventExecFrame::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 
 
 template <>
@@ -118,6 +125,7 @@ Field<rpg::SaveEventExecFrame> const* Struct<rpg::SaveEventExecFrame>::fields[] 
 	&static_maniac_event_page_id,
 	&static_maniac_loop_info_size,
 	&static_maniac_loop_info,
+	&static_easyrpg_runtime_flags,
 	NULL
 };
 

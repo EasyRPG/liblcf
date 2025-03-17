@@ -1,3 +1,7 @@
+{#
+This template generates the headers (*.h) for all the chunks in the "rpg" folder.
+These are files for chunks like Actor, Class and Event.
+-#}
 {% include "copyright.tmpl" %}
 #ifndef LCF_RPG_{{ struct_name|upper }}_H
 #define LCF_RPG_{{ struct_name|upper }}_H
@@ -37,9 +41,9 @@ namespace rpg {
 	{% endif %}
 	{%- if struct_name in enums %}
 	{%- for name, enum in enums[struct_name].items() %}
-		enum {% if name == "Code" -%} class {% endif -%} {{ name }} {
+		enum {% if name is scoped_enum -%} class {% endif -%} {{ name }} {
 		{%- for field in enum %}
-			{%- if name != "Code" %}
+			{%- if name is not scoped_enum %}
 			{{ name }}_{{ field.0 }}
 			{%- else %}
 			{{ field.0 }}
@@ -55,7 +59,7 @@ namespace rpg {
 		{%- else %}
 		static constexpr auto k{{ name }}Tags = lcf::EnumTags{
 		{%- for field in enum %}
-			{%- if name != "Code" %}
+			{%- if name is not scoped_enum %}
 			{{ name }}_{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}
 			{%- else %}
 			{{ name }}::{{ field.0 }}, "{{ field.0 }}"{%- if not loop.last %},{% endif %}
@@ -74,17 +78,17 @@ namespace rpg {
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 		{%- if field.type.endswith("_Flags") %}
-		struct Flags {
+		struct {{ field|flag_type(struct_name) }} {
 			union {
 				struct {
-				{%- for flag in flags[struct_name] %}
+				{%- for flag in field|flags_for %}
 					bool {{ flag.field }};
 				{%- endfor %}
 				};
-				std::array<bool, {{ flags[struct_name]|num_flags }}> flags;
+				std::array<bool, {{ field|flags_for|length }}> flags;
 			};
-			Flags() noexcept
-			{%- for flag in flags[struct_name] %}
+			{{ field|flag_type(struct_name) }}() noexcept
+			{%- for flag in field|flags_for %}
 				{%- if loop.first %}:{%- else %},{%- endif %} {{ flag.field }}({{ field|flag_set(loop.index) }})
 			{%- endfor %}
 			{}
@@ -106,16 +110,17 @@ namespace rpg {
 	{%- for field in fields[struct_name]|field_is_used %}
 	{%- if not field.size %}
 	{%- if field.type.endswith("_Flags") %}
+	{%- set field_type = field|flag_type(struct_name) %}
 
-	inline bool operator==(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+	inline bool operator==(const {{ struct_name }}::{{ field_type }}& l, const {{ struct_name }}::{{ field_type }}& r) {
 		return l.flags == r.flags;
 	}
 
-	inline bool operator!=(const {{ struct_name }}::Flags& l, const {{ struct_name }}::Flags& r) {
+	inline bool operator!=(const {{ struct_name }}::{{ field_type }}& l, const {{ struct_name }}::{{ field_type }}& r) {
 		return !(l == r);
 	}
 
-	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::Flags& obj);
+	std::ostream& operator<<(std::ostream& os, const {{ struct_name }}::{{ field_type }}& obj);
 	{%- endif %}
 	{%- endif %}
 	{%- endfor %}

@@ -15,6 +15,14 @@
 namespace lcf {
 namespace rpg {
 
+std::ostream& operator<<(std::ostream& os, const SaveMapEventBase::EasyRpgEventRuntime_Flags& obj) {
+	for (size_t i = 0; i < obj.flags.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.flags[i];
+	}
+	os << "]";
+	return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj) {
 	os << "SaveMapEventBase{";
 	os << "active="<< obj.active;
@@ -57,6 +65,9 @@ std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj) {
 	os << ", flash_current_level="<< obj.flash_current_level;
 	os << ", flash_time_left="<< obj.flash_time_left;
 	os << ", easyrpg_move_failure_count="<< obj.easyrpg_move_failure_count;
+	os << ", easyrpg_clone_map_id="<< obj.easyrpg_clone_map_id;
+	os << ", easyrpg_clone_event_id="<< obj.easyrpg_clone_event_id;
+	os << ", easyrpg_runtime_flags="<< obj.easyrpg_runtime_flags;
 	os << "}";
 	return os;
 }

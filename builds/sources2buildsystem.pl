@@ -2,7 +2,7 @@
 
 # sources2buildsystem.pl - maintainer utility script to keep the
 # source/header file list for our build systems organized and up-to-date.
-# by carstene1ns 2018-2021, released under the MIT license
+# by carstene1ns 2018-2025, released under the MIT license
 
 use strict;
 use warnings;
@@ -22,7 +22,7 @@ my @others = grep(!/\/generated|third_party\//, @files);
 @files = (@others, @generated, @third_party);
 
 # split source and headers
-my $regex = '(\.cpp|_flags\.h|_impl\.h|src\/[^\/]*\.h)$';
+my $regex = '(\.cpp|_flags\.h|fwd_.*\.h|src\/[^\/]*\.h)$';
 my @sources = grep( /$regex/, @files);
 my @headers = grep(!/$regex/, @files);
 
@@ -57,6 +57,7 @@ print "done.\n";
 sub wanted {
 	return unless -f;
 	return unless /\.(cpp|h)$/;
+	return if /inireader/;
 
 	push @files, $File::Find::name;
 }

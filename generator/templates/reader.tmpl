@@ -1,3 +1,7 @@
+{#
+This template generates the source files for the metadata of the chunk readers.
+Files generated are "ldb/lmu/lsd/lmt_*.cpp"
+-#}
 {% include "copyright.tmpl" %}
 // Headers
 #include "lcf/{{ type }}/reader.h"
@@ -15,7 +19,11 @@ char const* const Struct<rpg::{{ LCF_CURRENT_STRUCT }}>::name = "{{ LCF_CURRENT_
 
 {%- for field in fields[struct_base]|field_is_written|list + fields[struct_name]|field_is_written|list %}
 {%- if field|lcf_type in ["Typed", "DatabaseVersion"] %}
+{%- if field.type.endswith("_Flags") %}
+static {{ field|lcf_type }}Field<rpg::{{ LCF_CURRENT_STRUCT }}, rpg::{{ LCF_CURRENT_STRUCT }}::{{ field|flag_type(struct_name) }}> static_{{ field.name }}(
+{%- else %}
 static {{ field|lcf_type }}Field<rpg::{{ LCF_CURRENT_STRUCT }}, {{ field.type|cpp_type }}> static_{{ field.name }}(
+{%- endif %}
 	&rpg::{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	{{ LCF_CHUNK_SUFFIX }}::Chunk{{ LCF_CURRENT_STRUCT }}::{{ field.name }},
 	"{{ field.name }}",

@@ -300,6 +300,27 @@ static TypedField<rpg::SavePartyLocation, int32_t> static_easyrpg_move_failure_c
 	0,
 	0
 );
+static TypedField<rpg::SavePartyLocation, uint32_t> static_easyrpg_clone_map_id(
+	&rpg::SavePartyLocation::easyrpg_clone_map_id,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_clone_map_id,
+	"easyrpg_clone_map_id",
+	0,
+	0
+);
+static TypedField<rpg::SavePartyLocation, uint32_t> static_easyrpg_clone_event_id(
+	&rpg::SavePartyLocation::easyrpg_clone_event_id,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_clone_event_id,
+	"easyrpg_clone_event_id",
+	0,
+	0
+);
+static TypedField<rpg::SavePartyLocation, rpg::SavePartyLocation::EasyRpgEventRuntime_Flags> static_easyrpg_runtime_flags(
+	&rpg::SavePartyLocation::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 static TypedField<rpg::SavePartyLocation, bool> static_boarding(
 	&rpg::SavePartyLocation::boarding,
 	LSD_Reader::ChunkSavePartyLocation::boarding,
@@ -470,6 +491,9 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_flash_current_level,
 	&static_flash_time_left,
 	&static_easyrpg_move_failure_count,
+	&static_easyrpg_clone_map_id,
+	&static_easyrpg_clone_event_id,
+	&static_easyrpg_runtime_flags,
 	&static_boarding,
 	&static_aboard,
 	&static_vehicle,

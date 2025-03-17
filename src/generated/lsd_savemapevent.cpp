@@ -300,6 +300,27 @@ static TypedField<rpg::SaveMapEvent, int32_t> static_easyrpg_move_failure_count(
 	0,
 	0
 );
+static TypedField<rpg::SaveMapEvent, uint32_t> static_easyrpg_clone_map_id(
+	&rpg::SaveMapEvent::easyrpg_clone_map_id,
+	LSD_Reader::ChunkSaveMapEvent::easyrpg_clone_map_id,
+	"easyrpg_clone_map_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveMapEvent, uint32_t> static_easyrpg_clone_event_id(
+	&rpg::SaveMapEvent::easyrpg_clone_event_id,
+	LSD_Reader::ChunkSaveMapEvent::easyrpg_clone_event_id,
+	"easyrpg_clone_event_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveMapEvent, rpg::SaveMapEvent::EasyRpgEventRuntime_Flags> static_easyrpg_runtime_flags(
+	&rpg::SaveMapEvent::easyrpg_runtime_flags,
+	LSD_Reader::ChunkSaveMapEvent::easyrpg_runtime_flags,
+	"easyrpg_runtime_flags",
+	0,
+	0
+);
 static TypedField<rpg::SaveMapEvent, bool> static_waiting_execution(
 	&rpg::SaveMapEvent::waiting_execution,
 	LSD_Reader::ChunkSaveMapEvent::waiting_execution,
@@ -372,6 +393,9 @@ Field<rpg::SaveMapEvent> const* Struct<rpg::SaveMapEvent>::fields[] = {
 	&static_flash_current_level,
 	&static_flash_time_left,
 	&static_easyrpg_move_failure_count,
+	&static_easyrpg_clone_map_id,
+	&static_easyrpg_clone_event_id,
+	&static_easyrpg_runtime_flags,
 	&static_waiting_execution,
 	&static_original_move_route_index,
 	&static_triggered_by_decision_key,

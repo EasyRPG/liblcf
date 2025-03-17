@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVEMAPEVENTBASE_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <string>
 #include "lcf/enum_tags.h"
@@ -68,7 +69,29 @@ namespace rpg {
 		double flash_current_level = 0.0;
 		int32_t flash_time_left = 0;
 		int32_t easyrpg_move_failure_count = 0;
+		uint32_t easyrpg_clone_map_id = 0;
+		uint32_t easyrpg_clone_event_id = 0;
+		struct EasyRpgEventRuntime_Flags {
+			union {
+				struct {
+					bool reserved_1;
+				};
+				std::array<bool, 1> flags;
+			};
+			EasyRpgEventRuntime_Flags() noexcept: reserved_1(false)
+			{}
+		} easyrpg_runtime_flags;
 	};
+
+	inline bool operator==(const SaveMapEventBase::EasyRpgEventRuntime_Flags& l, const SaveMapEventBase::EasyRpgEventRuntime_Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const SaveMapEventBase::EasyRpgEventRuntime_Flags& l, const SaveMapEventBase::EasyRpgEventRuntime_Flags& r) {
+		return !(l == r);
+	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveMapEventBase::EasyRpgEventRuntime_Flags& obj);
 
 	inline bool operator==(const SaveMapEventBase& l, const SaveMapEventBase& r) {
 		return l.active == r.active
@@ -110,7 +133,10 @@ namespace rpg {
 		&& l.flash_blue == r.flash_blue
 		&& l.flash_current_level == r.flash_current_level
 		&& l.flash_time_left == r.flash_time_left
-		&& l.easyrpg_move_failure_count == r.easyrpg_move_failure_count;
+		&& l.easyrpg_move_failure_count == r.easyrpg_move_failure_count
+		&& l.easyrpg_clone_map_id == r.easyrpg_clone_map_id
+		&& l.easyrpg_clone_event_id == r.easyrpg_clone_event_id
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags;
 	}
 
 	inline bool operator!=(const SaveMapEventBase& l, const SaveMapEventBase& r) {
