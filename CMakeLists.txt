@@ -394,13 +394,14 @@ if(LIBLCF_WITH_XML)
 	find_package(expat CONFIG)
 	if(expat_FOUND)
 		target_link_libraries(lcf expat::expat)
+		set(LCF_SUPPORT_XML 1)
 	else()
 		# Fallback to old expat detection
 		find_package(EXPAT REQUIRED)
 		target_link_libraries(lcf EXPAT::EXPAT)
+		set(LCF_SUPPORT_XML 2)
 	endif()
 	list(APPEND LIBLCF_DEPS "expat")
-	set(LCF_SUPPORT_XML 1)
 endif()
 
 # mime types
