@@ -31,7 +31,7 @@ static TypedField<rpg::CommonEvent, int32_t> static_trigger(
 	&rpg::CommonEvent::trigger,
 	LDB_Reader::ChunkCommonEvent::trigger,
 	"trigger",
-	0,
+	1,
 	0
 );
 static TypedField<rpg::CommonEvent, bool> static_switch_flag(

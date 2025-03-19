@@ -13,6 +13,7 @@
 #define LCF_RPG_SAVESYSTEM_H
 
 // Headers
+#include <array>
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -118,10 +119,34 @@ namespace rpg {
 		int32_t save_slot = 1;
 		int32_t atb_mode = 0;
 		std::vector<DBString> maniac_strings;
+		int32_t maniac_message_window_width = 0;
+		int32_t maniac_message_window_height = 0;
+		DBString maniac_message_font_name;
+		int32_t maniac_message_font_size = 0;
+		struct ManiacMessageHook_Flags {
+			union {
+				struct {
+					bool user_event;
+					bool create_window;
+					bool destroy_window;
+					bool text_rendering;
+				};
+				std::array<bool, 4> flags;
+			};
+			ManiacMessageHook_Flags() noexcept: user_event(false), create_window(false), destroy_window(false), text_rendering(false)
+			{}
+		} maniac_message_hook_flags;
+		int32_t maniac_message_hook_common_event_id = 0;
+		int32_t maniac_message_hook_callback_system_variable = 0;
+		int32_t maniac_message_hook_callback_system_string_variable = 0;
+		int32_t maniac_message_hook_callback_user_variable = 0;
+		int32_t maniac_message_hook_callback_user_string_variable = 0;
 		int32_t maniac_frameskip = 0;
 		int32_t maniac_picture_limit = 0;
 		std::vector<uint8_t> maniac_options;
 		std::vector<uint8_t> maniac_joypad_bindings;
+		int32_t maniac_message_spacing_char = 0;
+		int32_t maniac_message_spacing_line = 0;
 	};
 	inline std::ostream& operator<<(std::ostream& os, SaveSystem::Scene code) {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
@@ -131,6 +156,16 @@ namespace rpg {
 		os << static_cast<std::underlying_type_t<decltype(code)>>(code);
 		return os;
 	}
+
+	inline bool operator==(const SaveSystem::ManiacMessageHook_Flags& l, const SaveSystem::ManiacMessageHook_Flags& r) {
+		return l.flags == r.flags;
+	}
+
+	inline bool operator!=(const SaveSystem::ManiacMessageHook_Flags& l, const SaveSystem::ManiacMessageHook_Flags& r) {
+		return !(l == r);
+	}
+
+	std::ostream& operator<<(std::ostream& os, const SaveSystem::ManiacMessageHook_Flags& obj);
 
 	inline bool operator==(const SaveSystem& l, const SaveSystem& r) {
 		return l.scene == r.scene
@@ -189,10 +224,22 @@ namespace rpg {
 		&& l.save_slot == r.save_slot
 		&& l.atb_mode == r.atb_mode
 		&& l.maniac_strings == r.maniac_strings
+		&& l.maniac_message_window_width == r.maniac_message_window_width
+		&& l.maniac_message_window_height == r.maniac_message_window_height
+		&& l.maniac_message_font_name == r.maniac_message_font_name
+		&& l.maniac_message_font_size == r.maniac_message_font_size
+		&& l.maniac_message_hook_flags == r.maniac_message_hook_flags
+		&& l.maniac_message_hook_common_event_id == r.maniac_message_hook_common_event_id
+		&& l.maniac_message_hook_callback_system_variable == r.maniac_message_hook_callback_system_variable
+		&& l.maniac_message_hook_callback_system_string_variable == r.maniac_message_hook_callback_system_string_variable
+		&& l.maniac_message_hook_callback_user_variable == r.maniac_message_hook_callback_user_variable
+		&& l.maniac_message_hook_callback_user_string_variable == r.maniac_message_hook_callback_user_string_variable
 		&& l.maniac_frameskip == r.maniac_frameskip
 		&& l.maniac_picture_limit == r.maniac_picture_limit
 		&& l.maniac_options == r.maniac_options
-		&& l.maniac_joypad_bindings == r.maniac_joypad_bindings;
+		&& l.maniac_joypad_bindings == r.maniac_joypad_bindings
+		&& l.maniac_message_spacing_char == r.maniac_message_spacing_char
+		&& l.maniac_message_spacing_line == r.maniac_message_spacing_line;
 	}
 
 	inline bool operator!=(const SaveSystem& l, const SaveSystem& r) {
@@ -251,6 +298,8 @@ namespace rpg {
 		ForEachString(obj.enemy_death_se, f, &ctx40);
 		const auto ctx41 = Context<SaveSystem, ParentCtx>{ "item_se", -1, &obj, parent_ctx };
 		ForEachString(obj.item_se, f, &ctx41);
+		const auto ctx59 = Context<SaveSystem, ParentCtx>{ "maniac_message_font_name", -1, &obj, parent_ctx };
+		f(obj.maniac_message_font_name, ctx59);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

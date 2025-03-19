@@ -298,6 +298,11 @@ template <>
 Field<rpg::State> const* Struct<rpg::State>::fields[];
 
 template <>
+const char* const Struct<rpg::StringVariable>::name;
+template <>
+Field<rpg::StringVariable> const* Struct<rpg::StringVariable>::fields[];
+
+template <>
 const char* const Struct<rpg::Switch>::name;
 template <>
 Field<rpg::Switch> const* Struct<rpg::Switch>::fields[];

@@ -27,6 +27,7 @@
 #include "lcf/rpg/item.h"
 #include "lcf/rpg/skill.h"
 #include "lcf/rpg/state.h"
+#include "lcf/rpg/stringvariable.h"
 #include "lcf/rpg/switch.h"
 #include "lcf/rpg/system.h"
 #include "lcf/rpg/terms.h"
@@ -64,6 +65,7 @@ namespace rpg {
 		BattleCommands battlecommands;
 		std::vector<Class> classes;
 		std::vector<BattlerAnimation> battleranimations;
+		std::vector<StringVariable> maniac_string_variables;
 	};
 
 	inline bool operator==(const Database& l, const Database& r) {
@@ -85,7 +87,8 @@ namespace rpg {
 		&& l.version == r.version
 		&& l.battlecommands == r.battlecommands
 		&& l.classes == r.classes
-		&& l.battleranimations == r.battleranimations;
+		&& l.battleranimations == r.battleranimations
+		&& l.maniac_string_variables == r.maniac_string_variables;
 	}
 
 	inline bool operator!=(const Database& l, const Database& r) {
@@ -161,6 +164,10 @@ namespace rpg {
 		for (int i = 0; i < static_cast<int>(obj.battleranimations.size()); ++i) {
 			const auto ctx19 = Context<Database, ParentCtx>{ "battleranimations", i, &obj, parent_ctx };
 			ForEachString(obj.battleranimations[i], f, &ctx19);
+		}
+		for (int i = 0; i < static_cast<int>(obj.maniac_string_variables.size()); ++i) {
+			const auto ctx20 = Context<Database, ParentCtx>{ "maniac_string_variables", i, &obj, parent_ctx };
+			ForEachString(obj.maniac_string_variables[i], f, &ctx20);
 		}
 		(void)obj;
 		(void)f;
