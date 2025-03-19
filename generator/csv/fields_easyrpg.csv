@@ -147,3 +147,5 @@ System,easyrpg_battle_use_rpg2ke_strings,f,Boolean,0xD8,False,0,1,If RPG Maker 2
 System,easyrpg_use_rpg2k_battle_commands,f,Boolean,0xD9,False,0,1,If the RPG Maker 2000 battle commands should be used in RPG Maker 2003 games
 System,easyrpg_default_actorai,f,Int32,0xDA,-1,0,0,System default actor AI
 System,easyrpg_default_enemyai,f,Int32,0xDB,-1,0,0,System default enemy AI
+Database,maniac_string_variables,f,Array<StringVariable>,0x21,,0,0,
+StringVariable,name,f,DBString,0x01,,0,0,String

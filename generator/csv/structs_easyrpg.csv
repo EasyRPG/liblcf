@@ -1,4 +1,5 @@
 Type,Structure,Base,Index available?
+ldb,StringVariable,,1
 lsd,SaveEasyRpgData,,0
 lsd,SaveEasyRpgWindow,,1
 lsd,SaveEasyRpgText,,0
