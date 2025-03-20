@@ -12,8 +12,13 @@
 
 #include <cstring>
 #include <string>
+#include <string_view>
 
 namespace lcf {
+
+using StringView [[deprecated("Use std::string_view")]] = std::string_view;
+using U16StringView [[deprecated("Use std::u16string_view")]] = std::u16string_view;
+using U32StringView [[deprecated("Use std::u32string_view")]] = std::u32string_view;
 
 inline std::string ToString(std::string_view sv) {
 	return std::string(sv);
