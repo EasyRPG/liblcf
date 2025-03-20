@@ -27,3 +27,7 @@ EasyRpgStateRuntime,patch_rpg2k3_cmds_on,0
 EasyRpgStateRuntime,patch_rpg2k3_cmds_off,0
 EasyRpgStateRuntime,use_rpg2k_battle_system_on,0
 EasyRpgStateRuntime,use_rpg2k_battle_system_off,0
+ManiacMessageHook,user_event,0
+ManiacMessageHook,create_window,0
+ManiacMessageHook,destroy_window,0
+ManiacMessageHook,text_rendering,0

@@ -424,6 +424,76 @@ static TypedField<rpg::SaveSystem, std::vector<DBString>> static_maniac_strings(
 	0,
 	0
 );
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_window_width(
+	&rpg::SaveSystem::maniac_message_window_width,
+	LSD_Reader::ChunkSaveSystem::maniac_message_window_width,
+	"maniac_message_window_width",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_window_height(
+	&rpg::SaveSystem::maniac_message_window_height,
+	LSD_Reader::ChunkSaveSystem::maniac_message_window_height,
+	"maniac_message_window_height",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, DBString> static_maniac_message_font_name(
+	&rpg::SaveSystem::maniac_message_font_name,
+	LSD_Reader::ChunkSaveSystem::maniac_message_font_name,
+	"maniac_message_font_name",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_font_size(
+	&rpg::SaveSystem::maniac_message_font_size,
+	LSD_Reader::ChunkSaveSystem::maniac_message_font_size,
+	"maniac_message_font_size",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, rpg::SaveSystem::ManiacMessageHook_Flags> static_maniac_message_hook_flags(
+	&rpg::SaveSystem::maniac_message_hook_flags,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_flags,
+	"maniac_message_hook_flags",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_common_event_id(
+	&rpg::SaveSystem::maniac_message_hook_common_event_id,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_common_event_id,
+	"maniac_message_hook_common_event_id",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_callback_system_variable(
+	&rpg::SaveSystem::maniac_message_hook_callback_system_variable,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_callback_system_variable,
+	"maniac_message_hook_callback_system_variable",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_callback_system_string_variable(
+	&rpg::SaveSystem::maniac_message_hook_callback_system_string_variable,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_callback_system_string_variable,
+	"maniac_message_hook_callback_system_string_variable",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_callback_user_variable(
+	&rpg::SaveSystem::maniac_message_hook_callback_user_variable,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_callback_user_variable,
+	"maniac_message_hook_callback_user_variable",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_callback_user_string_variable(
+	&rpg::SaveSystem::maniac_message_hook_callback_user_string_variable,
+	LSD_Reader::ChunkSaveSystem::maniac_message_hook_callback_user_string_variable,
+	"maniac_message_hook_callback_user_string_variable",
+	0,
+	0
+);
 static TypedField<rpg::SaveSystem, int32_t> static_maniac_frameskip(
 	&rpg::SaveSystem::maniac_frameskip,
 	LSD_Reader::ChunkSaveSystem::maniac_frameskip,
@@ -449,6 +519,20 @@ static TypedField<rpg::SaveSystem, std::vector<uint8_t>> static_maniac_joypad_bi
 	&rpg::SaveSystem::maniac_joypad_bindings,
 	LSD_Reader::ChunkSaveSystem::maniac_joypad_bindings,
 	"maniac_joypad_bindings",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_spacing_char(
+	&rpg::SaveSystem::maniac_message_spacing_char,
+	LSD_Reader::ChunkSaveSystem::maniac_message_spacing_char,
+	"maniac_message_spacing_char",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_spacing_line(
+	&rpg::SaveSystem::maniac_message_spacing_line,
+	LSD_Reader::ChunkSaveSystem::maniac_message_spacing_line,
+	"maniac_message_spacing_line",
 	0,
 	0
 );
@@ -514,10 +598,22 @@ Field<rpg::SaveSystem> const* Struct<rpg::SaveSystem>::fields[] = {
 	&static_save_slot,
 	&static_atb_mode,
 	&static_maniac_strings,
+	&static_maniac_message_window_width,
+	&static_maniac_message_window_height,
+	&static_maniac_message_font_name,
+	&static_maniac_message_font_size,
+	&static_maniac_message_hook_flags,
+	&static_maniac_message_hook_common_event_id,
+	&static_maniac_message_hook_callback_system_variable,
+	&static_maniac_message_hook_callback_system_string_variable,
+	&static_maniac_message_hook_callback_user_variable,
+	&static_maniac_message_hook_callback_user_string_variable,
 	&static_maniac_frameskip,
 	&static_maniac_picture_limit,
 	&static_maniac_options,
 	&static_maniac_joypad_bindings,
+	&static_maniac_message_spacing_char,
+	&static_maniac_message_spacing_line,
 	NULL
 };
 

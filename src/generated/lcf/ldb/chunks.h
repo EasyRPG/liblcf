@@ -1535,7 +1535,15 @@ namespace LDB_Reader {
 			/** Duplicated? - Not used - RPG2003 */
 			classD1 = 0x1F,
 			/** rpg::BattlerAnimation - RPG2003 */
-			battleranimations = 0x20
+			battleranimations = 0x20,
+			/**  */
+			maniac_string_variables = 0x21
+		};
+	};
+	struct ChunkStringVariable {
+		enum Index {
+			/** String */
+			name = 0x01
 		};
 	};
 }

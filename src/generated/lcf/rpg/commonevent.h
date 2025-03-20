@@ -32,12 +32,16 @@ namespace rpg {
 		enum Trigger {
 			Trigger_automatic = 3,
 			Trigger_parallel = 4,
-			Trigger_call = 5
+			Trigger_call = 5,
+			Trigger_maniac_battle_start = 6,
+			Trigger_maniac_battle_parallel = 7
 		};
 		static constexpr auto kTriggerTags = lcf::EnumTags{
 			Trigger_automatic, "automatic",
 			Trigger_parallel, "parallel",
-			Trigger_call, "call"
+			Trigger_call, "call",
+			Trigger_maniac_battle_start, "maniac_battle_start",
+			Trigger_maniac_battle_parallel, "maniac_battle_parallel"
 		};
 
 		int ID = 0;

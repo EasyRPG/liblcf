@@ -15,6 +15,14 @@
 namespace lcf {
 namespace rpg {
 
+std::ostream& operator<<(std::ostream& os, const SaveSystem::ManiacMessageHook_Flags& obj) {
+	for (size_t i = 0; i < obj.flags.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.flags[i];
+	}
+	os << "]";
+	return os;
+}
+
 std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 	os << "SaveSystem{";
 	os << "scene="<< obj.scene;
@@ -85,6 +93,16 @@ std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.maniac_strings[i];
 	}
 	os << "]";
+	os << ", maniac_message_window_width="<< obj.maniac_message_window_width;
+	os << ", maniac_message_window_height="<< obj.maniac_message_window_height;
+	os << ", maniac_message_font_name="<< obj.maniac_message_font_name;
+	os << ", maniac_message_font_size="<< obj.maniac_message_font_size;
+	os << ", maniac_message_hook_flags="<< obj.maniac_message_hook_flags;
+	os << ", maniac_message_hook_common_event_id="<< obj.maniac_message_hook_common_event_id;
+	os << ", maniac_message_hook_callback_system_variable="<< obj.maniac_message_hook_callback_system_variable;
+	os << ", maniac_message_hook_callback_system_string_variable="<< obj.maniac_message_hook_callback_system_string_variable;
+	os << ", maniac_message_hook_callback_user_variable="<< obj.maniac_message_hook_callback_user_variable;
+	os << ", maniac_message_hook_callback_user_string_variable="<< obj.maniac_message_hook_callback_user_string_variable;
 	os << ", maniac_frameskip="<< obj.maniac_frameskip;
 	os << ", maniac_picture_limit="<< obj.maniac_picture_limit;
 	os << ", maniac_options=";
@@ -97,6 +115,8 @@ std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.maniac_joypad_bindings[i];
 	}
 	os << "]";
+	os << ", maniac_message_spacing_char="<< obj.maniac_message_spacing_char;
+	os << ", maniac_message_spacing_line="<< obj.maniac_message_spacing_line;
 	os << "}";
 	return os;
 }

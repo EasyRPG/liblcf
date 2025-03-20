@@ -96,6 +96,11 @@ std::ostream& operator<<(std::ostream& os, const Database& obj) {
 		os << (i == 0 ? "[" : ", ") << obj.battleranimations[i];
 	}
 	os << "]";
+	os << ", maniac_string_variables=";
+	for (size_t i = 0; i < obj.maniac_string_variables.size(); ++i) {
+		os << (i == 0 ? "[" : ", ") << obj.maniac_string_variables[i];
+	}
+	os << "]";
 	os << "}";
 	return os;
 }
