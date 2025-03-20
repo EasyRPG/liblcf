@@ -14,11 +14,9 @@
 #include <iterator>
 #include <cstdint>
 #include <cstring>
-#include <limits>
 #include <algorithm>
 #include <ostream>
 
-#include "lcf/string_view.h"
 #include "lcf/dbarrayalloc.h"
 
 namespace lcf {
@@ -43,17 +41,17 @@ class DBString {
 		static constexpr size_type npos = size_type(-1);
 
 		constexpr DBString() = default;
-		explicit DBString(StringView s) : _storage(construct_sv(s.data(), s.size())) {}
+		explicit DBString(std::string_view s) : _storage(construct_sv(s.data(), s.size())) {}
 		explicit DBString(const std::string& s) : _storage(construct_z(s.c_str(), s.size())) {}
 
 		// Explicit construct for general const char*
-		explicit DBString(const char* s) : DBString(StringView(s)) {}
+		explicit DBString(const char* s) : DBString(std::string_view(s)) {}
 		// Implicit constructor to capture string literals
 		template <size_t N>
 			DBString(const char(&literal)[N]) : _storage(construct_z(literal, N - 1)) {}
-		DBString(const char* s, size_t len) : DBString(StringView(s, len)) {}
+		DBString(const char* s, size_t len) : DBString(std::string_view(s, len)) {}
 
-		DBString(const DBString& o) : DBString(StringView(o)) {}
+		DBString(const DBString& o) : DBString(std::string_view(o)) {}
 		DBString(DBString&& o) noexcept { swap(o); }
 
 		DBString& operator=(const DBString&);
@@ -66,7 +64,7 @@ class DBString {
 		~DBString() { destroy(); }
 
 		explicit operator std::string() const { return std::string(data(), size()); }
-		operator StringView() const { return StringView(data(), size()); }
+		operator std::string_view() const { return std::string_view(data(), size()); }
 
 		char& operator[](size_type i) { return data()[i]; }
 		char operator[](size_type i) const { return data()[i]; }
@@ -123,21 +121,21 @@ inline std::string ToString(const DBString& s) {
 }
 
 #define LCF_DBSTRING_MAKE_CMP_OPS(LTYPE, RTYPE) \
-inline bool operator==(LTYPE l, RTYPE r) { return StringView(l) == StringView(r); }\
-inline bool operator!=(LTYPE l, RTYPE r) { return StringView(l) != StringView(r); }\
-inline bool operator<(LTYPE l, RTYPE r) { return StringView(l) < StringView(r); }\
-inline bool operator>(LTYPE l, RTYPE r) { return StringView(l) > StringView(r); }\
-inline bool operator<=(LTYPE l, RTYPE r) { return StringView(l) <= StringView(r); }\
-inline bool operator>=(LTYPE l, RTYPE r) { return StringView(l) >= StringView(r); }\
+inline bool operator==(LTYPE l, RTYPE r) { return std::string_view(l) == std::string_view(r); }\
+inline bool operator!=(LTYPE l, RTYPE r) { return std::string_view(l) != std::string_view(r); }\
+inline bool operator<(LTYPE l, RTYPE r) { return std::string_view(l) < std::string_view(r); }\
+inline bool operator>(LTYPE l, RTYPE r) { return std::string_view(l) > std::string_view(r); }\
+inline bool operator<=(LTYPE l, RTYPE r) { return std::string_view(l) <= std::string_view(r); }\
+inline bool operator>=(LTYPE l, RTYPE r) { return std::string_view(l) >= std::string_view(r); }\
 
 LCF_DBSTRING_MAKE_CMP_OPS(const DBString&, const DBString&);
-LCF_DBSTRING_MAKE_CMP_OPS(StringView, const DBString&);
-LCF_DBSTRING_MAKE_CMP_OPS(const DBString&, StringView);
+LCF_DBSTRING_MAKE_CMP_OPS(std::string_view, const DBString&);
+LCF_DBSTRING_MAKE_CMP_OPS(const DBString&, std::string_view);
 LCF_DBSTRING_MAKE_CMP_OPS(const char*, const DBString&);
 LCF_DBSTRING_MAKE_CMP_OPS(const DBString&, const char*);
 
 inline std::ostream& operator<<(std::ostream& os, const DBString& s) {
-	os << StringView(s);
+	os << std::string_view(s);
 	return os;
 }
 
@@ -147,7 +145,7 @@ namespace std {
 
 template <> struct hash<lcf::DBString> {
 	size_t operator()(const lcf::DBString& s) const {
-		return std::hash<lcf::StringView>()(lcf::StringView(s));
+		return std::hash<std::string_view>()(std::string_view(s));
 	}
 };
 

@@ -30,32 +30,32 @@ namespace LDB_Reader {
 	/**
 	 * Loads Database.
 	 */
-	std::unique_ptr<lcf::rpg::Database> Load(StringView filename, StringView encoding = "");
+	std::unique_ptr<lcf::rpg::Database> Load(std::string_view filename, std::string_view encoding = "");
 
 	/**
 	 * Saves Database.
 	 */
-	bool Save(StringView filename, const lcf::rpg::Database& db, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::string_view filename, const lcf::rpg::Database& db, std::string_view encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Database as XML.
 	 */
-	bool SaveXml(StringView filename, const lcf::rpg::Database& db);
+	bool SaveXml(std::string_view filename, const lcf::rpg::Database& db);
 
 	/**
 	 * Load Database as XML.
 	 */
-	std::unique_ptr<lcf::rpg::Database> LoadXml(StringView filename);
+	std::unique_ptr<lcf::rpg::Database> LoadXml(std::string_view filename);
 
 	/**
 	 * Loads Database.
 	 */
-	std::unique_ptr<lcf::rpg::Database> Load(std::istream& filestream, StringView encoding = "");
+	std::unique_ptr<lcf::rpg::Database> Load(std::istream& filestream, std::string_view encoding = "");
 
 	/**
 	 * Saves Database.
 	 */
-	bool Save(std::ostream& filestream, const lcf::rpg::Database& db, StringView encoding = "", SaveOpt opt = SaveOpt::eNone);
+	bool Save(std::ostream& filestream, const lcf::rpg::Database& db, std::string_view encoding = "", SaveOpt opt = SaveOpt::eNone);
 
 	/**
 	 * Saves Database as XML.

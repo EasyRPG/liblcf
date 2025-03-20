@@ -11,7 +11,7 @@
 
 namespace lcf {
 
-std::string rpg::Terms::TermOrDefault(const DBString& db_term, StringView default_term) {
+std::string rpg::Terms::TermOrDefault(const DBString& db_term, std::string_view default_term) {
 	if (db_term == kDefaultTerm) {
 		return ToString(default_term);
 	}

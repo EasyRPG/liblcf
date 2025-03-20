@@ -26,7 +26,7 @@ template <typename T>
 void testConstruct(const T&) {
 }
 
-TEST_CASE_TEMPLATE("Construct", T, StringView, std::string, char*, DBString) {
+TEST_CASE_TEMPLATE("Construct", T, std::string_view, std::string, char*, DBString) {
 	DBString x(T("abc"));
 
 	REQUIRE_FALSE(x.empty());

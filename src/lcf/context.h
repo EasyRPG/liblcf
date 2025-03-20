@@ -19,10 +19,10 @@ namespace lcf {
  */
 struct ContextNameBase {
 	/** Constructor */
-	constexpr ContextNameBase(StringView n, int i) : name(n), index(i) {}
+	constexpr ContextNameBase(std::string_view n, int i) : name(n), index(i) {}
 
 	/** Name of the enumerated field */
-	StringView name;
+	std::string_view name;
 
 	/** Array index when the object is part of a list (-1 when not) */
 	int index = -1;
@@ -38,7 +38,7 @@ struct ContextStructBase : ContextNameBase {
 	using StructType_t = StructType;
 
 	/** Constructor */
-	constexpr ContextStructBase(StringView n, int i, StructType_t* o)
+	constexpr ContextStructBase(std::string_view n, int i, StructType_t* o)
 		: ContextNameBase(n, i), obj(o) {}
 
 	/** Object instance (cast to appropriate RPG-type */
@@ -58,7 +58,7 @@ struct Context : ContextStructBase<StructType> {
 	/** The type of the parent context */
 	using ParentCtxType_t = ParentCtxType;
 
-	constexpr Context(StringView n, int i, StructType* o, const ParentCtxType_t* pctx)
+	constexpr Context(std::string_view n, int i, StructType* o, const ParentCtxType_t* pctx)
 		: ContextStructBase<StructType>{n, i, o}, parent(pctx) {}
 
 	/** Context of the parent (nullptr when no parent) */

@@ -9,43 +9,47 @@
 
 #ifndef LCF_STRING_VIEW_H
 #define LCF_STRING_VIEW_H
+
 #include <cstring>
 #include <string>
-#include <cassert>
-#include <iterator>
-#include <ostream>
-#include <algorithm>
-
-#define nssv_CONFIG_NO_EXCEPTIONS 1
-#define nssv_CONFIG_CONVERSION_STD_STRING 1
-#define nssv_CONFIG_SELECT_STRING_VIEW nssv_STRING_VIEW_NONSTD
-#include <lcf/third_party/string_view.h>
+#include <string_view>
 
 namespace lcf {
 
-template <typename CharT, typename Traits = std::char_traits<CharT>>
-	using BasicStringView = nonstd::basic_string_view<CharT,Traits>;
+using StringView [[deprecated("Use std::string_view")]] = std::string_view;
+using U16StringView [[deprecated("Use std::u16string_view")]] = std::u16string_view;
+using U32StringView [[deprecated("Use std::u32string_view")]] = std::u32string_view;
 
-using StringView = BasicStringView<char>;
-using WStringView = BasicStringView<wchar_t>;
-using U16StringView = BasicStringView<char16_t>;
-using U32StringView = BasicStringView<char32_t>;
-
-template< class CharT, class Traits, class Allocator = std::allocator<CharT> >
-std::basic_string<CharT, Traits, Allocator>
-ToString(BasicStringView<CharT,Traits> sv, const Allocator& a = Allocator()) {
-	return nonstd::to_string(sv, a);
+inline std::string ToString(std::string_view sv) {
+	return std::string(sv);
 }
 
-template< class CharT, class Traits, class Allocator >
-BasicStringView<CharT, Traits>
-ToStringView(const std::basic_string<CharT, Traits, Allocator>& s )
-{
-	return nonstd::to_string_view(s);
+constexpr bool StartsWith(std::string_view l, std::string_view r) noexcept {
+	return l.size() >= r.size() && l.compare(0, r.size(), r) == 0;
 }
 
-/** A reimplementation of std::atoi() which works for StringView */
-inline int SvAtoi(StringView str) {
+constexpr bool StartsWith(std::string_view l, char c) noexcept {
+	return StartsWith(l, std::string_view(&c, 1));
+}
+
+constexpr bool StartsWith(std::string_view l, const char* s) {
+	return StartsWith(l, std::string_view(s));
+}
+
+constexpr bool EndsWith(std::string_view l, std::string_view r) noexcept {
+	return l.size() >= r.size() && l.compare(l.size() - r.size(), std::string_view::npos, r) == 0;
+}
+
+constexpr bool EndsWith(std::string_view l, char c) noexcept {
+	return EndsWith(l, std::string_view(&c, 1));
+}
+
+constexpr bool EndsWith(std::string_view l, const char* s) {
+	return EndsWith(l, std::string_view(s));
+}
+
+/** A reimplementation of std::atoi() which works for std::string_view */
+inline int SvAtoi(std::string_view str) {
 	const char* b = str.data();
 	const char* e = str.data() + str.length();
 	auto value = std::strtol(b, const_cast<char**>(&e), 10);

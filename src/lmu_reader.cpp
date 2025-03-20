@@ -25,7 +25,7 @@ void LMU_Reader::PrepareSave(rpg::Map& map) {
 	++map.save_count;
 }
 
-std::unique_ptr<rpg::Map> LMU_Reader::Load(StringView filename, StringView encoding) {
+std::unique_ptr<rpg::Map> LMU_Reader::Load(std::string_view filename, std::string_view encoding) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LMU file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -34,7 +34,7 @@ std::unique_ptr<rpg::Map> LMU_Reader::Load(StringView filename, StringView encod
 	return LMU_Reader::Load(stream, encoding);
 }
 
-bool LMU_Reader::Save(StringView filename, const rpg::Map& save, EngineVersion engine, StringView encoding, SaveOpt opt) {
+bool LMU_Reader::Save(std::string_view filename, const rpg::Map& save, EngineVersion engine, std::string_view encoding, SaveOpt opt) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LMU file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
@@ -43,7 +43,7 @@ bool LMU_Reader::Save(StringView filename, const rpg::Map& save, EngineVersion e
 	return LMU_Reader::Save(stream, save, engine, encoding, opt);
 }
 
-bool LMU_Reader::SaveXml(StringView filename, const rpg::Map& save, EngineVersion engine) {
+bool LMU_Reader::SaveXml(std::string_view filename, const rpg::Map& save, EngineVersion engine) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LMU XML file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
@@ -52,7 +52,7 @@ bool LMU_Reader::SaveXml(StringView filename, const rpg::Map& save, EngineVersio
 	return LMU_Reader::SaveXml(stream, save, engine);
 }
 
-std::unique_ptr<rpg::Map> LMU_Reader::LoadXml(StringView filename) {
+std::unique_ptr<rpg::Map> LMU_Reader::LoadXml(std::string_view filename) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LMU XML file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
@@ -61,7 +61,7 @@ std::unique_ptr<rpg::Map> LMU_Reader::LoadXml(StringView filename) {
 	return LMU_Reader::LoadXml(stream);
 }
 
-std::unique_ptr<rpg::Map> LMU_Reader::Load(std::istream& filestream, StringView encoding) {
+std::unique_ptr<rpg::Map> LMU_Reader::Load(std::istream& filestream, std::string_view encoding) {
 	LcfReader reader(filestream, ToString(encoding));
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.");
@@ -83,7 +83,7 @@ std::unique_ptr<rpg::Map> LMU_Reader::Load(std::istream& filestream, StringView 
 	return map;
 }
 
-bool LMU_Reader::Save(std::ostream& filestream, const rpg::Map& map, EngineVersion engine, StringView encoding, SaveOpt opt) {
+bool LMU_Reader::Save(std::ostream& filestream, const rpg::Map& map, EngineVersion engine, std::string_view encoding, SaveOpt opt) {
 	LcfWriter writer(filestream, engine, ToString(encoding));
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse map file.");

@@ -124,7 +124,7 @@ std::vector<std::string> ReaderUtil::DetectEncodings(lcf::rpg::Database& db) {
 #endif
 }
 
-std::string ReaderUtil::DetectEncoding(StringView string) {
+std::string ReaderUtil::DetectEncoding(std::string_view string) {
 	std::vector<std::string> encodings = DetectEncodings(string);
 
 	if (encodings.empty()) {
@@ -134,7 +134,7 @@ std::string ReaderUtil::DetectEncoding(StringView string) {
 	return encodings.front();
 }
 
-std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
+std::vector<std::string> ReaderUtil::DetectEncodings(std::string_view string) {
 	std::vector<std::string> encodings;
 #if LCF_SUPPORT_ICU
 	if (!string.empty()) {
@@ -206,13 +206,13 @@ std::vector<std::string> ReaderUtil::DetectEncodings(StringView string) {
 	return encodings;
 }
 
-std::string ReaderUtil::GetEncoding(StringView ini_file) {
+std::string ReaderUtil::GetEncoding(std::string_view ini_file) {
 #if LCF_SUPPORT_INI
 	INIReader ini(ToString(ini_file));
 	if (ini.ParseError() != -1) {
-		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
+		auto encoding = ini.Get("EasyRPG", "Encoding", "");
 		if (!encoding.empty()) {
-			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
+			return ReaderUtil::CodepageToEncoding(atoi(std::string(encoding).c_str()));
 		}
 	}
 #else
@@ -225,9 +225,9 @@ std::string ReaderUtil::GetEncoding(std::istream& filestream) {
 #if LCF_SUPPORT_INI
 	INIReader ini(filestream);
 	if (ini.ParseError() != -1) {
-		std::string encoding = ini.Get("EasyRPG", "Encoding", std::string());
+		auto encoding = ini.Get("EasyRPG", "Encoding", "");
 		if (!encoding.empty()) {
-			return ReaderUtil::CodepageToEncoding(atoi(encoding.c_str()));
+			return ReaderUtil::CodepageToEncoding(atoi(std::string(encoding).c_str()));
 		}
 	}
 #else
@@ -293,14 +293,14 @@ std::string ReaderUtil::GetLocaleEncoding() {
 	return CodepageToEncoding(codepage);
 }
 
-std::string ReaderUtil::Recode(StringView str_to_encode, StringView source_encoding) {
+std::string ReaderUtil::Recode(std::string_view str_to_encode, std::string_view source_encoding) {
 	lcf::Encoder enc(ToString(source_encoding));
 	std::string out = ToString(str_to_encode);
 	enc.Encode(out);
 	return out;
 }
 
-std::string ReaderUtil::Normalize(StringView str) {
+std::string ReaderUtil::Normalize(std::string_view str) {
 	if (str.empty()) {
 		return {};
 	}

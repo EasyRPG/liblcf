@@ -295,7 +295,6 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/trooppagecondition.h
 	src/generated/lcf/rpg/variable.h
 	src/lcf/third_party/span.h
-	src/lcf/third_party/string_view.h
 )
 
 set(LCF_SUPPORT_INI 0)

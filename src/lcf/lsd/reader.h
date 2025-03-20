@@ -47,32 +47,32 @@ namespace LSD_Reader {
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(StringView filename, StringView encoding = "");
+	std::unique_ptr<rpg::Save> Load(std::string_view filename, std::string_view encoding = "");
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(StringView filename, const rpg::Save& save, EngineVersion engine, StringView encoding = "");
+	bool Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "");
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(StringView filename, const rpg::Save& save, EngineVersion engine);
+	bool SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<rpg::Save> LoadXml(StringView filename);
+	std::unique_ptr<rpg::Save> LoadXml(std::string_view filename);
 
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(std::istream& filestream, StringView encoding = "");
+	std::unique_ptr<rpg::Save> Load(std::istream& filestream, std::string_view encoding = "");
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, StringView encoding = "");
+	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "");
 
 	/*
 	 * Saves Savegame as XML.
