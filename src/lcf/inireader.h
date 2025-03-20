@@ -32,7 +32,7 @@
 #ifndef LCF_INIREADER_H
 #define LCF_INIREADER_H
 
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <string_view>
 
@@ -84,7 +84,7 @@ public:
 
 private:
 	int _error;
-	std::map<std::string, std::string> _values;
+	std::unordered_map<std::string, std::string> _values;
 	static std::string MakeKey(std::string_view section, std::string_view name);
 	static int ValueHandler(void* user, const char* section, const char* name, const char* value);
 };

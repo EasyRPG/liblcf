@@ -104,8 +104,12 @@ int INIReader::ParseError() const
 std::string_view INIReader::Get(std::string_view section, std::string_view name, std::string_view default_value) const
 {
 	std::string key = MakeKey(section, name);
-	// Use _values.find() here instead of _values.at() to support pre C++11 compilers
-	return _values.count(key) ? _values.find(key)->second : default_value;
+
+	auto it = _values.find(key);
+	if (it == _values.end()) {
+		return default_value;
+	}
+	return it->second;
 }
 
 std::string_view INIReader::GetString(std::string_view section, std::string_view name, std::string_view default_value) const
@@ -154,7 +158,7 @@ bool INIReader::GetBoolean(std::string_view section, std::string_view name, bool
 bool INIReader::HasValue(std::string_view section, std::string_view name) const
 {
 	std::string key = MakeKey(section, name);
-	return _values.count(key);
+	return _values.find(key) != _values.end();
 }
 
 std::string INIReader::MakeKey(std::string_view section, std::string_view name)
@@ -170,9 +174,15 @@ int INIReader::ValueHandler(void* user, const char* section, const char* name,
 {
 	INIReader* reader = static_cast<INIReader*>(user);
 	std::string key = MakeKey(section, name);
-	if (reader->_values[key].size() > 0)
-		reader->_values[key] += "\n";
-	reader->_values[key] += value;
+
+	auto [it, inserted] = reader->_values.try_emplace(key, value);
+
+	if (!inserted) {
+		// Key is duplicated
+		it->second += "\n";
+		it->second += value;
+	}
+
 	return 1;
 }
 

@@ -343,6 +343,7 @@ test_runner_SOURCES = \
 	tests/doctest.h \
 	tests/enum_tags.cpp \
 	tests/flag_set.cpp \
+	tests/ini.cpp \
 	tests/test_main.cpp \
 	tests/time_stamp.cpp \
 	tests/span.cpp \
