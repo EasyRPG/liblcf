@@ -107,6 +107,12 @@ State,easyrpg_immune_states,t,DBBitArray,0xC8,,0,0,States cleared on infliction 
 State,easyrpg_immune_states,f,DBBitArray,0xC9,,0,0,States cleared on infliction by this state
 Terrain,easyrpg_damage_in_percent,f,Boolean,0xC8,False,0,0,If the terrain damage is a percentage
 Terrain,easyrpg_damage_can_kill,f,Boolean,0xC9,False,0,0,If the terrain damage can kill the actors
+Terms,maniac_item_received_a,f,DBString,0xA1,,0,0,Part 1 of item received message (item_received is part 2)
+Terms,maniac_level_up_a,f,DBString,0xA2,,0,0,Part 1 of level up message
+Terms,maniac_level_up_b,f,DBString,0xA3,,0,0,Part 3 of level up message (level_up is part 2)
+Terms,maniac_level_up_c,f,DBString,0xA4,,0,0,Part 4 of level up message
+Terms,maniac_exp_received_a,f,DBString,0xA5,,0,0,Part 1 of exp message (exp_received is part 2)
+Terms,maniac_skill_learned_a,f,DBString,0xA6,,0,0,Part 1 of skill learning message (skill_learned is part 2)
 Terms,easyrpg_item_number_separator,f,DBString,0xC8,DBString(kDefaultTerm),0,0,Item number separator
 Terms,easyrpg_skill_cost_separator,f,DBString,0xC9,DBString(kDefaultTerm),0,0,Skill cost separator
 Terms,easyrpg_equipment_arrow,f,DBString,0xCA,DBString(kDefaultTerm),0,0,Equipment window arrow

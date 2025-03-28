@@ -1246,6 +1246,18 @@ namespace LDB_Reader {
 			yes = 0x98,
 			/** String */
 			no = 0x99,
+			/** Part 1 of item received message (item_received is part 2) */
+			maniac_item_received_a = 0xA1,
+			/** Part 1 of level up message */
+			maniac_level_up_a = 0xA2,
+			/** Part 3 of level up message (level_up is part 2) */
+			maniac_level_up_b = 0xA3,
+			/** Part 4 of level up message */
+			maniac_level_up_c = 0xA4,
+			/** Part 1 of exp message (exp_received is part 2) */
+			maniac_exp_received_a = 0xA5,
+			/** Part 1 of skill learning message (skill_learned is part 2) */
+			maniac_skill_learned_a = 0xA6,
 			/** Item number separator */
 			easyrpg_item_number_separator = 0xC8,
 			/** Skill cost separator */
