@@ -156,6 +156,12 @@ namespace rpg {
 		DBString exit_game_message;
 		DBString yes;
 		DBString no;
+		DBString maniac_item_received_a;
+		DBString maniac_level_up_a;
+		DBString maniac_level_up_b;
+		DBString maniac_level_up_c;
+		DBString maniac_exp_received_a;
+		DBString maniac_skill_learned_a;
 		DBString easyrpg_item_number_separator = DBString(kDefaultTerm);
 		DBString easyrpg_skill_cost_separator = DBString(kDefaultTerm);
 		DBString easyrpg_equipment_arrow = DBString(kDefaultTerm);
@@ -306,6 +312,12 @@ namespace rpg {
 		&& l.exit_game_message == r.exit_game_message
 		&& l.yes == r.yes
 		&& l.no == r.no
+		&& l.maniac_item_received_a == r.maniac_item_received_a
+		&& l.maniac_level_up_a == r.maniac_level_up_a
+		&& l.maniac_level_up_b == r.maniac_level_up_b
+		&& l.maniac_level_up_c == r.maniac_level_up_c
+		&& l.maniac_exp_received_a == r.maniac_exp_received_a
+		&& l.maniac_skill_learned_a == r.maniac_skill_learned_a
 		&& l.easyrpg_item_number_separator == r.easyrpg_item_number_separator
 		&& l.easyrpg_skill_cost_separator == r.easyrpg_skill_cost_separator
 		&& l.easyrpg_equipment_arrow == r.easyrpg_equipment_arrow
@@ -590,46 +602,58 @@ namespace rpg {
 		f(obj.yes, ctx126);
 		const auto ctx127 = Context<Terms, ParentCtx>{ "no", -1, &obj, parent_ctx };
 		f(obj.no, ctx127);
-		const auto ctx128 = Context<Terms, ParentCtx>{ "easyrpg_item_number_separator", -1, &obj, parent_ctx };
-		f(obj.easyrpg_item_number_separator, ctx128);
-		const auto ctx129 = Context<Terms, ParentCtx>{ "easyrpg_skill_cost_separator", -1, &obj, parent_ctx };
-		f(obj.easyrpg_skill_cost_separator, ctx129);
-		const auto ctx130 = Context<Terms, ParentCtx>{ "easyrpg_equipment_arrow", -1, &obj, parent_ctx };
-		f(obj.easyrpg_equipment_arrow, ctx130);
-		const auto ctx131 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_name", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_name, ctx131);
-		const auto ctx132 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_class", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_class, ctx132);
-		const auto ctx133 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_title", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_title, ctx133);
-		const auto ctx134 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_condition", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_condition, ctx134);
-		const auto ctx135 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_front", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_front, ctx135);
-		const auto ctx136 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_back", -1, &obj, parent_ctx };
-		f(obj.easyrpg_status_scene_back, ctx136);
-		const auto ctx137 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_confirm", -1, &obj, parent_ctx };
-		f(obj.easyrpg_order_scene_confirm, ctx137);
-		const auto ctx138 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_redo", -1, &obj, parent_ctx };
-		f(obj.easyrpg_order_scene_redo, ctx138);
-		const auto ctx139 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_double_attack", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_double_attack, ctx139);
-		const auto ctx140 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_defend", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_defend, ctx140);
-		const auto ctx141 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_observe", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_observe, ctx141);
-		const auto ctx142 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_charge", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_charge, ctx142);
-		const auto ctx143 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_selfdestruct", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_selfdestruct, ctx143);
-		const auto ctx144 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_escape", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_escape, ctx144);
-		const auto ctx145 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_special_combat_back", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_special_combat_back, ctx145);
-		const auto ctx146 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_skill", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_skill, ctx146);
-		const auto ctx147 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_item", -1, &obj, parent_ctx };
-		f(obj.easyrpg_battle2k3_item, ctx147);
+		const auto ctx128 = Context<Terms, ParentCtx>{ "maniac_item_received_a", -1, &obj, parent_ctx };
+		f(obj.maniac_item_received_a, ctx128);
+		const auto ctx129 = Context<Terms, ParentCtx>{ "maniac_level_up_a", -1, &obj, parent_ctx };
+		f(obj.maniac_level_up_a, ctx129);
+		const auto ctx130 = Context<Terms, ParentCtx>{ "maniac_level_up_b", -1, &obj, parent_ctx };
+		f(obj.maniac_level_up_b, ctx130);
+		const auto ctx131 = Context<Terms, ParentCtx>{ "maniac_level_up_c", -1, &obj, parent_ctx };
+		f(obj.maniac_level_up_c, ctx131);
+		const auto ctx132 = Context<Terms, ParentCtx>{ "maniac_exp_received_a", -1, &obj, parent_ctx };
+		f(obj.maniac_exp_received_a, ctx132);
+		const auto ctx133 = Context<Terms, ParentCtx>{ "maniac_skill_learned_a", -1, &obj, parent_ctx };
+		f(obj.maniac_skill_learned_a, ctx133);
+		const auto ctx134 = Context<Terms, ParentCtx>{ "easyrpg_item_number_separator", -1, &obj, parent_ctx };
+		f(obj.easyrpg_item_number_separator, ctx134);
+		const auto ctx135 = Context<Terms, ParentCtx>{ "easyrpg_skill_cost_separator", -1, &obj, parent_ctx };
+		f(obj.easyrpg_skill_cost_separator, ctx135);
+		const auto ctx136 = Context<Terms, ParentCtx>{ "easyrpg_equipment_arrow", -1, &obj, parent_ctx };
+		f(obj.easyrpg_equipment_arrow, ctx136);
+		const auto ctx137 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_name", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_name, ctx137);
+		const auto ctx138 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_class", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_class, ctx138);
+		const auto ctx139 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_title", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_title, ctx139);
+		const auto ctx140 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_condition", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_condition, ctx140);
+		const auto ctx141 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_front", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_front, ctx141);
+		const auto ctx142 = Context<Terms, ParentCtx>{ "easyrpg_status_scene_back", -1, &obj, parent_ctx };
+		f(obj.easyrpg_status_scene_back, ctx142);
+		const auto ctx143 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_confirm", -1, &obj, parent_ctx };
+		f(obj.easyrpg_order_scene_confirm, ctx143);
+		const auto ctx144 = Context<Terms, ParentCtx>{ "easyrpg_order_scene_redo", -1, &obj, parent_ctx };
+		f(obj.easyrpg_order_scene_redo, ctx144);
+		const auto ctx145 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_double_attack", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_double_attack, ctx145);
+		const auto ctx146 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_defend", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_defend, ctx146);
+		const auto ctx147 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_observe", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_observe, ctx147);
+		const auto ctx148 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_charge", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_charge, ctx148);
+		const auto ctx149 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_selfdestruct", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_selfdestruct, ctx149);
+		const auto ctx150 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_escape", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_escape, ctx150);
+		const auto ctx151 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_special_combat_back", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_special_combat_back, ctx151);
+		const auto ctx152 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_skill", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_skill, ctx152);
+		const auto ctx153 = Context<Terms, ParentCtx>{ "easyrpg_battle2k3_item", -1, &obj, parent_ctx };
+		f(obj.easyrpg_battle2k3_item, ctx153);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

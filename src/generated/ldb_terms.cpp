@@ -909,6 +909,48 @@ static TypedField<rpg::Terms, DBString> static_no(
 	1,
 	0
 );
+static TypedField<rpg::Terms, DBString> static_maniac_item_received_a(
+	&rpg::Terms::maniac_item_received_a,
+	LDB_Reader::ChunkTerms::maniac_item_received_a,
+	"maniac_item_received_a",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_maniac_level_up_a(
+	&rpg::Terms::maniac_level_up_a,
+	LDB_Reader::ChunkTerms::maniac_level_up_a,
+	"maniac_level_up_a",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_maniac_level_up_b(
+	&rpg::Terms::maniac_level_up_b,
+	LDB_Reader::ChunkTerms::maniac_level_up_b,
+	"maniac_level_up_b",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_maniac_level_up_c(
+	&rpg::Terms::maniac_level_up_c,
+	LDB_Reader::ChunkTerms::maniac_level_up_c,
+	"maniac_level_up_c",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_maniac_exp_received_a(
+	&rpg::Terms::maniac_exp_received_a,
+	LDB_Reader::ChunkTerms::maniac_exp_received_a,
+	"maniac_exp_received_a",
+	0,
+	0
+);
+static TypedField<rpg::Terms, DBString> static_maniac_skill_learned_a(
+	&rpg::Terms::maniac_skill_learned_a,
+	LDB_Reader::ChunkTerms::maniac_skill_learned_a,
+	"maniac_skill_learned_a",
+	0,
+	0
+);
 static TypedField<rpg::Terms, DBString> static_easyrpg_item_number_separator(
 	&rpg::Terms::easyrpg_item_number_separator,
 	LDB_Reader::ChunkTerms::easyrpg_item_number_separator,
@@ -1180,6 +1222,12 @@ Field<rpg::Terms> const* Struct<rpg::Terms>::fields[] = {
 	&static_exit_game_message,
 	&static_yes,
 	&static_no,
+	&static_maniac_item_received_a,
+	&static_maniac_level_up_a,
+	&static_maniac_level_up_b,
+	&static_maniac_level_up_c,
+	&static_maniac_exp_received_a,
+	&static_maniac_skill_learned_a,
 	&static_easyrpg_item_number_separator,
 	&static_easyrpg_skill_cost_separator,
 	&static_easyrpg_equipment_arrow,

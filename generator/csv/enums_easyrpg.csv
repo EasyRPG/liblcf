@@ -1,4 +1,6 @@
 Structure,Entry,Value,Index
+CommonEvent,Trigger,maniac_battle_start,6
+CommonEvent,Trigger,maniac_battle_parallel,7
 EventCommand,Code,EasyRpg_TriggerEventAt,2002
 EventCommand,Code,EasyRpg_Pathfinder,2003
 EventCommand,Code,EasyRpg_CallMovementAction,2050

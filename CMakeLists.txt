@@ -81,6 +81,7 @@ set(LCF_SOURCES
 	src/generated/ldb_skill.cpp
 	src/generated/ldb_sound.cpp
 	src/generated/ldb_state.cpp
+	src/generated/ldb_stringvariable.cpp
 	src/generated/ldb_switch.cpp
 	src/generated/ldb_system.cpp
 	src/generated/ldb_terms.cpp
@@ -125,6 +126,7 @@ set(LCF_SOURCES
 	src/generated/lsd_savepicture_flags.h
 	src/generated/lsd_savescreen.cpp
 	src/generated/lsd_savesystem.cpp
+	src/generated/lsd_savesystem_maniac_message_hook_flags.h
 	src/generated/lsd_savetarget.cpp
 	src/generated/lsd_savetitle.cpp
 	src/generated/lsd_savevehiclelocation.cpp
@@ -185,6 +187,7 @@ set(LCF_SOURCES
 	src/generated/rpg_sound.cpp
 	src/generated/rpg_start.cpp
 	src/generated/rpg_state.cpp
+	src/generated/rpg_stringvariable.cpp
 	src/generated/rpg_switch.cpp
 	src/generated/rpg_system.cpp
 	src/generated/rpg_terms.cpp
@@ -283,6 +286,7 @@ set(LCF_HEADERS
 	src/generated/lcf/rpg/sound.h
 	src/generated/lcf/rpg/start.h
 	src/generated/lcf/rpg/state.h
+	src/generated/lcf/rpg/stringvariable.h
 	src/generated/lcf/rpg/switch.h
 	src/generated/lcf/rpg/system.h
 	src/generated/lcf/rpg/terms.h

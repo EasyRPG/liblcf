@@ -144,6 +144,12 @@ std::ostream& operator<<(std::ostream& os, const Terms& obj) {
 	os << ", exit_game_message="<< obj.exit_game_message;
 	os << ", yes="<< obj.yes;
 	os << ", no="<< obj.no;
+	os << ", maniac_item_received_a="<< obj.maniac_item_received_a;
+	os << ", maniac_level_up_a="<< obj.maniac_level_up_a;
+	os << ", maniac_level_up_b="<< obj.maniac_level_up_b;
+	os << ", maniac_level_up_c="<< obj.maniac_level_up_c;
+	os << ", maniac_exp_received_a="<< obj.maniac_exp_received_a;
+	os << ", maniac_skill_learned_a="<< obj.maniac_skill_learned_a;
 	os << ", easyrpg_item_number_separator="<< obj.easyrpg_item_number_separator;
 	os << ", easyrpg_skill_cost_separator="<< obj.easyrpg_skill_cost_separator;
 	os << ", easyrpg_equipment_arrow="<< obj.easyrpg_equipment_arrow;

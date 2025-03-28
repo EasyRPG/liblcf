@@ -164,6 +164,26 @@ namespace LSD_Reader {
 			atb_mode = 0x8C,
 			/** rpg::Strings */
 			maniac_strings = 0x24,
+			/** Width of the message window in pixels */
+			maniac_message_window_width = 0x2D,
+			/** Height of the message window in pixels */
+			maniac_message_window_height = 0x2E,
+			/** Font to use in the message window */
+			maniac_message_font_name = 0x2F,
+			/** Size of the font in the message window */
+			maniac_message_font_size = 0x30,
+			/** Situations when to invoke the callbacks */
+			maniac_message_hook_flags = 0x32,
+			/** Common Event to call for a hook */
+			maniac_message_hook_common_event_id = 0x42,
+			/** Variable (starting range) populated when hook is invoked */
+			maniac_message_hook_callback_system_variable = 0x43,
+			/** String Variable populated when hook is invoked */
+			maniac_message_hook_callback_system_string_variable = 0x44,
+			/** Variable (starting range) populated when hook is invoked */
+			maniac_message_hook_callback_user_variable = 0x45,
+			/** String Variable populated when hook is invoked (TODO: Difference between System and User callback) */
+			maniac_message_hook_callback_user_string_variable = 0x46,
 			/** FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2) */
 			maniac_frameskip = 0x88,
 			/** FatalMix Picture Limit */
@@ -171,7 +191,11 @@ namespace LSD_Reader {
 			/** Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1) */
 			maniac_options = 0x8A,
 			/** JoyLeft, JoyRight, JoyUp, JoyDown, Joy1, ... Joy12 */
-			maniac_joypad_bindings = 0x8B
+			maniac_joypad_bindings = 0x8B,
+			/** Additional spacing between characters in the message window (Editor value - 1) */
+			maniac_message_spacing_char = 0x8E,
+			/** Additional spacing between lines in the message window (Editor value - 1) */
+			maniac_message_spacing_line = 0x8F
 		};
 	};
 	struct ChunkSaveScreen {
