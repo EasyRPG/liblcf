@@ -171,6 +171,13 @@ static TypedField<rpg::Database, std::vector<rpg::BattlerAnimation>> static_batt
 	1,
 	1
 );
+static TypedField<rpg::Database, std::vector<rpg::StringVariable>> static_maniac_string_variables(
+	&rpg::Database::maniac_string_variables,
+	LDB_Reader::ChunkDatabase::maniac_string_variables,
+	"maniac_string_variables",
+	0,
+	0
+);
 
 
 template <>
@@ -197,6 +204,7 @@ Field<rpg::Database> const* Struct<rpg::Database>::fields[] = {
 	&static_classes,
 	&static_classD1,
 	&static_battleranimations,
+	&static_maniac_string_variables,
 	NULL
 };
 

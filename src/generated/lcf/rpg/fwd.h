@@ -71,6 +71,7 @@ namespace rpg {
 	class Sound;
 	class Start;
 	class State;
+	class StringVariable;
 	class Switch;
 	class System;
 	class Terms;

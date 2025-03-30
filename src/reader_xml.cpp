@@ -53,6 +53,10 @@ XmlReader::~XmlReader() {
 	if (parser != NULL)
 		XML_ParserFree(parser);
 	parser = NULL;
+
+	if (!handlers.empty()) {
+		delete(handlers.back());
+	}
 #endif
 }
 

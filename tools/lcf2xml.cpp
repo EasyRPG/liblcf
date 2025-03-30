@@ -208,7 +208,7 @@ FileTypes GetFiletype(const std::string& in_file, std::string& out_extension)
 		return FileType_LCF_MapUnit;
 	} else if (input == "?xml versi") {
 		in.read(buf, 128);
-		std::string in(buf);
+		std::string in(std::begin(buf), std::end(buf));
 
 		size_t pos = in.find('<');
 		if (pos != std::string::npos)

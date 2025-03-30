@@ -13,7 +13,6 @@
 #include <type_traits>
 #include <iterator>
 #include <cstddef>
-#include <array>
 #include <cstring>
 #include <tuple>
 
@@ -68,12 +67,10 @@ class EnumTags {
 		bool etag(const char* tag, E& result) const;
 		E etagOr(const char* tag, E other) const;
 
-		const std::array<EnumItem, num_tags>& tags() const { return _tags; }
-
 		constexpr bool is_monotonic_from_zero() const { return monotonic_from_zero; }
 
-		constexpr iterator begin() const { return iterator(_tags.data()); }
-		constexpr iterator end() const { return iterator(_tags.data() + size()); }
+		constexpr iterator begin() const { return iterator(std::data(_tags)); }
+		constexpr iterator end() const { return iterator(std::data(_tags) + size()); }
 
 		constexpr iterator cbegin() const { return begin(); }
 		constexpr iterator cend() const { return end(); }
@@ -102,7 +99,8 @@ class EnumTags {
 			}
 		}
 
-		std::array<EnumItem, num_tags> _tags;
+		// std::array is not constexpr on some older C++17 compilers
+		EnumItem _tags[num_tags]{};
 		bool monotonic_from_zero = true;
 };
 
@@ -150,7 +148,7 @@ inline constexpr const char* EnumTags<E, N>::operator[](int_type value) const {
 
 template <typename E, size_t N>
 inline bool EnumTags<E, N>::has_etag(const char* tag) const {
-	for (size_t i = 0; i < _tags.size(); ++i) {
+	for (size_t i = 0; i < std::size(_tags); ++i) {
 		if (std::strcmp(_tags[i].name, tag) == 0) {
 			return true;
 		}
@@ -161,7 +159,7 @@ inline bool EnumTags<E, N>::has_etag(const char* tag) const {
 
 template <typename E, size_t N>
 inline bool EnumTags<E, N>::etag(const char* tag, E& result) const {
-	for (size_t i = 0; i < _tags.size(); ++i) {
+	for (size_t i = 0; i < std::size(_tags); ++i) {
 		if (std::strcmp(_tags[i].name, tag) == 0) {
 			result = E(_tags[i].value);
 			return true;
@@ -173,7 +171,7 @@ inline bool EnumTags<E, N>::etag(const char* tag, E& result) const {
 
 template <typename E, size_t N>
 inline E EnumTags<E, N>::etagOr(const char* tag, E other) const {
-	for (size_t i = 0; i < _tags.size(); ++i) {
+	for (size_t i = 0; i < std::size(_tags); ++i) {
 		if (std::strcmp(_tags[i].name, tag) == 0) {
 			return E(_tags[i].value);
 		}
