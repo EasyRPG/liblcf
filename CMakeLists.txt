@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16...3.28 FATAL_ERROR)
 
-project(liblcf VERSION 0.8 LANGUAGES CXX)
+project(liblcf VERSION 0.8.1 LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/builds/cmake/Modules)
 include(ConfigureWindows)
