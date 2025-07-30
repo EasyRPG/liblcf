@@ -160,7 +160,7 @@ namespace LSD_Reader {
 			save_count = 0x83,
 			/**  */
 			save_slot = 0x84,
-			/** ATB mode of RPG 2003 battle system. */
+			/** ATB mode of RPG 2003 battle system. 2k3e sets this to 1, otherwise 0 */
 			atb_mode = 0x8C,
 			/** rpg::Strings */
 			maniac_strings = 0x24,

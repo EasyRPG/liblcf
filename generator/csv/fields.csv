@@ -763,7 +763,7 @@ SaveSystem,menu_allowed,f,Boolean,0x7C,True,0,0,
 SaveSystem,background,f,String,0x7D,,0,0,string
 SaveSystem,save_count,f,Int32,0x83,0,0,0,
 SaveSystem,save_slot,f,Int32,0x84,1,0,0,
-SaveSystem,atb_mode,f,Enum<SaveSystem_AtbMode>,0x8C,0,0,1,ATB mode of RPG 2003 battle system.
+SaveSystem,atb_mode,f,Enum<SaveSystem_AtbMode>,0x8C,-1,0,1,"ATB mode of RPG 2003 battle system. 2k3e sets this to 1, otherwise 0"
 SaveScreen,tint_finish_red,f,Int32,0x01,100,0,0,int
 SaveScreen,tint_finish_green,f,Int32,0x02,100,0,0,int
 SaveScreen,tint_finish_blue,f,Int32,0x03,100,0,0,int
