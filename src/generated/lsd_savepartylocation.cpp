@@ -321,6 +321,13 @@ static TypedField<rpg::SavePartyLocation, rpg::SavePartyLocation::EasyRpgEventRu
 	0,
 	0
 );
+static TypedField<rpg::SavePartyLocation, DBString> static_easyrpg_clone_event_name(
+	&rpg::SavePartyLocation::easyrpg_clone_event_name,
+	LSD_Reader::ChunkSavePartyLocation::easyrpg_clone_event_name,
+	"easyrpg_clone_event_name",
+	0,
+	0
+);
 static TypedField<rpg::SavePartyLocation, bool> static_boarding(
 	&rpg::SavePartyLocation::boarding,
 	LSD_Reader::ChunkSavePartyLocation::boarding,
@@ -494,6 +501,7 @@ Field<rpg::SavePartyLocation> const* Struct<rpg::SavePartyLocation>::fields[] = 
 	&static_easyrpg_clone_map_id,
 	&static_easyrpg_clone_event_id,
 	&static_easyrpg_runtime_flags,
+	&static_easyrpg_clone_event_name,
 	&static_boarding,
 	&static_aboard,
 	&static_vehicle,
