@@ -16,17 +16,20 @@ class Database;
 };
 
 /**
- * Options to configure how LDB file is saved
+ * Options to configure how files are saved/loaded
  */
 enum class SaveOpt {
 	eNone = 0,
-	ePreserveHeader = 1
+	ePreserveHeader = 1,
+	eEngine2k3e = 2
 };
 
 constexpr SaveOpt operator|(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) | int(r)); }
 constexpr SaveOpt operator&(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) & int(r)); }
 constexpr SaveOpt operator^(SaveOpt l, SaveOpt r) { return SaveOpt(int(l) ^ int(r)); }
 constexpr SaveOpt operator~(SaveOpt l) { return SaveOpt(~int(l)); }
+
+using LcfOpt = SaveOpt;
 
 /**
  * Which LCF file format to write
