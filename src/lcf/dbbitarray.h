@@ -129,7 +129,7 @@ class DBBitArray {
 				 typename std::enable_if<
 					 std::is_base_of<std::forward_iterator_tag, typename std::iterator_traits<Iter>::iterator_category>::value, int>::type = 0
 				 >
-		DBBitArray(Iter first, Iter last) : _storage(this->alloc(static_cast<size_type>(std::distance(first, last)))) {
+		DBBitArray(Iter first, Iter last) : DBBitArray(static_cast<size_type>(std::distance(first, last))) {
 			std::copy(first, last, begin());
 		}
 
