@@ -16,6 +16,8 @@
 #include "lcf/lsd/chunks.h"
 #include "lcf/rpg/save.h"
 #include "lcf/reader_util.h"
+#include "lcf/rpg/savesystem.h"
+#include "lcf/saveopt.h"
 #include "log.h"
 #include "reader_struct.h"
 
@@ -41,43 +43,43 @@ void LSD_Reader::PrepareSave(rpg::Save& save, int32_t version, int32_t codepage)
 	save.easyrpg_data.codepage = codepage;
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(std::string_view filename, std::string_view encoding) {
+std::unique_ptr<rpg::Save> LSD_Reader::Load(std::string_view filename, std::string_view encoding, LcfOpt opt) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
-	return LSD_Reader::Load(stream, encoding);
+	return LSD_Reader::Load(stream, encoding, opt);
 }
 
-bool LSD_Reader::Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding) {
+bool LSD_Reader::Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding, LcfOpt opt) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD file '%s' for reading: %s", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
-	return LSD_Reader::Save(stream, save, engine, encoding);
+	return LSD_Reader::Save(stream, save, engine, encoding, opt);
 }
 
-bool LSD_Reader::SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine) {
+bool LSD_Reader::SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine, LcfOpt opt) {
 	std::ofstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD XML file '%s' for writing: %s", ToString(filename).c_str(), strerror(errno));
 		return false;
 	}
-	return LSD_Reader::SaveXml(stream, save, engine);
+	return LSD_Reader::SaveXml(stream, save, engine, opt);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::string_view filename) {
+std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::string_view filename, LcfOpt opt) {
 	std::ifstream stream(ToString(filename), std::ios::binary);
 	if (!stream.is_open()) {
 		Log::Error("Failed to open LSD XML file `%s' for reading : %s", ToString(filename).c_str(), strerror(errno));
 		return nullptr;
 	}
-	return LSD_Reader::LoadXml(stream);
+	return LSD_Reader::LoadXml(stream, opt);
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, std::string_view encoding) {
+std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, std::string_view encoding, LcfOpt opt) {
 	LcfReader reader(filestream, ToString(encoding));
 
 	if (!reader.IsOk()) {
@@ -111,10 +113,14 @@ std::unique_ptr<rpg::Save> LSD_Reader::Load(std::istream& filestream, std::strin
 		Struct<rpg::Save>::ReadLcf(*save, reader2);
 	}
 
+	if (save->system.atb_mode == rpg::SaveSystem::AtbMode_atb_unspecified) {
+		save->system.atb_mode = ((opt & LcfOpt::eEngine2k3e) == LcfOpt::eEngine2k3e) ? rpg::SaveSystem::AtbMode_atb_wait : rpg::SaveSystem::AtbMode_atb_active;
+	}
+
 	return save;
 }
 
-bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding) {
+bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding, LcfOpt opt) {
 	std::string enc;
 
 	if (save.easyrpg_data.codepage > 0) {
@@ -132,24 +138,44 @@ bool LSD_Reader::Save(std::ostream& filestream, const rpg::Save& save, EngineVer
 	writer.WriteInt(header.size());
 	writer.Write(header);
 
-	Struct<rpg::Save>::WriteLcf(save, writer);
+	auto savegame = save;
+
+	if ((opt & LcfOpt::eEngine2k3e) == LcfOpt::eEngine2k3e) {
+		if (savegame.system.atb_mode == rpg::SaveSystem::AtbMode_atb_wait) {
+			savegame.system.atb_mode = rpg::SaveSystem::AtbMode_atb_unspecified;
+		}
+	} else if (savegame.system.atb_mode == rpg::SaveSystem::AtbMode_atb_active) {
+		savegame.system.atb_mode = rpg::SaveSystem::AtbMode_atb_unspecified;
+	}
+
+	Struct<rpg::Save>::WriteLcf(savegame, writer);
 	return true;
 }
 
-bool LSD_Reader::SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine) {
+bool LSD_Reader::SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, LcfOpt opt) {
 	XmlWriter writer(filestream, engine);
 	if (!writer.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.");
 		return false;
 	}
 
+	auto savegame = save;
+
+	if ((opt & LcfOpt::eEngine2k3e) == LcfOpt::eEngine2k3e) {
+		if (savegame.system.atb_mode == rpg::SaveSystem::AtbMode_atb_wait) {
+			savegame.system.atb_mode = rpg::SaveSystem::AtbMode_atb_unspecified;
+		}
+	} else if (savegame.system.atb_mode == rpg::SaveSystem::AtbMode_atb_active) {
+		savegame.system.atb_mode = rpg::SaveSystem::AtbMode_atb_unspecified;
+	}
+
 	writer.BeginElement("LSD");
-	Struct<rpg::Save>::WriteXml(save, writer);
+	Struct<rpg::Save>::WriteXml(savegame, writer);
 	writer.EndElement("LSD");
 	return true;
 }
 
-std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::istream& filestream) {
+std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::istream& filestream, LcfOpt opt) {
 	XmlReader reader(filestream);
 	if (!reader.IsOk()) {
 		LcfReader::SetError("Couldn't parse save file.");
@@ -159,6 +185,11 @@ std::unique_ptr<rpg::Save> LSD_Reader::LoadXml(std::istream& filestream) {
 	rpg::Save* save = new rpg::Save();
 	reader.SetHandler(new RootXmlHandler<rpg::Save>(*save, "LSD"));
 	reader.Parse();
+
+	if (save->system.atb_mode == rpg::SaveSystem::AtbMode_atb_unspecified) {
+		save->system.atb_mode = ((opt & LcfOpt::eEngine2k3e) == LcfOpt::eEngine2k3e) ? rpg::SaveSystem::AtbMode_atb_wait : rpg::SaveSystem::AtbMode_atb_active;
+	}
+
 	return std::unique_ptr<rpg::Save>(save);
 }
 

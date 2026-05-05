@@ -321,6 +321,13 @@ static TypedField<rpg::SaveMapEvent, rpg::SaveMapEvent::EasyRpgEventRuntime_Flag
 	0,
 	0
 );
+static TypedField<rpg::SaveMapEvent, DBString> static_easyrpg_clone_event_name(
+	&rpg::SaveMapEvent::easyrpg_clone_event_name,
+	LSD_Reader::ChunkSaveMapEvent::easyrpg_clone_event_name,
+	"easyrpg_clone_event_name",
+	0,
+	0
+);
 static TypedField<rpg::SaveMapEvent, bool> static_waiting_execution(
 	&rpg::SaveMapEvent::waiting_execution,
 	LSD_Reader::ChunkSaveMapEvent::waiting_execution,
@@ -396,6 +403,7 @@ Field<rpg::SaveMapEvent> const* Struct<rpg::SaveMapEvent>::fields[] = {
 	&static_easyrpg_clone_map_id,
 	&static_easyrpg_clone_event_id,
 	&static_easyrpg_runtime_flags,
+	&static_easyrpg_clone_event_name,
 	&static_waiting_execution,
 	&static_original_move_route_index,
 	&static_triggered_by_decision_key,
