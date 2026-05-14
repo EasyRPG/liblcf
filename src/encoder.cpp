@@ -183,9 +183,10 @@ void Encoder::Convert(std::string& str, int conv_dst, int) {
 		// From UTF-8 to 1252
 		// Based on https://stackoverflow.com/q/23689733/
 		_buffer.resize(str.size() + 1);
-		uint32_t codepoint;
+		uint32_t codepoint = 0;
 
-		for (size_t str_idx = 0; str_idx < str.size(); ++str_idx) {
+		size_t str_idx = 0;
+		while (str_idx < str.size()) {
 			unsigned char ch = str[str_idx];
 			if (ch <= 0x7F) {
 				codepoint = ch;
@@ -199,15 +200,20 @@ void Encoder::Convert(std::string& str, int conv_dst, int) {
 				codepoint = ch & 0x07;
 			}
 			++str_idx;
-			ch = str[str_idx];
+			if (str_idx < str.size()) {
+				ch = str[str_idx];
+			} else {
+				ch = '\0';
+			}
 			if (((ch & 0xC0) != 0x80) && (codepoint <= 0x10ffff)) {
 				if (codepoint <= 255) {
 					_buffer[buf_idx] = static_cast<char>(codepoint);
 				} else {
 					_buffer[buf_idx] = '?';
 				}
+
+				++buf_idx;
 			}
-			++buf_idx;
 		}
 	}
 
