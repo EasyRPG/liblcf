@@ -174,6 +174,10 @@ namespace LSD_Reader {
 			maniac_message_font_size = 0x30,
 			/** Situations when to invoke the callbacks */
 			maniac_message_hook_flags = 0x32,
+			/** Face Graphic Width in pixels */
+			maniac_message_face_width = 0x40,
+			/** Face Graphic Height in pixels */
+			maniac_message_face_height = 0x41,
 			/** Common Event to call for a hook */
 			maniac_message_hook_common_event_id = 0x42,
 			/** Variable (starting range) populated when hook is invoked */
@@ -184,6 +188,8 @@ namespace LSD_Reader {
 			maniac_message_hook_callback_user_variable = 0x45,
 			/** String Variable populated when hook is invoked (TODO: Difference between System and User callback) */
 			maniac_message_hook_callback_user_string_variable = 0x46,
+			/** Position of the Battle Screen */
+			maniac_battle_origin = 0x85,
 			/** FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2) */
 			maniac_frameskip = 0x88,
 			/** FatalMix Picture Limit */

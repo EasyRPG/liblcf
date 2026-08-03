@@ -98,11 +98,14 @@ std::ostream& operator<<(std::ostream& os, const SaveSystem& obj) {
 	os << ", maniac_message_font_name="<< obj.maniac_message_font_name;
 	os << ", maniac_message_font_size="<< obj.maniac_message_font_size;
 	os << ", maniac_message_hook_flags="<< obj.maniac_message_hook_flags;
+	os << ", maniac_message_face_width="<< obj.maniac_message_face_width;
+	os << ", maniac_message_face_height="<< obj.maniac_message_face_height;
 	os << ", maniac_message_hook_common_event_id="<< obj.maniac_message_hook_common_event_id;
 	os << ", maniac_message_hook_callback_system_variable="<< obj.maniac_message_hook_callback_system_variable;
 	os << ", maniac_message_hook_callback_system_string_variable="<< obj.maniac_message_hook_callback_system_string_variable;
 	os << ", maniac_message_hook_callback_user_variable="<< obj.maniac_message_hook_callback_user_variable;
 	os << ", maniac_message_hook_callback_user_string_variable="<< obj.maniac_message_hook_callback_user_string_variable;
+	os << ", maniac_battle_origin="<< obj.maniac_battle_origin;
 	os << ", maniac_frameskip="<< obj.maniac_frameskip;
 	os << ", maniac_picture_limit="<< obj.maniac_picture_limit;
 	os << ", maniac_options=";

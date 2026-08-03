@@ -459,6 +459,20 @@ static TypedField<rpg::SaveSystem, rpg::SaveSystem::ManiacMessageHook_Flags> sta
 	0,
 	0
 );
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_face_width(
+	&rpg::SaveSystem::maniac_message_face_width,
+	LSD_Reader::ChunkSaveSystem::maniac_message_face_width,
+	"maniac_message_face_width",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_face_height(
+	&rpg::SaveSystem::maniac_message_face_height,
+	LSD_Reader::ChunkSaveSystem::maniac_message_face_height,
+	"maniac_message_face_height",
+	0,
+	0
+);
 static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_common_event_id(
 	&rpg::SaveSystem::maniac_message_hook_common_event_id,
 	LSD_Reader::ChunkSaveSystem::maniac_message_hook_common_event_id,
@@ -491,6 +505,13 @@ static TypedField<rpg::SaveSystem, int32_t> static_maniac_message_hook_callback_
 	&rpg::SaveSystem::maniac_message_hook_callback_user_string_variable,
 	LSD_Reader::ChunkSaveSystem::maniac_message_hook_callback_user_string_variable,
 	"maniac_message_hook_callback_user_string_variable",
+	0,
+	0
+);
+static TypedField<rpg::SaveSystem, int32_t> static_maniac_battle_origin(
+	&rpg::SaveSystem::maniac_battle_origin,
+	LSD_Reader::ChunkSaveSystem::maniac_battle_origin,
+	"maniac_battle_origin",
 	0,
 	0
 );
@@ -603,11 +624,14 @@ Field<rpg::SaveSystem> const* Struct<rpg::SaveSystem>::fields[] = {
 	&static_maniac_message_font_name,
 	&static_maniac_message_font_size,
 	&static_maniac_message_hook_flags,
+	&static_maniac_message_face_width,
+	&static_maniac_message_face_height,
 	&static_maniac_message_hook_common_event_id,
 	&static_maniac_message_hook_callback_system_variable,
 	&static_maniac_message_hook_callback_system_string_variable,
 	&static_maniac_message_hook_callback_user_variable,
 	&static_maniac_message_hook_callback_user_string_variable,
+	&static_maniac_battle_origin,
 	&static_maniac_frameskip,
 	&static_maniac_picture_limit,
 	&static_maniac_options,

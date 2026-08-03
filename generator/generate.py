@@ -451,8 +451,8 @@ def generate():
                         type=filetype
                     ))
 
-            struct_header = os.path.join('lcf', 'rpg', '%s.h' % filename)
-            filepath = os.path.join(tmp_dir, struct_header)
+            struct_header = 'lcf/rpg/%s.h' % filename
+            filepath = os.path.join(tmp_dir, 'lcf', 'rpg', '%s.h' % filename)
             with openToRender(filepath) as f:
                 f.write(rpg_header_tmpl.render(
                     struct_name=struct.name,

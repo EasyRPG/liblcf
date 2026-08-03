@@ -94,7 +94,7 @@ namespace LDB_Reader {
 			attribute_ranks = 0x4A,
 			/** Array - rpg::BattleCommand - RPG2003 */
 			battle_commands = 0x50,
-			/** Default autobattle AI behavior of the actor */
+			/** Default autobattle AI behavior of the actor with 0=RPG_RT 1=RPG_RT+ 2=ATTACK */
 			easyrpg_actorai = 0xC9,
 			/** If the actor is protected against critical hits */
 			easyrpg_prevent_critical = 0xCA,
@@ -708,7 +708,7 @@ namespace LDB_Reader {
 			actions = 0x2A,
 			/** Animation for normal enemy attacks (Maniac Patch only) */
 			maniac_unarmed_animation = 0x0F,
-			/** Default AI behavior of the enemy */
+			/** Default AI behavior of the enemy with 0=RPG_RT 1=RPG_RT+ */
 			easyrpg_enemyai = 0xC9,
 			/** If the enemy is protected against critical hits */
 			easyrpg_prevent_critical = 0xCA,
@@ -1450,7 +1450,7 @@ namespace LDB_Reader {
 			show_title = 0x6F,
 			/** Which EXP formula to use: 0=Default 1=2k 2=2k3 */
 			easyrpg_alternative_exp = 0xC8,
-			/** Available battle options where 0=Battle 1=AutoBattle 2=Escape */
+			/** Available battle options where 0=Battle 1=AutoBattle 2=Escape 3=Win 4=Lose */
 			easyrpg_battle_options = 0xC9,
 			/** Absolute maximum HP value actors can have */
 			easyrpg_max_actor_hp = 0xCA,
@@ -1484,9 +1484,9 @@ namespace LDB_Reader {
 			easyrpg_battle_use_rpg2ke_strings = 0xD8,
 			/** If the RPG Maker 2000 battle commands should be used in RPG Maker 2003 games */
 			easyrpg_use_rpg2k_battle_commands = 0xD9,
-			/** System default actor AI */
+			/** System default actor AI with 0=RPG_RT 1=RPG_RT+ 2=ATTACK */
 			easyrpg_default_actorai = 0xDA,
-			/** System default enemy AI */
+			/** System default enemy AI with 0=RPG_RT 1=RPG_RT+ */
 			easyrpg_default_enemyai = 0xDB
 		};
 	};

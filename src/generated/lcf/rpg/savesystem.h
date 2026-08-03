@@ -136,11 +136,14 @@ namespace rpg {
 			ManiacMessageHook_Flags() noexcept: user_event(false), create_window(false), destroy_window(false), text_rendering(false)
 			{}
 		} maniac_message_hook_flags;
+		int32_t maniac_message_face_width = 48;
+		int32_t maniac_message_face_height = 48;
 		int32_t maniac_message_hook_common_event_id = 0;
 		int32_t maniac_message_hook_callback_system_variable = 0;
 		int32_t maniac_message_hook_callback_system_string_variable = 0;
 		int32_t maniac_message_hook_callback_user_variable = 0;
 		int32_t maniac_message_hook_callback_user_string_variable = 0;
+		int32_t maniac_battle_origin = 0;
 		int32_t maniac_frameskip = 0;
 		int32_t maniac_picture_limit = 0;
 		std::vector<uint8_t> maniac_options;
@@ -229,11 +232,14 @@ namespace rpg {
 		&& l.maniac_message_font_name == r.maniac_message_font_name
 		&& l.maniac_message_font_size == r.maniac_message_font_size
 		&& l.maniac_message_hook_flags == r.maniac_message_hook_flags
+		&& l.maniac_message_face_width == r.maniac_message_face_width
+		&& l.maniac_message_face_height == r.maniac_message_face_height
 		&& l.maniac_message_hook_common_event_id == r.maniac_message_hook_common_event_id
 		&& l.maniac_message_hook_callback_system_variable == r.maniac_message_hook_callback_system_variable
 		&& l.maniac_message_hook_callback_system_string_variable == r.maniac_message_hook_callback_system_string_variable
 		&& l.maniac_message_hook_callback_user_variable == r.maniac_message_hook_callback_user_variable
 		&& l.maniac_message_hook_callback_user_string_variable == r.maniac_message_hook_callback_user_string_variable
+		&& l.maniac_battle_origin == r.maniac_battle_origin
 		&& l.maniac_frameskip == r.maniac_frameskip
 		&& l.maniac_picture_limit == r.maniac_picture_limit
 		&& l.maniac_options == r.maniac_options

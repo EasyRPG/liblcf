@@ -45,11 +45,14 @@ SaveSystem,maniac_message_window_height,f,Int32,0x2E,0,0,0,Height of the message
 SaveSystem,maniac_message_font_name,f,DBString,0x2F,,0,0,Font to use in the message window
 SaveSystem,maniac_message_font_size,f,Int32,0x30,0,0,0,Size of the font in the message window
 SaveSystem,maniac_message_hook_flags,f,ManiacMessageHook_Flags,0x32,0,0,0,Situations when to invoke the callbacks
+SaveSystem,maniac_message_face_width,f,Int32,0x40,48,0,0,Face Graphic Width in pixels
+SaveSystem,maniac_message_face_height,f,Int32,0x41,48,0,0,Face Graphic Height in pixels
 SaveSystem,maniac_message_hook_common_event_id,f,Int32,0x42,0,0,0,Common Event to call for a hook
 SaveSystem,maniac_message_hook_callback_system_variable,f,Int32,0x43,0,0,0,Variable (starting range) populated when hook is invoked
 SaveSystem,maniac_message_hook_callback_system_string_variable,f,Int32,0x44,0,0,0,String Variable populated when hook is invoked
 SaveSystem,maniac_message_hook_callback_user_variable,f,Int32,0x45,0,0,0,Variable (starting range) populated when hook is invoked
 SaveSystem,maniac_message_hook_callback_user_string_variable,f,Int32,0x46,0,0,0,String Variable populated when hook is invoked (TODO: Difference between System and User callback)
+SaveSystem,maniac_battle_origin,f,Int32,0x85,0,0,0,Position of the Battle Screen
 SaveSystem,maniac_frameskip,,Int32,0x88,0,0,0,"FatalMix Frameskip (0=None, 1=1/5, 2=1/3, 3=1/2)"
 SaveSystem,maniac_picture_limit,,Int32,0x89,0,0,0,FatalMix Picture Limit
 SaveSystem,maniac_options,,Vector<UInt8>,0x8A,,0,0,"Various FatalMix options (XX XA XB XC). A: MsgSkip OFF/RShift (0/4) B: TestPlay Keep/ON/OFF (0/2/4), C: Pause focus lost Wait/Run (0/1)"
@@ -62,7 +65,7 @@ BattleCommands,easyrpg_sequential_order,f,Boolean,0xCA,False,0,1,If alternative 
 BattleCommands,easyrpg_disable_row_feature,f,Boolean,0xCB,False,0,1,If the row feature should be disabled in RPG Maker 2003 games
 BattleCommands,easyrpg_fixed_actor_facing_direction,f,Int32,0xCC,0,0,1,"If actor facing direction shouldn't ever change during battle. Applies only to Normal and Initiative battle types (0=Disabled, 1=Always flipped, 2=Never flipped)"
 BattleCommands,easyrpg_fixed_enemy_facing_direction,f,Int32,0xCD,0,0,1,"If enemy facing direction shouldn't ever change during battle. Applies only to Normal and Initiative battle types (0=Disabled, 1=Always flipped, 2=Never flipped)"
-Actor,easyrpg_actorai,f,Int32,0xC9,-1,0,0,Default autobattle AI behavior of the actor
+Actor,easyrpg_actorai,f,Int32,0xC9,-1,0,0,Default autobattle AI behavior of the actor with 0=RPG_RT 1=RPG_RT+ 2=ATTACK
 Actor,easyrpg_prevent_critical,f,Boolean,0xCA,False,0,0,If the actor is protected against critical hits
 Actor,easyrpg_raise_evasion,f,Boolean,0xCB,False,0,0,If the actor has an increased evasion rate
 Actor,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the actor is immune to attribute downshifts
@@ -76,7 +79,7 @@ Actor,easyrpg_unarmed_attribute_set,f,DBBitArray,0xD3,,0,0,Attributes used by un
 Actor,easyrpg_dual_attack,f,Boolean,0xD4,False,0,0,If the actors unarmed physical attacks hits twice
 Actor,easyrpg_attack_all,f,Boolean,0xD5,False,0,0,If the actors unarmed physical targets the entire enemy party
 Enemy,maniac_unarmed_animation,f,Ref<Animation>,0x0F,1,0,0,Animation for normal enemy attacks (Maniac Patch only)
-Enemy,easyrpg_enemyai,f,Int32,0xC9,-1,0,0,Default AI behavior of the enemy
+Enemy,easyrpg_enemyai,f,Int32,0xC9,-1,0,0,Default AI behavior of the enemy with 0=RPG_RT 1=RPG_RT+
 Enemy,easyrpg_prevent_critical,f,Boolean,0xCA,False,0,0,If the enemy is protected against critical hits
 Enemy,easyrpg_raise_evasion,f,Boolean,0xCB,False,0,0,If the enemy has an increased evasion rate
 Enemy,easyrpg_immune_to_attribute_downshifts,f,Boolean,0xCC,False,0,0,If the enemy is immune to attribute downshifts
@@ -135,7 +138,7 @@ Terms,easyrpg_battle2k3_special_combat_back,f,DBString,0xD9,,0,1,Message for bac
 Terms,easyrpg_battle2k3_skill,f,DBString,0xDA,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general skill start notification
 Terms,easyrpg_battle2k3_item,f,DBString,0xDB,DBString(kDefaultTerm),0,1,RPG Maker 2003 battle general item start notification
 System,easyrpg_alternative_exp,f,Int32,0xC8,0,0,0,Which EXP formula to use: 0=Default 1=2k 2=2k3
-System,easyrpg_battle_options,f,Vector<Int16>,0xC9,"[0,1,2]",0,0,Available battle options where 0=Battle 1=AutoBattle 2=Escape
+System,easyrpg_battle_options,f,Vector<Int16>,0xC9,"[0,1,2]",0,0,Available battle options where 0=Battle 1=AutoBattle 2=Escape 3=Win 4=Lose
 System,easyrpg_max_actor_hp,f,Int32,0xCA,-1,0,0,Absolute maximum HP value actors can have
 System,easyrpg_max_enemy_hp,f,Int32,0xCB,-1,0,0,Absolute maximum HP value enemies can have
 System,easyrpg_max_damage,f,Int32,0xCC,-1,0,0,How much damage can an attack inflict at most
@@ -152,7 +155,7 @@ System,easyrpg_max_stat_battle_value,f,Int32,0xD6,-1,0,0,Absolute maximum value 
 System,easyrpg_use_rpg2k_battle_system,f,Boolean,0xD7,False,0,1,If the RPG Maker 2000 battle system should be used in RPG Maker 2003 games
 System,easyrpg_battle_use_rpg2ke_strings,f,Boolean,0xD8,False,0,1,If RPG Maker 2000 battles in RPG Maker 2003 games should use the RPG2kE strings
 System,easyrpg_use_rpg2k_battle_commands,f,Boolean,0xD9,False,0,1,If the RPG Maker 2000 battle commands should be used in RPG Maker 2003 games
-System,easyrpg_default_actorai,f,Int32,0xDA,-1,0,0,System default actor AI
-System,easyrpg_default_enemyai,f,Int32,0xDB,-1,0,0,System default enemy AI
+System,easyrpg_default_actorai,f,Int32,0xDA,-1,0,0,System default actor AI with 0=RPG_RT 1=RPG_RT+ 2=ATTACK
+System,easyrpg_default_enemyai,f,Int32,0xDB,-1,0,0,System default enemy AI with 0=RPG_RT 1=RPG_RT+
 Database,maniac_string_variables,f,Array<StringVariable>,0x21,,0,0,
 StringVariable,name,f,DBString,0x01,,0,0,String
