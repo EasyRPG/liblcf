@@ -72,6 +72,8 @@ namespace LDB_Reader {
 			unarmed_animation = 0x38,
 			/** Integer - RPG2003 */
 			class_id = 0x39,
+			/** Unknown chunk - only present in RPG2003 */
+			unknown3A = 0x3A,
 			/** Integer - RPG2003 */
 			battle_x = 0x3B,
 			/** Integer - RPG2003 */
@@ -80,6 +82,8 @@ namespace LDB_Reader {
 			battler_animation = 0x3E,
 			/** Array - rpg::Learning */
 			skills = 0x3F,
+			/** Unknown chunk - only present in RPG2003 */
+			unknown40 = 0x40,
 			/** Flag */
 			rename_skill = 0x42,
 			/** String */

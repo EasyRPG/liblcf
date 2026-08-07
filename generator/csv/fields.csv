@@ -23,10 +23,12 @@ Actor,exp_correction,f,Int32,0x2B,0,0,0,Integer
 Actor,initial_equipment,f,Equipment,0x33,,1,0,Integer x 5
 Actor,unarmed_animation,f,Ref<Animation>,0x38,1,0,0,Integer
 Actor,class_id,f,Ref<Class>,0x39,0,0,1,Integer - RPG2003
+Actor,unknown3A,f,Int32,0x3A,0,0,1,Unknown chunk - only present in RPG2003
 Actor,battle_x,f,Int32,0x3B,220,0,1,Integer - RPG2003
 Actor,battle_y,f,Int32,0x3C,120,0,1,Integer - RPG2003
 Actor,battler_animation,f,Ref<BattlerAnimation>,0x3E,1,0,1,Integer - RPG2003
 Actor,skills,f,Array<Learning>,0x3F,,1,0,Array - rpg::Learning
+Actor,unknown40,f,Int32,0x40,0,0,1,Unknown chunk - only present in RPG2003
 Actor,rename_skill,f,Boolean,0x42,False,0,0,Flag
 Actor,skill_name,f,DBString,0x43,,0,0,String
 Actor,state_ranks,t,Vector<UInt8>,0x47,,0,0,Integer
