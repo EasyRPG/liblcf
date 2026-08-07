@@ -321,6 +321,13 @@ static TypedField<rpg::SaveMapEventBase, rpg::SaveMapEventBase::EasyRpgEventRunt
 	0,
 	0
 );
+static TypedField<rpg::SaveMapEventBase, DBString> static_easyrpg_clone_event_name(
+	&rpg::SaveMapEventBase::easyrpg_clone_event_name,
+	LSD_Reader::ChunkSaveMapEventBase::easyrpg_clone_event_name,
+	"easyrpg_clone_event_name",
+	0,
+	0
+);
 
 
 template <>
@@ -368,6 +375,7 @@ Field<rpg::SaveMapEventBase> const* Struct<rpg::SaveMapEventBase>::fields[] = {
 	&static_easyrpg_clone_map_id,
 	&static_easyrpg_clone_event_id,
 	&static_easyrpg_runtime_flags,
+	&static_easyrpg_clone_event_name,
 	NULL
 };
 

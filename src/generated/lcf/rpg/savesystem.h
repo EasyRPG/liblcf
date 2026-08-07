@@ -55,13 +55,15 @@ namespace rpg {
 			"debug"
 		);
 		enum AtbMode {
+			AtbMode_atb_unspecified = -1,
 			AtbMode_atb_active = 0,
 			AtbMode_atb_wait = 1
 		};
-		static constexpr auto kAtbModeTags = lcf::makeEnumTags<AtbMode>(
-			"atb_active",
-			"atb_wait"
-		);
+		static constexpr auto kAtbModeTags = lcf::EnumTags{
+			AtbMode_atb_unspecified, "atb_unspecified",
+			AtbMode_atb_active, "atb_active",
+			AtbMode_atb_wait, "atb_wait"
+		};
 
 		int32_t scene = 0;
 		int32_t frame_count = 0;
@@ -117,7 +119,7 @@ namespace rpg {
 		std::string background;
 		int32_t save_count = 0;
 		int32_t save_slot = 1;
-		int32_t atb_mode = 0;
+		int32_t atb_mode = -1;
 		std::vector<DBString> maniac_strings;
 		int32_t maniac_message_window_width = 0;
 		int32_t maniac_message_window_height = 0;

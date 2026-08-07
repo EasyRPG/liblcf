@@ -16,6 +16,7 @@
 #include <array>
 #include <stdint.h>
 #include <string>
+#include "lcf/dbstring.h"
 #include "lcf/enum_tags.h"
 #include "lcf/rpg/moveroute.h"
 #include "lcf/context.h"
@@ -81,6 +82,7 @@ namespace rpg {
 			EasyRpgEventRuntime_Flags() noexcept: reserved_1(false)
 			{}
 		} easyrpg_runtime_flags;
+		DBString easyrpg_clone_event_name;
 	};
 
 	inline bool operator==(const SaveMapEventBase::EasyRpgEventRuntime_Flags& l, const SaveMapEventBase::EasyRpgEventRuntime_Flags& r) {
@@ -136,7 +138,8 @@ namespace rpg {
 		&& l.easyrpg_move_failure_count == r.easyrpg_move_failure_count
 		&& l.easyrpg_clone_map_id == r.easyrpg_clone_map_id
 		&& l.easyrpg_clone_event_id == r.easyrpg_clone_event_id
-		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags;
+		&& l.easyrpg_runtime_flags == r.easyrpg_runtime_flags
+		&& l.easyrpg_clone_event_name == r.easyrpg_clone_event_name;
 	}
 
 	inline bool operator!=(const SaveMapEventBase& l, const SaveMapEventBase& r) {
@@ -149,6 +152,8 @@ namespace rpg {
 	void ForEachString(SaveMapEventBase& obj, const F& f, const ParentCtx* parent_ctx = nullptr) {
 		const auto ctx16 = Context<SaveMapEventBase, ParentCtx>{ "move_route", -1, &obj, parent_ctx };
 		ForEachString(obj.move_route, f, &ctx16);
+		const auto ctx44 = Context<SaveMapEventBase, ParentCtx>{ "easyrpg_clone_event_name", -1, &obj, parent_ctx };
+		f(obj.easyrpg_clone_event_name, ctx44);
 		(void)obj;
 		(void)f;
 		(void)parent_ctx;

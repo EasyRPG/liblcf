@@ -47,42 +47,42 @@ namespace LSD_Reader {
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(std::string_view filename, std::string_view encoding = "");
+	std::unique_ptr<rpg::Save> Load(std::string_view filename, std::string_view encoding = "", LcfOpt opt = LcfOpt::eNone);
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "");
+	bool Save(std::string_view filename, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "", LcfOpt opt = LcfOpt::eNone);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine);
+	bool SaveXml(std::string_view filename, const rpg::Save& save, EngineVersion engine, LcfOpt opt = LcfOpt::eNone);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<rpg::Save> LoadXml(std::string_view filename);
+	std::unique_ptr<rpg::Save> LoadXml(std::string_view filename, LcfOpt opt = LcfOpt::eNone);
 
 	/**
 	 * Loads Savegame.
 	 */
-	std::unique_ptr<rpg::Save> Load(std::istream& filestream, std::string_view encoding = "");
+	std::unique_ptr<rpg::Save> Load(std::istream& filestream, std::string_view encoding = "", LcfOpt opt = LcfOpt::eNone);
 
 	/**
 	 * Saves Savegame.
 	 */
-	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "");
+	bool Save(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, std::string_view encoding = "", LcfOpt opt = LcfOpt::eNone);
 
 	/*
 	 * Saves Savegame as XML.
 	 */
-	bool SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine);
+	bool SaveXml(std::ostream& filestream, const rpg::Save& save, EngineVersion engine, LcfOpt opt = LcfOpt::eNone);
 
 	/**
 	 * Loads Savegame as XML.
 	 */
-	std::unique_ptr<rpg::Save> LoadXml(std::istream& filestream);
+	std::unique_ptr<rpg::Save> LoadXml(std::istream& filestream, LcfOpt opt = LcfOpt::eNone);
 }
 
 } //namespace lcf

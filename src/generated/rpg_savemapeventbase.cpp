@@ -68,6 +68,7 @@ std::ostream& operator<<(std::ostream& os, const SaveMapEventBase& obj) {
 	os << ", easyrpg_clone_map_id="<< obj.easyrpg_clone_map_id;
 	os << ", easyrpg_clone_event_id="<< obj.easyrpg_clone_event_id;
 	os << ", easyrpg_runtime_flags="<< obj.easyrpg_runtime_flags;
+	os << ", easyrpg_clone_event_name="<< obj.easyrpg_clone_event_name;
 	os << "}";
 	return os;
 }

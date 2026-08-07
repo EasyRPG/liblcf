@@ -100,7 +100,7 @@ namespace rpg {
 		int32_t death_teleport_x = 0;
 		int32_t death_teleport_y = 0;
 		int32_t death_teleport_face = 0;
-		int32_t easyrpg_default_atb_mode = 0;
+		int32_t easyrpg_default_atb_mode = -1;
 		bool easyrpg_enable_battle_row_command = true;
 		bool easyrpg_sequential_order = false;
 		bool easyrpg_disable_row_feature = false;
